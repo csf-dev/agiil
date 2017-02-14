@@ -1,0 +1,11 @@
+bin/
+obj/
+packages/*/*
+*.userprefs
+*.csproj.user
+TestResult.xml
+TestResult.formatted.xml
+Agiil.Web/Agiil.db
+Agiil.db
+Agiil sample database.odb
+*.log
