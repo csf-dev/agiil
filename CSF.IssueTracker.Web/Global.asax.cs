@@ -12,6 +12,8 @@ namespace CSF.IssueTracker.Web
       AreaRegistration.RegisterAllAreas ();
       GlobalConfiguration.Configure (App_Start.WebApiConfig.Register);
       App_Start.RouteConfig.RegisterRoutes (RouteTable.Routes);
+
+      App_Start.ViewConfig.RegisterViewEngines(ViewEngines.Engines);
     }
   }
 }

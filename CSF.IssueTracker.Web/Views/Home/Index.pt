@@ -1,0 +1,12 @@
+﻿
+<html>
+<head>
+<title>Application home page</title>
+</head>
+<body>
+  <p>
+    We are running MVC version <code tal:content="ViewData/Version">5.0.0</code>,
+    on the <strong tal:content="ViewData/Runtime">Runtime</strong> framework.
+  </p>
+</body>
+</html>

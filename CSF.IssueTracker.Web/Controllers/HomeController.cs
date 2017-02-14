@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 
-namespace CSF.IssueTracker.Web.Controllers.Controllers
+namespace CSF.IssueTracker.Web.Controllers
 {
   public class HomeController : Controller
   {
