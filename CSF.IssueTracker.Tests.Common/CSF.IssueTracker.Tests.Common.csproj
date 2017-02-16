@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{922B2D9C-444E-451A-B626-DAE59E79C0E5}</ProjectGuid>
+    <ProjectGuid>{E15F2064-D2EA-43EF-924C-733107675FF0}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>CSF.IssueTracker.Auth</RootNamespace>
-    <AssemblyName>CSF.IssueTracker.Auth</AssemblyName>
+    <RootNamespace>CSF.IssueTracker.Tests.Common</RootNamespace>
+    <AssemblyName>CSF.IssueTracker.Tests.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -28,24 +28,35 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="CSF.Security">
-      <HintPath>..\packages\CSF.Security.1.0.0\lib\net45\CSF.Security.dll</HintPath>
+    <Reference Include="CSF.Entities">
+      <HintPath>..\packages\CSF.Entities.1.0.2\lib\net45\CSF.Entities.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="LoginCredentials.cs" />
-    <Compile Include="IAuthenticationService.cs" />
-    <Compile Include="IKeyAndSaltConverter.cs" />
-    <Compile Include="ICredentialsRepository.cs" />
-    <Compile Include="LoginCredentialsFactory.cs" />
-    <Compile Include="IAuthenticationInfoProvider.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Reference Include="Ploeh.AutoFixture">
+      <HintPath>..\packages\AutoFixture.3.50.2\lib\net40\Ploeh.AutoFixture.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data">
+      <HintPath>..\packages\CSF.Data.1.0.0\lib\net45\CSF.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.5.30\lib\net45\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Ploeh.AutoFixture.NUnit3">
+      <HintPath>..\packages\AutoFixture.NUnit3.3.50.2\lib\net40\Ploeh.AutoFixture.NUnit3.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <Compile Include="EntityCustomisation.cs" />
+    <Compile Include="EntityIdAttribute.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

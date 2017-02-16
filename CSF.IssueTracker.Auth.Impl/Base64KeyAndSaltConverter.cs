@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using CSF.Security;
 
 namespace CSF.IssueTracker.Auth
@@ -13,6 +14,15 @@ namespace CSF.IssueTracker.Auth
 
     #region methods
 
+    public IStoredCredentialsWithKeyAndSalt GetKeyAndSalt (IAuthenticationInfoProvider provider)
+    {
+      if (provider == null) {
+        throw new ArgumentNullException (nameof (provider));
+      }
+
+      return GetKeyAndSalt(provider.GetAuthenticationInfo());
+    }
+
     public IStoredCredentialsWithKeyAndSalt GetKeyAndSalt (string authenticationInfo)
     {
       if (authenticationInfo == null) {
@@ -22,8 +32,7 @@ namespace CSF.IssueTracker.Auth
       var parts = authenticationInfo.Split(SPACER);
       if(parts.Length != 2)
       {
-        throw new ArgumentException("Authentication info must comprise of two parts separated by a colon",
-                                    nameof(authenticationInfo));
+        throw new FormatException(Resources.ExceptionMessages.AuthenticationInfoMustBeFormattedCorrectly);
       }
 
       return new Base64KeyAndSalt() {

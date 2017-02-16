@@ -4,7 +4,7 @@ using CSF.IssueTracker.Auth;
 
 namespace CSF.IssueTracker.Domain.Auth
 {
-  public class User : Entity<long>
+  public class User : Entity<long>, IAuthenticationInfoProvider
   {
     public virtual Organisation Organisation
     {
@@ -20,6 +20,11 @@ namespace CSF.IssueTracker.Domain.Auth
     public virtual string AuthenticationInfo {
       get;
       set;
+    }
+
+    string IAuthenticationInfoProvider.GetAuthenticationInfo ()
+    {
+      return AuthenticationInfo;
     }
   }
 }

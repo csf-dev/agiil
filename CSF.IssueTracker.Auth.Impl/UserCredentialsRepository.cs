@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace CSF.IssueTracker.Auth
 {
-  public class UserCredentialsRepository : ICredentialsRepository
+  public class UserCredentialsRepository : ICredentialsRepository, CSF.Security.ICredentialsRepository
   {
     #region fields
 
@@ -18,7 +18,7 @@ namespace CSF.IssueTracker.Auth
 
     #region methods
 
-    public object GetStoredCredentials (object enteredCredentials)
+    object CSF.Security.ICredentialsRepository.GetStoredCredentials (object enteredCredentials)
     {
       return GetStoredCredentials(enteredCredentials as LoginCredentials);
     }
@@ -29,19 +29,19 @@ namespace CSF.IssueTracker.Auth
         throw new ArgumentNullException (nameof (enteredCredentials));
       }
 
-      var user = GetUser(enteredCredentials.Username);
+      var provider = GetAuthenticationInfoProvider(enteredCredentials);
 
-      if(user == null)
+      if(provider == null)
       {
         return null;
       }
 
-      return converter.GetKeyAndSalt(user.AuthenticationInfo);
+      return converter.GetKeyAndSalt(provider);
     }
 
-    private User GetUser(string username)
+    private IAuthenticationInfoProvider GetAuthenticationInfoProvider(LoginCredentials enteredCredentials)
     {
-      return query.Query<User>().SingleOrDefault(x => x.Username == username);
+      return query.Query<User>().SingleOrDefault(x => x.Username == enteredCredentials.Username);
     }
 
     #endregion
