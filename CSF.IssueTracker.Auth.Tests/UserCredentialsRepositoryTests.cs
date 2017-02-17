@@ -18,7 +18,7 @@ namespace CSF.IssueTracker.Auth.Tests
     InMemoryQuery query;
     Mock<IKeyAndSaltConverter> converter;
     ICredentialsRepository sut;
-    IStoredCredentialsWithKeyAndSalt credentials;
+    IStoredCredentialsWithKeyAndSalt storedCredentials;
 
     #endregion
 
@@ -31,11 +31,11 @@ namespace CSF.IssueTracker.Auth.Tests
       converter = new Mock<IKeyAndSaltConverter>();
       sut = new UserCredentialsRepository(query, converter.Object);
 
-      credentials = Mock.Of<IStoredCredentialsWithKeyAndSalt>();
+      storedCredentials = Mock.Of<IStoredCredentialsWithKeyAndSalt>();
 
       converter
         .Setup(x => x.GetKeyAndSalt(It.IsAny<IAuthenticationInfoProvider>()))
-        .Returns(credentials);
+        .Returns(storedCredentials);
     }
 
     #endregion
@@ -54,26 +54,28 @@ namespace CSF.IssueTracker.Auth.Tests
 
     [Test,AutoData]
     public void GetStoredCredentials_returns_credentials_when_user_is_found (LoginCredentials credentials,
-                                                                             [EntityId] User user)
+                                                                             User user)
     {
       // Arrange
+      user.SetIdentity();
       user.Username = credentials.Username;
-      query.Add(user, user.GetIdentity().Value);
+      query.Add(user, user.GetIdentity());
 
       // Act
       var result = sut.GetStoredCredentials(credentials);
 
       // Assert
-      Assert.AreSame(credentials, result);
+      Assert.AreSame(storedCredentials, result);
     }
 
     [Test,AutoData]
     public void GetStoredCredentials_uses_key_and_salt_converter (LoginCredentials credentials,
-                                                                  [EntityId] User user)
+                                                                  User user)
     {
       // Arrange
+      user.SetIdentity();
       user.Username = credentials.Username;
-      query.Add(user, user.GetIdentity().Value);
+      query.Add(user, user.GetIdentity());
 
       // Act
       sut.GetStoredCredentials(credentials);

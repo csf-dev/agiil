@@ -50,6 +50,9 @@
     <Reference Include="Ploeh.AutoFixture.NUnit3">
       <HintPath>..\packages\AutoFixture.NUnit3.3.50.2\lib\net40\Ploeh.AutoFixture.NUnit3.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Data.Entities">
+      <HintPath>..\packages\CSF.Data.Entities.1.0.0\lib\net45\CSF.Data.Entities.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base64KeyAndSaltConverterTests.cs" />
