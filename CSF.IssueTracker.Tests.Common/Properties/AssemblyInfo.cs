@@ -24,5 +24,3 @@ using System.Runtime.CompilerServices;
 
 //[assembly: AssemblyDelaySign(false)]
 //[assembly: AssemblyKeyFile("")]
-
-[assembly: NUnit.Framework.Ignore("This is not a test fixture")]

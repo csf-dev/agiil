@@ -1,6 +1,6 @@
 ﻿using System;
 using CSF.Data;
-using CSF.Entities;
+using CSF.Data.Entities;
 using CSF.IssueTracker.Domain.Auth;
 using CSF.IssueTracker.Tests.Common;
 using CSF.Security;
@@ -57,9 +57,9 @@ namespace CSF.IssueTracker.Auth.Tests
                                                                              User user)
     {
       // Arrange
-      user.SetIdentity();
+      user.GenerateIdentity();
       user.Username = credentials.Username;
-      query.Add(user, user.GetIdentity());
+      query.Add(user);
 
       // Act
       var result = sut.GetStoredCredentials(credentials);
@@ -73,9 +73,9 @@ namespace CSF.IssueTracker.Auth.Tests
                                                                   User user)
     {
       // Arrange
-      user.SetIdentity();
+      user.GenerateIdentity();
       user.Username = credentials.Username;
-      query.Add(user, user.GetIdentity());
+      query.Add(user);
 
       // Act
       sut.GetStoredCredentials(credentials);
