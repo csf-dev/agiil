@@ -10,6 +10,7 @@ namespace CSF.IssueTracker.Web
     protected void Application_Start ()
     {
       AreaRegistration.RegisterAllAreas ();
+
       GlobalConfiguration.Configure (App_Start.WebApiConfig.Register);
       App_Start.RouteConfig.RegisterRoutes (RouteTable.Routes);
 

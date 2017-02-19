@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using Autofac;
 using Autofac.Core;
 using CSF.IssueTracker.Auth;
@@ -31,8 +32,14 @@ namespace CSF.IssueTracker.Bootstrap.Auth
           var username = parameters.Named<string>("username");
           var password = parameters.Named<string>("password");
 
-          return new LoginCredentials(username, password);
-        });
+          var credentials = new LoginCredentials(username, password);
+
+          return new LoginRequest(credentials);
+        })
+        .As<ILoginRequest>();
+
+      builder.Register((context, parameters) => HttpContext.Current.GetOwinContext().Authentication);
+
     }
   }
 }

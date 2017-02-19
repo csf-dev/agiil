@@ -6,13 +6,7 @@ namespace CSF.IssueTracker.Auth
 {
   public class Base64KeyAndSaltConverter : IKeyAndSaltConverter
   {
-    #region constants
-
     const char SPACER = ':';
-
-    #endregion
-
-    #region methods
 
     public IStoredCredentialsWithKeyAndSalt GetKeyAndSalt (IAuthenticationInfoProvider provider)
     {
@@ -40,7 +34,5 @@ namespace CSF.IssueTracker.Auth
         Key = parts[1],
       };
     }
-
-    #endregion
   }
 }
