@@ -28,11 +28,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="CSF.Entities">
-      <HintPath>..\packages\CSF.Entities.1.0.2\lib\net45\CSF.Entities.dll</HintPath>
-    </Reference>
     <Reference Include="CSF.Collections.EventRaising">
       <HintPath>..\packages\CSF.Collections.EventRaising.1.0.1\lib\net45\CSF.Collections.EventRaising.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Entities">
+      <HintPath>..\packages\CSF.Entities.1.1.0\lib\net45\CSF.Entities.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
