@@ -8,7 +8,7 @@ namespace CSF.IssueTracker.Auth
 
     public bool Success => success;
 
-    private LogoutResult(bool success)
+    LogoutResult(bool success)
     {
       this.success = success;
     }

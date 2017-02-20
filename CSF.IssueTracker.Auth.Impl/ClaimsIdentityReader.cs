@@ -15,24 +15,25 @@ namespace CSF.IssueTracker.Auth
 
       var username = GetClaim(ClaimTypes.NameIdentifier, principal);
       var identityValue = GetClaim(CustomClaimTypes.UserNumericId, principal);
+
       var identity = CreateIdentity(identityValue);
 
       return new UserInformation(identity, username);
     }
 
-    private ClaimsPrincipal GetPrincipal()
+    ClaimsPrincipal GetPrincipal()
     {
       return Thread.CurrentPrincipal as ClaimsPrincipal;
     }
 
-    private string GetClaim(string claimType, ClaimsPrincipal principal)
+    string GetClaim(string claimType, ClaimsPrincipal principal)
     {
       return principal.Claims.Single(x => x.Type == claimType).Value;
     }
 
-    private IIdentity<User> CreateIdentity(string identityValue)
+    IIdentity<User> CreateIdentity(string identityValue)
     {
-      var val = Int64.Parse(identityValue);
+      var val = long.Parse(identityValue);
       return Identity.Create<User>(val);
     }
   }

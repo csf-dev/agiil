@@ -39,7 +39,7 @@ namespace CSF.IssueTracker.Auth
       return converter.GetKeyAndSalt(provider);
     }
 
-    private IAuthenticationInfoProvider GetAuthenticationInfoProvider(LoginCredentials enteredCredentials)
+    IAuthenticationInfoProvider GetAuthenticationInfoProvider(LoginCredentials enteredCredentials)
     {
       return query.Query<User>().SingleOrDefault(x => x.Username == enteredCredentials.Username);
     }

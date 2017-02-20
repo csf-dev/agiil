@@ -9,8 +9,7 @@ namespace CSF.IssueTracker.Domain.Auth
   {
     #region fields
 
-    private ISet<User> _users;
-    EventRaisingSetWrapper<User> _wrappedUsers;
+    readonly EventRaisingSetWrapper<User> _wrappedUsers;
 
     #endregion
 
@@ -18,14 +17,22 @@ namespace CSF.IssueTracker.Domain.Auth
 
     public virtual ISet<User> Users => _wrappedUsers.Collection;
 
+    protected virtual ISet<User> SourceUsers {
+      get {
+        return _wrappedUsers.SourceCollection;
+      }
+      set {
+        _wrappedUsers.SourceCollection = value;
+      }
+    }
+
     #endregion
 
     #region constructors
 
-    public Organisation ()
+    public Organisation()
     {
-      _users = new HashSet<User>();
-      _wrappedUsers = new EventRaisingSetWrapper<User>(_users);
+      _wrappedUsers = new EventRaisingSetWrapper<User>();
 
       _wrappedUsers.AfterAdd += (sender, e) => e.Item.Organisation = this;
       _wrappedUsers.AfterRemove += (sender, e) => e.Item.Organisation = null;

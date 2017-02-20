@@ -2,10 +2,10 @@
 using System;
 namespace CSF.IssueTracker.Tests.Common
 {
-  [TestFixture ()]
+  [TestFixture]
   public class FakeFixture
   {
-    [Test ()]
+    [Test]
     public void DummyTestCase ()
     {
       Assert.Pass("This is a fake testcase");

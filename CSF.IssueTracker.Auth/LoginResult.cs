@@ -17,9 +17,9 @@ namespace CSF.IssueTracker.Auth
       this.currentUser = currentUser;
     }
 
-    private LoginResult ()
+    LoginResult ()
     {
-      this.currentUser = null;
+      currentUser = null;
     }
 
     static LoginResult()

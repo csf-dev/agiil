@@ -88,9 +88,7 @@ namespace CSF.IssueTracker.Auth.Tests
     public void GetStoredCredentials_throws_exception_when_credentials_are_null ()
     {
       // Act & Assert
-      Assert.Throws<ArgumentNullException>(() => sut.GetStoredCredentials((LoginCredentials) null));
-
-      // Assert
+      Assert.Throws<ArgumentNullException>(() => sut.GetStoredCredentials(null));
     }
 
     #endregion

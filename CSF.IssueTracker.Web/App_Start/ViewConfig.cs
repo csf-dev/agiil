@@ -1,5 +1,5 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using CSF.Zpt.MVC;
 
 namespace CSF.IssueTracker.Web.App_Start
 {
@@ -8,7 +8,7 @@ namespace CSF.IssueTracker.Web.App_Start
     public static void RegisterViewEngines(ViewEngineCollection engines)
     {
       engines.Clear();
-      engines.Add(new CSF.Zpt.MVC.ZptViewEngine());
+      engines.Add(new ZptViewEngine());
     }
   }
 }

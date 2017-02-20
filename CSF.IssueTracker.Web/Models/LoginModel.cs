@@ -1,5 +1,4 @@
-﻿using System;
-using CSF.IssueTracker.Auth;
+﻿using CSF.IssueTracker.Auth;
 
 namespace CSF.IssueTracker.Web.Models
 {

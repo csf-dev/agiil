@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web;
 using Autofac;
-using Autofac.Core;
 using CSF.IssueTracker.Auth;
 using CSF.Security;
 
@@ -21,7 +20,7 @@ namespace CSF.IssueTracker.Bootstrap.Auth
 
       builder
         .RegisterType<AuthenticationService<LoginCredentials,IStoredCredentialsWithKeyAndSalt>>()
-        .As<CSF.IssueTracker.Auth.IAuthenticationService>();
+        .As<IssueTracker.Auth.IAuthenticationService>();
 
       builder
         .RegisterType<Base64KeyAndSaltConverter>()

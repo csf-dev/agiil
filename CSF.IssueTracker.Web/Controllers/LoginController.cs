@@ -53,14 +53,12 @@ namespace CSF.IssueTracker.Web.Controllers
           action = nameof(HomeController.Index)
         });
       }
-      else
-      {
-        return RedirectToRoute(new {
-          controller = typeof(LoginController).Name,
-          action = nameof(LoginController.Index),
-          result
-        });
-      }
+
+      return RedirectToRoute(new {
+        controller = typeof(LoginController).Name,
+        action = nameof(LoginController.Index),
+        result
+      });
     }
 
     [AllowAnonymous]
@@ -76,10 +74,8 @@ namespace CSF.IssueTracker.Web.Controllers
           action = nameof(LoginController.LoggedOut),
         });
       }
-      else
-      {
-        throw new NotImplementedException("Failure to log out is not supported.");
-      }
+
+      throw new NotImplementedException("Failure to log out is not supported.");
     }
 
 

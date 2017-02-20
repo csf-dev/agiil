@@ -29,7 +29,7 @@ namespace CSF.IssueTracker.Auth
         throw new FormatException(Resources.ExceptionMessages.AuthenticationInfoMustBeFormattedCorrectly);
       }
 
-      return new Base64KeyAndSalt() {
+      return new Base64KeyAndSalt {
         Salt = parts[0],
         Key = parts[1],
       };
