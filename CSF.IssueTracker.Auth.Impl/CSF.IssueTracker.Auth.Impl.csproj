@@ -87,6 +87,7 @@
     <Compile Include="LoginRequest.cs" />
     <Compile Include="UserInformation.cs" />
     <Compile Include="LoginLogoutManager.cs" />
+    <Compile Include="ClaimsIdentityReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
