@@ -11,11 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.IssueTracker.Auth.Impl"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.IssueTracker.Bootstrap", "CSF.IssueTracker.Bootstrap\CSF.IssueTracker.Bootstrap.csproj", "{79827CF5-CC58-4F87-BBCA-162B5983C563}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.IssueTracker.Auth.Tests", "CSF.IssueTracker.Auth.Tests\CSF.IssueTracker.Auth.Tests.csproj", "{8F17A7FC-CEAB-47F6-ADA2-5B03A93D2D33}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.IssueTracker.Auth.Tests", "Tests\CSF.IssueTracker.Auth.Tests\CSF.IssueTracker.Auth.Tests.csproj", "{8F17A7FC-CEAB-47F6-ADA2-5B03A93D2D33}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8FA578E4-76C8-4D01-954C-05D3D40AB828}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.IssueTracker.Tests.Common", "CSF.IssueTracker.Tests.Common\CSF.IssueTracker.Tests.Common.csproj", "{E15F2064-D2EA-43EF-924C-733107675FF0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.IssueTracker.Tests.Common", "Tests\CSF.IssueTracker.Tests.Common\CSF.IssueTracker.Tests.Common.csproj", "{E15F2064-D2EA-43EF-924C-733107675FF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
