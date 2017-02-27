@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8F17A7FC-CEAB-47F6-ADA2-5B03A93D2D33}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>CSF.IssueTracker.Auth.Tests</RootNamespace>
+    <RootNamespace>Agiil.Tests.Auth</RootNamespace>
     <AssemblyName>CSF.IssueTracker.Auth.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
@@ -28,6 +28,7 @@
     <Reference Include="System" />
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.3.6.0\lib\net45\nunit.framework.dll</HintPath>
+      <Package>nunit</Package>
     </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
@@ -83,19 +84,19 @@
   <ItemGroup>
     <ProjectReference Include="..\CSF.IssueTracker.Auth.Impl\CSF.IssueTracker.Auth.Impl.csproj">
       <Project>{71F8B1B3-C0F1-4D0A-BF44-1DC091EE62E3}</Project>
-      <Name>CSF.IssueTracker.Auth.Impl</Name>
+      <Name>Agiil.Auth.Impl</Name>
     </ProjectReference>
     <ProjectReference Include="..\CSF.IssueTracker.Auth\CSF.IssueTracker.Auth.csproj">
       <Project>{922B2D9C-444E-451A-B626-DAE59E79C0E5}</Project>
-      <Name>CSF.IssueTracker.Auth</Name>
+      <Name>Agiil.Auth</Name>
     </ProjectReference>
     <ProjectReference Include="..\CSF.IssueTracker.Domain\CSF.IssueTracker.Domain.csproj">
       <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
-      <Name>CSF.IssueTracker.Domain</Name>
+      <Name>Agiil.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\CSF.IssueTracker.Tests.Common\CSF.IssueTracker.Tests.Common.csproj">
       <Project>{E15F2064-D2EA-43EF-924C-733107675FF0}</Project>
-      <Name>CSF.IssueTracker.Tests.Common</Name>
+      <Name>Agiil.Tests.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

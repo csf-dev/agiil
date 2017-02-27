@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{71F8B1B3-C0F1-4D0A-BF44-1DC091EE62E3}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>CSF.IssueTracker.Auth</RootNamespace>
+    <RootNamespace>Agiil.Auth</RootNamespace>
     <AssemblyName>CSF.IssueTracker.Auth.Impl</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
@@ -95,11 +95,11 @@
   <ItemGroup>
     <ProjectReference Include="..\CSF.IssueTracker.Auth\CSF.IssueTracker.Auth.csproj">
       <Project>{922B2D9C-444E-451A-B626-DAE59E79C0E5}</Project>
-      <Name>CSF.IssueTracker.Auth</Name>
+      <Name>Agiil.Auth</Name>
     </ProjectReference>
     <ProjectReference Include="..\CSF.IssueTracker.Domain\CSF.IssueTracker.Domain.csproj">
       <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
-      <Name>CSF.IssueTracker.Domain</Name>
+      <Name>Agiil.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +109,7 @@
     <EmbeddedResource Include="Resources\ExceptionMessages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ExceptionMessages.Designer.cs</LastGenOutput>
+      <LogicalName>CSF.IssueTracker.Auth.Resources.ExceptionMessages.resources</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

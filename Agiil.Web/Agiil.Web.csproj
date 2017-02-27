@@ -6,7 +6,7 @@
     <ProjectGuid>{EA6B20FB-9F7F-49C5-BE4E-BCD59ECA1D85}</ProjectGuid>
     <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>CSF.IssueTracker.Web</RootNamespace>
+    <RootNamespace>Agiil.Web</RootNamespace>
     <AssemblyName>CSF.IssueTracker.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
@@ -166,7 +166,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CSF.IssueTracker.Auth\CSF.IssueTracker.Auth.csproj">
       <Project>{922B2D9C-444E-451A-B626-DAE59E79C0E5}</Project>
-      <Name>CSF.IssueTracker.Auth</Name>
+      <Name>Agiil.Auth</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

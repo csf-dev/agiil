@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{79827CF5-CC58-4F87-BBCA-162B5983C563}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>CSF.IssueTracker.Bootstrap</RootNamespace>
+    <RootNamespace>Agiil.Bootstrap</RootNamespace>
     <AssemblyName>CSF.IssueTracker.Bootstrap</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
@@ -58,15 +58,15 @@
   <ItemGroup>
     <ProjectReference Include="..\CSF.IssueTracker.Auth\CSF.IssueTracker.Auth.csproj">
       <Project>{922B2D9C-444E-451A-B626-DAE59E79C0E5}</Project>
-      <Name>CSF.IssueTracker.Auth</Name>
+      <Name>Agiil.Auth</Name>
     </ProjectReference>
     <ProjectReference Include="..\CSF.IssueTracker.Auth.Impl\CSF.IssueTracker.Auth.Impl.csproj">
       <Project>{71F8B1B3-C0F1-4D0A-BF44-1DC091EE62E3}</Project>
-      <Name>CSF.IssueTracker.Auth.Impl</Name>
+      <Name>Agiil.Auth.Impl</Name>
     </ProjectReference>
     <ProjectReference Include="..\CSF.IssueTracker.Domain\CSF.IssueTracker.Domain.csproj">
       <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
-      <Name>CSF.IssueTracker.Domain</Name>
+      <Name>Agiil.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
