@@ -20,7 +20,7 @@ namespace Agiil.Tests.Auth
     #region tests
 
     [Test, AutoMoqData]
-    public void AttemptLogin_returns_failure_result_when_authentication_fails([Frozen] Agiil.Auth.IAuthenticationService authService,
+    public void AttemptLogin_returns_failure_result_when_authentication_fails([Frozen] IAuthenticationService<LoginCredentials> authService,
                                                                               LoginLogoutManager sut,
                                                                               ILoginRequest request,
                                                                               LoginCredentials credentials)
@@ -41,7 +41,7 @@ namespace Agiil.Tests.Auth
     }
 
     [Test, AutoMoqData]
-    public void AttemptLogin_returns_failure_result_when_user_is_not_found([Frozen] Agiil.Auth.IAuthenticationService authService,
+    public void AttemptLogin_returns_failure_result_when_user_is_not_found([Frozen] IAuthenticationService<LoginCredentials> authService,
                                                                            LoginLogoutManager sut,
                                                                            ILoginRequest request,
                                                                            LoginCredentials credentials)
@@ -62,7 +62,7 @@ namespace Agiil.Tests.Auth
     }
 
     [Test, AutoMoqData]
-    public void AttemptLogin_does_not_log_user_in_when_authentication_fails([Frozen] Agiil.Auth.IAuthenticationService authService,
+    public void AttemptLogin_does_not_log_user_in_when_authentication_fails([Frozen] IAuthenticationService<LoginCredentials> authService,
                                                                             [Frozen] IAuthenticationManager authManager,
                                                                             LoginLogoutManager sut,
                                                                             ILoginRequest request,
@@ -85,7 +85,7 @@ namespace Agiil.Tests.Auth
     }
 
     [Test, AutoMoqData]
-    public void AttemptLogin_does_not_log_user_in_when_user_is_not_found([Frozen] Agiil.Auth.IAuthenticationService authService,
+    public void AttemptLogin_does_not_log_user_in_when_user_is_not_found([Frozen] IAuthenticationService<LoginCredentials> authService,
                                                                          [Frozen] IAuthenticationManager authManager,
                                                                          LoginLogoutManager sut,
                                                                          ILoginRequest request,
@@ -108,7 +108,7 @@ namespace Agiil.Tests.Auth
     }
 
     [Test, AutoMoqData]
-    public void AttemptLogin_signs_user_in_when_authentication_succeeds([Frozen] Agiil.Auth.IAuthenticationService authService,
+    public void AttemptLogin_signs_user_in_when_authentication_succeeds([Frozen] IAuthenticationService<LoginCredentials> authService,
                                                                         [Frozen] IAuthenticationManager authManager,
                                                                         [Frozen] InMemoryQuery query,
                                                                         ILoginRequest request,
@@ -152,7 +152,7 @@ namespace Agiil.Tests.Auth
     }
 
     [Test, AutoMoqData]
-    public void AttemptLogin_returns_success_result_when_authentication_succeeds([Frozen] Agiil.Auth.IAuthenticationService authService,
+    public void AttemptLogin_returns_success_result_when_authentication_succeeds([Frozen] IAuthenticationService<LoginCredentials> authService,
                                                                                  [Frozen] IAuthenticationManager authManager,
                                                                                  [Frozen] InMemoryQuery query,
                                                                                  ILoginRequest request,

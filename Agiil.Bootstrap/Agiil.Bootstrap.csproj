@@ -29,7 +29,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Autofac">
-      <HintPath>..\packages\Autofac.3.5.0\lib\net45\Autofac.dll</HintPath>
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Security">
       <HintPath>..\packages\CSF.Security.1.0.0\lib\net45\CSF.Security.dll</HintPath>

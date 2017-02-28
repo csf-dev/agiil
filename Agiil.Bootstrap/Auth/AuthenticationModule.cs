@@ -20,7 +20,7 @@ namespace Agiil.Bootstrap.Auth
 
       builder
         .RegisterType<AuthenticationService<LoginCredentials,IStoredCredentialsWithKeyAndSalt>>()
-        .As<Agiil.Auth.IAuthenticationService>();
+        .As<IAuthenticationService<LoginCredentials>>();
 
       builder
         .RegisterType<Base64KeyAndSaltConverter>()

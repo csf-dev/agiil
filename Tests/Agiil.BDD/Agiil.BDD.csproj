@@ -34,26 +34,13 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.3.0.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.core">
-      <HintPath>..\..\packages\NUnit.Console.3.0.0\tools\addins\nunit.core.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.core.interfaces">
-      <HintPath>..\..\packages\NUnit.Console.3.0.0\tools\addins\nunit.core.interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="Autofac">
-      <HintPath>..\..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="SpecFlow.Autofac.SpecFlowPlugin">
-      <HintPath>..\..\packages\SpecFlow.Autofac.1.0.2\lib\net45\SpecFlow.Autofac.SpecFlowPlugin.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SpecFlowNUnitExtension.cs" />
     <Compile Include="Controllers\Auth\IUserAccountController.cs" />
     <Compile Include="Bindings\Auth\UserAccountSteps.cs" />
     <Compile Include="Bindings\Auth\LoginSteps.cs" />
     <Compile Include="Controllers\Auth\ILoginController.cs" />
-    <Compile Include="DependencyInjectionSetup.cs" />
+    <Compile Include="IBddAssemblyMarker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

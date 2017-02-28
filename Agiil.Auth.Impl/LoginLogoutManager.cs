@@ -5,6 +5,7 @@ using CSF.Data;
 using CSF.Entities;
 using Agiil.Domain.Auth;
 using Microsoft.Owin.Security;
+using CSF.Security;
 
 namespace Agiil.Auth
 {
@@ -12,7 +13,7 @@ namespace Agiil.Auth
   {
     #region fields
 
-    readonly IAuthenticationService authenticationService;
+    readonly IAuthenticationService<LoginCredentials> authenticationService;
     readonly IQuery query;
     readonly IAuthenticationManager authenticationManager;
 
@@ -22,7 +23,7 @@ namespace Agiil.Auth
 
     protected IAuthenticationManager AuthenticationManager => authenticationManager;
 
-    protected IAuthenticationService AuthenticationService => authenticationService;
+    protected IAuthenticationService<LoginCredentials> AuthenticationService => authenticationService;
 
     protected IQuery Query => query;
 
@@ -83,7 +84,7 @@ namespace Agiil.Auth
 
     #region constructor
 
-    public LoginLogoutManager(IAuthenticationService authenticationService,
+    public LoginLogoutManager(IAuthenticationService<LoginCredentials> authenticationService,
                               IQuery query,
                               IAuthenticationManager authenticationManager)
     {

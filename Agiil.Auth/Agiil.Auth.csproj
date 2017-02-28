@@ -37,7 +37,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LoginCredentials.cs" />
-    <Compile Include="IAuthenticationService.cs" />
     <Compile Include="IKeyAndSaltConverter.cs" />
     <Compile Include="ICredentialsRepository.cs" />
     <Compile Include="IAuthenticationInfoProvider.cs" />
