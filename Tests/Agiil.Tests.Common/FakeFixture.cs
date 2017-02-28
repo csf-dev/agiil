@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
-namespace CSF.IssueTracker.Tests.Common
+namespace Agiil.Tests.Common
 {
   [TestFixture]
   public class FakeFixture

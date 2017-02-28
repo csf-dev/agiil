@@ -2,7 +2,7 @@
 using System.Diagnostics.Contracts;
 using CSF.Security;
 
-namespace CSF.IssueTracker.Auth
+namespace Agiil.Auth
 {
   public class Base64KeyAndSaltConverter : IKeyAndSaltConverter
   {

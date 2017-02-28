@@ -1,5 +1,5 @@
 ﻿using System;
-namespace CSF.IssueTracker.Auth
+namespace Agiil.Auth
 {
   public interface ICurrentUserInfo
   {

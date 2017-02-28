@@ -2,10 +2,10 @@
 using CSF.Data;
 using CSF.Security;
 using CSF.Data.Entities;
-using CSF.IssueTracker.Domain.Auth;
+using Agiil.Domain.Auth;
 using System.Linq;
 
-namespace CSF.IssueTracker.Auth
+namespace Agiil.Auth
 {
   public class UserCredentialsRepository : ICredentialsRepository, CSF.Security.ICredentialsRepository
   {

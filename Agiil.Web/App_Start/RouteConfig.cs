@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace CSF.IssueTracker.Web.App_Start
+namespace Agiil.Web.App_Start
 {
   public static class RouteConfig
   {

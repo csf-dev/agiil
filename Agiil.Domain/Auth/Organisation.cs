@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using CSF.Collections.EventRaising;
 using CSF.Entities;
 
-namespace CSF.IssueTracker.Domain.Auth
+namespace Agiil.Domain.Auth
 {
   public class Organisation : Entity<long>
   {

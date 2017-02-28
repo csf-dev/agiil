@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 
-namespace CSF.IssueTracker.Web.Controllers
+namespace Agiil.Web.Controllers
 {
   public class HomeController : Controller
   {

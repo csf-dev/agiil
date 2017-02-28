@@ -1,8 +1,8 @@
 ﻿using System;
 using CSF.Entities;
-using CSF.IssueTracker.Auth;
+using Agiil.Auth;
 
-namespace CSF.IssueTracker.Domain.Auth
+namespace Agiil.Domain.Auth
 {
   public class User : Entity<long>, IAuthenticationInfoProvider
   {

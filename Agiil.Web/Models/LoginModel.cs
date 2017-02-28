@@ -1,6 +1,6 @@
-﻿using CSF.IssueTracker.Auth;
+﻿using Agiil.Auth;
 
-namespace CSF.IssueTracker.Web.Models
+namespace Agiil.Web.Models
 {
   public class LoginModel
   {

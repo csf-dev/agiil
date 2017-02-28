@@ -1,14 +1,15 @@
 ﻿using System;
 using CSF.Data;
 using CSF.Data.Entities;
-using CSF.IssueTracker.Domain.Auth;
-using CSF.IssueTracker.Tests.Common;
+using Agiil.Domain.Auth;
+using Agiil.Tests.Common;
 using CSF.Security;
 using Moq;
 using NUnit.Framework;
 using Ploeh.AutoFixture.NUnit3;
+using Agiil.Auth;
 
-namespace CSF.IssueTracker.Auth.Tests
+namespace Agiil.Tests.Auth
 {
   [TestFixture]
   public class UserCredentialsRepositoryTests
@@ -17,7 +18,7 @@ namespace CSF.IssueTracker.Auth.Tests
 
     InMemoryQuery query;
     Mock<IKeyAndSaltConverter> converter;
-    ICredentialsRepository sut;
+    Agiil.Auth.ICredentialsRepository sut;
     IStoredCredentialsWithKeyAndSalt storedCredentials;
 
     #endregion

@@ -3,15 +3,16 @@ using System.Linq;
 using System.Security.Claims;
 using CSF.Data;
 using CSF.Entities;
-using CSF.IssueTracker.Domain.Auth;
-using CSF.IssueTracker.Tests.Common;
+using Agiil.Domain.Auth;
+using Agiil.Tests.Common;
 using CSF.Security;
 using Microsoft.Owin.Security;
 using Moq;
 using NUnit.Framework;
 using Ploeh.AutoFixture.NUnit3;
+using Agiil.Auth;
 
-namespace CSF.IssueTracker.Auth.Tests
+namespace Agiil.Tests.Auth
 {
   [TestFixture]
   public class LoginLogoutManagerTests
@@ -19,7 +20,7 @@ namespace CSF.IssueTracker.Auth.Tests
     #region tests
 
     [Test, AutoMoqData]
-    public void AttemptLogin_returns_failure_result_when_authentication_fails([Frozen] IAuthenticationService authService,
+    public void AttemptLogin_returns_failure_result_when_authentication_fails([Frozen] Agiil.Auth.IAuthenticationService authService,
                                                                               LoginLogoutManager sut,
                                                                               ILoginRequest request,
                                                                               LoginCredentials credentials)
@@ -40,7 +41,7 @@ namespace CSF.IssueTracker.Auth.Tests
     }
 
     [Test, AutoMoqData]
-    public void AttemptLogin_returns_failure_result_when_user_is_not_found([Frozen] IAuthenticationService authService,
+    public void AttemptLogin_returns_failure_result_when_user_is_not_found([Frozen] Agiil.Auth.IAuthenticationService authService,
                                                                            LoginLogoutManager sut,
                                                                            ILoginRequest request,
                                                                            LoginCredentials credentials)
@@ -61,7 +62,7 @@ namespace CSF.IssueTracker.Auth.Tests
     }
 
     [Test, AutoMoqData]
-    public void AttemptLogin_does_not_log_user_in_when_authentication_fails([Frozen] IAuthenticationService authService,
+    public void AttemptLogin_does_not_log_user_in_when_authentication_fails([Frozen] Agiil.Auth.IAuthenticationService authService,
                                                                             [Frozen] IAuthenticationManager authManager,
                                                                             LoginLogoutManager sut,
                                                                             ILoginRequest request,
@@ -84,7 +85,7 @@ namespace CSF.IssueTracker.Auth.Tests
     }
 
     [Test, AutoMoqData]
-    public void AttemptLogin_does_not_log_user_in_when_user_is_not_found([Frozen] IAuthenticationService authService,
+    public void AttemptLogin_does_not_log_user_in_when_user_is_not_found([Frozen] Agiil.Auth.IAuthenticationService authService,
                                                                          [Frozen] IAuthenticationManager authManager,
                                                                          LoginLogoutManager sut,
                                                                          ILoginRequest request,
@@ -107,7 +108,7 @@ namespace CSF.IssueTracker.Auth.Tests
     }
 
     [Test, AutoMoqData]
-    public void AttemptLogin_signs_user_in_when_authentication_succeeds([Frozen] IAuthenticationService authService,
+    public void AttemptLogin_signs_user_in_when_authentication_succeeds([Frozen] Agiil.Auth.IAuthenticationService authService,
                                                                         [Frozen] IAuthenticationManager authManager,
                                                                         [Frozen] InMemoryQuery query,
                                                                         ILoginRequest request,
@@ -151,7 +152,7 @@ namespace CSF.IssueTracker.Auth.Tests
     }
 
     [Test, AutoMoqData]
-    public void AttemptLogin_returns_success_result_when_authentication_succeeds([Frozen] IAuthenticationService authService,
+    public void AttemptLogin_returns_success_result_when_authentication_succeeds([Frozen] Agiil.Auth.IAuthenticationService authService,
                                                                                  [Frozen] IAuthenticationManager authManager,
                                                                                  [Frozen] InMemoryQuery query,
                                                                                  ILoginRequest request,

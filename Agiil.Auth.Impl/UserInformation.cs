@@ -1,8 +1,8 @@
 ﻿using System;
 using CSF.Entities;
-using CSF.IssueTracker.Domain.Auth;
+using Agiil.Domain.Auth;
 
-namespace CSF.IssueTracker.Auth
+namespace Agiil.Auth
 {
   public class UserInformation : ICurrentUserInfo
   {

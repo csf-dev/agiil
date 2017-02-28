@@ -27,76 +27,93 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.3.6.0\lib\net45\nunit.framework.dll</HintPath>
-      <Package>nunit</Package>
+      <HintPath>..\..\packages\NUnit.3.6.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+      <HintPath>..\..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
-      <HintPath>..\packages\Moq.4.5.30\lib\net45\Moq.dll</HintPath>
+      <HintPath>..\..\packages\Moq.4.5.30\lib\net45\Moq.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Security">
-      <HintPath>..\packages\CSF.Security.1.0.0\lib\net45\CSF.Security.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Security.1.0.0\lib\net45\CSF.Security.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Data">
-      <HintPath>..\packages\CSF.Data.1.0.0\lib\net45\CSF.Data.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Data.1.0.0\lib\net45\CSF.Data.dll</HintPath>
     </Reference>
     <Reference Include="Ploeh.AutoFixture">
-      <HintPath>..\packages\AutoFixture.3.50.2\lib\net40\Ploeh.AutoFixture.dll</HintPath>
+      <HintPath>..\..\packages\AutoFixture.3.50.2\lib\net40\Ploeh.AutoFixture.dll</HintPath>
     </Reference>
     <Reference Include="Ploeh.AutoFixture.NUnit3">
-      <HintPath>..\packages\AutoFixture.NUnit3.3.50.2\lib\net40\Ploeh.AutoFixture.NUnit3.dll</HintPath>
+      <HintPath>..\..\packages\AutoFixture.NUnit3.3.50.2\lib\net40\Ploeh.AutoFixture.NUnit3.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Data.Entities">
-      <HintPath>..\packages\CSF.Data.Entities.1.1.0\lib\net45\CSF.Data.Entities.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Data.Entities.1.1.0\lib\net45\CSF.Data.Entities.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Entities">
-      <HintPath>..\packages\CSF.Entities.1.1.0\lib\net45\CSF.Entities.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Entities.1.1.0\lib\net45\CSF.Entities.dll</HintPath>
     </Reference>
     <Reference Include="Ploeh.AutoFixture.AutoMoq">
-      <HintPath>..\packages\AutoFixture.AutoMoq.3.50.2\lib\net40\Ploeh.AutoFixture.AutoMoq.dll</HintPath>
+      <HintPath>..\..\packages\AutoFixture.AutoMoq.3.50.2\lib\net40\Ploeh.AutoFixture.AutoMoq.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
-      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin">
-      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Security">
-      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
     </Reference>
     <Reference Include="TechTalk.SpecFlow">
-      <HintPath>..\packages\SpecFlow.2.1.0\lib\net45\TechTalk.SpecFlow.dll</HintPath>
+      <HintPath>..\..\packages\SpecFlow.2.1.0\lib\net45\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.core">
+      <HintPath>..\..\packages\NUnit.Console.3.0.0\tools\addins\nunit.core.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac">
+      <HintPath>..\..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="SpecFlow.Autofac.SpecFlowPlugin">
+      <HintPath>..\..\packages\SpecFlow.Autofac.1.0.2\lib\net45\SpecFlow.Autofac.SpecFlowPlugin.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base64KeyAndSaltConverterTests.cs" />
     <Compile Include="UserCredentialsRepositoryTests.cs" />
     <Compile Include="LoginLogoutManagerTests.cs" />
-    <Compile Include="SpecFlowNUnitExtension.cs" />
+    <Compile Include="Features\Login.feature.cs">
+      <DependentUpon>Login.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="App.config" />
-    <None Include="Features\Login.feature" />
+    <None Include="Features\Login.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Login.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CSF.IssueTracker.Auth.Impl\CSF.IssueTracker.Auth.Impl.csproj">
+    <ProjectReference Include="..\..\Agiil.Auth.Impl\Agiil.Auth.Impl.csproj">
       <Project>{71F8B1B3-C0F1-4D0A-BF44-1DC091EE62E3}</Project>
       <Name>Agiil.Auth.Impl</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CSF.IssueTracker.Auth\CSF.IssueTracker.Auth.csproj">
+    <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj">
       <Project>{922B2D9C-444E-451A-B626-DAE59E79C0E5}</Project>
       <Name>Agiil.Auth</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CSF.IssueTracker.Domain\CSF.IssueTracker.Domain.csproj">
+    <ProjectReference Include="..\..\Agiil.Domain\Agiil.Domain.csproj">
       <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
       <Name>Agiil.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CSF.IssueTracker.Tests.Common\CSF.IssueTracker.Tests.Common.csproj">
+    <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
       <Project>{E15F2064-D2EA-43EF-924C-733107675FF0}</Project>
       <Name>Agiil.Tests.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.BDD\Agiil.BDD.csproj">
+      <Project>{63B32334-E2E3-4BC3-BEFE-96374AAD4093}</Project>
+      <Name>Agiil.BDD</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

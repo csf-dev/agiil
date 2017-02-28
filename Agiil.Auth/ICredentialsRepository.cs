@@ -1,7 +1,7 @@
 ﻿using System;
 using CSF.Security;
 
-namespace CSF.IssueTracker.Auth
+namespace Agiil.Auth
 {
   public interface ICredentialsRepository : ICredentialsRepository<LoginCredentials,IStoredCredentialsWithKeyAndSalt>
   {

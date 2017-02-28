@@ -29,7 +29,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Autofac">
-      <HintPath>..\packages\Autofac.4.3.0\lib\net45\Autofac.dll</HintPath>
+      <HintPath>..\packages\Autofac.3.5.0\lib\net45\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Security">
       <HintPath>..\packages\CSF.Security.1.0.0\lib\net45\CSF.Security.dll</HintPath>
@@ -54,17 +54,18 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Auth\AuthenticationModule.cs" />
+    <Compile Include="IBootstrapAssemblyMarker.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CSF.IssueTracker.Auth\CSF.IssueTracker.Auth.csproj">
+    <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
       <Project>{922B2D9C-444E-451A-B626-DAE59E79C0E5}</Project>
       <Name>Agiil.Auth</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CSF.IssueTracker.Auth.Impl\CSF.IssueTracker.Auth.Impl.csproj">
+    <ProjectReference Include="..\Agiil.Auth.Impl\Agiil.Auth.Impl.csproj">
       <Project>{71F8B1B3-C0F1-4D0A-BF44-1DC091EE62E3}</Project>
       <Name>Agiil.Auth.Impl</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CSF.IssueTracker.Domain\CSF.IssueTracker.Domain.csproj">
+    <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
       <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
       <Name>Agiil.Domain</Name>
     </ProjectReference>

@@ -3,9 +3,9 @@ using System.Security.Claims;
 using System.Threading;
 using System.Linq;
 using CSF.Entities;
-using CSF.IssueTracker.Domain.Auth;
+using Agiil.Domain.Auth;
 
-namespace CSF.IssueTracker.Auth
+namespace Agiil.Auth
 {
   public class ClaimsIdentityReader : IIdentityReader
   {

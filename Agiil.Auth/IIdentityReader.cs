@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Principal;
 
-namespace CSF.IssueTracker.Auth
+namespace Agiil.Auth
 {
   public interface IIdentityReader
   {

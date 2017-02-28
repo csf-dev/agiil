@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace CSF.IssueTracker.Web.App_Start
+namespace Agiil.Web.App_Start
 {
   public static class WebApiConfig
   {

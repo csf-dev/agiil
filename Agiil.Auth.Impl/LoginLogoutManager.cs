@@ -3,10 +3,10 @@ using System.Linq;
 using System.Security.Claims;
 using CSF.Data;
 using CSF.Entities;
-using CSF.IssueTracker.Domain.Auth;
+using Agiil.Domain.Auth;
 using Microsoft.Owin.Security;
 
-namespace CSF.IssueTracker.Auth
+namespace Agiil.Auth
 {
   public class LoginLogoutManager : ILoginLogoutManager
   {

@@ -47,7 +47,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CSF.IssueTracker.Auth\CSF.IssueTracker.Auth.csproj">
+    <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
       <Project>{922B2D9C-444E-451A-B626-DAE59E79C0E5}</Project>
       <Name>Agiil.Auth</Name>
     </ProjectReference>

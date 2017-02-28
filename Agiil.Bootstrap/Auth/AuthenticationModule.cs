@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Web;
 using Autofac;
-using CSF.IssueTracker.Auth;
+using Agiil.Auth;
 using CSF.Security;
 
-namespace CSF.IssueTracker.Bootstrap.Auth
+namespace Agiil.Bootstrap.Auth
 {
   public class AuthenticationModule : Module
   {
@@ -20,7 +20,7 @@ namespace CSF.IssueTracker.Bootstrap.Auth
 
       builder
         .RegisterType<AuthenticationService<LoginCredentials,IStoredCredentialsWithKeyAndSalt>>()
-        .As<IssueTracker.Auth.IAuthenticationService>();
+        .As<Agiil.Auth.IAuthenticationService>();
 
       builder
         .RegisterType<Base64KeyAndSaltConverter>()

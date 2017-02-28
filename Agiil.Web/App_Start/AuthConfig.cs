@@ -3,7 +3,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 
-namespace CSF.IssueTracker.Web.App_Start
+namespace Agiil.Web.App_Start
 {
   public class AuthConfig
   {

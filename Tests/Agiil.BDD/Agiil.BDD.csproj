@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{63B32334-E2E3-4BC3-BEFE-96374AAD4093}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Agiil.BDD</RootNamespace>
+    <AssemblyName>Agiil.BDD</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="TechTalk.SpecFlow">
+      <HintPath>..\..\packages\SpecFlow.2.1.0\lib\net45\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\packages\NUnit.3.0.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.core">
+      <HintPath>..\..\packages\NUnit.Console.3.0.0\tools\addins\nunit.core.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.core.interfaces">
+      <HintPath>..\..\packages\NUnit.Console.3.0.0\tools\addins\nunit.core.interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac">
+      <HintPath>..\..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="SpecFlow.Autofac.SpecFlowPlugin">
+      <HintPath>..\..\packages\SpecFlow.Autofac.1.0.2\lib\net45\SpecFlow.Autofac.SpecFlowPlugin.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SpecFlowNUnitExtension.cs" />
+    <Compile Include="Controllers\Auth\IUserAccountController.cs" />
+    <Compile Include="Bindings\Auth\UserAccountSteps.cs" />
+    <Compile Include="Bindings\Auth\LoginSteps.cs" />
+    <Compile Include="Controllers\Auth\ILoginController.cs" />
+    <Compile Include="DependencyInjectionSetup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Bindings\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Bindings\Auth\" />
+    <Folder Include="Controllers\Auth\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj">
+      <Project>{922B2D9C-444E-451A-B626-DAE59E79C0E5}</Project>
+      <Name>Agiil.Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
+      <Project>{79827CF5-CC58-4F87-BBCA-162B5983C563}</Project>
+      <Name>Agiil.Bootstrap</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,8 +1,9 @@
 ﻿using NUnit.Framework;
 using System;
 using Moq;
+using Agiil.Auth;
 
-namespace CSF.IssueTracker.Auth.Tests
+namespace Agiil.Tests.Auth
 {
   [TestFixture ()]
   public class Base64KeyAndSaltConverterTests

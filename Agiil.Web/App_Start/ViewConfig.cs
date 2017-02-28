@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using CSF.Zpt.MVC;
 
-namespace CSF.IssueTracker.Web.App_Start
+namespace Agiil.Web.App_Start
 {
   public static class ViewConfig
   {

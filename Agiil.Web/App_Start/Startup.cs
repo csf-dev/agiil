@@ -1,6 +1,6 @@
 ﻿using Owin;
 
-namespace CSF.IssueTracker.Web.App_Start
+namespace Agiil.Web.App_Start
 {
   /// <summary>
   /// Implementation of an OWIN startup configuration type.  Must be named <c>Startup</c> and must have a

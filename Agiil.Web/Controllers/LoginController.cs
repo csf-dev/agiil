@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Web.Mvc;
-using CSF.IssueTracker.Auth;
-using CSF.IssueTracker.Web.Models;
+using Agiil.Auth;
+using Agiil.Web.Models;
 
-namespace CSF.IssueTracker.Web.Controllers
+namespace Agiil.Web.Controllers
 {
   public class LoginController : Controller
   {

@@ -3,7 +3,7 @@ using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.AutoMoq;
 using Ploeh.AutoFixture.NUnit3;
 
-namespace CSF.IssueTracker.Tests.Common
+namespace Agiil.Tests.Common
 {
 #pragma warning disable CS1702 // Assuming assembly reference matches identity
   public class AutoMoqDataAttribute : AutoDataAttribute

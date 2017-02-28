@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Http;
 
-namespace CSF.IssueTracker.Web
+namespace Agiil.Web
 {
   public class Global : HttpApplication
   {
