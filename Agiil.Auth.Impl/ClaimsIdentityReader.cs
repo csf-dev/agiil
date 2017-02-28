@@ -16,6 +16,11 @@ namespace Agiil.Auth
       var username = GetClaim(ClaimTypes.NameIdentifier, principal);
       var identityValue = GetClaim(CustomClaimTypes.UserNumericId, principal);
 
+      if(identityValue == null)
+      {
+        return null;
+      }
+
       var identity = CreateIdentity(identityValue);
 
       return new UserInformation(identity, username);
@@ -28,7 +33,7 @@ namespace Agiil.Auth
 
     string GetClaim(string claimType, ClaimsPrincipal principal)
     {
-      return principal.Claims.Single(x => x.Type == claimType).Value;
+      return principal.Claims.SingleOrDefault(x => x.Type == claimType)?.Value;
     }
 
     IIdentity<User> CreateIdentity(string identityValue)

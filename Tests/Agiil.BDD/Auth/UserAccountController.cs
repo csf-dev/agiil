@@ -6,6 +6,7 @@ using CSF.Data;
 using CSF.Data.Entities;
 using Ploeh.AutoFixture;
 using System.Security.Cryptography;
+using Agiil.Tests.Common;
 
 namespace Agiil.BDD.Impl.Auth
 {
@@ -21,6 +22,7 @@ namespace Agiil.BDD.Impl.Auth
     {
       var user = autoFixture.Create<User>();
 
+      user.GenerateIdentity();
       user.Username = username;
       user.AuthenticationInfo = CreateAuthenticationInfo(password);
 

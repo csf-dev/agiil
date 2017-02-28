@@ -8,7 +8,7 @@ namespace Agiil.Bootstrap.Data
   {
     protected override void Load(ContainerBuilder builder)
     {
-      builder.RegisterType<InMemoryQuery>().AsSelf().As<IQuery>();
+      builder.RegisterType<InMemoryQuery>().AsSelf().As<IQuery>().InstancePerLifetimeScope();
     }
   }
 }
