@@ -14,7 +14,7 @@ namespace Agiil.BDD.Impl.Auth
     readonly InMemoryQuery query;
     readonly IFixture autoFixture;
 
-    static readonly byte[] SALT = { 0, 10, 20, 30 };
+    static readonly byte[] SALT = { 0, 10, 20, 30, 0, 10, 20, 30 };
     static readonly int ITERATION_COUNT = 256000, KEY_LENGTH = 32;
 
     public void AddUser(string username, string password)

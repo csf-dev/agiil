@@ -13,8 +13,8 @@ namespace Agiil.BDD.Impl
     {
       var builder = new ContainerBuilder();
 
-      builder.RegisterAssemblyModules(Assembly.GetAssembly(typeof(IBootstrapAssemblyMarker)),
-                                      Assembly.GetExecutingAssembly());
+      builder.RegisterAssemblyModules(Assembly.GetAssembly(typeof(IBootstrapAssemblyMarker)));
+      builder.RegisterAssemblyModules(Assembly.GetExecutingAssembly());
 
       return builder;
     }

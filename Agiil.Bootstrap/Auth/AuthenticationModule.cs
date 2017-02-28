@@ -3,6 +3,7 @@ using System.Web;
 using Autofac;
 using Agiil.Auth;
 using CSF.Security;
+using Microsoft.Owin.Security;
 
 namespace Agiil.Bootstrap.Auth
 {
@@ -37,7 +38,13 @@ namespace Agiil.Bootstrap.Auth
         })
         .As<ILoginRequest>();
 
-      builder.Register((context, parameters) => HttpContext.Current.GetOwinContext().Authentication);
+      builder.RegisterType<ClaimsIdentityReader>().As<IIdentityReader>();
+
+      builder.RegisterType<LoginLogoutManager>().As<ILoginLogoutManager>();
+
+      builder
+        .Register((context, parameters) => HttpContext.Current.GetOwinContext().Authentication)
+        .As<IAuthenticationManager>();
 
     }
   }
