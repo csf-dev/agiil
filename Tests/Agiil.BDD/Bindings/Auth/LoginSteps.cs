@@ -18,14 +18,14 @@ namespace Agiil.BDD.Bindings.Auth
       loginController.Login(username, password);
     }
 
-    [When("the user is logged in successfully")]
+    [Then("the user is logged in successfully")]
     public void ThenTheUserIsLoggedInSuccessfully()
     {
       var currentUser = identityReader.GetCurrentUserInfo();
       Assert.NotNull(currentUser);
     }
 
-    [When("the user is not logged in successfully")]
+    [Then("the user is not logged in successfully")]
     public void ThenTheUserIsNotLoggedInSuccessfully()
     {
       var currentUser = identityReader.GetCurrentUserInfo();
