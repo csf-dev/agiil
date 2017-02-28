@@ -8,7 +8,7 @@ using Agiil.BDD.Impl;
 
 namespace Agiil.BDD
 {
-  public static class BddDependencies
+  public class BddDependencies
   {
     [ScenarioDependencies]
     public static ContainerBuilder CreateContainerBuilder()
