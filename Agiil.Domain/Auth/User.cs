@@ -6,12 +6,6 @@ namespace Agiil.Domain.Auth
 {
   public class User : Entity<long>, IAuthenticationInfoProvider
   {
-    public virtual Organisation Organisation
-    {
-      get;
-      set;
-    }
-
     public virtual string Username {
       get;
       set;

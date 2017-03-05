@@ -6,25 +6,19 @@ namespace Agiil.BDD.Auth
 {
   public class LoginController : ILoginController
   {
-    readonly ILoginLogoutManager loginLogoutManager;
-    readonly LoginRequestCreator loginRequestCreator;
+    readonly Web.Controllers.LoginController controller;
 
     public void Login(string username, string password)
     {
-      var loginRequest = loginRequestCreator(username, password);
-      loginLogoutManager.AttemptLogin(loginRequest);
+      controller.Login(new Web.Models.LoginCredentials { Username = username, Password = password });
     }
 
-    public LoginController (ILoginLogoutManager loginLogoutManager,
-                            LoginRequestCreator loginRequestCreator)
+    public LoginController (Web.Controllers.LoginController controller)
     {
-      if(loginRequestCreator == null)
-        throw new ArgumentNullException(nameof(loginRequestCreator));
-      if(loginLogoutManager == null)
-        throw new ArgumentNullException(nameof(loginLogoutManager));
+      if(controller == null)
+        throw new ArgumentNullException(nameof(controller));
       
-      this.loginLogoutManager = loginLogoutManager;
-      this.loginRequestCreator = loginRequestCreator;
+      this.controller = controller;
     }
   }
 }

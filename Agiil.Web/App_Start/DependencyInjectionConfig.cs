@@ -23,7 +23,7 @@ namespace Agiil.Web.App_Start
       return builder.Build();
     }
 
-    private static void RegisterAspNetMvcComponents(ContainerBuilder builder)
+    public static void RegisterAspNetMvcComponents(ContainerBuilder builder)
     {
       var mvcAssembly = GetMvcAssembly();
 
@@ -38,7 +38,7 @@ namespace Agiil.Web.App_Start
       return typeof(Global).Assembly;
     }
 
-    private static void RegisterAspNetWebApiComponents(ContainerBuilder builder)
+    public static void RegisterAspNetWebApiComponents(ContainerBuilder builder)
     {
       var apiAssembly = GetWebApiAssembly();
 
