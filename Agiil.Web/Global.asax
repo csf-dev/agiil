@@ -1,1 +1,1 @@
-﻿<%@ Application Inherits="CSF.IssueTracker.Web.Global" %>
+﻿<%@ Application Inherits="Agiil.Web.Global" %>

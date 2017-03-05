@@ -6,7 +6,7 @@
     <ProjectGuid>{E15F2064-D2EA-43EF-924C-733107675FF0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Agiil.Tests.Common</RootNamespace>
-    <AssemblyName>CSF.IssueTracker.Tests.Common</AssemblyName>
+    <AssemblyName>Agiil.Tests.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

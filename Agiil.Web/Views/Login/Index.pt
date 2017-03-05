@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en" metal:use-macro="Views/Shared/EmptyPage.pt/macros/page">
+<head>
+<title>Log in</title>
+</head>
+<body metal:fill-slot="body_element">
+<h1>Log in</h1>
+<form method="post" action="Login">
+  <fieldset>
+    <div class="form_element field">
+      <label for="username">Username</label>
+      <input type="text" id="username" />
+    </div>
+    <div class="form_element field">
+      <label for="password">Password</label>
+      <input type="password" id="password" />
+    </div>
+    <div class="form_element button">
+      <button>Log in</button>
+    </div>
+  </fieldset>
+</form>
+</body>
+</html>
