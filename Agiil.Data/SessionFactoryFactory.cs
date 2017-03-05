@@ -42,21 +42,25 @@ namespace Agiil.Data
     {
       var mapper = new ConventionModelMapper();
 
+      mapper.IsRootEntity((type, declared) => type.BaseType == null
+                                              || IsEntityBaseType(type.BaseType));
+
       mapper.IsEntity((type, declared) => BaseEntityType.IsAssignableFrom(type)
-                                          && type.IsClass
-                                          && !IsRootEntityType(type));
-      mapper.IsRootEntity((type, declared) => IsRootEntityType(type));
+                                          && type.IsClass);
 
       var entityTypes = GetEntityTypes();
 
       return mapper.CompileMappingFor(entityTypes);
     }
 
-    private bool IsRootEntityType(Type type)
+    private bool IsEntityBaseType(Type type)
     {
-      return BaseEntityType.IsAssignableFrom(type)
-             && type.IsGenericType
-             && type.GetGenericTypeDefinition() == typeof(Entity<>);
+      var result = (type.IsGenericType
+                    && type.GetGenericTypeDefinition() == typeof(Entity<>))
+                   || (type.IsGenericTypeDefinition
+                       && type == typeof(Entity<>));
+
+      return result;
     }
 
     private Type[] GetEntityTypes()

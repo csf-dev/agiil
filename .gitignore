@@ -5,3 +5,4 @@ packages/*/*
 *.csproj.user
 TestResult.xml
 TestResult.formatted.xml
+Agiil.Web/Agiil.db
