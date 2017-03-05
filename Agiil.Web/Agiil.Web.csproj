@@ -142,6 +142,18 @@
     <Reference Include="Autofac.Integration.Mvc">
       <HintPath>..\packages\Autofac.Mvc5.3.3.4\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Data">
+      <HintPath>..\packages\CSF.Data.1.0.0\lib\net45\CSF.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data.NHibernate">
+      <HintPath>..\packages\CSF.Data.NHibernate.6.0.0\lib\net45\CSF.Data.NHibernate.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
@@ -194,6 +206,18 @@
     <ProjectReference Include="..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
       <Project>{79827CF5-CC58-4F87-BBCA-162B5983C563}</Project>
       <Name>Agiil.Bootstrap</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Data\Agiil.Data.csproj">
+      <Project>{AB167238-0D06-4D8A-A646-198D63575AF5}</Project>
+      <Name>Agiil.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
+      <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
+      <Name>Agiil.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Auth.Impl\Agiil.Auth.Impl.csproj">
+      <Project>{71F8B1B3-C0F1-4D0A-BF44-1DC091EE62E3}</Project>
+      <Name>Agiil.Auth.Impl</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
