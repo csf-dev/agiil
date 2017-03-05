@@ -13,7 +13,7 @@ namespace Agiil.Web
     {
       AreaRegistration.RegisterAllAreas ();
 
-      //ConfigureWebApiApplication();
+      ConfigureWebApiApplication();
       ConfigureMvcApplication();
       ConfigureDependencyInjection();
     }

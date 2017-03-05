@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Http;
 using Agiil.Auth;
+using Agiil.Web.Models;
 
 namespace Agiil.Web.ApiControllers
 {
@@ -17,22 +18,10 @@ namespace Agiil.Web.ApiControllers
 
     [AllowAnonymous]
     [HttpPost]
-    public LoginResult Login(string username, string password)
+    public LoginResult Login(Models.LoginCredentials credentials)
     {
-      var loginRequest = loginRequestCreator(username, password);
+      var loginRequest = loginRequestCreator(credentials.Username, credentials.Password);
       return loginLogoutManager.AttemptLogin(loginRequest);
-    }
-
-    [AllowAnonymous]
-    [HttpPost]
-    public void Logout()
-    {
-      var result = loginLogoutManager.AttemptLogout();
-
-      if(!result.Success)
-      {
-        throw new NotImplementedException("Failure to log out is not supported.");
-      }
     }
 
     #endregion

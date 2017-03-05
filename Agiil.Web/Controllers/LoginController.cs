@@ -33,9 +33,9 @@ namespace Agiil.Web.Controllers
 
     [AllowAnonymous]
     [HttpPost]
-    public ActionResult Login(string username, string password)
+    public ActionResult Login(Models.LoginCredentials credentials)
     {
-      var loginRequest = loginRequestCreator(username, password);
+      var loginRequest = loginRequestCreator(credentials.Username, credentials.Password);
       var result = loginLogoutManager.AttemptLogin(loginRequest);
 
       if(result.Success)

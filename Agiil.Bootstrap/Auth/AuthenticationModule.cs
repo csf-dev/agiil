@@ -32,7 +32,7 @@ namespace Agiil.Bootstrap.Auth
           var username = parameters.Named<string>("username");
           var password = parameters.Named<string>("password");
 
-          var credentials = new LoginCredentials(username, password);
+        var credentials = new LoginCredentials { Username = username, Password = password };
 
           return new LoginRequest(credentials);
         })

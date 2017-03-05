@@ -38,8 +38,7 @@ namespace Agiil.Tests.Web.Controllers
     [Test, AutoMoqData]
     public void Login_uses_login_logout_manager_service(ILoginLogoutManager loginLogoutManager,
                                                         ILoginRequest request,
-                                                        string username,
-                                                        string password)
+                                                        Agiil.Web.Models.LoginCredentials credentials)
     {
       // Arrange
       LoginRequestCreator requestCreator = (u, p) => request;
@@ -49,7 +48,7 @@ namespace Agiil.Tests.Web.Controllers
       var sut = new LoginController(requestCreator, loginLogoutManager);
 
       // Act
-      sut.Login(username, password);
+      sut.Login(credentials);
 
       // Assert
       Mock.Get(loginLogoutManager).Verify(x => x.AttemptLogin(request), Times.Once());
@@ -58,8 +57,7 @@ namespace Agiil.Tests.Web.Controllers
     [Test, AutoMoqData]
     public void Login_redirects_to_home_controller_after_successful_login(ILoginLogoutManager loginLogoutManager,
                                                                           ILoginRequest request,
-                                                                          string username,
-                                                                          string password,
+                                                                          Agiil.Web.Models.LoginCredentials credentials,
                                                                           ICurrentUserInfo currentUser)
     {
       // Arrange
@@ -70,7 +68,7 @@ namespace Agiil.Tests.Web.Controllers
       var sut = new LoginController(requestCreator, loginLogoutManager);
 
       // Act
-      var result = sut.Login(username, password);
+      var result = sut.Login(credentials);
 
       // Assert
       Assert.IsInstanceOf<RedirectToRouteResult>(result, "Result is a redirect-to-route");
@@ -82,8 +80,7 @@ namespace Agiil.Tests.Web.Controllers
     [Test, AutoMoqData]
     public void Login_redirects_to_login_page_after_failed_login(ILoginLogoutManager loginLogoutManager,
                                                                  ILoginRequest request,
-                                                                 string username,
-                                                                 string password)
+                                                                 Agiil.Web.Models.LoginCredentials credentials)
     {
       // Arrange
       LoginRequestCreator requestCreator = (u, p) => request;
@@ -93,7 +90,7 @@ namespace Agiil.Tests.Web.Controllers
       var sut = new LoginController(requestCreator, loginLogoutManager);
 
       // Act
-      var result = sut.Login(username, password);
+      var result = sut.Login(credentials);
 
       // Assert
       Assert.IsInstanceOf<RedirectToRouteResult>(result, "Result is a redirect-to-route");

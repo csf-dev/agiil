@@ -171,6 +171,8 @@
     <Compile Include="ModelBinders\LoginResultBinder.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Models\UsernameUserInfo.cs" />
+    <Compile Include="ApiControllers\LogoutController.cs" />
+    <Compile Include="Models\LoginCredentials.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

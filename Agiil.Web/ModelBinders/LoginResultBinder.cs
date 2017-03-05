@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Web.Mvc;
 using Agiil.Auth;
-using Agiil.Web.Controllers;
 using Agiil.Web.Models;
 using Autofac.Integration.Mvc;
 
@@ -14,8 +13,8 @@ namespace Agiil.Web.ModelBinders
     #region fields
 
     private static readonly Type[] SupportedControllerTypes = {
-      typeof(LoginController),
-      typeof(LoginController),
+      typeof(Controllers.LoginController),
+      typeof(ApiControllers.LoginController),
     };
 
     #endregion

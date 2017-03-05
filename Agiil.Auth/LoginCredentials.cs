@@ -18,11 +18,5 @@ namespace Agiil.Auth
 
       return System.Text.Encoding.UTF8.GetBytes(Password);
     }
-
-    public LoginCredentials (string username, string password)
-    {
-      Username = username;
-      Password = password;
-    }
   }
 }
