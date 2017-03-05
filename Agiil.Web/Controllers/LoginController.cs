@@ -41,7 +41,7 @@ namespace Agiil.Web.Controllers
     [AllowAnonymous]
     [HttpPost]
     [Route(LoginRouteName)]
-    public ActionResult ProcessLogin(string username, string password)
+    public ActionResult Login(string username, string password)
     {
       var loginRequest = loginRequestCreator(username, password);
       var result = loginLogoutManager.AttemptLogin(loginRequest);
@@ -63,14 +63,14 @@ namespace Agiil.Web.Controllers
 
     [AllowAnonymous]
     [HttpPost]
-    public ActionResult LogOut()
+    public ActionResult Logout()
     {
       var result = loginLogoutManager.AttemptLogout();
 
       if(result.Success)
       {
         return RedirectToRoute(new {
-          controller = typeof(LoginController),
+          controller = typeof(LoginController).Name,
           action = nameof(LoginController.LoggedOut),
         });
       }

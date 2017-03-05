@@ -140,6 +140,7 @@
     <Folder Include="Scripts\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Shared\" />
+    <Folder Include="ApiControllers\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -153,6 +154,7 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="ApiControllers\LoginController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

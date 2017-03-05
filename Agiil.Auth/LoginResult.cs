@@ -8,6 +8,8 @@ namespace Agiil.Auth
 
     public bool Success => currentUser != null;
 
+    public string Username => currentUser?.Username;
+
     public LoginResult (ICurrentUserInfo currentUser)
     {
       if (currentUser == null) {

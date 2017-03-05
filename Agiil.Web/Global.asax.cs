@@ -11,10 +11,19 @@ namespace Agiil.Web
     {
       AreaRegistration.RegisterAllAreas ();
 
-      GlobalConfiguration.Configure (App_Start.WebApiConfig.Register);
-      App_Start.RouteConfig.RegisterRoutes (RouteTable.Routes);
+      ConfigureWebApiApplication();
+      ConfigureMvcApplication();
+    }
 
+    private void ConfigureMvcApplication()
+    {
+      App_Start.RouteConfig.RegisterRoutes (RouteTable.Routes);
       App_Start.ViewConfig.RegisterViewEngines(ViewEngines.Engines);
+    }
+
+    private void ConfigureWebApiApplication()
+    {
+      GlobalConfiguration.Configure (App_Start.WebApiConfig.Register);
     }
   }
 }
