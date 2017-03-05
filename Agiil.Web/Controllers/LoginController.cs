@@ -5,14 +5,8 @@ using Agiil.Web.Models;
 
 namespace Agiil.Web.Controllers
 {
-  public class LoginController : Controller
+  public class LoginController : ControllerBase
   {
-    #region constants
-
-    internal const string LoginRouteName = "";
-
-    #endregion
-
     #region fields
 
     readonly LoginRequestCreator loginRequestCreator;
@@ -24,7 +18,6 @@ namespace Agiil.Web.Controllers
 
     [AllowAnonymous]
     [HttpGet]
-    [Route(LoginRouteName)]
     public ActionResult Index(LoginResult result)
     {
       var model = new LoginModel(result);
@@ -40,7 +33,6 @@ namespace Agiil.Web.Controllers
 
     [AllowAnonymous]
     [HttpPost]
-    [Route(LoginRouteName)]
     public ActionResult Login(string username, string password)
     {
       var loginRequest = loginRequestCreator(username, password);
@@ -48,17 +40,10 @@ namespace Agiil.Web.Controllers
 
       if(result.Success)
       {
-        return RedirectToRoute(new {
-          controller = typeof(HomeController).Name,
-          action = nameof(HomeController.Index)
-        });
+        return RedirectToAction(nameof(HomeController.Index), GetControllerName<HomeController>());
       }
 
-      return RedirectToRoute(new {
-        controller = typeof(LoginController).Name,
-        action = nameof(LoginController.Index),
-        result
-      });
+      return RedirectToAction(nameof(LoginController.Index), GetControllerName<LoginController>(), result);
     }
 
     [AllowAnonymous]
@@ -69,10 +54,7 @@ namespace Agiil.Web.Controllers
 
       if(result.Success)
       {
-        return RedirectToRoute(new {
-          controller = typeof(LoginController).Name,
-          action = nameof(LoginController.LoggedOut),
-        });
+        return RedirectToAction(nameof(LoginController.LoggedOut), GetControllerName<LoginController>());
       }
 
       throw new NotImplementedException("Failure to log out is not supported.");

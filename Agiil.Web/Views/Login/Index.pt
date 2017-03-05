@@ -3,9 +3,11 @@
 <head>
 <title>Log in</title>
 </head>
-<body metal:fill-slot="body_element">
+<body metal:fill-slot="body_element"
+      tal:define="loginSuccess here/Result/Success | nothing;
+                  loginAttempt here/Result | nothing">
 <h1>Log in</h1>
-<form method="post" action="Login">
+<form method="post" action="Login/Login" tal:condition="not:loginSuccess">
   <fieldset>
     <div class="form_element field">
       <label for="username">Username</label>
@@ -15,10 +17,16 @@
       <label for="password">Password</label>
       <input type="password" id="password" />
     </div>
+    <div class="form_element feedback warning" tal:condition="loginAttempt">
+      <p>Please enter a valid username/password combination.</p>
+    </div>
     <div class="form_element button">
       <button>Log in</button>
     </div>
   </fieldset>
 </form>
+<p tal:condition="loginSuccess">
+  You are logged in as <strong tal:content="here/Result/Username">Joe Bloggs</strong>.
+</p>
 </body>
 </html>

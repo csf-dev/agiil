@@ -6,12 +6,6 @@ namespace Agiil.Web.ApiControllers
 {
   public class LoginController : ApiController
   {
-    #region constants
-
-    internal const string LoginRouteName = "";
-
-    #endregion
-
     #region fields
 
     readonly LoginRequestCreator loginRequestCreator;
@@ -23,7 +17,6 @@ namespace Agiil.Web.ApiControllers
 
     [AllowAnonymous]
     [HttpPost]
-    [Route(LoginRouteName)]
     public LoginResult Login(string username, string password)
     {
       var loginRequest = loginRequestCreator(username, password);
