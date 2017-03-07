@@ -38,12 +38,20 @@ namespace Agiil.Bootstrap.Auth
         })
         .As<ILoginRequest>();
 
-      builder.RegisterType<ClaimsIdentityReader>().As<IIdentityReader>();
+      builder.RegisterType<ThreadClaimsPrincipalIdentityReader>().As<IIdentityReader>();
 
       builder.RegisterType<LoginLogoutManager>().As<ILoginLogoutManager>();
 
       builder
-        .Register((context, parameters) => HttpContext.Current.GetOwinContext().Authentication)
+        .Register((context, parameters) => {
+          IAuthenticationManager output;
+
+          var ctx = HttpContext.Current.GetOwinContext();
+          ctx.TraceOutput = Console.Out;
+          output = ctx.Authentication;
+
+          return output;
+        })
         .As<IAuthenticationManager>();
 
     }

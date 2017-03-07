@@ -18,11 +18,12 @@ namespace Agiil.Tests.Web.Controllers
     [Test, AutoMoqData]
     public void Index_returns_view_using_existing_model(ILoginLogoutManager loginLogoutManager,
                                                         ILoginRequest request,
-                                                        LoginResult loginResult)
+                                                        LoginResult loginResult,
+                                                        IIdentityReader identityReader)
     {
       // Arrange
       LoginRequestCreator requestCreator = (u, p) => request;
-      var sut = new LoginController(requestCreator, loginLogoutManager);
+      var sut = new LoginController(requestCreator, loginLogoutManager, identityReader);
 
       // Act
       var result = sut.Index(loginResult);
@@ -38,14 +39,15 @@ namespace Agiil.Tests.Web.Controllers
     [Test, AutoMoqData]
     public void Login_uses_login_logout_manager_service(ILoginLogoutManager loginLogoutManager,
                                                         ILoginRequest request,
-                                                        Agiil.Web.Models.LoginCredentials credentials)
+                                                        Agiil.Web.Models.LoginCredentials credentials,
+                                                        IIdentityReader identityReader)
     {
       // Arrange
       LoginRequestCreator requestCreator = (u, p) => request;
       Mock.Get(loginLogoutManager)
           .Setup(x => x.AttemptLogin(It.IsAny<ILoginRequest>()))
           .Returns(LoginResult.LoginFailed);
-      var sut = new LoginController(requestCreator, loginLogoutManager);
+      var sut = new LoginController(requestCreator, loginLogoutManager, identityReader);
 
       // Act
       sut.Login(credentials);
@@ -58,14 +60,15 @@ namespace Agiil.Tests.Web.Controllers
     public void Login_redirects_to_home_controller_after_successful_login(ILoginLogoutManager loginLogoutManager,
                                                                           ILoginRequest request,
                                                                           Agiil.Web.Models.LoginCredentials credentials,
-                                                                          ICurrentUserInfo currentUser)
+                                                                          ICurrentUserInfo currentUser,
+                                                                          IIdentityReader identityReader)
     {
       // Arrange
       LoginRequestCreator requestCreator = (u, p) => request;
       Mock.Get(loginLogoutManager)
           .Setup(x => x.AttemptLogin(It.IsAny<ILoginRequest>()))
           .Returns(new LoginResult(currentUser));
-      var sut = new LoginController(requestCreator, loginLogoutManager);
+      var sut = new LoginController(requestCreator, loginLogoutManager, identityReader);
 
       // Act
       var result = sut.Login(credentials);
@@ -80,14 +83,15 @@ namespace Agiil.Tests.Web.Controllers
     [Test, AutoMoqData]
     public void Login_redirects_to_login_page_after_failed_login(ILoginLogoutManager loginLogoutManager,
                                                                  ILoginRequest request,
-                                                                 Agiil.Web.Models.LoginCredentials credentials)
+                                                                 Agiil.Web.Models.LoginCredentials credentials,
+                                                                 IIdentityReader identityReader)
     {
       // Arrange
       LoginRequestCreator requestCreator = (u, p) => request;
       Mock.Get(loginLogoutManager)
           .Setup(x => x.AttemptLogin(It.IsAny<ILoginRequest>()))
           .Returns(LoginResult.LoginFailed);
-      var sut = new LoginController(requestCreator, loginLogoutManager);
+      var sut = new LoginController(requestCreator, loginLogoutManager, identityReader);
 
       // Act
       var result = sut.Login(credentials);
@@ -101,14 +105,15 @@ namespace Agiil.Tests.Web.Controllers
 
     [Test, AutoMoqData]
     public void Logout_uses_login_logout_manager_service(ILoginLogoutManager loginLogoutManager,
-                                                         ILoginRequest request)
+                                                         ILoginRequest request,
+                                                         IIdentityReader identityReader)
     {
       // Arrange
       LoginRequestCreator requestCreator = (u, p) => request;
       Mock.Get(loginLogoutManager)
           .Setup(x => x.AttemptLogout())
           .Returns(LogoutResult.LogoutSuccessful);
-      var sut = new LoginController(requestCreator, loginLogoutManager);
+      var sut = new LoginController(requestCreator, loginLogoutManager, identityReader);
 
       // Act
       sut.Logout();
@@ -119,14 +124,15 @@ namespace Agiil.Tests.Web.Controllers
 
     [Test, AutoMoqData]
     public void Logout_redirects_to_logged_out_page_on_successful_logout(ILoginLogoutManager loginLogoutManager,
-                                                                         ILoginRequest request)
+                                                                         ILoginRequest request,
+                                                                         IIdentityReader identityReader)
     {
       // Arrange
       LoginRequestCreator requestCreator = (u, p) => request;
       Mock.Get(loginLogoutManager)
           .Setup(x => x.AttemptLogout())
           .Returns(LogoutResult.LogoutSuccessful);
-      var sut = new LoginController(requestCreator, loginLogoutManager);
+      var sut = new LoginController(requestCreator, loginLogoutManager, identityReader);
 
       // Act
       var result = sut.Logout();

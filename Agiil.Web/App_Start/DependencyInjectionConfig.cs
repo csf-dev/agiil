@@ -56,8 +56,10 @@ namespace Agiil.Web.App_Start
     private static void RegisterApplicationComponents(ContainerBuilder builder)
     {
       var bootstrapAssembly = GetBootstrapAssembly();
+      var thisAssembly = Assembly.GetExecutingAssembly();
 
       builder.RegisterAssemblyModules(bootstrapAssembly);
+      builder.RegisterAssemblyModules(thisAssembly);
     }
 
     private static Assembly GetBootstrapAssembly()

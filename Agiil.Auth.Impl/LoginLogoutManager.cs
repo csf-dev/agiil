@@ -6,6 +6,7 @@ using CSF.Entities;
 using Agiil.Domain.Auth;
 using Microsoft.Owin.Security;
 using CSF.Security;
+using Microsoft.AspNet.Identity;
 
 namespace Agiil.Auth
 {
@@ -71,7 +72,7 @@ namespace Agiil.Auth
         new Claim(ClaimTypes.NameIdentifier, user.Username),
         new Claim(CustomClaimTypes.UserNumericId, user.GetIdentity().Value.ToString()),
       };
-      return new ClaimsIdentity(claims);
+      return new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
     }
 
     protected virtual User GetUser(string username)

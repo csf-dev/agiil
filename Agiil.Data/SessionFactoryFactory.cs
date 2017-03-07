@@ -8,10 +8,11 @@ using CSF.Entities;
 using Agiil.Domain;
 using System.Linq;
 using NHibernate.Dialect;
+using System.Reflection;
 
 namespace Agiil.Data
 {
-  public class SessionFactoryFactory
+  public class SessionFactoryFactory : ISessionFactoryFactory
   {
     static readonly Type BaseEntityType = typeof(IEntity);
 
@@ -47,6 +48,33 @@ namespace Agiil.Data
 
       mapper.IsEntity((type, declared) => BaseEntityType.IsAssignableFrom(type)
                                           && type.IsClass);
+
+      mapper.BeforeMapClass += (modelInspector, type, classCustomizer) => {
+        classCustomizer.Id(type.GetProperty("IdentityValue",
+                                            BindingFlags.GetProperty | BindingFlags.Instance | BindingFlags.NonPublic),
+                           m => {
+          m.Type(new NHibernate.Type.Int64Type());
+          m.Column("id");
+        });
+      };
+
+      mapper.IsPersistentProperty((member, declared) => {
+        var property = member as PropertyInfo;
+
+        if(property == null || !property.CanRead || !property.CanWrite)
+        {
+          return false;
+        }
+
+        if(property.Name == "IdentityValue"
+           && property.PropertyType == typeof(long)
+           && property.DeclaringType == typeof(Entity<long>))
+        {
+          return false;
+        }
+
+        return true;
+      });
 
       var entityTypes = GetEntityTypes();
 

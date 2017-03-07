@@ -7,9 +7,9 @@ using Agiil.Domain.Auth;
 
 namespace Agiil.Auth
 {
-  public class ClaimsIdentityReader : IIdentityReader
+  public class ThreadClaimsPrincipalIdentityReader : IIdentityReader
   {
-    public ICurrentUserInfo GetCurrentUserInfo()
+    public virtual ICurrentUserInfo GetCurrentUserInfo()
     {
       var principal = GetPrincipal();
 
@@ -26,17 +26,17 @@ namespace Agiil.Auth
       return new UserInformation(identity, username);
     }
 
-    ClaimsPrincipal GetPrincipal()
+    protected virtual ClaimsPrincipal GetPrincipal()
     {
       return Thread.CurrentPrincipal as ClaimsPrincipal;
     }
 
-    string GetClaim(string claimType, ClaimsPrincipal principal)
+    protected virtual string GetClaim(string claimType, ClaimsPrincipal principal)
     {
       return principal.Claims.SingleOrDefault(x => x.Type == claimType)?.Value;
     }
 
-    IIdentity<User> CreateIdentity(string identityValue)
+    protected virtual IIdentity<User> CreateIdentity(string identityValue)
     {
       var val = long.Parse(identityValue);
       return Identity.Create<User>(val);

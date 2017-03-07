@@ -10,7 +10,7 @@ using Agiil.Tests.Common;
 
 namespace Agiil.BDD.Impl.Auth
 {
-  public class UserAccountController : IUserAccountController
+  public class InMemoryUserAccountController : IUserAccountController
   {
     readonly InMemoryQuery query;
     readonly IFixture autoFixture;
@@ -53,7 +53,7 @@ namespace Agiil.BDD.Impl.Auth
     }
 
 
-    public UserAccountController (InMemoryQuery query, IFixture autoFixture)
+    public InMemoryUserAccountController (InMemoryQuery query, IFixture autoFixture)
     {
       if(autoFixture == null)
         throw new ArgumentNullException(nameof(autoFixture));

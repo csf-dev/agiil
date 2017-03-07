@@ -10,7 +10,7 @@ namespace Agiil.BDD.Impl.Bootstrap
   {
     protected override void Load(ContainerBuilder builder)
     {
-      builder.RegisterType<UserAccountController>().As<IUserAccountController>();
+      builder.RegisterType<InMemoryUserAccountController>().As<IUserAccountController>();
       builder.RegisterType<LoginController>().As<ILoginController>();
     }
   }

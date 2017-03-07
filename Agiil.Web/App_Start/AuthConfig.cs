@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Hosting;
 using Owin;
 
 namespace Agiil.Web.App_Start
@@ -12,7 +13,7 @@ namespace Agiil.Web.App_Start
       builder.UseCookieAuthentication(new CookieAuthenticationOptions
       {
         AuthenticationType = CookieAuthenticationDefaults.AuthenticationType,
-        LoginPath = new PathString($"/Login/Index"),
+        LoginPath = new PathString($"/Login"),
         SlidingExpiration = true,
         ExpireTimeSpan = TimeSpan.FromHours(8),
       });

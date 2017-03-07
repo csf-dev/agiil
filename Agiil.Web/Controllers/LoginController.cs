@@ -11,6 +11,7 @@ namespace Agiil.Web.Controllers
 
     readonly LoginRequestCreator loginRequestCreator;
     readonly ILoginLogoutManager loginLogoutManager;
+    readonly IIdentityReader identityReader;
 
     #endregion
 
@@ -20,7 +21,8 @@ namespace Agiil.Web.Controllers
     [HttpGet]
     public ActionResult Index(LoginResult result)
     {
-      var model = new LoginModel(result);
+      var currentUser = identityReader.GetCurrentUserInfo();
+      var model = new LoginModel(result, currentUser);
       return View(model);
     }
 
@@ -40,7 +42,7 @@ namespace Agiil.Web.Controllers
 
       if(result.Success)
       {
-        return RedirectToAction(nameof(HomeController.Index), GetControllerName<HomeController>());
+        return RedirectToAction(nameof(LoginController.Index), GetControllerName<LoginController>(), result);
       }
 
       return RedirectToAction(nameof(LoginController.Index), GetControllerName<LoginController>(), result);
@@ -66,8 +68,11 @@ namespace Agiil.Web.Controllers
     #region constructor
 
     public LoginController(LoginRequestCreator loginRequestCreator,
-                           ILoginLogoutManager loginLogoutManager)
+                           ILoginLogoutManager loginLogoutManager,
+                           IIdentityReader identityReader)
     {
+      if(identityReader == null)
+        throw new ArgumentNullException(nameof(identityReader));
       if(loginLogoutManager == null)
         throw new ArgumentNullException(nameof(loginLogoutManager));
       if(loginRequestCreator == null)
@@ -75,6 +80,7 @@ namespace Agiil.Web.Controllers
 
       this.loginRequestCreator = loginRequestCreator;
       this.loginLogoutManager = loginLogoutManager;
+      this.identityReader = identityReader;
     }
 
     #endregion

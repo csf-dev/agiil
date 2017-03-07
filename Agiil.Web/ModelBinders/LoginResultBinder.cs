@@ -10,14 +10,12 @@ namespace Agiil.Web.ModelBinders
   [ModelBinderType(typeof(LoginResult))]
   public class LoginResultBinder : IModelBinder
   {
-    #region fields
 
     private static readonly Type[] SupportedControllerTypes = {
       typeof(Controllers.LoginController),
       typeof(ApiControllers.LoginController),
     };
 
-    #endregion
     public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
     {
       if(!SupportedControllerTypes.Contains(controllerContext.Controller.GetType()))

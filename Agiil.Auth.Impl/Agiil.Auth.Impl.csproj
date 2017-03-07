@@ -84,7 +84,7 @@
     <Compile Include="LoginRequest.cs" />
     <Compile Include="UserInformation.cs" />
     <Compile Include="LoginLogoutManager.cs" />
-    <Compile Include="ClaimsIdentityReader.cs" />
+    <Compile Include="ThreadClaimsPrincipalIdentityReader.cs" />
     <Compile Include="FakeAuthenticationManager.cs" />
   </ItemGroup>
   <ItemGroup>
