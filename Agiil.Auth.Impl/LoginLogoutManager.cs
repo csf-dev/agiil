@@ -4,8 +4,8 @@ using System.Security.Claims;
 using CSF.Data;
 using CSF.Entities;
 using Agiil.Domain.Auth;
-using Microsoft.Owin.Security;
 using CSF.Security;
+using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity;
 
 namespace Agiil.Auth
@@ -60,6 +60,7 @@ namespace Agiil.Auth
       var identity = CreateIdentity(user);
 
       AuthenticationManager.SignIn(new AuthenticationProperties() {
+        AllowRefresh = true,
         IsPersistent = true,
       }, identity);
 

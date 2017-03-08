@@ -1,4 +1,7 @@
-<html lang="en" metal:use-macro="Views/Shared/EmptyPage.pt/macros/page">
+<html lang="en"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:use-macro="Views/Shared/EmptyPage.xml/macros/page">
 <head>
 <title>Log in</title>
 </head>
@@ -8,7 +11,7 @@
                   loginAttempted here/LoginAttempted;
                   username here/Username | nothing">
 <h1>Log in</h1>
-<form method="post" action="Login/Login" tal:condition="not:loginSucceded">
+<form method="post" action="Login/Login" tal:condition="not:username">
   <fieldset>
     <div class="form_element field">
       <label for="Username">Username</label>
@@ -26,7 +29,7 @@
     </div>
   </fieldset>
 </form>
-<p tal:condition="loginSucceded">
+<p tal:condition="username">
   You are logged in as <strong tal:content="username">Joe Bloggs</strong>.
 </p>
 </body>

@@ -1,0 +1,12 @@
+﻿<html lang="en"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:define-macro="page">
+<head metal:define-slot="head_element">
+<meta charset="utf-8" />
+<title>Agiil</title>
+</head>
+<body metal:define-slot="body_element">
+Page content here
+</body>
+</html>

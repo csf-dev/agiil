@@ -1,5 +1,6 @@
-﻿
-<html>
+﻿<html lang="en"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal">
 <head>
 <title>Application home page</title>
 </head>

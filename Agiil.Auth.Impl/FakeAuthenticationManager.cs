@@ -85,7 +85,7 @@ namespace Agiil.Auth
 
     public void SignIn(params ClaimsIdentity[] identities)
     {
-      throw new NotImplementedException();
+      SignIn(null, identities);
     }
 
     public void SignIn(AuthenticationProperties properties, params ClaimsIdentity[] identities)
@@ -94,6 +94,11 @@ namespace Agiil.Auth
     }
 
     public void SignOut(params string[] authenticationTypes)
+    {
+      throw new NotImplementedException();
+    }
+
+    public void SignOut(AuthenticationProperties properties, params string[] authenticationTypes)
     {
       throw new NotImplementedException();
     }

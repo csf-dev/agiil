@@ -3,6 +3,12 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Hosting;
 using Owin;
+using Microsoft.Owin.Security.DataHandler;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.DataHandler.Serializer;
+using Microsoft.Owin.Security.DataHandler.Encoder;
+using Owin.Security.AesDataProtectorProvider;
+using Microsoft.AspNet.Identity;
 
 namespace Agiil.Web.App_Start
 {
@@ -12,11 +18,13 @@ namespace Agiil.Web.App_Start
     {
       builder.UseCookieAuthentication(new CookieAuthenticationOptions
       {
-        AuthenticationType = CookieAuthenticationDefaults.AuthenticationType,
+        AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
         LoginPath = new PathString($"/Login"),
-        SlidingExpiration = true,
-        ExpireTimeSpan = TimeSpan.FromHours(8),
       });
+
+      builder.UseAesDataProtectorProvider();
+
+      builder.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
     }
   }
 }
