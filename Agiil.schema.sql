@@ -8,6 +8,6 @@
     create table User (
         id BIGINT not null,
        Username TEXT,
-       AuthenticationInfo TEXT,
+       SerializedCredentials TEXT,
        primary key (id)
     )

@@ -28,9 +28,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="CSF.Security">
-      <HintPath>..\packages\CSF.Security.1.0.0\lib\net45\CSF.Security.dll</HintPath>
-    </Reference>
     <Reference Include="CSF.Data">
       <HintPath>..\packages\CSF.Data.1.0.0\lib\net45\CSF.Data.dll</HintPath>
     </Reference>
@@ -67,16 +64,18 @@
     <Reference Include="Microsoft.Owin.Security.Cookies">
       <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Security">
+      <HintPath>..\packages\CSF.Security.2.0.0\lib\net45\CSF.Security.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Base64KeyAndSaltConverter.cs" />
     <Compile Include="UserCredentialsRepository.cs" />
     <Compile Include="Resources\ExceptionMessages.Designer.cs">
       <DependentUpon>ExceptionMessages.resx</DependentUpon>
@@ -86,6 +85,8 @@
     <Compile Include="LoginLogoutManager.cs" />
     <Compile Include="ThreadClaimsPrincipalIdentityReader.cs" />
     <Compile Include="FakeAuthenticationManager.cs" />
+    <Compile Include="StoredUserInformation.cs" />
+    <Compile Include="AuthenticationRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

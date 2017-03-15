@@ -8,6 +8,7 @@ using Moq;
 using NUnit.Framework;
 using Ploeh.AutoFixture.NUnit3;
 using Agiil.Auth;
+using CSF.Entities;
 
 namespace Agiil.Tests.Auth
 {
@@ -17,9 +18,7 @@ namespace Agiil.Tests.Auth
     #region fields
 
     InMemoryQuery query;
-    Mock<IKeyAndSaltConverter> converter;
-    Agiil.Auth.ICredentialsRepository sut;
-    IStoredCredentialsWithKeyAndSalt storedCredentials;
+    UserCredentialsRepository sut;
 
     #endregion
 
@@ -29,14 +28,7 @@ namespace Agiil.Tests.Auth
     public void Setup ()
     {
       query = new InMemoryQuery();
-      converter = new Mock<IKeyAndSaltConverter>();
-      sut = new UserCredentialsRepository(query, converter.Object);
-
-      storedCredentials = Mock.Of<IStoredCredentialsWithKeyAndSalt>();
-
-      converter
-        .Setup(x => x.GetKeyAndSalt(It.IsAny<IAuthenticationInfoProvider>()))
-        .Returns(storedCredentials);
+      sut = new UserCredentialsRepository(query);
     }
 
     #endregion
@@ -66,12 +58,12 @@ namespace Agiil.Tests.Auth
       var result = sut.GetStoredCredentials(credentials);
 
       // Assert
-      Assert.AreSame(storedCredentials, result);
+      Assert.NotNull(result);
     }
 
     [Test,AutoData]
-    public void GetStoredCredentials_uses_key_and_salt_converter (LoginCredentials credentials,
-                                                                  User user)
+    public void GetStoredCredentials_returns_matching_serialized_credentials_when_user_found (LoginCredentials credentials,
+                                                                                              User user)
     {
       // Arrange
       user.GenerateIdentity();
@@ -79,10 +71,42 @@ namespace Agiil.Tests.Auth
       query.Add(user);
 
       // Act
-      sut.GetStoredCredentials(credentials);
+      var result = sut.GetStoredCredentials(credentials);
 
       // Assert
-      converter.Verify(x => x.GetKeyAndSalt(user), Times.Once());
+      Assert.AreEqual(user.SerializedCredentials, result.SerializedCredentials);
+    }
+
+    [Test,AutoData]
+    public void GetStoredCredentials_returns_correct_username_when_user_found (LoginCredentials credentials,
+                                                                               User user)
+    {
+      // Arrange
+      user.GenerateIdentity();
+      user.Username = credentials.Username;
+      query.Add(user);
+
+      // Act
+      var result = sut.GetStoredCredentials(credentials);
+
+      // Assert
+      Assert.AreEqual(user.Username, result.UserInformation.Username);
+    }
+
+    [Test,AutoData]
+    public void GetStoredCredentials_returns_correct_identity_when_user_found (LoginCredentials credentials,
+                                                                               User user)
+    {
+      // Arrange
+      user.GenerateIdentity();
+      user.Username = credentials.Username;
+      query.Add(user);
+
+      // Act
+      var result = sut.GetStoredCredentials(credentials);
+
+      // Assert
+      Assert.AreEqual(user.GetIdentity(), result.UserInformation.Identity);
     }
 
     [Test]

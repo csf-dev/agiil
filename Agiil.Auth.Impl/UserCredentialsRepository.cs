@@ -1,61 +1,62 @@
 ﻿using System;
 using CSF.Data;
-using CSF.Security;
+using CSF.Security.Authentication;
 using CSF.Data.Entities;
 using Agiil.Domain.Auth;
 using System.Linq;
+using CSF.Entities;
 
 namespace Agiil.Auth
 {
-  public class UserCredentialsRepository : ICredentialsRepository, CSF.Security.ICredentialsRepository
+  public class UserCredentialsRepository : IStoredCredentialsRepository
   {
     #region fields
 
     readonly IQuery query;
-    readonly IKeyAndSaltConverter converter;
 
     #endregion
 
     #region methods
 
-    object CSF.Security.ICredentialsRepository.GetStoredCredentials (object enteredCredentials)
+    public StoredUserInformation GetStoredCredentials(LoginCredentials enteredCredentials)
     {
-      return GetStoredCredentials(enteredCredentials as LoginCredentials);
-    }
-
-    public IStoredCredentialsWithKeyAndSalt GetStoredCredentials (LoginCredentials enteredCredentials)
-    {
-      if (enteredCredentials == null) {
-        throw new ArgumentNullException (nameof (enteredCredentials));
+      if(enteredCredentials == null)
+      {
+        throw new ArgumentNullException(nameof(enteredCredentials));
       }
 
-      var provider = GetAuthenticationInfoProvider(enteredCredentials);
+      var userAccount = GetUserAccount(enteredCredentials);
 
-      if(provider == null)
+      if(userAccount == null)
       {
         return null;
       }
 
-      return converter.GetKeyAndSalt(provider);
+      return new StoredUserInformation {
+        SerializedCredentials = userAccount.SerializedCredentials,
+        UserInformation = new UserInformation(userAccount.GetIdentity(), userAccount.Username),
+      };
     }
 
-    IAuthenticationInfoProvider GetAuthenticationInfoProvider(LoginCredentials enteredCredentials)
+    User GetUserAccount(LoginCredentials enteredCredentials)
     {
       return query.Query<User>().SingleOrDefault(x => x.Username == enteredCredentials.Username);
+    }
+
+    IStoredCredentials IStoredCredentialsRepository.GetStoredCredentials (IPassword enteredCredentials)
+    {
+      return GetStoredCredentials(enteredCredentials as LoginCredentials);
     }
 
     #endregion
 
     #region constructor
 
-    public UserCredentialsRepository (IQuery query, IKeyAndSaltConverter converter)
+    public UserCredentialsRepository (IQuery query)
     {
-      if (converter == null)
-        throw new ArgumentNullException (nameof (converter));
       if (query == null)
         throw new ArgumentNullException (nameof (query));
       
-      this.converter = converter;
       this.query = query;
     }
 

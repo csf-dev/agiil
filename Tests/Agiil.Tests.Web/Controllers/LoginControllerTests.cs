@@ -76,8 +76,8 @@ namespace Agiil.Tests.Web.Controllers
       // Assert
       Assert.IsInstanceOf<RedirectToRouteResult>(result, "Result is a redirect-to-route");
       var redirect = (RedirectToRouteResult) result;
-      Assert.AreEqual("Home", redirect.RouteValues["controller"], "Correct controller");
-      Assert.AreEqual(nameof(HomeController.Index), redirect.RouteValues["action"], "Correct action");
+      Assert.AreEqual("Login", redirect.RouteValues["controller"], "Correct controller");
+      Assert.AreEqual(nameof(LoginController.Index), redirect.RouteValues["action"], "Correct action");
     }
 
     [Test, AutoMoqData]

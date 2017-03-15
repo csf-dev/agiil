@@ -1,22 +1,10 @@
 ﻿using System;
-using CSF.Security;
+using CSF.Security.Authentication;
 
 namespace Agiil.Auth
 {
-  public class LoginCredentials : ICredentialsWithPassword
+  public class LoginCredentials : CredentialsWithPassword
   {
     public string Username { get; set; }
-
-    public string Password { get; set; }
-
-    public byte [] GetPasswordAsByteArray ()
-    {
-      if(Password == null)
-      {
-        return null;
-      }
-
-      return System.Text.Encoding.UTF8.GetBytes(Password);
-    }
   }
 }

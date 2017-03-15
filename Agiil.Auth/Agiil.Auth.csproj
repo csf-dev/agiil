@@ -28,18 +28,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="CSF.Security">
-      <HintPath>..\packages\CSF.Security.1.0.0\lib\net45\CSF.Security.dll</HintPath>
-    </Reference>
     <Reference Include="CSF.Entities">
       <HintPath>..\packages\CSF.Entities.1.1.0\lib\net45\CSF.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Security">
+      <HintPath>..\packages\CSF.Security.2.0.0\lib\net45\CSF.Security.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LoginCredentials.cs" />
-    <Compile Include="IKeyAndSaltConverter.cs" />
-    <Compile Include="ICredentialsRepository.cs" />
-    <Compile Include="IAuthenticationInfoProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ILoginLogoutManager.cs" />
     <Compile Include="ICurrentUserInfo.cs" />

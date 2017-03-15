@@ -4,7 +4,7 @@ using System.Security.Claims;
 using CSF.Data;
 using CSF.Entities;
 using Agiil.Domain.Auth;
-using CSF.Security;
+using CSF.Security.Authentication;
 using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity;
 
@@ -14,7 +14,7 @@ namespace Agiil.Auth
   {
     #region fields
 
-    readonly IAuthenticationService<LoginCredentials> authenticationService;
+    readonly IPasswordAuthenticationService authenticationService;
     readonly IQuery query;
     readonly IAuthenticationManager authenticationManager;
 
@@ -24,7 +24,7 @@ namespace Agiil.Auth
 
     protected IAuthenticationManager AuthenticationManager => authenticationManager;
 
-    protected IAuthenticationService<LoginCredentials> AuthenticationService => authenticationService;
+    protected IPasswordAuthenticationService AuthenticationService => authenticationService;
 
     protected IQuery Query => query;
 
@@ -39,7 +39,7 @@ namespace Agiil.Auth
       
       var result = AuthenticationService.Authenticate(request.GetCredentials());
 
-      if(!result.CredentialsVerified)
+      if(!result.Success)
       {
         return LoginResult.LoginFailed;
       }
@@ -86,7 +86,7 @@ namespace Agiil.Auth
 
     #region constructor
 
-    public LoginLogoutManager(IAuthenticationService<LoginCredentials> authenticationService,
+    public LoginLogoutManager(IPasswordAuthenticationService authenticationService,
                               IQuery query,
                               IAuthenticationManager authenticationManager)
     {

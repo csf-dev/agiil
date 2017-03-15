@@ -7,6 +7,7 @@ using CSF.Data.Entities;
 using Ploeh.AutoFixture;
 using System.Security.Cryptography;
 using Agiil.Tests.Common;
+using CSF.Security.Authentication;
 
 namespace Agiil.BDD.Impl.Auth
 {
@@ -14,9 +15,8 @@ namespace Agiil.BDD.Impl.Auth
   {
     readonly InMemoryQuery query;
     readonly IFixture autoFixture;
-
-    static readonly byte[] SALT = { 0, 10, 20, 30, 0, 10, 20, 30 };
-    static readonly int ITERATION_COUNT = 256000, KEY_LENGTH = 32;
+    readonly ICredentialsCreator credentialsCreator;
+    readonly ICredentialsSerializer credentialsSerializer;
 
     public void AddUser(string username, string password)
     {
@@ -24,7 +24,7 @@ namespace Agiil.BDD.Impl.Auth
 
       user.GenerateIdentity();
       user.Username = username;
-      user.AuthenticationInfo = CreateAuthenticationInfo(password);
+      user.SerializedCredentials = GetSerializedCredentials(password);
 
       query.Add(user);
     }
@@ -37,24 +37,27 @@ namespace Agiil.BDD.Impl.Auth
       }
     }
 
-    private string CreateAuthenticationInfo(string password)
+    private string GetSerializedCredentials(string password)
     {
       if(password == null)
       {
         throw new ArgumentNullException(nameof(password));
       }
 
-      var passwordBytes = System.Text.Encoding.UTF8.GetBytes(password);
-
-      var utility = new Rfc2898DeriveBytes(passwordBytes, SALT, ITERATION_COUNT);
-      var hash = utility.GetBytes(KEY_LENGTH);
-
-      return String.Concat(Convert.ToBase64String(SALT), ":", Convert.ToBase64String(hash));
+      var credentialsObject = credentialsCreator.CreateCredentials(new CredentialsWithPassword { Password = password });
+      return credentialsSerializer.Serialize(credentialsObject);
     }
 
 
-    public InMemoryUserAccountController (InMemoryQuery query, IFixture autoFixture)
+    public InMemoryUserAccountController (InMemoryQuery query,
+                                          IFixture autoFixture,
+                                          ICredentialsCreator credentialsCreator,
+                                          ICredentialsSerializer credentialsSerializer)
     {
+      if(credentialsSerializer == null)
+        throw new ArgumentNullException(nameof(credentialsSerializer));
+      if(credentialsCreator == null)
+        throw new ArgumentNullException(nameof(credentialsCreator));
       if(autoFixture == null)
         throw new ArgumentNullException(nameof(autoFixture));
       if(query == null)
@@ -62,6 +65,8 @@ namespace Agiil.BDD.Impl.Auth
       
       this.query = query;
       this.autoFixture = autoFixture;
+      this.credentialsCreator = credentialsCreator;
+      this.credentialsSerializer = credentialsSerializer;
     }
   }
 }

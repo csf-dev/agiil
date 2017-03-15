@@ -4,21 +4,16 @@ using Agiil.Auth;
 
 namespace Agiil.Domain.Auth
 {
-  public class User : Entity<long>, IAuthenticationInfoProvider
+  public class User : Entity<long>
   {
     public virtual string Username {
       get;
       set;
     }
 
-    public virtual string AuthenticationInfo {
+    public virtual string SerializedCredentials {
       get;
       set;
-    }
-
-    string IAuthenticationInfoProvider.GetAuthenticationInfo ()
-    {
-      return AuthenticationInfo;
     }
   }
 }

@@ -2,7 +2,7 @@
 using System.Web;
 using Autofac;
 using Agiil.Auth;
-using CSF.Security;
+using CSF.Security.Authentication;
 using Microsoft.Owin.Security;
 
 namespace Agiil.Bootstrap.Auth
@@ -12,20 +12,15 @@ namespace Agiil.Bootstrap.Auth
     protected override void Load (ContainerBuilder builder)
     {
       builder
-        .RegisterType<PBKDF2CredentialVerifier<LoginCredentials,IStoredCredentialsWithKeyAndSalt>>()
-        .As<ICredentialVerifier<LoginCredentials,IStoredCredentialsWithKeyAndSalt>>();
+        .Register(ctx => {
+          var repo = ctx.Resolve<IStoredCredentialsRepository>();
+          return new PasswordAuthenticationService<AuthenticationRequest>(repo);
+        })
+        .As<IPasswordAuthenticationService>();
 
       builder
         .RegisterType<UserCredentialsRepository>()
-        .As<ICredentialsRepository<LoginCredentials,IStoredCredentialsWithKeyAndSalt>>();
-
-      builder
-        .RegisterType<AuthenticationService<LoginCredentials,IStoredCredentialsWithKeyAndSalt>>()
-        .As<IAuthenticationService<LoginCredentials>>();
-
-      builder
-        .RegisterType<Base64KeyAndSaltConverter>()
-        .As<IKeyAndSaltConverter>();
+        .As<IStoredCredentialsRepository>();
 
       builder
         .Register((context, parameters) => {
@@ -54,6 +49,13 @@ namespace Agiil.Bootstrap.Auth
         })
         .As<IAuthenticationManager>();
 
+      builder
+        .Register(ctx => new PBKDF2PasswordVerifier(iterationCount: 20000))
+        .As<ICredentialsCreator>();
+
+      builder
+        .RegisterType<JsonCredentialsSerializer>()
+        .As<ICredentialsSerializer>();
     }
   }
 }
