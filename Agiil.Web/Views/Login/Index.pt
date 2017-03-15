@@ -1,7 +1,7 @@
 <html lang="en"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
-      metal:use-macro="Views/Shared/EmptyPage.xml/macros/page">
+      metal:use-macro="Views/Shared/EmptyPage/macros/page">
 <head>
 <title>Log in</title>
 </head>

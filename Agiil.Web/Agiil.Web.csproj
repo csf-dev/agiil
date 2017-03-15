@@ -222,10 +222,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Views\Home\Index.xml" />
-    <None Include="Views\Shared\EmptyPage.xml" />
-    <None Include="Views\Login\Index.xml" />
-    <None Include="Views\Login\LoggedOut.xml" />
+    <None Include="Views\Home\Index.pt" />
+    <None Include="Views\Shared\EmptyPage.pt" />
+    <None Include="Views\Login\Index.pt" />
+    <None Include="Views\Login\LoggedOut.pt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
