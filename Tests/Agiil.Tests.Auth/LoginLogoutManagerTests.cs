@@ -31,7 +31,7 @@ namespace Agiil.Tests.Auth
           .Returns(credentials);
       Mock.Get(authService)
           .Setup(x => x.Authenticate(credentials))
-          .Returns(new AuthenticationResult(true, false));
+          .Returns(new AuthenticationResult(false, true));
 
       // Act
       var result = sut.AttemptLogin(request);
@@ -74,7 +74,7 @@ namespace Agiil.Tests.Auth
           .Returns(credentials);
       Mock.Get(authService)
           .Setup(x => x.Authenticate(credentials))
-          .Returns(new AuthenticationResult(true, false));
+          .Returns(new AuthenticationResult(false, true));
 
       // Act
       sut.AttemptLogin(request);
