@@ -5,7 +5,6 @@ using CSF.Data;
 using CSF.Entities;
 using Agiil.Domain.Auth;
 using Agiil.Tests.Common;
-using CSF.Security.Authentication;
 using Microsoft.Owin.Security;
 using Moq;
 using NUnit.Framework;
@@ -20,10 +19,11 @@ namespace Agiil.Tests.Auth
     #region tests
 
     [Test, AutoMoqData]
-    public void AttemptLogin_returns_failure_result_when_authentication_fails([Frozen] IPasswordAuthenticationService authService,
+    public void AttemptLogin_returns_failure_result_when_authentication_fails([Frozen] CSF.Security.Authentication.IPasswordAuthenticationService authService,
                                                                               LoginLogoutManager sut,
                                                                               ILoginRequest request,
-                                                                              LoginCredentials credentials)
+                                                                              LoginCredentials credentials,
+                                                                              [HasIdentity] User user)
     {
       // Arrange
       Mock.Get(request)
@@ -31,7 +31,7 @@ namespace Agiil.Tests.Auth
           .Returns(credentials);
       Mock.Get(authService)
           .Setup(x => x.Authenticate(credentials))
-          .Returns(new AuthenticationResult(false, true));
+          .Returns(new AuthenticationResult(user.GetIdentity(), user.Username, false));
 
       // Act
       var result = sut.AttemptLogin(request);
@@ -41,7 +41,7 @@ namespace Agiil.Tests.Auth
     }
 
     [Test, AutoMoqData]
-    public void AttemptLogin_returns_failure_result_when_user_is_not_found([Frozen] IPasswordAuthenticationService authService,
+    public void AttemptLogin_returns_failure_result_when_user_is_not_found([Frozen] CSF.Security.Authentication.IPasswordAuthenticationService authService,
                                                                            LoginLogoutManager sut,
                                                                            ILoginRequest request,
                                                                            LoginCredentials credentials)
@@ -52,7 +52,7 @@ namespace Agiil.Tests.Auth
           .Returns(credentials);
       Mock.Get(authService)
           .Setup(x => x.Authenticate(credentials))
-          .Returns(new AuthenticationResult(false, false));
+          .Returns(AuthenticationResult.UserNotFound);
 
       // Act
       var result = sut.AttemptLogin(request);
@@ -62,11 +62,12 @@ namespace Agiil.Tests.Auth
     }
 
     [Test, AutoMoqData]
-    public void AttemptLogin_does_not_log_user_in_when_authentication_fails([Frozen] IPasswordAuthenticationService authService,
+    public void AttemptLogin_does_not_log_user_in_when_authentication_fails([Frozen] CSF.Security.Authentication.IPasswordAuthenticationService authService,
                                                                             [Frozen] IAuthenticationManager authManager,
                                                                             LoginLogoutManager sut,
                                                                             ILoginRequest request,
-                                                                            LoginCredentials credentials)
+                                                                            LoginCredentials credentials,
+                                                                            [HasIdentity] User user)
     {
       // Arrange
       Mock.Get(request)
@@ -74,7 +75,7 @@ namespace Agiil.Tests.Auth
           .Returns(credentials);
       Mock.Get(authService)
           .Setup(x => x.Authenticate(credentials))
-          .Returns(new AuthenticationResult(false, true));
+          .Returns(new AuthenticationResult(user.GetIdentity(), user.Username, false));
 
       // Act
       sut.AttemptLogin(request);
@@ -85,7 +86,7 @@ namespace Agiil.Tests.Auth
     }
 
     [Test, AutoMoqData]
-    public void AttemptLogin_does_not_log_user_in_when_user_is_not_found([Frozen] IPasswordAuthenticationService authService,
+    public void AttemptLogin_does_not_log_user_in_when_user_is_not_found([Frozen] CSF.Security.Authentication.IPasswordAuthenticationService authService,
                                                                          [Frozen] IAuthenticationManager authManager,
                                                                          LoginLogoutManager sut,
                                                                          ILoginRequest request,
@@ -97,7 +98,7 @@ namespace Agiil.Tests.Auth
           .Returns(credentials);
       Mock.Get(authService)
           .Setup(x => x.Authenticate(credentials))
-          .Returns(new AuthenticationResult(false, false));
+          .Returns(AuthenticationResult.UserNotFound);
 
       // Act
       sut.AttemptLogin(request);
@@ -108,31 +109,27 @@ namespace Agiil.Tests.Auth
     }
 
     [Test, AutoMoqData]
-    public void AttemptLogin_signs_user_in_when_authentication_succeeds([Frozen] IPasswordAuthenticationService authService,
+    public void AttemptLogin_signs_user_in_when_authentication_succeeds([Frozen] CSF.Security.Authentication.IPasswordAuthenticationService authService,
                                                                         [Frozen] IAuthenticationManager authManager,
-                                                                        [Frozen] InMemoryQuery query,
                                                                         ILoginRequest request,
                                                                         LoginCredentials credentials,
-                                                                        User user)
+                                                                        [HasIdentity] User user)
     {
       // Arrange
+      user.Username = credentials.Username;
       Mock.Get(request)
           .Setup(x => x.GetCredentials())
           .Returns(credentials);
       Mock.Get(authService)
           .Setup(x => x.Authenticate(credentials))
-          .Returns(new AuthenticationResult(true, true));
-      
-      user.Username = credentials.Username;
-      user.GenerateIdentity();
-      query.Add(user, user.GetIdentity().Value);
+          .Returns(new AuthenticationResult(user.GetIdentity(), user.Username, true));
 
       ClaimsIdentity identity = null;
       Mock.Get(authManager)
           .Setup(x => x.SignIn(It.IsAny<AuthenticationProperties>(), It.IsAny<ClaimsIdentity[]>()))
           .Callback((AuthenticationProperties props, ClaimsIdentity[] ident) => identity = ident.Single());
 
-      var sut = new LoginLogoutManager(authService, query, authManager);
+      var sut = new LoginLogoutManager(authService, authManager);
 
       // Act
       sut.AttemptLogin(request);
@@ -152,12 +149,11 @@ namespace Agiil.Tests.Auth
     }
 
     [Test, AutoMoqData]
-    public void AttemptLogin_returns_success_result_when_authentication_succeeds([Frozen] IPasswordAuthenticationService authService,
+    public void AttemptLogin_returns_success_result_when_authentication_succeeds([Frozen] CSF.Security.Authentication.IPasswordAuthenticationService authService,
                                                                                  [Frozen] IAuthenticationManager authManager,
-                                                                                 [Frozen] InMemoryQuery query,
                                                                                  ILoginRequest request,
                                                                                  LoginCredentials credentials,
-                                                                                 User user)
+                                                                                 [HasIdentity] User user)
     {
       // Arrange
       Mock.Get(request)
@@ -165,13 +161,12 @@ namespace Agiil.Tests.Auth
           .Returns(credentials);
       Mock.Get(authService)
           .Setup(x => x.Authenticate(credentials))
-          .Returns(new AuthenticationResult(true, true));
+          .Returns(new AuthenticationResult(user.GetIdentity(), user.Username, true));
 
       user.Username = credentials.Username;
       user.GenerateIdentity();
-      query.Add(user, user.GetIdentity().Value);
 
-      var sut = new LoginLogoutManager(authService, query, authManager);
+      var sut = new LoginLogoutManager(authService, authManager);
 
       // Act
       var result = sut.AttemptLogin(request);

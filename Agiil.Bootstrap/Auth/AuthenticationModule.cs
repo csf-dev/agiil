@@ -14,7 +14,7 @@ namespace Agiil.Bootstrap.Auth
       builder
         .Register(ctx => {
           var repo = ctx.Resolve<IStoredCredentialsRepository>();
-          return new PasswordAuthenticationService<AuthenticationRequest>(repo);
+          return new AuthenticationService(repo);
         })
         .As<IPasswordAuthenticationService>();
 

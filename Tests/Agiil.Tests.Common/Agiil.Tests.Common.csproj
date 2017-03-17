@@ -130,6 +130,8 @@
     <Compile Include="Controllers\Auth\ILoginController.cs" />
     <Compile Include="Controllers\Auth\IUserAccountController.cs" />
     <Compile Include="ApiOnlyContainerBuilderFactory.cs" />
+    <Compile Include="HasIdentityAttribute.cs" />
+    <Compile Include="Customizations\HasIdentityCustomization.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
@@ -157,6 +159,7 @@
     <Folder Include="Bootstrap\" />
     <Folder Include="Auth\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Customizations\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

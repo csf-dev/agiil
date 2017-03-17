@@ -15,7 +15,6 @@ namespace Agiil.Auth
     #region fields
 
     readonly IPasswordAuthenticationService authenticationService;
-    readonly IQuery query;
     readonly IAuthenticationManager authenticationManager;
 
     #endregion
@@ -26,8 +25,6 @@ namespace Agiil.Auth
 
     protected IPasswordAuthenticationService AuthenticationService => authenticationService;
 
-    protected IQuery Query => query;
-
     #endregion
 
     #region methods
@@ -37,14 +34,14 @@ namespace Agiil.Auth
       if(request == null)
         throw new ArgumentNullException(nameof(request));
       
-      var result = AuthenticationService.Authenticate(request.GetCredentials());
+      var result = (AuthenticationResult) AuthenticationService.Authenticate(request.GetCredentials());
 
       if(!result.Success)
       {
         return LoginResult.LoginFailed;
       }
 
-      var currentUser = LogUserIn(request);
+      var currentUser = LogUserIn(request, result);
       return new LoginResult(currentUser);
     }
 
@@ -54,32 +51,25 @@ namespace Agiil.Auth
       return LogoutResult.LogoutSuccessful;
     }
 
-    protected virtual ICurrentUserInfo LogUserIn(ILoginRequest request)
+    protected virtual ICurrentUserInfo LogUserIn(ILoginRequest request, AuthenticationResult result)
     {
-      var user = GetUser(request.GetCredentials().Username);
-      var identity = CreateIdentity(user);
+      var identity = CreateIdentity(result.UserIdentity, result.Username);
 
       AuthenticationManager.SignIn(new AuthenticationProperties() {
         AllowRefresh = true,
         IsPersistent = true,
       }, identity);
 
-      return new UserInformation(user.GetIdentity(), user.Username);
+      return new UserInformation(result.UserIdentity, result.Username);
     }
 
-    protected virtual ClaimsIdentity CreateIdentity(User user)
+    protected virtual ClaimsIdentity CreateIdentity(IIdentity<User> userId, string username)
     {
       var claims = new [] {
-        new Claim(ClaimTypes.NameIdentifier, user.Username),
-        new Claim(CustomClaimTypes.UserNumericId, user.GetIdentity().Value.ToString()),
+        new Claim(ClaimTypes.NameIdentifier, username),
+        new Claim(CustomClaimTypes.UserNumericId, userId.Value.ToString()),
       };
       return new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
-    }
-
-    protected virtual User GetUser(string username)
-    {
-      return Query.Query<User>()
-        .Single(x => x.Username == username);
     }
 
     #endregion
@@ -87,18 +77,14 @@ namespace Agiil.Auth
     #region constructor
 
     public LoginLogoutManager(IPasswordAuthenticationService authenticationService,
-                              IQuery query,
                               IAuthenticationManager authenticationManager)
     {
       if(authenticationManager == null)
         throw new ArgumentNullException(nameof(authenticationManager));
-      if(query == null)
-        throw new ArgumentNullException(nameof(query));
       if(authenticationService == null)
         throw new ArgumentNullException(nameof(authenticationService));
       
       this.authenticationService = authenticationService;
-      this.query = query;
       this.authenticationManager = authenticationManager;
     }
 
