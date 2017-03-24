@@ -49,6 +49,9 @@
     <Compile Include="LogoutResult.cs" />
     <Compile Include="IIdentityReader.cs" />
     <Compile Include="CustomClaimTypes.cs" />
+    <Compile Include="IPrincipalGetter.cs" />
+    <Compile Include="IAuthenticationResult.cs" />
+    <Compile Include="IClaimsIdentityFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,14 +1,15 @@
 ﻿using System;
-using Microsoft.Owin;
-using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Hosting;
-using Owin;
-using Microsoft.Owin.Security.DataHandler;
-using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.DataHandler.Serializer;
-using Microsoft.Owin.Security.DataHandler.Encoder;
-using Owin.Security.AesDataProtectorProvider;
+using System.Threading.Tasks;
+using Agiil.Domain.Auth;
+using Agiil.Web.Services.Auth;
 using Microsoft.AspNet.Identity;
+using Microsoft.Owin;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.Jwt;
+using Microsoft.Owin.Security.OAuth;
+using Owin;
+using Owin.Security.AesDataProtectorProvider;
 
 namespace Agiil.Web.App_Start
 {
@@ -16,8 +17,14 @@ namespace Agiil.Web.App_Start
   {
     public void Configure(IAppBuilder builder)
     {
-      builder.UseCookieAuthentication(new CookieAuthenticationOptions
-      {
+      ConfigureHttpAuthentication(builder);
+
+      ConfigureApiAuthentication(builder);
+    }
+
+    private void ConfigureHttpAuthentication(IAppBuilder builder)
+    {
+      builder.UseCookieAuthentication(new CookieAuthenticationOptions {
         AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
         LoginPath = new PathString($"/Login"),
       });
@@ -25,6 +32,30 @@ namespace Agiil.Web.App_Start
       builder.UseAesDataProtectorProvider();
 
       builder.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+    }
+
+    private void ConfigureApiAuthentication(IAppBuilder builder)
+    {
+      var oauthOptions = new OAuthAuthorizationServerOptions {
+        TokenEndpointPath = new PathString("/oauth2/token"),
+        AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
+        Provider = new OAuthAuthorizationProvider(),
+      };
+
+      //#if DEBUG
+      oauthOptions.AllowInsecureHttp = true;
+      //#endif
+
+      builder.UseOAuthAuthorizationServer(oauthOptions);
+
+      builder.UseJwtBearerAuthentication(new JwtBearerAuthenticationOptions
+      {
+        AuthenticationMode = AuthenticationMode.Active,
+        AllowedAudiences = new[] { "Any" },
+        IssuerSecurityTokenProviders = new IIssuerSecurityTokenProvider[] {
+          new SymmetricKeyIssuerSecurityTokenProvider("Agiil", "c2VjcmV0Cg=="),
+        }
+      });
     }
   }
 }

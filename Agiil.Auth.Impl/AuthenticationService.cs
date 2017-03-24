@@ -7,19 +7,19 @@ namespace Agiil.Auth
   {
     public AuthenticationService(IStoredCredentialsRepository repo) : base(repo) {}
 
-    public override IAuthenticationResult GetCannotFindCredentialsResult(AuthenticationRequest request)
+    public override CSF.Security.Authentication.IAuthenticationResult GetCannotFindCredentialsResult(AuthenticationRequest request)
     {
       return AuthenticationResult.UserNotFound;
     }
 
-    public override IAuthenticationResult GetCannotCreateVerifierResult(AuthenticationRequest request)
+    public override CSF.Security.Authentication.IAuthenticationResult GetCannotCreateVerifierResult(AuthenticationRequest request)
     {
       var userInfo = request?.StoredCredentials?.UserInformation;
 
       return new AuthenticationResult(userInfo?.Identity, userInfo?.Username, false);
     }
 
-    public override IAuthenticationResult GetVerificationResult(AuthenticationRequest request)
+    public override CSF.Security.Authentication.IAuthenticationResult GetVerificationResult(AuthenticationRequest request)
     {
       var userInfo = request?.StoredCredentials?.UserInformation;
 

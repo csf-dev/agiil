@@ -33,7 +33,11 @@ namespace Agiil.Bootstrap.Auth
         })
         .As<ILoginRequest>();
 
-      builder.RegisterType<ThreadClaimsPrincipalIdentityReader>().As<IIdentityReader>();
+      builder.RegisterType<ClaimsIdentityReader>().As<IIdentityReader>();
+
+      builder.RegisterType<ClaimsIdentityFactory>().As<IClaimsIdentityFactory>();
+
+      builder.RegisterType<CurrentThreadPrincipalGetter>().As<IPrincipalGetter>();
 
       builder.RegisterType<LoginLogoutManager>().As<ILoginLogoutManager>();
 

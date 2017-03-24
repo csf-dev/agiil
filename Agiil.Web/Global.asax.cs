@@ -15,7 +15,7 @@ namespace Agiil.Web
 
       ConfigureWebApiApplication();
       ConfigureMvcApplication();
-      ConfigureDependencyInjection();
+      //ConfigureDependencyInjection();
     }
 
     private void ConfigureMvcApplication()
@@ -29,12 +29,12 @@ namespace Agiil.Web
       GlobalConfiguration.Configure (App_Start.WebApiConfig.Register);
     }
 
-    private void ConfigureDependencyInjection()
-    {
-      var container = App_Start.DependencyInjectionConfig.GetDependencyInjectionContainer();
-      DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+    //private void ConfigureDependencyInjection()
+    //{
+    //  var container = App_Start.DependencyInjectionConfig.GetDependencyInjectionContainer();
+    //  DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
-      GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
-    }
+    //  GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+    //}
   }
 }

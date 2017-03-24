@@ -83,12 +83,14 @@
     <Compile Include="LoginRequest.cs" />
     <Compile Include="UserInformation.cs" />
     <Compile Include="LoginLogoutManager.cs" />
-    <Compile Include="ThreadClaimsPrincipalIdentityReader.cs" />
+    <Compile Include="ClaimsIdentityReader.cs" />
     <Compile Include="FakeAuthenticationManager.cs" />
     <Compile Include="StoredUserInformation.cs" />
     <Compile Include="AuthenticationRequest.cs" />
     <Compile Include="AuthenticationResult.cs" />
     <Compile Include="AuthenticationService.cs" />
+    <Compile Include="CurrentThreadPrincipalGetter.cs" />
+    <Compile Include="ClaimsIdentityFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

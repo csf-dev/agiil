@@ -7,11 +7,20 @@ using Agiil.Domain.Auth;
 
 namespace Agiil.Auth
 {
-  public class ThreadClaimsPrincipalIdentityReader : IIdentityReader
+  public class ClaimsIdentityReader : IIdentityReader
   {
+    readonly IPrincipalGetter principalGetter;
+
+    protected IPrincipalGetter PrincipalGetter => principalGetter;
+
     public virtual ICurrentUserInfo GetCurrentUserInfo()
     {
       var principal = GetPrincipal();
+
+      if(principal == null)
+      {
+        return null;
+      }
 
       var username = GetClaim(ClaimTypes.NameIdentifier, principal);
       var identityValue = GetClaim(CustomClaimTypes.UserNumericId, principal);
@@ -28,7 +37,7 @@ namespace Agiil.Auth
 
     protected virtual ClaimsPrincipal GetPrincipal()
     {
-      return Thread.CurrentPrincipal as ClaimsPrincipal;
+      return PrincipalGetter.GetCurrentPrincipal();
     }
 
     protected virtual string GetClaim(string claimType, ClaimsPrincipal principal)
@@ -40,6 +49,14 @@ namespace Agiil.Auth
     {
       var val = long.Parse(identityValue);
       return Identity.Create<User>(val);
+    }
+
+    public ClaimsIdentityReader(IPrincipalGetter principalGetter)
+    {
+      if(principalGetter == null)
+        throw new ArgumentNullException(nameof(principalGetter));
+
+      this.principalGetter = principalGetter;
     }
   }
 }

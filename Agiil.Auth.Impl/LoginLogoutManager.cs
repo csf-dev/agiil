@@ -16,6 +16,7 @@ namespace Agiil.Auth
 
     readonly IPasswordAuthenticationService authenticationService;
     readonly IAuthenticationManager authenticationManager;
+    readonly IClaimsIdentityFactory claimsIdentityFactory;
 
     #endregion
 
@@ -24,6 +25,8 @@ namespace Agiil.Auth
     protected IAuthenticationManager AuthenticationManager => authenticationManager;
 
     protected IPasswordAuthenticationService AuthenticationService => authenticationService;
+
+    protected IClaimsIdentityFactory ClaimsIdentityFactory => claimsIdentityFactory;
 
     #endregion
 
@@ -53,7 +56,7 @@ namespace Agiil.Auth
 
     protected virtual ICurrentUserInfo LogUserIn(ILoginRequest request, AuthenticationResult result)
     {
-      var identity = CreateIdentity(result.UserIdentity, result.Username);
+      var identity = ClaimsIdentityFactory.GetIdentity(result, DefaultAuthenticationTypes.ApplicationCookie);
 
       AuthenticationManager.SignIn(new AuthenticationProperties() {
         AllowRefresh = true,
@@ -63,22 +66,16 @@ namespace Agiil.Auth
       return new UserInformation(result.UserIdentity, result.Username);
     }
 
-    protected virtual ClaimsIdentity CreateIdentity(IIdentity<User> userId, string username)
-    {
-      var claims = new [] {
-        new Claim(ClaimTypes.NameIdentifier, username),
-        new Claim(CustomClaimTypes.UserNumericId, userId.Value.ToString()),
-      };
-      return new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
-    }
-
     #endregion
 
     #region constructor
 
     public LoginLogoutManager(IPasswordAuthenticationService authenticationService,
-                              IAuthenticationManager authenticationManager)
+                              IAuthenticationManager authenticationManager,
+                              IClaimsIdentityFactory claimsIdentityFactory)
     {
+      if(claimsIdentityFactory == null)
+        throw new ArgumentNullException(nameof(claimsIdentityFactory));
       if(authenticationManager == null)
         throw new ArgumentNullException(nameof(authenticationManager));
       if(authenticationService == null)
@@ -86,6 +83,7 @@ namespace Agiil.Auth
       
       this.authenticationService = authenticationService;
       this.authenticationManager = authenticationManager;
+      this.claimsIdentityFactory = claimsIdentityFactory;
     }
 
     #endregion

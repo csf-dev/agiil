@@ -111,6 +111,8 @@ namespace Agiil.Tests.Auth
     [Test, AutoMoqData]
     public void AttemptLogin_signs_user_in_when_authentication_succeeds([Frozen] CSF.Security.Authentication.IPasswordAuthenticationService authService,
                                                                         [Frozen] IAuthenticationManager authManager,
+                                                                        [Frozen] IClaimsIdentityFactory identityFactory,
+                                                                        LoginLogoutManager sut,
                                                                         ILoginRequest request,
                                                                         LoginCredentials credentials,
                                                                         [HasIdentity] User user)
@@ -124,33 +126,27 @@ namespace Agiil.Tests.Auth
           .Setup(x => x.Authenticate(credentials))
           .Returns(new AuthenticationResult(user.GetIdentity(), user.Username, true));
 
-      ClaimsIdentity identity = null;
-      Mock.Get(authManager)
-          .Setup(x => x.SignIn(It.IsAny<AuthenticationProperties>(), It.IsAny<ClaimsIdentity[]>()))
-          .Callback((AuthenticationProperties props, ClaimsIdentity[] ident) => identity = ident.Single());
+      var identity = new ClaimsIdentity();
+      Mock.Get(identityFactory)
+          .Setup(x => x.GetIdentity(It.IsAny<IAuthenticationResult>(), It.IsAny<string>()))
+          .Returns(identity);
 
-      var sut = new LoginLogoutManager(authService, authManager);
+      Mock.Get(authManager)
+          .Setup(x => x.SignIn(It.IsAny<AuthenticationProperties>(), identity));
 
       // Act
       sut.AttemptLogin(request);
 
       // Assert
       Mock.Get(authManager)
-          .Verify(x => x.SignIn(It.IsAny<AuthenticationProperties>(), It.IsAny<ClaimsIdentity[]>()),
-                  Times.Once(),
-                  "Authentication manager must be invoked");
-
-      var expectedClaims = new [] {
-        new { type = ClaimTypes.NameIdentifier, value = user.Username },
-        new { type = CustomClaimTypes.UserNumericId, value = user.GetIdentity().Value.ToString() },
-      };
-      var actualClaims = identity.Claims.Select(x => new { type = x.Type, value = x.Value }).ToArray();
-      CollectionAssert.AreEquivalent(expectedClaims, actualClaims, "Expected claims must be set");
+          .Verify(x => x.SignIn(It.IsAny<AuthenticationProperties>(), identity), Times.Once());
     }
 
     [Test, AutoMoqData]
     public void AttemptLogin_returns_success_result_when_authentication_succeeds([Frozen] CSF.Security.Authentication.IPasswordAuthenticationService authService,
                                                                                  [Frozen] IAuthenticationManager authManager,
+                                                                                 [Frozen] IClaimsIdentityFactory identityFactory,
+                                                                                 LoginLogoutManager sut,
                                                                                  ILoginRequest request,
                                                                                  LoginCredentials credentials,
                                                                                  [HasIdentity] User user)
@@ -163,10 +159,13 @@ namespace Agiil.Tests.Auth
           .Setup(x => x.Authenticate(credentials))
           .Returns(new AuthenticationResult(user.GetIdentity(), user.Username, true));
 
+      var identity = new ClaimsIdentity();
+      Mock.Get(identityFactory)
+          .Setup(x => x.GetIdentity(It.IsAny<IAuthenticationResult>(), It.IsAny<string>()))
+          .Returns(identity);
+
       user.Username = credentials.Username;
       user.GenerateIdentity();
-
-      var sut = new LoginLogoutManager(authService, authManager);
 
       // Act
       var result = sut.AttemptLogin(request);
