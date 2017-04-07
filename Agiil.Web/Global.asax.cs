@@ -2,8 +2,8 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Http;
-using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
+using Agiil.Web.App_Start;
 
 namespace Agiil.Web
 {
@@ -13,28 +13,13 @@ namespace Agiil.Web
     {
       AreaRegistration.RegisterAllAreas ();
 
-      ConfigureWebApiApplication();
       ConfigureMvcApplication();
-      //ConfigureDependencyInjection();
     }
 
     private void ConfigureMvcApplication()
     {
-      App_Start.RouteConfig.RegisterRoutes (RouteTable.Routes);
-      App_Start.ViewConfig.RegisterViewEngines(ViewEngines.Engines);
+      new RouteConfig().RegisterRoutes (RouteTable.Routes);
+      new ViewConfig().RegisterViewEngines(ViewEngines.Engines);
     }
-
-    private void ConfigureWebApiApplication()
-    {
-      GlobalConfiguration.Configure (App_Start.WebApiConfig.Register);
-    }
-
-    //private void ConfigureDependencyInjection()
-    //{
-    //  var container = App_Start.DependencyInjectionConfig.GetDependencyInjectionContainer();
-    //  DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-
-    //  GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
-    //}
   }
 }

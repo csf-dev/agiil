@@ -2,9 +2,9 @@
 
 namespace Agiil.Web.App_Start
 {
-  public static class WebApiConfig
+  public class WebApiConfig
   {
-    public static void Register (HttpConfiguration config)
+    public void Register (HttpConfiguration config)
     {
       // Web API configuration and services
 

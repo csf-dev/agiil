@@ -3,9 +3,9 @@ using CSF.Zpt.MVC;
 
 namespace Agiil.Web.App_Start
 {
-  public static class ViewConfig
+  public class ViewConfig
   {
-    public static void RegisterViewEngines(ViewEngineCollection engines)
+    public void RegisterViewEngines(ViewEngineCollection engines)
     {
       engines.Clear();
       engines.Add(new ZptViewEngine());

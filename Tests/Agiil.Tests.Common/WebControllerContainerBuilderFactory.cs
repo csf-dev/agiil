@@ -21,8 +21,9 @@ namespace Agiil.Tests.Common
 
     protected virtual void RegisterAspNetModules(ContainerBuilder builder)
     {
-      DependencyInjectionConfig.RegisterAspNetMvcComponents(builder);
-      DependencyInjectionConfig.RegisterAspNetWebApiComponents(builder);
+      var diConfig = new DependencyInjectionConfig();
+      diConfig.RegisterAspNetMvcComponents(builder);
+      diConfig.RegisterAspNetWebApiComponents(builder, new System.Web.Http.HttpConfiguration());
     }
  }
 }

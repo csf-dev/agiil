@@ -8,13 +8,15 @@ using Autofac.Integration.WebApi;
 
 namespace Agiil.Web.App_Start
 {
-  public static class DependencyInjectionConfig
+  public class DependencyInjectionConfig
   {
-    public static IContainer GetDependencyInjectionContainer()
+    #region public API
+
+    public virtual IContainer GetDependencyInjectionContainer(HttpConfiguration config)
     {
       var builder = new ContainerBuilder();
 
-      RegisterAspNetWebApiComponents(builder);
+      RegisterAspNetWebApiComponents(builder, config);
 
       RegisterAspNetMvcComponents(builder);
 
@@ -23,7 +25,7 @@ namespace Agiil.Web.App_Start
       return builder.Build();
     }
 
-    public static void RegisterAspNetMvcComponents(ContainerBuilder builder)
+    public virtual void RegisterAspNetMvcComponents(ContainerBuilder builder)
     {
       var mvcAssembly = GetMvcAssembly();
 
@@ -33,27 +35,29 @@ namespace Agiil.Web.App_Start
       builder.RegisterModule<AutofacWebTypesModule>();
     }
 
-    private static Assembly GetMvcAssembly()
-    {
-      return typeof(Global).Assembly;
-    }
-
-    public static void RegisterAspNetWebApiComponents(ContainerBuilder builder)
+    public virtual void RegisterAspNetWebApiComponents(ContainerBuilder builder, HttpConfiguration config)
     {
       var apiAssembly = GetWebApiAssembly();
-
-      var config = GlobalConfiguration.Configuration;
 
       builder.RegisterApiControllers(apiAssembly);
       builder.RegisterWebApiFilterProvider(config);
     }
 
-    private static Assembly GetWebApiAssembly()
+    #endregion
+
+    #region methods
+
+    protected virtual Assembly GetMvcAssembly()
+    {
+      return typeof(Global).Assembly;
+    }
+
+    protected virtual Assembly GetWebApiAssembly()
     {
       return GetMvcAssembly();
     }
 
-    private static void RegisterApplicationComponents(ContainerBuilder builder)
+    protected virtual void RegisterApplicationComponents(ContainerBuilder builder)
     {
       var bootstrapAssembly = GetBootstrapAssembly();
       var thisAssembly = Assembly.GetExecutingAssembly();
@@ -62,9 +66,11 @@ namespace Agiil.Web.App_Start
       builder.RegisterAssemblyModules(thisAssembly);
     }
 
-    private static Assembly GetBootstrapAssembly()
+    protected virtual Assembly GetBootstrapAssembly()
     {
       return typeof(IBootstrapAssemblyMarker).Assembly;
     }
+
+    #endregion
   }
 }
