@@ -2,12 +2,11 @@
 using System.Linq;
 using Agiil.BDD.Controllers.Auth;
 using Agiil.Domain.Auth;
+using Agiil.Tests.Common;
 using CSF.Data;
 using CSF.Data.Entities;
-using Ploeh.AutoFixture;
-using System.Security.Cryptography;
-using Agiil.Tests.Common;
 using CSF.Security.Authentication;
+using Ploeh.AutoFixture;
 
 namespace Agiil.BDD.Impl.Auth
 {
