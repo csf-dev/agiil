@@ -3,9 +3,8 @@ before_build:
 - cmd: nuget restore Agiil.sln
 build:
   verbosity: minimal
-test:
-  assemblies:
-    except:
-    - '**\Agiil.Tests.Common.dll'
-    - '**\Agiil.BDD.dll'
-    - '**\Ploeh.AutoFixture.NUnit3.dll'
+test_script:
+- cmd: >-
+    set ASSEMBLIES=dir * /s /b | findstr Agiil\.Tests
+
+    packages/NUnit.Console.3.0.0/tools/nunit3-console.exe $ASSEMBLIES
