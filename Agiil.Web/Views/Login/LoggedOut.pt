@@ -1,9 +1,9 @@
-﻿<html lang="en"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
-      xmlns:tal="http://xml.zope.org/namespaces/tal">
-  <head>
-    <title></title>
-  </head>
-  <body>
-  </body>
+﻿<html lang="en" metal:use-macro="Views/Shared/EmptyPage/macros/page">
+<head>
+<title>You are logged out</title>
+</head>
+<body metal:fill-slot="body_element">
+<h1>Logged out</h1>
+<p>You have been logged out.</p>
+</body>
 </html>

@@ -71,6 +71,9 @@
     <Reference Include="CSF.Security">
       <HintPath>..\packages\CSF.Security.2.0.0\lib\net45\CSF.Security.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Configuration">
+      <HintPath>..\packages\CSF.Configuration.1.1.0\lib\net45\CSF.Configuration.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,6 +81,7 @@
     <Compile Include="IBootstrapAssemblyMarker.cs" />
     <Compile Include="Data\QueryModule.cs" />
     <Compile Include="Data\NHibernateModule.cs" />
+    <Compile Include="Config\ConfigurationModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
@@ -103,6 +107,7 @@
   <ItemGroup>
     <Folder Include="Auth\" />
     <Folder Include="Data\" />
+    <Folder Include="Config\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

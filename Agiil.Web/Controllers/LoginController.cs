@@ -7,6 +7,14 @@ namespace Agiil.Web.Controllers
 {
   public class LoginController : ControllerBase
   {
+    #region constants
+
+    public static readonly string
+      LoginResultKey = "LoginResult",
+      CredentialsKey = "Credentials";
+
+    #endregion
+
     #region fields
 
     readonly LoginRequestCreator loginRequestCreator;
@@ -19,10 +27,9 @@ namespace Agiil.Web.Controllers
 
     [AllowAnonymous]
     [HttpGet]
-    public ActionResult Index(LoginResult result)
+    public ActionResult Index()
     {
-      var currentUser = identityReader.GetCurrentUserInfo();
-      var model = new LoginModel(result, currentUser);
+      var model = GetLoginModel();
       return View(model);
     }
 
@@ -40,12 +47,10 @@ namespace Agiil.Web.Controllers
       var loginRequest = loginRequestCreator(credentials.Username, credentials.Password);
       var result = loginLogoutManager.AttemptLogin(loginRequest);
 
-      if(result.Success)
-      {
-        return RedirectToAction(nameof(LoginController.Index), GetControllerName<LoginController>(), result);
-      }
+      TempData.Add(LoginResultKey, result);
+      TempData.Add(CredentialsKey, credentials);
 
-      return RedirectToAction(nameof(LoginController.Index), GetControllerName<LoginController>(), result);
+      return RedirectToAction(nameof(LoginController.Index), GetControllerName<LoginController>());
     }
 
     [AllowAnonymous]
@@ -54,14 +59,22 @@ namespace Agiil.Web.Controllers
     {
       var result = loginLogoutManager.AttemptLogout();
 
-      if(result.Success)
+      if(!result.Success)
       {
-        return RedirectToAction(nameof(LoginController.LoggedOut), GetControllerName<LoginController>());
+        throw new NotImplementedException("Failure to log out is not supported.");
       }
 
-      throw new NotImplementedException("Failure to log out is not supported.");
+      return RedirectToAction(nameof(LoginController.LoggedOut), GetControllerName<LoginController>());
     }
 
+    LoginModel GetLoginModel()
+    {
+      var currentUser = identityReader.GetCurrentUserInfo();
+      var result = GetTempData<LoginResult>(LoginResultKey);
+      var credentials = GetTempData<Models.LoginCredentials>(CredentialsKey);
+
+      return new LoginModel(result, currentUser, credentials);
+    }
 
     #endregion
 

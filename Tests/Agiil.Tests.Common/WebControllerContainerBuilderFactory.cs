@@ -21,7 +21,7 @@ namespace Agiil.Tests.Common
 
     protected virtual void RegisterAspNetModules(ContainerBuilder builder)
     {
-      var diConfig = new DependencyInjectionConfig();
+      var diConfig = new AutofacContainerFactory();
       diConfig.RegisterAspNetMvcComponents(builder);
       diConfig.RegisterAspNetWebApiComponents(builder, new System.Web.Http.HttpConfiguration());
     }

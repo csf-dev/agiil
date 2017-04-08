@@ -8,13 +8,13 @@ using Autofac.Integration.WebApi;
 
 namespace Agiil.Web.App_Start
 {
-  public class DependencyInjectionConfig
+  public class AutofacContainerFactory
   {
     #region public API
 
-    public virtual IContainer GetDependencyInjectionContainer(HttpConfiguration config)
+    public virtual IContainer GetContainer(HttpConfiguration config)
     {
-      var builder = new ContainerBuilder();
+      var builder = GetContainerBuilder();
 
       RegisterAspNetWebApiComponents(builder, config);
 
@@ -43,6 +43,20 @@ namespace Agiil.Web.App_Start
       builder.RegisterWebApiFilterProvider(config);
     }
 
+    public virtual void RegisterApplicationComponents(ContainerBuilder builder)
+    {
+      var bootstrapAssembly = GetBootstrapAssembly();
+      var thisAssembly = Assembly.GetExecutingAssembly();
+
+      builder.RegisterAssemblyModules(bootstrapAssembly);
+      builder.RegisterAssemblyModules(thisAssembly);
+    }
+
+    public virtual ContainerBuilder GetContainerBuilder()
+    {
+      return new ContainerBuilder();
+    }
+
     #endregion
 
     #region methods
@@ -55,15 +69,6 @@ namespace Agiil.Web.App_Start
     protected virtual Assembly GetWebApiAssembly()
     {
       return GetMvcAssembly();
-    }
-
-    protected virtual void RegisterApplicationComponents(ContainerBuilder builder)
-    {
-      var bootstrapAssembly = GetBootstrapAssembly();
-      var thisAssembly = Assembly.GetExecutingAssembly();
-
-      builder.RegisterAssemblyModules(bootstrapAssembly);
-      builder.RegisterAssemblyModules(thisAssembly);
     }
 
     protected virtual Assembly GetBootstrapAssembly()

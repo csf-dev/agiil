@@ -13,13 +13,8 @@ namespace Agiil.Web
     {
       AreaRegistration.RegisterAllAreas ();
 
-      ConfigureMvcApplication();
-    }
-
-    private void ConfigureMvcApplication()
-    {
-      new RouteConfig().RegisterRoutes (RouteTable.Routes);
-      new ViewConfig().RegisterViewEngines(ViewEngines.Engines);
+      new RouteConfiguration().RegisterMvcRoutes (RouteTable.Routes);
+      new MvcViewConfiguration().RegisterViewEngines(ViewEngines.Engines);
     }
   }
 }

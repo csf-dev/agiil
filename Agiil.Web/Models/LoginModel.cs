@@ -6,6 +6,7 @@ namespace Agiil.Web.Models
   {
     readonly LoginResult result;
     readonly ICurrentUserInfo userInfo;
+    readonly LoginCredentials enteredCredentials;
 
     public bool LoginFailed => LoginAttempted && !result.Success;
 
@@ -17,10 +18,15 @@ namespace Agiil.Web.Models
 
     public LoginResult Result => result;
 
-    public LoginModel(LoginResult result, ICurrentUserInfo userInfo)
+    public virtual LoginCredentials EnteredCredentials => enteredCredentials;
+
+    public LoginModel(LoginResult result,
+                      ICurrentUserInfo userInfo,
+                      LoginCredentials enteredCredentials)
     {
       this.userInfo = userInfo;
       this.result = result;
+      this.enteredCredentials = enteredCredentials;
     }
   }
 }

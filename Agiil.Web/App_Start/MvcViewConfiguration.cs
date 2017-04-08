@@ -3,7 +3,7 @@ using CSF.Zpt.MVC;
 
 namespace Agiil.Web.App_Start
 {
-  public class ViewConfig
+  public class MvcViewConfiguration
   {
     public void RegisterViewEngines(ViewEngineCollection engines)
     {

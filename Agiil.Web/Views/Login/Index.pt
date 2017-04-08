@@ -1,7 +1,4 @@
-<html lang="en"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      metal:use-macro="Views/Shared/EmptyPage/macros/page">
+<html lang="en" metal:use-macro="Views/Shared/EmptyPage/macros/page">
 <head>
 <title>Log in</title>
 </head>
@@ -29,8 +26,15 @@
     </div>
   </fieldset>
 </form>
-<p tal:condition="username">
-  You are logged in as <strong tal:content="username">Joe Bloggs</strong>.
-</p>
+<form method="post" action="Login/Logout" tal:condition="username">
+  <fieldset>
+    <p tal:condition="username">
+      You are logged in as <strong tal:content="username">Joe Bloggs</strong>.
+    </p>
+    <div class="form_element button">
+      <button>Log out</button>
+    </div>
+  </fieldset>
+</form>
 </body>
 </html>

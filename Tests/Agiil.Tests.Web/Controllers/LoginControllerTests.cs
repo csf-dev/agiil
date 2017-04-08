@@ -25,8 +25,10 @@ namespace Agiil.Tests.Web.Controllers
       LoginRequestCreator requestCreator = (u, p) => request;
       var sut = new LoginController(requestCreator, loginLogoutManager, identityReader);
 
+      sut.TempData.Add(LoginController.LoginResultKey, loginResult);
+
       // Act
-      var result = sut.Index(loginResult);
+      var result = sut.Index();
 
       // Assert
       Assert.IsInstanceOf<ViewResult>(result, "Result is a view");

@@ -2,6 +2,7 @@
 using System.Web;
 using Agiil.Auth;
 using Agiil.Web.Services.Auth;
+using Agiil.Web.Services.Config;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Microsoft.Owin.Security.OAuth;
@@ -16,9 +17,9 @@ namespace Agiil.Web.Bootstrap
         .RegisterType<HttpContextPrincipalGetter>()
         .As<IPrincipalGetter>();
 
-      //builder.RegisterType<OAuthAuthorizationServerMiddleware>();
-
       builder.RegisterType<OAuthAuthorizationProvider>();
+
+      builder.RegisterType<OAuthAuthorizationChecker>();
 
       builder.RegisterType<OAuthOptionsFactory>();
 
@@ -26,6 +27,10 @@ namespace Agiil.Web.Bootstrap
         var factory = ctx.Resolve<OAuthOptionsFactory>();
         return factory.GetOptions();
       });
+
+      builder
+        .RegisterConfiguration<OAuthConfigurationSection>()
+        .As<IOAuthConfiguration>();
     }
   }
 }

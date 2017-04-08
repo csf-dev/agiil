@@ -202,6 +202,7 @@
     <Reference Include="Autofac.Integration.Mvc">
       <HintPath>..\packages\Autofac.Mvc5.3.3.4\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
@@ -212,37 +213,35 @@
     <Folder Include="ApiControllers\" />
     <Folder Include="Views\Login\" />
     <Folder Include="ModelBinders\" />
-    <Folder Include="Util\" />
     <Folder Include="Services\" />
     <Folder Include="Services\Auth\" />
     <Folder Include="Bootstrap\" />
-    <Folder Include="App_Start\Owin\" />
+    <Folder Include="Services\Config\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\ViewConfig.cs" />
+    <Compile Include="App_Start\RouteConfiguration.cs" />
+    <Compile Include="App_Start\MvcViewConfiguration.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="ApiControllers\LoginController.cs" />
-    <Compile Include="App_Start\DependencyInjectionConfig.cs" />
+    <Compile Include="App_Start\AutofacContainerFactory.cs" />
     <Compile Include="ModelBinders\LoginResultBinder.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Models\UsernameUserInfo.cs" />
-    <Compile Include="ApiControllers\LogoutController.cs" />
     <Compile Include="Models\LoginCredentials.cs" />
     <Compile Include="Services\Auth\HttpContextPrincipalGetter.cs" />
     <Compile Include="Bootstrap\AuthModule.cs" />
     <Compile Include="Services\Auth\OAuthAuthorizationProvider.cs" />
-    <Compile Include="App_Start\CachingDependencyInjectionConfig.cs" />
-    <Compile Include="App_Start\Owin\OwinDependencyInjectionConfig.cs" />
-    <Compile Include="App_Start\Owin\Startup.cs" />
     <Compile Include="Services\Auth\OAuthOptionsFactory.cs" />
     <Compile Include="Bootstrap\OwinCompatibleLifetimeScopeProvider.cs" />
+    <Compile Include="App_Start\OwinStartupType.cs" />
+    <Compile Include="Services\Auth\OAuthAuthorizationChecker.cs" />
+    <Compile Include="Services\Config\OAuthConfigurationSection.cs" />
+    <Compile Include="Services\Config\IOAuthConfiguration.cs" />
+    <Compile Include="Bootstrap\ContainerBuilderExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
