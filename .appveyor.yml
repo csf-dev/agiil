@@ -1,4 +1,4 @@
-version: '{branch}-{build}'
+﻿version: '{branch}-{build}'
 before_build:
 - cmd: nuget restore Agiil.sln
 build:
@@ -8,4 +8,4 @@ test:
     except:
     - **\Agiil.Tests.Common.dll
     - **\Agiil.BDD.dll
-    - **\Ploeh.AutoFixture.NUnit3.dll
+    - **\Ploeh.AutoFixture.NUnit3.dll 
