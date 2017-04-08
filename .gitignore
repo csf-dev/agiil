@@ -1,6 +1,7 @@
 bin/
 obj/
 packages/*/*
+.directory
 *.userprefs
 *.csproj.user
 TestResult.xml
