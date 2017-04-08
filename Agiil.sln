@@ -25,6 +25,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.Data", "Agiil.Data\Ag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.Tests.Data", "Tests\Agiil.Tests.Data\Agiil.Tests.Data.csproj", "{52E73660-88E8-4553-8EE4-CF8FA8FBEB3F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{A41D1A00-A502-4906-B049-80BCAFEA0A70}"
+	ProjectSection(SolutionItems) = preProject
+		Tests\Utils\run-tests.sh = Tests\Utils\run-tests.sh
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,5 +87,6 @@ Global
 		{63B32334-E2E3-4BC3-BEFE-96374AAD4093} = {8FA578E4-76C8-4D01-954C-05D3D40AB828}
 		{EC5947A3-0820-42E3-B332-82A6686E1784} = {8FA578E4-76C8-4D01-954C-05D3D40AB828}
 		{52E73660-88E8-4553-8EE4-CF8FA8FBEB3F} = {8FA578E4-76C8-4D01-954C-05D3D40AB828}
+		{A41D1A00-A502-4906-B049-80BCAFEA0A70} = {8FA578E4-76C8-4D01-954C-05D3D40AB828}
 	EndGlobalSection
 EndGlobal
