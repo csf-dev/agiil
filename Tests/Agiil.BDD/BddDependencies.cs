@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Reflection;
-using Autofac;
+﻿using Autofac;
 using SpecFlow.Autofac;
-using System.Linq;
-using TechTalk.SpecFlow;
-using Agiil.BDD.Impl;
 using Agiil.Tests.Common;
 
 namespace Agiil.BDD
