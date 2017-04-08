@@ -41,6 +41,9 @@
       <HintPath>..\..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="CSF.Entities">
+      <HintPath>..\..\packages\CSF.Entities.1.1.0\lib\net45\CSF.Entities.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MappingTests.cs" />
