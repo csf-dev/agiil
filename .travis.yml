@@ -6,5 +6,5 @@ install:
   - nuget install NUnit.Console -Version 3.0.0 -OutputDirectory testrunner
 
 script:
-  - xbuild /p:Configuration=Debug CSF.Zpt.sln
+  - xbuild /p:Configuration=Debug Agiil.sln
   - mono "./testrunner/NUnit.Console.3.0.0/tools/nunit3-console.exe" $(find ./Tests/ -type f -path "*/bin/Debug/*" -name "Agiil.Tests*.dll" \! -name "Agiil.Tests.Common.dll")
