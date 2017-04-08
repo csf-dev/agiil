@@ -112,6 +112,7 @@
     <Compile Include="BddDependencies.cs" />
     <Compile Include="Bootstrap\BindingsModule.cs" />
     <Compile Include="BddContainerBuilderFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
