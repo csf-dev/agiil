@@ -41,6 +41,8 @@
     <Compile Include="IDomainAssemblyMarker.cs" />
     <Compile Include="Tickets\Ticket.cs" />
     <Compile Include="Auth\CurrentUserNotIdentifiedException.cs" />
+    <Compile Include="IEnvironment.cs" />
+    <Compile Include="CurrentEnvironment.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

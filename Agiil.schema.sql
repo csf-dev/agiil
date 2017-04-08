@@ -18,5 +18,8 @@
         id BIGINT not null,
        Title TEXT,
        Description TEXT,
-       primary key (id)
+       User BIGINT,
+       CreationTimestamp DATETIME,
+       primary key (id),
+       constraint FKE14EC536D3BA3AD1 foreign key (User) references User
     )

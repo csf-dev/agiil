@@ -133,6 +133,9 @@
     <Compile Include="Customizations\HasIdentityCustomization.cs" />
     <Compile Include="Customizations\TypeRelayCustomization.cs" />
     <Compile Include="ProvidesServiceAttribute.cs" />
+    <Compile Include="CurrentUserReaderExtensions.cs" />
+    <Compile Include="Customizations\LoggedInCustomization.cs" />
+    <Compile Include="LoggedInAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
@@ -154,6 +157,10 @@
     <ProjectReference Include="..\..\Agiil.Domain\Agiil.Domain.csproj">
       <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
       <Name>Agiil.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Services\Agiil.Services.csproj">
+      <Project>{FF544749-0A04-417F-AD83-E284BBF498E7}</Project>
+      <Name>Agiil.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
