@@ -3,8 +3,8 @@ solution: Agiil.sln
 
 install:
   - nuget restore Agiil.sln
-  - nuget install NUnit.Console -Version 3.0.0 -OutputDirectory testrunner
+  - nuget install NUnit.ConsoleRunner -Version 3.6.1 -OutputDirectory testrunner
 
 script:
   - xbuild /p:Configuration=Debug Agiil.sln
-  - mono "./testrunner/NUnit.Console.3.0.0/tools/nunit3-console.exe" $(find ./Tests/ -type f -path "*/bin/Debug/*" -name "Agiil.Tests*.dll" \! -name "Agiil.Tests.Common.dll")
+  - mono "./testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe" $(find ./Tests/ -type f -path "*/bin/Debug/*" -name "Agiil.Tests*.dll" \! -name "Agiil.Tests.Common.dll")

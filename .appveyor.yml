@@ -3,6 +3,9 @@ before_build:
 - cmd: nuget restore Agiil.sln
 build:
   verbosity: minimal
-test_script:
-- cmd: >-
-    packages\NUnit.Console.3.0.0\tools\nunit3-console.exe Tests\Agiil.Tests.Auth\bin\Debug\Agiil.Tests.Auth.dll Tests\Agiil.Tests.Data\bin\Debug\Agiil.Tests.Data.dll Tests\Agiil.Tests.Web\bin\Debug\Agiil.Tests.Web.dll
+after_build:
+- cmd: >-
+    nuget install NUnit.ConsoleRunner -Version 3.6.1 -OutputDirectory testrunner
+test_script:
+- cmd: >-
+    testrunner\NUnit.ConsoleRunner.3.6.1\tools\nunit3-console.exe Tests\Agiil.Tests.Auth\bin\Debug\Agiil.Tests.Auth.dll Tests\Agiil.Tests.Data\bin\Debug\Agiil.Tests.Data.dll Tests\Agiil.Tests.Web\bin\Debug\Agiil.Tests.Web.dll

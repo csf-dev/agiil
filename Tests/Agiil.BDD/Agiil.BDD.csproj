@@ -109,7 +109,6 @@
     <Compile Include="Bindings\Auth\UserAccountSteps.cs" />
     <Compile Include="Bindings\Auth\LoginSteps.cs" />
     <Compile Include="IBddAssemblyMarker.cs" />
-    <Compile Include="SpecFlowNUnitExtension.cs" />
     <Compile Include="BddDependencies.cs" />
     <Compile Include="Bootstrap\BindingsModule.cs" />
     <Compile Include="BddContainerBuilderFactory.cs" />
