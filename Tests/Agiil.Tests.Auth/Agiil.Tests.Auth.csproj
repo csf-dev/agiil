@@ -32,9 +32,6 @@
     <Reference Include="Moq">
       <HintPath>..\..\packages\Moq.4.5.30\lib\net45\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Data">
-      <HintPath>..\..\packages\CSF.Data.1.0.0\lib\net45\CSF.Data.dll</HintPath>
-    </Reference>
     <Reference Include="Ploeh.AutoFixture">
       <HintPath>..\..\packages\AutoFixture.3.50.2\lib\net40\Ploeh.AutoFixture.dll</HintPath>
     </Reference>
@@ -79,6 +76,9 @@
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data">
+      <HintPath>..\..\packages\CSF.Data.1.0.1\lib\net45\CSF.Data.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

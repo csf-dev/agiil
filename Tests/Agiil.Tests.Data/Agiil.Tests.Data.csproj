@@ -50,6 +50,9 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Data">
+      <HintPath>..\..\packages\CSF.Data.1.0.1\lib\net45\CSF.Data.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MappingTests.cs" />
