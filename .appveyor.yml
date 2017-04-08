@@ -1,7 +1,11 @@
 version: '{branch}-{build}'
-init:
-- cmd: git config --global core.autocrlf true
 before_build:
 - cmd: nuget restore
 build:
   verbosity: minimal
+test:
+  assemblies:
+    except:
+    - Agiil.Tests.Common.dll
+    - Agiil.BDD.dll
+    - Ploeh.AutoFixture.NUnit3.dll
