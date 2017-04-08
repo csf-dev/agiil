@@ -1,6 +1,7 @@
 ﻿using System;
 using CSF.Entities;
 using Agiil.Domain.Auth;
+using Agiil.Services.Auth;
 
 namespace Agiil.Auth
 {

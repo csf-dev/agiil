@@ -55,9 +55,11 @@
     </Reference>
     <Reference Include="nunit.core">
       <HintPath>..\..\packages\NUnit.Console.3.0.0\tools\addins\nunit.core.dll</HintPath>
+      <Package>nunit</Package>
     </Reference>
     <Reference Include="nunit.core.interfaces">
       <HintPath>..\..\packages\NUnit.Console.3.0.0\tools\addins\nunit.core.interfaces.dll</HintPath>
+      <Package>nunit</Package>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -153,6 +155,10 @@
     <ProjectReference Include="..\..\Agiil.Web\Agiil.Web.csproj">
       <Project>{EA6B20FB-9F7F-49C5-BE4E-BCD59ECA1D85}</Project>
       <Name>Agiil.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Services\Agiil.Services.csproj">
+      <Project>{FF544749-0A04-417F-AD83-E284BBF498E7}</Project>
+      <Name>Agiil.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

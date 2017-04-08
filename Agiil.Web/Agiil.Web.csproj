@@ -228,9 +228,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="App_Start\AutofacContainerFactory.cs" />
-    <Compile Include="ModelBinders\LoginResultBinder.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
-    <Compile Include="Models\UsernameUserInfo.cs" />
     <Compile Include="Models\LoginCredentials.cs" />
     <Compile Include="Services\Auth\HttpContextPrincipalGetter.cs" />
     <Compile Include="Bootstrap\AuthModule.cs" />
@@ -271,6 +269,10 @@
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
       <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
       <Name>Agiil.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Services\Agiil.Services.csproj">
+      <Project>{FF544749-0A04-417F-AD83-E284BBF498E7}</Project>
+      <Name>Agiil.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

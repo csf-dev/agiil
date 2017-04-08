@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Principal;
 
-namespace Agiil.Auth
+namespace Agiil.Services.Auth
 {
   public interface IIdentityReader
   {

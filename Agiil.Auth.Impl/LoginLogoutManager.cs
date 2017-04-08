@@ -7,6 +7,7 @@ using Agiil.Domain.Auth;
 using CSF.Security.Authentication;
 using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity;
+using Agiil.Services.Auth;
 
 namespace Agiil.Auth
 {
@@ -45,7 +46,7 @@ namespace Agiil.Auth
       }
 
       var currentUser = LogUserIn(request, result);
-      return new LoginResult(currentUser);
+      return new LoginResult(currentUser.Username);
     }
 
     public virtual LogoutResult AttemptLogout()
