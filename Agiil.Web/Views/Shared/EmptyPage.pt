@@ -2,6 +2,7 @@
 <head metal:define-slot="head_element">
 <meta charset="utf-8" />
 <title>Agiil</title>
+<base href="/" />
 </head>
 <body metal:define-slot="body_element">
 Page content here

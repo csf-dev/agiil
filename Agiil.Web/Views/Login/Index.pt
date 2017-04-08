@@ -12,7 +12,8 @@
   <fieldset>
     <div class="form_element field">
       <label for="Username">Username</label>
-      <input type="text" id="Username" name="Username" />
+      <input type="text" id="Username" name="Username"
+             tal:attributes="value here/EnteredCredentials/Username | nothing" />
     </div>
     <div class="form_element field">
       <label for="Password">Password</label>
