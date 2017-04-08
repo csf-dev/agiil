@@ -17,7 +17,7 @@ namespace Agiil.Tests.Auth
   {
     #region tests
 
-    [Test,AutoData]
+    [Test,AutoMoqData]
     public void GetStoredCredentials_returns_null_when_no_user_found (LoginCredentials credentials,
                                                                       UserCredentialsRepository sut)
     {
@@ -31,7 +31,7 @@ namespace Agiil.Tests.Auth
     [Test,AutoData]
     public void GetStoredCredentials_returns_credentials_when_user_is_found (LoginCredentials credentials,
                                                                              User user,
-                                                                             [Frozen] InMemoryQuery query,
+                                                                             [Frozen,ProvidesService(typeof(IQuery))] InMemoryQuery query,
                                                                              UserCredentialsRepository sut)
     {
       // Arrange
@@ -49,7 +49,7 @@ namespace Agiil.Tests.Auth
     [Test,AutoData]
     public void GetStoredCredentials_returns_matching_serialized_credentials_when_user_found (LoginCredentials credentials,
                                                                                               User user,
-                                                                                              [Frozen] InMemoryQuery query,
+                                                                                              [Frozen,ProvidesService(typeof(IQuery))] InMemoryQuery query,
                                                                                               UserCredentialsRepository sut)
     {
       // Arrange
@@ -67,7 +67,7 @@ namespace Agiil.Tests.Auth
     [Test,AutoData]
     public void GetStoredCredentials_returns_correct_username_when_user_found (LoginCredentials credentials,
                                                                                User user,
-                                                                               [Frozen] InMemoryQuery query,
+                                                                               [Frozen,ProvidesService(typeof(IQuery))] InMemoryQuery query,
                                                                                UserCredentialsRepository sut)
     {
       // Arrange
@@ -85,7 +85,7 @@ namespace Agiil.Tests.Auth
     [Test,AutoData]
     public void GetStoredCredentials_returns_correct_identity_when_user_found (LoginCredentials credentials,
                                                                                User user,
-                                                                               [Frozen] InMemoryQuery query,
+                                                                               [Frozen,ProvidesService(typeof(IQuery))] InMemoryQuery query,
                                                                                UserCredentialsRepository sut)
     {
       // Arrange
@@ -100,7 +100,7 @@ namespace Agiil.Tests.Auth
       Assert.AreEqual(user.GetIdentity(), result.UserInformation.Identity);
     }
 
-    [Test]
+    [Test,AutoMoqData]
     public void GetStoredCredentials_throws_exception_when_credentials_are_null (UserCredentialsRepository sut)
     {
       // Act & Assert

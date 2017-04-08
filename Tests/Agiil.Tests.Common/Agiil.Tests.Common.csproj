@@ -131,6 +131,8 @@
     <Compile Include="ApiOnlyContainerBuilderFactory.cs" />
     <Compile Include="HasIdentityAttribute.cs" />
     <Compile Include="Customizations\HasIdentityCustomization.cs" />
+    <Compile Include="Customizations\TypeRelayCustomization.cs" />
+    <Compile Include="ProvidesServiceAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
