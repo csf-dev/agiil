@@ -42,7 +42,7 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="CSF.Entities">
-      <HintPath>..\..\packages\CSF.Entities.1.1.0\lib\net45\CSF.Entities.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Entities.1.1.1\lib\net45\CSF.Entities.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
