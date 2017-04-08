@@ -5,4 +5,4 @@ build:
   verbosity: minimal
 test_script:
 - cmd: >-
-    packages/NUnit.Console.3.0.0/tools/nunit3-console.exe `dir * /s /b | findstr Agiil\.Tests`
+    packages\NUnit.Console.3.0.0\tools\nunit3-console.exe `dir * /s /b | findstr Agiil\.Tests`
