@@ -40,6 +40,7 @@
     <Compile Include="Auth\User.cs" />
     <Compile Include="IDomainAssemblyMarker.cs" />
     <Compile Include="Tickets\Ticket.cs" />
+    <Compile Include="Auth\CurrentUserNotIdentifiedException.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

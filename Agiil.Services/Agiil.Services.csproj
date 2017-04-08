@@ -31,6 +31,12 @@
     <Reference Include="CSF.Entities">
       <HintPath>..\packages\CSF.Entities.1.1.1\lib\net45\CSF.Entities.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Data">
+      <HintPath>..\packages\CSF.Data.1.0.1\lib\net45\CSF.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data.Entities">
+      <HintPath>..\packages\CSF.Data.Entities.1.1.0\lib\net45\CSF.Data.Entities.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -39,6 +45,11 @@
     <Compile Include="Tickets\TicketCreator.cs" />
     <Compile Include="Auth\IIdentityReader.cs" />
     <Compile Include="Auth\ICurrentUserInfo.cs" />
+    <Compile Include="Auth\ICurrentUserReader.cs" />
+    <Compile Include="Auth\CurrentUserReader.cs" />
+    <Compile Include="Resources\ExceptionMessages.Designer.cs">
+      <DependentUpon>ExceptionMessages.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
@@ -53,9 +64,16 @@
   <ItemGroup>
     <Folder Include="Tickets\" />
     <Folder Include="Auth\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ExceptionMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExceptionMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

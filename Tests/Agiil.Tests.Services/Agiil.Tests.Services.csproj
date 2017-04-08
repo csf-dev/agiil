@@ -29,10 +29,48 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Ploeh.AutoFixture">
+      <HintPath>..\..\packages\AutoFixture.3.50.2\lib\net40\Ploeh.AutoFixture.dll</HintPath>
+    </Reference>
+    <Reference Include="Ploeh.AutoFixture.NUnit3">
+      <HintPath>..\..\packages\AutoFixture.NUnit3.3.50.2\lib\net40\Ploeh.AutoFixture.NUnit3.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data">
+      <HintPath>..\..\packages\CSF.Data.1.0.1\lib\net45\CSF.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\..\packages\Moq.4.5.30\lib\net45\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Entities">
+      <HintPath>..\..\packages\CSF.Entities.1.1.1\lib\net45\CSF.Entities.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Auth\CurrentUserReaderTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Agiil.Services\Agiil.Services.csproj">
+      <Project>{FF544749-0A04-417F-AD83-E284BBF498E7}</Project>
+      <Name>Agiil.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
+      <Project>{E15F2064-D2EA-43EF-924C-733107675FF0}</Project>
+      <Name>Agiil.Tests.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Domain\Agiil.Domain.csproj">
+      <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
+      <Name>Agiil.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Auth\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
