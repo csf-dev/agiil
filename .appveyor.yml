@@ -1,11 +1,11 @@
 version: '{branch}-{build}'
 before_build:
-- cmd: nuget restore
+- cmd: nuget restore Agiil.sln
 build:
   verbosity: minimal
 test:
   assemblies:
     except:
-    - Agiil.Tests.Common.dll
-    - Agiil.BDD.dll
-    - Ploeh.AutoFixture.NUnit3.dll
+    - **\Agiil.Tests.Common.dll
+    - **\Agiil.BDD.dll
+    - **\Ploeh.AutoFixture.NUnit3.dll
