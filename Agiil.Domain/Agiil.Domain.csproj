@@ -53,6 +53,7 @@
     <Compile Include="Data\INestableTransaction.cs" />
     <Compile Include="Data\TransactionAlreadyFinalizedException.cs" />
     <Compile Include="ComponentScope.cs" />
+    <Compile Include="Data\ITransactionFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

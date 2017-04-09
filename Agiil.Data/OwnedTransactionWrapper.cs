@@ -1,7 +1,8 @@
 ﻿using System;
 using Autofac.Features.OwnedInstances;
+using Agiil.Domain.Data;
 
-namespace Agiil.Domain.Data
+namespace Agiil.Data
 {
   public class OwnedTransactionWrapper : INestableTransaction
   {

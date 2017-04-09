@@ -1,8 +1,9 @@
 ﻿using System;
+using Agiil.Domain.Data;
 using Autofac.Features.OwnedInstances;
 using NHibernate;
 
-namespace Agiil.Domain.Data
+namespace Agiil.Data
 {
   public class TransactionFactory : ITransactionFactory
   {

@@ -1,5 +1,7 @@
 ﻿using System;
-namespace Agiil.Domain.Data
+using Agiil.Domain.Data;
+
+namespace Agiil.Data
 {
   public interface ICurrentTransactionReader
   {

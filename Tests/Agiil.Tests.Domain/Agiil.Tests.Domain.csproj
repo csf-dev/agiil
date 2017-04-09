@@ -62,7 +62,6 @@
     <Compile Include="Tickets\TicketCreatorTests.cs" />
     <Compile Include="Auth\CurrentUserReaderTests.cs" />
     <Compile Include="Tickets\TicketFactoryTests.cs" />
-    <Compile Include="Data\NestableTransactionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
@@ -81,7 +80,6 @@
   <ItemGroup>
     <Folder Include="Auth\" />
     <Folder Include="Tickets\" />
-    <Folder Include="Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

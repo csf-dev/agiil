@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using NHibernate;
-using Agiil.Domain;
+using Agiil.Domain.Data;
 
-namespace Agiil.Domain.Data
+namespace Agiil.Data
 {
   public class NestableTransaction : INestableTransaction, IDisposable
   {

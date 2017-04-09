@@ -55,12 +55,6 @@
       <DependentUpon>ExceptionMessages.resx</DependentUpon>
     </Compile>
     <Compile Include="Tickets\TicketFactory.cs" />
-    <Compile Include="Data\CurrentTransactionReader.cs" />
-    <Compile Include="Data\ICurrentTransactionReader.cs" />
-    <Compile Include="Data\ITransactionFactory.cs" />
-    <Compile Include="Data\NestableTransaction.cs" />
-    <Compile Include="Data\OwnedTransactionWrapper.cs" />
-    <Compile Include="Data\TransactionFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
