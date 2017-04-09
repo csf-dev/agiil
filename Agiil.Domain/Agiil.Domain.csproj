@@ -43,6 +43,9 @@
     <Compile Include="Auth\CurrentUserNotIdentifiedException.cs" />
     <Compile Include="IEnvironment.cs" />
     <Compile Include="CurrentEnvironment.cs" />
+    <Compile Include="INestableTransaction.cs" />
+    <Compile Include="TransactionAlreadyFinalizedException.cs" />
+    <Compile Include="CannotNestOutermostTransactionException.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

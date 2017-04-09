@@ -58,5 +58,17 @@ namespace Agiil.Services.Resources {
                 return ResourceManager.GetString("UserMustExist", resourceCulture);
             }
         }
+        
+        internal static string TransactionAlreadyFinalized {
+            get {
+                return ResourceManager.GetString("TransactionAlreadyFinalized", resourceCulture);
+            }
+        }
+        
+        internal static string CannotNestOutermostTransaction {
+            get {
+                return ResourceManager.GetString("CannotNestOutermostTransaction", resourceCulture);
+            }
+        }
     }
 }

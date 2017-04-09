@@ -62,6 +62,7 @@
     <Compile Include="Tickets\TicketCreatorTests.cs" />
     <Compile Include="Auth\CurrentUserReaderTests.cs" />
     <Compile Include="Tickets\TicketFactoryTests.cs" />
+    <Compile Include="NestableTransactionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Services\Agiil.Services.csproj">

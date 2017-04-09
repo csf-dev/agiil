@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="Tickets\ITicketFactory.cs" />
     <Compile Include="Tickets\TicketFactory.cs" />
+    <Compile Include="NestableTransaction.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

@@ -18,4 +18,10 @@
   <data name="UserMustExist" xml:space="preserve">
     <value>The currently-logged-in user must exist in the back-end data store.  Has the user account been deleted during the login session?</value>
   </data>
+  <data name="TransactionAlreadyFinalized" xml:space="preserve">
+    <value>A transaction may not be committed or rolled-back when it has been committed or rolled-back already.</value>
+  </data>
+  <data name="CannotNestOutermostTransaction" xml:space="preserve">
+    <value>A nestable transaction which is the outermost transaction of a group cannot be nested within a child transaction.</value>
+  </data>
 </root>
