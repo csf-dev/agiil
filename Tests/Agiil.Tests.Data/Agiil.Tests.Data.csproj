@@ -67,8 +67,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MappingTests.cs" />
+    <Compile Include="SessionFactoryFactoryTests.cs" />
     <Compile Include="NestableTransactionTests.cs" />
+    <Compile Include="TransactionFactoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Data\Agiil.Data.csproj">
