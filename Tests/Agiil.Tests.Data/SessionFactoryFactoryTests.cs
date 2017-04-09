@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace Agiil.Tests.Data
 {
   [TestFixture]
-  public class MappingTests
+  public class SessionFactoryFactoryTests
   {
     IDiConfiguration containerBuilderFactory;
     ContainerBuilder builder;
