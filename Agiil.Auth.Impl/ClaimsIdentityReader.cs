@@ -4,7 +4,6 @@ using System.Threading;
 using System.Linq;
 using CSF.Entities;
 using Agiil.Domain.Auth;
-using Agiil.Services.Auth;
 
 namespace Agiil.Auth
 {

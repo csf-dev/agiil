@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Agiil.Services.Tickets
+namespace Agiil.Domain.Tickets
 {
   public class CreateTicketRequest
   {

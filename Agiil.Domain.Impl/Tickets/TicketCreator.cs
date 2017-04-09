@@ -1,9 +1,8 @@
 ﻿using System;
-using Agiil.Domain.Tickets;
-using Agiil.Services.Auth;
+using Agiil.Domain.Auth;
 using NHibernate;
 
-namespace Agiil.Services.Tickets
+namespace Agiil.Domain.Tickets
 {
   public class TicketCreator : ITicketCreator
   {

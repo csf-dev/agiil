@@ -92,17 +92,17 @@
       <Project>{71F8B1B3-C0F1-4D0A-BF44-1DC091EE62E3}</Project>
       <Name>Agiil.Auth.Impl</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
-      <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
-      <Name>Agiil.Domain</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Agiil.Data\Agiil.Data.csproj">
       <Project>{AB167238-0D06-4D8A-A646-198D63575AF5}</Project>
       <Name>Agiil.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Agiil.Services\Agiil.Services.csproj">
+    <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
+      <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
+      <Name>Agiil.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Domain.Impl\Agiil.Domain.Impl.csproj">
       <Project>{FF544749-0A04-417F-AD83-E284BBF498E7}</Project>
-      <Name>Agiil.Services</Name>
+      <Name>Agiil.Domain.Impl</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

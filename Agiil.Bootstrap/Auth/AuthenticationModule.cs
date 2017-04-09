@@ -4,7 +4,7 @@ using Autofac;
 using Agiil.Auth;
 using CSF.Security.Authentication;
 using Microsoft.Owin.Security;
-using Agiil.Services.Auth;
+using Agiil.Domain.Auth;
 
 namespace Agiil.Bootstrap.Auth
 {

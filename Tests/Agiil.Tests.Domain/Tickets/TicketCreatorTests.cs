@@ -3,8 +3,6 @@ using System;
 using Agiil.Tests.Common;
 using NHibernate;
 using Ploeh.AutoFixture.NUnit3;
-using Agiil.Services.Tickets;
-using Agiil.Services.Auth;
 using Agiil.Domain.Auth;
 using Moq;
 using Agiil.Domain.Tickets;

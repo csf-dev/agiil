@@ -3,7 +3,7 @@ using Agiil.Domain;
 using Agiil.Domain.Auth;
 using Agiil.Domain.Tickets;
 
-namespace Agiil.Services.Tickets
+namespace Agiil.Domain.Tickets
 {
   public class TicketFactory : ITicketFactory
   {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Agiil.Domain;
 using Agiil.Domain.Auth;
-using Agiil.Services.Tickets;
+using Agiil.Domain.Tickets;
 using Agiil.Tests.Common;
 using Moq;
 using NUnit.Framework;

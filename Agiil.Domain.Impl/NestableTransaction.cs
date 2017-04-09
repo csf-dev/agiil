@@ -4,7 +4,7 @@ using System.Linq;
 using NHibernate;
 using Agiil.Domain;
 
-namespace Agiil.Services
+namespace Agiil.Domain
 {
   public class NestableTransaction : INestableTransaction, IDisposable
   {

@@ -30,9 +30,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{A41D1A00
 		Tests\Utils\run-tests.sh = Tests\Utils\run-tests.sh
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.Services", "Agiil.Services\Agiil.Services.csproj", "{FF544749-0A04-417F-AD83-E284BBF498E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.Domain.Impl", "Agiil.Domain.Impl\Agiil.Domain.Impl.csproj", "{FF544749-0A04-417F-AD83-E284BBF498E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.Tests.Services", "Tests\Agiil.Tests.Services\Agiil.Tests.Services.csproj", "{992D801A-F55C-4C30-B243-78D0A0E8263C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.Tests.Domain", "Tests\Agiil.Tests.Domain\Agiil.Tests.Domain.csproj", "{992D801A-F55C-4C30-B243-78D0A0E8263C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

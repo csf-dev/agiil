@@ -2,7 +2,7 @@
 using Agiil.Domain.Auth;
 using Agiil.Domain.Tickets;
 
-namespace Agiil.Services.Tickets
+namespace Agiil.Domain.Tickets
 {
   public interface ITicketFactory
   {

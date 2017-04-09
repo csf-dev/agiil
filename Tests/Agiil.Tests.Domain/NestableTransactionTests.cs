@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using System;
-using Agiil.Services;
 using Agiil.Domain;
 using Agiil.Tests.Common;
 using NHibernate;

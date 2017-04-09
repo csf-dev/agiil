@@ -5,8 +5,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{FF544749-0A04-417F-AD83-E284BBF498E7}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Agiil.Services</RootNamespace>
-    <AssemblyName>Agiil.Services</AssemblyName>
+    <RootNamespace>Agiil.Domain</RootNamespace>
+    <AssemblyName>Agiil.Domain.Impl</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -46,19 +46,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tickets\ITicketCreator.cs" />
-    <Compile Include="Tickets\CreateTicketRequest.cs" />
     <Compile Include="Tickets\TicketCreator.cs" />
-    <Compile Include="Auth\IIdentityReader.cs" />
-    <Compile Include="Auth\ICurrentUserInfo.cs" />
-    <Compile Include="Auth\ICurrentUserReader.cs" />
     <Compile Include="Auth\CurrentUserReader.cs" />
     <Compile Include="Resources\ExceptionMessages.Designer.cs">
       <DependentUpon>ExceptionMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="Tickets\ITicketFactory.cs" />
     <Compile Include="Tickets\TicketFactory.cs" />
     <Compile Include="NestableTransaction.cs" />
+    <Compile Include="ITransactionFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

@@ -1,6 +1,5 @@
 ﻿using System;
 using Agiil.Domain.Auth;
-using Agiil.Services.Auth;
 using Moq;
 using Ploeh.AutoFixture;
 

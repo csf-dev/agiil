@@ -7,7 +7,6 @@ using Agiil.Domain.Auth;
 using CSF.Security.Authentication;
 using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity;
-using Agiil.Services.Auth;
 
 namespace Agiil.Auth
 {

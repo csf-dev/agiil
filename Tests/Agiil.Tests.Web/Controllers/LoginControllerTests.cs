@@ -7,7 +7,7 @@ using Moq;
 using Agiil.Web.Controllers;
 using System.Web.Mvc;
 using Agiil.Web.Models;
-using Agiil.Services.Auth;
+using Agiil.Domain.Auth;
 
 namespace Agiil.Tests.Web.Controllers
 {

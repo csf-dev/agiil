@@ -1,7 +1,6 @@
 ﻿using System;
-using Agiil.Domain.Auth;
 
-namespace Agiil.Services.Auth
+namespace Agiil.Domain.Auth
 {
   public interface ICurrentUserReader
   {

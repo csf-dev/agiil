@@ -1,8 +1,7 @@
 ﻿using System;
-using Agiil.Domain.Auth;
 using CSF.Entities;
 
-namespace Agiil.Services.Auth
+namespace Agiil.Domain.Auth
 {
   public interface ICurrentUserInfo
   {

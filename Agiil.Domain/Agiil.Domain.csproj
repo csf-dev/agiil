@@ -46,6 +46,12 @@
     <Compile Include="INestableTransaction.cs" />
     <Compile Include="TransactionAlreadyFinalizedException.cs" />
     <Compile Include="CannotNestOutermostTransactionException.cs" />
+    <Compile Include="Auth\ICurrentUserReader.cs" />
+    <Compile Include="Tickets\ITicketFactory.cs" />
+    <Compile Include="Tickets\CreateTicketRequest.cs" />
+    <Compile Include="Tickets\ITicketCreator.cs" />
+    <Compile Include="Auth\ICurrentUserInfo.cs" />
+    <Compile Include="Auth\IIdentityReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

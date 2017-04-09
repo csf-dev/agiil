@@ -1,7 +1,7 @@
 ﻿using System;
 using Agiil.Domain.Tickets;
 
-namespace Agiil.Services.Tickets
+namespace Agiil.Domain.Tickets
 {
   public interface ITicketCreator
   {

@@ -1,9 +1,8 @@
 ﻿using System;
-using Agiil.Domain.Auth;
 using CSF.Data;
 using CSF.Data.Entities;
 
-namespace Agiil.Services.Auth
+namespace Agiil.Domain.Auth
 {
   public class CurrentUserReader : ICurrentUserReader
   {

@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
 using Agiil.Tests.Common;
-using Agiil.Services.Auth;
 using Ploeh.AutoFixture.NUnit3;
 using CSF.Data;
 using Agiil.Domain.Auth;

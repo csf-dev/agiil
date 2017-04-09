@@ -160,7 +160,7 @@
     </ProjectReference>
     <ProjectReference Include="..\..\Agiil.Services\Agiil.Services.csproj">
       <Project>{FF544749-0A04-417F-AD83-E284BBF498E7}</Project>
-      <Name>Agiil.Services</Name>
+      <Name>Agiil.Domain.Impl</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
