@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.Data;
+using Agiil.Domain;
 using Autofac;
 using NHibernate;
 using NHibernate.Cfg;
@@ -18,6 +19,7 @@ namespace Agiil.Bootstrap.Data
         .RegisterType<DatabaseCreator>()
         .As<IDatabaseCreator>();
 
+      // Configuration
       builder
         .Register((ctx, parameters) => {
           var factory = ctx.Resolve<ISessionFactoryFactory>();
@@ -25,6 +27,7 @@ namespace Agiil.Bootstrap.Data
         })
         .SingleInstance();
 
+      // ISessionFactory
       builder
         .Register((ctx, parameters) => {
           var config = ctx.Resolve<Configuration>();
@@ -32,12 +35,13 @@ namespace Agiil.Bootstrap.Data
         })
         .SingleInstance();
 
+      // ISession
       builder
         .Register((ctx, parameters) => {
           var factory = ctx.Resolve<ISessionFactory>();
           return factory.OpenSession();
         })
-        .InstancePerLifetimeScope();
+        .InstancePerMatchingLifetimeScope(ComponentScope.ApplicationConnection);
     }
   }
 }

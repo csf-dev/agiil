@@ -2,10 +2,10 @@
 using Agiil.Domain;
 using NHibernate;
 
-namespace Agiil.Domain
+namespace Agiil.Domain.Data
 {
   public interface ITransactionFactory
   {
-    INestableTransaction BeginTransaction(ISession session);
+    INestableTransaction BeginTransaction();
   }
 }

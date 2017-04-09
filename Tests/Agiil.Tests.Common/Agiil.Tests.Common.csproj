@@ -119,8 +119,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EntityExtensions.cs" />
     <Compile Include="AutoMoqDataAttribute.cs" />
-    <Compile Include="IAutofacContainerBuilderFactory.cs" />
-    <Compile Include="WebControllerContainerBuilderFactory.cs" />
+    <Compile Include="WebAppTestDiConfiguration.cs" />
     <Compile Include="Bootstrap\AuthModule.cs" />
     <Compile Include="Bootstrap\QueryModule.cs" />
     <Compile Include="Bootstrap\TestFakesModule.cs" />
@@ -128,7 +127,7 @@
     <Compile Include="Auth\InMemoryUserAccountController.cs" />
     <Compile Include="Controllers\Auth\ILoginController.cs" />
     <Compile Include="Controllers\Auth\IUserAccountController.cs" />
-    <Compile Include="ApiOnlyContainerBuilderFactory.cs" />
+    <Compile Include="UnitTestDiConfiguration.cs" />
     <Compile Include="HasIdentityAttribute.cs" />
     <Compile Include="Customizations\HasIdentityCustomization.cs" />
     <Compile Include="Customizations\TypeRelayCustomization.cs" />
@@ -158,7 +157,7 @@
       <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
       <Name>Agiil.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Agiil.Services\Agiil.Services.csproj">
+    <ProjectReference Include="..\..\Agiil.Domain.Impl\Agiil.Domain.Impl.csproj">
       <Project>{FF544749-0A04-417F-AD83-E284BBF498E7}</Project>
       <Name>Agiil.Domain.Impl</Name>
     </ProjectReference>

@@ -15,7 +15,9 @@ namespace Agiil.BDD.Bootstrap
         .Where(x => Attribute.IsDefined(x, typeof(BindingAttribute)))
         .ToArray();
 
-      builder.RegisterTypes(bindingTypes).AsSelf().InstancePerLifetimeScope();
+      builder.RegisterTypes(bindingTypes)
+             .AsSelf()
+             .InstancePerLifetimeScope();
     }
   }
 }

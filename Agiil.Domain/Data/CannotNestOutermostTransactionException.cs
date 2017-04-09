@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Agiil.Domain
+namespace Agiil.Domain.Data
 {
   
   [System.Serializable]

@@ -54,6 +54,12 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bindings\Auth\UserAccountSteps.cs" />
@@ -61,7 +67,7 @@
     <Compile Include="IBddAssemblyMarker.cs" />
     <Compile Include="BddDependencies.cs" />
     <Compile Include="Bootstrap\BindingsModule.cs" />
-    <Compile Include="BddContainerBuilderFactory.cs" />
+    <Compile Include="BddTestDiConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

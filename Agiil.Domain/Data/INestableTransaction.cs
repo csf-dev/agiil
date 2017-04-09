@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Agiil.Domain
+namespace Agiil.Domain.Data
 {
   /// <summary>
   /// Interface represents a unit of logical work, which is loosely connected to a database transaction.

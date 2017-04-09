@@ -1,9 +1,9 @@
 ﻿using System;
 using Autofac;
 
-namespace Agiil.Tests.Common
+namespace Agiil.Bootstrap
 {
-  public interface IAutofacContainerBuilderFactory
+  public interface IDiConfiguration
   {
     ContainerBuilder GetContainerBuilder();
   }

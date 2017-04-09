@@ -4,7 +4,7 @@ using System.Linq;
 using NHibernate;
 using Agiil.Domain;
 
-namespace Agiil.Domain
+namespace Agiil.Domain.Data
 {
   public class NestableTransaction : INestableTransaction, IDisposable
   {
@@ -128,6 +128,14 @@ namespace Agiil.Domain
     {
       if(!isDisposed)
       {
+        if(disposing)
+        {
+          foreach(var child in ChildTransactions)
+          {
+            child.Dispose();
+          }
+        }
+
         if(transaction != null)
         {
           transaction.Dispose();

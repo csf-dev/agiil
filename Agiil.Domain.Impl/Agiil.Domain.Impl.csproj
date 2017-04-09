@@ -43,6 +43,9 @@
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -52,8 +55,12 @@
       <DependentUpon>ExceptionMessages.resx</DependentUpon>
     </Compile>
     <Compile Include="Tickets\TicketFactory.cs" />
-    <Compile Include="NestableTransaction.cs" />
-    <Compile Include="ITransactionFactory.cs" />
+    <Compile Include="Data\CurrentTransactionReader.cs" />
+    <Compile Include="Data\ICurrentTransactionReader.cs" />
+    <Compile Include="Data\ITransactionFactory.cs" />
+    <Compile Include="Data\NestableTransaction.cs" />
+    <Compile Include="Data\OwnedTransactionWrapper.cs" />
+    <Compile Include="Data\TransactionFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
@@ -69,6 +76,7 @@
     <Folder Include="Tickets\" />
     <Folder Include="Auth\" />
     <Folder Include="Resources\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -120,7 +120,7 @@
       <Project>{EA6B20FB-9F7F-49C5-BE4E-BCD59ECA1D85}</Project>
       <Name>Agiil.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Agiil.Services\Agiil.Services.csproj">
+    <ProjectReference Include="..\..\Agiil.Domain.Impl\Agiil.Domain.Impl.csproj">
       <Project>{FF544749-0A04-417F-AD83-E284BBF498E7}</Project>
       <Name>Agiil.Domain.Impl</Name>
     </ProjectReference>

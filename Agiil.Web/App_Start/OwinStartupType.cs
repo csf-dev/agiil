@@ -44,7 +44,8 @@ namespace Agiil.Web.App_Start
 
     private IContainer ConfigureDependencyInjection(IAppBuilder app, HttpConfiguration config)
     {
-      var container = new AutofacContainerFactory().GetContainer(config);
+      var diConfig = new WebAppDiConfiguration(config, true);
+      var container = diConfig.GetContainerBuilder().Build();
 
       var provider = new OwinCompatibleLifetimeScopeProvider(container);
 

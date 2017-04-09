@@ -43,19 +43,21 @@
     <Compile Include="Auth\CurrentUserNotIdentifiedException.cs" />
     <Compile Include="IEnvironment.cs" />
     <Compile Include="CurrentEnvironment.cs" />
-    <Compile Include="INestableTransaction.cs" />
-    <Compile Include="TransactionAlreadyFinalizedException.cs" />
-    <Compile Include="CannotNestOutermostTransactionException.cs" />
     <Compile Include="Auth\ICurrentUserReader.cs" />
     <Compile Include="Tickets\ITicketFactory.cs" />
     <Compile Include="Tickets\CreateTicketRequest.cs" />
     <Compile Include="Tickets\ITicketCreator.cs" />
     <Compile Include="Auth\ICurrentUserInfo.cs" />
     <Compile Include="Auth\IIdentityReader.cs" />
+    <Compile Include="Data\CannotNestOutermostTransactionException.cs" />
+    <Compile Include="Data\INestableTransaction.cs" />
+    <Compile Include="Data\TransactionAlreadyFinalizedException.cs" />
+    <Compile Include="ComponentScope.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
     <Folder Include="Tickets\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

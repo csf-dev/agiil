@@ -1,4 +1,5 @@
 ﻿using System;
+using Agiil.Bootstrap;
 using Agiil.Data;
 using Agiil.Tests.Common;
 using Autofac;
@@ -9,7 +10,7 @@ namespace Agiil.Tests.Data
   [TestFixture]
   public class MappingTests
   {
-    IAutofacContainerBuilderFactory containerBuilderFactory;
+    IDiConfiguration containerBuilderFactory;
     ContainerBuilder builder;
     IContainer container;
     ILifetimeScope diScope;
@@ -17,7 +18,7 @@ namespace Agiil.Tests.Data
     [OneTimeSetUp]
     public void FixtureSetup()
     {
-      containerBuilderFactory = new ApiOnlyContainerBuilderFactory();
+      containerBuilderFactory = new UnitTestDiConfiguration();
       builder = containerBuilderFactory.GetContainerBuilder();
       container = builder.Build();
     }

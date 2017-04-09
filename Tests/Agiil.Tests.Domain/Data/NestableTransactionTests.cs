@@ -1,11 +1,11 @@
 ﻿using NUnit.Framework;
 using System;
-using Agiil.Domain;
+using Agiil.Domain.Data;
 using Agiil.Tests.Common;
 using NHibernate;
 using Moq;
 
-namespace Agiil.Tests.Services
+namespace Agiil.Tests.Domain.Data
 {
   [TestFixture]
   public class NestableTransactionTests
