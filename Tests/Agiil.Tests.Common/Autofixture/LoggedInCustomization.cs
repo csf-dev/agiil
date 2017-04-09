@@ -3,7 +3,7 @@ using Agiil.Domain.Auth;
 using Moq;
 using Ploeh.AutoFixture;
 
-namespace Agiil.Tests.Common.Customizations
+namespace Agiil.Tests.Autofixture
 {
   public class LoggedInCustomization : ICustomization
   {

@@ -3,7 +3,7 @@ using System.Reflection;
 using Agiil.Bootstrap;
 using Autofac;
 
-namespace Agiil.Tests.Common
+namespace Agiil.Tests
 {
   public class UnitTestDiConfiguration : DomainDiConfiguration
   {

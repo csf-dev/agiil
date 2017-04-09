@@ -2,7 +2,7 @@
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Kernel;
 
-namespace Agiil.Tests.Common.Customizations
+namespace Agiil.Tests.Autofixture
 {
   public class TypeRelayCustomization : ICustomization
   {

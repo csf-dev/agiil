@@ -2,7 +2,7 @@
 using Autofac;
 using CSF.Data;
 
-namespace Agiil.BDD.Bootstrap
+namespace Agiil.Tests.Bootstrap
 {
   public class QueryModule : Module
   {

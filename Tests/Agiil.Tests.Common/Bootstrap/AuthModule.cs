@@ -1,10 +1,8 @@
 ﻿using System;
-using Agiil.BDD.Auth;
-using Agiil.BDD.Controllers.Auth;
-using Agiil.BDD.Impl.Auth;
 using Autofac;
+using Agiil.Tests.Auth;
 
-namespace Agiil.BDD.Impl.Bootstrap
+namespace Agiil.Tests.Bootstrap
 {
   public class AuthModule : Module
   {

@@ -1,7 +1,6 @@
 ﻿using System;
 using Autofac;
 using SpecFlow.Autofac;
-using Agiil.Tests.Common;
 using Agiil.Bootstrap;
 
 namespace Agiil.BDD

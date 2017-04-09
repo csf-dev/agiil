@@ -2,7 +2,7 @@
 using Agiil.Domain.Auth;
 using Moq;
 
-namespace Agiil.Tests.Common
+namespace Agiil.Tests
 {
   public static class CurrentUserReaderExtensions
   {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Agiil.Auth;
-using Agiil.BDD.Controllers.Auth;
 using Agiil.Domain.Auth;
+using Agiil.Tests.Auth;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 

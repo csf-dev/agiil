@@ -2,7 +2,6 @@
 using CSF.Data;
 using CSF.Data.Entities;
 using Agiil.Domain.Auth;
-using Agiil.Tests.Common;
 using CSF.Security;
 using Moq;
 using NUnit.Framework;

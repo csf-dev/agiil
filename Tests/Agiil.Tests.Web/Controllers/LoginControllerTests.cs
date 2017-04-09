@@ -1,6 +1,5 @@
 ﻿using System;
 using NUnit.Framework;
-using Agiil.Tests.Common;
 using Agiil.Auth;
 using Ploeh.AutoFixture.NUnit3;
 using Moq;

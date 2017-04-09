@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Agiil.BDD.Controllers.Auth
+namespace Agiil.Tests.Auth
 {
   public interface ILoginController
   {

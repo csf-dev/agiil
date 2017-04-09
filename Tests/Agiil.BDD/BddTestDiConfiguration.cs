@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using Agiil.Tests.Common;
+using Agiil.Tests;
 using Autofac;
 using NHibernate;
 

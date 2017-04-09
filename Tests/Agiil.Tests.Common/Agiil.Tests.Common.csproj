@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E15F2064-D2EA-43EF-924C-733107675FF0}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Agiil.Tests.Common</RootNamespace>
+    <RootNamespace>Agiil.Tests</RootNamespace>
     <AssemblyName>Agiil.Tests.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
@@ -125,16 +125,16 @@
     <Compile Include="Bootstrap\TestFakesModule.cs" />
     <Compile Include="Auth\LoginController.cs" />
     <Compile Include="Auth\InMemoryUserAccountController.cs" />
-    <Compile Include="Controllers\Auth\ILoginController.cs" />
-    <Compile Include="Controllers\Auth\IUserAccountController.cs" />
     <Compile Include="UnitTestDiConfiguration.cs" />
     <Compile Include="HasIdentityAttribute.cs" />
-    <Compile Include="Customizations\HasIdentityCustomization.cs" />
-    <Compile Include="Customizations\TypeRelayCustomization.cs" />
+    <Compile Include="Autofixture\HasIdentityCustomization.cs" />
+    <Compile Include="Autofixture\TypeRelayCustomization.cs" />
     <Compile Include="ProvidesServiceAttribute.cs" />
     <Compile Include="CurrentUserReaderExtensions.cs" />
-    <Compile Include="Customizations\LoggedInCustomization.cs" />
+    <Compile Include="Autofixture\LoggedInCustomization.cs" />
     <Compile Include="LoggedInAttribute.cs" />
+    <Compile Include="Auth\ILoginController.cs" />
+    <Compile Include="Auth\IUserAccountController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
@@ -165,8 +165,7 @@
   <ItemGroup>
     <Folder Include="Bootstrap\" />
     <Folder Include="Auth\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Customizations\" />
+    <Folder Include="Autofixture\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

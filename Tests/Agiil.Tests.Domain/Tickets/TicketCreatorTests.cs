@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using System;
-using Agiil.Tests.Common;
 using NHibernate;
 using Ploeh.AutoFixture.NUnit3;
 using Agiil.Domain.Auth;

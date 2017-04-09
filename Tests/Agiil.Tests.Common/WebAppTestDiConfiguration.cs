@@ -5,7 +5,7 @@ using Agiil.Bootstrap;
 using Agiil.Web.App_Start;
 using Autofac;
 
-namespace Agiil.Tests.Common
+namespace Agiil.Tests
 {
   public class WebAppTestDiConfiguration : WebAppDiConfiguration
   {

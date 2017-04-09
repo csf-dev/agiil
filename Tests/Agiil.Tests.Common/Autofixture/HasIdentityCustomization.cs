@@ -2,7 +2,7 @@
 using CSF.Entities;
 using Ploeh.AutoFixture;
 
-namespace Agiil.Tests.Common.Customizations
+namespace Agiil.Tests.Autofixture
 {
   public static class HasIdentityCustomization
   {

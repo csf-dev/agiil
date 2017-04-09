@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Linq;
-using Agiil.BDD.Controllers.Auth;
 using Agiil.Domain.Auth;
-using Agiil.Tests.Common;
 using CSF.Data;
 using CSF.Data.Entities;
 using CSF.Security.Authentication;
 using Ploeh.AutoFixture;
 
-namespace Agiil.BDD.Impl.Auth
+namespace Agiil.Tests.Auth
 {
   public class InMemoryUserAccountController : IUserAccountController
   {

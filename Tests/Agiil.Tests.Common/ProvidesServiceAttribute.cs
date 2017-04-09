@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Reflection;
-using Agiil.Tests.Common.Customizations;
+using Agiil.Tests.Autofixture;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.NUnit3;
 
-namespace Agiil.Tests.Common
+namespace Agiil.Tests
 {
   public class ProvidesServiceAttribute : CustomizeAttribute
   {
