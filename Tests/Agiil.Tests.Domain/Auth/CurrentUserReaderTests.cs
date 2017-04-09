@@ -6,7 +6,7 @@ using Agiil.Domain.Auth;
 using Moq;
 using CSF.Entities;
 
-namespace Agiil.Tests.Services.Auth
+namespace Agiil.Tests.Domain.Auth
 {
   [TestFixture]
   public class CurrentUserReaderTests

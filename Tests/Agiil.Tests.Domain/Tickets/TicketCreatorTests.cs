@@ -6,7 +6,7 @@ using Agiil.Domain.Auth;
 using Moq;
 using Agiil.Domain.Tickets;
 
-namespace Agiil.Tests.Services.Tickets
+namespace Agiil.Tests.Domain.Tickets
 {
   [TestFixture]
   public class TicketCreatorTests

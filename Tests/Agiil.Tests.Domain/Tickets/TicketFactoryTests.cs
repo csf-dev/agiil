@@ -6,7 +6,7 @@ using Moq;
 using NUnit.Framework;
 using Ploeh.AutoFixture.NUnit3;
 
-namespace Agiil.Tests.Services.Tickets
+namespace Agiil.Tests.Domain.Tickets
 {
   [TestFixture]
   public class TicketFactoryTests
