@@ -5,6 +5,7 @@ using Ploeh.AutoFixture.NUnit3;
 using Agiil.Domain.Auth;
 using Moq;
 using Agiil.Domain.Tickets;
+using Agiil.Domain.Data;
 
 namespace Agiil.Tests.Domain.Tickets
 {
@@ -69,6 +70,31 @@ namespace Agiil.Tests.Domain.Tickets
 
       // Assert
       Assert.AreSame(ticket, result);
+    }
+
+    [Test, AutoMoqData]
+    public void Create_uses_transaction(CreateTicketRequest request,
+                                        [Frozen] ITicketFactory ticketFactory,
+                                        Ticket ticket,
+                                        [HasIdentity,LoggedIn] User user,
+                                        [Frozen] ITransactionFactory transFactory,
+                                        INestableTransaction trans,
+                                        TicketCreator sut)
+    {
+      // Arrange
+      Mock.Get(ticketFactory)
+          .Setup(x => x.CreateTicket(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<User>()))
+          .Returns(ticket);
+      Mock.Get(transFactory)
+          .Setup(x => x.BeginTransaction())
+          .Returns(trans);
+      Mock.Get(trans).Setup(x => x.RequestCommit());
+
+      // Act
+      sut.Create(request);
+
+      // Assert
+      Mock.Get(trans).Verify(x => x.RequestCommit(), Times.Once());
     }
   }
 }

@@ -54,6 +54,7 @@
     <Compile Include="Data\TransactionAlreadyFinalizedException.cs" />
     <Compile Include="ComponentScope.cs" />
     <Compile Include="Data\ITransactionFactory.cs" />
+    <Compile Include="Tickets\CreateTicketResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

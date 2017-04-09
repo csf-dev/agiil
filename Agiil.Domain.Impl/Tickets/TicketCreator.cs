@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Auth;
+using Agiil.Domain.Data;
 using NHibernate;
 
 namespace Agiil.Domain.Tickets
@@ -9,6 +10,7 @@ namespace Agiil.Domain.Tickets
     readonly ISession session;
     readonly ICurrentUserReader userReader;
     readonly ITicketFactory ticketFactory;
+    readonly ITransactionFactory transactionFactory;
 
     public Ticket Create(CreateTicketRequest request)
     {
@@ -17,18 +19,28 @@ namespace Agiil.Domain.Tickets
         throw new ArgumentNullException(nameof(request));
       }
 
-      var user = userReader.RequireCurrentUser();
-      var ticket = ticketFactory.CreateTicket(request.Title, request.Description, user);
+      Ticket ticket;
 
-      session.Save(ticket);
+      using(var trans = transactionFactory.BeginTransaction())
+      {
+        var user = userReader.RequireCurrentUser();
+        ticket = ticketFactory.CreateTicket(request.Title,
+                                            request.Description,
+                                            user);
+        session.Save(ticket);
+        trans.RequestCommit();
+      }
 
       return ticket;
     }
 
     public TicketCreator(ISession session,
                          ICurrentUserReader userReader,
-                         ITicketFactory ticketFactory)
+                         ITicketFactory ticketFactory,
+                         ITransactionFactory transactionFactory)
     {
+      if(transactionFactory == null)
+        throw new ArgumentNullException(nameof(transactionFactory));
       if(ticketFactory == null)
         throw new ArgumentNullException(nameof(ticketFactory));
       if(userReader == null)
@@ -39,6 +51,7 @@ namespace Agiil.Domain.Tickets
       this.ticketFactory = ticketFactory;
       this.userReader = userReader;
       this.session = session;
+      this.transactionFactory = transactionFactory;
     }
   }
 }

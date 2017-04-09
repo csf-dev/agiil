@@ -240,6 +240,8 @@
     <Compile Include="Services\Config\OAuthConfigurationSection.cs" />
     <Compile Include="Services\Config\IOAuthConfiguration.cs" />
     <Compile Include="Bootstrap\ContainerBuilderExtensions.cs" />
+    <Compile Include="Controllers\NewTicketController.cs" />
+    <Compile Include="Models\NewTicketModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
