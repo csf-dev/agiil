@@ -46,6 +46,15 @@
     <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Reflection">
+      <HintPath>..\packages\CSF.Reflection.1.0.1\lib\net45\CSF.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Utils">
+      <HintPath>..\packages\CSF.Utils.6.0.0\lib\net45\CSF.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Validation">
+      <HintPath>..\packages\CSF.Validation.1.0.0\lib\net45\CSF.Validation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -55,6 +64,7 @@
       <DependentUpon>ExceptionMessages.resx</DependentUpon>
     </Compile>
     <Compile Include="Tickets\TicketFactory.cs" />
+    <Compile Include="Tickets\CreateTicketValidatorFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

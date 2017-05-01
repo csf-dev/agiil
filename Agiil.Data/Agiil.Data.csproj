@@ -71,6 +71,7 @@
     <Compile Include="Resources\ExceptionMessages.Designer.cs">
       <DependentUpon>ExceptionMessages.resx</DependentUpon>
     </Compile>
+    <Compile Include="NHibernatePersister.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mappings\" />

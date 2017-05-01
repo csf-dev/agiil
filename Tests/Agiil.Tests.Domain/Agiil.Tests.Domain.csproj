@@ -53,6 +53,15 @@
     <Reference Include="NHibernate">
       <HintPath>..\..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Reflection">
+      <HintPath>..\..\packages\CSF.Reflection.1.0.1\lib\net45\CSF.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Utils">
+      <HintPath>..\..\packages\CSF.Utils.6.0.0\lib\net45\CSF.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Validation">
+      <HintPath>..\..\packages\CSF.Validation.1.0.0\lib\net45\CSF.Validation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

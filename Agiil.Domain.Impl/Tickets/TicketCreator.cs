@@ -1,57 +1,75 @@
 ﻿using System;
 using Agiil.Domain.Auth;
 using Agiil.Domain.Data;
+using CSF.Validation;
 using NHibernate;
 
 namespace Agiil.Domain.Tickets
 {
   public class TicketCreator : ITicketCreator
   {
-    readonly ISession session;
+    readonly IPersister persister;
     readonly ICurrentUserReader userReader;
     readonly ITicketFactory ticketFactory;
     readonly ITransactionFactory transactionFactory;
+    readonly ICreateTicketValidatorFactory validatorFactory;
 
-    public Ticket Create(CreateTicketRequest request)
+    public CreateTicketResponse Create(CreateTicketRequest request)
     {
       if(request == null)
       {
         throw new ArgumentNullException(nameof(request));
       }
 
+      var validationResult = ValidateRequest(request);
+      if(!validationResult.IsSuccess)
+        return new CreateTicketResponse(validationResult);
+
       Ticket ticket;
 
       using(var trans = transactionFactory.BeginTransaction())
       {
-        var user = userReader.RequireCurrentUser();
-        ticket = ticketFactory.CreateTicket(request.Title,
-                                            request.Description,
-                                            user);
-        session.Save(ticket);
+        ticket = CreateTicket(request);
+        persister.Save(ticket);
         trans.RequestCommit();
       }
 
-      return ticket;
+      return new CreateTicketResponse(validationResult, ticket);
     }
 
-    public TicketCreator(ISession session,
+    IValidationResult ValidateRequest(CreateTicketRequest request)
+    {
+      var validator = validatorFactory.GetValidator();
+      return validator.Validate(request);
+    }
+
+    Ticket CreateTicket(CreateTicketRequest request)
+    {
+      return ticketFactory.CreateTicket(request.Title, request.Description, userReader.RequireCurrentUser());
+    }
+
+    public TicketCreator(IPersister persister,
                          ICurrentUserReader userReader,
                          ITicketFactory ticketFactory,
-                         ITransactionFactory transactionFactory)
+                         ITransactionFactory transactionFactory,
+                         ICreateTicketValidatorFactory validatorFactory)
     {
+      if(validatorFactory == null)
+        throw new ArgumentNullException(nameof(validatorFactory));
       if(transactionFactory == null)
         throw new ArgumentNullException(nameof(transactionFactory));
       if(ticketFactory == null)
         throw new ArgumentNullException(nameof(ticketFactory));
       if(userReader == null)
         throw new ArgumentNullException(nameof(userReader));
-      if(session == null)
-        throw new ArgumentNullException(nameof(session));
+      if(persister == null)
+        throw new ArgumentNullException(nameof(persister));
 
       this.ticketFactory = ticketFactory;
       this.userReader = userReader;
-      this.session = session;
+      this.persister = persister;
       this.transactionFactory = transactionFactory;
+      this.validatorFactory = validatorFactory;
     }
   }
 }

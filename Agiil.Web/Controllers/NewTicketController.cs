@@ -25,6 +25,20 @@ namespace Agiil.Web.Controllers
     public ActionResult Create(NewTicketModel model)
     {
       model = model?? new NewTicketModel();
+      var request = new CreateTicketRequest
+      {
+        Title = model.Title,
+        Description = model.Description,
+      };
+
+      var response = ticketCreator.Create(request);
+
+      // TODO: Write this implementation
+      throw new NotImplementedException();
+    }
+
+    void MapValidationToModel(CreateTicketResponse response, ref NewTicketModel model)
+    {
     }
   }
 }

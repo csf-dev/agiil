@@ -6,5 +6,9 @@ namespace Agiil.Web.Models
     public string Title { get; set; }
 
     public string Description { get; set; }
+
+    bool TitleIsInvalid { get; set; }
+
+    bool DescriptionIsInvalid { get; set; }
   }
 }

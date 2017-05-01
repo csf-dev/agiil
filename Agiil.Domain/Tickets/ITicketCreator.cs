@@ -5,6 +5,6 @@ namespace Agiil.Domain.Tickets
 {
   public interface ITicketCreator
   {
-    Ticket Create(CreateTicketRequest request);
+    CreateTicketResponse Create(CreateTicketRequest request);
   }
 }
