@@ -68,9 +68,9 @@ namespace Agiil.Tests.Domain.Features
         public virtual void AUserCanCreateATicketUsingOnlyAValidTitle()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A user can create a ticket using only a valid title", ((string[])(null)));
-#line 7
+#line 6
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 7
   testRunner.Given("the user is logged in with a user account named 'jbloggs'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[]
@@ -85,7 +85,7 @@ this.ScenarioSetup(scenarioInfo);
                 {
                         "Description",
                         ""});
-#line 9
+#line 8
   testRunner.When("the user attempts to create a ticket with the following properties:", ((string)(null)), table1, "When ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[]
@@ -104,8 +104,47 @@ this.ScenarioSetup(scenarioInfo);
                 {
                         "User",
                         "jbloggs"});
-#line 13
+#line 12
   testRunner.Then("a ticket should be created with the following properties:", ((string)(null)), table2, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("A user cannot create a ticket with an empty title")]
+        public virtual void AUserCannotCreateATicketWithAnEmptyTitle()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A user cannot create a ticket with an empty title", ((string[])(null)));
+#line 18
+this.ScenarioSetup(scenarioInfo);
+#line 19
+  testRunner.Given("the user is logged in with a user account named 'jbloggs'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "Field",
+                        "Value"});
+            table3.AddRow(new string[]
+                {
+                        "Title",
+                        ""});
+            table3.AddRow(new string[]
+                {
+                        "Description",
+                        "Invalid"});
+#line 20
+  testRunner.When("the user attempts to create a ticket with the following properties:", ((string)(null)), table3, "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "Field",
+                        "Value"});
+            table4.AddRow(new string[]
+                {
+                        "Description",
+                        "Invalid"});
+#line 24
+  testRunner.Then("no ticket should have been created matching the following properties:", ((string)(null)), table4, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

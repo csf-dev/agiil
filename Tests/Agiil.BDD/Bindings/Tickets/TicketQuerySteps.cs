@@ -24,6 +24,16 @@ namespace Agiil.BDD.Bindings.Tickets
       Assert.IsTrue(queryController.DoesTicketExist(criteria));
     }
 
+    [Then("no ticket should have been created matching the following properties:")]
+    public void ATicketShouldNotBeCreated(Table ticketProperties)
+    {
+      if(ticketProperties == null)
+        throw new ArgumentNullException(nameof(ticketProperties));
+
+      var criteria = ticketProperties.CreateInstance<TicketSearchCriteria>();
+      Assert.IsFalse(queryController.DoesTicketExist(criteria));
+    }
+
     public TicketQuerySteps(ITicketQueryController queryController)
     {
       if(queryController == null)
