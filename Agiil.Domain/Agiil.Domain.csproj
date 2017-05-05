@@ -58,14 +58,9 @@
     <Compile Include="Tickets\ITicketCreator.cs" />
     <Compile Include="Auth\ICurrentUserInfo.cs" />
     <Compile Include="Auth\IIdentityReader.cs" />
-    <Compile Include="Data\CannotNestOutermostTransactionException.cs" />
-    <Compile Include="Data\INestableTransaction.cs" />
-    <Compile Include="Data\TransactionAlreadyFinalizedException.cs" />
     <Compile Include="ComponentScope.cs" />
-    <Compile Include="Data\ITransactionFactory.cs" />
     <Compile Include="Tickets\CreateTicketResponse.cs" />
     <Compile Include="Tickets\ICreateTicketValidatorFactory.cs" />
-    <Compile Include="Data\IPersister.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using Agiil.Domain.Auth;
-using Agiil.Domain.Data;
+using CSF.Data;
+using CSF.Data.Entities;
 using CSF.Validation;
 using NHibernate;
 
@@ -8,10 +9,10 @@ namespace Agiil.Domain.Tickets
 {
   public class TicketCreator : ITicketCreator
   {
-    readonly IPersister persister;
+    readonly IRepository<Ticket> ticketRepo;
     readonly ICurrentUserReader userReader;
     readonly ITicketFactory ticketFactory;
-    readonly ITransactionFactory transactionFactory;
+    readonly ITransactionCreator transactionFactory;
     readonly ICreateTicketValidatorFactory validatorFactory;
 
     public CreateTicketResponse Create(CreateTicketRequest request)
@@ -30,8 +31,8 @@ namespace Agiil.Domain.Tickets
       using(var trans = transactionFactory.BeginTransaction())
       {
         ticket = CreateTicket(request);
-        persister.Save(ticket);
-        trans.RequestCommit();
+        ticketRepo.Add(ticket);
+        trans.Commit();
       }
 
       return new CreateTicketResponse(validationResult, ticket);
@@ -48,10 +49,10 @@ namespace Agiil.Domain.Tickets
       return ticketFactory.CreateTicket(request.Title, request.Description, userReader.RequireCurrentUser());
     }
 
-    public TicketCreator(IPersister persister,
+    public TicketCreator(IRepository<Ticket> ticketRepo,
                          ICurrentUserReader userReader,
                          ITicketFactory ticketFactory,
-                         ITransactionFactory transactionFactory,
+                         ITransactionCreator transactionFactory,
                          ICreateTicketValidatorFactory validatorFactory)
     {
       if(validatorFactory == null)
@@ -62,12 +63,12 @@ namespace Agiil.Domain.Tickets
         throw new ArgumentNullException(nameof(ticketFactory));
       if(userReader == null)
         throw new ArgumentNullException(nameof(userReader));
-      if(persister == null)
-        throw new ArgumentNullException(nameof(persister));
+      if(ticketRepo == null)
+        throw new ArgumentNullException(nameof(ticketRepo));
 
       this.ticketFactory = ticketFactory;
       this.userReader = userReader;
-      this.persister = persister;
+      this.ticketRepo = ticketRepo;
       this.transactionFactory = transactionFactory;
       this.validatorFactory = validatorFactory;
     }

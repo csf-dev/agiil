@@ -5,8 +5,9 @@ using Ploeh.AutoFixture.NUnit3;
 using Agiil.Domain.Auth;
 using Moq;
 using Agiil.Domain.Tickets;
-using Agiil.Domain.Data;
 using CSF.Validation;
+using CSF.Data.Entities;
+using CSF.Data;
 
 namespace Agiil.Tests.Domain.Tickets
 {
@@ -14,7 +15,7 @@ namespace Agiil.Tests.Domain.Tickets
   public class TicketCreatorTests
   {
     [Test, AutoMoqData]
-    public void Create_saves_newly_created_ticket([Frozen] IPersister persister,
+    public void Create_saves_newly_created_ticket([Frozen] IRepository<Ticket> repo,
                                                   [Frozen] ITicketFactory ticketFactory,
                                                   [Frozen] ICreateTicketValidatorFactory validatorFactory,
                                                   Ticket ticket,
@@ -26,14 +27,14 @@ namespace Agiil.Tests.Domain.Tickets
       Mock.Get(ticketFactory)
           .Setup(x => x.CreateTicket(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<User>()))
           .Returns(ticket);
-      Mock.Get(persister).Setup(x => x.Save(ticket));
+      Mock.Get(repo).Setup(x => x.Add(ticket));
       SetupValidatorWhichAlwaysPasses(validatorFactory);
 
       // Act
       sut.Create(request);
 
       // Assert
-      Mock.Get(persister).Verify(x => x.Save(ticket), Times.Once());
+      Mock.Get(repo).Verify(x => x.Add(ticket), Times.Once());
     }
 
     [Test, AutoMoqData]
@@ -124,7 +125,7 @@ namespace Agiil.Tests.Domain.Tickets
 
     [Test, AutoMoqData]
     public void Create_does_not_persist_if_validation_fails(CreateTicketRequest request,
-                                                            [Frozen] IPersister persister,
+                                                            [Frozen] IRepository<Ticket> repo,
                                                             [Frozen] ICreateTicketValidatorFactory validatorFactory,
                                                             [Frozen] ITicketFactory ticketFactory,
                                                             Ticket ticket,
@@ -144,8 +145,8 @@ namespace Agiil.Tests.Domain.Tickets
       sut.Create(request);
 
       // Assert
-      Mock.Get(persister)
-          .Verify(x => x.Save(It.IsAny<Ticket>()), Times.Never());
+      Mock.Get(repo)
+          .Verify(x => x.Add(It.IsAny<Ticket>()), Times.Never());
     }
 
     [Test, AutoMoqData]
@@ -178,8 +179,8 @@ namespace Agiil.Tests.Domain.Tickets
                                         [Frozen] ITicketFactory ticketFactory,
                                         Ticket ticket,
                                         [HasIdentity,LoggedIn] User user,
-                                        [Frozen] ITransactionFactory transFactory,
-                                        INestableTransaction trans,
+                                        [Frozen] ITransactionCreator transFactory,
+                                        CSF.Data.ITransaction trans,
                                         TicketCreator sut)
     {
       // Arrange
@@ -189,14 +190,14 @@ namespace Agiil.Tests.Domain.Tickets
       Mock.Get(transFactory)
           .Setup(x => x.BeginTransaction())
           .Returns(trans);
-      Mock.Get(trans).Setup(x => x.RequestCommit());
+      Mock.Get(trans).Setup(x => x.Commit());
       SetupValidatorWhichAlwaysPasses(validatorFactory);
 
       // Act
       sut.Create(request);
 
       // Assert
-      Mock.Get(trans).Verify(x => x.RequestCommit(), Times.Once());
+      Mock.Get(trans).Verify(x => x.Commit(), Times.Once());
     }
 
     IValidator SetupValidatorWhichAlwaysPasses(ICreateTicketValidatorFactory factory)

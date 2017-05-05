@@ -8,7 +8,7 @@ namespace Agiil.Tests.Bootstrap
   {
     protected override void Load(ContainerBuilder builder)
     {
-      builder.RegisterType<InMemoryUserAccountController>().As<IUserAccountController>();
+      builder.RegisterType<UserAccountController>().As<IUserAccountController>();
       builder.RegisterType<LoginController>().As<ILoginController>();
     }
   }

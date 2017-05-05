@@ -11,14 +11,6 @@ namespace Agiil.Bootstrap.Data
   {
     protected override void Load(ContainerBuilder builder)
     {
-      builder
-        .RegisterType<SessionFactoryFactory>()
-        .As<ISessionFactoryFactory>();
-
-      builder
-        .RegisterType<DatabaseCreator>()
-        .As<IDatabaseCreator>();
-
       // Configuration
       builder
         .Register((ctx, parameters) => {

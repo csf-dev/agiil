@@ -3,12 +3,8 @@ namespace Agiil.Web.Models
 {
   public class NewTicketModel
   {
-    public string Title { get; set; }
+    public NewTicketSpecification Specification { get; set; }
 
-    public string Description { get; set; }
-
-    bool TitleIsInvalid { get; set; }
-
-    bool DescriptionIsInvalid { get; set; }
+    public NewTicketResponse Response { get; set; }
   }
 }

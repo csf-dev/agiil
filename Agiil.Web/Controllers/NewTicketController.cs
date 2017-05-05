@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Agiil.Domain.Tickets;
 using Agiil.Web.Models;
+using CSF.Entities;
 
 namespace Agiil.Web.Controllers
 {
@@ -27,18 +28,29 @@ namespace Agiil.Web.Controllers
       model = model?? new NewTicketModel();
       var request = new CreateTicketRequest
       {
-        Title = model.Title,
-        Description = model.Description,
+        Title = model.Specification?.Title,
+        Description = model.Specification?.Description,
       };
 
       var response = ticketCreator.Create(request);
 
-      // TODO: Write this implementation
-      throw new NotImplementedException();
+      model.Response = new NewTicketResponse
+      {
+        TitleIsInvalid = response.TitleIsInvalid,
+        DescriptionIsInvalid = response.DescriptionIsInvalid,
+        TicketIdentity = response.Ticket?.GetIdentity()?.Value,
+      };
+
+      TempData.Add(NewModelKey, model);
+      return RedirectToAction(nameof(NewTicketController.Index), GetControllerName<NewTicketController>());
     }
 
-    void MapValidationToModel(CreateTicketResponse response, ref NewTicketModel model)
+    public NewTicketController(ITicketCreator ticketCreator)
     {
+      if(ticketCreator == null)
+        throw new ArgumentNullException(nameof(ticketCreator));
+
+      this.ticketCreator = ticketCreator;
     }
   }
 }

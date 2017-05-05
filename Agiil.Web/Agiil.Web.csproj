@@ -106,9 +106,6 @@
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Data.NHibernate">
-      <HintPath>..\packages\CSF.Data.NHibernate.6.0.0\lib\net45\CSF.Data.NHibernate.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Http.Owin">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
     </Reference>
@@ -201,7 +198,13 @@
     </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="CSF.Data">
-      <HintPath>..\packages\CSF.Data.1.0.1\lib\net45\CSF.Data.dll</HintPath>
+      <HintPath>..\packages\CSF.Data.1.1.0\lib\net45\CSF.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data.NHibernate">
+      <HintPath>..\packages\CSF.Data.NHibernate.6.1.0\lib\net45\CSF.Data.NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Entities">
+      <HintPath>..\packages\CSF.Entities.1.1.1\lib\net45\CSF.Entities.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -242,6 +245,10 @@
     <Compile Include="Bootstrap\ContainerBuilderExtensions.cs" />
     <Compile Include="Controllers\NewTicketController.cs" />
     <Compile Include="Models\NewTicketModel.cs" />
+    <Compile Include="ApiControllers\TicketController.cs" />
+    <Compile Include="Models\NewTicketSpecification.cs" />
+    <Compile Include="Models\NewTicketResponse.cs" />
+    <Compile Include="Models\TicketDetail.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

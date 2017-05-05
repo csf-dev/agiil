@@ -8,9 +8,9 @@ using Ploeh.AutoFixture;
 
 namespace Agiil.Tests.Auth
 {
-  public class InMemoryUserAccountController : IUserAccountController
+  public class UserAccountController : IUserAccountController
   {
-    readonly InMemoryQuery query;
+    readonly IRepository<User> repo;
     readonly IFixture autoFixture;
     readonly ICredentialsCreator credentialsCreator;
     readonly ICredentialsSerializer credentialsSerializer;
@@ -23,12 +23,12 @@ namespace Agiil.Tests.Auth
       user.Username = username;
       user.SerializedCredentials = GetSerializedCredentials(password);
 
-      query.Add(user);
+      repo.Add(user);
     }
 
     public void RemoveUser(string username)
     {
-      if(query.Query<User>().Any(x => x.Username == username))
+      if(repo.Query().Any(x => x.Username == username))
       {
         throw new InvalidOperationException($"There must not be a user with username '{username}'.");
       }
@@ -46,7 +46,7 @@ namespace Agiil.Tests.Auth
     }
 
 
-    public InMemoryUserAccountController (InMemoryQuery query,
+    public UserAccountController (IRepository<User> repo,
                                           IFixture autoFixture,
                                           ICredentialsCreator credentialsCreator,
                                           ICredentialsSerializer credentialsSerializer)
@@ -57,10 +57,10 @@ namespace Agiil.Tests.Auth
         throw new ArgumentNullException(nameof(credentialsCreator));
       if(autoFixture == null)
         throw new ArgumentNullException(nameof(autoFixture));
-      if(query == null)
-        throw new ArgumentNullException(nameof(query));
+      if(repo == null)
+        throw new ArgumentNullException(nameof(repo));
       
-      this.query = query;
+      this.repo = repo;
       this.autoFixture = autoFixture;
       this.credentialsCreator = credentialsCreator;
       this.credentialsSerializer = credentialsSerializer;

@@ -10,8 +10,11 @@ namespace Agiil.BDD.Bindings.Auth
   [Binding]
   public class LoginSteps
   {
+    const string DUMMY_PASSWORD = "dummypassword";
+
     readonly ILoginController loginController;
     readonly IIdentityReader identityReader;
+    readonly IUserAccountController userAccountController;
 
     [When("the user attempts to log in with a username '([A-Za-z0-9_-]+)' and password '([^']+)'")]
     public void WhenTheUserAttemptsToLogin(string username, string password)
@@ -33,8 +36,19 @@ namespace Agiil.BDD.Bindings.Auth
       Assert.IsNull(currentUser);
     }
 
-    public LoginSteps(ILoginController loginController, IIdentityReader identityReader)
+    [Given("the user is logged in with a user account named '([A-Za-z0-9_-]+)'")]
+    public void GivenTheUserIsLoggedInWithAUserAccount(string accountName)
     {
+      userAccountController.AddUser(accountName, DUMMY_PASSWORD);
+      loginController.Login(accountName, DUMMY_PASSWORD);
+    }
+
+    public LoginSteps(ILoginController loginController,
+                      IIdentityReader identityReader,
+                      IUserAccountController userAccountController)
+    {
+      if(userAccountController == null)
+        throw new ArgumentNullException(nameof(userAccountController));
       if(identityReader == null)
         throw new ArgumentNullException(nameof(identityReader));
       if(loginController == null)
@@ -42,6 +56,7 @@ namespace Agiil.BDD.Bindings.Auth
       
       this.loginController = loginController;
       this.identityReader = identityReader;
+      this.userAccountController = userAccountController;
     }
   }
 }

@@ -61,6 +61,10 @@ namespace Agiil.Bootstrap.Auth
       builder
         .RegisterType<JsonCredentialsSerializer>()
         .As<ICredentialsSerializer>();
+
+      builder
+        .RegisterType<CurrentUserReader>()
+        .As<ICurrentUserReader>();
     }
   }
 }

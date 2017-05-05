@@ -1,17 +1,17 @@
 ﻿using System;
+using Agiil.Domain;
 using Autofac;
-using CSF.Data;
 
 namespace Agiil.Tests.Bootstrap
 {
-  public class QueryModule : Module
+  public class EnvironmentModule : Module
   {
     protected override void Load(ContainerBuilder builder)
     {
       builder
-        .RegisterType<InMemoryQuery>()
+        .RegisterType<RandomEnvironment>()
         .AsSelf()
-        .As<IQuery>()
+        .As<IEnvironment>()
         .InstancePerLifetimeScope();
     }
   }
