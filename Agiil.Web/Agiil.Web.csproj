@@ -206,6 +206,7 @@
     <Reference Include="CSF.Entities">
       <HintPath>..\packages\CSF.Entities.1.1.1\lib\net45\CSF.Entities.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
@@ -221,6 +222,7 @@
     <Folder Include="Bootstrap\" />
     <Folder Include="Services\Config\" />
     <Folder Include="Temp\" />
+    <Folder Include="Views\Database\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -250,6 +252,8 @@
     <Compile Include="Models\NewTicketSpecification.cs" />
     <Compile Include="Models\NewTicketResponse.cs" />
     <Compile Include="Models\TicketDetail.cs" />
+    <Compile Include="Controllers\DatabaseController.cs" />
+    <Compile Include="Models\DatabaseResetModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -262,6 +266,7 @@
     <None Include="Views\Shared\EmptyPage.pt" />
     <None Include="Views\Login\Index.pt" />
     <None Include="Views\Login\LoggedOut.pt" />
+    <None Include="Views\Database\Index.pt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

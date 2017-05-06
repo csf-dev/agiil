@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.Data;
+using Agiil.Domain.Data;
 using Autofac;
 using CSF.Data;
 using CSF.Data.Entities;
@@ -22,6 +23,10 @@ namespace Agiil.Bootstrap.Data
       builder
         .RegisterType<DatabaseCreator>()
         .As<IDatabaseCreator>();
+
+      builder
+        .RegisterType<DevelopmentInitialDataCreator>()
+        .As<IInitialDataCreator>();
 
       builder
         .RegisterGeneric(typeof(GenericRepository<>))

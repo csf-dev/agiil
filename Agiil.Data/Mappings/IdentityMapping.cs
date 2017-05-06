@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using NHibernate.Id;
 using NHibernate.Mapping.ByCode;
 
 namespace Agiil.Data.Mappings
@@ -14,6 +15,7 @@ namespace Agiil.Data.Mappings
       mapper.BeforeMapClass += (modelInspector, type, classCustomizer) => {
         classCustomizer.Id(type.GetProperty(IdentityPropertyName,IdentityBindingFlags),
                            m => {
+          m.Generator(new NativeGeneratorDef());
           m.Type(new NHibernate.Type.Int64Type());
           m.Column("id");
         });

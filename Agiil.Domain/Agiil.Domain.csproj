@@ -61,6 +61,7 @@
     <Compile Include="ComponentScope.cs" />
     <Compile Include="Tickets\CreateTicketResponse.cs" />
     <Compile Include="Tickets\ICreateTicketValidatorFactory.cs" />
+    <Compile Include="Data\IInitialDataCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

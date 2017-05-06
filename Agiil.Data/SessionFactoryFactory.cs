@@ -14,7 +14,7 @@ namespace Agiil.Data
 {
   public class SessionFactoryFactory : ISessionFactoryFactory
   {
-    const string
+    internal const string
       ConnectionStringName = "Agiil",
       MappingName = "ConventionMappings";
 
