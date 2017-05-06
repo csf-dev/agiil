@@ -1,6 +1,7 @@
 ﻿using System;
 using Agiil.Auth;
 using CSF.Security.Authentication;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 
 namespace Agiil.Web.Services.Auth
@@ -12,7 +13,7 @@ namespace Agiil.Web.Services.Auth
     const string
       InvalidGrant = "invalid_grant",
       AuthenticationFailureMessage = "The user name or password is incorrect",
-      JwtBearerTokenAuthenticationType = "Bearer";
+      JwtBearerTokenAuthenticationType = "JWT";
 
     #endregion
 
@@ -40,7 +41,8 @@ namespace Agiil.Web.Services.Auth
       }
 
       var identity = claimsIdentityFactory.GetIdentity(result, JwtBearerTokenAuthenticationType);
-      context.Validated(identity);
+      var ticket = new AuthenticationTicket(identity, new AuthenticationProperties());
+      context.Validated(ticket);
     }
 
     #endregion

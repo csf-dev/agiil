@@ -6,12 +6,12 @@ using CSF.Entities;
 
 namespace Agiil.Web.ApiControllers
 {
+  [Authorize]
   public class TicketController : ApiController
   {
     readonly ITicketCreator ticketCreator;
 
-    [HttpPut]
-    public NewTicketResponse Create(NewTicketSpecification ticket)
+    public NewTicketResponse Put(NewTicketSpecification ticket)
     {
       if(ticket == null)
       {
@@ -34,7 +34,6 @@ namespace Agiil.Web.ApiControllers
       };
     }
 
-    [HttpGet]
     public TicketDetail Get(long id)
     {
       // TODO: Write this implementation

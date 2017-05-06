@@ -35,7 +35,7 @@ namespace Agiil.Web.App_Start
 
     public void RegisterWebApiRoutes(HttpConfiguration config)
     {
-      config.MapHttpAttributeRoutes ();
+      //config.MapHttpAttributeRoutes ();
 
       config.Routes.MapHttpRoute (
         name: "DefaultApi",

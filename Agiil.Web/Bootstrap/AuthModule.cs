@@ -23,6 +23,8 @@ namespace Agiil.Web.Bootstrap
 
       builder.RegisterType<OAuthOptionsFactory>();
 
+      builder.RegisterType<OAuthJwtFormat>();
+
       builder.Register(ctx => {
         var factory = ctx.Resolve<OAuthOptionsFactory>();
         return factory.GetOptions();

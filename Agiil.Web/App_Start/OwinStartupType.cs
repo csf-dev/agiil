@@ -1,6 +1,11 @@
-﻿using System.Web.Http;
+﻿using System.IdentityModel.Tokens;
+using System.Security.Claims;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Web.Http;
 using System.Web.Mvc;
 using Agiil.Web.Bootstrap;
+using Agiil.Web.Services.Auth;
 using Agiil.Web.Services.Config;
 using Autofac;
 using Autofac.Integration.Mvc;
@@ -24,7 +29,7 @@ namespace Agiil.Web.App_Start
   /// </summary>
   public class OwinStartupType
   {
-    const string JwtAllowedAudiences = "Any";
+    const string JwtAllowedAudiences = "Agiil";
 
     public void Configuration(IAppBuilder app)
     {
@@ -78,12 +83,38 @@ namespace Agiil.Web.App_Start
         IssuerSecurityTokenProviders = new IIssuerSecurityTokenProvider[] {
           new SymmetricKeyIssuerSecurityTokenProvider(oauthConfig.JwtIssuerName, oauthConfig.Base64JwtSecretKey),
         },
+        TokenHandler = new JwtSecurityTokenHandler
+        {
+          SignatureProviderFactory = new CustomSignatureProviderFactory(),
+        },
+        Provider = new OAuthBearerAuthenticationProvider
+        {
+          OnValidateIdentity = ctx => {
+            Thread.CurrentPrincipal = new ClaimsPrincipal(ctx.Ticket.Identity);
+            return Task.FromResult<object>(null);
+          }
+        },
       });
 
       var authServerOptions = container.Resolve<OAuthAuthorizationServerOptions>();
       builder.UseOAuthAuthorizationServer(authServerOptions);
 
       builder.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+    }
+
+    class CustomSignatureProviderFactory : SignatureProviderFactory
+    {
+      public override SignatureProvider CreateForVerifying(SecurityKey key, string algorithm)
+      {
+        if(algorithm == SecurityAlgorithms.HmacSha256Signature && key is InMemorySymmetricSecurityKey)
+        {
+          var castKey = (InMemorySymmetricSecurityKey) key;
+          var copiedKey = new CustomInMemorySymmetricSecurityKey(castKey.GetSymmetricKey());
+          return new SymmetricSignatureProvider(copiedKey, algorithm);
+        }
+
+        return base.CreateForVerifying(key, algorithm);
+      }
     }
   }
 }

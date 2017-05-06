@@ -2,6 +2,7 @@
 using Agiil.Web.App_Start;
 using Agiil.Web.Services.Config;
 using Microsoft.Owin;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 
 namespace Agiil.Web.Services.Auth
@@ -10,6 +11,7 @@ namespace Agiil.Web.Services.Auth
   {
     readonly OAuthAuthorizationProvider provider;
     readonly IOAuthConfiguration options;
+    readonly OAuthJwtFormat format;
 
     public OAuthAuthorizationServerOptions GetOptions()
     {
@@ -17,17 +19,25 @@ namespace Agiil.Web.Services.Auth
         TokenEndpointPath = new PathString(RouteConfiguration.OAuthTokenPath),
         AccessTokenExpireTimeSpan = options.GetAccessTokenExpiryLifetime(),
         Provider = provider,
+        AccessTokenFormat = format,
+        AuthenticationMode = AuthenticationMode.Active,
+
       };
 
-      #if DEBUG
+      //#if DEBUG
       oauthOptions.AllowInsecureHttp = true;
-      #endif
+      oauthOptions.ApplicationCanDisplayErrors = true;
+      //#endif
 
       return oauthOptions;
     }
 
-    public OAuthOptionsFactory(OAuthAuthorizationProvider provider, IOAuthConfiguration options)
+    public OAuthOptionsFactory(OAuthAuthorizationProvider provider,
+                               IOAuthConfiguration options,
+                               OAuthJwtFormat format)
     {
+      if(format == null)
+        throw new ArgumentNullException(nameof(format));
       if(options == null)
         throw new ArgumentNullException(nameof(options));
       if(provider == null)
@@ -35,6 +45,7 @@ namespace Agiil.Web.Services.Auth
       
       this.provider = provider;
       this.options = options;
+      this.format = format;
     }
   }
 }
