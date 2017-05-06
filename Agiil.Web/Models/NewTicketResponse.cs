@@ -8,5 +8,7 @@ namespace Agiil.Web.Models
     public bool TitleIsInvalid { get; set; }
 
     public bool DescriptionIsInvalid { get; set; }
+
+    public bool Success => !ReferenceEquals(TicketIdentity, null);
   }
 }

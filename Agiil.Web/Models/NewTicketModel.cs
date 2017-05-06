@@ -6,5 +6,10 @@ namespace Agiil.Web.Models
     public NewTicketSpecification Specification { get; set; }
 
     public NewTicketResponse Response { get; set; }
+
+    public NewTicketModel()
+    {
+      Specification = new NewTicketSpecification();
+    }
   }
 }

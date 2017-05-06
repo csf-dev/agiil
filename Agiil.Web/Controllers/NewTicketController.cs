@@ -23,9 +23,12 @@ namespace Agiil.Web.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(NewTicketModel model)
+    public ActionResult Create(NewTicketSpecification spec)
     {
-      model = model?? new NewTicketModel();
+      var model = new NewTicketModel
+      {
+        Specification = spec,
+      };
       var request = new CreateTicketRequest
       {
         Title = model.Specification?.Title,
@@ -42,7 +45,7 @@ namespace Agiil.Web.Controllers
       };
 
       TempData.Add(NewModelKey, model);
-      return RedirectToAction(nameof(NewTicketController.Index), GetControllerName<NewTicketController>());
+      return RedirectToAction(nameof(NewTicketController.Index));
     }
 
     public NewTicketController(ITicketCreator ticketCreator)

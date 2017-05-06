@@ -223,6 +223,7 @@
     <Folder Include="Services\Config\" />
     <Folder Include="Temp\" />
     <Folder Include="Views\Database\" />
+    <Folder Include="Views\NewTicket\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -267,6 +268,7 @@
     <None Include="Views\Login\Index.pt" />
     <None Include="Views\Login\LoggedOut.pt" />
     <None Include="Views\Database\Index.pt" />
+    <None Include="Views\NewTicket\Index.pt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

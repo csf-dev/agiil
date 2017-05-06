@@ -15,8 +15,7 @@ namespace Agiil.BDD.Bindings.Tickets
     public void TheUserAttemptsToCreateATicket(Table ticketProperties)
     {
       var spec = ticketProperties.CreateInstance<NewTicketSpecification>();
-      var model = new NewTicketModel() { Specification = spec };
-      controller.Create(model);
+      controller.Create(spec);
     }
 
     public TicketCreationSteps(INewTicketController controller)

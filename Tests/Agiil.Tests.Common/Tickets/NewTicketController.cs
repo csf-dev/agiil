@@ -7,7 +7,7 @@ namespace Agiil.Tests.Tickets
   {
     readonly Web.Controllers.NewTicketController webController;
 
-    public void Create(NewTicketModel request)
+    public void Create(NewTicketSpecification request)
     {
       webController.Create(request);
     }

@@ -5,6 +5,6 @@ namespace Agiil.Tests.Tickets
 {
   public interface INewTicketController
   {
-    void Create(NewTicketModel request);
+    void Create(NewTicketSpecification request);
   }
 }
