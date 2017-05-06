@@ -14,93 +14,56 @@ namespace Agiil.Data
 {
   public class SessionFactoryFactory : ISessionFactoryFactory
   {
-    static readonly Type BaseEntityType = typeof(IEntity);
+    const string
+      ConnectionStringName = "Agiil",
+      MappingName = "ConventionMappings";
 
-    public ISessionFactory GetSessionFactory()
+    readonly IMappingProvider mappingProvider;
+    readonly IConnectionStringProvider connectionStringProvider;
+
+    public virtual ISessionFactory GetSessionFactory()
     {
       var config = GetConfiguration();
       return config.BuildSessionFactory();
     }
 
-    public Configuration GetConfiguration()
+    public virtual Configuration GetConfiguration()
     {
       var config = new Configuration();
 
-      config.DataBaseIntegration(x => {
-        x.SelectSQLiteDriver();
-        x.Dialect<SQLiteDialect>();
-        x.ConnectionString = "Data Source=Agiil.db;Version=3;";
-      });
-
-      var mappings = GetMappings();
-
-      config.AddDeserializedMapping(mappings, "ConventionMappings");
+      ConfigureDatabase(config);
+      ConfigureMappings(config);
 
       return config;
     }
 
-    private HbmMapping GetMappings()
+    protected virtual void ConfigureMappings(Configuration config)
     {
-      var mapper = new ConventionModelMapper();
+      var mappings = mappingProvider.GetHbmMapping();
+      config.AddDeserializedMapping(mappings, MappingName);
+    }
 
-      mapper.IsRootEntity((type, declared) => type.BaseType == null
-                                              || IsEntityBaseType(type.BaseType));
+    protected virtual void ConfigureDatabase(Configuration config)
+    {
+      var connectionString = connectionStringProvider.GetConnectionString(ConnectionStringName);
 
-      mapper.IsEntity((type, declared) => BaseEntityType.IsAssignableFrom(type)
-                                          && type.IsClass);
-
-      mapper.BeforeMapClass += (modelInspector, type, classCustomizer) => {
-        classCustomizer.Id(type.GetProperty("IdentityValue",
-                                            BindingFlags.GetProperty | BindingFlags.Instance | BindingFlags.NonPublic),
-                           m => {
-          m.Type(new NHibernate.Type.Int64Type());
-          m.Column("id");
-        });
-      };
-
-      mapper.IsPersistentProperty((member, declared) => {
-        var property = member as PropertyInfo;
-
-        if(property == null || !property.CanRead || !property.CanWrite)
-        {
-          return false;
-        }
-
-        if(property.Name == "IdentityValue"
-           && property.PropertyType == typeof(long)
-           && property.DeclaringType == typeof(Entity<long>))
-        {
-          return false;
-        }
-
-        return true;
+      config.DataBaseIntegration(x => {
+        x.SelectSQLiteDriver();
+        x.Dialect<SQLiteDialect>();
+        x.ConnectionString = connectionString;
       });
-
-      var entityTypes = GetEntityTypes();
-
-      return mapper.CompileMappingFor(entityTypes);
     }
 
-    private bool IsEntityBaseType(Type type)
+    public SessionFactoryFactory(IMappingProvider mappingProvider,
+                                 IConnectionStringProvider connectionStringProvider)
     {
-      var result = (type.IsGenericType
-                    && type.GetGenericTypeDefinition() == typeof(Entity<>))
-                   || (type.IsGenericTypeDefinition
-                       && type == typeof(Entity<>));
+      if(connectionStringProvider == null)
+        throw new ArgumentNullException(nameof(connectionStringProvider));
+      if(mappingProvider == null)
+        throw new ArgumentNullException(nameof(mappingProvider));
 
-      return result;
-    }
-
-    private Type[] GetEntityTypes()
-    {
-      var domainAssembly = typeof(IDomainAssemblyMarker).Assembly;
-
-      return (from type in domainAssembly.GetExportedTypes()
-              where
-                BaseEntityType.IsAssignableFrom(type)
-                && type.IsClass
-              select type)
-        .ToArray();
+      this.mappingProvider = mappingProvider;
+      this.connectionStringProvider = connectionStringProvider;
     }
   }
 }

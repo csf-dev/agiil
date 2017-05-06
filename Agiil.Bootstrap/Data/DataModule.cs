@@ -18,10 +18,6 @@ namespace Agiil.Bootstrap.Data
       builder
         .RegisterType<NHibernatePersister>()
         .As<IPersister>();
-      
-      builder
-        .RegisterType<SessionFactoryFactory>()
-        .As<ISessionFactoryFactory>();
 
       builder
         .RegisterType<DatabaseCreator>()
@@ -30,6 +26,10 @@ namespace Agiil.Bootstrap.Data
       builder
         .RegisterGeneric(typeof(GenericRepository<>))
         .As(typeof(IRepository<>));
+      
+      builder
+        .RegisterType<TransactionCreator>()
+        .As<ITransactionCreator>();
     }
   }
 }

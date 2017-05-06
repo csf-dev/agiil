@@ -91,11 +91,11 @@
     <Compile Include="Data\DataModule.cs" />
     <Compile Include="Data\NHibernateModule.cs" />
     <Compile Include="Config\ConfigurationModule.cs" />
-    <Compile Include="Data\BusinessTransactionModule.cs" />
     <Compile Include="IDiConfiguration.cs" />
     <Compile Include="DomainDiConfiguration.cs" />
     <Compile Include="Tickets\TicketsModule.cs" />
     <Compile Include="EnvironmentModule.cs" />
+    <Compile Include="Data\MappingModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

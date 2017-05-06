@@ -56,6 +56,7 @@
     <Reference Include="CSF.Data.NHibernate">
       <HintPath>..\packages\CSF.Data.NHibernate.6.1.0\lib\net45\CSF.Data.NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,6 +64,16 @@
     <Compile Include="IDatabaseCreator.cs" />
     <Compile Include="ISessionFactoryFactory.cs" />
     <Compile Include="DatabaseCreator.cs" />
+    <Compile Include="IMapping.cs" />
+    <Compile Include="IMappingProvider.cs" />
+    <Compile Include="MappingProvider.cs" />
+    <Compile Include="Mappings\EntityBaseTypeMapping.cs" />
+    <Compile Include="Mappings\EntityTypeMapping.cs" />
+    <Compile Include="Mappings\IdentityMapping.cs" />
+    <Compile Include="Mappings\PropertyMapping.cs" />
+    <Compile Include="IConnectionStringProvider.cs" />
+    <Compile Include="ConfigurationManagerConnectionStringProvider.cs" />
+    <Compile Include="IDataAssemblyMarker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mappings\" />

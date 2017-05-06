@@ -220,6 +220,7 @@
     <Folder Include="Services\Auth\" />
     <Folder Include="Bootstrap\" />
     <Folder Include="Services\Config\" />
+    <Folder Include="Temp\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
