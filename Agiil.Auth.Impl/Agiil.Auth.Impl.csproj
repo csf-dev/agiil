@@ -91,6 +91,7 @@
     <Compile Include="AuthenticationService.cs" />
     <Compile Include="CurrentThreadPrincipalGetter.cs" />
     <Compile Include="ClaimsIdentityFactory.cs" />
+    <Compile Include="UserCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

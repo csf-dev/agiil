@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Agiil.Auth;
 using Agiil.Domain.Auth;
 using CSF.Data;
 using CSF.Data.Entities;
@@ -11,59 +12,32 @@ namespace Agiil.Tests.Auth
   public class UserAccountController : IUserAccountController
   {
     readonly IRepository<User> repo;
-    readonly IFixture autoFixture;
-    readonly ICredentialsCreator credentialsCreator;
-    readonly ICredentialsSerializer credentialsSerializer;
+    readonly IUserCreator userCreator;
 
     public void AddUser(string username, string password)
     {
-      var user = autoFixture.Create<User>();
-
-      user.GenerateIdentity();
-      user.Username = username;
-      user.SerializedCredentials = GetSerializedCredentials(password);
-
-      repo.Add(user);
+      userCreator.Add(username, password);
     }
 
     public void RemoveUser(string username)
     {
-      if(repo.Query().Any(x => x.Username == username))
+      var existing = repo.Query().FirstOrDefault(x => x.Username == username);
+      if(existing != null)
       {
-        throw new InvalidOperationException($"There must not be a user with username '{username}'.");
+        repo.Remove(existing);
       }
     }
-
-    private string GetSerializedCredentials(string password)
-    {
-      if(password == null)
-      {
-        throw new ArgumentNullException(nameof(password));
-      }
-
-      var credentialsObject = credentialsCreator.CreateCredentials(new CredentialsWithPassword { Password = password });
-      return credentialsSerializer.Serialize(credentialsObject);
-    }
-
 
     public UserAccountController (IRepository<User> repo,
-                                          IFixture autoFixture,
-                                          ICredentialsCreator credentialsCreator,
-                                          ICredentialsSerializer credentialsSerializer)
+                                  IUserCreator userCreator)
     {
-      if(credentialsSerializer == null)
-        throw new ArgumentNullException(nameof(credentialsSerializer));
-      if(credentialsCreator == null)
-        throw new ArgumentNullException(nameof(credentialsCreator));
-      if(autoFixture == null)
-        throw new ArgumentNullException(nameof(autoFixture));
+      if(userCreator == null)
+        throw new ArgumentNullException(nameof(userCreator));
       if(repo == null)
         throw new ArgumentNullException(nameof(repo));
       
       this.repo = repo;
-      this.autoFixture = autoFixture;
-      this.credentialsCreator = credentialsCreator;
-      this.credentialsSerializer = credentialsSerializer;
+      this.userCreator = userCreator;
     }
   }
 }

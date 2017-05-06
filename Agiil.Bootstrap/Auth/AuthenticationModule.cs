@@ -65,6 +65,12 @@ namespace Agiil.Bootstrap.Auth
       builder
         .RegisterType<CurrentUserReader>()
         .As<ICurrentUserReader>();
+
+      builder
+        .RegisterType<UserCreator>()
+        .As<IUserCreator>();
+
+      builder.RegisterType<User>();
     }
   }
 }

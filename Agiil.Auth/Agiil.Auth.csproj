@@ -50,6 +50,7 @@
     <Compile Include="IPrincipalGetter.cs" />
     <Compile Include="IAuthenticationResult.cs" />
     <Compile Include="IClaimsIdentityFactory.cs" />
+    <Compile Include="IUserCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

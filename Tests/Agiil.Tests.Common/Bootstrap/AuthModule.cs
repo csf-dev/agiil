@@ -1,6 +1,7 @@
 ﻿using System;
 using Autofac;
 using Agiil.Tests.Auth;
+using Agiil.Auth;
 
 namespace Agiil.Tests.Bootstrap
 {
@@ -9,6 +10,7 @@ namespace Agiil.Tests.Bootstrap
     protected override void Load(ContainerBuilder builder)
     {
       builder.RegisterType<UserAccountController>().As<IUserAccountController>();
+      builder.RegisterType<TestingUserCreator>().As<IUserCreator>();
       builder.RegisterType<LoginController>().As<ILoginController>();
     }
   }

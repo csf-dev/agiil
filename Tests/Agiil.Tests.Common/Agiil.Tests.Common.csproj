@@ -154,6 +154,7 @@
     <Compile Include="RandomEnvironment.cs" />
     <Compile Include="IdentityCreatingRepository.cs" />
     <Compile Include="Bootstrap\BusinessTransactionModule.cs" />
+    <Compile Include="Auth\TestingUserCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">

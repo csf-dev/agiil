@@ -1,4 +1,5 @@
 ﻿using System;
+using Agiil.Auth;
 using Agiil.Domain.Auth;
 using CSF.Data.Entities;
 
@@ -6,7 +7,7 @@ namespace Agiil.Domain.Data
 {
   public class DevelopmentInitialDataCreator : IInitialDataCreator
   {
-    readonly IRepository<User> userRepo;
+    readonly IUserCreator userCreator;
 
     public void Create()
     {
@@ -15,20 +16,15 @@ namespace Agiil.Domain.Data
 
     void CreateInitialUser()
     {
-      var user = new User
-      {
-        Username = "admin",
-        SerializedCredentials = "AAoUHgAKFB4=:/Rio8u8kWL4yictmVX/B0xO1G8q8xDUyv2Xce7Qvw/Q=",
-      };
-      userRepo.Add(user);
+      userCreator.Add("admin", "secret");
     }
 
-    public DevelopmentInitialDataCreator(IRepository<User> userRepo)
+    public DevelopmentInitialDataCreator(IUserCreator userCreator)
     {
-      if(userRepo == null)
-        throw new ArgumentNullException(nameof(userRepo));
+      if(userCreator == null)
+        throw new ArgumentNullException(nameof(userCreator));
 
-      this.userRepo = userRepo;
+      this.userCreator = userCreator;
     }
   }
 }
