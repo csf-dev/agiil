@@ -13,15 +13,17 @@ namespace Agiil.Web.Services.Auth
       CorsAccessControlHeader = "Access-Control-Allow-Origin",
       CorsAllowAll = "*";
 
-    readonly Func<Owned<OAuthAuthorizationChecker>> authCheckerCreator;
+    readonly Func<IOAuthApplicationConnection> connectionFactory;
 
     public override Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
     {
       context.OwinContext.Response.Headers.Add(CorsAccessControlHeader, new[] { CorsAllowAll });
 
-      using(var authChecker = authCheckerCreator())
+      using(var connection = connectionFactory())
       {
-        authChecker.Value.CheckAuthentication(context);
+        var authChecker = connection.GetAuthChecker();
+
+        authChecker.CheckAuthentication(context);
         return base.GrantResourceOwnerCredentials(context);
       }
     }
@@ -32,14 +34,14 @@ namespace Agiil.Web.Services.Auth
       return base.ValidateClientAuthentication(context);
     }
 
-    public OAuthAuthorizationProvider(Func<Owned<OAuthAuthorizationChecker>> authCheckerCreator)
+    public OAuthAuthorizationProvider(Func<IOAuthApplicationConnection> connectionFactory)
     {
-      if(authCheckerCreator == null)
+      if(connectionFactory == null)
       {
-        throw new ArgumentNullException(nameof(authCheckerCreator));
+        throw new ArgumentNullException(nameof(connectionFactory));
       }
 
-      this.authCheckerCreator = authCheckerCreator;
+      this.connectionFactory = connectionFactory;
     }
   }
 }

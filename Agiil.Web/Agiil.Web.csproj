@@ -255,6 +255,9 @@
     <Compile Include="Models\TicketDetail.cs" />
     <Compile Include="Controllers\DatabaseController.cs" />
     <Compile Include="Models\DatabaseResetModel.cs" />
+    <Compile Include="Services\Auth\AutofacOAuthApplicationConnection.cs" />
+    <Compile Include="Services\Auth\IOAuthApplicationConnection.cs" />
+    <Compile Include="Bootstrap\OAuthApplicationConnectionModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
