@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using Agiil.Bootstrap;
 using Agiil.Data;
 using Autofac;
@@ -9,10 +10,15 @@ namespace Agiil.Tests.Data
   [TestFixture]
   public class SessionFactoryFactoryTests
   {
+    const string
+      SchemaExportPathKey = "SchemaOutputPath",
+      SchemaExportFallbackPath = "Agiil.schema.sql";
+
     IDiConfiguration containerBuilderFactory;
     ContainerBuilder builder;
     IContainer container;
     ILifetimeScope diScope;
+    string schemaExportPath;
 
     [OneTimeSetUp]
     public void FixtureSetup()
@@ -20,6 +26,7 @@ namespace Agiil.Tests.Data
       containerBuilderFactory = new UnitTestDiConfiguration();
       builder = containerBuilderFactory.GetContainerBuilder();
       container = builder.Build();
+      schemaExportPath = ConfigurationManager.AppSettings[SchemaExportPathKey]?? SchemaExportFallbackPath;
     }
 
     [SetUp]
@@ -82,7 +89,7 @@ namespace Agiil.Tests.Data
       var databaseCreator = diScope.Resolve<IDatabaseCreator>();
 
       // Act & assert
-      Assert.DoesNotThrow(() => databaseCreator.Create("Agiil.schema.sql", true));
+      Assert.DoesNotThrow(() => databaseCreator.Create(schemaExportPath, true));
     }
   }
 }

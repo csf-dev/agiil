@@ -65,6 +65,7 @@
     <Reference Include="CSF.Data">
       <HintPath>..\..\packages\CSF.Data.1.1.0\lib\net45\CSF.Data.dll</HintPath>
     </Reference>
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SessionFactoryFactoryTests.cs" />
