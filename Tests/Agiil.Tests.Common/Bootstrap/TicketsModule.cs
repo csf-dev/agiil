@@ -15,6 +15,10 @@ namespace Agiil.Tests.Bootstrap
       builder
         .RegisterType<TicketQueryController>()
         .As<ITicketQueryController>();
+
+      builder
+        .RegisterType<BulkTicketCreator>()
+        .As<IBulkTicketCreator>();
     }
   }
 }

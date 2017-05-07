@@ -55,6 +55,9 @@
     <Reference Include="CSF.Data.Entities">
       <HintPath>..\packages\CSF.Data.Entities.1.2.1\lib\net45\CSF.Data.Entities.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Data.NHibernate">
+      <HintPath>..\packages\CSF.Data.NHibernate.6.1.0\lib\net45\CSF.Data.NHibernate.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,6 +69,7 @@
     <Compile Include="Tickets\TicketFactory.cs" />
     <Compile Include="Tickets\CreateTicketValidatorFactory.cs" />
     <Compile Include="Data\DevelopmentInitialDataCreator.cs" />
+    <Compile Include="Tickets\TicketLister.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

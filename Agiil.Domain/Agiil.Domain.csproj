@@ -62,6 +62,7 @@
     <Compile Include="Tickets\CreateTicketResponse.cs" />
     <Compile Include="Tickets\ICreateTicketValidatorFactory.cs" />
     <Compile Include="Data\IInitialDataCreator.cs" />
+    <Compile Include="Tickets\ITicketLister.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

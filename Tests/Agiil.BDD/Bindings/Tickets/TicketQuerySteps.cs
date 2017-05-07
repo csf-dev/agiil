@@ -6,6 +6,8 @@ using Agiil.Web.Models;
 using System.Linq.Expressions;
 using Agiil.Domain.Tickets;
 using NUnit.Framework;
+using Agiil.Web.Controllers;
+using System.Linq;
 
 namespace Agiil.BDD.Bindings.Tickets
 {
@@ -13,6 +15,12 @@ namespace Agiil.BDD.Bindings.Tickets
   public class TicketQuerySteps
   {
     readonly ITicketQueryController queryController;
+
+    [When("the user visits the ticket list page")]
+    public void TheUserVisitsTheTicketListPage()
+    {
+      queryController.VisitTicketListControllerAndStoreListInContext();
+    }
 
     [Then("a ticket should be created with the following properties:")]
     public void ATicketShouldBeCreated(Table ticketProperties)
@@ -33,6 +41,17 @@ namespace Agiil.BDD.Bindings.Tickets
       var criteria = ticketProperties.CreateInstance<TicketSearchCriteria>();
       Assert.IsFalse(queryController.DoesTicketExist(criteria));
     }
+
+    [Then("the following ticket summaries should be displayed, in order:")]
+    public void TheFollowingTicketsShouldBeDisplayed(Table ticketProperties)
+    {
+      if(ticketProperties == null)
+        throw new ArgumentNullException(nameof(ticketProperties));
+
+      var tickets = ticketProperties.CreateSet<TicketSummaryDto>().ToList();
+      queryController.VerifyThatTicketsAreListedInOrder(tickets);
+    }
+
 
     public TicketQuerySteps(ITicketQueryController queryController)
     {

@@ -155,6 +155,10 @@
     <Compile Include="IdentityCreatingRepository.cs" />
     <Compile Include="Bootstrap\BusinessTransactionModule.cs" />
     <Compile Include="Auth\TestingUserCreator.cs" />
+    <Compile Include="Tickets\IBulkTicketCreator.cs" />
+    <Compile Include="Tickets\BulkTicketSpecification.cs" />
+    <Compile Include="Tickets\BulkTicketCreator.cs" />
+    <Compile Include="Tickets\TicketListModelContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">

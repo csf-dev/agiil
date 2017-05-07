@@ -1,0 +1,34 @@
+﻿<html lang="en" metal:use-macro="Views/Shared/EmptyPage/macros/page">
+<head>
+<title>Tickets</title>
+</head>
+<body metal:fill-slot="body_element">
+<h1>Tickets</h1>
+<p>This is a list of the tickets which exist in the application.</p>
+<table tal:define="tickets here/Tickets">
+  <colgroup>
+    <col class="title" />
+    <col class="created_by" />
+    <col class="created_date" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Created by</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr tal:repeat="ticket tickets">
+      <td tal:content="ticket/Title">Ticket title here</td>
+      <td tal:content="ticket/Creator">username</td>
+      <td>
+        <span tal:attributes="title ticket/CreationTimestamp"
+              tal:content="ticket/ShortTimestamp"
+              title="2011-01-01 12:13:43">4th May 2001</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

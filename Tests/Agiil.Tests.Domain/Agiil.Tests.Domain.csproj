@@ -76,6 +76,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>NewTicket.feature.cs</LastGenOutput>
     </None>
+    <None Include="Features\TicketList.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TicketList.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tickets\TicketCreatorTests.cs" />
@@ -83,6 +87,9 @@
     <Compile Include="Tickets\TicketFactoryTests.cs" />
     <Compile Include="Features\NewTicket.feature.cs">
       <DependentUpon>NewTicket.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\TicketList.feature.cs">
+      <DependentUpon>TicketList.feature</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

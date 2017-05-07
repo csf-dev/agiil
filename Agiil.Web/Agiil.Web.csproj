@@ -226,6 +226,8 @@
     <Folder Include="Views\Database\" />
     <Folder Include="Views\NewTicket\" />
     <Folder Include="OAuth\" />
+    <Folder Include="Views\Tickets\" />
+    <Folder Include="Services\Tickets\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -254,6 +256,12 @@
     <Compile Include="Models\DatabaseResetModel.cs" />
     <Compile Include="Bootstrap\OAuthModule.cs" />
     <Compile Include="OAuth\AutofacOAuthApplicationConnection.cs" />
+    <Compile Include="Models\TicketListModel.cs" />
+    <Compile Include="Models\TicketSummaryDto.cs" />
+    <Compile Include="Controllers\TicketsController.cs" />
+    <Compile Include="Services\Tickets\TicketSummaryMapper.cs" />
+    <Compile Include="Bootstrap\TicketsServicesModule.cs" />
+    <Compile Include="ApiControllers\TicketsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -268,6 +276,7 @@
     <None Include="Views\Login\LoggedOut.pt" />
     <None Include="Views\Database\Index.pt" />
     <None Include="Views\NewTicket\Index.pt" />
+    <None Include="Views\Tickets\Index.pt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
