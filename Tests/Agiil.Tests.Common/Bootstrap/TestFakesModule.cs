@@ -4,7 +4,7 @@ using Autofac;
 using Microsoft.Owin.Security;
 using Ploeh.AutoFixture;
 
-namespace Agiil.BDD.Bootstrap
+namespace Agiil.Tests.Bootstrap
 {
   public class TestFakesModule : Module
   {

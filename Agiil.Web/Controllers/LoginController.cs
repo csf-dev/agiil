@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using Agiil.Auth;
+using Agiil.Domain.Auth;
 using Agiil.Web.Models;
 
 namespace Agiil.Web.Controllers

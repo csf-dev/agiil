@@ -1,12 +1,12 @@
 ﻿using System;
 using NUnit.Framework;
-using Agiil.Tests.Common;
 using Agiil.Auth;
 using Ploeh.AutoFixture.NUnit3;
 using Moq;
 using Agiil.Web.Controllers;
 using System.Web.Mvc;
 using Agiil.Web.Models;
+using Agiil.Domain.Auth;
 
 namespace Agiil.Tests.Web.Controllers
 {
@@ -62,14 +62,14 @@ namespace Agiil.Tests.Web.Controllers
     public void Login_redirects_to_home_controller_after_successful_login(ILoginLogoutManager loginLogoutManager,
                                                                           ILoginRequest request,
                                                                           Agiil.Web.Models.LoginCredentials credentials,
-                                                                          ICurrentUserInfo currentUser,
+                                                                          string username,
                                                                           IIdentityReader identityReader)
     {
       // Arrange
       LoginRequestCreator requestCreator = (u, p) => request;
       Mock.Get(loginLogoutManager)
           .Setup(x => x.AttemptLogin(It.IsAny<ILoginRequest>()))
-          .Returns(new LoginResult(currentUser));
+          .Returns(new LoginResult(username));
       var sut = new LoginController(requestCreator, loginLogoutManager, identityReader);
 
       // Act

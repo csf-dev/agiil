@@ -42,16 +42,15 @@
     <Compile Include="LoginCredentials.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ILoginLogoutManager.cs" />
-    <Compile Include="ICurrentUserInfo.cs" />
     <Compile Include="LoginResult.cs" />
     <Compile Include="ILoginRequest.cs" />
     <Compile Include="LoginRequestCreator.cs" />
     <Compile Include="LogoutResult.cs" />
-    <Compile Include="IIdentityReader.cs" />
     <Compile Include="CustomClaimTypes.cs" />
     <Compile Include="IPrincipalGetter.cs" />
     <Compile Include="IAuthenticationResult.cs" />
     <Compile Include="IClaimsIdentityFactory.cs" />
+    <Compile Include="IUserCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

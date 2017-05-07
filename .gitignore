@@ -7,6 +7,6 @@ packages/*/*
 TestResult.xml
 TestResult.formatted.xml
 Agiil.Web/Agiil.db
-Agiil.db
-Agiil sample database.odb
+Tests/Temp/
+Agiil.Web/Temp/
 *.log

@@ -1,4 +1,5 @@
 ﻿using Agiil.Auth;
+using Agiil.Domain.Auth;
 
 namespace Agiil.Web.Models
 {

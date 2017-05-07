@@ -45,7 +45,7 @@ namespace Agiil.Auth
       }
 
       var currentUser = LogUserIn(request, result);
-      return new LoginResult(currentUser);
+      return new LoginResult(currentUser.Username);
     }
 
     public virtual LogoutResult AttemptLogout()

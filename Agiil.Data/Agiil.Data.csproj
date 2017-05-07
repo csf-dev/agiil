@@ -28,9 +28,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="CSF.Data">
-      <HintPath>..\packages\CSF.Data.1.0.0\lib\net45\CSF.Data.dll</HintPath>
-    </Reference>
     <Reference Include="CSF.Utils">
       <HintPath>..\packages\CSF.Utils.6.0.0\lib\net45\CSF.Utils.dll</HintPath>
     </Reference>
@@ -39,9 +36,6 @@
     </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Data.NHibernate">
-      <HintPath>..\packages\CSF.Data.NHibernate.6.0.0\lib\net45\CSF.Data.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="CSF.Reflection">
@@ -53,6 +47,16 @@
     <Reference Include="System.Data.SQLite">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.104.0\lib\net45\System.Data.SQLite.dll</HintPath>
     </Reference>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data">
+      <HintPath>..\packages\CSF.Data.1.1.0\lib\net45\CSF.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data.NHibernate">
+      <HintPath>..\packages\CSF.Data.NHibernate.6.1.0\lib\net45\CSF.Data.NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,6 +64,16 @@
     <Compile Include="IDatabaseCreator.cs" />
     <Compile Include="ISessionFactoryFactory.cs" />
     <Compile Include="DatabaseCreator.cs" />
+    <Compile Include="IMapping.cs" />
+    <Compile Include="IMappingProvider.cs" />
+    <Compile Include="MappingProvider.cs" />
+    <Compile Include="Mappings\EntityBaseTypeMapping.cs" />
+    <Compile Include="Mappings\EntityTypeMapping.cs" />
+    <Compile Include="Mappings\IdentityMapping.cs" />
+    <Compile Include="Mappings\PropertyMapping.cs" />
+    <Compile Include="IConnectionStringProvider.cs" />
+    <Compile Include="ConfigurationManagerConnectionStringProvider.cs" />
+    <Compile Include="IDataAssemblyMarker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mappings\" />

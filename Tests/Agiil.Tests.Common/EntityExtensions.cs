@@ -5,7 +5,7 @@ using CSF.Entities;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Kernel;
 
-namespace Agiil.Tests.Common
+namespace Agiil.Tests
 {
   public static class EntityExtensions
   {

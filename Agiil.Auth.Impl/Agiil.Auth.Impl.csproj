@@ -28,17 +28,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="CSF.Data">
-      <HintPath>..\packages\CSF.Data.1.0.0\lib\net45\CSF.Data.dll</HintPath>
-    </Reference>
     <Reference Include="CSF.Utils">
       <HintPath>..\packages\CSF.Utils.6.0.0\lib\net45\CSF.Utils.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Data.Entities">
-      <HintPath>..\packages\CSF.Data.Entities.1.1.0\lib\net45\CSF.Data.Entities.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Reflection">
       <HintPath>..\packages\CSF.Reflection.1.0.1\lib\net45\CSF.Reflection.dll</HintPath>
@@ -73,6 +67,12 @@
     <Reference Include="CSF.Entities">
       <HintPath>..\packages\CSF.Entities.1.1.1\lib\net45\CSF.Entities.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Data">
+      <HintPath>..\packages\CSF.Data.1.1.0\lib\net45\CSF.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data.Entities">
+      <HintPath>..\packages\CSF.Data.Entities.1.2.1\lib\net45\CSF.Data.Entities.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,6 +91,7 @@
     <Compile Include="AuthenticationService.cs" />
     <Compile Include="CurrentThreadPrincipalGetter.cs" />
     <Compile Include="ClaimsIdentityFactory.cs" />
+    <Compile Include="UserCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -103,6 +104,10 @@
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
       <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
       <Name>Agiil.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Domain.Impl\Agiil.Domain.Impl.csproj">
+      <Project>{FF544749-0A04-417F-AD83-E284BBF498E7}</Project>
+      <Name>Agiil.Domain.Impl</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

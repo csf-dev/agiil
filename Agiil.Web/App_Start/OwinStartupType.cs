@@ -1,7 +1,10 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.IdentityModel.Tokens;
+using System.Web.Http;
 using System.Web.Mvc;
+using System.Web.Routing;
 using Agiil.Web.Bootstrap;
-using Agiil.Web.Services.Config;
+using Agiil.Web.OAuth;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
@@ -24,37 +27,87 @@ namespace Agiil.Web.App_Start
   /// </summary>
   public class OwinStartupType
   {
-    const string JwtAllowedAudiences = "Any";
-
     public void Configuration(IAppBuilder app)
     {
       var config = new HttpConfiguration();
 
       var container = ConfigureDependencyInjection(app, config);
 
-      app.UseAutofacMvc();
+      ConfigureOAuthServer(app, container);
+      ConfigureWebApi(app, container);
+      ConfigureWebApp(app, container);
+    }
 
-      new RouteConfiguration().RegisterWebApiRoutes(config);
-      app.UseAutofacWebApi(config);
-      app.UseWebApi(config);
+    void ConfigureOAuthServer(IAppBuilder app, IContainer container)
+    {
+      app.MapWhen(IsOAuthUrl, inner => {
+        var authServerOptions = container.Resolve<OAuthAuthorizationServerOptions>();
+        inner.UseOAuthAuthorizationServer(authServerOptions);
+      });
+    }
 
-      ConfigureBearerTokenAuthentication(app, container);
-      ConfigureHttpAuthentication(app);
+    void ConfigureWebApi(IAppBuilder app, IContainer container)
+    {
+      app.MapWhen(IsWebApiUrl, inner => {
+        var config = new HttpConfiguration();
+
+        config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+
+        ConfigureBearerTokenAuthentication(inner, container);
+
+        config.Filters.Add(new HostAuthenticationFilter(OAuthAuthorizationChecker.AuthenticationType));
+
+        config.Routes.Clear();
+        new RouteConfiguration().RegisterWebApiRoutes(config);
+        inner.UseAutofacWebApi(config);
+        inner.UseWebApi(config);
+      });
+    }
+
+    void ConfigureWebApp(IAppBuilder app, IContainer container)
+    {
+      app.MapWhen(IsWebAppUrl, inner => {
+        new RouteConfiguration().RegisterMvcRoutes (RouteTable.Routes);
+        new MvcViewConfiguration().RegisterViewEngines(ViewEngines.Engines);
+        ConfigureCookieAuthentication(inner);
+        inner.UseAutofacMvc();
+      });
+    }
+
+    bool IsOAuthUrl(IOwinContext context)
+    {
+      if(context.Request.Uri.LocalPath.StartsWith(RouteConfiguration.OAuthPrefix, StringComparison.InvariantCulture))
+        return true;
+
+      return false;
+    }
+
+    bool IsWebApiUrl(IOwinContext context)
+    {
+      if(context.Request.Uri.LocalPath.StartsWith("/" + RouteConfiguration.ApiPrefix, StringComparison.InvariantCulture))
+        return true;
+      
+      return false;
+    }
+
+    bool IsWebAppUrl(IOwinContext context)
+    {
+      return !(IsOAuthUrl(context) || IsWebApiUrl(context));
     }
 
     private IContainer ConfigureDependencyInjection(IAppBuilder app, HttpConfiguration config)
     {
-      var container = new AutofacContainerFactory().GetContainer(config);
+      var diConfig = new WebAppDiConfiguration(config, true);
+      var container = diConfig.GetContainerBuilder().Build();
 
       var provider = new OwinCompatibleLifetimeScopeProvider(container);
 
       DependencyResolver.SetResolver(new AutofacDependencyResolver(container, provider));
-      config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
 
       return container;
     }
 
-    private void ConfigureHttpAuthentication(IAppBuilder builder)
+    private void ConfigureCookieAuthentication(IAppBuilder builder)
     {
       builder.UseCookieAuthentication(new CookieAuthenticationOptions {
         AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
@@ -68,19 +121,8 @@ namespace Agiil.Web.App_Start
 
     private void ConfigureBearerTokenAuthentication(IAppBuilder builder, IContainer container)
     {
-      var oauthConfig = container.Resolve<IOAuthConfiguration>();
-
-      builder.UseJwtBearerAuthentication(new JwtBearerAuthenticationOptions
-      {
-        AuthenticationMode = AuthenticationMode.Active,
-        AllowedAudiences = new[] { JwtAllowedAudiences },
-        IssuerSecurityTokenProviders = new IIssuerSecurityTokenProvider[] {
-          new SymmetricKeyIssuerSecurityTokenProvider(oauthConfig.JwtIssuerName, oauthConfig.Base64JwtSecretKey),
-        },
-      });
-
-      var authServerOptions = container.Resolve<OAuthAuthorizationServerOptions>();
-      builder.UseOAuthAuthorizationServer(authServerOptions);
+      var jwtOptions = container.Resolve<IJwtBearerAuthenticationOptionsFactory>();
+      builder.UseJwtBearerAuthentication(jwtOptions.GetOptions());
 
       builder.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
     }

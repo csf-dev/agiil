@@ -4,7 +4,6 @@ using System.Security.Claims;
 using CSF.Data;
 using CSF.Entities;
 using Agiil.Domain.Auth;
-using Agiil.Tests.Common;
 using Microsoft.Owin.Security;
 using Moq;
 using NUnit.Framework;

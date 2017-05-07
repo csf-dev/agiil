@@ -1,5 +1,5 @@
 ﻿using System;
-using Agiil.BDD.Controllers.Auth;
+using Agiil.Tests.Auth;
 using TechTalk.SpecFlow;
 
 namespace Agiil.BDD.Bindings.Auth

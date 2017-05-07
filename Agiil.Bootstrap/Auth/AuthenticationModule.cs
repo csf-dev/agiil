@@ -4,6 +4,7 @@ using Autofac;
 using Agiil.Auth;
 using CSF.Security.Authentication;
 using Microsoft.Owin.Security;
+using Agiil.Domain.Auth;
 
 namespace Agiil.Bootstrap.Auth
 {
@@ -60,6 +61,16 @@ namespace Agiil.Bootstrap.Auth
       builder
         .RegisterType<JsonCredentialsSerializer>()
         .As<ICredentialsSerializer>();
+
+      builder
+        .RegisterType<CurrentUserReader>()
+        .As<ICurrentUserReader>();
+
+      builder
+        .RegisterType<UserCreator>()
+        .As<IUserCreator>();
+
+      builder.RegisterType<User>();
     }
   }
 }

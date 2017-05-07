@@ -3,25 +3,25 @@ namespace Agiil.Auth
 {
   public class LoginResult
   {
-    readonly ICurrentUserInfo currentUser;
+    readonly string username;
     static readonly LoginResult loginFailed;
 
-    public bool Success => currentUser != null;
+    public bool Success => username != null;
 
-    public string Username => currentUser?.Username;
+    public string Username => username;
 
-    public LoginResult (ICurrentUserInfo currentUser)
+    public LoginResult (string username)
     {
-      if (currentUser == null) {
-        throw new ArgumentNullException (nameof (currentUser));
+      if (username == null) {
+        throw new ArgumentNullException (nameof (username));
       }
 
-      this.currentUser = currentUser;
+      this.username = username;
     }
 
     LoginResult ()
     {
-      currentUser = null;
+      username = null;
     }
 
     static LoginResult()

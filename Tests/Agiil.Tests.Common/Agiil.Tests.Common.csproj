@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E15F2064-D2EA-43EF-924C-733107675FF0}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Agiil.Tests.Common</RootNamespace>
+    <RootNamespace>Agiil.Tests</RootNamespace>
     <AssemblyName>Agiil.Tests.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
@@ -31,9 +31,6 @@
     <Reference Include="Ploeh.AutoFixture">
       <HintPath>..\..\packages\AutoFixture.3.50.2\lib\net40\Ploeh.AutoFixture.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Data">
-      <HintPath>..\..\packages\CSF.Data.1.0.0\lib\net45\CSF.Data.dll</HintPath>
-    </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
@@ -42,9 +39,6 @@
     </Reference>
     <Reference Include="Ploeh.AutoFixture.NUnit3">
       <HintPath>..\..\packages\AutoFixture.NUnit3.3.50.2\lib\net40\Ploeh.AutoFixture.NUnit3.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Data.Entities">
-      <HintPath>..\..\packages\CSF.Data.Entities.1.1.0\lib\net45\CSF.Data.Entities.dll</HintPath>
     </Reference>
     <Reference Include="Ploeh.AutoFixture.AutoMoq">
       <HintPath>..\..\packages\AutoFixture.AutoMoq.3.50.2\lib\net40\Ploeh.AutoFixture.AutoMoq.dll</HintPath>
@@ -110,6 +104,21 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Reflection">
+      <HintPath>..\..\packages\CSF.Reflection.1.0.0\lib\net45\CSF.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Utils">
+      <HintPath>..\..\packages\CSF.Utils.6.0.0\lib\net45\CSF.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data">
+      <HintPath>..\..\packages\CSF.Data.1.1.0\lib\net45\CSF.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data.NHibernate">
+      <HintPath>..\..\packages\CSF.Data.NHibernate.6.1.0\lib\net45\CSF.Data.NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data.Entities">
+      <HintPath>..\..\packages\CSF.Data.Entities.1.2.1\lib\net45\CSF.Data.Entities.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -119,18 +128,33 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EntityExtensions.cs" />
     <Compile Include="AutoMoqDataAttribute.cs" />
-    <Compile Include="IAutofacContainerBuilderFactory.cs" />
-    <Compile Include="WebControllerContainerBuilderFactory.cs" />
+    <Compile Include="WebAppTestDiConfiguration.cs" />
     <Compile Include="Bootstrap\AuthModule.cs" />
-    <Compile Include="Bootstrap\QueryModule.cs" />
+    <Compile Include="Bootstrap\DataModule.cs" />
     <Compile Include="Bootstrap\TestFakesModule.cs" />
     <Compile Include="Auth\LoginController.cs" />
-    <Compile Include="Auth\InMemoryUserAccountController.cs" />
-    <Compile Include="Controllers\Auth\ILoginController.cs" />
-    <Compile Include="Controllers\Auth\IUserAccountController.cs" />
-    <Compile Include="ApiOnlyContainerBuilderFactory.cs" />
+    <Compile Include="Auth\UserAccountController.cs" />
+    <Compile Include="UnitTestDiConfiguration.cs" />
     <Compile Include="HasIdentityAttribute.cs" />
-    <Compile Include="Customizations\HasIdentityCustomization.cs" />
+    <Compile Include="Autofixture\HasIdentityCustomization.cs" />
+    <Compile Include="Autofixture\TypeRelayCustomization.cs" />
+    <Compile Include="ProvidesServiceAttribute.cs" />
+    <Compile Include="CurrentUserReaderExtensions.cs" />
+    <Compile Include="Autofixture\LoggedInCustomization.cs" />
+    <Compile Include="LoggedInAttribute.cs" />
+    <Compile Include="Auth\ILoginController.cs" />
+    <Compile Include="Auth\IUserAccountController.cs" />
+    <Compile Include="Tickets\INewTicketController.cs" />
+    <Compile Include="Tickets\NewTicketController.cs" />
+    <Compile Include="Tickets\ITicketQueryController.cs" />
+    <Compile Include="Tickets\TicketQueryController.cs" />
+    <Compile Include="Tickets\TicketSearchCriteria.cs" />
+    <Compile Include="Bootstrap\TicketsModule.cs" />
+    <Compile Include="Bootstrap\EnvironmentModule.cs" />
+    <Compile Include="RandomEnvironment.cs" />
+    <Compile Include="IdentityCreatingRepository.cs" />
+    <Compile Include="Bootstrap\BusinessTransactionModule.cs" />
+    <Compile Include="Auth\TestingUserCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
@@ -153,12 +177,16 @@
       <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
       <Name>Agiil.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Domain.Impl\Agiil.Domain.Impl.csproj">
+      <Project>{FF544749-0A04-417F-AD83-E284BBF498E7}</Project>
+      <Name>Agiil.Domain.Impl</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Bootstrap\" />
     <Folder Include="Auth\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Customizations\" />
+    <Folder Include="Autofixture\" />
+    <Folder Include="Tickets\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
