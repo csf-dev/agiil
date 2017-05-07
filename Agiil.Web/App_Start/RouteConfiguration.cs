@@ -27,8 +27,6 @@ namespace Agiil.Web.App_Start
     public void RegisterMvcRoutes (RouteCollection routes)
     {
       routes.IgnoreRoute ("{resource}.axd/{*pathInfo}");
-      //routes.IgnoreRoute("api/{*pathInfo}");
-      //routes.IgnoreRoute("oauth2/{*pathInfo}");
 
       routes.MapMvcAttributeRoutes();
 

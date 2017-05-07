@@ -36,7 +36,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.Tests.Domain", "Tests
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Temp", "Temp", "{8E9A7C9D-59D3-4E2F-98C1-AF9AC3234E26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.Web.OAuth", "Agiil.Web.Auth\Agiil.Web.OAuth.csproj", "{9CECEC15-9B54-4DDD-B0FB-8E9E14FBBA15}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.Web.OAuth", "Agiil.Web.OAuth\Agiil.Web.OAuth.csproj", "{9CECEC15-9B54-4DDD-B0FB-8E9E14FBBA15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

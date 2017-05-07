@@ -286,7 +286,7 @@
       <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
       <Name>Agiil.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Agiil.Web.Auth\Agiil.Web.OAuth.csproj">
+    <ProjectReference Include="..\Agiil.Web.OAuth\Agiil.Web.OAuth.csproj">
       <Project>{9CECEC15-9B54-4DDD-B0FB-8E9E14FBBA15}</Project>
       <Name>Agiil.Web.OAuth</Name>
     </ProjectReference>
