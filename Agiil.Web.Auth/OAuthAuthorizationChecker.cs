@@ -4,11 +4,13 @@ using CSF.Security.Authentication;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 
-namespace Agiil.Web.Services.Auth
+namespace Agiil.Web.OAuth
 {
-  public class OAuthAuthorizationChecker
+  public class OAuthAuthorizationChecker : IOAuthAuthorizationChecker
   {
     #region constants
+
+    public static readonly string AuthenticationType = JwtBearerTokenAuthenticationType;
 
     internal const string
       InvalidGrant = "invalid_grant",
@@ -43,6 +45,11 @@ namespace Agiil.Web.Services.Auth
       var identity = claimsIdentityFactory.GetIdentity(result, JwtBearerTokenAuthenticationType);
       var ticket = new AuthenticationTicket(identity, new AuthenticationProperties());
       context.Validated(ticket);
+    }
+
+    void IOAuthAuthorizationChecker.CheckAuthentication(object context)
+    {
+      CheckAuthentication((OAuthGrantResourceOwnerCredentialsContext) context);
     }
 
     #endregion

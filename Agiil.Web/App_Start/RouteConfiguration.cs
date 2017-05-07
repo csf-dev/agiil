@@ -4,10 +4,11 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Agiil.Web.Controllers;
+using Agiil.Web.OAuth;
 
 namespace Agiil.Web.App_Start
 {
-  public class RouteConfiguration
+  public class RouteConfiguration : IOAuthPathProvider
   {
     #region constants
 
@@ -47,6 +48,11 @@ namespace Agiil.Web.App_Start
         routeTemplate: "api/v1/{controller}/{id}",
         defaults: new { id = RouteParameter.Optional }
       );
+    }
+
+    public string GetTokenPath()
+    {
+      return OAuthTokenPath;
     }
 
     #endregion

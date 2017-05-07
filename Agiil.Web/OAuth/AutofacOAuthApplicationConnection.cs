@@ -1,15 +1,15 @@
 ﻿using System;
 using Autofac;
 
-namespace Agiil.Web.Services.Auth
+namespace Agiil.Web.OAuth
 {
   public class AutofacOAuthApplicationConnection : IOAuthApplicationConnection, IDisposable
   {
     readonly ILifetimeScope scope;
 
-    public OAuthAuthorizationChecker GetAuthChecker()
+    public IOAuthAuthorizationChecker GetAuthChecker()
     {
-      return scope.Resolve<OAuthAuthorizationChecker>();
+      return scope.Resolve<IOAuthAuthorizationChecker>();
     }
 
     #region IDisposable Support

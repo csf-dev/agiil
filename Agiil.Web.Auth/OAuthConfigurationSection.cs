@@ -2,7 +2,7 @@
 using System.Configuration;
 using CSF.Configuration;
 
-namespace Agiil.Web.Services.Config
+namespace Agiil.Web.OAuth
 {
   [ConfigurationPath("Agiil/OAuth")]
   public class OAuthConfigurationSection : ConfigurationSection, IOAuthConfiguration

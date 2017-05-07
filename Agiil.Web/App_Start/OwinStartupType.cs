@@ -1,14 +1,10 @@
 ﻿using System;
 using System.IdentityModel.Tokens;
-using System.Security.Claims;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Agiil.Web.Bootstrap;
-using Agiil.Web.Services.Auth;
-using Agiil.Web.Services.Config;
+using Agiil.Web.OAuth;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
@@ -31,8 +27,6 @@ namespace Agiil.Web.App_Start
   /// </summary>
   public class OwinStartupType
   {
-    const string JwtAllowedAudiences = "Agiil";
-
     public void Configuration(IAppBuilder app)
     {
       var config = new HttpConfiguration();
@@ -61,7 +55,7 @@ namespace Agiil.Web.App_Start
 
         ConfigureBearerTokenAuthentication(inner, container);
 
-        config.Filters.Add(new HostAuthenticationFilter(OAuthAuthorizationChecker.JwtBearerTokenAuthenticationType));
+        config.Filters.Add(new HostAuthenticationFilter(OAuthAuthorizationChecker.AuthenticationType));
 
         config.Routes.Clear();
         new RouteConfiguration().RegisterWebApiRoutes(config);
@@ -127,37 +121,10 @@ namespace Agiil.Web.App_Start
 
     private void ConfigureBearerTokenAuthentication(IAppBuilder builder, IContainer container)
     {
-      var oauthConfig = container.Resolve<IOAuthConfiguration>();
-
-      builder.UseJwtBearerAuthentication(new JwtBearerAuthenticationOptions
-      {
-        AuthenticationMode = AuthenticationMode.Active,
-        AllowedAudiences = new[] { JwtAllowedAudiences },
-        IssuerSecurityTokenProviders = new IIssuerSecurityTokenProvider[] {
-          new SymmetricKeyIssuerSecurityTokenProvider(oauthConfig.JwtIssuerName, oauthConfig.Base64JwtSecretKey),
-        },
-        TokenHandler = new JwtSecurityTokenHandler
-        {
-          SignatureProviderFactory = new CustomSignatureProviderFactory(),
-        },
-      });
+      var jwtOptions = container.Resolve<IJwtBearerAuthenticationOptionsFactory>();
+      builder.UseJwtBearerAuthentication(jwtOptions.GetOptions());
 
       builder.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
-    }
-
-    class CustomSignatureProviderFactory : SignatureProviderFactory
-    {
-      public override SignatureProvider CreateForVerifying(SecurityKey key, string algorithm)
-      {
-        if(algorithm == SecurityAlgorithms.HmacSha256Signature && key is InMemorySymmetricSecurityKey)
-        {
-          var castKey = (InMemorySymmetricSecurityKey) key;
-          var copiedKey = new CustomInMemorySymmetricSecurityKey(castKey.GetSymmetricKey());
-          return new SymmetricSignatureProvider(copiedKey, algorithm);
-        }
-
-        return base.CreateForVerifying(key, algorithm);
-      }
     }
   }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
-namespace Agiil.Web.Services.Auth
+
+namespace Agiil.Web.OAuth
 {
   /// <summary>
   /// This type is required because the OWIN implementation of OAuth does not kick off either of the ASP.NET MVC or ASP.NET
@@ -8,6 +9,6 @@ namespace Agiil.Web.Services.Auth
   /// </summary>
   public interface IOAuthApplicationConnection : IDisposable
   {
-    OAuthAuthorizationChecker GetAuthChecker();
+    IOAuthAuthorizationChecker GetAuthChecker();
   }
 }

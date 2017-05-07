@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Agiil.Auth;
-using Autofac;
-using Autofac.Features.OwnedInstances;
 using Microsoft.Owin.Security.OAuth;
 
-namespace Agiil.Web.Services.Auth
+namespace Agiil.Web.OAuth
 {
   public class OAuthAuthorizationProvider : OAuthAuthorizationServerProvider
   {

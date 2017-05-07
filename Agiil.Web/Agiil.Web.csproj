@@ -222,10 +222,10 @@
     <Folder Include="Services\" />
     <Folder Include="Services\Auth\" />
     <Folder Include="Bootstrap\" />
-    <Folder Include="Services\Config\" />
     <Folder Include="Temp\" />
     <Folder Include="Views\Database\" />
     <Folder Include="Views\NewTicket\" />
+    <Folder Include="OAuth\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -241,13 +241,8 @@
     <Compile Include="Models\LoginCredentials.cs" />
     <Compile Include="Services\Auth\HttpContextPrincipalGetter.cs" />
     <Compile Include="Bootstrap\AuthModule.cs" />
-    <Compile Include="Services\Auth\OAuthAuthorizationProvider.cs" />
-    <Compile Include="Services\Auth\OAuthOptionsFactory.cs" />
     <Compile Include="Bootstrap\OwinCompatibleLifetimeScopeProvider.cs" />
     <Compile Include="App_Start\OwinStartupType.cs" />
-    <Compile Include="Services\Auth\OAuthAuthorizationChecker.cs" />
-    <Compile Include="Services\Config\OAuthConfigurationSection.cs" />
-    <Compile Include="Services\Config\IOAuthConfiguration.cs" />
     <Compile Include="Bootstrap\ContainerBuilderExtensions.cs" />
     <Compile Include="Controllers\NewTicketController.cs" />
     <Compile Include="Models\NewTicketModel.cs" />
@@ -257,11 +252,8 @@
     <Compile Include="Models\TicketDetail.cs" />
     <Compile Include="Controllers\DatabaseController.cs" />
     <Compile Include="Models\DatabaseResetModel.cs" />
-    <Compile Include="Services\Auth\AutofacOAuthApplicationConnection.cs" />
-    <Compile Include="Services\Auth\IOAuthApplicationConnection.cs" />
-    <Compile Include="Bootstrap\OAuthApplicationConnectionModule.cs" />
-    <Compile Include="Services\Auth\OAuthJwtFormat.cs" />
-    <Compile Include="Services\Auth\CustomInMemorySecurityKey.cs" />
+    <Compile Include="Bootstrap\OAuthModule.cs" />
+    <Compile Include="OAuth\AutofacOAuthApplicationConnection.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -293,6 +285,10 @@
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
       <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
       <Name>Agiil.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Web.Auth\Agiil.Web.OAuth.csproj">
+      <Project>{9CECEC15-9B54-4DDD-B0FB-8E9E14FBBA15}</Project>
+      <Name>Agiil.Web.OAuth</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

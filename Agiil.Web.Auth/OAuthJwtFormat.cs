@@ -1,11 +1,8 @@
 ﻿using System;
 using System.IdentityModel.Tokens;
-using System.Security.Cryptography;
-using Agiil.Web.Services.Config;
 using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.DataHandler.Encoder;
 
-namespace Agiil.Web.Services.Auth
+namespace Agiil.Web.OAuth
 {
   public class OAuthJwtFormat : ISecureDataFormat<AuthenticationTicket>
   {
@@ -30,7 +27,7 @@ namespace Agiil.Web.Services.Auth
       var base64Key = config.Base64JwtSecretKey;
       var key = Convert.FromBase64String(base64Key);
 
-      var signingCredentials = new SigningCredentials(new CustomInMemorySymmetricSecurityKey(key),
+      var signingCredentials = new SigningCredentials(new MonoCompatibleInMemorySymmetricSecurityKey(key),
                                                       SecurityAlgorithms.HmacSha256Signature,
                                                       SecurityAlgorithms.Sha256Digest);
 

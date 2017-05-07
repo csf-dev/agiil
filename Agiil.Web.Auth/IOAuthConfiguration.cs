@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Agiil.Web.Services.Config
+namespace Agiil.Web.OAuth
 {
   public interface IOAuthConfiguration
   {
