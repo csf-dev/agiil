@@ -10,7 +10,7 @@ namespace Agiil.Web.Services.Auth
   {
     #region constants
 
-    const string
+    internal const string
       InvalidGrant = "invalid_grant",
       AuthenticationFailureMessage = "The user name or password is incorrect",
       JwtBearerTokenAuthenticationType = "JWT";

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Web.Http;
 using Agiil.Domain.Tickets;
 using Agiil.Web.Models;
@@ -6,7 +7,7 @@ using CSF.Entities;
 
 namespace Agiil.Web.ApiControllers
 {
-  //[Authorize]
+  [Authorize]
   public class TicketController : ApiController
   {
     readonly ITicketCreator ticketCreator;

@@ -39,47 +39,66 @@ namespace Agiil.Web.App_Start
 
       var container = ConfigureDependencyInjection(app, config);
 
+      ConfigureOAuthServer(app, container);
       ConfigureWebApi(app, container);
       ConfigureWebApp(app, container);
     }
 
+    void ConfigureOAuthServer(IAppBuilder app, IContainer container)
+    {
+      app.MapWhen(IsOAuthUrl, inner => {
+        var authServerOptions = container.Resolve<OAuthAuthorizationServerOptions>();
+        inner.UseOAuthAuthorizationServer(authServerOptions);
+      });
+    }
+
     void ConfigureWebApi(IAppBuilder app, IContainer container)
     {
-      app.MapWhen(IsApiOrOAuthUrl, inner => {
+      app.MapWhen(IsWebApiUrl, inner => {
         var config = new HttpConfiguration();
 
         config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
 
-        config.SuppressDefaultHostAuthentication();
+        ConfigureBearerTokenAuthentication(inner, container);
 
-        ConfigureBearerTokenAuthentication(app, container);
+        config.Filters.Add(new HostAuthenticationFilter(OAuthAuthorizationChecker.JwtBearerTokenAuthenticationType));
 
         config.Routes.Clear();
         new RouteConfiguration().RegisterWebApiRoutes(config);
-        app.UseAutofacWebApi(config);
-        app.UseWebApi(config);
+        inner.UseAutofacWebApi(config);
+        inner.UseWebApi(config);
       });
     }
 
     void ConfigureWebApp(IAppBuilder app, IContainer container)
     {
-      app.MapWhen(ctx => !IsApiOrOAuthUrl(ctx), inner => {
+      app.MapWhen(IsWebAppUrl, inner => {
         new RouteConfiguration().RegisterMvcRoutes (RouteTable.Routes);
         new MvcViewConfiguration().RegisterViewEngines(ViewEngines.Engines);
-        ConfigureCookieAuthentication(app);
-        app.UseAutofacMvc();
+        ConfigureCookieAuthentication(inner);
+        inner.UseAutofacMvc();
       });
     }
 
-    bool IsApiOrOAuthUrl(IOwinContext context)
+    bool IsOAuthUrl(IOwinContext context)
     {
       if(context.Request.Uri.LocalPath.StartsWith(RouteConfiguration.OAuthPrefix, StringComparison.InvariantCulture))
         return true;
 
+      return false;
+    }
+
+    bool IsWebApiUrl(IOwinContext context)
+    {
       if(context.Request.Uri.LocalPath.StartsWith("/" + RouteConfiguration.ApiPrefix, StringComparison.InvariantCulture))
         return true;
       
       return false;
+    }
+
+    bool IsWebAppUrl(IOwinContext context)
+    {
+      return !(IsOAuthUrl(context) || IsWebApiUrl(context));
     }
 
     private IContainer ConfigureDependencyInjection(IAppBuilder app, HttpConfiguration config)
@@ -121,17 +140,7 @@ namespace Agiil.Web.App_Start
         {
           SignatureProviderFactory = new CustomSignatureProviderFactory(),
         },
-        Provider = new OAuthBearerAuthenticationProvider
-        {
-          OnValidateIdentity = ctx => {
-            Thread.CurrentPrincipal = new ClaimsPrincipal(ctx.Ticket.Identity);
-            return Task.FromResult<object>(null);
-          }
-        },
       });
-
-      var authServerOptions = container.Resolve<OAuthAuthorizationServerOptions>();
-      builder.UseOAuthAuthorizationServer(authServerOptions);
 
       builder.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
     }

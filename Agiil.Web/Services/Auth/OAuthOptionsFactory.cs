@@ -23,10 +23,9 @@ namespace Agiil.Web.Services.Auth
         AuthenticationMode = AuthenticationMode.Active,
       };
 
-      //#if DEBUG
+      #if DEBUG
       oauthOptions.AllowInsecureHttp = true;
-      oauthOptions.ApplicationCanDisplayErrors = true;
-      //#endif
+      #endif
 
       return oauthOptions;
     }

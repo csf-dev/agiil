@@ -14,7 +14,7 @@ namespace Agiil.Web.App_Start
     internal const string
       ApiPrefix = "api",
       OAuthPrefix = "/oauth2",
-      OAuthTokenPath = "/token";
+      OAuthTokenPath = OAuthPrefix + "/token";
 
     const string ControllerNamePattern = "^(.+)Controller$";
     static readonly Regex ControllerNameMatcher = new Regex(ControllerNamePattern, RegexOptions.Compiled);
