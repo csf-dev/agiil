@@ -21,7 +21,6 @@ namespace Agiil.Web.Services.Auth
         Provider = provider,
         AccessTokenFormat = format,
         AuthenticationMode = AuthenticationMode.Active,
-
       };
 
       //#if DEBUG

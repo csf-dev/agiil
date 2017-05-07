@@ -11,7 +11,10 @@ namespace Agiil.Web.App_Start
   {
     #region constants
 
-    internal const string OAuthTokenPath = "/oauth2/token";
+    internal const string
+      ApiPrefix = "api",
+      OAuthPrefix = "/oauth2",
+      OAuthTokenPath = "/token";
 
     const string ControllerNamePattern = "^(.+)Controller$";
     static readonly Regex ControllerNameMatcher = new Regex(ControllerNamePattern, RegexOptions.Compiled);
@@ -23,6 +26,8 @@ namespace Agiil.Web.App_Start
     public void RegisterMvcRoutes (RouteCollection routes)
     {
       routes.IgnoreRoute ("{resource}.axd/{*pathInfo}");
+      //routes.IgnoreRoute("api/{*pathInfo}");
+      //routes.IgnoreRoute("oauth2/{*pathInfo}");
 
       routes.MapMvcAttributeRoutes();
 
@@ -35,7 +40,7 @@ namespace Agiil.Web.App_Start
 
     public void RegisterWebApiRoutes(HttpConfiguration config)
     {
-      //config.MapHttpAttributeRoutes ();
+      config.MapHttpAttributeRoutes ();
 
       config.Routes.MapHttpRoute (
         name: "DefaultApi",

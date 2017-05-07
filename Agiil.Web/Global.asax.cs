@@ -12,9 +12,6 @@ namespace Agiil.Web
     protected void Application_Start ()
     {
       AreaRegistration.RegisterAllAreas ();
-
-      new RouteConfiguration().RegisterMvcRoutes (RouteTable.Routes);
-      new MvcViewConfiguration().RegisterViewEngines(ViewEngines.Engines);
     }
   }
 }
