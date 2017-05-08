@@ -11,6 +11,9 @@ namespace Agiil.BDD.Bootstrap
       builder
         .RegisterType<TicketListModelContext>()
         .InstancePerLifetimeScope();
+      builder
+        .RegisterType<TicketDetailModelContext>()
+        .InstancePerLifetimeScope();
     }
   }
 }

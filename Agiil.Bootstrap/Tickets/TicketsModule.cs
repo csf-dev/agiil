@@ -12,6 +12,7 @@ namespace Agiil.Bootstrap.Tickets
       builder.RegisterType<TicketCreator>().As<ITicketCreator>();
       builder.RegisterType<CreateTicketValidatorFactory>().As<ICreateTicketValidatorFactory>();
       builder.RegisterType<TicketLister>().As<ITicketLister>();
+      builder.RegisterType<TicketDetailService>().As<ITicketDetailService>();
     }
   }
 }

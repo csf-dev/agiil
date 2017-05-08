@@ -33,8 +33,10 @@ namespace Agiil.Web.App_Start
 
       var container = ConfigureDependencyInjection(app, config);
 
+      config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+
       ConfigureOAuthServer(app, container);
-      ConfigureWebApi(app, container);
+      ConfigureWebApi(app, container, config);
       ConfigureWebApp(app, container);
     }
 
@@ -46,19 +48,16 @@ namespace Agiil.Web.App_Start
       });
     }
 
-    void ConfigureWebApi(IAppBuilder app, IContainer container)
+    void ConfigureWebApi(IAppBuilder app, IContainer container, HttpConfiguration config)
     {
       app.MapWhen(IsWebApiUrl, inner => {
-        var config = new HttpConfiguration();
-
-        config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
-
         ConfigureBearerTokenAuthentication(inner, container);
 
         config.Filters.Add(new HostAuthenticationFilter(OAuthAuthorizationChecker.AuthenticationType));
 
         config.Routes.Clear();
         new RouteConfiguration().RegisterWebApiRoutes(config);
+        new WebApiModelBindingRules().Apply(config);
         inner.UseAutofacWebApi(config);
         inner.UseWebApi(config);
       });

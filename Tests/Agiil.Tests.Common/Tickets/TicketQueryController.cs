@@ -7,6 +7,7 @@ using Agiil.Web.Controllers;
 using Agiil.Web.Models;
 using CSF.Data.Entities;
 using CSF.Data.NHibernate;
+using CSF.Entities;
 using NUnit.Framework;
 
 namespace Agiil.Tests.Tickets
@@ -15,7 +16,9 @@ namespace Agiil.Tests.Tickets
   {
     readonly IRepository<Ticket> repo;
     readonly TicketListModelContext ticketListContext;
+    readonly TicketDetailModelContext ticketDetailContext;
     readonly Func<TicketsController> ticketListControllerFactory;
+    readonly Func<TicketController> ticketDetailControllerFactory;
 
     public bool DoesTicketExist(TicketSearchCriteria searchHelper = null)
     {
@@ -26,7 +29,19 @@ namespace Agiil.Tests.Tickets
     public void VerifyThatTicketsAreListedInOrder(IList<TicketSummaryDto> expected)
     {
       var actual = ticketListContext.Model.Tickets;
-      CollectionAssert.AreEqual(expected, actual);
+      CollectionAssert.AreEqual(expected, actual, new TicketSummaryDtoComparer());
+    }
+
+    public void VerifyThatTicketDetailMatchesExpectation(TicketDetailDto expected)
+    {
+      var actual = ticketDetailContext.Model.Ticket;
+      Assert.IsTrue(new TicketDetailDtoComparer().Equals(expected, actual), "Instances are equal");
+    }
+
+    public void VerifyTheUserSeesA404Error()
+    {
+      Assert.IsTrue(ticketDetailContext.NotFound, "Not found error response");
+      Assert.IsNull(ticketDetailContext.Model, "No ticket model associated");
     }
 
     public void VisitTicketListControllerAndStoreListInContext()
@@ -36,6 +51,21 @@ namespace Agiil.Tests.Tickets
       var model = (TicketListModel) result.Model;
 
       ticketListContext.Model = model;
+    }
+
+    public void VisitTicketDetailControllerAndStoreDetail(long id)
+    {
+      var controller = ticketDetailControllerFactory();
+      var result = controller.Index(Identity.Create<Ticket>(id));
+
+      if(result is HttpNotFoundResult)
+      {
+        ticketDetailContext.NotFound = true;
+        return;
+      }
+
+      var viewResult = (ViewResult) result;
+      ticketDetailContext.Model = (TicketDetailModel) viewResult.Model;
     }
 
     Expression<Func<Ticket,bool>> CreateTicketSearchPredicate(TicketSearchCriteria helper)
@@ -51,8 +81,14 @@ namespace Agiil.Tests.Tickets
 
     public TicketQueryController(IRepository<Ticket> repo,
                                  TicketListModelContext ticketListContext,
-                                 Func<TicketsController> ticketListControllerFactory)
+                                 Func<TicketsController> ticketListControllerFactory,
+                                 Func<TicketController> ticketDetailControllerFactory,
+                                 TicketDetailModelContext ticketDetailContext)
     {
+      if(ticketDetailContext == null)
+        throw new ArgumentNullException(nameof(ticketDetailContext));
+      if(ticketDetailControllerFactory == null)
+        throw new ArgumentNullException(nameof(ticketDetailControllerFactory));
       if(ticketListControllerFactory == null)
         throw new ArgumentNullException(nameof(ticketListControllerFactory));
       if(ticketListContext == null)
@@ -63,6 +99,8 @@ namespace Agiil.Tests.Tickets
       this.repo = repo;
       this.ticketListContext = ticketListContext;
       this.ticketListControllerFactory = ticketListControllerFactory;
+      this.ticketDetailControllerFactory = ticketDetailControllerFactory;
+      this.ticketDetailContext = ticketDetailContext;
     }
   }
 }

@@ -22,6 +22,12 @@ namespace Agiil.BDD.Bindings.Tickets
       queryController.VisitTicketListControllerAndStoreListInContext();
     }
 
+    [When("the user visits the ticket detail page for ticket ID (\\d+)")]
+    public void TheUserVisitsTheTicketDetailPage(long id)
+    {
+      queryController.VisitTicketDetailControllerAndStoreDetail(id);
+    }
+
     [Then("a ticket should be created with the following properties:")]
     public void ATicketShouldBeCreated(Table ticketProperties)
     {
@@ -52,6 +58,21 @@ namespace Agiil.BDD.Bindings.Tickets
       queryController.VerifyThatTicketsAreListedInOrder(tickets);
     }
 
+    [Then("the following ticket detail should be displayed:")]
+    public void TheFollowingTicketShouldBeDisplayed(Table ticketProperties)
+    {
+      if(ticketProperties == null)
+        throw new ArgumentNullException(nameof(ticketProperties));
+
+      var ticket = ticketProperties.CreateInstance<TicketDetailDto>();
+      queryController.VerifyThatTicketDetailMatchesExpectation(ticket);
+    }
+
+    [Then("the user sees a 404 error page")]
+    public void TheUserSeesA404ErrorPage()
+    {
+      queryController.VerifyTheUserSeesA404Error();
+    }
 
     public TicketQuerySteps(ITicketQueryController queryController)
     {

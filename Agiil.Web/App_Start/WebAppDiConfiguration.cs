@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Reflection;
 using System.Web.Http;
+using System.Web.Http.ModelBinding;
+using System.Web.Mvc;
 using Agiil.Bootstrap;
+using Agiil.Web.ModelBinders;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
@@ -41,7 +44,10 @@ namespace Agiil.Web.App_Start
 
       builder.RegisterControllers(mvcAssembly);
       builder.RegisterModelBinders(mvcAssembly);
-      builder.RegisterModelBinderProvider();
+      builder
+        .RegisterType<AutofacMvcModelBinderProviderWithOpenGenericSupport>()
+        .As<IModelBinderProvider>()
+        .SingleInstance();
       builder.RegisterModule<AutofacWebTypesModule>();
     }
 
@@ -51,6 +57,9 @@ namespace Agiil.Web.App_Start
 
       builder.RegisterApiControllers(apiAssembly);
       builder.RegisterWebApiFilterProvider(config);
+      builder
+        .RegisterType<AutofacWebApiModelBinderProviderWithOpenGenericSupport>()
+        .As<ModelBinderProvider>();
     }
 
     protected virtual void RegisterWebAppComponents(ContainerBuilder builder)

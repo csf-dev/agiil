@@ -70,6 +70,7 @@
     <Compile Include="Tickets\CreateTicketValidatorFactory.cs" />
     <Compile Include="Data\DevelopmentInitialDataCreator.cs" />
     <Compile Include="Tickets\TicketLister.cs" />
+    <Compile Include="Tickets\TicketDetailService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

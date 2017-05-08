@@ -233,6 +233,7 @@
     <Folder Include="OAuth\" />
     <Folder Include="Views\Tickets\" />
     <Folder Include="Services\Tickets\" />
+    <Folder Include="Views\Ticket\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -256,7 +257,7 @@
     <Compile Include="ApiControllers\TicketController.cs" />
     <Compile Include="Models\NewTicketSpecification.cs" />
     <Compile Include="Models\NewTicketResponse.cs" />
-    <Compile Include="Models\TicketDetail.cs" />
+    <Compile Include="Models\TicketDetailDto.cs" />
     <Compile Include="Controllers\DatabaseController.cs" />
     <Compile Include="Models\DatabaseResetModel.cs" />
     <Compile Include="Bootstrap\OAuthModule.cs" />
@@ -267,6 +268,16 @@
     <Compile Include="Services\Tickets\TicketSummaryMapper.cs" />
     <Compile Include="Bootstrap\TicketsServicesModule.cs" />
     <Compile Include="ApiControllers\TicketsController.cs" />
+    <Compile Include="Models\TicketInfoDtoBase.cs" />
+    <Compile Include="Models\TicketDetailModel.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
+    <Compile Include="Services\Tickets\TicketDetailMapper.cs" />
+    <Compile Include="ModelBinders\IdentityModelBinder.cs" />
+    <Compile Include="ModelBinders\AutofacMvcModelBinderProviderWithOpenGenericSupport.cs" />
+    <Compile Include="ModelBinders\AutofacWebApiModelBinderProviderWithOpenGenericSupport.cs" />
+    <Compile Include="Bootstrap\WebApiModelBindersModule.cs" />
+    <Compile Include="ModelBinders\IdentityWebApiModelBinder.cs" />
+    <Compile Include="App_Start\WebApiModelBindingRules.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -282,6 +293,7 @@
     <None Include="Views\Database\Index.pt" />
     <None Include="Views\NewTicket\Index.pt" />
     <None Include="Views\Tickets\Index.pt" />
+    <None Include="Views\Ticket\Index.pt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

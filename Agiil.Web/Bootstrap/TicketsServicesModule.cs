@@ -9,6 +9,7 @@ namespace Agiil.Web.Bootstrap
     protected override void Load(ContainerBuilder builder)
     {
       builder.RegisterType<TicketSummaryMapper>();
+      builder.RegisterType<TicketDetailMapper>();
     }
   }
 }

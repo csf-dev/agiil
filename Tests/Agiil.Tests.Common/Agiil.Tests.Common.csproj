@@ -159,6 +159,10 @@
     <Compile Include="Tickets\BulkTicketSpecification.cs" />
     <Compile Include="Tickets\BulkTicketCreator.cs" />
     <Compile Include="Tickets\TicketListModelContext.cs" />
+    <Compile Include="Autofixture\BulkTicketSpecificationCustomization.cs" />
+    <Compile Include="Tickets\TicketSummaryDtoComparer.cs" />
+    <Compile Include="Tickets\TicketDetailDtoComparer.cs" />
+    <Compile Include="Tickets\TicketDetailModelContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">

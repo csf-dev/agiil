@@ -12,6 +12,12 @@ namespace Agiil.Tests.Tickets
 
     void VisitTicketListControllerAndStoreListInContext();
 
+    void VisitTicketDetailControllerAndStoreDetail(long id);
+
     void VerifyThatTicketsAreListedInOrder(IList<TicketSummaryDto> expected);
+
+    void VerifyThatTicketDetailMatchesExpectation(TicketDetailDto expected);
+
+    void VerifyTheUserSeesA404Error();
   }
 }

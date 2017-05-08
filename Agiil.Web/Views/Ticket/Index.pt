@@ -1,0 +1,16 @@
+﻿<html lang="en" metal:use-macro="Views/Shared/EmptyPage/macros/page">
+<head>
+<title>Ticket detail</title>
+</head>
+<body metal:fill-slot="body_element">
+<h1 tal:content="here/Ticket/Title">Ticket title</h1>
+<p>
+  Created by <strong tal:content="here/Ticket/Creator">username</strong>
+  on <strong tal:content="here/Ticket/CreationTimestamp">2001-01-01 19:21:22</strong>.
+</p>
+<h2>Description</h2>
+<div tal:content="here/Ticket/Description">
+  Ticket description here.
+</div>
+</body>
+</html>

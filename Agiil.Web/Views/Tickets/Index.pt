@@ -20,7 +20,9 @@
   </thead>
   <tbody>
     <tr tal:repeat="ticket tickets">
-      <td tal:content="ticket/Title">Ticket title here</td>
+      <td tal:define="url string:Ticket/Index/${ticket/Id}">
+        <a href="Ticket/Index/1" tal:attributes="href url" tal:content="ticket/Title">Ticket title here</a>
+      </td>
       <td tal:content="ticket/Creator">username</td>
       <td>
         <span tal:attributes="title ticket/CreationTimestamp"
