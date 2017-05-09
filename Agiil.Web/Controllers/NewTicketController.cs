@@ -18,17 +18,14 @@ namespace Agiil.Web.Controllers
     [HttpGet]
     public ActionResult Index()
     {
-      var model = GetTempData<NewTicketModel>(NewModelKey)?? new NewTicketModel();
+      var model = GetTempData<NewTicketModel>(NewModelKey)?? GetModel();
       return View(model);
     }
 
     [HttpPost]
     public ActionResult Create(NewTicketSpecification spec)
     {
-      var model = new NewTicketModel
-      {
-        Specification = spec,
-      };
+      var model = GetModel(spec);
       var request = new CreateTicketRequest
       {
         Title = model.Specification?.Title,
@@ -36,7 +33,6 @@ namespace Agiil.Web.Controllers
       };
 
       var response = ticketCreator.Create(request);
-
       model.Response = new NewTicketResponse
       {
         TitleIsInvalid = response.TitleIsInvalid,
@@ -48,7 +44,15 @@ namespace Agiil.Web.Controllers
       return RedirectToAction(nameof(NewTicketController.Index));
     }
 
-    public NewTicketController(ITicketCreator ticketCreator)
+    NewTicketModel GetModel(NewTicketSpecification spec = null)
+    {
+      var model = ModelFactory.GetModel<NewTicketModel>();
+      model.Specification = spec;
+      return model;
+    }
+
+    public NewTicketController(ITicketCreator ticketCreator, Services.SharedModel.StandardPageModelFactory modelFactory)
+      : base(modelFactory)
     {
       if(ticketCreator == null)
         throw new ArgumentNullException(nameof(ticketCreator));

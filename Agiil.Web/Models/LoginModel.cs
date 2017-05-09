@@ -1,33 +1,19 @@
 ﻿using Agiil.Auth;
 using Agiil.Domain.Auth;
+using Agiil.Web.Models.Shared;
 
 namespace Agiil.Web.Models
 {
-  public class LoginModel
+  public class LoginModel : StandardPageModel
   {
-    readonly LoginResult result;
-    readonly ICurrentUserInfo userInfo;
-    readonly LoginCredentials enteredCredentials;
+    public LoginResult Result { get; set; }
 
-    public bool LoginFailed => LoginAttempted && !result.Success;
+    public virtual LoginCredentials EnteredCredentials { get; set; }
 
-    public bool LoginSucceded => LoginAttempted && result.Success;
+    public bool LoginFailed => LoginAttempted && !Result.Success;
 
-    public bool LoginAttempted => result != null;
+    public bool LoginSucceded => LoginAttempted && Result.Success;
 
-    public string Username => userInfo?.Username;
-
-    public LoginResult Result => result;
-
-    public virtual LoginCredentials EnteredCredentials => enteredCredentials;
-
-    public LoginModel(LoginResult result,
-                      ICurrentUserInfo userInfo,
-                      LoginCredentials enteredCredentials)
-    {
-      this.userInfo = userInfo;
-      this.result = result;
-      this.enteredCredentials = enteredCredentials;
-    }
+    public bool LoginAttempted => Result != null;
   }
 }

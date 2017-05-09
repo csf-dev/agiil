@@ -20,7 +20,6 @@ namespace Agiil.Web.Controllers
 
     readonly LoginRequestCreator loginRequestCreator;
     readonly ILoginLogoutManager loginLogoutManager;
-    readonly IIdentityReader identityReader;
 
     #endregion
 
@@ -70,11 +69,10 @@ namespace Agiil.Web.Controllers
 
     LoginModel GetLoginModel()
     {
-      var currentUser = identityReader.GetCurrentUserInfo();
-      var result = GetTempData<LoginResult>(LoginResultKey);
-      var credentials = GetTempData<Models.LoginCredentials>(CredentialsKey);
-
-      return new LoginModel(result, currentUser, credentials);
+      var model = ModelFactory.GetModel<LoginModel>();
+      model.Result = GetTempData<LoginResult>(LoginResultKey);
+      model.EnteredCredentials = GetTempData<Models.LoginCredentials>(CredentialsKey);
+      return model;
     }
 
     #endregion
@@ -83,10 +81,9 @@ namespace Agiil.Web.Controllers
 
     public LoginController(LoginRequestCreator loginRequestCreator,
                            ILoginLogoutManager loginLogoutManager,
-                           IIdentityReader identityReader)
+                           Services.SharedModel.StandardPageModelFactory modelFactory)
+      : base(modelFactory)
     {
-      if(identityReader == null)
-        throw new ArgumentNullException(nameof(identityReader));
       if(loginLogoutManager == null)
         throw new ArgumentNullException(nameof(loginLogoutManager));
       if(loginRequestCreator == null)
@@ -94,7 +91,6 @@ namespace Agiil.Web.Controllers
 
       this.loginRequestCreator = loginRequestCreator;
       this.loginLogoutManager = loginLogoutManager;
-      this.identityReader = identityReader;
     }
 
     #endregion

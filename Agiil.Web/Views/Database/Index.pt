@@ -1,21 +1,23 @@
-﻿<html lang="en" metal:use-macro="Views/Shared/EmptyPage/macros/page">
+﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
 <head>
-<title>Database reset</title>
+<title metal:fill-slot="title_element">Database reset</title>
 </head>
-<body metal:fill-slot="body_element">
+<body>
 <h1>Database reset</h1>
-<form method="post" action="Database/Reset" tal:condition="not:here/HasBeenReset">
-  <fieldset>
-    <p>
-      This page allows you to reset the development database back to its initial state.
-    </p>
-    <div class="form_element button">
-      <button>Reset now</button>
-    </div>
-  </fieldset>
-</form>
-<p tal:condition="here/HasBeenReset">
-  <em>The database has been reset successfully.</em>
-</p>
+<div metal:fill-slot="page_content">
+  <form method="post" action="Database/Reset" tal:condition="not:here/HasBeenReset">
+    <fieldset>
+      <p>
+        This page allows you to reset the development database back to its initial state.
+      </p>
+      <div class="form_element button">
+        <button>Reset now</button>
+      </div>
+    </fieldset>
+  </form>
+  <p tal:condition="here/HasBeenReset">
+    <em>The database has been reset successfully.</em>
+  </p>
+</div>
 </body>
 </html>

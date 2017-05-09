@@ -14,43 +14,40 @@ namespace Agiil.Web.Controllers
   {
     const string TempModelKey = "Reset model";
 
-    readonly Func<ISession> session;
-    readonly Func<IDatabaseCreator> creator;
-    readonly Func<IInitialDataCreator> dataCreator;
+    readonly Lazy<IDatabaseResetter> resetter;
 
     [HttpGet]
     public ActionResult Index()
     {
       var model = base.GetTempData<DatabaseResetModel>(TempModelKey);
-      model = model?? new DatabaseResetModel();
+      model = model?? GetModel();
       return View(model);
     }
 
     [HttpPost]
     public ActionResult Reset()
     {
-      creator().Create(session().Connection, null);
-      dataCreator().Create();
-
-      var model = new DatabaseResetModel { HasBeenReset = true };
+      resetter.Value.ResetDatabase();
+      var model = GetModel(true);
       TempData.Add(TempModelKey, model);
       return RedirectToAction(nameof(Index));
     }
 
-    public DatabaseController(Func<ISession> session,
-                              Func<IDatabaseCreator> creator,
-                              Func<IInitialDataCreator> dataCreator)
+    DatabaseResetModel GetModel(bool hasBeenReset = false)
     {
-      if(dataCreator == null)
-        throw new ArgumentNullException(nameof(dataCreator));
-      if(creator == null)
-        throw new ArgumentNullException(nameof(creator));
-      if(session == null)
-        throw new ArgumentNullException(nameof(session));
+      var model = ModelFactory.GetModel<DatabaseResetModel>();
+      model.HasBeenReset = hasBeenReset;
+      return model;
+    }
 
-      this.session = session;
-      this.creator = creator;
-      this.dataCreator = dataCreator;;
+    public DatabaseController(Lazy<IDatabaseResetter> resetter,
+                              Services.SharedModel.StandardPageModelFactory modelFactory)
+      : base(modelFactory)
+    {
+      if(resetter == null)
+        throw new ArgumentNullException(nameof(resetter));
+
+      this.resetter = resetter;
     }
   }
 }

@@ -74,6 +74,8 @@
     <Compile Include="IConnectionStringProvider.cs" />
     <Compile Include="ConfigurationManagerConnectionStringProvider.cs" />
     <Compile Include="IDataAssemblyMarker.cs" />
+    <Compile Include="IDatabaseResetter.cs" />
+    <Compile Include="DevelopmentDatabaseResetter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mappings\" />

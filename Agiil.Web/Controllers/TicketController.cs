@@ -22,16 +22,22 @@ namespace Agiil.Web.Controllers
       if(ReferenceEquals(ticket, null))
         return HttpNotFound();
 
-      var model = new TicketDetailModel
-      {
-        Ticket = mapper.Map(ticket),
-      };
+      var model = GetModel(ticket);
 
       return View (model);
     }
 
+    TicketDetailModel GetModel(Ticket ticket)
+    {
+      var model = ModelFactory.GetModel<TicketDetailModel>();
+      model.Ticket = mapper.Map(ticket);
+      return model;
+    }
+
     public TicketController(ITicketDetailService ticketDetailService,
-                            TicketDetailMapper mapper)
+                            TicketDetailMapper mapper,
+                            Services.SharedModel.StandardPageModelFactory modelFactory)
+      : base(modelFactory)
     {
       if(mapper == null)
         throw new ArgumentNullException(nameof(mapper));

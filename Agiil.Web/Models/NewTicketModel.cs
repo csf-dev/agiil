@@ -1,7 +1,9 @@
 ﻿using System;
+using Agiil.Web.Models.Shared;
+
 namespace Agiil.Web.Models
 {
-  public class NewTicketModel
+  public class NewTicketModel : StandardPageModel
   {
     public NewTicketSpecification Specification { get; set; }
 

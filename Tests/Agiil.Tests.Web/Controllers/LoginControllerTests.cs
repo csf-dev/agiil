@@ -16,15 +16,10 @@ namespace Agiil.Tests.Web.Controllers
     #region tests
 
     [Test, AutoMoqData]
-    public void Index_returns_view_using_existing_model(ILoginLogoutManager loginLogoutManager,
-                                                        ILoginRequest request,
-                                                        LoginResult loginResult,
-                                                        IIdentityReader identityReader)
+    public void Index_returns_view_using_existing_model(LoginResult loginResult,
+                                                        [NoAutoProperties] LoginController sut)
     {
       // Arrange
-      LoginRequestCreator requestCreator = (u, p) => request;
-      var sut = new LoginController(requestCreator, loginLogoutManager, identityReader);
-
       sut.TempData.Add(LoginController.LoginResultKey, loginResult);
 
       // Act
@@ -39,38 +34,32 @@ namespace Agiil.Tests.Web.Controllers
     }
 
     [Test, AutoMoqData]
-    public void Login_uses_login_logout_manager_service(ILoginLogoutManager loginLogoutManager,
-                                                        ILoginRequest request,
+    public void Login_uses_login_logout_manager_service([Frozen] ILoginLogoutManager loginLogoutManager,
                                                         Agiil.Web.Models.LoginCredentials credentials,
-                                                        IIdentityReader identityReader)
+                                                        [NoAutoProperties] LoginController sut)
     {
       // Arrange
-      LoginRequestCreator requestCreator = (u, p) => request;
       Mock.Get(loginLogoutManager)
           .Setup(x => x.AttemptLogin(It.IsAny<ILoginRequest>()))
           .Returns(LoginResult.LoginFailed);
-      var sut = new LoginController(requestCreator, loginLogoutManager, identityReader);
 
       // Act
       sut.Login(credentials);
 
       // Assert
-      Mock.Get(loginLogoutManager).Verify(x => x.AttemptLogin(request), Times.Once());
+      Mock.Get(loginLogoutManager).Verify(x => x.AttemptLogin(It.IsAny<ILoginRequest>()), Times.Once());
     }
 
     [Test, AutoMoqData]
-    public void Login_redirects_to_home_controller_after_successful_login(ILoginLogoutManager loginLogoutManager,
-                                                                          ILoginRequest request,
+    public void Login_redirects_to_home_controller_after_successful_login([Frozen] ILoginLogoutManager loginLogoutManager,
                                                                           Agiil.Web.Models.LoginCredentials credentials,
                                                                           string username,
-                                                                          IIdentityReader identityReader)
+                                                                          [NoAutoProperties] LoginController sut)
     {
       // Arrange
-      LoginRequestCreator requestCreator = (u, p) => request;
       Mock.Get(loginLogoutManager)
           .Setup(x => x.AttemptLogin(It.IsAny<ILoginRequest>()))
           .Returns(new LoginResult(username));
-      var sut = new LoginController(requestCreator, loginLogoutManager, identityReader);
 
       // Act
       var result = sut.Login(credentials);
@@ -83,17 +72,14 @@ namespace Agiil.Tests.Web.Controllers
     }
 
     [Test, AutoMoqData]
-    public void Login_redirects_to_login_page_after_failed_login(ILoginLogoutManager loginLogoutManager,
-                                                                 ILoginRequest request,
+    public void Login_redirects_to_login_page_after_failed_login([Frozen] ILoginLogoutManager loginLogoutManager,
                                                                  Agiil.Web.Models.LoginCredentials credentials,
-                                                                 IIdentityReader identityReader)
+                                                                 [NoAutoProperties] LoginController sut)
     {
       // Arrange
-      LoginRequestCreator requestCreator = (u, p) => request;
       Mock.Get(loginLogoutManager)
           .Setup(x => x.AttemptLogin(It.IsAny<ILoginRequest>()))
           .Returns(LoginResult.LoginFailed);
-      var sut = new LoginController(requestCreator, loginLogoutManager, identityReader);
 
       // Act
       var result = sut.Login(credentials);
@@ -106,16 +92,13 @@ namespace Agiil.Tests.Web.Controllers
     }
 
     [Test, AutoMoqData]
-    public void Logout_uses_login_logout_manager_service(ILoginLogoutManager loginLogoutManager,
-                                                         ILoginRequest request,
-                                                         IIdentityReader identityReader)
+    public void Logout_uses_login_logout_manager_service([Frozen] ILoginLogoutManager loginLogoutManager,
+                                                         [NoAutoProperties] LoginController sut)
     {
       // Arrange
-      LoginRequestCreator requestCreator = (u, p) => request;
       Mock.Get(loginLogoutManager)
           .Setup(x => x.AttemptLogout())
           .Returns(LogoutResult.LogoutSuccessful);
-      var sut = new LoginController(requestCreator, loginLogoutManager, identityReader);
 
       // Act
       sut.Logout();
@@ -125,16 +108,13 @@ namespace Agiil.Tests.Web.Controllers
     }
 
     [Test, AutoMoqData]
-    public void Logout_redirects_to_logged_out_page_on_successful_logout(ILoginLogoutManager loginLogoutManager,
-                                                                         ILoginRequest request,
-                                                                         IIdentityReader identityReader)
+    public void Logout_redirects_to_logged_out_page_on_successful_logout([Frozen] ILoginLogoutManager loginLogoutManager,
+                                                                         [NoAutoProperties] LoginController sut)
     {
       // Arrange
-      LoginRequestCreator requestCreator = (u, p) => request;
       Mock.Get(loginLogoutManager)
           .Setup(x => x.AttemptLogout())
           .Returns(LogoutResult.LogoutSuccessful);
-      var sut = new LoginController(requestCreator, loginLogoutManager, identityReader);
 
       // Act
       var result = sut.Logout();

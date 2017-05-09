@@ -234,6 +234,9 @@
     <Folder Include="Views\Tickets\" />
     <Folder Include="Services\Tickets\" />
     <Folder Include="Views\Ticket\" />
+    <Folder Include="Content\Css\" />
+    <Folder Include="Models\Shared\" />
+    <Folder Include="Services\SharedModel\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -278,12 +281,20 @@
     <Compile Include="Bootstrap\WebApiModelBindersModule.cs" />
     <Compile Include="ModelBinders\IdentityWebApiModelBinder.cs" />
     <Compile Include="App_Start\WebApiModelBindingRules.cs" />
+    <Compile Include="Models\Shared\StandardPageModel.cs" />
+    <Compile Include="Models\Shared\LoginStateModel.cs" />
+    <Compile Include="Services\SharedModel\LoginStateReader.cs" />
+    <Compile Include="Services\SharedModel\StandardPageModelPopulator.cs" />
+    <Compile Include="Services\SharedModel\StandardPageModelFactory.cs" />
+    <Compile Include="Bootstrap\SharedModelServicesModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="web.config" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
+    <Content Include="Content\Css\Reset.css" />
+    <Content Include="Content\Css\StandardPage.css" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Home\Index.pt" />
@@ -294,6 +305,10 @@
     <None Include="Views\NewTicket\Index.pt" />
     <None Include="Views\Tickets\Index.pt" />
     <None Include="Views\Ticket\Index.pt" />
+    <None Include="Views\Shared\StandardPage.pt" />
+    <None Include="Views\Shared\StandardHeader.pt" />
+    <None Include="Views\Shared\Controls\HeaderLoginLogout.pt" />
+    <None Include="Views\Shared\Controls\SiteNavigation.pt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

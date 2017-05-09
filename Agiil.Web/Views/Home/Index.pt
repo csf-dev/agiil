@@ -1,12 +1,11 @@
-﻿<html lang="en" metal:use-macro="Views/Shared/EmptyPage/macros/page">
+﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
 <head>
-<title>Application home page</title>
+<title metal:fill-slot="title_element">Application home page</title>
 </head>
-<body metal:fill-slot="body_element">
-  <p>
-    We are running MVC version <code tal:content="ViewData/Version">5.0.0</code>,
-    on the <strong tal:content="ViewData/Runtime">Runtime</strong> framework.
-  </p>
-  <p><a href="Login">Log in</a>.</p>
+<body>
+<div metal:fill-slot="page_content">
+  <h1>Agiil</h1>
+  <p>Agiil home page.</p>
+</div>
 </body>
 </html>

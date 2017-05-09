@@ -17,15 +17,24 @@ namespace Agiil.Web.Controllers
     public ActionResult Index()
     {
       var tickets = lister.GetTickets();
-      var model = new TicketListModel
-      {
-        Tickets = mapper.Map(tickets)
-      };
+      var model = GetModel(tickets);
       return View (model);
     }
 
+    TicketListModel GetModel(IList<Ticket> tickets = null)
+    {
+      var model = ModelFactory.GetModel<TicketListModel>();
+
+      if(tickets != null)
+        model.Tickets = mapper.Map(tickets);
+
+      return model;
+    }
+
     public TicketsController(ITicketLister lister,
-                             TicketSummaryMapper mapper)
+                             TicketSummaryMapper mapper,
+                             Services.SharedModel.StandardPageModelFactory modelFactory)
+      : base(modelFactory)
     {
       if(mapper == null)
         throw new ArgumentNullException(nameof(mapper));

@@ -1,0 +1,24 @@
+<html lang="en" metal:extend-macro="Views/Shared/EmptyPage/macros/page" metal:define-macro="page">
+<head metal:fill-slot="head_element">
+<meta charset="utf-8" />
+<title metal:define-slot="title_element">Agiil</title>
+<base href="../../" tal:attributes="href string:/" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style metal:define-slot="standard_styles">
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+</style>
+<style metal:define-slot="extra_styles" tal:omit-tag=""></style>
+</head>
+<body metal:fill-slot="body_element">
+<header metal:define-slot="page_header" metal:use-macro="Views/Shared/StandardHeader/macros/header">
+
+</header>
+<div metal:define-slot="page_content">
+  Page content here
+</div>
+<footer metal:define-slot="page_footer">
+
+</footer>
+</body>
+</html>

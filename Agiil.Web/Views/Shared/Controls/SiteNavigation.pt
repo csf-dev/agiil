@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Site navigation widget</title>
+<base href="../../../" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+</style>
+</head>
+<body>
+<header class="standard">
+  <div metal:define-macro="site_navigation"
+       tal:omit-tag=""
+       tal:define="isLoggedIn here/LoginState/IsLoggedIn | nothing">
+  <nav class="site_navigation anonymous"
+       tal:condition="not:isLoggedIn">
+    <h5>Application navigation</h5>
+    <ul>
+      <li><a href="">Home</a></li>
+      <li><a href="Login">Log in</a></li>
+    </ul>
+  </nav>
+  <nav class="site_navigation"
+       tal:condition="isLoggedIn">
+    <h5>Application navigation</h5>
+    <ul>
+      <li><a href="">Home</a></li>
+      <li><a href="Tickets">Ticket list</a></li>
+      <li><a href="NewTicket">Create ticket</a></li>
+    </ul>
+  </nav>
+  </div>
+</header>
+<div>
+  Page content here
+</div>
+<footer>
+
+</footer>
+</body>
+</html>

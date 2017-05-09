@@ -1,36 +1,41 @@
-﻿<html lang="en" metal:use-macro="Views/Shared/EmptyPage/macros/page">
+﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
 <head>
-<title>Tickets</title>
+<title metal:fill-slot="title_element">Tickets</title>
 </head>
-<body metal:fill-slot="body_element">
-<h1>Tickets</h1>
-<p>This is a list of the tickets which exist in the application.</p>
-<table tal:define="tickets here/Tickets">
-  <colgroup>
-    <col class="title" />
-    <col class="created_by" />
-    <col class="created_date" />
-  </colgroup>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Created by</th>
-      <th>Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr tal:repeat="ticket tickets">
-      <td tal:define="url string:Ticket/Index/${ticket/Id}">
-        <a href="Ticket/Index/1" tal:attributes="href url" tal:content="ticket/Title">Ticket title here</a>
-      </td>
-      <td tal:content="ticket/Creator">username</td>
-      <td>
-        <span tal:attributes="title ticket/CreationTimestamp"
-              tal:content="ticket/ShortTimestamp"
-              title="2011-01-01 12:13:43">4th May 2001</span>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<body>
+<div metal:fill-slot="page_content">
+  <h1>Tickets</h1>
+  <p>This is a list of the tickets which exist in the application.</p>
+  <table tal:define="tickets here/Tickets">
+    <colgroup>
+      <col class="title" />
+      <col class="created_by" />
+      <col class="created_date" />
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Created by</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr tal:repeat="ticket tickets">
+        <td tal:define="url string:Ticket/Index/${ticket/Id}">
+          <a href="Ticket/Index/1" tal:attributes="href url" tal:content="ticket/Title">Ticket title here</a>
+        </td>
+        <td tal:content="ticket/Creator">username</td>
+        <td>
+          <span tal:attributes="title ticket/CreationTimestamp"
+                tal:content="ticket/ShortTimestamp"
+                title="2011-01-01 12:13:43">4th May 2001</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    You can also <a href="NewTicket">create a new ticket</a>.
+  </p>
+</div>
 </body>
 </html>
