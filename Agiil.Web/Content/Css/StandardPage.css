@@ -60,3 +60,6 @@ body>header .login_logout_control p,
 body>header .login_logout_control .form_element {
   float: left;
 }
+.ticket_description {
+  white-space: pre-line;
+}

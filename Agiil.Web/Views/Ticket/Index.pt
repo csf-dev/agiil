@@ -10,7 +10,7 @@
     on <strong tal:content="here/Ticket/CreationTimestamp">2001-01-01 19:21:22</strong>.
   </p>
   <h2>Description</h2>
-  <div tal:content="here/Ticket/Description">
+  <div tal:content="here/Ticket/Description" class="ticket_description">
     Ticket description here.
   </div>
 </div>
