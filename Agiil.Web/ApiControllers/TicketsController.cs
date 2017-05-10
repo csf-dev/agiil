@@ -6,7 +6,6 @@ using Agiil.Web.Services.Tickets;
 
 namespace Agiil.Web.ApiControllers
 {
-  [Authorize]
   public class TicketsController : ApiController
   {
     readonly ITicketLister lister;

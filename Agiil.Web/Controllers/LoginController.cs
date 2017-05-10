@@ -6,6 +6,7 @@ using Agiil.Web.Models;
 
 namespace Agiil.Web.Controllers
 {
+  [AllowAnonymous]
   public class LoginController : ControllerBase
   {
     #region constants
@@ -25,22 +26,20 @@ namespace Agiil.Web.Controllers
 
     #region controller actions
 
-    [AllowAnonymous]
     [HttpGet]
-    public ActionResult Index()
+    public ActionResult Index(string returnUrl)
     {
       var model = GetLoginModel();
+      model.ReturnUrl = returnUrl;
       return View(model);
     }
 
-    [AllowAnonymous]
     [HttpGet]
     public ActionResult LoggedOut()
     {
       return View();
     }
 
-    [AllowAnonymous]
     [HttpPost]
     public ActionResult Login(Models.LoginCredentials credentials)
     {
@@ -50,10 +49,16 @@ namespace Agiil.Web.Controllers
       TempData.Add(LoginResultKey, result);
       TempData.Add(CredentialsKey, credentials);
 
+      if(result.Success && !String.IsNullOrEmpty(credentials.ReturnUrl))
+      {
+        // TODO: IMO I should sanitise this URL before we blindly redirect
+        // Otherwise an attacker could hand out links with malicious URLs in them
+        return Redirect(credentials.ReturnUrl);
+      }
+
       return RedirectToAction(nameof(LoginController.Index), GetControllerName<LoginController>());
     }
 
-    [AllowAnonymous]
     [HttpPost]
     public ActionResult Logout()
     {

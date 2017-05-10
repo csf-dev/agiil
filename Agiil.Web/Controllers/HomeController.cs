@@ -4,6 +4,7 @@ using Agiil.Web.Models.Shared;
 
 namespace Agiil.Web.Controllers
 {
+  [AllowAnonymous]
   public class HomeController : ControllerBase
   {
     public ActionResult Index ()

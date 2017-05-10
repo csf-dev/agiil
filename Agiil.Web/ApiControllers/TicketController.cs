@@ -10,7 +10,6 @@ using CSF.Entities;
 
 namespace Agiil.Web.ApiControllers
 {
-  [Authorize]
   public class TicketController : ApiController
   {
     readonly ITicketCreator ticketCreator;

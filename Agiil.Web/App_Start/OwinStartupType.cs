@@ -58,6 +58,7 @@ namespace Agiil.Web.App_Start
         config.Routes.Clear();
         new RouteConfiguration().RegisterWebApiRoutes(config);
         new WebApiModelBindingRules().Apply(config);
+        new WebApiFilterConfiguration().RegisterFilters(config);
         inner.UseAutofacWebApi(config);
         inner.UseWebApi(config);
       });
@@ -68,6 +69,7 @@ namespace Agiil.Web.App_Start
       app.MapWhen(IsWebAppUrl, inner => {
         new RouteConfiguration().RegisterMvcRoutes (RouteTable.Routes);
         new MvcViewConfiguration().RegisterViewEngines(ViewEngines.Engines);
+        new MvcGlobalFilterConfiguration().RegisterFilters(GlobalFilters.Filters);
         ConfigureCookieAuthentication(inner);
         inner.UseAutofacMvc();
       });
@@ -111,6 +113,7 @@ namespace Agiil.Web.App_Start
       builder.UseCookieAuthentication(new CookieAuthenticationOptions {
         AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
         LoginPath = new PathString(RouteConfiguration.GetMvcLoginPath()),
+        ReturnUrlParameter = "returnUrl",
       });
 
       builder.UseAesDataProtectorProvider();

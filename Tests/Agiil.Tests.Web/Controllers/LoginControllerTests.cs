@@ -23,7 +23,7 @@ namespace Agiil.Tests.Web.Controllers
       sut.TempData.Add(LoginController.LoginResultKey, loginResult);
 
       // Act
-      var result = sut.Index();
+      var result = sut.Index(null);
 
       // Assert
       Assert.IsInstanceOf<ViewResult>(result, "Result is a view");
@@ -60,6 +60,7 @@ namespace Agiil.Tests.Web.Controllers
       Mock.Get(loginLogoutManager)
           .Setup(x => x.AttemptLogin(It.IsAny<ILoginRequest>()))
           .Returns(new LoginResult(username));
+      credentials.ReturnUrl = null;
 
       // Act
       var result = sut.Login(credentials);
@@ -72,6 +73,28 @@ namespace Agiil.Tests.Web.Controllers
     }
 
     [Test, AutoMoqData]
+    public void Login_redirects_to_return_url_after_successful_login([Frozen] ILoginLogoutManager loginLogoutManager,
+                                                                     Agiil.Web.Models.LoginCredentials credentials,
+                                                                     string username,
+                                                                     [NoAutoProperties] LoginController sut)
+    {
+      // Arrange
+      Mock.Get(loginLogoutManager)
+          .Setup(x => x.AttemptLogin(It.IsAny<ILoginRequest>()))
+          .Returns(new LoginResult(username));
+      credentials.ReturnUrl = "/Sample/Url";
+
+      // Act
+      var result = sut.Login(credentials);
+
+      // Assert
+      Assert.IsInstanceOf<RedirectResult>(result, "Result is a redirect-to-URL");
+      var redirect = (RedirectResult) result;
+      Assert.AreEqual("/Sample/Url", redirect.Url, "Correct URL");
+      Assert.IsFalse(redirect.Permanent, "Non-permanent redirect");
+    }
+
+    [Test, AutoMoqData]
     public void Login_redirects_to_login_page_after_failed_login([Frozen] ILoginLogoutManager loginLogoutManager,
                                                                  Agiil.Web.Models.LoginCredentials credentials,
                                                                  [NoAutoProperties] LoginController sut)
@@ -80,6 +103,28 @@ namespace Agiil.Tests.Web.Controllers
       Mock.Get(loginLogoutManager)
           .Setup(x => x.AttemptLogin(It.IsAny<ILoginRequest>()))
           .Returns(LoginResult.LoginFailed);
+      credentials.ReturnUrl = null;
+
+      // Act
+      var result = sut.Login(credentials);
+
+      // Assert
+      Assert.IsInstanceOf<RedirectToRouteResult>(result, "Result is a redirect-to-route");
+      var redirect = (RedirectToRouteResult) result;
+      Assert.AreEqual("Login", redirect.RouteValues["controller"], "Correct controller");
+      Assert.AreEqual(nameof(LoginController.Index), redirect.RouteValues["action"], "Correct action");
+    }
+
+    [Test, AutoMoqData]
+    public void Login_ignores_return_url_on_failed_login([Frozen] ILoginLogoutManager loginLogoutManager,
+                                                         Agiil.Web.Models.LoginCredentials credentials,
+                                                         [NoAutoProperties] LoginController sut)
+    {
+      // Arrange
+      Mock.Get(loginLogoutManager)
+          .Setup(x => x.AttemptLogin(It.IsAny<ILoginRequest>()))
+          .Returns(LoginResult.LoginFailed);
+      credentials.ReturnUrl = "/Sample/Url";
 
       // Act
       var result = sut.Login(credentials);

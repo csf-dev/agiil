@@ -10,6 +10,8 @@ namespace Agiil.Web.Models
 
     public virtual LoginCredentials EnteredCredentials { get; set; }
 
+    public string ReturnUrl { get; set; }
+
     public bool LoginFailed => LoginAttempted && !Result.Success;
 
     public bool LoginSucceded => LoginAttempted && Result.Success;

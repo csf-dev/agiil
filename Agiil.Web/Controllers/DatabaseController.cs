@@ -10,6 +10,7 @@ using NHibernate;
 
 namespace Agiil.Web.Controllers
 {
+  [AllowAnonymous]
   public class DatabaseController : ControllerBase
   {
     const string TempModelKey = "Reset model";

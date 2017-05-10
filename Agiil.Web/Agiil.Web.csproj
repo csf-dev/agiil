@@ -287,6 +287,8 @@
     <Compile Include="Services\SharedModel\StandardPageModelPopulator.cs" />
     <Compile Include="Services\SharedModel\StandardPageModelFactory.cs" />
     <Compile Include="Bootstrap\SharedModelServicesModule.cs" />
+    <Compile Include="App_Start\MvcGlobalFilterConfiguration.cs" />
+    <Compile Include="App_Start\WebApiFilterConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

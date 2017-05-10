@@ -11,6 +11,8 @@
   <h1>Log in</h1>
   <form method="post" action="Login/Login" tal:condition="not:username">
     <fieldset>
+      <input type="hidden" name="ReturnUrl" value="/"
+             tal:attributes="value here/ReturnUrl | nothing" />
       <div class="form_element field">
         <label for="Username">Username</label>
         <input type="text" id="Username" name="Username"
