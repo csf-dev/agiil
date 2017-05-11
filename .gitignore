@@ -4,6 +4,7 @@ packages/*/*
 .directory
 *.userprefs
 *.csproj.user
+.vs/
 TestResult.xml
 TestResult.formatted.xml
 Agiil.Web/Agiil.db
