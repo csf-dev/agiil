@@ -237,6 +237,7 @@
     <Folder Include="Content\Css\" />
     <Folder Include="Models\Shared\" />
     <Folder Include="Services\SharedModel\" />
+    <Folder Include="Content\Scss\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -335,6 +336,11 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\Tools\Agiil.Build.Tasks\Agiil.Build.Tasks.targets" />
+  <Target Name="AfterBuild">
+    <CompileScssFiles SourcePath="Content\Scss"
+                      DestinationPath="Content\Css" />
+  </Target>
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>

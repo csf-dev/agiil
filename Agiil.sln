@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.Web.Sass", "Tools\Agi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.Tests.Web.Sass", "Tests\Agiil.Tests.Web.Sass\Agiil.Tests.Web.Sass.csproj", "{01C2518A-5F33-443D-AD80-CA6D7F9016E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.Build.Tasks", "Tools\Agiil.Build.Tasks\Agiil.Build.Tasks.csproj", "{423DAC57-4520-471D-9430-7DBB799994EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,10 @@ Global
 		{01C2518A-5F33-443D-AD80-CA6D7F9016E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01C2518A-5F33-443D-AD80-CA6D7F9016E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01C2518A-5F33-443D-AD80-CA6D7F9016E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{423DAC57-4520-471D-9430-7DBB799994EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{423DAC57-4520-471D-9430-7DBB799994EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{423DAC57-4520-471D-9430-7DBB799994EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{423DAC57-4520-471D-9430-7DBB799994EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8F17A7FC-CEAB-47F6-ADA2-5B03A93D2D33} = {8FA578E4-76C8-4D01-954C-05D3D40AB828}
@@ -129,6 +135,7 @@ Global
 		{8E9A7C9D-59D3-4E2F-98C1-AF9AC3234E26} = {8FA578E4-76C8-4D01-954C-05D3D40AB828}
 		{02389EF3-90E1-4A21-AD29-23CF7128B730} = {C9C2673C-FBFD-4C42-A110-F64D0C77405A}
 		{01C2518A-5F33-443D-AD80-CA6D7F9016E9} = {8FA578E4-76C8-4D01-954C-05D3D40AB828}
+		{423DAC57-4520-471D-9430-7DBB799994EA} = {C9C2673C-FBFD-4C42-A110-F64D0C77405A}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0
