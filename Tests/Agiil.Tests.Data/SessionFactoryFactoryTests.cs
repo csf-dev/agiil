@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.IO;
 using Agiil.Bootstrap;
 using Agiil.Data;
 using Autofac;
@@ -10,9 +11,7 @@ namespace Agiil.Tests.Data
   [TestFixture]
   public class SessionFactoryFactoryTests
   {
-    const string
-      SchemaExportPathKey = "SchemaOutputPath",
-      SchemaExportFallbackPath = "Agiil.schema.sql";
+    const string SchemaExportFilename = "Agiil.db-schema-export.sql";
 
     IDiConfiguration containerBuilderFactory;
     ContainerBuilder builder;
@@ -26,7 +25,12 @@ namespace Agiil.Tests.Data
       containerBuilderFactory = new UnitTestDiConfiguration();
       builder = containerBuilderFactory.GetContainerBuilder();
       container = builder.Build();
-      schemaExportPath = ConfigurationManager.AppSettings[SchemaExportPathKey]?? SchemaExportFallbackPath;
+
+      var schemaExportDir = TestFilesystem.GetTestTemporaryDirectory<SessionFactoryFactoryTests>();
+      if(schemaExportDir != null)
+        schemaExportPath = Path.Combine(schemaExportDir.FullName, SchemaExportFilename);
+      else
+        schemaExportPath = SchemaExportFilename;
     }
 
     [SetUp]
