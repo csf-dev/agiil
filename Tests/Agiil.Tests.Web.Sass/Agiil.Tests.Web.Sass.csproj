@@ -51,4 +51,18 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterBuild">
+    <PropertyGroup>
+      <SharpScssNativeRoot>..\..\packages\SharpScss.1.3.4\runtimes</SharpScssNativeRoot>
+    </PropertyGroup>
+    <ItemGroup>
+      <SourceFile Include="$(SharpScssNativeRoot)\ubuntu.14.04-x64\native\libsass.so"
+                  Condition="'$(OS)' == 'Unix'" />
+      <SourceFile Include="$(SharpScssNativeRoot)\win7-x64\native\libsass.dll"
+                  Condition="'$(OS)' == 'Windows_NT' And '$(ProcessorArchitecture)' != 'x86'" />
+      <SourceFile Include="$(SharpScssNativeRoot)\win7-x86\native\libsass.dll"
+                  Condition="'$(OS)' == 'Windows_NT' And '$(ProcessorArchitecture)' == 'x86'" />
+    </ItemGroup>
+    <Copy SourceFiles="@(SourceFile)" DestinationFolder="$(OutputPath)" />
+  </Target>
 </Project>
