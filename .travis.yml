@@ -14,4 +14,4 @@ install:
 
 script:
   - xbuild /p:Configuration=Debug Agiil.sln
-  - MONO_LOG_LEVEL=debug mono "./testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe" $(find ./Tests/ -type f -path "*/bin/Debug/*" -name "Agiil.Tests*.dll" \! -name "Agiil.Tests.Common.dll")
+  - mono "./testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe" $(find ./Tests/ -type f -path "*/bin/Debug/*" -name "Agiil.Tests*.dll" \! -name "Agiil.Tests.Common.dll")
