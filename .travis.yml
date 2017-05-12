@@ -1,4 +1,6 @@
 language: csharp
+mono:
+  - 4.8.0
 solution: Agiil.sln
 
 install:
