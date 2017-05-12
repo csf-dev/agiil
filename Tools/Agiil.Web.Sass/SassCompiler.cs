@@ -53,7 +53,11 @@ namespace Agiil.Web.Sass
 
     ScssOptions GetDefaultOptions()
     {
-      var options = new ScssOptions();
+      var options = new ScssOptions
+      {
+        OutputStyle = ScssOutputStyle.Expanded,
+        Linefeed = Environment.NewLine,
+      };
 
       #if DEBUG
       options.GenerateSourceMap = true;

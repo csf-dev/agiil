@@ -22,10 +22,30 @@ namespace Agiil.Tests.Web.Sass
         OutputDirectory = testDirectory
       };
 
+      var expected = @"/* line 2, Tests/Temp/Agiil.Tests.Web.Sass.SassCompilerIntegrationTests/_two.scss */
+p {
+  background: blue;
+}
+
+/* line 4, Tests/Temp/Agiil.Tests.Web.Sass.SassCompilerIntegrationTests/one.scss */
+nav {
+  background: red;
+}
+
+/* line 7, Tests/Temp/Agiil.Tests.Web.Sass.SassCompilerIntegrationTests/one.scss */
+nav ul {
+  background: yellow;
+}
+
+/*# sourceMappingURL=one.css.map */
+";
+
       // Act
       sut.Compile(options);
 
       // Assert
+      var result = ReadOutputFile("one.css", testDirectory);
+      Assert.AreEqual(expected, result);
     }
 
     ISassCompiler GetSut()
@@ -66,6 +86,14 @@ p {
         output = new DirectoryInfo(Environment.CurrentDirectory);
 
       return output;
+    }
+
+    string ReadOutputFile(string filename, DirectoryInfo outputDirectory)
+    {
+      var filePath = Path.Combine(outputDirectory.FullName, filename);
+      if(!File.Exists(filePath))
+        return null;
+      return File.ReadAllText(filePath);
     }
   }
 }
