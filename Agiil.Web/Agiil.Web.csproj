@@ -298,6 +298,8 @@
     <Content Include="packages.config" />
     <Content Include="Content\Scss\_Reset.scss" />
     <Content Include="Content\Scss\StandardPage.scss" />
+    <Content Include="Content\Scss\_PageHeader.scss" />
+    <Content Include="Content\Scss\_AppWideVariables.scss" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Home\Index.pt" />
