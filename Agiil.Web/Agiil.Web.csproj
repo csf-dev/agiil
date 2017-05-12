@@ -296,8 +296,8 @@
     <Content Include="web.config" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
-    <Content Include="Content\Css\Reset.css" />
-    <Content Include="Content\Css\StandardPage.css" />
+    <Content Include="Content\Scss\_Reset.scss" />
+    <Content Include="Content\Scss\StandardPage.scss" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Home\Index.pt" />
@@ -338,8 +338,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\Tools\Agiil.Build.Tasks\Agiil.Build.Tasks.targets" />
   <Target Name="AfterBuild">
-    <CompileScssFiles SourcePath="Content\Scss"
-                      DestinationPath="Content\Css" />
+    <CompileScssFiles SourcePath="Content\Scss" DestinationPath="Content\Css" />
   </Target>
   <ProjectExtensions>
     <MonoDevelop>

@@ -1,0 +1,71 @@
+﻿@import '_Reset';
+
+$standard-fonts: Lato, 'DejaVu Sans', Verdana, sans;
+
+body {
+  font-family: $standard-fonts;
+  margin: 1em;
+}
+body>header.standard {
+  border: 1px solid hsla(0, 0%, 85%, 1);
+  background: hsla(0, 0%, 95%, 1) none;
+  padding: 0.6em;
+  margin: 0 0 1em;
+  border-radius: 4px;
+  color: hsla(0, 0%, 35%, 1);
+  overflow: auto;
+}
+body>header {
+  .site_navigation {
+    float: left;
+  }
+  .site_navigation h5 {
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    margin: 0 -1px -1px 0;
+    color: transparent;
+    background: transparent none;
+  }
+  .login_logout_control {
+    float: right;
+  }
+  .login_logout_control h5 {
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    margin: 0 -1px -1px 0;
+    color: transparent;
+    background: transparent none;
+  }
+  .login_logout_control strong {
+    font-weight: 700;
+  }
+  .login_logout_control p,
+  .login_logout_control label {
+    padding: 4px 0.8em 4px 0;
+  }
+  .login_logout_control label {
+    padding-left: 1em;
+    padding-right: 0.4em;
+  }
+  .login_logout_control button,
+  .login_logout_control input {
+    font-family: $standard-fonts;
+    padding: 3px 0.5em;
+    border: 1px solid hsla(0, 0%, 75%, 1);
+    border-radius: 2px;
+    background: #FFF;
+    color: hsla(0, 0%, 35%, 1);
+  }
+  .login_logout_control .login button {
+    margin-left: 1em;
+  }
+  .login_logout_control p,
+  .login_logout_control .form_element {
+    float: left;
+  }
+}
+.ticket_description {
+  white-space: pre-line;
+}
