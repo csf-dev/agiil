@@ -2,8 +2,9 @@ language: csharp
 solution: Agiil.sln
 
 before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y libstdc++6
+  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update
+  - sudo apt-get install libstdc++6-4.7-dev
 
 install:
   - mkdir -p ~/.mono
