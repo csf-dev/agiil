@@ -2,6 +2,8 @@ language: csharp
 solution: Agiil.sln
 
 install:
+  - mkdir -p ~/.mono
+  - cp Tools/mono.config ~/.mono/config
   - nuget restore Agiil.sln
   - nuget install NUnit.ConsoleRunner -Version 3.6.1 -OutputDirectory testrunner
 
