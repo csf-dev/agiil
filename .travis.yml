@@ -1,6 +1,10 @@
 language: csharp
 solution: Agiil.sln
 
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y libstdc++6
+
 install:
   - mkdir -p ~/.mono
   - cp Tools/mono.config ~/.mono/config
@@ -9,5 +13,4 @@ install:
 
 script:
   - xbuild /p:Configuration=Debug Agiil.sln
-  - ls -l Tests/Agiil.Tests.Web.Sass/bin/Debug
   - MONO_LOG_LEVEL=debug mono "./testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe" $(find ./Tests/ -type f -path "*/bin/Debug/*" -name "Agiil.Tests*.dll" \! -name "Agiil.Tests.Common.dll")
