@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{01C2518A-5F33-443D-AD80-CA6D7F9016E9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Agiil.Tests.Web.Sass</RootNamespace>
+    <AssemblyName>Agiil.Tests.Web.Sass</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SassCompilerIntegrationTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Tools\Agiil.Web.Sass\Agiil.Web.Sass.csproj">
+      <Project>{02389EF3-90E1-4A21-AD29-23CF7128B730}</Project>
+      <Name>Agiil.Web.Sass</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
+      <Project>{E15F2064-D2EA-43EF-924C-733107675FF0}</Project>
+      <Name>Agiil.Tests.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterBuild">
+    <PropertyGroup>
+      <SharpScssNativeRoot>..\..\packages\SharpScss.1.3.4\runtimes</SharpScssNativeRoot>
+    </PropertyGroup>
+    <ItemGroup>
+      <SourceFile Include="$(SharpScssNativeRoot)\ubuntu.14.04-x64\native\libsass.so"
+                  Condition="'$(OS)' == 'Unix'" />
+      <SourceFile Include="$(SharpScssNativeRoot)\win7-x64\native\libsass.dll"
+                  Condition="'$(OS)' == 'Windows_NT' And '$(ProcessorArchitecture)' != 'x86'" />
+      <SourceFile Include="$(SharpScssNativeRoot)\win7-x86\native\libsass.dll"
+                  Condition="'$(OS)' == 'Windows_NT' And '$(ProcessorArchitecture)' == 'x86'" />
+    </ItemGroup>
+    <Copy SourceFiles="@(SourceFile)" DestinationFolder="$(OutputPath)" />
+  </Target>
+</Project>
