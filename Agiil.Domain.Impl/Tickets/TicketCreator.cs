@@ -14,17 +14,13 @@ namespace Agiil.Domain.Tickets
     readonly ITicketFactory ticketFactory;
     readonly ITransactionCreator transactionFactory;
     readonly ICreateTicketValidatorFactory validatorFactory;
+    readonly Func<IValidationResult, Ticket, CreateTicketResponse> responseCreator;
 
     public CreateTicketResponse Create(CreateTicketRequest request)
     {
-      if(request == null)
-      {
-        throw new ArgumentNullException(nameof(request));
-      }
-
       var validationResult = ValidateRequest(request);
       if(!validationResult.IsSuccess)
-        return new CreateTicketResponse(validationResult);
+        return responseCreator(validationResult, null);
 
       Ticket ticket;
 
@@ -35,7 +31,7 @@ namespace Agiil.Domain.Tickets
         trans.Commit();
       }
 
-      return new CreateTicketResponse(validationResult, ticket);
+      return responseCreator(validationResult, ticket);
     }
 
     IValidationResult ValidateRequest(CreateTicketRequest request)
@@ -53,8 +49,11 @@ namespace Agiil.Domain.Tickets
                          ICurrentUserReader userReader,
                          ITicketFactory ticketFactory,
                          ITransactionCreator transactionFactory,
-                         ICreateTicketValidatorFactory validatorFactory)
+                         ICreateTicketValidatorFactory validatorFactory,
+                         Func<IValidationResult,Ticket,CreateTicketResponse> responseCreator)
     {
+      if(responseCreator == null)
+        throw new ArgumentNullException(nameof(responseCreator));
       if(validatorFactory == null)
         throw new ArgumentNullException(nameof(validatorFactory));
       if(transactionFactory == null)
@@ -71,6 +70,7 @@ namespace Agiil.Domain.Tickets
       this.ticketRepo = ticketRepo;
       this.transactionFactory = transactionFactory;
       this.validatorFactory = validatorFactory;
+      this.responseCreator = responseCreator;
     }
   }
 }

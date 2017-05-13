@@ -33,7 +33,7 @@ namespace Agiil.Bootstrap.Data
         .As(typeof(IRepository<>));
       
       builder
-        .RegisterType<TransactionCreator>()
+        .RegisterType<NHibernateActiveTransactionCreator>()
         .As<ITransactionCreator>();
 
       builder

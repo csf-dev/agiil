@@ -71,6 +71,12 @@
     <Compile Include="Data\DevelopmentInitialDataCreator.cs" />
     <Compile Include="Tickets\TicketLister.cs" />
     <Compile Include="Tickets\TicketDetailService.cs" />
+    <Compile Include="Tickets\EditTicketTitleAndDescriptionValidatorFactory.cs" />
+    <Compile Include="IDomainImplementationAssemblyMarker.cs" />
+    <Compile Include="Tickets\TicketEditor.cs" />
+    <Compile Include="ValidationResultInterpreter.cs" />
+    <Compile Include="Validation\EntityMustExistRule.cs" />
+    <Compile Include="Validation\ValidatorFactoryBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
@@ -87,6 +93,7 @@
     <Folder Include="Auth\" />
     <Folder Include="Resources\" />
     <Folder Include="Data\" />
+    <Folder Include="Validation\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -77,6 +77,7 @@
     <Compile Include="IDataAssemblyMarker.cs" />
     <Compile Include="IDatabaseResetter.cs" />
     <Compile Include="DevelopmentDatabaseResetter.cs" />
+    <Compile Include="NHibernateActiveTransactionCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mappings\" />
