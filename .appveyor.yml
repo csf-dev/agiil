@@ -4,7 +4,7 @@ init:
 before_build:
 - cmd: nuget restore Agiil.sln
 build:
-  verbosity: minimal
+  verbosity: normal
 test:
   assemblies:
     except:
