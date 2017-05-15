@@ -181,6 +181,8 @@
     <Compile Include="Tickets\TicketDetailDtoComparer.cs" />
     <Compile Include="Tickets\TicketDetailModelContext.cs" />
     <Compile Include="TestFilesystem.cs" />
+    <Compile Include="Tickets\IEditTicketController.cs" />
+    <Compile Include="Tickets\EditTicketController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">

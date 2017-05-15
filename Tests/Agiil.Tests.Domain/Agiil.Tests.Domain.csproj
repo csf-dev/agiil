@@ -103,6 +103,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ViewTicketDetail.feature.cs</LastGenOutput>
     </None>
+    <None Include="Features\EditATicket.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>EditATicket.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tickets\TicketCreatorTests.cs" />
@@ -116,6 +120,9 @@
     </Compile>
     <Compile Include="Features\ViewTicketDetail.feature.cs">
       <DependentUpon>ViewTicketDetail.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\EditATicket.feature.cs">
+      <DependentUpon>EditATicket.feature</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

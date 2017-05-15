@@ -1,24 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using Agiil.Bootstrap;
 using Agiil.Tests.Tickets;
 using Autofac;
 
 namespace Agiil.Tests.Bootstrap
 {
-  public class TicketsModule : Module
+  public class TicketsModule : NamespaceModule
   {
-    protected override void Load(ContainerBuilder builder)
+    protected override IEnumerable<System.Reflection.Assembly> GetSearchAssemblies()
     {
-      builder
-        .RegisterType<NewTicketController>()
-        .As<INewTicketController>();
-      
-      builder
-        .RegisterType<TicketQueryController>()
-        .As<ITicketQueryController>();
-
-      builder
-        .RegisterType<BulkTicketCreator>()
-        .As<IBulkTicketCreator>();
+      return new [] { System.Reflection.Assembly.GetExecutingAssembly() };
     }
+
+    protected override string Namespace => typeof(IBulkTicketCreator).Namespace;
   }
 }
