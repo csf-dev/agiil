@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <SharpScssRuntime Condition=" '$(SharpScssRuntime)' == '' And '$(OS)' == 'Windows_NT' And '$(ProcessorArchitecture)' == 'x86'">win7-x86</SharpScssRuntime>
+    <SharpScssRuntime Condition=" '$(SharpScssRuntime)' == '' And '$(OS)' == 'Windows_NT' And '$(Platform)' == 'x86'">win7-x86</SharpScssRuntime>
     <SharpScssRuntime Condition=" '$(SharpScssRuntime)' == '' And '$(OS)' == 'Unix'">ubuntu.14.04-x64</SharpScssRuntime>
     <SharpScssRuntime Condition=" '$(SharpScssRuntime)' == '' ">win7-x64</SharpScssRuntime>
   </PropertyGroup>
