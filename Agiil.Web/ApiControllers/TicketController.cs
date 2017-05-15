@@ -12,8 +12,9 @@ namespace Agiil.Web.ApiControllers
 {
   public class TicketController : ApiController
   {
-    readonly ITicketCreator ticketCreator;
-    readonly ITicketDetailService ticketDetailService;
+    readonly Lazy<ITicketCreator> ticketCreator;
+    readonly Lazy<ITicketEditor> ticketEditor;
+    readonly Lazy<ITicketDetailService> ticketDetailService;
     readonly TicketDetailMapper mapper;
 
     public NewTicketResponse Put(NewTicketSpecification ticket)
@@ -29,7 +30,7 @@ namespace Agiil.Web.ApiControllers
         Description = ticket.Description,
       };
 
-      var response = ticketCreator.Create(request);
+      var response = ticketCreator.Value.Create(request);
 
       return new NewTicketResponse
       {
@@ -39,9 +40,36 @@ namespace Agiil.Web.ApiControllers
       };
     }
 
+    public Models.EditTicketTitleAndDescriptionResponse Post(EditTicketTitleAndDescriptionSpecification ticket)
+    {
+      if(ticket == null)
+      {
+        throw new ArgumentNullException(nameof(ticket));
+      }
+
+      var request = new EditTicketTitleAndDescriptionRequest
+      {
+        Identity = ticket.Identity,
+        Title = ticket.Title,
+        Description = ticket.Description,
+      };
+
+      var response = ticketEditor.Value.Edit(request);
+
+      if(response.IdentityIsInvalid)
+        throw new HttpResponseException(HttpStatusCode.NotFound);
+
+      return new Models.EditTicketTitleAndDescriptionResponse
+      {
+        Success = response.IsSuccess,
+        TitleIsInvalid = response.TitleIsInvalid,
+        DescriptionIsInvalid = response.DescriptionIsInvalid,
+      };
+    }
+
     public TicketDetailDto Get(IIdentity<Ticket> id)
     {
-      var ticket = ticketDetailService.GetTicket(id);
+      var ticket = ticketDetailService.Value.GetTicket(id);
 
       if(ReferenceEquals(ticket, null))
         throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -49,8 +77,9 @@ namespace Agiil.Web.ApiControllers
       return mapper.Map(ticket);
     }
 
-    public TicketController(ITicketCreator ticketCreator,
-                            ITicketDetailService ticketDetailService,
+    public TicketController(Lazy<ITicketCreator> ticketCreator,
+                            Lazy<ITicketDetailService> ticketDetailService,
+                            Lazy<ITicketEditor> ticketEditor,
                             TicketDetailMapper mapper)
     {
       if(ticketCreator == null)
@@ -63,6 +92,7 @@ namespace Agiil.Web.ApiControllers
       this.ticketDetailService = ticketDetailService;
       this.mapper = mapper;
       this.ticketCreator = ticketCreator;
+      this.ticketEditor = ticketEditor;
     }
   }
 }

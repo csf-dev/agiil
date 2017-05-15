@@ -4,15 +4,8 @@ using Autofac;
 
 namespace Agiil.Bootstrap.Tickets
 {
-  public class TicketsModule : Module
+  public class TicketsModule : NamespaceModule
   {
-    protected override void Load(ContainerBuilder builder)
-    {
-      builder.RegisterType<TicketFactory>().As<ITicketFactory>();
-      builder.RegisterType<TicketCreator>().As<ITicketCreator>();
-      builder.RegisterType<CreateTicketValidatorFactory>().As<ICreateTicketValidatorFactory>();
-      builder.RegisterType<TicketLister>().As<ITicketLister>();
-      builder.RegisterType<TicketDetailService>().As<ITicketDetailService>();
-    }
+    protected override string Namespace => typeof(TicketCreator).Namespace;
   }
 }

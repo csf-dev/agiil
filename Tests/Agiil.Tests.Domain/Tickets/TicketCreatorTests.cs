@@ -5,6 +5,7 @@ using Ploeh.AutoFixture.NUnit3;
 using Agiil.Domain.Auth;
 using Moq;
 using Agiil.Domain.Tickets;
+using Agiil.Domain;
 using CSF.Validation;
 using CSF.Data.Entities;
 using CSF.Data;
@@ -72,6 +73,7 @@ namespace Agiil.Tests.Domain.Tickets
           .Setup(x => x.CreateTicket(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<User>()))
           .Returns(ticket);
       SetupValidatorWhichAlwaysPasses(validatorFactory);
+      SetupResponseCreator(sut);
 
       // Act
       var result = sut.Create(request);
@@ -165,6 +167,7 @@ namespace Agiil.Tests.Domain.Tickets
       Mock.Get(validator)
           .Setup(x => x.Validate(request))
           .Returns(Mock.Of<IValidationResult>(x => x.IsSuccess == false));
+      SetupResponseCreator(sut);
 
       // Act
       var result = sut.Create(request);
@@ -209,6 +212,13 @@ namespace Agiil.Tests.Domain.Tickets
           .Returns(validator);
 
       return validator;
+    }
+
+    void SetupResponseCreator(TicketCreator sut)
+    {
+      sut.ResponseCreator = (IValidationResult result, Ticket ticket) => {
+        return new CreateTicketResponse(result, Mock.Of<IValidationResultInterpreter>(), ticket);
+      };
     }
   }
 }

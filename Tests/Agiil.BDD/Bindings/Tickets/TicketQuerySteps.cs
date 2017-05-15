@@ -28,7 +28,7 @@ namespace Agiil.BDD.Bindings.Tickets
       queryController.VisitTicketDetailControllerAndStoreDetail(id);
     }
 
-    [Then("a ticket should be created with the following properties:")]
+    [Then("a ticket should exist with the following properties:")]
     public void ATicketShouldBeCreated(Table ticketProperties)
     {
       if(ticketProperties == null)
@@ -38,7 +38,7 @@ namespace Agiil.BDD.Bindings.Tickets
       Assert.IsTrue(queryController.DoesTicketExist(criteria));
     }
 
-    [Then("no ticket should have been created matching the following properties:")]
+    [Then("no ticket should exist matching the following properties:")]
     public void ATicketShouldNotBeCreated(Table ticketProperties)
     {
       if(ticketProperties == null)

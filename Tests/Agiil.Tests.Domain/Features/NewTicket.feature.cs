@@ -105,7 +105,7 @@ this.ScenarioSetup(scenarioInfo);
                         "User",
                         "jbloggs"});
 #line 12
-  testRunner.Then("a ticket should be created with the following properties:", ((string)(null)), table2, "Then ");
+  testRunner.Then("a ticket should exist with the following properties:", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -144,7 +144,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Description",
                         "Invalid"});
 #line 24
-  testRunner.Then("no ticket should have been created matching the following properties:", ((string)(null)), table4, "Then ");
+  testRunner.Then("no ticket should exist matching the following properties:", ((string)(null)), table4, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

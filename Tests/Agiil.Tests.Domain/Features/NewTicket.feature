@@ -9,7 +9,7 @@ Scenario: A user can create a ticket using only a valid title
   | Field       | Value        |
   | Title       | Ticket title |
   | Description |              |
-  Then a ticket should be created with the following properties:
+  Then a ticket should exist with the following properties:
   | Field       | Value        |
   | Title       | Ticket title |
   | Description |              |
@@ -21,6 +21,6 @@ Scenario: A user cannot create a ticket with an empty title
   | Field       | Value        |
   | Title       |              |
   | Description | Invalid      |
-  Then no ticket should have been created matching the following properties:
+  Then no ticket should exist matching the following properties:
   | Field       | Value        |
   | Description | Invalid      |

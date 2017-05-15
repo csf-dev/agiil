@@ -80,6 +80,11 @@
     <Compile Include="Data\IInitialDataCreator.cs" />
     <Compile Include="Tickets\ITicketLister.cs" />
     <Compile Include="Tickets\ITicketDetailService.cs" />
+    <Compile Include="Tickets\EditTicketTitleAndDescriptionRequest.cs" />
+    <Compile Include="Tickets\ITicketEditor.cs" />
+    <Compile Include="Tickets\IEditTicketTitleAndDescriptionValidatorFactory.cs" />
+    <Compile Include="Tickets\EditTicketTitleAndDescriptionResponse.cs" />
+    <Compile Include="IValidationResultInterpreter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

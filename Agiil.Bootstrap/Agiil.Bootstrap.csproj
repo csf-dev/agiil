@@ -99,6 +99,9 @@
     <Reference Include="System.Data.SQLite">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.105.0\lib\net45\System.Data.SQLite.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Validation">
+      <HintPath>..\packages\CSF.Validation.1.0.0\lib\net45\CSF.Validation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,6 +115,10 @@
     <Compile Include="Tickets\TicketsModule.cs" />
     <Compile Include="EnvironmentModule.cs" />
     <Compile Include="Data\MappingModule.cs" />
+    <Compile Include="NamespaceModule.cs" />
+    <Compile Include="DomainWideTypesModule.cs" />
+    <Compile Include="Validation\ValidationModule.cs" />
+    <Compile Include="Validation\AutofacValidationRuleResolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
@@ -144,6 +151,7 @@
     <Folder Include="Data\" />
     <Folder Include="Config\" />
     <Folder Include="Tickets\" />
+    <Folder Include="Validation\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.0\build\net45\System.Data.SQLite.Core.targets')" />

@@ -306,6 +306,9 @@
     <Compile Include="Bootstrap\SharedModelServicesModule.cs" />
     <Compile Include="App_Start\MvcGlobalFilterConfiguration.cs" />
     <Compile Include="App_Start\WebApiFilterConfiguration.cs" />
+    <Compile Include="Models\EditTicketTitleAndDescriptionSpecification.cs" />
+    <Compile Include="Models\EditTicketTitleAndDescriptionModel.cs" />
+    <Compile Include="Models\EditTicketTitleAndDescriptionResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -330,6 +333,7 @@
     <None Include="Views\Shared\StandardHeader.pt" />
     <None Include="Views\Shared\Controls\HeaderLoginLogout.pt" />
     <None Include="Views\Shared\Controls\SiteNavigation.pt" />
+    <None Include="Views\Ticket\Edit.pt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

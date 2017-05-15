@@ -13,6 +13,9 @@
   <div tal:content="here/Ticket/Description" class="ticket_description">
     Ticket description here.
   </div>
+  <a href="Ticket/Edit/0"
+     tal:define="editUrl string:Ticket/Edit/${here/Ticket/Id}"
+     tal:attributes="href editUrl">Edit this ticket</a>
 </div>
 </body>
 </html>
