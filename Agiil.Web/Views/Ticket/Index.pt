@@ -3,7 +3,7 @@
 <title metal:fill-slot="title_element">Ticket detail</title>
 </head>
 <body>
-<div metal:fill-slot="page_content">
+<div metal:fill-slot="page_content" class="page_content">
   <h1 tal:content="here/Ticket/Title">Ticket title</h1>
   <p>
     Created by <strong tal:content="here/Ticket/Creator">username</strong>

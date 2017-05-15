@@ -7,7 +7,8 @@
      tal:define="loginFailed here/LoginFailed;
                  loginSucceded here/LoginSucceded;
                  loginAttempted here/LoginAttempted;
-                 username here/LoginState/Username | nothing">
+                 username here/LoginState/Username | nothing"
+     class="page_content">
   <h1>Log in</h1>
   <form method="post" action="Login/Login" tal:condition="not:username">
     <fieldset>

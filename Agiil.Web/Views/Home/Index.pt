@@ -3,7 +3,7 @@
 <title metal:fill-slot="title_element">Application home page</title>
 </head>
 <body>
-<div metal:fill-slot="page_content">
+<div metal:fill-slot="page_content" class="page_content">
   <h1>Agiil</h1>
   <p>Agiil home page.</p>
 </div>

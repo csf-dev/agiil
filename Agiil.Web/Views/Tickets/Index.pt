@@ -3,7 +3,7 @@
 <title metal:fill-slot="title_element">Tickets</title>
 </head>
 <body>
-<div metal:fill-slot="page_content">
+<div metal:fill-slot="page_content" class="page_content">
   <h1>Tickets</h1>
   <p>This is a list of the tickets which exist in the application.</p>
   <table tal:define="tickets here/Tickets">

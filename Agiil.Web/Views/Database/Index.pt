@@ -4,7 +4,7 @@
 </head>
 <body>
 <h1>Database reset</h1>
-<div metal:fill-slot="page_content">
+<div metal:fill-slot="page_content" class="page_content">
   <form method="post" action="Database/Reset" tal:condition="not:here/HasBeenReset">
     <fieldset>
       <p>

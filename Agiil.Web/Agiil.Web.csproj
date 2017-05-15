@@ -319,6 +319,7 @@
     <Content Include="Content\Scss\StandardPage.scss" />
     <Content Include="Content\Scss\_PageHeader.scss" />
     <Content Include="Content\Scss\_AppWideVariables.scss" />
+    <Content Include="Content\Scss\_ContentStyles.scss" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Home\Index.pt" />
