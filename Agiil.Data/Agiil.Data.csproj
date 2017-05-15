@@ -66,13 +66,13 @@
     <Reference Include="CSF.Data">
       <HintPath>..\packages\CSF.Data.1.1.0\lib\net45\CSF.Data.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Data.NHibernate">
-      <HintPath>..\packages\CSF.Data.NHibernate.6.1.0\lib\net45\CSF.Data.NHibernate.dll</HintPath>
-    </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data.SQLite, Version=1.0.105.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.105.0\lib\net45\System.Data.SQLite.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="CSF.Data.NHibernate">
+      <HintPath>..\packages\CSF.Data.NHibernate.6.1.1\lib\net45\CSF.Data.NHibernate.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -93,7 +93,6 @@
     <Compile Include="IDataAssemblyMarker.cs" />
     <Compile Include="IDatabaseResetter.cs" />
     <Compile Include="DevelopmentDatabaseResetter.cs" />
-    <Compile Include="NHibernateActiveTransactionCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mappings\" />

@@ -72,7 +72,7 @@
       <HintPath>..\packages\CSF.Data.Entities.1.2.1\lib\net45\CSF.Data.Entities.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Data.NHibernate">
-      <HintPath>..\packages\CSF.Data.NHibernate.6.1.0\lib\net45\CSF.Data.NHibernate.dll</HintPath>
+      <HintPath>..\packages\CSF.Data.NHibernate.6.1.1\lib\net45\CSF.Data.NHibernate.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

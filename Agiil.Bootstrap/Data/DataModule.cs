@@ -31,10 +31,6 @@ namespace Agiil.Bootstrap.Data
       builder
         .RegisterGeneric(typeof(GenericRepository<>))
         .As(typeof(IRepository<>));
-      
-      builder
-        .RegisterType<NHibernateActiveTransactionCreator>()
-        .As<ITransactionCreator>();
 
       builder
         .RegisterType<DevelopmentDatabaseResetter>()
