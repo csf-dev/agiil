@@ -7,8 +7,6 @@ before_install:
   - sudo apt-get -y install libstdc++6-4.7-dev
 
 install:
-  - mkdir -p ~/.mono
-  - cp Tools/mono.config ~/.mono/config
   - nuget restore Agiil.sln
   - nuget install NUnit.ConsoleRunner -Version 3.6.1 -OutputDirectory testrunner
 
