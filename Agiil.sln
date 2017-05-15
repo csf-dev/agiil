@@ -39,9 +39,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.Web.OAuth", "Agiil.Web.OAuth\Agiil.Web.OAuth.csproj", "{9CECEC15-9B54-4DDD-B0FB-8E9E14FBBA15}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{C9C2673C-FBFD-4C42-A110-F64D0C77405A}"
-	ProjectSection(SolutionItems) = preProject
-		Tools\mono.config = Tools\mono.config
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.Web.Sass", "Tools\Agiil.Web.Sass\Agiil.Web.Sass.csproj", "{02389EF3-90E1-4A21-AD29-23CF7128B730}"
 EndProject
