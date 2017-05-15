@@ -9,7 +9,9 @@
   </ItemGroup>
 	
   <PropertyGroup>
-    <TasksAssemblyPath>$(OutputPath)\Agiil.Build.Tasks.dll</TasksAssemblyPath>
+    <TasksConfig Condition="'$(Configuration)' == 'Debug'">Debug</TasksConfig>
+    <TasksConfig Condition="'$(Configuration)' == 'Release'">Release</TasksConfig>
+    <TasksAssemblyPath>bin\$(TasksConfig)\Agiil.Build.Tasks.dll</TasksAssemblyPath>
   </PropertyGroup>
 	
   <UsingTask TaskName="CompileScssFiles" AssemblyFile="$(TasksAssemblyPath)" />
