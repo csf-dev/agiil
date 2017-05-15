@@ -11,3 +11,5 @@ Agiil.Web/Agiil.db
 Tests/Temp/
 Agiil.Web/Temp/
 *.log
+*.orig
+
