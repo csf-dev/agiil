@@ -14,7 +14,7 @@ namespace Agiil.Domain.Tickets
     readonly ITicketFactory ticketFactory;
     readonly ITransactionCreator transactionFactory;
     readonly ICreateTicketValidatorFactory validatorFactory;
-    readonly Func<IValidationResult, Ticket, CreateTicketResponse> responseCreator;
+    Func<IValidationResult, Ticket, CreateTicketResponse> responseCreator;
 
     public CreateTicketResponse Create(CreateTicketRequest request)
     {
@@ -43,6 +43,12 @@ namespace Agiil.Domain.Tickets
     Ticket CreateTicket(CreateTicketRequest request)
     {
       return ticketFactory.CreateTicket(request.Title, request.Description, userReader.RequireCurrentUser());
+    }
+
+    internal Func<IValidationResult, Ticket, CreateTicketResponse> ResponseCreator
+    {
+      get { return responseCreator; }
+      set { responseCreator = value; }
     }
 
     public TicketCreator(IRepository<Ticket> ticketRepo,
