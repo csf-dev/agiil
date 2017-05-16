@@ -1,21 +1,61 @@
-﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
 <head>
 <title metal:fill-slot="title_element">Ticket detail</title>
+<base href="../../" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+</style>
 </head>
 <body>
-<div metal:fill-slot="page_content" class="page_content">
-  <h1 tal:content="here/Ticket/Title">Ticket title</h1>
-  <p>
-    Created by <strong tal:content="here/Ticket/Creator">username</strong>
-    on <strong tal:content="here/Ticket/CreationTimestamp">2001-01-01 19:21:22</strong>.
-  </p>
-  <h2>Description</h2>
-  <div tal:content="here/Ticket/Description" class="ticket_description">
-    Ticket description here.
-  </div>
+<section metal:fill-slot="page_content"
+         class="page_content ticket_detail"
+         tal:define="ticket here/Ticket">
+  <header>
+    <h1 tal:content="ticket/Title">Ticket title</h1>
+    <p>
+      Created by <strong tal:content="ticket/Creator">username</strong>
+      on <strong tal:content="ticket/CreationTimestamp">2001-01-01 19:21:22</strong>.
+    </p>
+  </header>
+  <section class="description">
+    <h2>Description</h2>
+    <div tal:content="ticket/Description" class="description_content">
+      Ticket description here.
+    </div>
+  </section>
   <a href="Ticket/Edit/0"
-     tal:define="editUrl string:Ticket/Edit/${here/Ticket/Id}"
+     tal:define="editUrl string:Ticket/Edit/${ticket/Id}"
      tal:attributes="href editUrl">Edit this ticket</a>
-</div>
+  <section class="comments">
+    <header>
+      <h2>Comments</h2>
+    </header>
+    <ol metal:use-macro="Views/Shared/Controls/CommentList/macros/comment_list"
+        class="comment_list">
+      <li>
+        <header>
+          <p>
+            Written by <strong>Username</strong> on
+            <strong>2001-01-01 19:21:22</strong>.
+          </p>
+        </header>
+        <div class="comment_content">Here is some comment text.
+          It runs across two lines.</div>
+      </li>
+      <li>
+        <header>
+          <p>
+            Written by <strong>Username</strong> on
+            <strong>2001-01-01 19:21:22</strong>.
+          </p>
+        </header>
+        <div class="comment_content">Here is some comment text.
+          It runs across two lines.</div>
+      </li>
+    </ol>
+  </section>
+</section>
 </body>
 </html>

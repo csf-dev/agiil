@@ -85,6 +85,11 @@
     <Compile Include="Tickets\IEditTicketTitleAndDescriptionValidatorFactory.cs" />
     <Compile Include="Tickets\EditTicketTitleAndDescriptionResponse.cs" />
     <Compile Include="IValidationResultInterpreter.cs" />
+    <Compile Include="Tickets\Comment.cs" />
+    <Compile Include="Tickets\ICommentCreator.cs" />
+    <Compile Include="Tickets\CreateCommentRequest.cs" />
+    <Compile Include="Tickets\CreateCommentResponse.cs" />
+    <Compile Include="Tickets\ICommentFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

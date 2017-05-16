@@ -309,6 +309,10 @@
     <Compile Include="Models\EditTicketTitleAndDescriptionSpecification.cs" />
     <Compile Include="Models\EditTicketTitleAndDescriptionModel.cs" />
     <Compile Include="Models\EditTicketTitleAndDescriptionResponse.cs" />
+    <Compile Include="Models\CommentDto.cs" />
+    <Compile Include="Models\AddCommentSpecification.cs" />
+    <Compile Include="Models\AddCommentResponse.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -335,6 +339,7 @@
     <None Include="Views\Shared\Controls\HeaderLoginLogout.pt" />
     <None Include="Views\Shared\Controls\SiteNavigation.pt" />
     <None Include="Views\Ticket\Edit.pt" />
+    <None Include="Views\Shared\Controls\Comments.pt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
