@@ -14,7 +14,7 @@ namespace Agiil.Domain.Validation
     protected override RuleOutcome GetValueOutcome(IIdentity<TEntity> value)
     {
       if(ReferenceEquals(value, null))
-        return Failure;
+        return Success;
 
       var entity = repository.Get(value);
 

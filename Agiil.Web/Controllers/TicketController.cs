@@ -71,6 +71,8 @@ namespace Agiil.Web.Controllers
     {
       var model = ModelFactory.GetModel<TicketDetailModel>();
       model.Ticket = mapper.Map(ticket);
+      model.AddCommentSpecification = GetTempData<AddCommentSpecification>(CommentController.CommentSpecKey);
+      model.AddCommentResponse = GetTempData<AddCommentResponse>(CommentController.CommentResponseKey);
       return model;
     }
 

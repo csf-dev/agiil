@@ -95,6 +95,7 @@
     <Compile Include="Validation\ValidatorFactoryBase.cs" />
     <Compile Include="Tickets\CommentCreator.cs" />
     <Compile Include="Tickets\CommentFactory.cs" />
+    <Compile Include="Tickets\CreateCommentValidatorFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

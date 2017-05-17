@@ -76,13 +76,11 @@
     <Compile Include="Auth\IIdentityReader.cs" />
     <Compile Include="ComponentScope.cs" />
     <Compile Include="Tickets\CreateTicketResponse.cs" />
-    <Compile Include="Tickets\ICreateTicketValidatorFactory.cs" />
     <Compile Include="Data\IInitialDataCreator.cs" />
     <Compile Include="Tickets\ITicketLister.cs" />
     <Compile Include="Tickets\ITicketDetailService.cs" />
     <Compile Include="Tickets\EditTicketTitleAndDescriptionRequest.cs" />
     <Compile Include="Tickets\ITicketEditor.cs" />
-    <Compile Include="Tickets\IEditTicketTitleAndDescriptionValidatorFactory.cs" />
     <Compile Include="Tickets\EditTicketTitleAndDescriptionResponse.cs" />
     <Compile Include="IValidationResultInterpreter.cs" />
     <Compile Include="Tickets\Comment.cs" />
@@ -90,11 +88,13 @@
     <Compile Include="Tickets\CreateCommentRequest.cs" />
     <Compile Include="Tickets\CreateCommentResponse.cs" />
     <Compile Include="Tickets\ICommentFactory.cs" />
+    <Compile Include="Validation\IValidatorFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
     <Folder Include="Tickets\" />
     <Folder Include="Data\" />
+    <Folder Include="Validation\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -42,6 +42,9 @@ namespace Agiil.Tests
 
     void GenerateIdentityIfNeeded(T entity)
     {
+      if(ReferenceEquals(entity, null))
+        return;
+      
       if(!entity.HasIdentity)
       {
         entity.GenerateIdentity();

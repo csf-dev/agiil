@@ -5,7 +5,8 @@ using CSF.Validation.Manifest.Fluent;
 
 namespace Agiil.Domain.Validation
 {
-  public abstract class ValidatorFactoryBase<TValidated> where TValidated : class
+  public abstract class ValidatorFactoryBase<TValidated> : IValidatorFactory<TValidated>
+    where TValidated : class
   {
     readonly IValidatorFactory validatorFactory;
 

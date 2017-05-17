@@ -7,7 +7,7 @@ using CSF.Validation.StockRules;
 
 namespace Agiil.Domain.Tickets
 {
-  public class CreateTicketValidatorFactory : ValidatorFactoryBase<CreateTicketRequest>, ICreateTicketValidatorFactory
+  public class CreateTicketValidatorFactory : ValidatorFactoryBase<CreateTicketRequest>
   {
     protected override void ConfigureManifest(IManifestBuilder<CreateTicketRequest> builder)
     {

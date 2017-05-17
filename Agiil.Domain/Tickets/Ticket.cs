@@ -28,7 +28,7 @@ namespace Agiil.Domain.Tickets
 
     public Ticket()
     {
-      comments = new EventRaisingSetWrapper<Comment>();
+      comments = new EventRaisingSetWrapper<Comment>(new HashSet<Comment>());
       comments.BeforeAdd += (sender, e) => e.Item.Ticket = this;
       comments.AfterRemove += (sender, e) => e.Item.Ticket = null;
     }

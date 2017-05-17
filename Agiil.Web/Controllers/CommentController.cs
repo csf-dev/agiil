@@ -16,7 +16,6 @@ namespace Agiil.Web.Controllers
       CommentResponseKey = "New comment response";
 
     readonly ICommentCreator commentCreator;
-    readonly Func<IIdentity<Ticket>, string, CreateCommentRequest> requestCreator;
 
     [HttpPost]
     public ActionResult Add(AddCommentSpecification spec)
@@ -39,7 +38,11 @@ namespace Agiil.Web.Controllers
       if(spec == null)
         return null;
 
-      return requestCreator(spec.TicketId, spec.Body);
+      return new CreateCommentRequest
+      {
+        TicketId = spec.TicketId,
+        Body = spec.Body,
+      };
     }
 
     AddCommentResponse MapResponse(CreateCommentResponse source)
@@ -55,16 +58,12 @@ namespace Agiil.Web.Controllers
     }
 
     public CommentController(Services.SharedModel.StandardPageModelFactory modelFactory,
-                             ICommentCreator commentCreator,
-                             Func<IIdentity<Ticket>,string,CreateCommentRequest> requestCreator)
+                             ICommentCreator commentCreator)
       : base(modelFactory)
     {
-      if(requestCreator == null)
-        throw new ArgumentNullException(nameof(requestCreator));
       if(commentCreator == null)
         throw new ArgumentNullException(nameof(commentCreator));
       this.commentCreator = commentCreator;
-      this.requestCreator = requestCreator;
     }
   }
 }

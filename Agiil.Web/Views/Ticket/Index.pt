@@ -32,8 +32,8 @@
     <header>
       <h2>Comments</h2>
     </header>
-    <ol metal:use-macro="Views/Shared/Controls/CommentList/macros/comment_list"
-        class="comment_list">
+    <!-- metal:use-macro="Views/Shared/Controls/Comments/macros/comment_list" -->
+    <ol class="comment_list">
       <li>
         <header>
           <p>
@@ -55,6 +55,10 @@
           It runs across two lines.</div>
       </li>
     </ol>
+    <h3>Add a comment</h3>
+    <div metal:use-macro="Views/Shared/Controls/Comments/macros/add_a_comment">
+      Add a comment control
+    </div>
   </section>
 </section>
 </body>

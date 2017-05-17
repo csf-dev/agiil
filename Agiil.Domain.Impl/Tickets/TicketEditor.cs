@@ -1,4 +1,5 @@
 ﻿using System;
+using Agiil.Domain.Validation;
 using CSF.Data;
 using CSF.Data.Entities;
 using CSF.Validation;
@@ -9,7 +10,7 @@ namespace Agiil.Domain.Tickets
   {
     readonly IRepository<Ticket> ticketRepo;
     readonly ITransactionCreator transactionFactory;
-    readonly IEditTicketTitleAndDescriptionValidatorFactory validatorFactory;
+    readonly IValidatorFactory<EditTicketTitleAndDescriptionRequest> validatorFactory;
     readonly Func<IValidationResult, Ticket, EditTicketTitleAndDescriptionResponse> responseCreator;
 
     public EditTicketTitleAndDescriptionResponse Edit(EditTicketTitleAndDescriptionRequest request)
@@ -45,7 +46,7 @@ namespace Agiil.Domain.Tickets
 
     public TicketEditor(IRepository<Ticket> ticketRepo,
                         ITransactionCreator transactionFactory,
-                        IEditTicketTitleAndDescriptionValidatorFactory validatorFactory,
+                        IValidatorFactory<EditTicketTitleAndDescriptionRequest> validatorFactory,
                         Func<IValidationResult, Ticket, EditTicketTitleAndDescriptionResponse> responseCreator)
     {
       if(responseCreator == null)
