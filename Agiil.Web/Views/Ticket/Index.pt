@@ -32,8 +32,8 @@
     <header>
       <h2>Comments</h2>
     </header>
-    <!-- metal:use-macro="Views/Shared/Controls/Comments/macros/comment_list" -->
-    <ol class="comment_list">
+    <ol metal:use-macro="Views/Shared/Controls/Comments/macros/comment_list"
+        class="comment_list">
       <li>
         <header>
           <p>

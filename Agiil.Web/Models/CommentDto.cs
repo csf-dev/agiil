@@ -3,9 +3,10 @@ namespace Agiil.Web.Models
 {
   public class CommentDto
   {
+    public long Id { get; set; }
     public string Author { get; set; }
-    public DateTime CreationTimestamp { get; set; }
-    public string AuthoredTimestamp => CreationTimestamp.ToString("u");
+    public DateTime Timestamp { get; set; }
+    public string AuthoredTimestamp => Timestamp.ToString("u");
     public string Body { get; set; }
   }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Agiil.Domain.Tickets;
 using Agiil.Web.Models;
 using CSF.Entities;
@@ -20,6 +21,20 @@ namespace Agiil.Web.Services.Tickets
         Description = ticket.Description,
         Creator = ticket.User.Username,
         Created = ticket.CreationTimestamp,
+        Comments = ticket
+          .Comments
+          .OrderBy(x => x.CreationTimestamp)
+          .Select(x => {
+            var commentId = x.GetIdentity();
+            return new CommentDto
+            {
+              Id = (commentId != null)? (long) commentId.Value : default(long),
+              Timestamp = x.CreationTimestamp,
+              Author = x.User.Username,
+              Body = x.Body
+            };
+          })
+          .ToArray()
       };
     }
   }
