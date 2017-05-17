@@ -93,6 +93,10 @@
     <Compile Include="IDataAssemblyMarker.cs" />
     <Compile Include="IDatabaseResetter.cs" />
     <Compile Include="DevelopmentDatabaseResetter.cs" />
+    <Compile Include="LowercaseWithUnderscoreDbNameFormatter.cs" />
+    <Compile Include="IDbNameFormatter.cs" />
+    <Compile Include="Mappings\ManyToOneMapping.cs" />
+    <Compile Include="Mappings\OneToManyMapping.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mappings\" />

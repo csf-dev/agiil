@@ -24,6 +24,10 @@ namespace Agiil.Bootstrap.Data
       builder
         .RegisterType<ConfigurationManagerConnectionStringProvider>()
         .As<IConnectionStringProvider>();
+
+      builder
+        .RegisterType<LowercaseWithUnderscoreDbNameFormatter>()
+        .As<IDbNameFormatter>();
     }
 
     void RegisterAllMappings(ContainerBuilder builder)
