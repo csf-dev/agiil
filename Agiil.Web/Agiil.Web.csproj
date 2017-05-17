@@ -313,6 +313,7 @@
     <Compile Include="Models\AddCommentSpecification.cs" />
     <Compile Include="Models\AddCommentResponse.cs" />
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="ApiControllers\CommentController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
