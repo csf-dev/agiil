@@ -7,6 +7,8 @@ namespace Agiil.Data.Mappings
 {
   public class PropertyMapping : IMapping
   {
+    readonly IDbNameFormatter formatter;
+
     public void ApplyMapping(ConventionModelMapper mapper)
     {
       mapper.IsPersistentProperty((member, declared) => {
@@ -24,6 +26,10 @@ namespace Agiil.Data.Mappings
 
         return true;
       });
+
+      mapper.BeforeMapProperty += (modelInspector, member, propertyCustomizer) => {
+        propertyCustomizer.Column(formatter.GetColumnName(member.LocalMember));
+      };
     }
 
     bool IsIdentityProperty(PropertyInfo property)
@@ -31,6 +37,13 @@ namespace Agiil.Data.Mappings
       return (property.Name == IdentityMapping.IdentityPropertyName
               && property.PropertyType == typeof(long)
               && property.DeclaringType == typeof(Entity<long>));
+    }
+
+    public PropertyMapping(IDbNameFormatter formatter)
+    {
+      if(formatter == null)
+        throw new ArgumentNullException(nameof(formatter));
+      this.formatter = formatter;
     }
   }
 }

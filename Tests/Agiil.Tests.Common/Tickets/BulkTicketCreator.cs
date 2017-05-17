@@ -28,7 +28,9 @@ namespace Agiil.Tests.Tickets
         {
           var user = userRepo
             .Query()
-            .First(x => x.Username.Equals(spec.Creator, StringComparison.InvariantCultureIgnoreCase));
+            .FirstOrDefault(x => x.Username.Equals(spec.Creator, StringComparison.InvariantCultureIgnoreCase));
+          if(ReferenceEquals(user, null))
+            user = userRepo.Query().First();
           var ticket = ticketFactory.CreateTicket(spec.Title, spec.Description, user);
           ticket.CreationTimestamp = spec.Created;
           if(spec.Id.HasValue)

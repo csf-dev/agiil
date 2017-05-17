@@ -9,6 +9,7 @@ using Agiil.Domain;
 using CSF.Validation;
 using CSF.Data.Entities;
 using CSF.Data;
+using Agiil.Domain.Validation;
 
 namespace Agiil.Tests.Domain.Tickets
 {
@@ -18,7 +19,7 @@ namespace Agiil.Tests.Domain.Tickets
     [Test, AutoMoqData]
     public void Create_saves_newly_created_ticket([Frozen] IRepository<Ticket> repo,
                                                   [Frozen] ITicketFactory ticketFactory,
-                                                  [Frozen] ICreateTicketValidatorFactory validatorFactory,
+                                                  [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
                                                   Ticket ticket,
                                                   CreateTicketRequest request,
                                                   [HasIdentity,LoggedIn] User user,
@@ -41,7 +42,7 @@ namespace Agiil.Tests.Domain.Tickets
     [Test, AutoMoqData]
     public void Create_uses_ticket_factory(CreateTicketRequest request,
                                            [Frozen] ITicketFactory ticketFactory,
-                                           [Frozen] ICreateTicketValidatorFactory validatorFactory,
+                                           [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
                                            Ticket ticket,
                                            [HasIdentity,LoggedIn] User user,
                                            TicketCreator sut)
@@ -62,7 +63,7 @@ namespace Agiil.Tests.Domain.Tickets
 
     [Test, AutoMoqData]
     public void Create_returns_created_ticket_in_response(CreateTicketRequest request,
-                                                          [Frozen] ICreateTicketValidatorFactory validatorFactory,
+                                                          [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
                                                           [Frozen] ITicketFactory ticketFactory,
                                                           Ticket ticket,
                                                           [HasIdentity,LoggedIn] User user,
@@ -84,7 +85,7 @@ namespace Agiil.Tests.Domain.Tickets
 
     [Test, AutoMoqData]
     public void Create_returns_a_response(CreateTicketRequest request,
-                                          [Frozen] ICreateTicketValidatorFactory validatorFactory,
+                                          [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
                                           [Frozen] ITicketFactory ticketFactory,
                                           Ticket ticket,
                                           [HasIdentity,LoggedIn] User user,
@@ -105,7 +106,7 @@ namespace Agiil.Tests.Domain.Tickets
 
     [Test, AutoMoqData]
     public void Create_uses_a_validator(CreateTicketRequest request,
-                                        [Frozen] ICreateTicketValidatorFactory validatorFactory,
+                                        [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
                                         [Frozen] ITicketFactory ticketFactory,
                                         Ticket ticket,
                                         [HasIdentity,LoggedIn] User user,
@@ -128,7 +129,7 @@ namespace Agiil.Tests.Domain.Tickets
     [Test, AutoMoqData]
     public void Create_does_not_persist_if_validation_fails(CreateTicketRequest request,
                                                             [Frozen] IRepository<Ticket> repo,
-                                                            [Frozen] ICreateTicketValidatorFactory validatorFactory,
+                                                            [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
                                                             [Frozen] ITicketFactory ticketFactory,
                                                             Ticket ticket,
                                                             [HasIdentity,LoggedIn] User user,
@@ -153,7 +154,7 @@ namespace Agiil.Tests.Domain.Tickets
 
     [Test, AutoMoqData]
     public void Create_returns_null_ticket_instance_if_validation_fails(CreateTicketRequest request,
-                                                                        [Frozen] ICreateTicketValidatorFactory validatorFactory,
+                                                                        [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
                                                                         [Frozen] ITicketFactory ticketFactory,
                                                                         Ticket ticket,
                                                                         [HasIdentity,LoggedIn] User user,
@@ -178,7 +179,7 @@ namespace Agiil.Tests.Domain.Tickets
 
     [Test, AutoMoqData]
     public void Create_uses_transaction(CreateTicketRequest request,
-                                        [Frozen] ICreateTicketValidatorFactory validatorFactory,
+                                        [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
                                         [Frozen] ITicketFactory ticketFactory,
                                         Ticket ticket,
                                         [HasIdentity,LoggedIn] User user,
@@ -203,7 +204,7 @@ namespace Agiil.Tests.Domain.Tickets
       Mock.Get(trans).Verify(x => x.Commit(), Times.Once());
     }
 
-    IValidator SetupValidatorWhichAlwaysPasses(ICreateTicketValidatorFactory factory)
+    IValidator SetupValidatorWhichAlwaysPasses(IValidatorFactory<CreateTicketRequest> factory)
     {
       var validator = Mock.Of<IValidator>(x => x.Validate(It.IsAny<object>()).IsSuccess == true);
 

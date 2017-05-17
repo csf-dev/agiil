@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Auth;
+using Agiil.Domain.Validation;
 using CSF.Data;
 using CSF.Data.Entities;
 using CSF.Validation;
@@ -13,7 +14,7 @@ namespace Agiil.Domain.Tickets
     readonly ICurrentUserReader userReader;
     readonly ITicketFactory ticketFactory;
     readonly ITransactionCreator transactionFactory;
-    readonly ICreateTicketValidatorFactory validatorFactory;
+    readonly IValidatorFactory<CreateTicketRequest> validatorFactory;
     Func<IValidationResult, Ticket, CreateTicketResponse> responseCreator;
 
     public CreateTicketResponse Create(CreateTicketRequest request)
@@ -55,7 +56,7 @@ namespace Agiil.Domain.Tickets
                          ICurrentUserReader userReader,
                          ITicketFactory ticketFactory,
                          ITransactionCreator transactionFactory,
-                         ICreateTicketValidatorFactory validatorFactory,
+                         IValidatorFactory<CreateTicketRequest> validatorFactory,
                          Func<IValidationResult,Ticket,CreateTicketResponse> responseCreator)
     {
       if(responseCreator == null)

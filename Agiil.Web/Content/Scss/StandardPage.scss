@@ -7,6 +7,9 @@ body {
   font-family: $standard-fonts;
   margin: 1em;
 }
-.ticket_description {
-  white-space: pre-line;
+.ticket_detail {
+  .ticket_description,
+  .comment_content {
+    white-space: pre-line;
+  }
 }

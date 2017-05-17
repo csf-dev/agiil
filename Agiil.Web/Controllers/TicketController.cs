@@ -71,7 +71,18 @@ namespace Agiil.Web.Controllers
     {
       var model = ModelFactory.GetModel<TicketDetailModel>();
       model.Ticket = mapper.Map(ticket);
+      model.AddCommentSpecification = GetTempData<AddCommentSpecification>(CommentController.CommentSpecKey);
+      model.AddCommentResponse = GetTempData<AddCommentResponse>(CommentController.CommentResponseKey);
       return model;
+    }
+
+    void PopulateCreateCommentModelProperties(TicketDetailModel model)
+    {
+      if(model == null)
+        throw new ArgumentNullException(nameof(model));
+
+      model.AddCommentSpecification = GetTempData<AddCommentSpecification>(CommentController.CommentSpecKey);
+      model.AddCommentResponse = GetTempData<AddCommentResponse>(CommentController.CommentResponseKey);
     }
 
     EditTicketTitleAndDescriptionModel GetEditTicketModel(Ticket ticket)

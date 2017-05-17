@@ -8,5 +8,9 @@ namespace Agiil.Web.Models
     public bool IsSuccessfulEdit { get; set; }
 
     public TicketDetailDto  Ticket { get; set; }
+
+    public AddCommentSpecification AddCommentSpecification { get; set; }
+
+    public AddCommentResponse AddCommentResponse { get; set; }
   }
 }
