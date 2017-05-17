@@ -30,7 +30,7 @@ namespace Agiil.Web.Controllers
 
       return RedirectToAction(nameof(TicketController.Index),
                               GetControllerName<TicketController>(),
-                              new { id = spec.TicketId });
+                              new { id = spec.TicketId?.Value });
     }
 
     CreateCommentRequest GetCreationRequest(AddCommentSpecification spec)
