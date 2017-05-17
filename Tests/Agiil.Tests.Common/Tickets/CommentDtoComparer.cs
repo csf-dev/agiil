@@ -24,7 +24,7 @@ namespace Agiil.Tests.Tickets
       if(Equals(first, second))
         return 0;
 
-      return (first.CreationTimestamp > second.CreationTimestamp)? 1 : -1;
+      return (first.Timestamp > second.Timestamp)? 1 : -1;
     }
 
     public virtual bool Equals(CommentDto x, CommentDto y)
@@ -37,7 +37,7 @@ namespace Agiil.Tests.Tickets
         return false;
 
       return (x.Author == y.Author
-              && x.CreationTimestamp == y.CreationTimestamp
+              && x.Timestamp == y.Timestamp
               && x.Body == y.Body);
     }
 
@@ -48,7 +48,7 @@ namespace Agiil.Tests.Tickets
 
       return ((obj?.Author?? String.Empty).GetHashCode()
               ^ (obj?.Body?? String.Empty).GetHashCode()
-              ^ (obj?.CreationTimestamp).GetHashCode());
+              ^ (obj?.Timestamp).GetHashCode());
     }
   }
 }

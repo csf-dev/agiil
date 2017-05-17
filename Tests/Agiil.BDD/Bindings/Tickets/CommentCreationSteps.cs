@@ -3,6 +3,7 @@ using Agiil.Domain.Tickets;
 using Agiil.Tests.Tickets;
 using Agiil.Web.Models;
 using CSF.Entities;
+using Ploeh.AutoFixture;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -12,6 +13,8 @@ namespace Agiil.BDD.Bindings.Tickets
   public class CommentCreationSteps
   {
     readonly ICommentController commentController;
+    readonly IBulkCommentCreator commentCreator;
+    readonly IFixture autoFixture;
 
     [When("the user adds a comment with the following specification:")]
     public void TheUserAddsACommentWithSpecification(Table commentProperties)
@@ -21,11 +24,30 @@ namespace Agiil.BDD.Bindings.Tickets
       commentController.Add(spec);
     }
 
-    public CommentCreationSteps(ICommentController commentController)
+    [Given(@"ticket ID (\d+) has the following comments:")]
+    public void ATicketHasComments(long ticketId, Table bulkComments)
     {
+      var comments = bulkComments.CreateSet(() => autoFixture.Create<BulkCommentSpecification>());
+      foreach(var comment in comments)
+      {
+        comment.TicketId = ticketId;
+      }
+      commentCreator.CreateComments(comments);
+    }
+
+    public CommentCreationSteps(ICommentController commentController,
+                                IBulkCommentCreator commentCreator,
+                                IFixture autoFixture)
+    {
+      if(autoFixture == null)
+        throw new ArgumentNullException(nameof(autoFixture));
+      if(commentCreator == null)
+        throw new ArgumentNullException(nameof(commentCreator));
       if(commentController == null)
         throw new ArgumentNullException(nameof(commentController));
       this.commentController = commentController;
+      this.commentCreator = commentCreator;
+      this.autoFixture = autoFixture;
     }
   }
 }

@@ -6,12 +6,14 @@ using Agiil.Web.Models;
 using CSF.Data.Entities;
 using CSF.Data.NHibernate;
 using CSF.Entities;
+using NUnit.Framework;
 
 namespace Agiil.Tests.Tickets
 {
   public class CommentQueryController : ICommentQueryController
   {
     readonly IRepository<Comment> commentRepository;
+    readonly TicketDetailModelContext ticketDetailContext;
 
     public bool DoesCommentExist(CommentSearchCriteria criteria = null)
     {
@@ -21,7 +23,8 @@ namespace Agiil.Tests.Tickets
 
     public void VerifyThatCommentsAreListedInOrder(IList<CommentDto> expected)
     {
-      throw new NotImplementedException();
+      var actual = ticketDetailContext.Model.Ticket.Comments;
+      CollectionAssert.AreEqual(expected, actual, new CommentDtoComparer());
     }
 
     Expression<Func<Comment,bool>> CreateCommentSearchPredicate(CommentSearchCriteria helper)
@@ -35,11 +38,15 @@ namespace Agiil.Tests.Tickets
 
     }
 
-    public CommentQueryController(IRepository<Comment> commentRepository)
+    public CommentQueryController(IRepository<Comment> commentRepository,
+                                  TicketDetailModelContext ticketDetailContext)
     {
+      if(ticketDetailContext == null)
+        throw new ArgumentNullException(nameof(ticketDetailContext));
       if(commentRepository == null)
         throw new ArgumentNullException(nameof(commentRepository));
       this.commentRepository = commentRepository;
+      this.ticketDetailContext = ticketDetailContext;
     }
   }
 }

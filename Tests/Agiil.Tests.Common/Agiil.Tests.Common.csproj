@@ -191,6 +191,9 @@
     <Compile Include="Tickets\CommentSearchCriteria.cs" />
     <Compile Include="Tickets\CommentQueryController.cs" />
     <Compile Include="Tickets\CommentDtoComparer.cs" />
+    <Compile Include="Tickets\IBulkCommentCreator.cs" />
+    <Compile Include="Tickets\BulkCommentSpecification.cs" />
+    <Compile Include="Tickets\BulkCommentCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">

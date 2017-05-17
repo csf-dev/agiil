@@ -145,6 +145,71 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Ticket comments are listed with the ticket in chronological order")]
+        public virtual void TicketCommentsAreListedWithTheTicketInChronologicalOrder()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ticket comments are listed with the ticket in chronological order", ((string[])(null)));
+#line 22
+this.ScenarioSetup(scenarioInfo);
+#line 23
+  testRunner.Given("the user is logged in with a user account named 'jbloggs'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 24
+    testRunner.And("there is a user account named 'sallyann'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 25
+    testRunner.And("there is a ticket with ID 5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "Author",
+                        "Timestamp",
+                        "Body"});
+            table4.AddRow(new string[]
+                {
+                        "sallyann",
+                        "2006-01-01",
+                        "Body one"});
+            table4.AddRow(new string[]
+                {
+                        "jbloggs",
+                        "2008-01-01",
+                        "Body two"});
+            table4.AddRow(new string[]
+                {
+                        "sallyann",
+                        "2001-01-01",
+                        "Body 3"});
+#line 26
+    testRunner.And("ticket ID 5 has the following comments:", ((string)(null)), table4, "And ");
+#line 31
+   testRunner.When("the user visits the ticket detail page for ticket ID 5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "Author",
+                        "Timestamp",
+                        "Body"});
+            table5.AddRow(new string[]
+                {
+                        "sallyann",
+                        "2001-01-01",
+                        "Body 3"});
+            table5.AddRow(new string[]
+                {
+                        "sallyann",
+                        "2006-01-01",
+                        "Body one"});
+            table5.AddRow(new string[]
+                {
+                        "jbloggs",
+                        "2008-01-01",
+                        "Body two"});
+#line 32
+   testRunner.Then("the following comments should be displayed in order:", ((string)(null)), table5, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
