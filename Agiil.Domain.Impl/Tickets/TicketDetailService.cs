@@ -16,6 +16,8 @@ namespace Agiil.Domain.Tickets
       }
 
       return repo.Get(ticket);
+      // TODO: Add a fetch for the comments to prevent SELECT N+1
+      // Right now this isn't working though, not sure if it's my bad with the mapping or CSF.Data.NHibernate at fault
     }
 
     public TicketDetailService(IRepository<Ticket> repo)

@@ -3,6 +3,7 @@ namespace Agiil.Web.Models
 {
   public class CommentDto
   {
+    public long Id { get; set; }
     public string Author { get; set; }
     public DateTime Timestamp { get; set; }
     public string AuthoredTimestamp => Timestamp.ToString("u");

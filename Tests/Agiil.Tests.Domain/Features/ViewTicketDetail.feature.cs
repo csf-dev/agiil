@@ -162,21 +162,25 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[]
                 {
+                        "Id",
                         "Author",
                         "Timestamp",
                         "Body"});
             table4.AddRow(new string[]
                 {
+                        "1",
                         "sallyann",
                         "2006-01-01",
                         "Body one"});
             table4.AddRow(new string[]
                 {
+                        "2",
                         "jbloggs",
                         "2008-01-01",
                         "Body two"});
             table4.AddRow(new string[]
                 {
+                        "3",
                         "sallyann",
                         "2001-01-01",
                         "Body 3"});
@@ -187,21 +191,25 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[]
                 {
+                        "Id",
                         "Author",
                         "Timestamp",
                         "Body"});
             table5.AddRow(new string[]
                 {
+                        "3",
                         "sallyann",
                         "2001-01-01",
                         "Body 3"});
             table5.AddRow(new string[]
                 {
+                        "1",
                         "sallyann",
                         "2006-01-01",
                         "Body one"});
             table5.AddRow(new string[]
                 {
+                        "2",
                         "jbloggs",
                         "2008-01-01",
                         "Body two"});

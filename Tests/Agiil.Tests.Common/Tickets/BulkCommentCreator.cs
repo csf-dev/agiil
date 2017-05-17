@@ -31,6 +31,7 @@ namespace Agiil.Tests.Tickets
           if(ReferenceEquals(user, null))
             user = userRepo.Query().First();
           var comment = commentFactory.Create(spec.Body);
+          comment.User = user;
           comment.CreationTimestamp = spec.Timestamp;
           if(spec.Id.HasValue)
             comment.SetIdentityValue(spec.Id.Value);
