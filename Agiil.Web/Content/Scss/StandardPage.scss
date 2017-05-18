@@ -4,12 +4,13 @@
 @import '_PageHeader';
 
 body {
-  font-family: $standard-fonts;
+  font-family: $proportional-font-stack;
   margin: 1em;
 }
 .ticket_detail {
   .description_content,
   .comment_content {
+    font-family: $monospace-font-stack;
     white-space: pre-line;
   }
 }
