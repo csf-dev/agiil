@@ -8,12 +8,14 @@
   <p>This is a list of the tickets which exist in the application.</p>
   <table tal:define="tickets here/Tickets">
     <colgroup>
+      <col class="reference" />
       <col class="title" />
       <col class="created_by" />
       <col class="created_date" />
     </colgroup>
     <thead>
       <tr>
+        <th>#</th>
         <th>Title</th>
         <th>Created by</th>
         <th>Date</th>
@@ -21,6 +23,7 @@
     </thead>
     <tbody>
       <tr tal:repeat="ticket tickets">
+        <td tal:content="ticket/Reference">AB123</td>
         <td tal:define="url string:Ticket/Index/${ticket/Id}">
           <a href="Ticket/Index/1" tal:attributes="href url" tal:content="ticket/Title">Ticket title here</a>
         </td>

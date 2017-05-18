@@ -95,12 +95,14 @@
     <Compile Include="IIndictesSuccess.cs" />
     <Compile Include="Validation\RuleNames.cs" />
     <Compile Include="Tickets\ICommentReader.cs" />
+    <Compile Include="Projects\Project.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
     <Folder Include="Tickets\" />
     <Folder Include="Data\" />
     <Folder Include="Validation\" />
+    <Folder Include="Projects\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
