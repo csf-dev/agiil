@@ -25,13 +25,6 @@ namespace Agiil.Domain
       return SuccessOutcomes.Contains(result.RuleResult.Outcome);
     }
 
-    [Obsolete("The version with optional parameters should be used instead.")]
-    public bool IncludesFailureFor<TValidated>(IValidationResult result,
-                                               Expression<Func<TValidated,object>> propertyExpression)
-    {
-      return IncludesFailureFor(result, propertyExpression, null, null);
-    }
-
     public bool IncludesFailureFor<TValidated>(IValidationResult result,
                                                Expression<Func<TValidated,object>> propertyExpression,
                                                Type ruleType,
