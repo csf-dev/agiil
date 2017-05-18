@@ -10,6 +10,9 @@
       Created by <strong tal:content="here/Ticket/Creator">username</strong>
       on <strong tal:content="here/Ticket/CreationTimestamp">2001-01-01 19:21:22</strong>.
     </p>
+    <p>
+      Ticket <strong tal:content="string:#${here/Ticket/Reference}">AB123</strong>.
+    </p>
     <fieldset>
       <input type="hidden" name="Identity" value="/"
              tal:attributes="value here/Ticket/Id | nothing" />

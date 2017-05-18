@@ -5,6 +5,8 @@ namespace Agiil.Web.Models
   {
     public long Id { get; set; }
 
+    public string Reference { get; set; }
+
     public string Title { get; set; }
 
     public string Creator { get; set; }

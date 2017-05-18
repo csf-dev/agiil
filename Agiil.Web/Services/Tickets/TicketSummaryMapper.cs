@@ -29,6 +29,7 @@ namespace Agiil.Web.Services.Tickets
         Title = ticket.Title,
         Creator = ticket.User.Username,
         Created = ticket.CreationTimestamp,
+        Reference = ticket.GetTicketReference(),
       };
     }
   }

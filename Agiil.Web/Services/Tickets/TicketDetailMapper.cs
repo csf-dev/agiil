@@ -23,6 +23,7 @@ namespace Agiil.Web.Services.Tickets
         Description = ticket.Description,
         Creator = ticket.User.Username,
         Created = ticket.CreationTimestamp,
+        Reference = ticket.GetTicketReference(),
         Comments = ticket
           .Comments
           .OrderBy(x => x.CreationTimestamp)

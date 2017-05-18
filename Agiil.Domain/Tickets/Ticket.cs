@@ -26,6 +26,15 @@ namespace Agiil.Domain.Tickets
       set { comments.SourceCollection = value; }
     }
 
+    public virtual Projects.Project Project { get; set; }
+
+    public virtual long TicketNumber { get; set; }
+
+    public virtual string GetTicketReference()
+    {
+      return String.Concat(Project?.Code, TicketNumber.ToString());
+    }
+
     public Ticket()
     {
       comments = new EventRaisingSetWrapper<Comment>(new HashSet<Comment>());

@@ -43,7 +43,10 @@ namespace Agiil.Domain.Tickets
 
     Ticket CreateTicket(CreateTicketRequest request)
     {
-      return ticketFactory.CreateTicket(request.Title, request.Description, userReader.RequireCurrentUser());
+      return ticketFactory.CreateTicket(request.Title,
+                                        request.Description,
+                                        userReader.RequireCurrentUser());
+
     }
 
     internal Func<IValidationResult, Ticket, CreateTicketResponse> ResponseCreator
