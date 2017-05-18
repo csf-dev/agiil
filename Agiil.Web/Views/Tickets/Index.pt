@@ -6,7 +6,7 @@
 <div metal:fill-slot="page_content" class="page_content">
   <h1>Tickets</h1>
   <p>This is a list of the tickets which exist in the application.</p>
-  <table tal:define="tickets here/Tickets">
+  <table tal:define="tickets here/Tickets" class="ticket_list">
     <colgroup>
       <col class="reference" />
       <col class="title" />

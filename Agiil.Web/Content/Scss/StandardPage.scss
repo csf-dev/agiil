@@ -14,3 +14,18 @@ body {
     white-space: pre-line;
   }
 }
+table.ticket_list {
+  border: 1px solid hsla(0, 0%, 85%, 1);
+  border-collapse: collapse;
+  
+  td, th {
+    padding: 0.2em 0.4em;
+    border-bottom: 1px solid hsla(0, 0%, 95%, 1);
+  }
+  tr:last-child td, th {
+    border-color: hsla(0, 0%, 85%, 1);
+  }
+  th {
+    font-weight: bold;
+  }
+}
