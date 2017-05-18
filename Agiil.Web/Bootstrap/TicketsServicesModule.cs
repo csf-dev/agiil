@@ -10,6 +10,7 @@ namespace Agiil.Web.Bootstrap
     {
       builder.RegisterType<TicketSummaryMapper>();
       builder.RegisterType<TicketDetailMapper>();
+      builder.RegisterType<CommentMapper>();
     }
   }
 }

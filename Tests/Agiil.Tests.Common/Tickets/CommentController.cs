@@ -12,6 +12,11 @@ namespace Agiil.Tests.Tickets
       webController.Add(comment);
     }
 
+    public void Edit(EditCommentSpecification comment)
+    {
+      webController.Edit(comment);
+    }
+
     public CommentController(Web.Controllers.CommentController webController)
     {
       if(webController == null)

@@ -19,10 +19,16 @@
         tal:define="comments ticket/Comments"
         class="comment_list">
       <li tal:repeat="comment comments">
-        <header>
+        <header tal:define="author comment/Author;
+                            me here/LoginState/Username;
+                            commentIsMine csharp:Equals(author, me)">
           <p>
             Written by <strong tal:content="comment/Author">Username</strong> on
             <strong tal:content="comment/AuthoredTimestamp">2001-01-01 19:21:22</strong>.
+          </p>
+          <p tal:condition="commentIsMine">
+            <a href="Comment/Edit/0"
+               tal:attributes="href string:Comment/Edit/${comment/Id}">Edit this comment</a>
           </p>
         </header>
         <div tal:content="comment/Body" class="comment_content">Comment text here</div>

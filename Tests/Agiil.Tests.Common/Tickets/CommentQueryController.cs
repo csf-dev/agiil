@@ -32,9 +32,10 @@ namespace Agiil.Tests.Tickets
       if(helper == null)
         return c => true;
 
-      return c => ((String.IsNullOrWhiteSpace(helper.Author) || c.User != null && c.User.Username == helper.Author.Trim())
-                   && (String.IsNullOrWhiteSpace(helper.Body) || c.Body == helper.Body.Trim())
-                   && (!helper.TicketId.HasValue || (c.Ticket != null && Equals(c.Ticket.GetIdentity().Value, helper.TicketId.Value))));
+      return c => (((helper.Author == null) || c.User != null && c.User.Username == helper.Author.Trim())
+                   && ((helper.Body == null) || c.Body == helper.Body.Trim())
+                   && (!helper.TicketId.HasValue || (c.Ticket != null && Equals(c.Ticket.GetIdentity().Value, helper.TicketId.Value)))
+                   && (!helper.Id.HasValue || (Equals(c.GetIdentity().Value, helper.Id.Value))));
 
     }
 

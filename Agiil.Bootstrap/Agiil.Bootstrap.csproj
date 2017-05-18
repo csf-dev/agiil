@@ -119,6 +119,7 @@
     <Compile Include="DomainWideTypesModule.cs" />
     <Compile Include="Validation\ValidationModule.cs" />
     <Compile Include="Validation\AutofacValidationRuleResolver.cs" />
+    <Compile Include="Validation\ValidationRulesModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

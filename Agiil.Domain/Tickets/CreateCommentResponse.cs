@@ -3,7 +3,7 @@ using CSF.Validation;
 
 namespace Agiil.Domain.Tickets
 {
-  public class CreateCommentResponse
+  public class CreateCommentResponse : IIndictesSuccess
   {
     readonly IValidationResult validationResult;
     readonly IValidationResultInterpreter resultInterpreter;

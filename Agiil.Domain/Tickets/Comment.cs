@@ -10,6 +10,8 @@ namespace Agiil.Domain.Tickets
 
     public virtual DateTime CreationTimestamp { get; set; }
 
+    public virtual DateTime LastEditTimestamp { get; set; }
+
     public virtual User User { get; set; }
 
     public virtual string Body { get; set; }
