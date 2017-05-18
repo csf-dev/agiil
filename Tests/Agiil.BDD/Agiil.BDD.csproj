@@ -97,6 +97,7 @@
     <Compile Include="Bindings\Tickets\TicketEditingSteps.cs" />
     <Compile Include="Bindings\Tickets\CommentCreationSteps.cs" />
     <Compile Include="Bindings\Tickets\CommentQuerySteps.cs" />
+    <Compile Include="Bindings\Tickets\CommentEditingSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

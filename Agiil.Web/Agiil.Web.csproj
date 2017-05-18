@@ -254,6 +254,7 @@
     <Folder Include="Models\Shared\" />
     <Folder Include="Services\SharedModel\" />
     <Folder Include="Content\Scss\" />
+    <Folder Include="Views\Comment\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -314,6 +315,10 @@
     <Compile Include="Models\AddCommentResponse.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="ApiControllers\CommentController.cs" />
+    <Compile Include="Models\EditCommentSpecification.cs" />
+    <Compile Include="Models\EditCommentModel.cs" />
+    <Compile Include="Models\EditCommentResponse.cs" />
+    <Compile Include="Services\Tickets\CommentMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -341,6 +346,7 @@
     <None Include="Views\Shared\Controls\SiteNavigation.pt" />
     <None Include="Views\Ticket\Edit.pt" />
     <None Include="Views\Shared\Controls\Comments.pt" />
+    <None Include="Views\Comment\Edit.pt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

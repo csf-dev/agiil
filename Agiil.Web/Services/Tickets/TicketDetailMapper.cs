@@ -8,6 +8,8 @@ namespace Agiil.Web.Services.Tickets
 {
   public class TicketDetailMapper
   {
+    readonly CommentMapper commentMapper;
+
     public TicketDetailDto Map(Ticket ticket)
     {
       if(ticket == null)
@@ -24,18 +26,16 @@ namespace Agiil.Web.Services.Tickets
         Comments = ticket
           .Comments
           .OrderBy(x => x.CreationTimestamp)
-          .Select(x => {
-            var commentId = x.GetIdentity();
-            return new CommentDto
-            {
-              Id = (commentId != null)? (long) commentId.Value : default(long),
-              Timestamp = x.CreationTimestamp,
-              Author = x.User.Username,
-              Body = x.Body
-            };
-          })
+          .Select(x => commentMapper.Map(x))
           .ToArray()
       };
+    }
+
+    public TicketDetailMapper(CommentMapper commentMapper)
+    {
+      if(commentMapper == null)
+        throw new ArgumentNullException(nameof(commentMapper));
+      this.commentMapper = commentMapper;
     }
   }
 }

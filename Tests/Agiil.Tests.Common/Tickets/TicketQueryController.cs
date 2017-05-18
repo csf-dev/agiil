@@ -73,9 +73,9 @@ namespace Agiil.Tests.Tickets
       if(helper == null)
         return t => true;
 
-      return t => ((String.IsNullOrWhiteSpace(helper.Title) || t.Title == helper.Title.Trim())
-                   && (String.IsNullOrWhiteSpace(helper.Description) || t.Description == helper.Description.Trim())
-                   && (String.IsNullOrWhiteSpace(helper.User) || (t.User != null && t.User.Username == helper.User.Trim())));
+      return t => (((helper.Title == null) || t.Title == helper.Title.Trim())
+                   && ((helper.Description == null) || t.Description == helper.Description.Trim())
+                   && ((helper.User == null) || (t.User != null && t.User.Username == helper.User.Trim())));
 
     }
 

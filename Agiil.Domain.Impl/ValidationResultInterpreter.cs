@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using CSF.Reflection;
@@ -25,24 +26,53 @@ namespace Agiil.Domain
     }
 
     public bool IncludesFailureFor<TValidated>(IValidationResult result,
-                                               Expression<Func<TValidated,object>> propertyExpression)
+                                               Expression<Func<TValidated,object>> propertyExpression,
+                                               Type ruleType,
+                                               string name)
     {
-      if(propertyExpression == null)
-        throw new ArgumentNullException(nameof(propertyExpression));
-      if(result == null)
+      if(ReferenceEquals(result, null))
         throw new ArgumentNullException(nameof(result));
-
       if(result.IsSuccess)
         return false;
 
-      var property = Reflect.Property(propertyExpression);
-
-      return result
+      var query = result
         .RuleResults
         .Where(x => !IsSuccess(x))
         .Select(x => x.ManifestIdentity)
-        .Cast<DefaultManifestIdentity>()
-        .Any(x => x.ValidatedMember == property);
+        .Cast<DefaultManifestIdentity>();
+
+      query = RefineQueryWithProperty(query, propertyExpression);
+      query = RefineQueryWithRuleType(query, ruleType);
+      query = RefineQueryWithRuleName(query, name);
+
+      return query.Any();
+    }
+
+    IEnumerable<DefaultManifestIdentity> RefineQueryWithProperty<TValidated>(IEnumerable<DefaultManifestIdentity> query,
+                                                                             Expression<Func<TValidated,object>> propertyExpression)
+    {
+      if(ReferenceEquals(propertyExpression,null))
+        return query;
+
+      return query.Where(x => x.ValidatedMember == Reflect.Property(propertyExpression));
+    }
+
+    IEnumerable<DefaultManifestIdentity> RefineQueryWithRuleType(IEnumerable<DefaultManifestIdentity> query,
+                                                                 Type ruleType)
+    {
+      if(ReferenceEquals(ruleType,null))
+        return query;
+
+      return query.Where(x => x.RuleType == ruleType);
+    }
+
+    IEnumerable<DefaultManifestIdentity> RefineQueryWithRuleName(IEnumerable<DefaultManifestIdentity> query,
+                                                                 string name)
+    {
+      if(ReferenceEquals(name,null))
+        return query;
+
+      return query.Where(x => x.Name == name);
     }
   }
 }

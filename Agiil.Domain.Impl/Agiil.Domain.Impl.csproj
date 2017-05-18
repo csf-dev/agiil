@@ -96,6 +96,10 @@
     <Compile Include="Tickets\CommentCreator.cs" />
     <Compile Include="Tickets\CommentFactory.cs" />
     <Compile Include="Tickets\CreateCommentValidatorFactory.cs" />
+    <Compile Include="Tickets\EditCommentValidatorFactory.cs" />
+    <Compile Include="Validation\MustBeLoggedInAsCommentAuthorRule.cs" />
+    <Compile Include="Tickets\CommentEditor.cs" />
+    <Compile Include="Tickets\CommentReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

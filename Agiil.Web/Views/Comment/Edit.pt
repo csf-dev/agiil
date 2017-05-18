@@ -1,0 +1,34 @@
+﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<head>
+<title metal:fill-slot="title_element">Edit comment</title>
+</head>
+<body>
+<div metal:fill-slot="page_content" class="page_content">
+  <h1>Edit comment</h1>
+  <form action="Comment/Edit" method="post">
+    <p>
+      Created by <strong tal:content="here/Comment/Author">username</strong>
+      on <strong tal:content="here/Comment/AuthoredTimestamp">2001-01-01 19:21:22</strong>.
+    </p>
+    <fieldset>
+      <input type="hidden" name="CommentId" value="/"
+             tal:attributes="value here/Comment/Id | nothing" />
+      <div class="form_element field">
+        <label for="Body">Comment</label>
+        <textarea id="Body" name="Body"
+                  tal:content="value here/Specification/Body | here/Comment/Body | nothing"></textarea>
+      </div>
+      <div class="form_element feedback warning" tal:condition="here/Response/BodyIsInvalid | nothing">
+        <p>Please enter a comment.</p>
+      </div>
+      <div class="form_element feedback warning" tal:condition="here/Response/UserDoesNotHavePermission | nothing">
+        <p>You do not have permission to edit this comment.</p>
+      </div>
+      <div class="form_element button">
+        <button>Submit</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
+</body>
+</html>

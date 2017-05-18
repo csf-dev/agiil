@@ -16,6 +16,7 @@ namespace Agiil.Domain.Tickets
       return new Comment
       {
         CreationTimestamp = now,
+        LastEditTimestamp = now,
         User = user,
         Body = body,
       };

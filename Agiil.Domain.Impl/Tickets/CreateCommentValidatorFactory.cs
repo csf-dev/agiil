@@ -7,8 +7,7 @@ using CSF.Validation.StockRules;
 
 namespace Agiil.Domain.Tickets
 {
-  public class CreateCommentValidatorFactory
-    : ValidatorFactoryBase<CreateCommentRequest>
+  public class CreateCommentValidatorFactory : ValidatorFactoryBase<CreateCommentRequest>
   {
     protected override void ConfigureManifest(IManifestBuilder<CreateCommentRequest> builder)
     {
