@@ -24,7 +24,7 @@ namespace Agiil.Domain.Tickets
         throw new ArgumentNullException(nameof(creator));
       }
 
-      var project = projectRepo.Query().First();
+      var project = projectRepo.Query().FirstOrDefault();
 
       return new Ticket
       {
@@ -33,6 +33,7 @@ namespace Agiil.Domain.Tickets
         User = creator,
         CreationTimestamp = environment.GetCurrentUtcTimestamp(),
         Project = project,
+        TicketNumber = (project != null)? project.NextAvailableTicketNumber++ : default(long),
       };
     }
 

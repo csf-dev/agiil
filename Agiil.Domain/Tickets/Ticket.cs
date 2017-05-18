@@ -32,7 +32,7 @@ namespace Agiil.Domain.Tickets
 
     public virtual string GetTicketReference()
     {
-      return String.Concat(Project.Code, TicketNumber.ToString());
+      return String.Concat(Project?.Code, TicketNumber.ToString());
     }
 
     public Ticket()
