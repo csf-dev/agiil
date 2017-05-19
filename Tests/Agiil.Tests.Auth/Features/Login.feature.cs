@@ -68,13 +68,13 @@ namespace Agiil.Tests.Auth.Features
         public virtual void TheUserCannotLogInIfTheyUseAUsernameWhichDoesCorrespondToAnyUserAccounts()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user cannot log in if they use a username which does correspond to any user accounts", ((string[])(null)));
-#line 10
+#line 5
 this.ScenarioSetup(scenarioInfo);
-#line 11
+#line 6
   testRunner.Given("there is not a user account named 'johndoe'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 12
+#line 7
    testRunner.When("the user attempts to log in with a username 'johndoe' and password 'secret'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 13
+#line 8
    testRunner.Then("the user is not logged in successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -85,13 +85,13 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void TheUserCannotLogInIfTheyUseAnIncorrectPasswordForAnExistingUserAccount()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user cannot log in if they use an incorrect password for an existing user account", ((string[])(null)));
-#line 15
+#line 10
 this.ScenarioSetup(scenarioInfo);
-#line 16
+#line 11
   testRunner.Given("there is a user account named 'johndoe' with the password 'secret'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 17
+#line 12
    testRunner.When("the user attempts to log in with a username 'johndoe' and password 'incorrect'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 18
+#line 13
    testRunner.Then("the user is not logged in successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -102,13 +102,13 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void TheUserIsLoggedInSuccessfullyIfTheyUseACorrectUsernameAndPasswordForAnExistingUserAccount()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user is logged in successfully if they use a correct username and password for an existing user account", ((string[])(null)));
-#line 20
+#line 15
 this.ScenarioSetup(scenarioInfo);
-#line 21
+#line 16
   testRunner.Given("there is a user account named 'johndoe' with the password 'secret'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 22
+#line 17
    testRunner.When("the user attempts to log in with a username 'johndoe' and password 'secret'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 23
+#line 18
    testRunner.Then("the user is logged in successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

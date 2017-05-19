@@ -1,15 +1,14 @@
 ﻿using System;
-namespace Agiil.Auth
+namespace Agiil.Web.Models
 {
-  public class PasswordChangeResponse
+  public class ChangePasswordResult
   {
+    public bool Success { get; set; }
+
     public bool ExistingPasswordIncorrect { get; set; }
 
     public bool NewPasswordDoesNotMatchConfirmation { get; set; }
 
     public bool NewPasswordDoesNotSatisfyPolicy { get; set; }
-
-    public bool Success
-      => !(ExistingPasswordIncorrect || NewPasswordDoesNotMatchConfirmation || NewPasswordDoesNotSatisfyPolicy);
   }
 }

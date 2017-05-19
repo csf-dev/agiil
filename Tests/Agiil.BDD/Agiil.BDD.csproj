@@ -98,6 +98,7 @@
     <Compile Include="Bindings\Tickets\CommentCreationSteps.cs" />
     <Compile Include="Bindings\Tickets\CommentQuerySteps.cs" />
     <Compile Include="Bindings\Tickets\CommentEditingSteps.cs" />
+    <Compile Include="Bindings\Auth\PasswordChangeSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

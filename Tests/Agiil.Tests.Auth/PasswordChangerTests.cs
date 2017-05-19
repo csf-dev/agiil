@@ -15,20 +15,16 @@ namespace Agiil.Tests.Auth
     [Test,AutoMoqData]
     public void ChangeOwnPassword_returns_success_response_when_request_is_valid([Frozen] IPasswordPolicy policy,
                                                                                  [Frozen] IPasswordAuthenticationService authService,
-                                                                                 [Frozen] IIdentityReader identityReader,
-                                                                                 IIdentity<User> userId,
+                                                                                 [LoggedIn] User currentUser,
                                                                                  PasswordChanger sut,
                                                                                  PasswordChangeRequest request)
     {
       // Arrange
       Mock.Get(authService)
-          .Setup(x => x.Authenticate(request))
+          .Setup(x => x.Authenticate(It.IsAny<IPassword>()))
           .Returns(Mock.Of<CSF.Security.Authentication.IAuthenticationResult>(x => x.Success == true));
-      Mock.Get(identityReader)
-          .Setup(x => x.GetCurrentUserInfo())
-          .Returns(Mock.Of<ICurrentUserInfo>(x => x.Identity == userId));
       Mock.Get(policy)
-          .Setup(x => x.IsPasswordOk(request.NewPassword, userId))
+          .Setup(x => x.IsPasswordOk(request.NewPassword, currentUser))
           .Returns(true);
       request.ConfirmNewPassword = request.NewPassword;
 
@@ -42,21 +38,17 @@ namespace Agiil.Tests.Auth
     [Test,AutoMoqData]
     public void ChangeOwnPassword_stores_updated_password_when_when_request_is_valid([Frozen] IPasswordPolicy policy,
                                                                                      [Frozen] IPasswordAuthenticationService authService,
-                                                                                     [Frozen] IIdentityReader identityReader,
-                                                                                     [Frozen] IUserUpdater updater,
-                                                                                     IIdentity<User> userId,
+                                                                                     [LoggedIn] User currentUser,
+                                                                                     [Frozen] IUserPasswordUpdater updater,
                                                                                      PasswordChanger sut,
                                                                                      PasswordChangeRequest request)
     {
       // Arrange
       Mock.Get(authService)
-          .Setup(x => x.Authenticate(request))
+          .Setup(x => x.Authenticate(It.IsAny<IPassword>()))
           .Returns(Mock.Of<CSF.Security.Authentication.IAuthenticationResult>(x => x.Success == true));
-      Mock.Get(identityReader)
-          .Setup(x => x.GetCurrentUserInfo())
-          .Returns(Mock.Of<ICurrentUserInfo>(x => x.Identity == userId));
       Mock.Get(policy)
-          .Setup(x => x.IsPasswordOk(request.NewPassword, userId))
+          .Setup(x => x.IsPasswordOk(request.NewPassword, currentUser))
           .Returns(true);
       request.ConfirmNewPassword = request.NewPassword;
 
@@ -65,26 +57,22 @@ namespace Agiil.Tests.Auth
 
       // Assert
       Mock.Get(updater)
-          .Verify(x => x.ChangePassword(userId, request.NewPassword), Times.Once());
+          .Verify(x => x.ChangePassword(currentUser, request.NewPassword), Times.Once());
     }
 
     [Test,AutoMoqData]
     public void ChangeOwnPassword_returns_failure_result_if_new_passwords_do_not_match([Frozen] IPasswordPolicy policy,
                                                                                        [Frozen] IPasswordAuthenticationService authService,
-                                                                                       [Frozen] IIdentityReader identityReader,
-                                                                                       IIdentity<User> userId,
+                                                                                       [LoggedIn] User currentUser,
                                                                                        PasswordChanger sut,
                                                                                        PasswordChangeRequest request)
     {
       // Arrange
       Mock.Get(authService)
-          .Setup(x => x.Authenticate(request))
+          .Setup(x => x.Authenticate(It.IsAny<IPassword>()))
           .Returns(Mock.Of<CSF.Security.Authentication.IAuthenticationResult>(x => x.Success == true));
-      Mock.Get(identityReader)
-          .Setup(x => x.GetCurrentUserInfo())
-          .Returns(Mock.Of<ICurrentUserInfo>(x => x.Identity == userId));
       Mock.Get(policy)
-          .Setup(x => x.IsPasswordOk(request.NewPassword, userId))
+          .Setup(x => x.IsPasswordOk(request.NewPassword, currentUser))
           .Returns(true);
       request.NewPassword = "One password";
       request.NewPassword = "A different password";
@@ -99,20 +87,16 @@ namespace Agiil.Tests.Auth
     [Test,AutoMoqData]
     public void ChangeOwnPassword_returns_failure_result_if_new_passwords_do_not_meet_policy([Frozen] IPasswordPolicy policy,
                                                                                              [Frozen] IPasswordAuthenticationService authService,
-                                                                                             [Frozen] IIdentityReader identityReader,
-                                                                                             IIdentity<User> userId,
+                                                                                             [LoggedIn] User currentUser,
                                                                                              PasswordChanger sut,
                                                                                              PasswordChangeRequest request)
     {
       // Arrange
       Mock.Get(authService)
-          .Setup(x => x.Authenticate(request))
+          .Setup(x => x.Authenticate(It.IsAny<IPassword>()))
           .Returns(Mock.Of<CSF.Security.Authentication.IAuthenticationResult>(x => x.Success == true));
-      Mock.Get(identityReader)
-          .Setup(x => x.GetCurrentUserInfo())
-          .Returns(Mock.Of<ICurrentUserInfo>(x => x.Identity == userId));
       Mock.Get(policy)
-          .Setup(x => x.IsPasswordOk(request.NewPassword, userId))
+          .Setup(x => x.IsPasswordOk(request.NewPassword, currentUser))
           .Returns(false);
       request.ConfirmNewPassword = request.NewPassword;
 
@@ -126,21 +110,17 @@ namespace Agiil.Tests.Auth
     [Test,AutoMoqData]
     public void ChangeOwnPassword_returns_failure_result_if_existing_password_is_incorrect([Frozen] IPasswordPolicy policy,
                                                                                            [Frozen] IPasswordAuthenticationService authService,
-                                                                                           [Frozen] IIdentityReader identityReader,
-                                                                                           IIdentity<User> userId,
+                                                                                           [LoggedIn] User currentUser,
                                                                                            PasswordChanger sut,
                                                                                            PasswordChangeRequest request)
     {
       // Arrange
       Mock.Get(authService)
-            .Setup(x => x.Authenticate(request))
-            .Returns(Mock.Of<CSF.Security.Authentication.IAuthenticationResult>(x => x.Success == false));
-      Mock.Get(identityReader)
-            .Setup(x => x.GetCurrentUserInfo())
-            .Returns(Mock.Of<ICurrentUserInfo>(x => x.Identity == userId));
+          .Setup(x => x.Authenticate(It.IsAny<IPassword>()))
+          .Returns(Mock.Of<CSF.Security.Authentication.IAuthenticationResult>(x => x.Success == false));
       Mock.Get(policy)
-            .Setup(x => x.IsPasswordOk(request.NewPassword, userId))
-            .Returns(true);
+          .Setup(x => x.IsPasswordOk(request.NewPassword, currentUser))
+          .Returns(true);
       request.ConfirmNewPassword = request.NewPassword;
 
       // Act

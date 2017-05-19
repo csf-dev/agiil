@@ -70,7 +70,7 @@
     <Compile Include="IPasswordChanger.cs" />
     <Compile Include="PasswordChangeRequest.cs" />
     <Compile Include="PasswordChangeResponse.cs" />
-    <Compile Include="IUserUpdater.cs" />
+    <Compile Include="IUserPasswordUpdater.cs" />
     <Compile Include="IPasswordPolicy.cs" />
   </ItemGroup>
   <ItemGroup>

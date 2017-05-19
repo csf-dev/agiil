@@ -105,7 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Auth\AuthenticationModule.cs" />
+    <Compile Include="Auth\AuthModule.cs" />
     <Compile Include="IBootstrapAssemblyMarker.cs" />
     <Compile Include="Data\DataModule.cs" />
     <Compile Include="Data\NHibernateModule.cs" />
@@ -120,6 +120,8 @@
     <Compile Include="Validation\ValidationModule.cs" />
     <Compile Include="Validation\AutofacValidationRuleResolver.cs" />
     <Compile Include="Validation\ValidationRulesModule.cs" />
+    <Compile Include="Auth\DomainAuthModule.cs" />
+    <Compile Include="Auth\CSFSecurityModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

@@ -5,12 +5,10 @@ using CSF.Security.Authentication;
 
 namespace Agiil.Auth
 {
-  public class UserCreator : IUserCreator
+  public class UserCreator : UserPasswordSetterBase, IUserCreator
   {
     readonly IRepository<User> repo;
     readonly Func<User> userFactory;
-    readonly ICredentialsCreator credentialsCreator;
-    readonly ICredentialsSerializer credentialsSerializer;
 
     public virtual void Add(string username, string password)
     {
@@ -35,17 +33,6 @@ namespace Agiil.Auth
       user.SerializedCredentials = GetSerializedCredentials(password);
     }
 
-    protected virtual string GetSerializedCredentials(string password)
-    {
-      if(password == null)
-      {
-        throw new ArgumentNullException(nameof(password));
-      }
-
-      var credentialsObject = credentialsCreator.CreateCredentials(new CredentialsWithPassword { Password = password });
-      return credentialsSerializer.Serialize(credentialsObject);
-    }
-
     protected virtual void Save(User user)
     {
       repo.Add(user);
@@ -55,11 +42,8 @@ namespace Agiil.Auth
                        Func<User> userFactory,
                        ICredentialsCreator credentialsCreator,
                        ICredentialsSerializer credentialsSerializer)
+      : base(credentialsCreator, credentialsSerializer)
     {
-      if(credentialsSerializer == null)
-        throw new ArgumentNullException(nameof(credentialsSerializer));
-      if(credentialsCreator == null)
-        throw new ArgumentNullException(nameof(credentialsCreator));
       if(userFactory == null)
         throw new ArgumentNullException(nameof(userFactory));
       if(repo == null)
@@ -67,8 +51,6 @@ namespace Agiil.Auth
 
       this.repo = repo;
       this.userFactory = userFactory;
-      this.credentialsCreator = credentialsCreator;
-      this.credentialsSerializer = credentialsSerializer;
     }
   }
 }
