@@ -316,6 +316,7 @@
     <Compile Include="Models\ChangePasswordSpecification.cs" />
     <Compile Include="Models\ChangePasswordResult.cs" />
     <Compile Include="Models\ChangePasswordModel.cs" />
+    <Compile Include="ApiControllers\ChangePasswordController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

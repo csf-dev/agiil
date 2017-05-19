@@ -77,7 +77,7 @@ namespace Agiil.Web.Controllers
       : base(modelFactory)
     {
       if(passwordChanger == null)
-        throw new ArgumentNullException(nameof(passwordChanger));
+        throw new ArgumentNullException(nameof(passwordChanger));;
       this.passwordChanger = passwordChanger;
     }
   }
