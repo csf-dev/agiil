@@ -1,0 +1,11 @@
+﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<head>
+<title metal:fill-slot="title_element">Change password</title>
+</head>
+<body>
+<div metal:fill-slot="page_content" class="page_content">
+  <h1>Change password</h1>
+  <p>Your password has been changed. <a href="">Return to the home page</a>.</p>
+</div>
+</body>
+</html>

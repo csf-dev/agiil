@@ -46,6 +46,8 @@ namespace Agiil.Web.Controllers
       var loginRequest = loginRequestCreator(credentials.Username, credentials.Password);
       var result = loginLogoutManager.AttemptLogin(loginRequest);
 
+      TempData.Clear();
+
       TempData.Add(LoginResultKey, result);
       TempData.Add(CredentialsKey, credentials);
 

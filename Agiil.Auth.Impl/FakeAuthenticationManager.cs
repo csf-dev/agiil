@@ -95,12 +95,12 @@ namespace Agiil.Auth
 
     public void SignOut(params string[] authenticationTypes)
     {
-      throw new NotSupportedException();
+      SignOut((AuthenticationProperties) null);
     }
 
     public void SignOut(AuthenticationProperties properties, params string[] authenticationTypes)
     {
-      throw new NotSupportedException();
+      System.Threading.Thread.CurrentPrincipal = null;
     }
   }
 }

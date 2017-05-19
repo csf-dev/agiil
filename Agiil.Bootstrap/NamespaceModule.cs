@@ -9,7 +9,13 @@ namespace Agiil.Bootstrap
 {
   public abstract class NamespaceModule : Autofac.Module
   {
+    static readonly Type DelegateType = typeof(MulticastDelegate);
+
     protected abstract string Namespace { get; }
+
+    protected virtual IEnumerable<Type> TypesNotToRegisterAutomatically {
+      get { return Enumerable.Empty<Type>(); }
+    }
 
     protected virtual IEnumerable<Assembly> GetSearchAssemblies()
     {
@@ -32,7 +38,9 @@ namespace Agiil.Bootstrap
       return (type.IsClass
               && !type.IsAbstract
               && !type.IsGenericTypeDefinition
-              && type.Namespace == Namespace);
+              && type.Namespace == Namespace
+              && !DelegateType.IsAssignableFrom(type)
+              && !TypesNotToRegisterAutomatically.Contains(type));
     }
 
     protected override void Load(ContainerBuilder builder)

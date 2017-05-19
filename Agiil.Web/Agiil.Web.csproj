@@ -247,6 +247,7 @@
     <Folder Include="Content\Css\" />
     <Folder Include="Scripts\" />
     <Folder Include="Temp\" />
+    <Folder Include="Views\ChangePassword\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -311,6 +312,11 @@
     <Compile Include="Models\EditCommentModel.cs" />
     <Compile Include="Models\EditCommentResponse.cs" />
     <Compile Include="Services\Tickets\CommentMapper.cs" />
+    <Compile Include="Controllers\ChangePasswordController.cs" />
+    <Compile Include="Models\ChangePasswordSpecification.cs" />
+    <Compile Include="Models\ChangePasswordResult.cs" />
+    <Compile Include="Models\ChangePasswordModel.cs" />
+    <Compile Include="ApiControllers\ChangePasswordController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -341,6 +347,8 @@
     <None Include="Views\Ticket\Edit.pt" />
     <None Include="Views\Shared\Controls\Comments.pt" />
     <None Include="Views\Comment\Edit.pt" />
+    <None Include="Views\ChangePassword\Index.pt" />
+    <None Include="Views\ChangePassword\Success.pt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

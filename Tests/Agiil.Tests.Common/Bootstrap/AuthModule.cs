@@ -2,16 +2,17 @@
 using Autofac;
 using Agiil.Tests.Auth;
 using Agiil.Auth;
+using System.Reflection;
 
 namespace Agiil.Tests.Bootstrap
 {
-  public class AuthModule : Module
+  public class AuthModule : Agiil.Bootstrap.NamespaceModule
   {
-    protected override void Load(ContainerBuilder builder)
+    protected override string Namespace => typeof(IChangePasswordController).Namespace;
+
+    protected override System.Collections.Generic.IEnumerable<Assembly> GetSearchAssemblies()
     {
-      builder.RegisterType<UserAccountController>().As<IUserAccountController>();
-      builder.RegisterType<TestingUserCreator>().As<IUserCreator>();
-      builder.RegisterType<LoginController>().As<ILoginController>();
+      return new [] { Assembly.GetExecutingAssembly() };
     }
   }
 }

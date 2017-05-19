@@ -22,6 +22,12 @@ namespace Agiil.BDD.Bindings.Auth
       loginController.Login(username, password);
     }
 
+    [When("the user logs out")]
+    public void WheTheUserLogsOut()
+    {
+      loginController.Logout();
+    }
+
     [Then("the user is logged in successfully")]
     public void ThenTheUserIsLoggedInSuccessfully()
     {
@@ -41,6 +47,13 @@ namespace Agiil.BDD.Bindings.Auth
     {
       userAccountController.AddUser(accountName, DUMMY_PASSWORD);
       loginController.Login(accountName, DUMMY_PASSWORD);
+    }
+
+    [Given("the user is logged in with a user account named '([A-Za-z0-9_-]+)' with password '([A-Za-z0-9_-]+)'")]
+    public void GivenTheUserIsLoggedInWithAUserAccount(string accountName, string password)
+    {
+      userAccountController.AddUser(accountName, password);
+      loginController.Login(accountName, password);
     }
 
     public LoginSteps(ILoginController loginController,

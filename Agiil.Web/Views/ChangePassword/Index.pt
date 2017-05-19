@@ -1,0 +1,38 @@
+﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<head>
+<title metal:fill-slot="title_element">Change password</title>
+</head>
+<body>
+<div metal:fill-slot="page_content" class="page_content">
+  <h1>Change password</h1>
+  <form method="post" action="ChangePassword/Change" tal:define="result here/Result | nothing">
+    <fieldset>
+      <div class="form_element field">
+        <label for="ExistingPassword">Existing password</label>
+        <input type="password" id="ExistingPassword" name="ExistingPassword" />
+      </div>
+      <div class="form_element feedback warning" tal:condition="result/ExistingPasswordIncorrect | nothing">
+        <p>Please confirm your existing password.</p>
+      </div>
+      <div class="form_element field">
+        <label for="NewPassword">New password</label>
+        <input type="password" id="NewPassword" name="NewPassword" />
+      </div>
+      <div class="form_element feedback warning" tal:condition="result/NewPasswordDoesNotSatisfyPolicy | nothing">
+        <p>Passwords must be at least 6 characters long.</p>
+      </div>
+      <div class="form_element field">
+        <label for="NewPasswordConfirmation">Confirm new password</label>
+        <input type="password" id="NewPasswordConfirmation" name="NewPasswordConfirmation" />
+      </div>
+      <div class="form_element feedback warning" tal:condition="result/NewPasswordDoesNotMatchConfirmation | nothing">
+        <p>The password confirmation must match the new password.</p>
+      </div>
+      <div class="form_element button">
+        <button>Change</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
+</body>
+</html>

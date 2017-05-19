@@ -103,12 +103,20 @@
     <Compile Include="Features\Login.feature.cs">
       <DependentUpon>Login.feature</DependentUpon>
     </Compile>
+    <Compile Include="PasswordChangerTests.cs" />
+    <Compile Include="Features\ChangePassword.feature.cs">
+      <DependentUpon>ChangePassword.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Features\Login.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Login.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\ChangePassword.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ChangePassword.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
