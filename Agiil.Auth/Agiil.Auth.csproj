@@ -67,6 +67,11 @@
     <Compile Include="IAuthenticationResult.cs" />
     <Compile Include="IClaimsIdentityFactory.cs" />
     <Compile Include="IUserCreator.cs" />
+    <Compile Include="IPasswordChanger.cs" />
+    <Compile Include="PasswordChangeRequest.cs" />
+    <Compile Include="PasswordChangeResponse.cs" />
+    <Compile Include="IUserUpdater.cs" />
+    <Compile Include="IPasswordPolicy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -108,6 +108,7 @@
     <Compile Include="CurrentThreadPrincipalGetter.cs" />
     <Compile Include="ClaimsIdentityFactory.cs" />
     <Compile Include="UserCreator.cs" />
+    <Compile Include="PasswordChanger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

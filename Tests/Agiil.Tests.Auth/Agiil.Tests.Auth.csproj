@@ -103,6 +103,7 @@
     <Compile Include="Features\Login.feature.cs">
       <DependentUpon>Login.feature</DependentUpon>
     </Compile>
+    <Compile Include="PasswordChangerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
