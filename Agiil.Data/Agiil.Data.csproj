@@ -97,6 +97,7 @@
     <Compile Include="IDbNameFormatter.cs" />
     <Compile Include="Mappings\ManyToOneMapping.cs" />
     <Compile Include="Mappings\OneToManyMapping.cs" />
+    <Compile Include="Mappings\BooleanMapping.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mappings\" />
