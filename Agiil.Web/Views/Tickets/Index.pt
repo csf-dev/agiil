@@ -6,6 +6,14 @@
 <div metal:fill-slot="page_content" class="page_content">
   <h1>Tickets</h1>
   <p>This is a list of the tickets which exist in the application.</p>
+  <p tal:condition="here/ShowingClosedTickets">
+    Displaying tickets marked as <strong>closed</strong>.
+    You may instead show <a href="Tickets">open tickets</a> instead.
+  </p>
+  <p tal:condition="not:here/ShowingClosedTickets">
+    Displaying tickets marked as <strong>open</strong>.
+    You may instead show <a href="Tickets?ShowClosedTickets=True">closed tickets</a> instead.
+  </p>
   <table tal:define="tickets here/Tickets" class="ticket_list">
     <colgroup>
       <col class="reference" />

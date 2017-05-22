@@ -14,21 +14,36 @@ namespace Agiil.Web.Controllers
     readonly ITicketLister lister;
     readonly TicketSummaryMapper mapper;
 
-    public ActionResult Index()
+    public ActionResult Index(AdHocTicketListSpecification spec)
     {
-      var tickets = lister.GetTickets();
-      var model = GetModel(tickets);
+      var request = GetRequest(spec);
+      var tickets = lister.GetTickets(request);
+      var model = GetModel(tickets, request.ShowClosedTickets);
       return View (model);
     }
 
-    TicketListModel GetModel(IList<Ticket> tickets = null)
+    TicketListModel GetModel(IList<Ticket> tickets = null,
+                             bool showingClosedTickets = false)
     {
       var model = ModelFactory.GetModel<TicketListModel>();
 
+      model.ShowingClosedTickets = showingClosedTickets;
       if(tickets != null)
         model.Tickets = mapper.Map(tickets);
 
       return model;
+    }
+
+    TicketListRequest GetRequest(AdHocTicketListSpecification spec)
+    {
+      if(ReferenceEquals(spec, null))
+        return TicketListRequest.CreateDefault();
+
+      return new TicketListRequest
+      {
+        ShowClosedTickets = spec.ShowClosedTickets,
+        ShowOpenTickets = !spec.ShowClosedTickets,
+      };
     }
 
     public TicketsController(ITicketLister lister,

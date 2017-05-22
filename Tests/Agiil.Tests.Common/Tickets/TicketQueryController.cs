@@ -47,7 +47,7 @@ namespace Agiil.Tests.Tickets
     public void VisitTicketListControllerAndStoreListInContext()
     {
       var controller = ticketListControllerFactory();
-      var result = (ViewResult) controller.Index();
+      var result = (ViewResult) controller.Index(null);
       var model = (TicketListModel) result.Model;
 
       ticketListContext.Model = model;

@@ -101,6 +101,7 @@
     <Compile Include="Tickets\ReopenTicketRequest.cs" />
     <Compile Include="Tickets\ReopenTicketResponse.cs" />
     <Compile Include="Tickets\ITicketOpenerCloser.cs" />
+    <Compile Include="Tickets\TicketListRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

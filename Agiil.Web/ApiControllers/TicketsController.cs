@@ -11,12 +11,25 @@ namespace Agiil.Web.ApiControllers
     readonly ITicketLister lister;
     readonly TicketSummaryMapper mapper;
 
-    public TicketListModel Get()
+    public TicketListModel Get(AdHocTicketListSpecification spec)
     {
-      var tickets = lister.GetTickets();
+      var request = GetRequest(spec);
+      var tickets = lister.GetTickets(request);
       return new TicketListModel
       {
         Tickets = mapper.Map(tickets)
+      };
+    }
+
+    TicketListRequest GetRequest(AdHocTicketListSpecification spec)
+    {
+      if(ReferenceEquals(spec, null))
+        return TicketListRequest.CreateDefault();
+
+      return new TicketListRequest
+      {
+        ShowClosedTickets = spec.ShowClosedTickets,
+        ShowOpenTickets = !spec.ShowClosedTickets,
       };
     }
 

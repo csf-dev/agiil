@@ -12,11 +12,39 @@ namespace Agiil.Domain.Tickets
 
     public IList<Ticket> GetTickets()
     {
-      return ticketRepo
-        .Query()
-        .OrderByDescending(x => x.CreationTimestamp)
+      return GetTickets(TicketListRequest.CreateDefault());
+    }
+
+    public IList<Ticket> GetTickets(TicketListRequest request)
+    {
+      var query = GetQuery();
+      query = ConfigureQuery(query, request);
+
+      return query
         .Fetch(x => x.User)
         .ToList();
+    }
+
+    IQueryable<Ticket> GetQuery()
+    {
+      return ticketRepo.Query();
+    }
+
+    IQueryable<Ticket> ConfigureQuery(IQueryable<Ticket> query, TicketListRequest request)
+    {
+      if(!request.ShowClosedTickets)
+      {
+        query = query.Where(x => !x.Closed);
+      }
+
+      if(!request.ShowOpenTickets)
+      {
+        query = query.Where(x => x.Closed);
+      }
+
+      query = query.OrderByDescending(x => x.CreationTimestamp);
+
+      return query;
     }
 
     public TicketLister(IRepository<Ticket> ticketRepo)
