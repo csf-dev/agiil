@@ -30,6 +30,7 @@ namespace Agiil.Web.Services.Tickets
         Creator = ticket.User.Username,
         Created = ticket.CreationTimestamp,
         Reference = ticket.GetTicketReference(),
+        Closed = ticket.Closed,
       };
     }
   }

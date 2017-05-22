@@ -100,6 +100,7 @@
     <Compile Include="Validation\MustBeLoggedInAsCommentAuthorRule.cs" />
     <Compile Include="Tickets\CommentEditor.cs" />
     <Compile Include="Tickets\CommentReader.cs" />
+    <Compile Include="Tickets\TicketOpenerCloser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

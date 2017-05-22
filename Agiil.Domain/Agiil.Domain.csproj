@@ -96,6 +96,11 @@
     <Compile Include="Validation\RuleNames.cs" />
     <Compile Include="Tickets\ICommentReader.cs" />
     <Compile Include="Projects\Project.cs" />
+    <Compile Include="Tickets\CloseTicketRequest.cs" />
+    <Compile Include="Tickets\CloseTicketResponse.cs" />
+    <Compile Include="Tickets\ReopenTicketRequest.cs" />
+    <Compile Include="Tickets\ReopenTicketResponse.cs" />
+    <Compile Include="Tickets\ITicketOpenerCloser.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

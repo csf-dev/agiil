@@ -12,5 +12,7 @@ namespace Agiil.Tests.Tickets
     public string Description { get; set; }
 
     public DateTime Created { get; set; }
+
+    public bool Closed { get; set; }
   }
 }

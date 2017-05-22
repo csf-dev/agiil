@@ -22,7 +22,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr tal:repeat="ticket tickets">
+      <tr tal:repeat="ticket tickets" tal:attributes="class ticket/GetHtmlClasses">
         <td tal:content="ticket/Reference">AB123</td>
         <td tal:define="url string:Ticket/Index/${ticket/Id}">
           <a href="Ticket/Index/1" tal:attributes="href url" tal:content="ticket/Title">Ticket title here</a>

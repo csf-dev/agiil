@@ -17,11 +17,31 @@
     <p>
       Ticket <strong tal:content="string:#${ticket/Reference}">AB123</strong>.
     </p>
+  </header>
+  <section class="details">
     <p>
       Created by <strong tal:content="ticket/Creator">username</strong>
       on <strong tal:content="ticket/CreationTimestamp">2001-01-01 19:21:22</strong>.
     </p>
-  </header>
+    <form class="open_close_ticket"
+          action="OpenCloseTicket/Close/0"
+          method="POST"
+          tal:define="isClosed ticket/Closed;
+                      openCloseAction csharp:isClosed? &quot;Reopen&quot; : &quot;Close&quot;;
+                      openCloseUrl string:OpenCloseTicket/${openCloseAction}/${ticket/Id}"
+          tal:attributes="action openCloseUrl">
+      <fieldset>
+        <div class="form_element button" tal:condition="not:isClosed">
+          <p>This ticket is open</p>
+          <button>Close</button>
+        </div>
+        <div class="form_element button" tal:condition="isClosed">
+          <p>This ticket is closed</p>
+          <button>Re-open</button>
+        </div>
+      </fieldset>
+    </form>
+  </section>
   <section class="description">
     <h2>Description</h2>
     <div tal:content="ticket/Description" class="description_content">

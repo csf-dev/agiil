@@ -26,20 +26,49 @@ namespace Agiil.Tests.Tickets
       {
         foreach(var spec in ticketSpecs)
         {
-          var user = userRepo
-            .Query()
-            .FirstOrDefault(x => x.Username.Equals(spec.Creator, StringComparison.InvariantCultureIgnoreCase));
-          if(ReferenceEquals(user, null))
-            user = userRepo.Query().First();
-          var ticket = ticketFactory.CreateTicket(spec.Title, spec.Description, user);
-          ticket.CreationTimestamp = spec.Created;
-          if(spec.Id.HasValue)
-            ticket.SetIdentityValue(spec.Id.Value);
+          if(ReferenceEquals(spec, null))
+            continue;
+          
+          var ticket = CreateTicket(spec);
           ticketRepo.Add(ticket);
         }
 
         trans.Commit();
       }
+    }
+
+    Ticket CreateTicket(BulkTicketSpecification spec)
+    {
+      var user = GetUser(spec);
+      var ticket = ticketFactory.CreateTicket(spec.Title, spec.Description, user);
+      ConfigureTicket(spec, ticket);
+      return ticket;
+    }
+
+    void ConfigureTicket(BulkTicketSpecification spec, Ticket ticket)
+    {
+      if(ReferenceEquals(ticket, null))
+        return;
+      
+      ticket.CreationTimestamp = spec.Created;
+
+      if(spec.Id.HasValue)
+        ticket.SetIdentityValue(spec.Id.Value);
+
+      if(spec.Closed)
+        ticket.Closed = true;
+    }
+
+    User GetUser(BulkTicketSpecification spec)
+    {
+      var user = userRepo
+        .Query()
+        .FirstOrDefault(x => x.Username.Equals(spec.Creator, StringComparison.InvariantCultureIgnoreCase));
+      
+      if(ReferenceEquals(user, null))
+        user = userRepo.Query().First();
+
+      return user;
     }
 
     public BulkTicketCreator(IRepository<Ticket> ticketRepo,

@@ -317,6 +317,8 @@
     <Compile Include="Models\ChangePasswordResult.cs" />
     <Compile Include="Models\ChangePasswordModel.cs" />
     <Compile Include="ApiControllers\ChangePasswordController.cs" />
+    <Compile Include="Controllers\OpenCloseTicketController.cs" />
+    <Compile Include="ApiControllers\OpenCloseTicketController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

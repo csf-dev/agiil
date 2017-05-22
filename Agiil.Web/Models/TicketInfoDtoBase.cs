@@ -13,6 +13,8 @@ namespace Agiil.Web.Models
 
     public DateTime Created { get; set; }
 
+    public bool Closed { get; set; }
+
     public string CreationTimestamp => Created.ToString("u");
   }
 }

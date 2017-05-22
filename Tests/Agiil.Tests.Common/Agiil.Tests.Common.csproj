@@ -196,6 +196,8 @@
     <Compile Include="Tickets\BulkCommentCreator.cs" />
     <Compile Include="Auth\IChangePasswordController.cs" />
     <Compile Include="Auth\ChangePasswordController.cs" />
+    <Compile Include="Tickets\IOpenCloseTicketController.cs" />
+    <Compile Include="Tickets\OpenCloseTicketController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">

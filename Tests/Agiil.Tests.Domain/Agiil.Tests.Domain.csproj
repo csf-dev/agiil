@@ -115,6 +115,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>EditComment.feature.cs</LastGenOutput>
     </None>
+    <None Include="Features\CloseTicket.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloseTicket.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tickets\TicketCreatorTests.cs" />
@@ -137,6 +141,9 @@
     </Compile>
     <Compile Include="Features\EditComment.feature.cs">
       <DependentUpon>EditComment.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\CloseTicket.feature.cs">
+      <DependentUpon>CloseTicket.feature</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
