@@ -58,6 +58,7 @@
     <Compile Include="IJwtBearerAuthenticationOptionsFactory.cs" />
     <Compile Include="JwtBearerAuthenticationOptionsFactory.cs" />
     <Compile Include="MonoCompatibleSignatureProviderFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" />

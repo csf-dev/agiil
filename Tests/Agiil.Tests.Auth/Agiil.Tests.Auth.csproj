@@ -108,6 +108,7 @@
     <Compile Include="Features\ChangePassword.feature.cs">
       <DependentUpon>ChangePassword.feature</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

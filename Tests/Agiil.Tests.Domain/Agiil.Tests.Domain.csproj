@@ -146,6 +146,7 @@
     <Compile Include="Features\CloseTicket.feature.cs">
       <DependentUpon>CloseTicket.feature</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">

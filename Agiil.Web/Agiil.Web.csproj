@@ -321,6 +321,7 @@
     <Compile Include="Controllers\OpenCloseTicketController.cs" />
     <Compile Include="ApiControllers\OpenCloseTicketController.cs" />
     <Compile Include="Models\AdHocTicketListSpecification.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
