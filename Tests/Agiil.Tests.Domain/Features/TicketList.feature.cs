@@ -31,7 +31,7 @@ namespace Agiil.Tests.Domain.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Listing the tickets", "  Users should be able to see a list of the existing tickets, sorted by creation date.", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Listing the tickets", "  Users should be able to see a list of the existing tickets, sorted by creation date.\n  By default, closed tickets are filtered out of the results.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -68,41 +68,46 @@ namespace Agiil.Tests.Domain.Features
         public virtual void AUserCanSeeAListOfTickets()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A user can see a list of tickets", ((string[])(null)));
-#line 4
-this.ScenarioSetup(scenarioInfo);
 #line 5
-  testRunner.Given("the user is logged in with a user account named 'jbloggs'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 6
+  testRunner.Given("the user is logged in with a user account named 'jbloggs'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 7
     testRunner.And("there is a user account named 'sallyann'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[]
                 {
                         "Title",
                         "Creator",
-                        "Created"});
+                        "Created",
+                        "Closed"});
             table1.AddRow(new string[]
                 {
                         "FooBar",
                         "jbloggs",
-                        "2011-01-01 13:20:01"});
+                        "2011-01-01 13:20:01",
+                        "False"});
             table1.AddRow(new string[]
                 {
                         "Wizzpop",
                         "sallyann",
-                        "2012-01-01 13:20:01"});
+                        "2012-01-01 13:20:01",
+                        "False"});
             table1.AddRow(new string[]
                 {
                         "Test001",
                         "jbloggs",
-                        "2013-01-01 13:20:01"});
+                        "2013-01-01 13:20:01",
+                        "False"});
             table1.AddRow(new string[]
                 {
                         "Test002",
                         "sallyann",
-                        "2011-01-01 13:21:01"});
-#line 7
+                        "2011-01-01 13:21:01",
+                        "False"});
+#line 8
     testRunner.And("there are a number of tickets with the following properties:", ((string)(null)), table1, "And ");
-#line 13
+#line 14
   testRunner.When("the user visits the ticket list page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[]
@@ -130,8 +135,76 @@ this.ScenarioSetup(scenarioInfo);
                         "FooBar",
                         "jbloggs",
                         "2011-01-01 13:20:01"});
-#line 14
+#line 15
   testRunner.Then("the following ticket summaries should be displayed, in order:", ((string)(null)), table2, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Users should not see tickets which are closed unless they specifically request to see them")]
+        public virtual void UsersShouldNotSeeTicketsWhichAreClosedUnlessTheySpecificallyRequestToSeeThem()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users should not see tickets which are closed unless they specifically request to see them", ((string[])(null)));
+#line 22
+this.ScenarioSetup(scenarioInfo);
+#line 23
+  testRunner.Given("the user is logged in with a user account named 'jbloggs'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 24
+    testRunner.And("there is a user account named 'sallyann'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "Title",
+                        "Creator",
+                        "Created",
+                        "Closed"});
+            table3.AddRow(new string[]
+                {
+                        "FooBar",
+                        "jbloggs",
+                        "2011-01-01 13:20:01",
+                        "True"});
+            table3.AddRow(new string[]
+                {
+                        "Wizzpop",
+                        "sallyann",
+                        "2012-01-01 13:20:01",
+                        "True"});
+            table3.AddRow(new string[]
+                {
+                        "Test001",
+                        "jbloggs",
+                        "2013-01-01 13:20:01",
+                        "False"});
+            table3.AddRow(new string[]
+                {
+                        "Test002",
+                        "sallyann",
+                        "2011-01-01 13:21:01",
+                        "False"});
+#line 25
+    testRunner.And("there are a number of tickets with the following properties:", ((string)(null)), table3, "And ");
+#line 31
+  testRunner.When("the user visits the ticket list page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "Title",
+                        "Creator",
+                        "Created"});
+            table4.AddRow(new string[]
+                {
+                        "Test001",
+                        "jbloggs",
+                        "2013-01-01 13:20:01"});
+            table4.AddRow(new string[]
+                {
+                        "Test002",
+                        "sallyann",
+                        "2011-01-01 13:21:01"});
+#line 32
+  testRunner.Then("the following ticket summaries should be displayed, in order:", ((string)(null)), table4, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
