@@ -49,7 +49,8 @@ namespace Agiil.Domain.Tickets
 
     }
 
-    internal Func<IValidationResult, Ticket, CreateTicketResponse> ResponseCreator
+    // TODO: Refactor this into a factory type, which may be substituted with a Mock in testing
+    public Func<IValidationResult, Ticket, CreateTicketResponse> ResponseCreator
     {
       get { return responseCreator; }
       set { responseCreator = value; }
