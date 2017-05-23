@@ -8,6 +8,7 @@
     <RootNamespace>Agiil.Web.OAuth</RootNamespace>
     <AssemblyName>Agiil.Web.OAuth</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ReleaseVersion>0.1.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -57,6 +58,7 @@
     <Compile Include="IJwtBearerAuthenticationOptionsFactory.cs" />
     <Compile Include="JwtBearerAuthenticationOptionsFactory.cs" />
     <Compile Include="MonoCompatibleSignatureProviderFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" />
