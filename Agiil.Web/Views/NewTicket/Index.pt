@@ -1,0 +1,39 @@
+﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<head>
+<title metal:fill-slot="title_element">Create a new ticket</title>
+</head>
+<body>
+<div metal:fill-slot="page_content"
+     tal:define="submitted here/Response;
+                 createSuccess here/Response/Success | nothing"
+     class="page_content">
+  <h1>Create ticket</h1>
+  <form method="post" action="NewTicket/Create" tal:condition="not:createSuccess">
+    <fieldset>
+      <div class="form_element field">
+        <label for="Title">Title</label>
+        <input type="text" id="Title" name="Title"
+              tal:attributes="value here/Specification/Title | nothing" />
+      </div>
+      <div class="form_element feedback warning" tal:condition="here/Response/TitleIsInvalid | nothing">
+        <p>Please enter a ticket title.</p>
+      </div>
+      <div class="form_element field">
+        <label for="Description">Description</label>
+        <textarea id="Description" name="Description"
+                  tal:content="here/Specification/Description | nothing"></textarea>
+      </div>
+      <div class="form_element feedback warning" tal:condition="here/Response/DescriptionIsInvalid | nothing">
+        <p>Please enter a valid ticket description.</p>
+      </div>
+      <div class="form_element button">
+        <button>Create</button>
+      </div>
+    </fieldset>
+  </form>
+  <p tal:condition="createSuccess">
+    <em>The ticket was created successfully;</em> <a href="Tickets">return to the ticket list</a>.
+  </p>
+</div>
+</body>
+</html>

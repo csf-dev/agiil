@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Standard page header</title>
+<base href="../../" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+</style>
+</head>
+<body>
+<header class="standard" metal:define-macro="header">
+  <nav class="site_navigation" metal:use-macro="Views/Shared/Controls/SiteNavigation/macros/site_navigation">
+    Site navigation
+  </nav>
+  <div metal:use-macro="Views/Shared/Controls/HeaderLoginLogout/macros/login_logout_control"
+       class="login_logout_control">
+    Login/logout control
+  </div>
+</header>
+<div>
+  Page content here
+</div>
+<footer>
+
+</footer>
+</body>
+</html>

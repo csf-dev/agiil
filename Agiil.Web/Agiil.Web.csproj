@@ -1,0 +1,422 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EA6B20FB-9F7F-49C5-BE4E-BCD59ECA1D85}</ProjectGuid>
+    <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Agiil.Web</RootNamespace>
+    <AssemblyName>Agiil.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <ReleaseVersion>0.1.0</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <Optimize>false</Optimize>
+    <OutputPath>bin</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <Optimize>false</Optimize>
+    <OutputPath>bin</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Owin.Cors, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Cors.3.0.1\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data.SQLite, Version=1.0.105.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.105.0\lib\net45\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Caches">
+      <HintPath>..\packages\CSF.Caches.1.0.0\lib\net45\CSF.Caches.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Configuration">
+      <HintPath>..\packages\CSF.Configuration.1.1.0\lib\net45\CSF.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Reflection">
+      <HintPath>..\packages\CSF.Reflection.1.0.1\lib\net45\CSF.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Utils">
+      <HintPath>..\packages\CSF.Utils.6.0.0\lib\net45\CSF.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Dynamic" />
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi">
+      <HintPath>..\packages\Autofac.WebApi2.4.0.1\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.HttpListener">
+      <HintPath>..\packages\Microsoft.Owin.Host.HttpListener.3.0.1\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Diagnostics">
+      <HintPath>..\packages\Microsoft.Owin.Diagnostics.3.0.1\lib\net45\Microsoft.Owin.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Hosting">
+      <HintPath>..\packages\Microsoft.Owin.Hosting.3.0.1\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin.Security.AesDataProtectorProvider">
+      <HintPath>..\packages\Owin.Security.AesDataProtectorProvider.1.1.0.0\lib\net45\Owin.Security.AesDataProtectorProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Security">
+      <HintPath>..\packages\CSF.Security.2.0.0\lib\net45\CSF.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Owin">
+      <HintPath>..\packages\Autofac.Owin.4.0.0\lib\net45\Autofac.Integration.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi.Owin">
+      <HintPath>..\packages\Autofac.WebApi2.Owin.4.0.0\lib\net45\Autofac.Integration.WebApi.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc.Owin">
+      <HintPath>..\packages\Autofac.Mvc5.Owin.4.0.1\lib\net45\Autofac.Integration.Mvc.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Cors">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.Abstractions">
+      <HintPath>..\packages\CSF.Zpt.Abstractions.1.0.0\lib\net45\CSF.Zpt.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt">
+      <HintPath>..\packages\CSF.Zpt.1.0.0\lib\net45\CSF.Zpt.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.DocumentProviders.XmlLinq">
+      <HintPath>..\packages\CSF.Zpt.DocumentProviders.XmlLinq.1.0.0\lib\net45\CSF.Zpt.DocumentProviders.XmlLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.CSharpExpressions">
+      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.1.0.0\lib\net45\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.CSharpFramework">
+      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.1.0.0\lib\net45\CSF.Zpt.ExpressionEvaluators.CSharpFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.NotExpressions">
+      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.NotExpressions.1.0.0\lib\net45\CSF.Zpt.ExpressionEvaluators.NotExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.PathExpressions">
+      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.PathExpressions.1.0.0\lib\net45\CSF.Zpt.ExpressionEvaluators.PathExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.StringExpressions">
+      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.StringExpressions.1.0.0\lib\net45\CSF.Zpt.ExpressionEvaluators.StringExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.DocumentProviders.HtmlHAP">
+      <HintPath>..\packages\CSF.Zpt.DocumentProviders.HtmlHAP.1.0.0\lib\net45\CSF.Zpt.DocumentProviders.HtmlHAP.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.MVC5">
+      <HintPath>..\packages\CSF.Zpt.MVC5.1.0.0\lib\net45\CSF.Zpt.MVC5.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc">
+      <HintPath>..\packages\Autofac.Mvc5.3.3.4\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="CSF.Data">
+      <HintPath>..\packages\CSF.Data.1.1.0\lib\net45\CSF.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Entities">
+      <HintPath>..\packages\CSF.Entities.1.1.1\lib\net45\CSF.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.4.0.0\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Jwt">
+      <HintPath>..\packages\Microsoft.Owin.Security.Jwt.3.0.1\lib\net45\Microsoft.Owin.Security.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data.NHibernate">
+      <HintPath>..\packages\CSF.Data.NHibernate.6.1.1\lib\net45\CSF.Data.NHibernate.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\Css\" />
+    <Folder Include="Scripts\" />
+    <Folder Include="Temp\" />
+    <Folder Include="Views\ChangePassword\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\RouteConfiguration.cs" />
+    <Compile Include="App_Start\MvcViewConfiguration.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="App_Start\WebAppDiConfiguration.cs" />
+    <Compile Include="Controllers\ControllerBase.cs" />
+    <Compile Include="Models\LoginCredentials.cs" />
+    <Compile Include="Services\Auth\HttpContextPrincipalGetter.cs" />
+    <Compile Include="Bootstrap\AuthModule.cs" />
+    <Compile Include="Bootstrap\OwinCompatibleLifetimeScopeProvider.cs" />
+    <Compile Include="App_Start\OwinStartupType.cs" />
+    <Compile Include="Bootstrap\ContainerBuilderExtensions.cs" />
+    <Compile Include="Controllers\NewTicketController.cs" />
+    <Compile Include="Models\NewTicketModel.cs" />
+    <Compile Include="ApiControllers\TicketController.cs" />
+    <Compile Include="Models\NewTicketSpecification.cs" />
+    <Compile Include="Models\NewTicketResponse.cs" />
+    <Compile Include="Models\TicketDetailDto.cs" />
+    <Compile Include="Controllers\DatabaseController.cs" />
+    <Compile Include="Models\DatabaseResetModel.cs" />
+    <Compile Include="Bootstrap\OAuthModule.cs" />
+    <Compile Include="OAuth\AutofacOAuthApplicationConnection.cs" />
+    <Compile Include="Models\TicketListModel.cs" />
+    <Compile Include="Models\TicketSummaryDto.cs" />
+    <Compile Include="Controllers\TicketsController.cs" />
+    <Compile Include="Services\Tickets\TicketSummaryMapper.cs" />
+    <Compile Include="Bootstrap\TicketsServicesModule.cs" />
+    <Compile Include="ApiControllers\TicketsController.cs" />
+    <Compile Include="Models\TicketInfoDtoBase.cs" />
+    <Compile Include="Models\TicketDetailModel.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
+    <Compile Include="Services\Tickets\TicketDetailMapper.cs" />
+    <Compile Include="ModelBinders\IdentityModelBinder.cs" />
+    <Compile Include="ModelBinders\AutofacMvcModelBinderProviderWithOpenGenericSupport.cs" />
+    <Compile Include="ModelBinders\AutofacWebApiModelBinderProviderWithOpenGenericSupport.cs" />
+    <Compile Include="Bootstrap\WebApiModelBindersModule.cs" />
+    <Compile Include="ModelBinders\IdentityWebApiModelBinder.cs" />
+    <Compile Include="App_Start\WebApiModelBindingRules.cs" />
+    <Compile Include="Models\Shared\StandardPageModel.cs" />
+    <Compile Include="Models\Shared\LoginStateModel.cs" />
+    <Compile Include="Services\SharedModel\LoginStateReader.cs" />
+    <Compile Include="Services\SharedModel\StandardPageModelPopulator.cs" />
+    <Compile Include="Services\SharedModel\StandardPageModelFactory.cs" />
+    <Compile Include="Bootstrap\SharedModelServicesModule.cs" />
+    <Compile Include="App_Start\MvcGlobalFilterConfiguration.cs" />
+    <Compile Include="App_Start\WebApiFilterConfiguration.cs" />
+    <Compile Include="Models\EditTicketTitleAndDescriptionSpecification.cs" />
+    <Compile Include="Models\EditTicketTitleAndDescriptionModel.cs" />
+    <Compile Include="Models\EditTicketTitleAndDescriptionResponse.cs" />
+    <Compile Include="Models\CommentDto.cs" />
+    <Compile Include="Models\AddCommentSpecification.cs" />
+    <Compile Include="Models\AddCommentResponse.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="ApiControllers\CommentController.cs" />
+    <Compile Include="Models\EditCommentSpecification.cs" />
+    <Compile Include="Models\EditCommentModel.cs" />
+    <Compile Include="Models\EditCommentResponse.cs" />
+    <Compile Include="Services\Tickets\CommentMapper.cs" />
+    <Compile Include="Controllers\ChangePasswordController.cs" />
+    <Compile Include="Models\ChangePasswordSpecification.cs" />
+    <Compile Include="Models\ChangePasswordResult.cs" />
+    <Compile Include="Models\ChangePasswordModel.cs" />
+    <Compile Include="ApiControllers\ChangePasswordController.cs" />
+    <Compile Include="Controllers\OpenCloseTicketController.cs" />
+    <Compile Include="ApiControllers\OpenCloseTicketController.cs" />
+    <Compile Include="Models\AdHocTicketListSpecification.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Global.asax" />
+    <Content Include="packages.config" />
+    <Content Include="Content\Scss\_Reset.scss" />
+    <Content Include="Content\Scss\StandardPage.scss" />
+    <Content Include="Content\Scss\_PageHeader.scss" />
+    <Content Include="Content\Scss\_AppWideVariables.scss" />
+    <Content Include="Content\Scss\_ContentStyles.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Views\Home\Index.pt" />
+    <None Include="Views\Shared\EmptyPage.pt" />
+    <None Include="Views\Login\Index.pt" />
+    <None Include="Views\Login\LoggedOut.pt" />
+    <None Include="Views\Database\Index.pt" />
+    <None Include="Views\NewTicket\Index.pt" />
+    <None Include="Views\Tickets\Index.pt" />
+    <None Include="Views\Ticket\Index.pt" />
+    <None Include="Views\Shared\StandardPage.pt" />
+    <None Include="Views\Shared\StandardHeader.pt" />
+    <None Include="Views\Shared\Controls\HeaderLoginLogout.pt" />
+    <None Include="Views\Shared\Controls\SiteNavigation.pt" />
+    <None Include="Views\Ticket\Edit.pt" />
+    <None Include="Views\Shared\Controls\Comments.pt" />
+    <None Include="Views\Comment\Edit.pt" />
+    <None Include="Views\ChangePassword\Index.pt" />
+    <None Include="Views\ChangePassword\Success.pt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
+      <Project>{922B2D9C-444E-451A-B626-DAE59E79C0E5}</Project>
+      <Name>Agiil.Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
+      <Project>{79827CF5-CC58-4F87-BBCA-162B5983C563}</Project>
+      <Name>Agiil.Bootstrap</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Data\Agiil.Data.csproj">
+      <Project>{AB167238-0D06-4D8A-A646-198D63575AF5}</Project>
+      <Name>Agiil.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
+      <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
+      <Name>Agiil.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Web.OAuth\Agiil.Web.OAuth.csproj">
+      <Project>{9CECEC15-9B54-4DDD-B0FB-8E9E14FBBA15}</Project>
+      <Name>Agiil.Web.OAuth</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)..\Tools\Agiil.Build.Tasks\Agiil.Build.Tasks.targets" />
+  <Import Project="..\Tools\Agiil.Web.Sass\Agiil.Web.Sass.targets" />
+  <Target Name="AfterBuild">
+    <CompileScssFiles SourcePath="Content\Scss" DestinationPath="Content\Css" />
+  </Target>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+      </Properties>
+    </MonoDevelop>
+    <VisualStudio>
+      <FlavorProperties GUID="{349C5851-65DF-11DA-9384-00065B846F21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55706/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.0\build\net45\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.105.0\build\net45\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.105.0\build\net45\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+</Project>

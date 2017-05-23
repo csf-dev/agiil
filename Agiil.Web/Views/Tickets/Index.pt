@@ -1,0 +1,52 @@
+﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<head>
+<title metal:fill-slot="title_element">Tickets</title>
+</head>
+<body>
+<div metal:fill-slot="page_content" class="page_content">
+  <h1>Tickets</h1>
+  <p>This is a list of the tickets which exist in the application.</p>
+  <p tal:condition="here/ShowingClosedTickets">
+    Displaying tickets marked as <strong>closed</strong>.
+    You may instead show <a href="Tickets">open tickets</a> instead.
+  </p>
+  <p tal:condition="not:here/ShowingClosedTickets">
+    Displaying tickets marked as <strong>open</strong>.
+    You may instead show <a href="Tickets?ShowClosedTickets=True">closed tickets</a> instead.
+  </p>
+  <table tal:define="tickets here/Tickets" class="ticket_list">
+    <colgroup>
+      <col class="reference" />
+      <col class="title" />
+      <col class="created_by" />
+      <col class="created_date" />
+    </colgroup>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Created by</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr tal:repeat="ticket tickets" tal:attributes="class ticket/GetHtmlClasses">
+        <td tal:content="ticket/Reference">AB123</td>
+        <td tal:define="url string:Ticket/Index/${ticket/Id}">
+          <a href="Ticket/Index/1" tal:attributes="href url" tal:content="ticket/Title">Ticket title here</a>
+        </td>
+        <td tal:content="ticket/Creator">username</td>
+        <td>
+          <span tal:attributes="title ticket/CreationTimestamp"
+                tal:content="ticket/ShortTimestamp"
+                title="2011-01-01 12:13:43">4th May 2001</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    You can also <a href="NewTicket">create a new ticket</a>.
+  </p>
+</div>
+</body>
+</html>

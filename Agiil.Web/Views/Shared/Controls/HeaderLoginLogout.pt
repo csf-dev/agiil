@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Header login/logout widget</title>
+<base href="../../../" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+</style>
+</head>
+<body>
+<header class="standard">
+  <form metal:define-macro="login_logout_control"
+        class="login_logout_control"
+        method="post"
+        action="Login/Login"
+        tal:define="loggedIn here/LoginState/IsLoggedIn | nothing;
+                    username here/LoginState/Username | nothing;
+                    action csharp:Equals(loggedIn, true)? &quot;Login/Logout&quot; : &quot;Login/Login&quot;"
+        tal:attributes="action action">
+    <fieldset tal:condition="loggedIn" class="logout">
+      <h5 aria-hidden="true">Login status</h5>
+      <p>You are logged in as <strong tal:content="username">username</strong>.</p>
+      <div class="form_element button">
+        <button>Log out</button>
+      </div>
+    </fieldset>
+    <fieldset tal:condition="not:loggedIn" class="login">
+      <h5 aria-hidden="true">Log in</h5>
+      <div class="form_element field">
+        <label for="header_login_username">Username</label>
+        <input type="text" id="header_login_username" name="Username" />
+      </div>
+      <div class="form_element field">
+        <label for="header_login_password">Password</label>
+        <input type="password" id="header_login_password" name="Password" />
+      </div>
+      <div class="form_element button">
+        <button>Log in</button>
+      </div>
+    </fieldset>
+  </form>
+</header>
+<div>
+  Page content here
+</div>
+<footer>
+
+</footer>
+</body>
+</html>

@@ -1,0 +1,12 @@
+﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<head>
+<title metal:fill-slot="title_element">You have logged out</title>
+</head>
+<body>
+<div metal:fill-slot="page_content" class="page_content">
+  <h1>Logged out</h1>
+  <p>You have been logged out.</p>
+  <p>You may <a href="Login">log in again</a> if you wish.</p>
+</div>
+</body>
+</html>
