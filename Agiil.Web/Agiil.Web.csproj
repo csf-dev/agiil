@@ -335,6 +335,7 @@
     <Content Include="Content\Scss\_PageHeader.scss" />
     <Content Include="Content\Scss\_AppWideVariables.scss" />
     <Content Include="Content\Scss\_ContentStyles.scss" />
+    <Content Include="Content\Scss\_Forms.scss" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Home\Index.pt" />

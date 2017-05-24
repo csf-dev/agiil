@@ -20,7 +20,7 @@
       </div>
       <div class="form_element field">
         <label for="Description">Description</label>
-        <textarea id="Description" name="Description"
+        <textarea id="Description" name="Description" class="long_text"
                   tal:content="here/Specification/Description | nothing"></textarea>
       </div>
       <div class="form_element feedback warning" tal:condition="here/Response/DescriptionIsInvalid | nothing">
