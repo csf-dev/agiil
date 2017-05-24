@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using CSF.Data.Entities;
+using CSF.Data.NHibernate;
 using CSF.Entities;
 
 namespace Agiil.Domain.Tickets
@@ -15,9 +17,12 @@ namespace Agiil.Domain.Tickets
         throw new ArgumentNullException(nameof(ticket));
       }
 
-      return repo.Get(ticket);
-      // TODO: Add a fetch for the comments to prevent SELECT N+1
-      // Right now this isn't working though, not sure if it's my bad with the mapping or CSF.Data.NHibernate at fault
+      var ticketTheory = repo.Theorise(ticket);
+      return repo
+        .Query()
+        .Where(x => x == ticketTheory)
+        .FetchMany(x => x.Comments)
+        .FirstOrDefault();
     }
 
     public TicketDetailService(IRepository<Ticket> repo)

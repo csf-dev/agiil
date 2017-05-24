@@ -15,14 +15,13 @@ namespace Agiil.Data.Mappings
         var property = member as PropertyInfo;
 
         if(property == null || !property.CanRead || !property.CanWrite)
-        {
           return false;
-        }
 
         if(IsIdentityProperty(property))
-        {
           return false;
-        }
+        
+        if(property.ReflectedType.GetProperty(property.Name, BindingFlags.Instance | BindingFlags.Public) == null)
+          return false;
 
         return true;
       });

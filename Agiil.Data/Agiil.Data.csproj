@@ -99,6 +99,7 @@
     <Compile Include="Mappings\ManyToOneMapping.cs" />
     <Compile Include="Mappings\OneToManyMapping.cs" />
     <Compile Include="Mappings\BooleanMapping.cs" />
+    <Compile Include="Mappings\SourceCollectionAccessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mappings\" />

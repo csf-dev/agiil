@@ -18,7 +18,10 @@ namespace Agiil.Domain.Tickets
 
     public virtual DateTime CreationTimestamp { get; set; }
 
-    public virtual ISet<Comment> Comments => comments.Collection;
+    public virtual ISet<Comment> Comments {
+      get { return comments.Collection; }
+      protected set { /* no-op */ }
+    }
 
     protected virtual ISet<Comment> SourceComments
     {
