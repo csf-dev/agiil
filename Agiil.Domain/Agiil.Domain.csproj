@@ -107,6 +107,7 @@
     <Compile Include="Sprints\ISprintCreator.cs" />
     <Compile Include="Sprints\CreateSprintRequest.cs" />
     <Compile Include="Sprints\CreateSprintResponse.cs" />
+    <Compile Include="Projects\ICurrentProjectGetter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

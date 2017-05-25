@@ -102,6 +102,7 @@
     <Compile Include="Tickets\CommentEditor.cs" />
     <Compile Include="Tickets\CommentReader.cs" />
     <Compile Include="Tickets\TicketOpenerCloser.cs" />
+    <Compile Include="Projects\DummyCurrentProjectGetter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
@@ -119,6 +120,7 @@
     <Folder Include="Resources\" />
     <Folder Include="Data\" />
     <Folder Include="Validation\" />
+    <Folder Include="Projects\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -11,7 +11,7 @@ namespace Agiil.Domain.Tickets
   public class TicketFactory : ITicketFactory
   {
     readonly IEnvironment environment;
-    readonly IRepository<Project> projectRepo;
+    readonly ICurrentProjectGetter projectGetter;
 
     public Ticket CreateTicket(string title, string description, User creator)
     {
@@ -24,7 +24,7 @@ namespace Agiil.Domain.Tickets
         throw new ArgumentNullException(nameof(creator));
       }
 
-      var project = projectRepo.Query().FirstOrDefault();
+      var project = projectGetter.GetCurrentProject();
 
       return new Ticket
       {
@@ -38,14 +38,14 @@ namespace Agiil.Domain.Tickets
     }
 
     public TicketFactory(IEnvironment environment,
-                         IRepository<Project> projectRepo)
+                         ICurrentProjectGetter projectGetter)
     {
-      if(projectRepo == null)
-        throw new ArgumentNullException(nameof(projectRepo));
+      if(projectGetter == null)
+        throw new ArgumentNullException(nameof(projectGetter));
       if(environment == null)
         throw new ArgumentNullException(nameof(environment));
       this.environment = environment;
-      this.projectRepo = projectRepo;
+      this.projectGetter = projectGetter;
     }
   }
 }
