@@ -103,6 +103,10 @@
     <Compile Include="Tickets\ReopenTicketResponse.cs" />
     <Compile Include="Tickets\ITicketOpenerCloser.cs" />
     <Compile Include="Tickets\TicketListRequest.cs" />
+    <Compile Include="Sprints\Sprint.cs" />
+    <Compile Include="Sprints\ISprintCreator.cs" />
+    <Compile Include="Sprints\CreateSprintRequest.cs" />
+    <Compile Include="Sprints\CreateSprintResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
@@ -110,6 +114,7 @@
     <Folder Include="Data\" />
     <Folder Include="Validation\" />
     <Folder Include="Projects\" />
+    <Folder Include="Sprints\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
