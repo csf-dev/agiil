@@ -53,8 +53,7 @@ namespace Agiil.Web.Controllers
 
       if(result.Success && !String.IsNullOrEmpty(credentials.ReturnUrl))
       {
-        // TODO: IMO I should sanitise this URL before we blindly redirect
-        // Otherwise an attacker could hand out links with malicious URLs in them
+        // TODO: #AG28 - I should sanitise this URL before we blindly redirect
         return Redirect(credentials.ReturnUrl);
       }
 
