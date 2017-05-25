@@ -3,7 +3,7 @@ using System.Net;
 using System.Web.Http;
 using Agiil.Domain.Tickets;
 using Agiil.Web.Models.Tickets;
-using Agiil.Web.Services.Tickets;
+using AutoMapper;
 using CSF.Entities;
 
 namespace Agiil.Web.ApiControllers
@@ -13,7 +13,7 @@ namespace Agiil.Web.ApiControllers
     readonly Lazy<ITicketCreator> ticketCreator;
     readonly Lazy<ITicketEditor> ticketEditor;
     readonly Lazy<ITicketDetailService> ticketDetailService;
-    readonly TicketDetailMapper mapper;
+    readonly IMapper mapper;
 
     public NewTicketResponse Put(NewTicketSpecification ticket)
     {
@@ -72,13 +72,13 @@ namespace Agiil.Web.ApiControllers
       if(ReferenceEquals(ticket, null))
         throw new HttpResponseException(HttpStatusCode.NotFound);
 
-      return mapper.Map(ticket);
+      return mapper.Map<TicketDetailDto>(ticket);
     }
 
     public TicketController(Lazy<ITicketCreator> ticketCreator,
                             Lazy<ITicketDetailService> ticketDetailService,
                             Lazy<ITicketEditor> ticketEditor,
-                            TicketDetailMapper mapper)
+                            IMapper mapper)
     {
       if(ticketCreator == null)
         throw new ArgumentNullException(nameof(ticketCreator));

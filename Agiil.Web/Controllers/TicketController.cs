@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using Agiil.Domain.Tickets;
 using Agiil.Web.Models.Tickets;
-using Agiil.Web.Services.Tickets;
+using AutoMapper;
 using CSF.Entities;
 
 namespace Agiil.Web.Controllers
@@ -15,7 +15,7 @@ namespace Agiil.Web.Controllers
       SuccessfulEditKey = "Successful edit";
 
     readonly ITicketDetailService ticketDetailService;
-    readonly TicketDetailMapper mapper;
+    readonly IMapper mapper;
     readonly Lazy<ITicketEditor> editor;
 
     public ActionResult Index(IIdentity<Ticket> id)
@@ -70,7 +70,7 @@ namespace Agiil.Web.Controllers
     TicketDetailModel GetViewTicketModel(Ticket ticket)
     {
       var model = ModelFactory.GetModel<TicketDetailModel>();
-      model.Ticket = mapper.Map(ticket);
+      model.Ticket = mapper.Map<TicketDetailDto>(ticket);
       model.AddCommentSpecification = GetTempData<AddCommentSpecification>(CommentController.CommentSpecKey);
       model.AddCommentResponse = GetTempData<AddCommentResponse>(CommentController.CommentResponseKey);
       return model;
@@ -88,7 +88,7 @@ namespace Agiil.Web.Controllers
     EditTicketTitleAndDescriptionModel GetEditTicketModel(Ticket ticket)
     {
       var model = ModelFactory.GetModel<EditTicketTitleAndDescriptionModel>();
-      model.Ticket = mapper.Map(ticket);
+      model.Ticket = mapper.Map<TicketDetailDto>(ticket);
       model.Response = GetTempData<Models.Tickets.EditTicketTitleAndDescriptionResponse>(EditTicketResponseKey);
       model.Specification = GetTempData<EditTicketTitleAndDescriptionSpecification>(EditTicketSpecKey);
       return model;
@@ -121,7 +121,7 @@ namespace Agiil.Web.Controllers
     }
 
     public TicketController(ITicketDetailService ticketDetailService,
-                            TicketDetailMapper mapper,
+                            IMapper mapper,
                             Lazy<ITicketEditor> editor,
                             Services.SharedModel.StandardPageModelFactory modelFactory)
       : base(modelFactory)

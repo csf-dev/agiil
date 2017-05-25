@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using Agiil.Domain.Tickets;
 using Agiil.Web.Models.Tickets;
-using Agiil.Web.Services.Tickets;
+using AutoMapper;
 using CSF.Entities;
 
 namespace Agiil.Web.Controllers
@@ -18,7 +18,7 @@ namespace Agiil.Web.Controllers
     readonly Lazy<ICommentCreator> commentCreator;
     readonly Lazy<ICommentEditor> commentEditor;
     readonly Lazy<ICommentReader> commentReader;
-    readonly CommentMapper mapper;
+    readonly IMapper mapper;
 
     [HttpPost]
     public ActionResult Add(AddCommentSpecification spec)
@@ -126,7 +126,7 @@ namespace Agiil.Web.Controllers
     EditCommentModel GetEditCommentModel(Comment comment)
     {
       var model = ModelFactory.GetModel<EditCommentModel>();
-      model.Comment = mapper.Map(comment);
+      model.Comment = mapper.Map<CommentDto>(comment);
       model.Response = GetTempData<Models.Tickets.EditCommentResponse>(EditCommentResponseKey);
       model.Specification = GetTempData<EditCommentSpecification>(EditCommentSpecKey);
       return model;
@@ -136,7 +136,7 @@ namespace Agiil.Web.Controllers
                              Lazy<ICommentCreator> commentCreator,
                              Lazy<ICommentEditor> commentEditor,
                              Lazy<ICommentReader> commentReader,
-                             CommentMapper mapper)
+                             IMapper mapper)
       : base(modelFactory)
     {
       if(mapper == null)

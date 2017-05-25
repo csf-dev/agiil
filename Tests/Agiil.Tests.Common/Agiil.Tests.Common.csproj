@@ -225,6 +225,10 @@
       <Project>{FF544749-0A04-417F-AD83-E284BBF498E7}</Project>
       <Name>Agiil.Domain.Impl</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Web.Models\Agiil.Web.Models.csproj">
+      <Project>{53F1B62F-1BEE-4732-A1F3-433822529906}</Project>
+      <Name>Agiil.Web.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Bootstrap\" />

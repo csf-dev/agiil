@@ -6,7 +6,6 @@ using Agiil.Web.Models;
 using System.Linq.Expressions;
 using Agiil.Domain.Tickets;
 using NUnit.Framework;
-using Agiil.Web.Controllers;
 using System.Linq;
 using Agiil.Web.Models.Tickets;
 
