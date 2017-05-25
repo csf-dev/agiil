@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Agiil.Domain.Tickets;
-using Agiil.Web.Models;
+using Agiil.Web.Models.Tickets;
 using Agiil.Web.Services.Tickets;
 using CSF.Entities;
 
@@ -114,12 +111,12 @@ namespace Agiil.Web.Controllers
       };
     }
 
-    Models.EditCommentResponse MapEditResponse(Domain.Tickets.EditCommentResponse response)
+    Models.Tickets.EditCommentResponse MapEditResponse(Domain.Tickets.EditCommentResponse response)
     {
       if(ReferenceEquals(response, null))
         return null;
 
-      return new Models.EditCommentResponse
+      return new Models.Tickets.EditCommentResponse
       {
         BodyIsInvalid = response.BodyIsInvalid,
         UserDoesNotHavePermission = response.UserDoesNotHavePermission,
@@ -130,7 +127,7 @@ namespace Agiil.Web.Controllers
     {
       var model = ModelFactory.GetModel<EditCommentModel>();
       model.Comment = mapper.Map(comment);
-      model.Response = GetTempData<Models.EditCommentResponse>(EditCommentResponseKey);
+      model.Response = GetTempData<Models.Tickets.EditCommentResponse>(EditCommentResponseKey);
       model.Specification = GetTempData<EditCommentSpecification>(EditCommentSpecKey);
       return model;
     }

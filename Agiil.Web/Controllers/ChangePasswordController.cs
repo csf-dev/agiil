@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Agiil.Auth;
-using Agiil.Web.Models;
+using Agiil.Web.Models.Auth;
 
 namespace Agiil.Web.Controllers
 {
@@ -53,8 +50,7 @@ namespace Agiil.Web.Controllers
 
     PasswordChangeRequest MapRequest(ChangePasswordSpecification spec)
     {
-      return new PasswordChangeRequest
-      {
+      return new PasswordChangeRequest {
         ConfirmNewPassword = spec.NewPasswordConfirmation,
         ExistingPassword = spec.ExistingPassword,
         NewPassword = spec.NewPassword,
@@ -63,8 +59,7 @@ namespace Agiil.Web.Controllers
 
     ChangePasswordResult GetResult(PasswordChangeResponse result)
     {
-      return new ChangePasswordResult
-      {
+      return new ChangePasswordResult {
         Success = result.Success,
         ExistingPasswordIncorrect = result.ExistingPasswordIncorrect,
         NewPasswordDoesNotMatchConfirmation = result.NewPasswordDoesNotMatchConfirmation,
@@ -77,7 +72,7 @@ namespace Agiil.Web.Controllers
       : base(modelFactory)
     {
       if(passwordChanger == null)
-        throw new ArgumentNullException(nameof(passwordChanger));;
+        throw new ArgumentNullException(nameof(passwordChanger)); ;
       this.passwordChanger = passwordChanger;
     }
   }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Agiil.Web.Models
+namespace Agiil.Web.Models.Tickets
 {
   public class TicketSummaryDto : TicketInfoDtoBase
   {

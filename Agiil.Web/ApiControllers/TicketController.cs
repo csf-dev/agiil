@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Net;
-using System.Threading;
 using System.Web.Http;
-using System.Web.Http.ModelBinding;
 using Agiil.Domain.Tickets;
-using Agiil.Web.Models;
+using Agiil.Web.Models.Tickets;
 using Agiil.Web.Services.Tickets;
 using CSF.Entities;
 
@@ -40,7 +38,7 @@ namespace Agiil.Web.ApiControllers
       };
     }
 
-    public Models.EditTicketTitleAndDescriptionResponse Post(EditTicketTitleAndDescriptionSpecification ticket)
+    public Models.Tickets.EditTicketTitleAndDescriptionResponse Post(EditTicketTitleAndDescriptionSpecification ticket)
     {
       if(ticket == null)
       {
@@ -59,7 +57,7 @@ namespace Agiil.Web.ApiControllers
       if(response.IdentityIsInvalid)
         throw new HttpResponseException(HttpStatusCode.NotFound);
 
-      return new Models.EditTicketTitleAndDescriptionResponse
+      return new Models.Tickets.EditTicketTitleAndDescriptionResponse
       {
         Success = response.IsSuccess,
         TitleIsInvalid = response.TitleIsInvalid,

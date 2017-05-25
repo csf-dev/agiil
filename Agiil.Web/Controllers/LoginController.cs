@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using Agiil.Auth;
 using Agiil.Domain.Auth;
-using Agiil.Web.Models;
+using Agiil.Web.Models.Auth;
 
 namespace Agiil.Web.Controllers
 {
@@ -41,7 +41,7 @@ namespace Agiil.Web.Controllers
     }
 
     [HttpPost]
-    public ActionResult Login(Models.LoginCredentials credentials)
+    public ActionResult Login(Models.Auth.LoginCredentials credentials)
     {
       var loginRequest = loginRequestCreator(credentials.Username, credentials.Password);
       var result = loginLogoutManager.AttemptLogin(loginRequest);
@@ -78,7 +78,7 @@ namespace Agiil.Web.Controllers
     {
       var model = ModelFactory.GetModel<LoginModel>();
       model.Result = GetTempData<LoginResult>(LoginResultKey);
-      model.EnteredCredentials = GetTempData<Models.LoginCredentials>(CredentialsKey);
+      model.EnteredCredentials = GetTempData<Models.Auth.LoginCredentials>(CredentialsKey);
       return model;
     }
 

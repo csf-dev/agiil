@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Agiil.Domain.Tickets;
-using Agiil.Web.Models;
+using Agiil.Web.Models.Tickets;
 using CSF.Entities;
 
 namespace Agiil.Web.Services.Tickets

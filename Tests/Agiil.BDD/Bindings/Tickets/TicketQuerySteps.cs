@@ -8,6 +8,7 @@ using Agiil.Domain.Tickets;
 using NUnit.Framework;
 using Agiil.Web.Controllers;
 using System.Linq;
+using Agiil.Web.Models.Tickets;
 
 namespace Agiil.BDD.Bindings.Tickets
 {

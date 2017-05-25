@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Agiil.Domain.Tickets;
-using Agiil.Web.Models;
+using Agiil.Web.Models.Tickets;
 using CSF.Entities;
 
 namespace Agiil.Web.Services.Tickets
@@ -13,7 +12,7 @@ namespace Agiil.Web.Services.Tickets
     {
       if(tickets == null)
         return null;
-      
+
       return tickets.Select(Map).ToList();
     }
 
@@ -25,7 +24,7 @@ namespace Agiil.Web.Services.Tickets
       var id = ticket.GetIdentity();
 
       return new TicketSummaryDto {
-        Id = (long) ((id != null)? id.Value : default(long)),
+        Id = (long) ((id != null) ? id.Value : default(long)),
         Title = ticket.Title,
         Creator = ticket.User.Username,
         Created = ticket.CreationTimestamp,

@@ -3,6 +3,7 @@ using System.Net;
 using System.Web.Http;
 using Agiil.Domain.Tickets;
 using Agiil.Web.Models;
+using Agiil.Web.Models.Tickets;
 
 namespace Agiil.Web.ApiControllers
 {
@@ -19,7 +20,7 @@ namespace Agiil.Web.ApiControllers
       return MapResponse(sourceResponse);
     }
 
-    public Models.EditCommentResponse Post(EditCommentSpecification spec)
+    public Models.Tickets.EditCommentResponse Post(EditCommentSpecification spec)
     {
       if(spec == null)
       {
@@ -36,7 +37,7 @@ namespace Agiil.Web.ApiControllers
       if(response.CommentDoesNotExist)
         throw new HttpResponseException(HttpStatusCode.NotFound);
 
-      return new Models.EditCommentResponse
+      return new Models.Tickets.EditCommentResponse
       {
         BodyIsInvalid = response.BodyIsInvalid,
         UserDoesNotHavePermission = response.UserDoesNotHavePermission,

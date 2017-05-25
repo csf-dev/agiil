@@ -2,7 +2,7 @@
 using Agiil.Domain.Auth;
 using Agiil.Web.Models.Shared;
 
-namespace Agiil.Web.Models
+namespace Agiil.Web.Models.Auth
 {
   public class LoginModel : StandardPageModel
   {

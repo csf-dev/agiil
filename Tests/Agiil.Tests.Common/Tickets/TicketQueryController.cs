@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using Agiil.Domain.Tickets;
 using Agiil.Web.Controllers;
 using Agiil.Web.Models;
+using Agiil.Web.Models.Tickets;
 using CSF.Data.Entities;
 using CSF.Data.NHibernate;
 using CSF.Entities;

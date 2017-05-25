@@ -2,7 +2,7 @@
 using Agiil.Domain.Tickets;
 using CSF.Entities;
 
-namespace Agiil.Web.Models
+namespace Agiil.Web.Models.Tickets
 {
   public class EditCommentSpecification
   {

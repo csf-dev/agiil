@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Agiil.Web.Models.Shared;
 
-namespace Agiil.Web.Models
+namespace Agiil.Web.Models.Tickets
 {
   public class TicketListModel : StandardPageModel
   {

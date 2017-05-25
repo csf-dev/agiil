@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using Agiil.Domain.Tickets;
-using Agiil.Web.Models;
+using Agiil.Web.Models.Tickets;
 using Agiil.Web.Services.Tickets;
 using CSF.Entities;
 
@@ -89,7 +89,7 @@ namespace Agiil.Web.Controllers
     {
       var model = ModelFactory.GetModel<EditTicketTitleAndDescriptionModel>();
       model.Ticket = mapper.Map(ticket);
-      model.Response = GetTempData<Models.EditTicketTitleAndDescriptionResponse>(EditTicketResponseKey);
+      model.Response = GetTempData<Models.Tickets.EditTicketTitleAndDescriptionResponse>(EditTicketResponseKey);
       model.Specification = GetTempData<EditTicketTitleAndDescriptionSpecification>(EditTicketSpecKey);
       return model;
     }
@@ -107,12 +107,12 @@ namespace Agiil.Web.Controllers
       };
     }
 
-    Models.EditTicketTitleAndDescriptionResponse MapEditResponse(Domain.Tickets.EditTicketTitleAndDescriptionResponse response)
+    Models.Tickets.EditTicketTitleAndDescriptionResponse MapEditResponse(Domain.Tickets.EditTicketTitleAndDescriptionResponse response)
     {
       if(ReferenceEquals(response, null))
         return null;
 
-      return new Models.EditTicketTitleAndDescriptionResponse
+      return new Models.Tickets.EditTicketTitleAndDescriptionResponse
       {
         Success = response.IsSuccess,
         TitleIsInvalid = response.TitleIsInvalid,

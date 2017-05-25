@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Agiil.Web.Models
+namespace Agiil.Web.Models.Tickets
 {
   public class EditCommentResponse
   {

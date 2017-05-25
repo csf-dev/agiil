@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Http;
 using Agiil.Auth;
-using Agiil.Web.Models;
+using Agiil.Web.Models.Auth;
 
 namespace Agiil.Web.ApiControllers
 {
