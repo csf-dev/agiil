@@ -27,6 +27,7 @@ namespace Agiil.Web.ApiControllers
         throw new ArgumentNullException(nameof(spec));
       }
 
+      // TODO: Switch this over to use an IMapper
       var request = new EditCommentRequest
       {
         CommentIdentity = spec.CommentId,
@@ -37,6 +38,7 @@ namespace Agiil.Web.ApiControllers
       if(response.CommentDoesNotExist)
         throw new HttpResponseException(HttpStatusCode.NotFound);
 
+      // TODO: Switch this over to use an IMapper
       return new Models.Tickets.EditCommentResponse
       {
         BodyIsInvalid = response.BodyIsInvalid,
@@ -45,6 +47,7 @@ namespace Agiil.Web.ApiControllers
       };
     }
 
+    // TODO: Switch this over to use an IMapper
     CreateCommentRequest GetCreationRequest(AddCommentSpecification spec)
     {
       if(spec == null)
@@ -57,6 +60,7 @@ namespace Agiil.Web.ApiControllers
       };
     }
 
+    // TODO: Switch this over to use an IMapper
     AddCommentResponse MapResponse(CreateCommentResponse source)
     {
       if(source == null)

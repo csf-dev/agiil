@@ -23,6 +23,7 @@ namespace Agiil.Web.Controllers
     public ActionResult Create(NewTicketSpecification spec)
     {
       var model = GetModel(spec);
+      // TODO: Switch this over to use the Mapper on the base class
       var request = new CreateTicketRequest
       {
         Title = model.Specification?.Title,
@@ -30,6 +31,7 @@ namespace Agiil.Web.Controllers
       };
 
       var response = ticketCreator.Create(request);
+      // TODO: Switch this over to use the Mapper on the base class
       model.Response = new NewTicketResponse
       {
         TitleIsInvalid = response.TitleIsInvalid,
@@ -48,8 +50,8 @@ namespace Agiil.Web.Controllers
       return model;
     }
 
-    public NewTicketController(ITicketCreator ticketCreator, Services.SharedModel.StandardPageModelFactory modelFactory)
-      : base(modelFactory)
+    public NewTicketController(ITicketCreator ticketCreator, ControllerBaseDependencies baseDeps)
+      : base(baseDeps)
     {
       if(ticketCreator == null)
         throw new ArgumentNullException(nameof(ticketCreator));

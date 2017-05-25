@@ -11,5 +11,7 @@ namespace Agiil.Domain.Sprints
 
     public bool IsSuccess
       => !(ProjectDoesNotExist || NameIsInvalid || EndDateMustNotBeBeforeStartDate);
+
+    public Sprint Sprint { get; set; }
   }
 }

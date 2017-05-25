@@ -88,8 +88,8 @@ namespace Agiil.Web.Controllers
 
     public LoginController(LoginRequestCreator loginRequestCreator,
                            ILoginLogoutManager loginLogoutManager,
-                           Services.SharedModel.StandardPageModelFactory modelFactory)
-      : base(modelFactory)
+                           ControllerBaseDependencies baseDeps)
+      : base(baseDeps)
     {
       if(loginLogoutManager == null)
         throw new ArgumentNullException(nameof(loginLogoutManager));

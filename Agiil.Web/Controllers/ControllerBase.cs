@@ -6,14 +6,18 @@ using System.Web;
 using System.Web.Mvc;
 using Agiil.Web.App_Start;
 using Agiil.Web.Services.SharedModel;
+using AutoMapper;
 
 namespace Agiil.Web.Controllers
 {
   public abstract class ControllerBase : Controller
   {
     readonly StandardPageModelFactory standardModelFactory;
+    readonly Lazy<IMapper> mapper;
 
     protected StandardPageModelFactory ModelFactory => standardModelFactory;
+
+    protected IMapper Mapper => mapper.Value;
 
     protected virtual string GetControllerName<TController>() where TController : Controller
     {
@@ -44,12 +48,13 @@ namespace Agiil.Web.Controllers
       return null;
     }
 
-    public ControllerBase(StandardPageModelFactory standardModelFactory)
+    public ControllerBase(ControllerBaseDependencies baseDeps)
     {
-      if(standardModelFactory == null)
-        throw new ArgumentNullException(nameof(standardModelFactory));
+      if(baseDeps == null)
+        throw new ArgumentNullException(nameof(baseDeps));
 
-      this.standardModelFactory = standardModelFactory;
+      this.standardModelFactory = baseDeps.StandardModelFactory;
+      this.mapper = baseDeps.Mapper;
     }
   }
 }

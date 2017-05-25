@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using Agiil.Auth;
 using Agiil.Web.Models.Auth;
+using AutoMapper;
 
 namespace Agiil.Web.Controllers
 {
@@ -48,6 +49,7 @@ namespace Agiil.Web.Controllers
       return model;
     }
 
+    // TODO: Switch this over to use the Mapper on the base class
     PasswordChangeRequest MapRequest(ChangePasswordSpecification spec)
     {
       return new PasswordChangeRequest {
@@ -57,6 +59,7 @@ namespace Agiil.Web.Controllers
       };
     }
 
+    // TODO: Switch this over to use the Mapper on the base class
     ChangePasswordResult GetResult(PasswordChangeResponse result)
     {
       return new ChangePasswordResult {
@@ -67,9 +70,9 @@ namespace Agiil.Web.Controllers
       };
     }
 
-    public ChangePasswordController(Services.SharedModel.StandardPageModelFactory modelFactory,
+    public ChangePasswordController(ControllerBaseDependencies baseDeps,
                                     Lazy<IPasswordChanger> passwordChanger)
-      : base(modelFactory)
+      : base(baseDeps)
     {
       if(passwordChanger == null)
         throw new ArgumentNullException(nameof(passwordChanger)); ;

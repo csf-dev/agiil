@@ -27,6 +27,7 @@ namespace Agiil.Web.ApiControllers
       if(ReferenceEquals(spec, null))
         return TicketListRequest.CreateDefault();
 
+      // TODO: Switch this over to use an IMapper
       return new TicketListRequest
       {
         ShowClosedTickets = spec.ShowClosedTickets,

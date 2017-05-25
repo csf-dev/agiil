@@ -11,7 +11,6 @@ namespace Agiil.Web.Controllers
   public class TicketsController : ControllerBase
   {
     readonly ITicketLister lister;
-    readonly IMapper mapper;
 
     public ActionResult Index(AdHocTicketListSpecification spec)
     {
@@ -28,11 +27,12 @@ namespace Agiil.Web.Controllers
 
       model.ShowingClosedTickets = showingClosedTickets;
       if(tickets != null)
-        model.Tickets = tickets.Select(x => mapper.Map<TicketSummaryDto>(x)).ToList();
+        model.Tickets = tickets.Select(x => Mapper.Map<TicketSummaryDto>(x)).ToList();
 
       return model;
     }
 
+    // TODO: Switch this over to use the Mapper on the base class
     TicketListRequest GetRequest(AdHocTicketListSpecification spec)
     {
       if(ReferenceEquals(spec, null))
@@ -46,15 +46,11 @@ namespace Agiil.Web.Controllers
     }
 
     public TicketsController(ITicketLister lister,
-                             IMapper mapper,
-                             Services.SharedModel.StandardPageModelFactory modelFactory)
-      : base(modelFactory)
+                             ControllerBaseDependencies baseDeps)
+      : base(baseDeps)
     {
-      if(mapper == null)
-        throw new ArgumentNullException(nameof(mapper));
       if(lister == null)
         throw new ArgumentNullException(nameof(lister));
-      this.mapper = mapper;
       this.lister = lister;
     }
   }

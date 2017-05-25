@@ -6,8 +6,6 @@ namespace Agiil.Domain.Sprints
 {
   public class CreateSprintRequest
   {
-    public IIdentity<Project> Project { get; set; }
-
     public string Name { get; set; }
 
     public DateTime? StartDate { get; set; }

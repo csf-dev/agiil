@@ -296,6 +296,7 @@
     <Compile Include="ApiControllers\OpenCloseTicketController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\NewSprintController.cs" />
+    <Compile Include="Controllers\ControllerBaseDependencies.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

@@ -18,7 +18,6 @@ namespace Agiil.Web.Controllers
     readonly Lazy<ICommentCreator> commentCreator;
     readonly Lazy<ICommentEditor> commentEditor;
     readonly Lazy<ICommentReader> commentReader;
-    readonly IMapper mapper;
 
     [HttpPost]
     public ActionResult Add(AddCommentSpecification spec)
@@ -75,6 +74,7 @@ namespace Agiil.Web.Controllers
       return RedirectToAction(nameof(Edit), new { id = spec.CommentId?.Value });
     }
 
+    // TODO: Switch this over to use the Mapper on the base class
     CreateCommentRequest GetCreationRequest(AddCommentSpecification spec)
     {
       if(spec == null)
@@ -87,6 +87,7 @@ namespace Agiil.Web.Controllers
       };
     }
 
+    // TODO: Switch this over to use the Mapper on the base class
     AddCommentResponse MapResponse(CreateCommentResponse source)
     {
       if(source == null)
@@ -99,6 +100,7 @@ namespace Agiil.Web.Controllers
       };
     }
 
+    // TODO: Switch this over to use the Mapper on the base class
     EditCommentRequest MapRequest(EditCommentSpecification spec)
     {
       if(ReferenceEquals(spec, null))
@@ -111,6 +113,7 @@ namespace Agiil.Web.Controllers
       };
     }
 
+    // TODO: Switch this over to use the Mapper on the base class
     Models.Tickets.EditCommentResponse MapEditResponse(Domain.Tickets.EditCommentResponse response)
     {
       if(ReferenceEquals(response, null))
@@ -126,28 +129,24 @@ namespace Agiil.Web.Controllers
     EditCommentModel GetEditCommentModel(Comment comment)
     {
       var model = ModelFactory.GetModel<EditCommentModel>();
-      model.Comment = mapper.Map<CommentDto>(comment);
+      model.Comment = Mapper.Map<CommentDto>(comment);
       model.Response = GetTempData<Models.Tickets.EditCommentResponse>(EditCommentResponseKey);
       model.Specification = GetTempData<EditCommentSpecification>(EditCommentSpecKey);
       return model;
     }
 
-    public CommentController(Services.SharedModel.StandardPageModelFactory modelFactory,
+    public CommentController(ControllerBaseDependencies baseDeps,
                              Lazy<ICommentCreator> commentCreator,
                              Lazy<ICommentEditor> commentEditor,
-                             Lazy<ICommentReader> commentReader,
-                             IMapper mapper)
-      : base(modelFactory)
+                             Lazy<ICommentReader> commentReader)
+      : base(baseDeps)
     {
-      if(mapper == null)
-        throw new ArgumentNullException(nameof(mapper));
       if(commentReader == null)
         throw new ArgumentNullException(nameof(commentReader));
       if(commentEditor == null)
         throw new ArgumentNullException(nameof(commentEditor));
       if(commentCreator == null)
         throw new ArgumentNullException(nameof(commentCreator));
-      this.mapper = mapper;
       this.commentCreator = commentCreator;
       this.commentEditor = commentEditor;
       this.commentReader = commentReader;

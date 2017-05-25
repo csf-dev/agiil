@@ -19,6 +19,7 @@ namespace Agiil.Web.ApiControllers
       return GetResult(result);
     }
 
+    // TODO: Switch this over to use an IMapper
     PasswordChangeRequest MapRequest(ChangePasswordSpecification spec)
     {
       return new PasswordChangeRequest
@@ -29,6 +30,7 @@ namespace Agiil.Web.ApiControllers
       };
     }
 
+    // TODO: Switch this over to use an IMapper
     ChangePasswordResult GetResult(PasswordChangeResponse result)
     {
       return new ChangePasswordResult

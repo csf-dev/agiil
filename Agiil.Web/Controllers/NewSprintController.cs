@@ -6,11 +6,17 @@ using System.Web.Mvc;
 
 namespace Agiil.Web.Controllers
 {
-    public class NewSprintController : Controller
+  public class NewSprintController : ControllerBase
+  {
+    public ActionResult Index()
     {
-        public ActionResult Index()
-        {
-            return View ();
-        }
+      // TODO: Write this implementation
+      throw new NotImplementedException();
     }
+
+    public NewSprintController(ControllerBaseDependencies deps) : base(deps)
+    {
+
+    }
+  }
 }

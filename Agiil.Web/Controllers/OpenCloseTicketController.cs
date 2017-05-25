@@ -51,9 +51,9 @@ namespace Agiil.Web.Controllers
                               new { id = id.Value });
     }
 
-    public OpenCloseTicketController(Services.SharedModel.StandardPageModelFactory modelFactory,
+    public OpenCloseTicketController(ControllerBaseDependencies baseDeps,
                                  ITicketOpenerCloser openerCloser)
-      : base(modelFactory)
+      : base(baseDeps)
     {
       if(openerCloser == null)
         throw new ArgumentNullException(nameof(openerCloser));
