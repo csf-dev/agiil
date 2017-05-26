@@ -9,5 +9,7 @@ namespace Agiil.Domain.Validation
     }
 
     public static readonly string EntityMustExist = "EntityMustExist";
+
+    public static readonly string EndDateBeforeStartDate = "EndDateBeforeStartDate";
   }
 }

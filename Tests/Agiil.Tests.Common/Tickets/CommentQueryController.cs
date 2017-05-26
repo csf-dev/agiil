@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using Agiil.Domain.Tickets;
 using Agiil.Web.Models;
+using Agiil.Web.Models.Tickets;
 using CSF.Data.Entities;
 using CSF.Data.NHibernate;
 using CSF.Entities;

@@ -1,0 +1,14 @@
+﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<head>
+<title metal:fill-slot="title_element">Sprint created</title>
+</head>
+<body>
+<div metal:fill-slot="page_content"
+     class="page_content">
+  <h1>Sprint created</h1>
+  <p>
+    The sprint was created successfully.
+  </p>
+</div>
+</body>
+</html>

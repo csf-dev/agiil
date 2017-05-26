@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using Agiil.Auth;
 using Agiil.Domain.Auth;
-using Agiil.Web.Models;
+using Agiil.Web.Models.Auth;
 
 namespace Agiil.Web.Controllers
 {
@@ -41,7 +41,7 @@ namespace Agiil.Web.Controllers
     }
 
     [HttpPost]
-    public ActionResult Login(Models.LoginCredentials credentials)
+    public ActionResult Login(Models.Auth.LoginCredentials credentials)
     {
       var loginRequest = loginRequestCreator(credentials.Username, credentials.Password);
       var result = loginLogoutManager.AttemptLogin(loginRequest);
@@ -53,8 +53,7 @@ namespace Agiil.Web.Controllers
 
       if(result.Success && !String.IsNullOrEmpty(credentials.ReturnUrl))
       {
-        // TODO: IMO I should sanitise this URL before we blindly redirect
-        // Otherwise an attacker could hand out links with malicious URLs in them
+        // TODO: #AG28 - I should sanitise this URL before we blindly redirect
         return Redirect(credentials.ReturnUrl);
       }
 
@@ -78,7 +77,7 @@ namespace Agiil.Web.Controllers
     {
       var model = ModelFactory.GetModel<LoginModel>();
       model.Result = GetTempData<LoginResult>(LoginResultKey);
-      model.EnteredCredentials = GetTempData<Models.LoginCredentials>(CredentialsKey);
+      model.EnteredCredentials = GetTempData<Models.Auth.LoginCredentials>(CredentialsKey);
       return model;
     }
 
@@ -88,8 +87,8 @@ namespace Agiil.Web.Controllers
 
     public LoginController(LoginRequestCreator loginRequestCreator,
                            ILoginLogoutManager loginLogoutManager,
-                           Services.SharedModel.StandardPageModelFactory modelFactory)
-      : base(modelFactory)
+                           ControllerBaseDependencies baseDeps)
+      : base(baseDeps)
     {
       if(loginLogoutManager == null)
         throw new ArgumentNullException(nameof(loginLogoutManager));

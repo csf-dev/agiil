@@ -117,6 +117,10 @@
       <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
       <Name>Agiil.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Web.Models\Agiil.Web.Models.csproj">
+      <Project>{53F1B62F-1BEE-4732-A1F3-433822529906}</Project>
+      <Name>Agiil.Web.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

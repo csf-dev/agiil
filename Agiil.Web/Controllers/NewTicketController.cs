@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Agiil.Domain.Tickets;
-using Agiil.Web.Models;
+using Agiil.Web.Models.Tickets;
 using CSF.Entities;
 
 namespace Agiil.Web.Controllers
@@ -26,6 +23,7 @@ namespace Agiil.Web.Controllers
     public ActionResult Create(NewTicketSpecification spec)
     {
       var model = GetModel(spec);
+      // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
       var request = new CreateTicketRequest
       {
         Title = model.Specification?.Title,
@@ -33,6 +31,7 @@ namespace Agiil.Web.Controllers
       };
 
       var response = ticketCreator.Create(request);
+      // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
       model.Response = new NewTicketResponse
       {
         TitleIsInvalid = response.TitleIsInvalid,
@@ -51,8 +50,8 @@ namespace Agiil.Web.Controllers
       return model;
     }
 
-    public NewTicketController(ITicketCreator ticketCreator, Services.SharedModel.StandardPageModelFactory modelFactory)
-      : base(modelFactory)
+    public NewTicketController(ITicketCreator ticketCreator, ControllerBaseDependencies baseDeps)
+      : base(baseDeps)
     {
       if(ticketCreator == null)
         throw new ArgumentNullException(nameof(ticketCreator));

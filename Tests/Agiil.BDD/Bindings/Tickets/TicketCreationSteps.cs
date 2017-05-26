@@ -4,6 +4,7 @@ using Agiil.Domain.Tickets;
 using Agiil.Tests.Autofixture;
 using Agiil.Tests.Tickets;
 using Agiil.Web.Models;
+using Agiil.Web.Models.Tickets;
 using CSF.Entities;
 using Ploeh.AutoFixture;
 using TechTalk.SpecFlow;

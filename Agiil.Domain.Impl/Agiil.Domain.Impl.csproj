@@ -102,6 +102,12 @@
     <Compile Include="Tickets\CommentEditor.cs" />
     <Compile Include="Tickets\CommentReader.cs" />
     <Compile Include="Tickets\TicketOpenerCloser.cs" />
+    <Compile Include="Projects\DummyCurrentProjectGetter.cs" />
+    <Compile Include="Sprints\SprintCreator.cs" />
+    <Compile Include="Validation\EndDateMustNotBeBeforeStartDateRule.cs" />
+    <Compile Include="Sprints\CreateSprintValidatorFactory.cs" />
+    <Compile Include="ResponseFactory.cs" />
+    <Compile Include="Sprints\SprintFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
@@ -119,6 +125,8 @@
     <Folder Include="Resources\" />
     <Folder Include="Data\" />
     <Folder Include="Validation\" />
+    <Folder Include="Projects\" />
+    <Folder Include="Sprints\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -31,6 +31,8 @@ namespace Agiil.Domain.Tickets
 
     public virtual Projects.Project Project { get; set; }
 
+    public virtual Sprints.Sprint Sprint { get; set; }
+
     public virtual long TicketNumber { get; set; }
 
     public virtual bool Closed { get; set; }
@@ -44,7 +46,7 @@ namespace Agiil.Domain.Tickets
     {
       comments = new EventRaisingSetWrapper<Comment>(new HashSet<Comment>());
       comments.BeforeAdd += (sender, e) => e.Item.Ticket = this;
-      comments.AfterRemove += (sender, e) => e.Item.Ticket = null;
+      comments.BeforeRemove += (sender, e) => e.Item.Ticket = null;
     }
   }
 }

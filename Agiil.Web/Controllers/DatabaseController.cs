@@ -42,8 +42,8 @@ namespace Agiil.Web.Controllers
     }
 
     public DatabaseController(Lazy<IDatabaseResetter> resetter,
-                              Services.SharedModel.StandardPageModelFactory modelFactory)
-      : base(modelFactory)
+                              ControllerBaseDependencies baseDeps)
+      : base(baseDeps)
     {
       if(resetter == null)
         throw new ArgumentNullException(nameof(resetter));

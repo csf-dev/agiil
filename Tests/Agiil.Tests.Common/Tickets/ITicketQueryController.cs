@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using Agiil.Domain.Tickets;
-using Agiil.Web.Models;
+﻿using System.Collections.Generic;
+using Agiil.Web.Models.Tickets;
 
 namespace Agiil.Tests.Tickets
 {

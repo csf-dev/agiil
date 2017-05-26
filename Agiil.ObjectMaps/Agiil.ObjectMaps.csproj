@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{36A605F5-89BD-4FBA-BDB1-088C38E54886}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Agiil.ObjectMaps</RootNamespace>
+    <AssemblyName>Agiil.ObjectMaps</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ReleaseVersion>0.1.0</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Entities">
+      <HintPath>..\packages\CSF.Entities.1.1.1\lib\net45\CSF.Entities.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tickets\CommentToCommentDtoProfile.cs" />
+    <Compile Include="MapperConfigurationFactory.cs" />
+    <Compile Include="Tickets\TicketToTicketSummaryDtoProfile.cs" />
+    <Compile Include="IdentityValueResolver.cs" />
+    <Compile Include="Tickets\TicketToTicketDetailDtoProfile.cs" />
+    <Compile Include="Sprints\NewSprintSpecificationToCreateSprintRequestProfile.cs" />
+    <Compile Include="Sprints\CreateSprintResponseToNewSprintResultProfile.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Tickets\" />
+    <Folder Include="Sprints\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
+      <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
+      <Name>Agiil.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
+      <Project>{922B2D9C-444E-451A-B626-DAE59E79C0E5}</Project>
+      <Name>Agiil.Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Web.Models\Agiil.Web.Models.csproj">
+      <Project>{53F1B62F-1BEE-4732-A1F3-433822529906}</Project>
+      <Name>Agiil.Web.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

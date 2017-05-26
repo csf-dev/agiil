@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Net;
-using System.Threading;
 using System.Web.Http;
-using System.Web.Http.ModelBinding;
 using Agiil.Domain.Tickets;
-using Agiil.Web.Models;
-using Agiil.Web.Services.Tickets;
+using Agiil.Web.Models.Tickets;
+using AutoMapper;
 using CSF.Entities;
 
 namespace Agiil.Web.ApiControllers
@@ -15,7 +13,7 @@ namespace Agiil.Web.ApiControllers
     readonly Lazy<ITicketCreator> ticketCreator;
     readonly Lazy<ITicketEditor> ticketEditor;
     readonly Lazy<ITicketDetailService> ticketDetailService;
-    readonly TicketDetailMapper mapper;
+    readonly IMapper mapper;
 
     public NewTicketResponse Put(NewTicketSpecification ticket)
     {
@@ -24,6 +22,7 @@ namespace Agiil.Web.ApiControllers
         throw new ArgumentNullException(nameof(ticket));
       }
 
+      // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
       var request = new CreateTicketRequest
       {
         Title = ticket.Title,
@@ -32,6 +31,7 @@ namespace Agiil.Web.ApiControllers
 
       var response = ticketCreator.Value.Create(request);
 
+      // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
       return new NewTicketResponse
       {
         TitleIsInvalid = response.TitleIsInvalid,
@@ -40,13 +40,14 @@ namespace Agiil.Web.ApiControllers
       };
     }
 
-    public Models.EditTicketTitleAndDescriptionResponse Post(EditTicketTitleAndDescriptionSpecification ticket)
+    public Models.Tickets.EditTicketTitleAndDescriptionResponse Post(EditTicketTitleAndDescriptionSpecification ticket)
     {
       if(ticket == null)
       {
         throw new ArgumentNullException(nameof(ticket));
       }
 
+      // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
       var request = new EditTicketTitleAndDescriptionRequest
       {
         Identity = ticket.Identity,
@@ -59,7 +60,8 @@ namespace Agiil.Web.ApiControllers
       if(response.IdentityIsInvalid)
         throw new HttpResponseException(HttpStatusCode.NotFound);
 
-      return new Models.EditTicketTitleAndDescriptionResponse
+      // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
+      return new Models.Tickets.EditTicketTitleAndDescriptionResponse
       {
         Success = response.IsSuccess,
         TitleIsInvalid = response.TitleIsInvalid,
@@ -74,13 +76,13 @@ namespace Agiil.Web.ApiControllers
       if(ReferenceEquals(ticket, null))
         throw new HttpResponseException(HttpStatusCode.NotFound);
 
-      return mapper.Map(ticket);
+      return mapper.Map<TicketDetailDto>(ticket);
     }
 
     public TicketController(Lazy<ITicketCreator> ticketCreator,
                             Lazy<ITicketDetailService> ticketDetailService,
                             Lazy<ITicketEditor> ticketEditor,
-                            TicketDetailMapper mapper)
+                            IMapper mapper)
     {
       if(ticketCreator == null)
         throw new ArgumentNullException(nameof(ticketCreator));

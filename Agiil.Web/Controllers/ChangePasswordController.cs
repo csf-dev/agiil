@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Agiil.Auth;
-using Agiil.Web.Models;
+using Agiil.Web.Models.Auth;
+using AutoMapper;
 
 namespace Agiil.Web.Controllers
 {
@@ -51,20 +49,20 @@ namespace Agiil.Web.Controllers
       return model;
     }
 
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
     PasswordChangeRequest MapRequest(ChangePasswordSpecification spec)
     {
-      return new PasswordChangeRequest
-      {
+      return new PasswordChangeRequest {
         ConfirmNewPassword = spec.NewPasswordConfirmation,
         ExistingPassword = spec.ExistingPassword,
         NewPassword = spec.NewPassword,
       };
     }
 
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
     ChangePasswordResult GetResult(PasswordChangeResponse result)
     {
-      return new ChangePasswordResult
-      {
+      return new ChangePasswordResult {
         Success = result.Success,
         ExistingPasswordIncorrect = result.ExistingPasswordIncorrect,
         NewPasswordDoesNotMatchConfirmation = result.NewPasswordDoesNotMatchConfirmation,
@@ -72,12 +70,12 @@ namespace Agiil.Web.Controllers
       };
     }
 
-    public ChangePasswordController(Services.SharedModel.StandardPageModelFactory modelFactory,
+    public ChangePasswordController(ControllerBaseDependencies baseDeps,
                                     Lazy<IPasswordChanger> passwordChanger)
-      : base(modelFactory)
+      : base(baseDeps)
     {
       if(passwordChanger == null)
-        throw new ArgumentNullException(nameof(passwordChanger));;
+        throw new ArgumentNullException(nameof(passwordChanger)); ;
       this.passwordChanger = passwordChanger;
     }
   }

@@ -2,6 +2,7 @@
 using System.Linq;
 using Agiil.Tests.Tickets;
 using Agiil.Web.Models;
+using Agiil.Web.Models.Tickets;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;

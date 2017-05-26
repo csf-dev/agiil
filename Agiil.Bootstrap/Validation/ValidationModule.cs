@@ -8,6 +8,7 @@ using CSF.Validation;
 using CSF.Validation.Rules;
 using System.Linq;
 using CSF.Validation.StockRules;
+using Agiil.Domain;
 
 namespace Agiil.Bootstrap.Validation
 {
@@ -22,6 +23,10 @@ namespace Agiil.Bootstrap.Validation
       builder
         .Register(CreateValidatorFactory)
         .As<IValidatorFactory>();
+
+      builder
+        .RegisterGeneric(typeof(ResponseFactory<>))
+        .As(typeof(IResponseFactory<>));
     }
 
     ValidatorFactory CreateValidatorFactory(IComponentContext ctx, IEnumerable<Parameter> afParams)

@@ -199,6 +199,16 @@
     <Compile Include="Auth\ChangePasswordController.cs" />
     <Compile Include="Tickets\IOpenCloseTicketController.cs" />
     <Compile Include="Tickets\OpenCloseTicketController.cs" />
+    <Compile Include="Sprints\ISprintCreationController.cs" />
+    <Compile Include="Sprints\SprintCreationController.cs" />
+    <Compile Include="Sprints\ISprintQueryController.cs" />
+    <Compile Include="Sprints\SprintSearchCriteria.cs" />
+    <Compile Include="Sprints\SprintQueryController.cs" />
+    <Compile Include="Bootstrap\SprintsModule.cs" />
+    <Compile Include="Projects\IProjectCreationController.cs" />
+    <Compile Include="Projects\ProjectCreationController.cs" />
+    <Compile Include="Autofixture\ProjectCustomization.cs" />
+    <Compile Include="Bootstrap\ProjectsModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
@@ -225,12 +235,18 @@
       <Project>{FF544749-0A04-417F-AD83-E284BBF498E7}</Project>
       <Name>Agiil.Domain.Impl</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Web.Models\Agiil.Web.Models.csproj">
+      <Project>{53F1B62F-1BEE-4732-A1F3-433822529906}</Project>
+      <Name>Agiil.Web.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Bootstrap\" />
     <Folder Include="Auth\" />
     <Folder Include="Autofixture\" />
     <Folder Include="Tickets\" />
+    <Folder Include="Sprints\" />
+    <Folder Include="Projects\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

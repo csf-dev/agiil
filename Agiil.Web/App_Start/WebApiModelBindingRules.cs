@@ -10,7 +10,7 @@ namespace Agiil.Web.App_Start
   {
     public void Apply(HttpConfiguration config)
     {
-      // TODO: It might be possible to use the single-parameter overload of the below method to do open-generic registration
+      // TODO: #AG29 - Investigate using the single-parameter overload (open-generic registration?)
       config
         .ParameterBindingRules
         .Add(typeof(IIdentity<Ticket>), p => p.BindWithModelBinding());

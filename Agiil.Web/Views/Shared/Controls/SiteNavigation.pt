@@ -29,6 +29,7 @@
       <li><a href="">Home</a></li>
       <li><a href="Tickets">Ticket list</a></li>
       <li><a href="NewTicket">Create ticket</a></li>
+      <li><a href="NewSprint">Create sprint</a></li>
     </ul>
   </nav>
   </div>

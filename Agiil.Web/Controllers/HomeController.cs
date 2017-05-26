@@ -13,8 +13,8 @@ namespace Agiil.Web.Controllers
       return View (model);
     }
 
-    public HomeController(Services.SharedModel.StandardPageModelFactory modelFactory)
-      : base(modelFactory)
+    public HomeController(ControllerBaseDependencies baseDeps)
+      : base(baseDeps)
     {}
   }
 }

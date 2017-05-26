@@ -120,6 +120,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloseTicket.feature.cs</LastGenOutput>
     </None>
+    <None Include="Features\NewSprint.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>NewSprint.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tickets\TicketCreatorTests.cs" />
@@ -147,6 +151,9 @@
       <DependentUpon>CloseTicket.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Features\NewSprint.feature.cs">
+      <DependentUpon>NewSprint.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">

@@ -9,7 +9,7 @@ namespace Agiil.Tests.Auth
 
     public void Login(string username, string password)
     {
-      controller.Login(new Web.Models.LoginCredentials { Username = username, Password = password });
+      controller.Login(new Web.Models.Auth.LoginCredentials { Username = username, Password = password });
     }
 
     public void Logout()

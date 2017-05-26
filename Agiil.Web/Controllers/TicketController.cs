@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Web.Mvc;
 using Agiil.Domain.Tickets;
-using Agiil.Web.Models;
-using Agiil.Web.Services.Tickets;
+using Agiil.Web.Models.Tickets;
+using AutoMapper;
 using CSF.Entities;
 
 namespace Agiil.Web.Controllers
@@ -15,7 +15,6 @@ namespace Agiil.Web.Controllers
       SuccessfulEditKey = "Successful edit";
 
     readonly ITicketDetailService ticketDetailService;
-    readonly TicketDetailMapper mapper;
     readonly Lazy<ITicketEditor> editor;
 
     public ActionResult Index(IIdentity<Ticket> id)
@@ -70,7 +69,7 @@ namespace Agiil.Web.Controllers
     TicketDetailModel GetViewTicketModel(Ticket ticket)
     {
       var model = ModelFactory.GetModel<TicketDetailModel>();
-      model.Ticket = mapper.Map(ticket);
+      model.Ticket = Mapper.Map<TicketDetailDto>(ticket);
       model.AddCommentSpecification = GetTempData<AddCommentSpecification>(CommentController.CommentSpecKey);
       model.AddCommentResponse = GetTempData<AddCommentResponse>(CommentController.CommentResponseKey);
       return model;
@@ -88,12 +87,13 @@ namespace Agiil.Web.Controllers
     EditTicketTitleAndDescriptionModel GetEditTicketModel(Ticket ticket)
     {
       var model = ModelFactory.GetModel<EditTicketTitleAndDescriptionModel>();
-      model.Ticket = mapper.Map(ticket);
-      model.Response = GetTempData<Models.EditTicketTitleAndDescriptionResponse>(EditTicketResponseKey);
+      model.Ticket = Mapper.Map<TicketDetailDto>(ticket);
+      model.Response = GetTempData<Models.Tickets.EditTicketTitleAndDescriptionResponse>(EditTicketResponseKey);
       model.Specification = GetTempData<EditTicketTitleAndDescriptionSpecification>(EditTicketSpecKey);
       return model;
     }
 
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
     EditTicketTitleAndDescriptionRequest MapRequest(EditTicketTitleAndDescriptionSpecification spec)
     {
       if(ReferenceEquals(spec, null))
@@ -107,12 +107,13 @@ namespace Agiil.Web.Controllers
       };
     }
 
-    Models.EditTicketTitleAndDescriptionResponse MapEditResponse(Domain.Tickets.EditTicketTitleAndDescriptionResponse response)
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
+    Models.Tickets.EditTicketTitleAndDescriptionResponse MapEditResponse(Domain.Tickets.EditTicketTitleAndDescriptionResponse response)
     {
       if(ReferenceEquals(response, null))
         return null;
 
-      return new Models.EditTicketTitleAndDescriptionResponse
+      return new Models.Tickets.EditTicketTitleAndDescriptionResponse
       {
         Success = response.IsSuccess,
         TitleIsInvalid = response.TitleIsInvalid,
@@ -121,20 +122,16 @@ namespace Agiil.Web.Controllers
     }
 
     public TicketController(ITicketDetailService ticketDetailService,
-                            TicketDetailMapper mapper,
                             Lazy<ITicketEditor> editor,
-                            Services.SharedModel.StandardPageModelFactory modelFactory)
-      : base(modelFactory)
+                            ControllerBaseDependencies baseDeps)
+      : base(baseDeps)
     {
       if(editor == null)
         throw new ArgumentNullException(nameof(editor));
-      if(mapper == null)
-        throw new ArgumentNullException(nameof(mapper));
       if(ticketDetailService == null)
         throw new ArgumentNullException(nameof(ticketDetailService));
       
       this.ticketDetailService = ticketDetailService;
-      this.mapper = mapper;
       this.editor = editor;
     }
   }

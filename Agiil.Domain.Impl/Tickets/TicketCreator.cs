@@ -49,7 +49,7 @@ namespace Agiil.Domain.Tickets
 
     }
 
-    // TODO: Refactor this into a factory type, which may be substituted with a Mock in testing
+    // TODO: #AG8 - Refactor this into a factory type
     public Func<IValidationResult, Ticket, CreateTicketResponse> ResponseCreator
     {
       get { return responseCreator; }

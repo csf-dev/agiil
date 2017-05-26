@@ -101,6 +101,9 @@
     <Compile Include="Bindings\Tickets\CommentEditingSteps.cs" />
     <Compile Include="Bindings\Auth\PasswordChangeSteps.cs" />
     <Compile Include="Bindings\Tickets\OpenCloseTicketSteps.cs" />
+    <Compile Include="Bindings\Sprints\SprintCreationSteps.cs" />
+    <Compile Include="Bindings\Sprints\SprintQuerySteps.cs" />
+    <Compile Include="Bindings\Projects\ProjectCreationSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -111,6 +114,8 @@
     <Folder Include="Bindings\Auth\" />
     <Folder Include="Bootstrap\" />
     <Folder Include="Bindings\Tickets\" />
+    <Folder Include="Bindings\Sprints\" />
+    <Folder Include="Bindings\Projects\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj">
@@ -133,13 +138,17 @@
       <Project>{E15F2064-D2EA-43EF-924C-733107675FF0}</Project>
       <Name>Agiil.Tests.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Agiil.Web\Agiil.Web.csproj">
-      <Project>{EA6B20FB-9F7F-49C5-BE4E-BCD59ECA1D85}</Project>
-      <Name>Agiil.Web</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Agiil.Domain.Impl\Agiil.Domain.Impl.csproj">
       <Project>{FF544749-0A04-417F-AD83-E284BBF498E7}</Project>
       <Name>Agiil.Domain.Impl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Web.Models\Agiil.Web.Models.csproj">
+      <Project>{53F1B62F-1BEE-4732-A1F3-433822529906}</Project>
+      <Name>Agiil.Web.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Web\Agiil.Web.csproj">
+      <Project>{EA6B20FB-9F7F-49C5-BE4E-BCD59ECA1D85}</Project>
+      <Name>Agiil.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
