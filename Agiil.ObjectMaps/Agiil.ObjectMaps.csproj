@@ -43,12 +43,15 @@
     <Compile Include="Tickets\TicketToTicketSummaryDtoProfile.cs" />
     <Compile Include="IdentityValueResolver.cs" />
     <Compile Include="Tickets\TicketToTicketDetailDtoProfile.cs" />
+    <Compile Include="Sprints\NewSprintSpecificationToCreateSprintRequestProfile.cs" />
+    <Compile Include="Sprints\CreateSprintResponseToNewSprintResultProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tickets\" />
+    <Folder Include="Sprints\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

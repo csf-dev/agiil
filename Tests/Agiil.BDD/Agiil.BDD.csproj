@@ -101,6 +101,9 @@
     <Compile Include="Bindings\Tickets\CommentEditingSteps.cs" />
     <Compile Include="Bindings\Auth\PasswordChangeSteps.cs" />
     <Compile Include="Bindings\Tickets\OpenCloseTicketSteps.cs" />
+    <Compile Include="Bindings\Sprints\SprintCreationSteps.cs" />
+    <Compile Include="Bindings\Sprints\SprintQuerySteps.cs" />
+    <Compile Include="Bindings\Projects\ProjectCreationSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -111,6 +114,8 @@
     <Folder Include="Bindings\Auth\" />
     <Folder Include="Bootstrap\" />
     <Folder Include="Bindings\Tickets\" />
+    <Folder Include="Bindings\Sprints\" />
+    <Folder Include="Bindings\Projects\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj">
