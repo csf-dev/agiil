@@ -22,7 +22,7 @@ namespace Agiil.Web.ApiControllers
         throw new ArgumentNullException(nameof(ticket));
       }
 
-      // TODO: Switch this over to use an IMapper
+      // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
       var request = new CreateTicketRequest
       {
         Title = ticket.Title,
@@ -31,7 +31,7 @@ namespace Agiil.Web.ApiControllers
 
       var response = ticketCreator.Value.Create(request);
 
-      // TODO: Switch this over to use an IMapper
+      // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
       return new NewTicketResponse
       {
         TitleIsInvalid = response.TitleIsInvalid,
@@ -47,7 +47,7 @@ namespace Agiil.Web.ApiControllers
         throw new ArgumentNullException(nameof(ticket));
       }
 
-      // TODO: Switch this over to use an IMapper
+      // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
       var request = new EditTicketTitleAndDescriptionRequest
       {
         Identity = ticket.Identity,
@@ -60,7 +60,7 @@ namespace Agiil.Web.ApiControllers
       if(response.IdentityIsInvalid)
         throw new HttpResponseException(HttpStatusCode.NotFound);
 
-      // TODO: Switch this over to use an IMapper
+      // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
       return new Models.Tickets.EditTicketTitleAndDescriptionResponse
       {
         Success = response.IsSuccess,

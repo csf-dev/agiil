@@ -93,7 +93,7 @@ namespace Agiil.Web.Controllers
       return model;
     }
 
-    // TODO: Switch this over to use the Mapper on the base class
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
     EditTicketTitleAndDescriptionRequest MapRequest(EditTicketTitleAndDescriptionSpecification spec)
     {
       if(ReferenceEquals(spec, null))
@@ -107,7 +107,7 @@ namespace Agiil.Web.Controllers
       };
     }
 
-    // TODO: Switch this over to use the Mapper on the base class
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
     Models.Tickets.EditTicketTitleAndDescriptionResponse MapEditResponse(Domain.Tickets.EditTicketTitleAndDescriptionResponse response)
     {
       if(ReferenceEquals(response, null))

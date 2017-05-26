@@ -32,7 +32,7 @@ namespace Agiil.Web.Controllers
       return model;
     }
 
-    // TODO: Switch this over to use the Mapper on the base class
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
     TicketListRequest GetRequest(AdHocTicketListSpecification spec)
     {
       if(ReferenceEquals(spec, null))

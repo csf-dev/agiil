@@ -74,7 +74,7 @@ namespace Agiil.Web.Controllers
       return RedirectToAction(nameof(Edit), new { id = spec.CommentId?.Value });
     }
 
-    // TODO: Switch this over to use the Mapper on the base class
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
     CreateCommentRequest GetCreationRequest(AddCommentSpecification spec)
     {
       if(spec == null)
@@ -87,7 +87,7 @@ namespace Agiil.Web.Controllers
       };
     }
 
-    // TODO: Switch this over to use the Mapper on the base class
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
     AddCommentResponse MapResponse(CreateCommentResponse source)
     {
       if(source == null)
@@ -100,7 +100,7 @@ namespace Agiil.Web.Controllers
       };
     }
 
-    // TODO: Switch this over to use the Mapper on the base class
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
     EditCommentRequest MapRequest(EditCommentSpecification spec)
     {
       if(ReferenceEquals(spec, null))
@@ -113,7 +113,7 @@ namespace Agiil.Web.Controllers
       };
     }
 
-    // TODO: Switch this over to use the Mapper on the base class
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
     Models.Tickets.EditCommentResponse MapEditResponse(Domain.Tickets.EditCommentResponse response)
     {
       if(ReferenceEquals(response, null))

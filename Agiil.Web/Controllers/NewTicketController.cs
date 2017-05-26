@@ -23,7 +23,7 @@ namespace Agiil.Web.Controllers
     public ActionResult Create(NewTicketSpecification spec)
     {
       var model = GetModel(spec);
-      // TODO: Switch this over to use the Mapper on the base class
+      // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
       var request = new CreateTicketRequest
       {
         Title = model.Specification?.Title,
@@ -31,7 +31,7 @@ namespace Agiil.Web.Controllers
       };
 
       var response = ticketCreator.Create(request);
-      // TODO: Switch this over to use the Mapper on the base class
+      // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
       model.Response = new NewTicketResponse
       {
         TitleIsInvalid = response.TitleIsInvalid,

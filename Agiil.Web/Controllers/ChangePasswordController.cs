@@ -49,7 +49,7 @@ namespace Agiil.Web.Controllers
       return model;
     }
 
-    // TODO: Switch this over to use the Mapper on the base class
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
     PasswordChangeRequest MapRequest(ChangePasswordSpecification spec)
     {
       return new PasswordChangeRequest {
@@ -59,7 +59,7 @@ namespace Agiil.Web.Controllers
       };
     }
 
-    // TODO: Switch this over to use the Mapper on the base class
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
     ChangePasswordResult GetResult(PasswordChangeResponse result)
     {
       return new ChangePasswordResult {
