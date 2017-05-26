@@ -4,7 +4,7 @@ using CSF.Entities;
 
 namespace Agiil.Domain.Sprints
 {
-  public class CreateSprintRequest
+  public class CreateSprintRequest : IHasStartAndEndDates
   {
     public string Name { get; set; }
 

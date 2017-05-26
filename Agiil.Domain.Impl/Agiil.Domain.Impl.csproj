@@ -104,6 +104,10 @@
     <Compile Include="Tickets\TicketOpenerCloser.cs" />
     <Compile Include="Projects\DummyCurrentProjectGetter.cs" />
     <Compile Include="Sprints\SprintCreator.cs" />
+    <Compile Include="Validation\EndDateMustNotBeBeforeStartDateRule.cs" />
+    <Compile Include="Sprints\CreateSprintValidatorFactory.cs" />
+    <Compile Include="ResponseFactory.cs" />
+    <Compile Include="Sprints\SprintFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

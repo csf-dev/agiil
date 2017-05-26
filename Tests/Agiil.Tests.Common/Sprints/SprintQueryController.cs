@@ -26,10 +26,10 @@ namespace Agiil.Tests.Sprints
       if(criteria == null)
         return query;
 
-      if(criteria.Name != null)
+      if(!String.IsNullOrEmpty(criteria.Name))
         query = query.Where(x => x.Name == criteria.Name);
 
-      if(criteria.Description != null)
+      if(!String.IsNullOrEmpty(criteria.Description))
         query = query.Where(x => x.Description == criteria.Description);
 
       if(criteria.Project.HasValue)
