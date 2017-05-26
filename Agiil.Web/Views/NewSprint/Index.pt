@@ -1,0 +1,40 @@
+﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<head>
+<title metal:fill-slot="title_element">Create a new sprint</title>
+</head>
+<body>
+<div metal:fill-slot="page_content"
+     tal:define="submitted here/Result"
+     class="page_content">
+  <h1>Create sprint</h1>
+  <form method="post" action="NewSprint/Index">
+    <fieldset>
+      <div class="form_element field">
+        <label for="Name">Name</label>
+        <input type="text" id="Name" name="Name"
+              tal:attributes="value here/Specification/Name | nothing" />
+      </div>
+      <div class="form_element feedback warning" tal:condition="here/Result/NameIsInvalid | nothing">
+        <p>Please enter a sprint name.</p>
+      </div>
+      <div class="form_element field">
+        <label for="StartDate">Start date</label>
+        <input type="date" id="StartDate" name="StartDate"
+                  tal:content="here/Specification/StartDate | nothing" />
+      </div>
+      <div class="form_element field">
+        <label for="EndDate">End date</label>
+        <input type="date" id="EndDate" name="EndDate"
+                  tal:content="here/Specification/EndDate | nothing" />
+      </div>
+      <div class="form_element feedback warning" tal:condition="here/Result/EndDateMustNotBeBeforeStartDate | nothing">
+        <p>The end date must not fall before the start date.</p>
+      </div>
+      <div class="form_element button">
+        <button>Create</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
+</body>
+</html>
