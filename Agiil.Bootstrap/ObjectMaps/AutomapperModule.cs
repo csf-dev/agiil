@@ -9,11 +9,17 @@ namespace Agiil.Bootstrap.ObjectMaps
   {
     protected override void Load(ContainerBuilder builder)
     {
-      builder.RegisterType<MapperConfigurationFactory>();
+      builder
+        .RegisterType<ProfileTypesProvider>()
+        .As<IProfileTypesProvider>();
+
+      builder
+        .RegisterType<MapperConfigurationFactory>()
+        .As<IMapperConfigurationFactory>();
 
       builder
         .Register(ctx => {
-          var factory = ctx.Resolve<MapperConfigurationFactory>();
+          var factory = ctx.Resolve<IMapperConfigurationFactory>();
           return factory.GetConfiguration();
         })
         .SingleInstance();

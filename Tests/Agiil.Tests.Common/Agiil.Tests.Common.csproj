@@ -137,6 +137,9 @@
     <Reference Include="CSF.Data.NHibernate">
       <HintPath>..\..\packages\CSF.Data.NHibernate.6.1.1\lib\net45\CSF.Data.NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -209,6 +212,16 @@
     <Compile Include="Projects\ProjectCreationController.cs" />
     <Compile Include="Autofixture\ProjectCustomization.cs" />
     <Compile Include="Bootstrap\ProjectsModule.cs" />
+    <Compile Include="Sprints\IBulkSprintCreator.cs" />
+    <Compile Include="Sprints\BulkSprintCreationSpecification.cs" />
+    <Compile Include="Sprints\BulkSprintCreator.cs" />
+    <Compile Include="ObjectMaps\Sprints\BulkSprintCreationSpecificationToSprintProfile.cs" />
+    <Compile Include="ObjectMaps\TestingProfileTypesProvider.cs" />
+    <Compile Include="Sprints\SprintListModelContext.cs" />
+    <Compile Include="Sprints\ISprintListController.cs" />
+    <Compile Include="Sprints\SprintListController.cs" />
+    <Compile Include="Sprints\SprintSummaryDtoComparer.cs" />
+    <Compile Include="TestComparerBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
@@ -239,6 +252,10 @@
       <Project>{53F1B62F-1BEE-4732-A1F3-433822529906}</Project>
       <Name>Agiil.Web.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.ObjectMaps\Agiil.ObjectMaps.csproj">
+      <Project>{36A605F5-89BD-4FBA-BDB1-088C38E54886}</Project>
+      <Name>Agiil.ObjectMaps</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Bootstrap\" />
@@ -247,6 +264,8 @@
     <Folder Include="Tickets\" />
     <Folder Include="Sprints\" />
     <Folder Include="Projects\" />
+    <Folder Include="ObjectMaps\" />
+    <Folder Include="ObjectMaps\Sprints\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

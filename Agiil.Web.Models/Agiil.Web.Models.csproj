@@ -41,7 +41,6 @@
     <Compile Include="Auth\LoginCredentials.cs" />
     <Compile Include="Auth\LoginModel.cs" />
     <Compile Include="Shared\LoginStateModel.cs" />
-    <Compile Include="Shared\StandardPageModel.cs" />
     <Compile Include="Sprints\NewSprintSpecification.cs" />
     <Compile Include="Tickets\AddCommentResponse.cs" />
     <Compile Include="Tickets\AddCommentSpecification.cs" />
@@ -64,6 +63,9 @@
     <Compile Include="DatabaseResetModel.cs" />
     <Compile Include="Sprints\NewSprintModel.cs" />
     <Compile Include="Sprints\NewSprintResult.cs" />
+    <Compile Include="Sprints\ListSprintModel.cs" />
+    <Compile Include="Sprints\SprintSummaryDto.cs" />
+    <Compile Include="StandardPageModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

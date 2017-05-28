@@ -124,6 +124,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>NewSprint.feature.cs</LastGenOutput>
     </None>
+    <None Include="Features\ListSprints.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ListSprints.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tickets\TicketCreatorTests.cs" />
@@ -153,6 +157,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Features\NewSprint.feature.cs">
       <DependentUpon>NewSprint.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\ListSprints.feature.cs">
+      <DependentUpon>ListSprints.feature</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

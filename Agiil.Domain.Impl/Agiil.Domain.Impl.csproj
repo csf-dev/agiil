@@ -108,6 +108,7 @@
     <Compile Include="Sprints\CreateSprintValidatorFactory.cs" />
     <Compile Include="ResponseFactory.cs" />
     <Compile Include="Sprints\SprintFactory.cs" />
+    <Compile Include="Sprints\SprintLister.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

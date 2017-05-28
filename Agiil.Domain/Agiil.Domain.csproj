@@ -111,6 +111,7 @@
     <Compile Include="IHasStartAndEndDates.cs" />
     <Compile Include="IResponseFactory.cs" />
     <Compile Include="Sprints\ISprintFactory.cs" />
+    <Compile Include="Sprints\ISprintLister.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

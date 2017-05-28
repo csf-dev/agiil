@@ -5,6 +5,8 @@ namespace Agiil.Domain.Sprints
 {
   public class SprintFactory : ISprintFactory
   {
+    readonly IEnvironment environment;
+
     public Sprint CreateSprint(string name,
                                Project project,
                                DateTime? startDate,
@@ -20,7 +22,15 @@ namespace Agiil.Domain.Sprints
         Project = project,
         StartDate = startDate,
         EndDate = endDate,
+        CreationDate = environment.GetCurrentUtcTimestamp(),
       };
+    }
+
+    public SprintFactory(IEnvironment environment)
+    {
+      if(environment == null)
+        throw new ArgumentNullException(nameof(environment));
+      this.environment = environment;
     }
   }
 }

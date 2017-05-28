@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using Agiil.Web.Models;
 using Agiil.Web.Models.Shared;
 
 namespace Agiil.Web.Controllers

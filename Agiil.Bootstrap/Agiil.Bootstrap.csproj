@@ -129,6 +129,8 @@
     <Compile Include="ObjectMaps\AutomapperModule.cs" />
     <Compile Include="Projects\ProjectsModule.cs" />
     <Compile Include="Sprints\SprintsModule.cs" />
+    <Compile Include="ObjectMaps\AutomapperProfilesModule.cs" />
+    <Compile Include="ObjectMaps\AutomapperResolversModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

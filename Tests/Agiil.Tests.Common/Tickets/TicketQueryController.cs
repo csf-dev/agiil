@@ -21,6 +21,9 @@ namespace Agiil.Tests.Tickets
     readonly Func<TicketsController> ticketListControllerFactory;
     readonly Func<TicketController> ticketDetailControllerFactory;
 
+    // TODO: Break this type (and parent interface) up into two.  One for queries and another for viewing pages
+    // It has become too big and has too many responsibilities
+
     public bool DoesTicketExist(TicketSearchCriteria searchHelper = null)
     {
       var predicate = CreateTicketSearchPredicate(searchHelper);
