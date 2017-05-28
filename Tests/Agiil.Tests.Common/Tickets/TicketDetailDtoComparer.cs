@@ -6,37 +6,10 @@ using Agiil.Web.Models.Tickets;
 
 namespace Agiil.Tests.Tickets
 {
-  public class TicketDetailDtoComparer : IEqualityComparer<TicketDetailDto>, IComparer
+  public class TicketDetailDtoComparer : TestComparerBase<TicketDetailDto>
   {
-    public int Compare(object x, object y)
+    protected override bool AreNonNullInstancesEqual(TicketDetailDto x, TicketDetailDto y)
     {
-      if(ReferenceEquals(x, y))
-        return 0;
-
-      TicketSummaryDto
-      first = x as TicketSummaryDto,
-      second = y as TicketSummaryDto;
-
-      if(ReferenceEquals(first, null))
-        return -1;
-      if(ReferenceEquals(second, null))
-        return 1;
-
-      if(Equals(first, second))
-        return 0;
-
-      return (first.Id > second.Id)? 1 : -1;
-    }
-
-    public virtual bool Equals(TicketDetailDto x, TicketDetailDto y)
-    {
-      if(ReferenceEquals(x, y))
-        return true;
-      if(ReferenceEquals(x, null))
-        return false;
-      if(ReferenceEquals(y, null))
-        return false;
-
       return (x.Id == y.Id
               && x.Title == y.Title
               && x.Description == y.Description
@@ -44,11 +17,13 @@ namespace Agiil.Tests.Tickets
               && x.Created == y.Created);
     }
 
-    public virtual int GetHashCode(TicketDetailDto obj)
+    protected override int CompareNonNullInstances(TicketDetailDto first, TicketDetailDto second)
     {
-      if(ReferenceEquals(obj, null))
-        return 0;
+      return (first.Id > second.Id)? 1 : -1;
+    }
 
+    protected override int GetHashCodeForNonNullInstance(TicketDetailDto obj)
+    {
       return (obj.Id.GetHashCode()
               ^ (obj?.Title?? String.Empty).GetHashCode()
               ^ (obj?.Description?? String.Empty).GetHashCode()

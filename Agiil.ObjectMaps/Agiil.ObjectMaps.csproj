@@ -35,6 +35,12 @@
     <Reference Include="CSF.Entities">
       <HintPath>..\packages\CSF.Entities.1.1.1\lib\net45\CSF.Entities.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Data">
+      <HintPath>..\packages\CSF.Data.1.1.0\lib\net45\CSF.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data.Entities">
+      <HintPath>..\packages\CSF.Data.Entities.1.2.1\lib\net45\CSF.Data.Entities.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -45,6 +51,11 @@
     <Compile Include="Tickets\TicketToTicketDetailDtoProfile.cs" />
     <Compile Include="Sprints\NewSprintSpecificationToCreateSprintRequestProfile.cs" />
     <Compile Include="Sprints\CreateSprintResponseToNewSprintResultProfile.cs" />
+    <Compile Include="IMapperConfigurationFactory.cs" />
+    <Compile Include="GetEntityByIdentityValueResolver.cs" />
+    <Compile Include="IProfileTypesProvider.cs" />
+    <Compile Include="ProfileTypesProvider.cs" />
+    <Compile Include="Sprints\SprintToSprintSummaryDtoProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

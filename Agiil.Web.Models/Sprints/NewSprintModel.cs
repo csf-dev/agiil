@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Agiil.Web.Models.Sprints
 {
-  public class NewSprintModel : Shared.StandardPageModel
+  public class NewSprintModel : StandardPageModel
   {
     public NewSprintSpecification Specification { get; set; }
 

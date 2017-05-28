@@ -17,6 +17,8 @@ namespace Agiil.Domain.Sprints
 
     public virtual Project Project { get; set; }
 
+    public virtual DateTime CreationDate { get; set; }
+
     public virtual DateTime? StartDate { get; set; }
 
     public virtual DateTime? EndDate { get; set; }

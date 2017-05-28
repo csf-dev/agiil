@@ -1,5 +1,7 @@
 ﻿using System;
-namespace Agiil.Web.Models.Shared
+using Agiil.Web.Models.Shared;
+
+namespace Agiil.Web.Models
 {
   public class StandardPageModel
   {

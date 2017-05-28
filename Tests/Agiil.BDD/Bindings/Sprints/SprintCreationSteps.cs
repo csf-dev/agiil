@@ -9,20 +9,32 @@ namespace Agiil.BDD.Bindings.Sprints
   [Binding]
   public class SprintCreationSteps
   {
-    readonly ISprintCreationController controller;
+    readonly Lazy<IBulkSprintCreator> bulkSprintCreator;
+    readonly Lazy<ISprintCreationController> controller;
 
     [When("the user creates a sprint with the following details:")]
     public void WhenTheUserCreatesASprint(Table spec)
     {
       var request = spec.CreateInstance<NewSprintSpecification>();
-      controller.Create(request);
+      controller.Value.Create(request);
     }
 
-    public SprintCreationSteps(ISprintCreationController controller)
+    [Given("the following sprints exist:")]
+    public void GivenASetOfSprintsExist(Table specs)
     {
+      var request = specs.CreateSet<BulkSprintCreationSpecification>();
+      bulkSprintCreator.Value.Create(request);
+    }
+
+    public SprintCreationSteps(Lazy<ISprintCreationController> controller,
+                               Lazy<IBulkSprintCreator> bulkSprintCreator)
+    {
+      if(bulkSprintCreator == null)
+        throw new ArgumentNullException(nameof(bulkSprintCreator));
       if(controller == null)
         throw new ArgumentNullException(nameof(controller));
       this.controller = controller;
+      this.bulkSprintCreator = bulkSprintCreator;
     }
   }
 }
