@@ -254,6 +254,7 @@
     <Folder Include="Views\ChangePassword\" />
     <Folder Include="Views\NewSprint\" />
     <Folder Include="Views\Sprints\" />
+    <Folder Include="Views\Sprint\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -305,6 +306,7 @@
     <Compile Include="ApiControllers\ApiControllerBase.cs" />
     <Compile Include="Controllers\SprintsController.cs" />
     <Compile Include="ApiControllers\SprintsController.cs" />
+    <Compile Include="Controllers\SprintController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -341,6 +343,7 @@
     <None Include="Views\NewSprint\Index.pt" />
     <None Include="Views\NewSprint\Created.pt" />
     <None Include="Views\Sprints\Index.pt" />
+    <None Include="Views\Sprint\Index.pt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

@@ -61,6 +61,7 @@
     <Compile Include="GetEntityByIdentityResolver.cs" />
     <Compile Include="Tickets\EditTicketSpecificationToEditTicketRequestProfile.cs" />
     <Compile Include="Tickets\EditTicketResponseToWebEditTicketResponseProfile.cs" />
+    <Compile Include="Sprints\SprintToSprintDetailDtoProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

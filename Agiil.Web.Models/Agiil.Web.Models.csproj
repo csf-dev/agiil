@@ -66,6 +66,9 @@
     <Compile Include="Sprints\ListSprintModel.cs" />
     <Compile Include="Sprints\SprintSummaryDto.cs" />
     <Compile Include="StandardPageModel.cs" />
+    <Compile Include="Sprints\SprintDetailDto.cs" />
+    <Compile Include="Sprints\SprintDtoBase.cs" />
+    <Compile Include="Sprints\ViewSprintModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

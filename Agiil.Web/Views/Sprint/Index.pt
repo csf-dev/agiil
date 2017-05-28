@@ -1,0 +1,55 @@
+<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<head>
+<title metal:fill-slot="title_element">Sprint detail</title>
+<base href="../../" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+</style>
+</head>
+<body>
+<section metal:fill-slot="page_content"
+         class="page_content sprint_detail"
+         tal:define="sprint here/Sprint">
+  <header>
+    <h1 tal:content="sprint/Name">Sprint name</h1>
+  </header>
+  <section class="details">
+    <p>
+      Created on <strong tal:content="sprint/GetShortCreationDate">2001-01-01 19:21:22</strong>.
+      <span tal:omit-tag="" tal:condition="sprint/ProjectCode | nothing">
+        Created for project <strong tal:content="sprint/ProjectCode | nothing">ABC</strong>.
+      </span>
+    </p>
+    <p tal:condition="sprint/StartDate">
+      Start date: <strong tal:content="sprint/GetShortStartDate">2011-01-01</strong>
+    </p>
+    <p tal:condition="sprint/EndDate">
+      End date: <strong tal:content="sprint/GetShortEndDate">2011-01-01</strong>
+    </p>
+  </section>
+  <section class="description">
+    <h2>Description</h2>
+    <div tal:content="sprint/Description" class="description_content">
+      Ticket description here.
+    </div>
+  </section>
+  <section class="contained_tickets">
+    <h2>Tickets</h2>
+    <p>These are the tickets contained within this sprint:</p>
+    <ul tal:define="refParser here/TicketReferenceParser">
+      <li tal:repeat="ticket sprint/Tickets">
+        <a href="Ticket/Index/0"
+           tal:define="url string:Ticket/Index/${ticket/Id}"
+           tal:attributes="href url">
+          <span class="ticket_reference" tal:content="ticket/Reference">AB12</span>
+          -
+          <span tal:content="ticket/Title">Sample ticket title</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+</section>
+</body>
+</html>
