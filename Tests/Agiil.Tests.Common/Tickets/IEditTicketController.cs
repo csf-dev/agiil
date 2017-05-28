@@ -7,5 +7,7 @@ namespace Agiil.Tests.Tickets
   public interface IEditTicketController
   {
     void Edit(EditTicketTitleAndDescriptionSpecification request);
+
+    void AddToSprint(string ticketReference, string sprintName);
   }
 }

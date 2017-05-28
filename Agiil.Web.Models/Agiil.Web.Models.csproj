@@ -49,9 +49,9 @@
     <Compile Include="Tickets\EditCommentModel.cs" />
     <Compile Include="Tickets\EditCommentResponse.cs" />
     <Compile Include="Tickets\EditCommentSpecification.cs" />
-    <Compile Include="Tickets\EditTicketTitleAndDescriptionModel.cs" />
-    <Compile Include="Tickets\EditTicketTitleAndDescriptionResponse.cs" />
-    <Compile Include="Tickets\EditTicketTitleAndDescriptionSpecification.cs" />
+    <Compile Include="Tickets\EditTicketModel.cs" />
+    <Compile Include="Tickets\EditTicketResponse.cs" />
+    <Compile Include="Tickets\EditTicketSpecification.cs" />
     <Compile Include="Tickets\NewTicketModel.cs" />
     <Compile Include="Tickets\NewTicketResponse.cs" />
     <Compile Include="Tickets\NewTicketSpecification.cs" />

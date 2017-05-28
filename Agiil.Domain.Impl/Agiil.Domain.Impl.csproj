@@ -75,6 +75,9 @@
     <Reference Include="CSF.Data.NHibernate">
       <HintPath>..\packages\CSF.Data.NHibernate.6.1.1\lib\net45\CSF.Data.NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,7 +91,7 @@
     <Compile Include="Data\DevelopmentInitialDataCreator.cs" />
     <Compile Include="Tickets\TicketLister.cs" />
     <Compile Include="Tickets\TicketDetailService.cs" />
-    <Compile Include="Tickets\EditTicketTitleAndDescriptionValidatorFactory.cs" />
+    <Compile Include="Tickets\EditTicketValidatorFactory.cs" />
     <Compile Include="IDomainImplementationAssemblyMarker.cs" />
     <Compile Include="Tickets\TicketEditor.cs" />
     <Compile Include="ValidationResultInterpreter.cs" />
@@ -109,6 +112,8 @@
     <Compile Include="ResponseFactory.cs" />
     <Compile Include="Sprints\SprintFactory.cs" />
     <Compile Include="Sprints\SprintLister.cs" />
+    <Compile Include="Tickets\TicketReferenceParser.cs" />
+    <Compile Include="Tickets\TicketReferenceQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

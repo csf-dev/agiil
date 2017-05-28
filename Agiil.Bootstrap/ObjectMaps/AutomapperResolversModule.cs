@@ -10,6 +10,7 @@ namespace Agiil.Bootstrap.ObjectMaps
     {
       builder.RegisterType<IdentityValueResolver>();
       builder.RegisterGeneric(typeof(GetEntityByIdentityValueResolver<>));
+      builder.RegisterGeneric(typeof(GetEntityByIdentityResolver<>));
     }
   }
 }

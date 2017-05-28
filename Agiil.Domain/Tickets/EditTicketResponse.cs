@@ -3,7 +3,7 @@ using CSF.Validation;
 
 namespace Agiil.Domain.Tickets
 {
-  public class EditTicketTitleAndDescriptionResponse
+  public class EditTicketResponse
   {
     readonly IValidationResult validationResult;
     readonly IValidationResultInterpreter resultInterpreter;
@@ -13,7 +13,7 @@ namespace Agiil.Domain.Tickets
     public bool IdentityIsInvalid
     {
       get {
-        return resultInterpreter.IncludesFailureFor<EditTicketTitleAndDescriptionRequest>(validationResult,
+        return resultInterpreter.IncludesFailureFor<EditTicketRequest>(validationResult,
                                                                                           x => x.Identity);
       }
     }
@@ -21,7 +21,7 @@ namespace Agiil.Domain.Tickets
     public bool TitleIsInvalid
     {
       get {
-        return resultInterpreter.IncludesFailureFor<EditTicketTitleAndDescriptionRequest>(validationResult,
+        return resultInterpreter.IncludesFailureFor<EditTicketRequest>(validationResult,
                                                                                           x => x.Title);
       }
     }
@@ -29,14 +29,17 @@ namespace Agiil.Domain.Tickets
     public bool DescriptionIsInvalid
     {
       get {
-        return resultInterpreter.IncludesFailureFor<EditTicketTitleAndDescriptionRequest>(validationResult,
+        return resultInterpreter.IncludesFailureFor<EditTicketRequest>(validationResult,
                                                                                           x => x.Description);
       }
     }
 
+    public bool SprintIsInvalid
+     => resultInterpreter.IncludesFailureFor<EditTicketRequest>(validationResult, x => x.SprintIdentity);
+
     public bool IsSuccess => validationResult.IsSuccess;
 
-    public EditTicketTitleAndDescriptionResponse(IValidationResult result,
+    public EditTicketResponse(IValidationResult result,
                                                  IValidationResultInterpreter resultInterpreter,
                                                  Ticket createdTicket = null)
     {

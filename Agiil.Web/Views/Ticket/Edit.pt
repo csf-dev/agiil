@@ -5,21 +5,21 @@
 <body>
 <div metal:fill-slot="page_content" class="page_content">
   <h1 tal:content="here/Ticket/Title">Edit ticket</h1>
-  <form action="Ticket/Edit" method="post">
+  <form action="Ticket/Edit" method="post" tal:define="ticket here/Ticket">
     <p>
-      Created by <strong tal:content="here/Ticket/Creator">username</strong>
-      on <strong tal:content="here/Ticket/CreationTimestamp">2001-01-01 19:21:22</strong>.
+      Created by <strong tal:content="ticket/Creator">username</strong>
+      on <strong tal:content="ticket/CreationTimestamp">2001-01-01 19:21:22</strong>.
     </p>
     <p>
-      Ticket <strong tal:content="string:#${here/Ticket/Reference}">AB123</strong>.
+      Ticket <strong tal:content="string:#${ticket/Reference}">AB123</strong>.
     </p>
     <fieldset>
       <input type="hidden" name="Identity" value="/"
-             tal:attributes="value here/Ticket/Id | nothing" />
+             tal:attributes="value ticket/Id | nothing" />
       <div class="form_element field">
         <label for="Title">Title</label>
         <input type="text" id="Title" name="Title"
-              tal:attributes="value here/Specification/Title | here/Ticket/Title | nothing" />
+              tal:attributes="value here/Specification/Title | ticket/Title | nothing" />
       </div>
       <div class="form_element feedback warning" tal:condition="here/Response/TitleIsInvalid | nothing">
         <p>Please enter a ticket title.</p>
@@ -27,10 +27,26 @@
       <div class="form_element field">
         <label for="Description">Description</label>
         <textarea id="Description" name="Description" class="long_text"
-                  tal:content="here/Specification/Description | here/Ticket/Description |  nothing"></textarea>
+                  tal:content="here/Specification/Description | ticket/Description |  nothing"></textarea>
       </div>
       <div class="form_element feedback warning" tal:condition="here/Response/DescriptionIsInvalid | nothing">
         <p>Please enter a valid ticket description.</p>
+      </div>
+      <div class="form_element field">
+        <label for="SprintIdentity">Sprint</label>
+        <select id="SprintIdentity" name="SprintIdentity" tal:define="ticketSprintId ticket/Sprint/Id | nothing">
+          <option value="">None</option>
+          <option tal:repeat="availableSprint here/AvailableSprints"
+                  tal:attributes="selected csharp:(availableSprint.Id == ticketSprintId)? &quot;selected&quot; : null;
+                                  value availableSprint/Id"
+                  tal:content="availableSprint/Name">Sprint name</option>
+        </select>
+      </div>
+      <div class="form_element feedback warning" tal:condition="here/Response/SprintIsInvalid | nothing">
+        <p>
+          Please choose either a sprint from the list, or <em>None</em> to indicate that the ticket
+          is not part of any sprint.
+        </p>
       </div>
       <div class="form_element button">
         <button>Submit</button>

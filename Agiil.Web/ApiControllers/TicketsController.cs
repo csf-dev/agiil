@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using Agiil.Domain.Tickets;
@@ -7,19 +8,15 @@ using AutoMapper;
 
 namespace Agiil.Web.ApiControllers
 {
-  public class TicketsController : ApiController
+  public class TicketsController : ApiControllerBase
   {
     readonly ITicketLister lister;
-    readonly IMapper mapper;
 
-    public TicketListModel Get(AdHocTicketListSpecification spec)
+    public IList<TicketSummaryDto> Get(AdHocTicketListSpecification spec)
     {
       var request = GetRequest(spec);
       var tickets = lister.GetTickets(request);
-      return new TicketListModel
-      {
-        Tickets = tickets.Select(x => mapper.Map<TicketSummaryDto>(x)).ToList()
-      };
+      return tickets.Select(x => Mapper.Map<TicketSummaryDto>(x)).ToList();
     }
 
     TicketListRequest GetRequest(AdHocTicketListSpecification spec)
@@ -36,14 +33,11 @@ namespace Agiil.Web.ApiControllers
     }
 
     public TicketsController(ITicketLister lister,
-                             IMapper mapper)
+                             ApiControllerBaseDependencies deps) : base(deps)
     {
-      if(mapper == null)
-        throw new ArgumentNullException(nameof(mapper));
       if(lister == null)
         throw new ArgumentNullException(nameof(lister));
       
-      this.mapper = mapper;
       this.lister = lister;
     }
   }

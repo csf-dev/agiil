@@ -14,6 +14,7 @@ namespace Agiil.Tests.Tickets
     readonly IRepository<User> userRepo;
     readonly ITicketFactory ticketFactory;
     readonly ITransactionCreator transactionFactory;
+    readonly ITicketReferenceParser referenceParser;
 
     public void CreateTickets(IEnumerable<BulkTicketSpecification> ticketSpecs)
     {
@@ -57,6 +58,17 @@ namespace Agiil.Tests.Tickets
 
       if(spec.Closed)
         ticket.Closed = true;
+
+      if(!String.IsNullOrEmpty(spec.Ref))
+      {
+        var parsedRef = referenceParser.ParseReferece(spec.Ref);
+        if(parsedRef != null)
+        {
+          ticket.TicketNumber = parsedRef.TicketNumber;
+          if(ticket.Project != null)
+            ticket.Project.Code = parsedRef.ProjectCode;
+        }
+      }
     }
 
     User GetUser(BulkTicketSpecification spec)
@@ -74,8 +86,11 @@ namespace Agiil.Tests.Tickets
     public BulkTicketCreator(IRepository<Ticket> ticketRepo,
                              IRepository<User> userRepo,
                              ITicketFactory ticketFactory,
-                             ITransactionCreator transactionFactory)
+                             ITransactionCreator transactionFactory,
+                             ITicketReferenceParser referenceParser)
     {
+      if(referenceParser == null)
+        throw new ArgumentNullException(nameof(referenceParser));
       if(transactionFactory == null)
         throw new ArgumentNullException(nameof(transactionFactory));
       if(ticketFactory == null)
@@ -89,6 +104,7 @@ namespace Agiil.Tests.Tickets
       this.userRepo = userRepo;
       this.ticketFactory = ticketFactory;
       this.transactionFactory = transactionFactory;
+      this.referenceParser = referenceParser;
     }
   }
 }

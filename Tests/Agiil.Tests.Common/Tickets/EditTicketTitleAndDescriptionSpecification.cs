@@ -1,9 +1,10 @@
 ﻿using System;
+using Agiil.Domain.Tickets;
 using CSF.Entities;
 
-namespace Agiil.Domain.Tickets
+namespace Agiil.Tests.Tickets
 {
-  public class EditTicketTitleAndDescriptionRequest
+  public class EditTicketTitleAndDescriptionSpecification
   {
     public IIdentity<Ticket> Identity { get; set; }
 

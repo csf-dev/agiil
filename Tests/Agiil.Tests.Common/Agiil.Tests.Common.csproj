@@ -222,6 +222,9 @@
     <Compile Include="Sprints\SprintListController.cs" />
     <Compile Include="Sprints\SprintSummaryDtoComparer.cs" />
     <Compile Include="TestComparerBase.cs" />
+    <Compile Include="Autofixture\BulkSprintCreationSpecificationCustomization.cs" />
+    <Compile Include="Tickets\EditTicketTitleAndDescriptionSpecification.cs" />
+    <Compile Include="ObjectMaps\Tickets\EditTicketTitleAndDescriptionSpecificationToEditTicketSpecificationProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
@@ -266,6 +269,7 @@
     <Folder Include="Projects\" />
     <Folder Include="ObjectMaps\" />
     <Folder Include="ObjectMaps\Sprints\" />
+    <Folder Include="ObjectMaps\Tickets\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

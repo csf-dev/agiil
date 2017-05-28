@@ -80,9 +80,9 @@
     <Compile Include="Data\IInitialDataCreator.cs" />
     <Compile Include="Tickets\ITicketLister.cs" />
     <Compile Include="Tickets\ITicketDetailService.cs" />
-    <Compile Include="Tickets\EditTicketTitleAndDescriptionRequest.cs" />
+    <Compile Include="Tickets\EditTicketRequest.cs" />
     <Compile Include="Tickets\ITicketEditor.cs" />
-    <Compile Include="Tickets\EditTicketTitleAndDescriptionResponse.cs" />
+    <Compile Include="Tickets\EditTicketResponse.cs" />
     <Compile Include="IValidationResultInterpreter.cs" />
     <Compile Include="Tickets\Comment.cs" />
     <Compile Include="Tickets\ICommentCreator.cs" />
@@ -112,6 +112,9 @@
     <Compile Include="IResponseFactory.cs" />
     <Compile Include="Sprints\ISprintFactory.cs" />
     <Compile Include="Sprints\ISprintLister.cs" />
+    <Compile Include="Tickets\ITicketReferenceParser.cs" />
+    <Compile Include="Tickets\TicketReference.cs" />
+    <Compile Include="Tickets\ITicketReferenceQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

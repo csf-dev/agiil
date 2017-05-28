@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
+using Agiil.Domain.Sprints;
 using Agiil.Domain.Tickets;
+using Agiil.Web.Models.Sprints;
 using Agiil.Web.Models.Tickets;
 using AutoMapper;
 using CSF.Entities;
@@ -16,6 +19,7 @@ namespace Agiil.Web.Controllers
 
     readonly ITicketDetailService ticketDetailService;
     readonly Lazy<ITicketEditor> editor;
+    readonly Lazy<ISprintLister> sprintLister;
 
     public ActionResult Index(IIdentity<Ticket> id)
     {
@@ -43,9 +47,9 @@ namespace Agiil.Web.Controllers
     }
 
     [HttpPost]
-    public ActionResult Edit(EditTicketTitleAndDescriptionSpecification spec)
+    public ActionResult Edit(EditTicketSpecification spec)
     {
-      var request = MapRequest(spec);
+      var request = Mapper.Map<EditTicketRequest>(spec);
       var response = editor.Value.Edit(request);
 
       if(response.IdentityIsInvalid)
@@ -59,7 +63,7 @@ namespace Agiil.Web.Controllers
         return RedirectToAction(nameof(Index), new { id = spec.Identity?.Value });
       }
 
-      var responseModel = MapEditResponse(response);
+      var responseModel = Mapper.Map<Models.Tickets.EditTicketResponse>(response);
       TempData.Add(EditTicketResponseKey, responseModel);
       TempData.Add(EditTicketSpecKey, spec);
 
@@ -84,48 +88,28 @@ namespace Agiil.Web.Controllers
       model.AddCommentResponse = GetTempData<AddCommentResponse>(CommentController.CommentResponseKey);
     }
 
-    EditTicketTitleAndDescriptionModel GetEditTicketModel(Ticket ticket)
+    EditTicketModel GetEditTicketModel(Ticket ticket)
     {
-      var model = ModelFactory.GetModel<EditTicketTitleAndDescriptionModel>();
+      var model = ModelFactory.GetModel<EditTicketModel>();
       model.Ticket = Mapper.Map<TicketDetailDto>(ticket);
-      model.Response = GetTempData<Models.Tickets.EditTicketTitleAndDescriptionResponse>(EditTicketResponseKey);
-      model.Specification = GetTempData<EditTicketTitleAndDescriptionSpecification>(EditTicketSpecKey);
+      model.Response = GetTempData<Models.Tickets.EditTicketResponse>(EditTicketResponseKey);
+      model.Specification = GetTempData<EditTicketSpecification>(EditTicketSpecKey);
+      model.AvailableSprints = sprintLister
+        .Value
+        .GetSprints()
+        .Select(x => Mapper.Map<SprintSummaryDto>(x))
+        .ToList();
       return model;
-    }
-
-    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
-    EditTicketTitleAndDescriptionRequest MapRequest(EditTicketTitleAndDescriptionSpecification spec)
-    {
-      if(ReferenceEquals(spec, null))
-        return null;
-
-      return new EditTicketTitleAndDescriptionRequest
-      {
-        Identity = spec.Identity,
-        Title = spec.Title,
-        Description = spec.Description,
-      };
-    }
-
-    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
-    Models.Tickets.EditTicketTitleAndDescriptionResponse MapEditResponse(Domain.Tickets.EditTicketTitleAndDescriptionResponse response)
-    {
-      if(ReferenceEquals(response, null))
-        return null;
-
-      return new Models.Tickets.EditTicketTitleAndDescriptionResponse
-      {
-        Success = response.IsSuccess,
-        TitleIsInvalid = response.TitleIsInvalid,
-        DescriptionIsInvalid = response.DescriptionIsInvalid,
-      };
     }
 
     public TicketController(ITicketDetailService ticketDetailService,
                             Lazy<ITicketEditor> editor,
+                            Lazy<ISprintLister> sprintLister,
                             ControllerBaseDependencies baseDeps)
       : base(baseDeps)
     {
+      if(sprintLister == null)
+        throw new ArgumentNullException(nameof(sprintLister));
       if(editor == null)
         throw new ArgumentNullException(nameof(editor));
       if(ticketDetailService == null)
@@ -133,6 +117,7 @@ namespace Agiil.Web.Controllers
       
       this.ticketDetailService = ticketDetailService;
       this.editor = editor;
+      this.sprintLister = sprintLister;
     }
   }
 }

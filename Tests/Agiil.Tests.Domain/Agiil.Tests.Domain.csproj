@@ -92,74 +92,81 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="App.config" />
-    <None Include="Features\NewTicket.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>NewTicket.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\TicketList.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>TicketList.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\ViewTicketDetail.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ViewTicketDetail.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\EditATicket.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>EditATicket.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\AddComment.feature">
+    <None Include="Tickets\AddComment.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AddComment.feature.cs</LastGenOutput>
     </None>
-    <None Include="Features\EditComment.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>EditComment.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\CloseTicket.feature">
+    <None Include="Tickets\CloseTicket.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloseTicket.feature.cs</LastGenOutput>
     </None>
-    <None Include="Features\NewSprint.feature">
+    <None Include="Tickets\EditATicket.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>EditATicket.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Tickets\EditComment.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>EditComment.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Tickets\NewTicket.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>NewTicket.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Tickets\TicketList.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TicketList.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Tickets\ViewTicketDetail.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ViewTicketDetail.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Sprints\ListSprints.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ListSprints.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Sprints\NewSprint.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>NewSprint.feature.cs</LastGenOutput>
     </None>
-    <None Include="Features\ListSprints.feature">
+    <None Include="Tickets\AssignTicketToSprint.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ListSprints.feature.cs</LastGenOutput>
+      <LastGenOutput>AssignTicketToSprint.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tickets\TicketCreatorTests.cs" />
     <Compile Include="Auth\CurrentUserReaderTests.cs" />
     <Compile Include="Tickets\TicketFactoryTests.cs" />
-    <Compile Include="Features\NewTicket.feature.cs">
-      <DependentUpon>NewTicket.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\TicketList.feature.cs">
-      <DependentUpon>TicketList.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\ViewTicketDetail.feature.cs">
-      <DependentUpon>ViewTicketDetail.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\EditATicket.feature.cs">
-      <DependentUpon>EditATicket.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\AddComment.feature.cs">
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tickets\AddComment.feature.cs">
       <DependentUpon>AddComment.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\EditComment.feature.cs">
-      <DependentUpon>EditComment.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\CloseTicket.feature.cs">
+    <Compile Include="Tickets\CloseTicket.feature.cs">
       <DependentUpon>CloseTicket.feature</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Features\NewSprint.feature.cs">
+    <Compile Include="Tickets\EditATicket.feature.cs">
+      <DependentUpon>EditATicket.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Tickets\EditComment.feature.cs">
+      <DependentUpon>EditComment.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Tickets\NewTicket.feature.cs">
+      <DependentUpon>NewTicket.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Tickets\TicketList.feature.cs">
+      <DependentUpon>TicketList.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Tickets\ViewTicketDetail.feature.cs">
+      <DependentUpon>ViewTicketDetail.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Sprints\ListSprints.feature.cs">
+      <DependentUpon>ListSprints.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Sprints\NewSprint.feature.cs">
       <DependentUpon>NewSprint.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\ListSprints.feature.cs">
-      <DependentUpon>ListSprints.feature</DependentUpon>
+    <Compile Include="Tickets\AssignTicketToSprint.feature.cs">
+      <DependentUpon>AssignTicketToSprint.feature</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -183,7 +190,7 @@
   <ItemGroup>
     <Folder Include="Auth\" />
     <Folder Include="Tickets\" />
-    <Folder Include="Features\" />
+    <Folder Include="Sprints\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

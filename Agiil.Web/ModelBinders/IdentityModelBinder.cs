@@ -28,8 +28,14 @@ namespace Agiil.Web.ModelBinders
 
       var entityType = type.GenericTypeArguments[0];
       var identityType = Identity.GetIdentityType(entityType);
+      var convertedValue = value.ConvertTo(identityType);
 
-      return Identity.Create(entityType, identityType, value.ConvertTo(identityType));
+      if(ReferenceEquals(convertedValue, null)
+         || (identityType.IsValueType
+             && convertedValue == Activator.CreateInstance(identityType)))
+        return null;
+
+      return Identity.Create(entityType, identityType, convertedValue);
     }
   }
 }

@@ -9,8 +9,9 @@ namespace Agiil.Tests.Autofixture
     public void Customize(IFixture fixture)
     {
       fixture.Customize<BulkTicketSpecification>(c => {
-        c.Without(x => x.Id);
-        return c;
+        return c
+          .Without(x => x.Id)
+          .Without(x => x.Ref);
       });
     }
   }

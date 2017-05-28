@@ -22,6 +22,12 @@ namespace Agiil.BDD.Bindings.Tickets
       ticketEditor.Edit(spec);
     }
 
+    [When(@"the user adds ticket ([^ ]+) to sprint '([^']+)'")]
+    public void WhenAUserAddsATicketToASprint(string ticketReference, string sprintName)
+    {
+      ticketEditor.AddToSprint(ticketReference, sprintName);
+    }
+
     public TicketEditingSteps(IEditTicketController ticketEditor)
     {
       if(ticketEditor == null)

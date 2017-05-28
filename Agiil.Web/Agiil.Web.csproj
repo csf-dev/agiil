@@ -304,6 +304,7 @@
     <Compile Include="ApiControllers\ApiControllerBaseDependencies.cs" />
     <Compile Include="ApiControllers\ApiControllerBase.cs" />
     <Compile Include="Controllers\SprintsController.cs" />
+    <Compile Include="ApiControllers\SprintsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

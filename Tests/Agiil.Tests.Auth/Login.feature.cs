@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Agiil.Tests.Auth.Features
+namespace Agiil.Tests.Auth
 {
     using TechTalk.SpecFlow;
     

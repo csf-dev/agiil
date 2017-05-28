@@ -9,11 +9,8 @@ namespace Agiil.Tests.ObjectMaps.Sprints
 {
   public class BulkSprintCreationSpecificationToSprintProfile : Profile
   {
-    public BulkSprintCreationSpecificationToSprintProfile(GetEntityByIdentityValueResolver<Project> projectResolver)
+    public BulkSprintCreationSpecificationToSprintProfile()
     {
-      if(projectResolver == null)
-        throw new ArgumentNullException(nameof(projectResolver));
-      
       CreateMap<BulkSprintCreationSpecification,Sprint>()
         .AfterMap((spec, sprint) => {
           sprint.SetIdentityValue(spec.Id);

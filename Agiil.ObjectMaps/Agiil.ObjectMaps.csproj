@@ -56,6 +56,11 @@
     <Compile Include="IProfileTypesProvider.cs" />
     <Compile Include="ProfileTypesProvider.cs" />
     <Compile Include="Sprints\SprintToSprintSummaryDtoProfile.cs" />
+    <Compile Include="Tickets\TicketToEditTicketSpecificationProfile.cs" />
+    <Compile Include="Tickets\EditTicketRequestToTicketProfile.cs" />
+    <Compile Include="GetEntityByIdentityResolver.cs" />
+    <Compile Include="Tickets\EditTicketSpecificationToEditTicketRequestProfile.cs" />
+    <Compile Include="Tickets\EditTicketResponseToWebEditTicketResponseProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

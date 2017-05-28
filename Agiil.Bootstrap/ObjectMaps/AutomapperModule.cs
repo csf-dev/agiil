@@ -21,8 +21,7 @@ namespace Agiil.Bootstrap.ObjectMaps
         .Register(ctx => {
           var factory = ctx.Resolve<IMapperConfigurationFactory>();
           return factory.GetConfiguration();
-        })
-        .SingleInstance();
+        });
 
       builder.Register(ctx => {
         var config = ctx.Resolve<MapperConfiguration>();

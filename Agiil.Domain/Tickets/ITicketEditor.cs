@@ -3,6 +3,6 @@ namespace Agiil.Domain.Tickets
 {
   public interface ITicketEditor
   {
-    EditTicketTitleAndDescriptionResponse Edit(EditTicketTitleAndDescriptionRequest request);
+    EditTicketResponse Edit(EditTicketRequest request);
   }
 }

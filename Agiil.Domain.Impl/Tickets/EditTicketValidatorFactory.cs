@@ -1,4 +1,5 @@
 ﻿using System;
+using Agiil.Domain.Sprints;
 using Agiil.Domain.Validation;
 using CSF.Validation;
 using CSF.Validation.Manifest;
@@ -7,10 +8,10 @@ using CSF.Validation.StockRules;
 
 namespace Agiil.Domain.Tickets
 {
-  public class EditTicketTitleAndDescriptionValidatorFactory
-    : ValidatorFactoryBase<EditTicketTitleAndDescriptionRequest>
+  public class EditTicketValidatorFactory
+    : ValidatorFactoryBase<EditTicketRequest>
   {
-    protected override void ConfigureManifest(IManifestBuilder<EditTicketTitleAndDescriptionRequest> builder)
+    protected override void ConfigureManifest(IManifestBuilder<EditTicketRequest> builder)
     {
       builder.AddRule<NotNullRule>();
       builder.AddMemberRule<NotNullValueRule>(x => x.Identity);
@@ -19,8 +20,9 @@ namespace Agiil.Domain.Tickets
       builder.AddMemberRule<RegexMatchValueRule>(x => x.Title, c => {
         c.Configure(r => r.Pattern = @"^\S+");
       });
+      builder.AddMemberRule<EntityMustExistRule<Sprint>>(x => x.SprintIdentity);
     }
 
-    public EditTicketTitleAndDescriptionValidatorFactory(IValidatorFactory factory) : base(factory) {}
+    public EditTicketValidatorFactory(IValidatorFactory factory) : base(factory) {}
   }
 }

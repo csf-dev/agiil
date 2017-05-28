@@ -43,6 +43,18 @@ namespace Agiil.BDD.Bindings.Sprints
       listController.Value.AssertThatSprintListMatchesExpected(sprints);
     }
 
+    [Then(@"ticket ([^ ]+) is part of sprint '([^']+)'")]
+    public void ThenTheTicketShouldBePartOfTheNamedSprint(string ticketReference, string sprintName)
+    {
+      controller.Value.AssertThatTicketIsPartOfSprint(ticketReference, sprintName);
+    }
+
+    [Then(@"ticket ([^ ]+) is not part of any sprint")]
+    public void ThenTheTicketShouldNotBePartOfAnySprint(string ticketReference)
+    {
+      controller.Value.AssertThatTicketIsNotPartOfAnySprint(ticketReference);
+    }
+
     public SprintQuerySteps(Lazy<ISprintQueryController> controller,
                             Lazy<ISprintListController> listController)
     {
