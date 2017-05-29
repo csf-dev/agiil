@@ -21,22 +21,9 @@ namespace Agiil.Web.ApiControllers
         throw new ArgumentNullException(nameof(ticket));
       }
 
-      // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
-      var request = new CreateTicketRequest
-      {
-        Title = ticket.Title,
-        Description = ticket.Description,
-      };
-
+      var request = Mapper.Map<CreateTicketRequest>(ticket);
       var response = ticketCreator.Value.Create(request);
-
-      // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
-      return new NewTicketResponse
-      {
-        TitleIsInvalid = response.TitleIsInvalid,
-        DescriptionIsInvalid = response.DescriptionIsInvalid,
-        TicketIdentity = response.Ticket?.GetIdentity()?.Value,
-      };
+      return Mapper.Map<NewTicketResponse>(response);
     }
 
     public Models.Tickets.EditTicketResponse Post(EditTicketSpecification ticket)

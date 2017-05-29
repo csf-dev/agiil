@@ -148,6 +148,70 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("A user can assign a ticket to a sprint as it is created")]
+        public virtual void AUserCanAssignATicketToASprintAsItIsCreated()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A user can assign a ticket to a sprint as it is created", ((string[])(null)));
+#line 28
+this.ScenarioSetup(scenarioInfo);
+#line 29
+  testRunner.Given("the user is logged in with a user account named 'jbloggs'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 30
+    testRunner.And("the current project has an ID of 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "Id",
+                        "Name"});
+            table5.AddRow(new string[]
+                {
+                        "1",
+                        "Test sprint"});
+#line 31
+    testRunner.And("the following sprints exist:", ((string)(null)), table5, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "Field",
+                        "Value"});
+            table6.AddRow(new string[]
+                {
+                        "Title",
+                        "Ticket title"});
+            table6.AddRow(new string[]
+                {
+                        "SprintId",
+                        "1"});
+#line 34
+  testRunner.When("the user attempts to create a ticket with the following properties:", ((string)(null)), table6, "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "Field",
+                        "Value"});
+            table7.AddRow(new string[]
+                {
+                        "Title",
+                        "Ticket title"});
+            table7.AddRow(new string[]
+                {
+                        "Description",
+                        ""});
+            table7.AddRow(new string[]
+                {
+                        "User",
+                        "jbloggs"});
+            table7.AddRow(new string[]
+                {
+                        "Sprint",
+                        "1"});
+#line 38
+  testRunner.Then("a ticket should exist with the following properties:", ((string)(null)), table7, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

@@ -15,17 +15,18 @@ namespace Agiil.BDD.Bindings.Tickets
   public class TicketQuerySteps
   {
     readonly ITicketQueryController queryController;
+    readonly ITicketListController listController;
 
     [When("the user visits the ticket list page")]
     public void TheUserVisitsTheTicketListPage()
     {
-      queryController.VisitTicketListControllerAndStoreListInContext();
+      listController.VisitTicketListControllerAndStoreListInContext();
     }
 
     [When("the user visits the ticket detail page for ticket ID (\\d+)")]
     public void TheUserVisitsTheTicketDetailPage(long id)
     {
-      queryController.VisitTicketDetailControllerAndStoreDetail(id);
+      listController.VisitTicketDetailControllerAndStoreDetail(id);
     }
 
     [Then("a ticket should exist with the following properties:")]
@@ -55,7 +56,7 @@ namespace Agiil.BDD.Bindings.Tickets
         throw new ArgumentNullException(nameof(ticketProperties));
 
       var tickets = ticketProperties.CreateSet<TicketSummaryDto>().ToList();
-      queryController.VerifyThatTicketsAreListedInOrder(tickets);
+      listController.VerifyThatTicketsAreListedInOrder(tickets);
     }
 
     [Then("the following ticket detail should be displayed:")]
@@ -65,21 +66,25 @@ namespace Agiil.BDD.Bindings.Tickets
         throw new ArgumentNullException(nameof(ticketProperties));
 
       var ticket = ticketProperties.CreateInstance<TicketDetailDto>();
-      queryController.VerifyThatTicketDetailMatchesExpectation(ticket);
+      listController.VerifyThatTicketDetailMatchesExpectation(ticket);
     }
 
     [Then("the user sees a 404 error page")]
     public void TheUserSeesA404ErrorPage()
     {
-      queryController.VerifyTheUserSeesA404Error();
+      listController.VerifyTheUserSeesA404Error();
     }
 
-    public TicketQuerySteps(ITicketQueryController queryController)
+    public TicketQuerySteps(ITicketQueryController queryController,
+                            ITicketListController listController)
     {
+      if(listController == null)
+        throw new ArgumentNullException(nameof(listController));
       if(queryController == null)
         throw new ArgumentNullException(nameof(queryController));
 
       this.queryController = queryController;
+      this.listController = listController;
     }
   }
 }

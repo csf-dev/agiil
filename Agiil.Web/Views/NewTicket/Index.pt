@@ -26,6 +26,24 @@
       <div class="form_element feedback warning" tal:condition="here/Response/DescriptionIsInvalid | nothing">
         <p>Please enter a valid ticket description.</p>
       </div>
+      <div class="form_element field"
+           tal:define="sprintId nothing;
+                       availableSprints here/AvailableSprints">
+        <label for="SprintIdentity">Sprint</label>
+        <select id="SprintIdentity"
+                name="SprintIdentity"
+                metal:use-macro="Views/Shared/Controls/SprintChooser/macros/sprint_chooser">
+          <option value="">None</option>
+          <option value="0">Sprint one</option>
+          <option value="0">Sprint two</option>
+        </select>
+      </div>
+      <div class="form_element feedback warning" tal:condition="here/Response/SprintIsInvalid | nothing">
+        <p>
+          Please choose either a sprint from the list, or <em>None</em> to indicate that the ticket
+          is not part of any sprint.
+        </p>
+      </div>
       <div class="form_element button">
         <button>Create</button>
       </div>

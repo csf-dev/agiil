@@ -24,3 +24,20 @@ Scenario: A user cannot create a ticket with an empty title
   Then no ticket should exist matching the following properties:
   | Field       | Value        |
   | Description | Invalid      |
+
+Scenario: A user can assign a ticket to a sprint as it is created
+  Given the user is logged in with a user account named 'jbloggs'
+    And the current project has an ID of 1
+    And the following sprints exist:
+  | Id | Name        |
+  | 1  | Test sprint |
+  When the user attempts to create a ticket with the following properties:
+  | Field     | Value         |
+  | Title     | Ticket title  |
+  | SprintId  | 1             |
+  Then a ticket should exist with the following properties:
+  | Field       | Value         |
+  | Title       | Ticket title  |
+  | Description |               |
+  | User        | jbloggs       |
+  | Sprint      | 1             |

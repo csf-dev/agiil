@@ -225,6 +225,8 @@
     <Compile Include="Autofixture\BulkSprintCreationSpecificationCustomization.cs" />
     <Compile Include="Tickets\EditTicketTitleAndDescriptionSpecification.cs" />
     <Compile Include="ObjectMaps\Tickets\EditTicketTitleAndDescriptionSpecificationToEditTicketSpecificationProfile.cs" />
+    <Compile Include="Tickets\ITicketListController.cs" />
+    <Compile Include="Tickets\TicketListController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
