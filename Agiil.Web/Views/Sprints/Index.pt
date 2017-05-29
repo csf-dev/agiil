@@ -6,6 +6,14 @@
 <div metal:fill-slot="page_content"
      class="page_content">
   <h1>Sprints</h1>
+  <p tal:condition="not:here/ShowingClosedSprints">
+    Currently displaying <strong>open</strong> sprints only.
+    You may instead view <a href="Sprints?ShowClosedSprints=True">closed sprints</a>.
+  </p>
+  <p tal:condition="here/ShowingClosedSprints">
+    Currently displaying <strong>closed</strong> sprints only.
+    You may instead view <a href="Sprints">open sprints</a>.
+  </p>
   <table tal:define="sprints here/Sprints" class="sprint_list">
     <colgroup>
       <col class="name" />

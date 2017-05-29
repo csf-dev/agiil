@@ -115,6 +115,8 @@
     <Compile Include="Tickets\ITicketReferenceParser.cs" />
     <Compile Include="Tickets\TicketReference.cs" />
     <Compile Include="Tickets\ITicketReferenceQuery.cs" />
+    <Compile Include="Sprints\ISprintDetailService.cs" />
+    <Compile Include="Sprints\ListSprintsRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

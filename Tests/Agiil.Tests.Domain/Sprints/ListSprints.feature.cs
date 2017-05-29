@@ -81,28 +81,32 @@ this.ScenarioSetup(scenarioInfo);
                         "Name",
                         "CreationDate",
                         "StartDate",
-                        "EndDate"});
+                        "EndDate",
+                        "Closed"});
             table1.AddRow(new string[]
                 {
                         "1",
                         "Test sprint 1",
                         "2011-01-01",
                         "2015-05-01",
-                        "2016-01-01"});
+                        "2016-01-01",
+                        "False"});
             table1.AddRow(new string[]
                 {
                         "2",
                         "Test sprint 2",
                         "2011-01-01",
                         "2015-03-01",
-                        "2016-01-01"});
+                        "2016-01-01",
+                        "False"});
             table1.AddRow(new string[]
                 {
                         "3",
                         "Test sprint 3",
                         "2011-01-01",
                         "2015-01-01",
-                        "2016-01-01"});
+                        "2016-01-01",
+                        "False"});
 #line 7
     testRunner.And("the following sprints exist:", ((string)(null)), table1, "And ");
 #line 12
@@ -156,28 +160,32 @@ this.ScenarioSetup(scenarioInfo);
                         "Name",
                         "CreationDate",
                         "StartDate",
-                        "EndDate"});
+                        "EndDate",
+                        "Closed"});
             table3.AddRow(new string[]
                 {
                         "1",
                         "Test sprint 1",
                         "2011-01-01",
                         "2015-05-01",
-                        "2016-01-01"});
+                        "2016-01-01",
+                        "False"});
             table3.AddRow(new string[]
                 {
                         "2",
                         "Test sprint 2",
                         "2011-01-01",
                         "",
-                        ""});
+                        "",
+                        "False"});
             table3.AddRow(new string[]
                 {
                         "3",
                         "Test sprint 3",
                         "2017-01-01",
                         "",
-                        ""});
+                        "",
+                        "False"});
 #line 22
     testRunner.And("the following sprints exist:", ((string)(null)), table3, "And ");
 #line 27
@@ -209,6 +217,65 @@ this.ScenarioSetup(scenarioInfo);
                         ""});
 #line 28
   testRunner.Then("the following sprints should be listed, in order:", ((string)(null)), table4, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Sprints which are closed do not appear in the listing")]
+        public virtual void SprintsWhichAreClosedDoNotAppearInTheListing()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sprints which are closed do not appear in the listing", ((string[])(null)));
+#line 34
+this.ScenarioSetup(scenarioInfo);
+#line 35
+  testRunner.Given("the user is logged in with a user account named 'jbloggs'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 36
+    testRunner.And("the current project has an ID of 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "Id",
+                        "Name",
+                        "CreationDate",
+                        "StartDate",
+                        "EndDate",
+                        "Closed"});
+            table5.AddRow(new string[]
+                {
+                        "1",
+                        "Test sprint 1",
+                        "2011-01-01",
+                        "2015-05-01",
+                        "2016-01-01",
+                        "False"});
+            table5.AddRow(new string[]
+                {
+                        "2",
+                        "Test sprint 2",
+                        "2011-01-01",
+                        "",
+                        "",
+                        "True"});
+#line 37
+    testRunner.And("the following sprints exist:", ((string)(null)), table5, "And ");
+#line 41
+  testRunner.When("the user visits the sprint list page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "Id",
+                        "Name",
+                        "StartDate",
+                        "EndDate"});
+            table6.AddRow(new string[]
+                {
+                        "1",
+                        "Test sprint 1",
+                        "2015-05-01",
+                        "2016-01-01"});
+#line 42
+  testRunner.Then("the following sprints should be listed, in order:", ((string)(null)), table6, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

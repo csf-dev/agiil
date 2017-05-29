@@ -12,10 +12,13 @@ namespace Agiil.Web.Controllers
   {
     readonly ISprintLister lister;
 
-    public ActionResult Index()
+    public ActionResult Index(AdHocSprintListingRequest spec)
     {
-      var sprints = lister.GetSprints();
+      var request = Mapper.Map<ListSprintsRequest>(spec);
+      var sprints = lister.GetSprints(request);
       var model = ModelFactory.GetModel<ListSprintModel>();
+      if(spec != null)
+        model.ShowingClosedSprints = spec.ShowClosedSprints;
       model.Sprints = sprints.Select(x => Mapper.Map<SprintSummaryDto>(x)).ToList();
 
       return View(model);

@@ -23,6 +23,8 @@ namespace Agiil.Domain.Sprints
 
     public virtual DateTime? EndDate { get; set; }
 
+    public virtual bool Closed { get; set; }
+
     public virtual ISet<Ticket> Tickets {
       get { return tickets.Collection; }
       protected set { /* no-op */ }
