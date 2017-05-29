@@ -22,6 +22,8 @@
         Created for project <strong tal:content="sprint/ProjectCode | nothing">ABC</strong>.
       </span>
     </p>
+    <p tal:condition="sprint/Closed">This sprint is <strong>closed</strong>.</p>
+    <p tal:condition="not:sprint/Closed">This sprint is <strong>open</strong>.</p>
     <p tal:condition="sprint/StartDate">
       Start date: <strong tal:content="sprint/GetShortStartDate">2011-01-01</strong>
     </p>

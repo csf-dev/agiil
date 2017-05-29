@@ -6,5 +6,7 @@ namespace Agiil.Domain.Sprints
   public interface ISprintLister
   {
     IList<Sprint> GetSprints();
+
+    IList<Sprint> GetSprints(ListSprintsRequest request);
   }
 }

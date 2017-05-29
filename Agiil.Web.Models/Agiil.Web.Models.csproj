@@ -69,6 +69,7 @@
     <Compile Include="Sprints\SprintDetailDto.cs" />
     <Compile Include="Sprints\SprintDtoBase.cs" />
     <Compile Include="Sprints\ViewSprintModel.cs" />
+    <Compile Include="Sprints\AdHocSprintListingRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

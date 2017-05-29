@@ -14,7 +14,7 @@ namespace Agiil.Tests.Sprints
 
     public void VisitSprintListControllerAndStoreListInContext()
     {
-      var result = (ViewResult) webController.Value.Index();
+      var result = (ViewResult) webController.Value.Index(null);
       var model = (ListSprintModel) result.Model;
 
       context.Model = model;

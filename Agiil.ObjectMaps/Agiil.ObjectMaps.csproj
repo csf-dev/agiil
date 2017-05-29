@@ -62,6 +62,7 @@
     <Compile Include="Tickets\EditTicketSpecificationToEditTicketRequestProfile.cs" />
     <Compile Include="Tickets\EditTicketResponseToWebEditTicketResponseProfile.cs" />
     <Compile Include="Sprints\SprintToSprintDetailDtoProfile.cs" />
+    <Compile Include="Sprints\AdHocSprintListingRequestToListSprintsRequestProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
