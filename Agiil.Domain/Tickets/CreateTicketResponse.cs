@@ -27,6 +27,9 @@ namespace Agiil.Domain.Tickets
       }
     }
 
+    public bool SprintIsInvalid
+      => resultInterpreter.IncludesFailureFor<CreateTicketRequest>(validationResult, x => x.SprintIdentity);
+
     public CreateTicketResponse(IValidationResult result,
                                 IValidationResultInterpreter resultInterpreter,
                                 Ticket createdTicket = null)

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
+using Agiil.Domain.Sprints;
 using Agiil.Domain.Tickets;
 using Agiil.Web.Controllers;
 using Agiil.Web.Models;
@@ -16,60 +18,36 @@ namespace Agiil.Tests.Tickets
   public class TicketQueryController : ITicketQueryController
   {
     readonly IRepository<Ticket> repo;
-    readonly TicketListModelContext ticketListContext;
-    readonly TicketDetailModelContext ticketDetailContext;
-    readonly Func<TicketsController> ticketListControllerFactory;
-    readonly Func<TicketController> ticketDetailControllerFactory;
+    readonly IRepository<Sprint> sprintRepo;
 
-    // TODO: Break this type (and parent interface) up into two.  One for queries and another for viewing pages
-    // It has become too big and has too many responsibilities
-
-    public bool DoesTicketExist(TicketSearchCriteria searchHelper = null)
+    public bool DoesTicketExist(TicketSearchCriteria criteria = null)
     {
-      var predicate = CreateTicketSearchPredicate(searchHelper);
-      return repo.Query().AnyCount(predicate);
+      var query = repo.Query();
+      query = ApplyCriteria(query, criteria);
+      return query.AnyCount();
     }
 
-    public void VerifyThatTicketsAreListedInOrder(IList<TicketSummaryDto> expected)
+    IQueryable<Ticket> ApplyCriteria(IQueryable<Ticket> query, TicketSearchCriteria criteria)
     {
-      var actual = ticketListContext.Model.Tickets;
-      CollectionAssert.AreEqual(expected, actual, new TicketSummaryDtoComparer());
-    }
+      if(criteria == null)
+        return query;
 
-    public void VerifyThatTicketDetailMatchesExpectation(TicketDetailDto expected)
-    {
-      var actual = ticketDetailContext.Model.Ticket;
-      Assert.IsTrue(new TicketDetailDtoComparer().Equals(expected, actual), "Instances are equal");
-    }
+      if(!String.IsNullOrEmpty(criteria.Title))
+        query = query.Where(x => x.Title == criteria.Title);
 
-    public void VerifyTheUserSeesA404Error()
-    {
-      Assert.IsTrue(ticketDetailContext.NotFound, "Not found error response");
-      Assert.IsNull(ticketDetailContext.Model, "No ticket model associated");
-    }
+      if(!String.IsNullOrEmpty(criteria.Description))
+        query = query.Where(x => x.Description == criteria.Description);
 
-    public void VisitTicketListControllerAndStoreListInContext()
-    {
-      var controller = ticketListControllerFactory();
-      var result = (ViewResult) controller.Index(null);
-      var model = (TicketListModel) result.Model;
+      if(!String.IsNullOrEmpty(criteria.User))
+        query = query.Where(x => x.User != null && x.User.Username == criteria.User);
 
-      ticketListContext.Model = model;
-    }
-
-    public void VisitTicketDetailControllerAndStoreDetail(long id)
-    {
-      var controller = ticketDetailControllerFactory();
-      var result = controller.Index(Identity.Create<Ticket>(id));
-
-      if(result is HttpNotFoundResult)
+      if(criteria.Sprint.HasValue)
       {
-        ticketDetailContext.NotFound = true;
-        return;
+        var sprint = sprintRepo.Theorise(Identity.Create<Sprint>(criteria.Sprint.Value));
+        query = query.Where(x => x.Sprint == sprint);
       }
 
-      var viewResult = (ViewResult) result;
-      ticketDetailContext.Model = (TicketDetailModel) viewResult.Model;
+      return query;
     }
 
     Expression<Func<Ticket,bool>> CreateTicketSearchPredicate(TicketSearchCriteria helper)
@@ -84,27 +62,15 @@ namespace Agiil.Tests.Tickets
     }
 
     public TicketQueryController(IRepository<Ticket> repo,
-                                 TicketListModelContext ticketListContext,
-                                 Func<TicketsController> ticketListControllerFactory,
-                                 Func<TicketController> ticketDetailControllerFactory,
-                                 TicketDetailModelContext ticketDetailContext)
+                                 IRepository<Sprint> sprintRepo)
     {
-      if(ticketDetailContext == null)
-        throw new ArgumentNullException(nameof(ticketDetailContext));
-      if(ticketDetailControllerFactory == null)
-        throw new ArgumentNullException(nameof(ticketDetailControllerFactory));
-      if(ticketListControllerFactory == null)
-        throw new ArgumentNullException(nameof(ticketListControllerFactory));
-      if(ticketListContext == null)
-        throw new ArgumentNullException(nameof(ticketListContext));
+      if(sprintRepo == null)
+        throw new ArgumentNullException(nameof(sprintRepo));
       if(repo == null)
         throw new ArgumentNullException(nameof(repo));
 
       this.repo = repo;
-      this.ticketListContext = ticketListContext;
-      this.ticketListControllerFactory = ticketListControllerFactory;
-      this.ticketDetailControllerFactory = ticketDetailControllerFactory;
-      this.ticketDetailContext = ticketDetailContext;
+      this.sprintRepo = sprintRepo;
     }
   }
 }

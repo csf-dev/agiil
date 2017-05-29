@@ -1,4 +1,5 @@
 ﻿using System;
+using Agiil.Domain.Sprints;
 using Agiil.Domain.Validation;
 using CSF.Validation;
 using CSF.Validation.Manifest;
@@ -14,9 +15,9 @@ namespace Agiil.Domain.Tickets
       builder.AddRule<NotNullRule>();
       builder.AddMemberRule<NotNullValueRule>(x => x.Title);
       builder.AddMemberRule<RegexMatchValueRule>(x => x.Title, c => {
-        c.AddDependency<NotNullValueRule,CreateTicketRequest>(x => x.Title);
         c.Configure(r => r.Pattern = @"^\S+");
       });
+      builder.AddMemberRule<EntityMustExistRule<Sprint>>(x => x.SprintIdentity);
     }
 
     public CreateTicketValidatorFactory(IValidatorFactory validatorFactory) : base(validatorFactory) {}
