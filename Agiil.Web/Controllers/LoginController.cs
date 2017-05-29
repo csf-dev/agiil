@@ -67,7 +67,8 @@ namespace Agiil.Web.Controllers
 
       if(!result.Success)
       {
-        throw new NotImplementedException("Failure to log out is not supported.");
+        // TODO: #AG32 - Determine what failing to log out means and then deal with it accordingly.
+        throw new NotSupportedException("Failure to log out is not supported.");
       }
 
       return RedirectToAction(nameof(LoginController.LoggedOut), GetControllerName<LoginController>());
