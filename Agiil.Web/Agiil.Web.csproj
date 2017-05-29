@@ -344,6 +344,7 @@
     <None Include="Views\NewSprint\Created.pt" />
     <None Include="Views\Sprints\Index.pt" />
     <None Include="Views\Sprint\Index.pt" />
+    <None Include="Views\Shared\Controls\SprintChooser.pt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

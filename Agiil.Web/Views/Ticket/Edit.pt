@@ -32,14 +32,16 @@
       <div class="form_element feedback warning" tal:condition="here/Response/DescriptionIsInvalid | nothing">
         <p>Please enter a valid ticket description.</p>
       </div>
-      <div class="form_element field">
+      <div class="form_element field"
+           tal:define="sprintId ticket/Sprint/Id | nothing;
+                       availableSprints here/AvailableSprints">
         <label for="SprintIdentity">Sprint</label>
-        <select id="SprintIdentity" name="SprintIdentity" tal:define="ticketSprintId ticket/Sprint/Id | nothing">
+        <select id="SprintIdentity"
+                name="SprintIdentity"
+                metal:use-macro="Views/Shared/Controls/SprintChooser/macros/sprint_chooser">
           <option value="">None</option>
-          <option tal:repeat="availableSprint here/AvailableSprints"
-                  tal:attributes="selected csharp:(availableSprint.Id == ticketSprintId)? &quot;selected&quot; : null;
-                                  value availableSprint/Id"
-                  tal:content="availableSprint/Name">Sprint name</option>
+          <option value="0">Sprint one</option>
+          <option value="0">Sprint two</option>
         </select>
       </div>
       <div class="form_element feedback warning" tal:condition="here/Response/SprintIsInvalid | nothing">
