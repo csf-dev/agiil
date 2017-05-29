@@ -36,7 +36,7 @@ namespace Agiil.Web.Controllers
 
     DatabaseResetModel GetModel(bool hasBeenReset = false)
     {
-      var model = ModelFactory.GetModel<DatabaseResetModel>();
+      var model = new DatabaseResetModel();
       model.HasBeenReset = hasBeenReset;
       return model;
     }

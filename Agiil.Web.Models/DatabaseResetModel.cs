@@ -3,7 +3,7 @@ using Agiil.Web.Models.Shared;
 
 namespace Agiil.Web.Models
 {
-  public class DatabaseResetModel : StandardPageModel
+  public class DatabaseResetModel
   {
     public bool HasBeenReset { get; set; }
   }
