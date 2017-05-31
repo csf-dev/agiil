@@ -32,7 +32,7 @@
     <em>The database has been reset successfully.</em>
   </p>
   <h2>Database upgrade scripts</h2>
-  <div class="upgrade_feedback" tal:condition="here/UpgradesSuccessful/HasValue | nothing">
+  <div class="upgrade_feedback" tal:condition="here/UpgradesAttempted">
     <p tal:condition="here/UpgradesSuccessful/Value">
       Upgrades have been applied successfully.
     </p>
@@ -40,22 +40,23 @@
       Upgrades were unsuccessful!
     </p>
   </div>
-  <div class="applied_upgrades upgrade_list">
+  <div class="applied_upgrades upgrade_list" tal:condition="here/DatabaseUpgradesApplied | nothing">
     <h3>Applied already</h3>
     <p>
       The following scripts have been applied to the database successfully:
     </p>
     <ol>
-      <li tal:repeat="script here/DatabaseUpgradesApplied | nothing" tal:content="script">Database script name</li>
+      <li tal:repeat="script here/DatabaseUpgradesApplied" tal:content="script">Database script name</li>
     </ol>
   </div>
-  <div class="pending_upgrades upgrade_list" tal:condition="here/DatabaseUpgradesPending | nothing">
+  <div class="pending_upgrades upgrade_list"
+       tal:condition="here/HasPendingUpgrades">
     <h3>Upgrades pending</h3>
     <p>
       The following scripts are pending:
     </p>
     <ol class="pending_upgrades">
-      <li tal:repeat="script here/DatabaseUpgradesPending | nothing" tal:content="script">Database script name</li>
+      <li tal:repeat="script here/DatabaseUpgradesPending" tal:content="script">Database script name</li>
     </ol>
     <form method="post" action="Database/Upgrade">
       <fieldset>
@@ -64,6 +65,11 @@
       </div>
       </fieldset>
     </form>
+  </div>
+  <div class="pending_upgrades upgrade_list"
+       tal:condition="not:here/HasPendingUpgrades">
+    <h3>Upgrades pending</h3>
+    <p>There are no pending upgrades!</p>
   </div>
 </div>
 </body>

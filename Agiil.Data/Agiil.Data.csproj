@@ -104,6 +104,7 @@
     <Compile Include="IDatabaseConfiguration.cs" />
     <Compile Include="HardcodedDatabaseConfiguration.cs" />
     <Compile Include="Maintenance\IDatabaseResetter.cs" />
+    <Compile Include="Maintenance\IDbSchemaExporter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mappings\" />

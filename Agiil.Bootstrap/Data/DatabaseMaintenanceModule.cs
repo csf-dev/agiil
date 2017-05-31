@@ -15,6 +15,10 @@ namespace Agiil.Bootstrap.Data
       builder
         .RegisterType<DbUpDatabaseUpgrader>()
         .As<IDatabaseUpgrader>();
+
+      builder
+        .RegisterType<NHibernateSchemaExporter>()
+        .As<IDbSchemaExporter>();
     }
   }
 }

@@ -86,6 +86,9 @@ namespace Agiil.Tests.Data
       Assert.DoesNotThrow(() => configuration.BuildSessionFactory());
     }
 
+    // TODO: Move the following test to a new type which tests the database creator type
+    // This is instead of sessionfactoryfactory.  The relevant functionality has moved.
+
     [Test]
     public void Application_can_export_database_schema()
     {
