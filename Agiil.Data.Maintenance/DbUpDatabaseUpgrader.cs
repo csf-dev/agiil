@@ -11,15 +11,16 @@ namespace Agiil.Data.Maintenance
   public class DbUpDatabaseUpgrader : IDatabaseUpgrader
   {
     readonly IConnectionStringProvider connectionStringProvider;
+    readonly UpgradeEngine upgradeEngine;
 
     public DatabaseUpgradeResult ApplyAllUpgrades()
     {
-      var engine = GetDbUpEngine();
-      var result = engine.PerformUpgrade();
+      var result = upgradeEngine.PerformUpgrade();
 
-      // TODO: Improve this when (at some point) we have proper error/diagnostic logging implemented.
       #if DEBUG
-      Console.WriteLine(result.Error);
+      // TODO: Improve this when (at some point) we have proper error/diagnostic logging implemented.
+      if(result.Error != null)
+        Console.WriteLine(result.Error);
       #endif
 
       return new DatabaseUpgradeResult
@@ -35,8 +36,7 @@ namespace Agiil.Data.Maintenance
 
     public IList<IUpgradeName> GetAppliedUpgrades()
     {
-      var engine = GetDbUpEngine();
-      return engine
+      return upgradeEngine
         .GetExecutedScripts()
         .Select(x => new SimpleUpgradeName { Name = x })
         .Cast<IUpgradeName>()
@@ -45,8 +45,7 @@ namespace Agiil.Data.Maintenance
 
     public IList<IUpgradeName> GetPendingUpgrades()
     {
-      var engine = GetDbUpEngine();
-      return engine
+      return upgradeEngine
         .GetScriptsToExecute()
         .Select(x => new SimpleUpgradeName { Name = x.Name })
         .Cast<IUpgradeName>()
@@ -66,7 +65,9 @@ namespace Agiil.Data.Maintenance
     {
       if(connectionStringProvider == null)
         throw new ArgumentNullException(nameof(connectionStringProvider));
+      
       this.connectionStringProvider = connectionStringProvider;
+      this.upgradeEngine = GetDbUpEngine();
     }
   }
 }

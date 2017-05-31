@@ -9,7 +9,7 @@
 @import url('Content/Css/StandardPage.css');
 </style>
 </head>
-<body metal:fill-slot="body_element">
+<body metal:fill-slot="body_element" class="database_maintenance">
 <div class="page_content">
   <h1>Database maintenance</h1>
   <h2>Reset the database</h2>
@@ -31,6 +31,40 @@
   <p tal:condition="here/HasBeenReset">
     <em>The database has been reset successfully.</em>
   </p>
+  <h2>Database upgrade scripts</h2>
+  <div class="upgrade_feedback" tal:condition="here/UpgradesSuccessful/HasValue | nothing">
+    <p tal:condition="here/UpgradesSuccessful/Value">
+      Upgrades have been applied successfully.
+    </p>
+    <p tal:condition="not:here/UpgradesSuccessful/Value">
+      Upgrades were unsuccessful!
+    </p>
+  </div>
+  <div class="applied_upgrades upgrade_list">
+    <h3>Applied already</h3>
+    <p>
+      The following scripts have been applied to the database successfully:
+    </p>
+    <ol>
+      <li tal:repeat="script here/DatabaseUpgradesApplied | nothing" tal:content="script">Database script name</li>
+    </ol>
+  </div>
+  <div class="pending_upgrades upgrade_list" tal:condition="here/DatabaseUpgradesPending | nothing">
+    <h3>Upgrades pending</h3>
+    <p>
+      The following scripts are pending:
+    </p>
+    <ol class="pending_upgrades">
+      <li tal:repeat="script here/DatabaseUpgradesPending | nothing" tal:content="script">Database script name</li>
+    </ol>
+    <form method="post" action="Database/Upgrade">
+      <fieldset>
+      <div class="form_element button">
+        <button>Apply upgrades</button>
+      </div>
+      </fieldset>
+    </form>
+  </div>
 </div>
 </body>
 </html>
