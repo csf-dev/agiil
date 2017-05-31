@@ -3,6 +3,8 @@ namespace Agiil.Data
 {
   public interface IConnectionStringProvider
   {
+    string GetConnectionString();
+
     string GetConnectionString(string name);
   }
 }

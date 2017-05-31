@@ -131,6 +131,7 @@
     <Compile Include="Sprints\SprintsModule.cs" />
     <Compile Include="ObjectMaps\AutomapperProfilesModule.cs" />
     <Compile Include="ObjectMaps\AutomapperResolversModule.cs" />
+    <Compile Include="Data\DatabaseMaintenanceModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
@@ -160,6 +161,10 @@
     <ProjectReference Include="..\Agiil.Web.Models\Agiil.Web.Models.csproj">
       <Project>{53F1B62F-1BEE-4732-A1F3-433822529906}</Project>
       <Name>Agiil.Web.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Data.Maintenance\Agiil.Data.Maintenance.csproj">
+      <Project>{93734A7F-7011-4C26-B14F-6228A7648DAC}</Project>
+      <Name>Agiil.Data.Maintenance</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

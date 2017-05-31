@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Agiil.Data
+namespace Agiil.Data.Maintenance
 {
   public interface IDatabaseResetter
   {
