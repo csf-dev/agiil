@@ -37,8 +37,8 @@ namespace Agiil.Bootstrap.Data
         .As<ITransactionCreator>();
 
       builder
-        .RegisterType<DevelopmentDatabaseResetter>()
-        .As<IDatabaseResetter>();
+        .RegisterType<HardcodedDatabaseConfiguration>()
+        .As<IDatabaseConfiguration>();
     }
   }
 }

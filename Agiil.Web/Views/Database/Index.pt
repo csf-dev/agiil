@@ -1,15 +1,28 @@
-﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
-<head>
-<title metal:fill-slot="title_element">Database reset</title>
+﻿<html lang="en" metal:use-macro="Views/Shared/EmptyPage/macros/page">
+<head metal:fill-slot="head_element">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agiil database maintenance</title>
+<base href="../../" tal:attributes="href string:/" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/StandardPage.css');
+</style>
 </head>
-<body>
-<h1>Database reset</h1>
-<div metal:fill-slot="page_content" class="page_content">
+<body metal:fill-slot="body_element" class="database_maintenance">
+<div class="page_content">
+  <h1>Database maintenance</h1>
+  <h2>Reset the database</h2>
+  <p>
+    Resetting the database will export a database schema from the NHibernate mappings and
+    <em>overwrite the current database</em> with that auto-generated schema.
+  </p>
+  <p>
+    <em>This is a highly destructive action</em>; please understand that
+    <em>all data will be permanently lost</em> if you continue.
+  </p>
   <form method="post" action="Database/Reset" tal:condition="not:here/HasBeenReset">
     <fieldset>
-      <p>
-        This page allows you to reset the development database back to its initial state.
-      </p>
       <div class="form_element button">
         <button>Reset now</button>
       </div>
@@ -18,6 +31,46 @@
   <p tal:condition="here/HasBeenReset">
     <em>The database has been reset successfully.</em>
   </p>
+  <h2>Database upgrade scripts</h2>
+  <div class="upgrade_feedback" tal:condition="here/UpgradesAttempted">
+    <p tal:condition="here/UpgradesSuccessful/Value">
+      Upgrades have been applied successfully.
+    </p>
+    <p tal:condition="not:here/UpgradesSuccessful/Value">
+      Upgrades were unsuccessful!
+    </p>
+  </div>
+  <div class="applied_upgrades upgrade_list" tal:condition="here/DatabaseUpgradesApplied | nothing">
+    <h3>Applied already</h3>
+    <p>
+      The following scripts have been applied to the database successfully:
+    </p>
+    <ol>
+      <li tal:repeat="script here/DatabaseUpgradesApplied" tal:content="script">Database script name</li>
+    </ol>
+  </div>
+  <div class="pending_upgrades upgrade_list"
+       tal:condition="here/HasPendingUpgrades">
+    <h3>Upgrades pending</h3>
+    <p>
+      The following scripts are pending:
+    </p>
+    <ol class="pending_upgrades">
+      <li tal:repeat="script here/DatabaseUpgradesPending" tal:content="script">Database script name</li>
+    </ol>
+    <form method="post" action="Database/Upgrade">
+      <fieldset>
+      <div class="form_element button">
+        <button>Apply upgrades</button>
+      </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="pending_upgrades upgrade_list"
+       tal:condition="not:here/HasPendingUpgrades">
+    <h3>Upgrades pending</h3>
+    <p>There are no pending upgrades!</p>
+  </div>
 </div>
 </body>
 </html>

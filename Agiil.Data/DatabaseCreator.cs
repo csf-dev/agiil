@@ -86,7 +86,9 @@ namespace Agiil.Data
         configuration = GetConfiguration();
       }
 
-      return new SchemaExport(configuration);
+      var output = new SchemaExport(configuration);
+      output.SetDelimiter(";");
+      return output;
     }
 
     private Configuration GetConfiguration()
