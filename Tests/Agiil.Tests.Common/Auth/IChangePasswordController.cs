@@ -1,5 +1,5 @@
 ﻿using System;
-using Agiil.Web.Models;
+using Agiil.Web.Models.Auth;
 
 namespace Agiil.Tests.Auth
 {

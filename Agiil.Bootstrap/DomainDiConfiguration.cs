@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Reflection;
+using Agiil.Bootstrap.ObjectMaps;
+using Agiil.ObjectMaps;
 using Autofac;
 
 namespace Agiil.Bootstrap
@@ -18,6 +20,19 @@ namespace Agiil.Bootstrap
     protected virtual void RegisterDomainComponents(ContainerBuilder builder)
     {
       builder.RegisterAssemblyModules(Assembly.GetExecutingAssembly());
+      RegisterAllAutomapperProfiles(builder);
+    }
+
+    protected virtual void RegisterAllAutomapperProfiles(ContainerBuilder builder)
+    {
+      var provider = GetProfileTypesProvider();
+      var module = new AutomapperProfilesModule(provider);
+      builder.RegisterModule(module);
+    }
+
+    protected virtual IProfileTypesProvider GetProfileTypesProvider()
+    {
+      return new ProfileTypesProvider();
     }
 
     protected virtual ContainerBuilder CreateContainerBuilder()

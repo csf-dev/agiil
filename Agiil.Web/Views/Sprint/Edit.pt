@@ -1,0 +1,57 @@
+﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<head>
+<title metal:fill-slot="title_element">Edit sprint</title>
+</head>
+<body>
+<div metal:fill-slot="page_content" class="page_content">
+  <h1 tal:content="here/Sprint/Name">Edit sprint</h1>
+  <form action="Sprint/Edit" method="post" tal:define="sprint here/Sprint;
+                                                       spec here/Specification">
+    <fieldset>
+      <input type="hidden" name="Id" value="/"
+             tal:attributes="value sprint/Id | nothing" />
+      <div class="form_element field">
+        <label for="Name">Name</label>
+        <input type="text" id="Name" name="Name"
+              tal:attributes="value spec/Name | sprint/Name | nothing" />
+      </div>
+      <div class="form_element feedback warning" tal:condition="here/Response/NameIsInvalid | nothing">
+        <p>Please enter a sprint name.</p>
+      </div>
+      <div class="form_element field">
+        <label for="Description">Description</label>
+        <textarea id="Description" name="Description" class="long_text"
+                  tal:content="spec/Description | sprint/Description |  nothing"></textarea>
+      </div>
+      <div class="form_element feedback warning" tal:condition="here/Response/DescriptionIsInvalid | nothing">
+        <p>Please enter a valid sprint description.</p>
+      </div>
+      <div class="form_element field">
+        <label for="StartDate">Start date</label>
+        <input type="date" id="StartDate" name="StartDate" value="2010-01-01"
+                  tal:attributes="value spec/StartDate | sprint/StartDate | nothing" />
+      </div>
+      <div class="form_element field">
+        <label for="EndDate">End date</label>
+        <input type="date" id="EndDate" name="EndDate" value="2010-01-01"
+                  tal:attributes="value spec/StartDate | sprint/StartDate | nothing" />
+      </div>
+      <div class="form_element feedback warning" tal:condition="here/Response/EndDateMustNotBeBeforeStartDate | nothing">
+        <p>The end date must not fall before the start date.</p>
+      </div>
+      <div class="form_element field">
+        <label for="Closed">Sprint is closed</label>
+        <input type="checkbox" id="Closed" name="Closed" value="True"
+               tal:define="isClosed spec/Closed | sprint/Closed | nothing;
+                           isOpen not:isClosed;
+                           isChecked csharp:isOpen? (bool?) null : true"
+               tal:attributes="checked isChecked" />
+      </div>
+      <div class="form_element button">
+        <button>Submit</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
+</body>
+</html>

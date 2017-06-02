@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{53F1B62F-1BEE-4732-A1F3-433822529906}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Agiil.Web.Models</RootNamespace>
+    <AssemblyName>Agiil.Web.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ReleaseVersion>0.2.0.1</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="CSF.Entities">
+      <HintPath>..\packages\CSF.Entities.1.1.1\lib\net45\CSF.Entities.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Auth\ChangePasswordModel.cs" />
+    <Compile Include="Auth\ChangePasswordResult.cs" />
+    <Compile Include="Auth\ChangePasswordSpecification.cs" />
+    <Compile Include="Auth\LoginCredentials.cs" />
+    <Compile Include="Auth\LoginModel.cs" />
+    <Compile Include="Shared\LoginStateModel.cs" />
+    <Compile Include="Sprints\NewSprintSpecification.cs" />
+    <Compile Include="Tickets\AddCommentResponse.cs" />
+    <Compile Include="Tickets\AddCommentSpecification.cs" />
+    <Compile Include="Tickets\AdHocTicketListSpecification.cs" />
+    <Compile Include="Tickets\CommentDto.cs" />
+    <Compile Include="Tickets\EditCommentModel.cs" />
+    <Compile Include="Tickets\EditCommentResponse.cs" />
+    <Compile Include="Tickets\EditCommentSpecification.cs" />
+    <Compile Include="Tickets\EditTicketModel.cs" />
+    <Compile Include="Tickets\EditTicketResponse.cs" />
+    <Compile Include="Tickets\EditTicketSpecification.cs" />
+    <Compile Include="Tickets\NewTicketModel.cs" />
+    <Compile Include="Tickets\NewTicketResponse.cs" />
+    <Compile Include="Tickets\NewTicketSpecification.cs" />
+    <Compile Include="Tickets\TicketDetailDto.cs" />
+    <Compile Include="Tickets\TicketDetailModel.cs" />
+    <Compile Include="Tickets\TicketInfoDtoBase.cs" />
+    <Compile Include="Tickets\TicketListModel.cs" />
+    <Compile Include="Tickets\TicketSummaryDto.cs" />
+    <Compile Include="DatabaseResetModel.cs" />
+    <Compile Include="Sprints\NewSprintModel.cs" />
+    <Compile Include="Sprints\NewSprintResult.cs" />
+    <Compile Include="Sprints\ListSprintModel.cs" />
+    <Compile Include="Sprints\SprintSummaryDto.cs" />
+    <Compile Include="StandardPageModel.cs" />
+    <Compile Include="Sprints\SprintDetailDto.cs" />
+    <Compile Include="Sprints\SprintDtoBase.cs" />
+    <Compile Include="Sprints\ViewSprintModel.cs" />
+    <Compile Include="Sprints\AdHocSprintListingRequest.cs" />
+    <Compile Include="Sprints\EditSprintSpecification.cs" />
+    <Compile Include="Sprints\EditSprintResponse.cs" />
+    <Compile Include="Sprints\EditSprintModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Auth\" />
+    <Folder Include="Shared\" />
+    <Folder Include="Sprints\" />
+    <Folder Include="Tickets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
+      <Project>{922B2D9C-444E-451A-B626-DAE59E79C0E5}</Project>
+      <Name>Agiil.Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
+      <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
+      <Name>Agiil.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -18,7 +18,10 @@ namespace Agiil.Domain.Tickets
 
     public virtual DateTime CreationTimestamp { get; set; }
 
-    public virtual ISet<Comment> Comments => comments.Collection;
+    public virtual ISet<Comment> Comments {
+      get { return comments.Collection; }
+      protected set { /* no-op */ }
+    }
 
     protected virtual ISet<Comment> SourceComments
     {
@@ -28,10 +31,13 @@ namespace Agiil.Domain.Tickets
 
     public virtual Projects.Project Project { get; set; }
 
+    public virtual Sprints.Sprint Sprint { get; set; }
+
     public virtual long TicketNumber { get; set; }
 
     public virtual bool Closed { get; set; }
 
+    [Obsolete("Instead use an instance of `ITicketReferenceParser' to get the reference.")]
     public virtual string GetTicketReference()
     {
       return String.Concat(Project?.Code, TicketNumber.ToString());
@@ -41,7 +47,7 @@ namespace Agiil.Domain.Tickets
     {
       comments = new EventRaisingSetWrapper<Comment>(new HashSet<Comment>());
       comments.BeforeAdd += (sender, e) => e.Item.Ticket = this;
-      comments.AfterRemove += (sender, e) => e.Item.Ticket = null;
+      comments.BeforeRemove += (sender, e) => e.Item.Ticket = null;
     }
   }
 }

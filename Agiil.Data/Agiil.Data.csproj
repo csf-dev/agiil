@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Data</RootNamespace>
     <AssemblyName>Agiil.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.1.0</ReleaseVersion>
+    <ReleaseVersion>0.2.0.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -92,16 +92,23 @@
     <Compile Include="IConnectionStringProvider.cs" />
     <Compile Include="ConfigurationManagerConnectionStringProvider.cs" />
     <Compile Include="IDataAssemblyMarker.cs" />
-    <Compile Include="IDatabaseResetter.cs" />
-    <Compile Include="DevelopmentDatabaseResetter.cs" />
     <Compile Include="LowercaseWithUnderscoreDbNameFormatter.cs" />
     <Compile Include="IDbNameFormatter.cs" />
     <Compile Include="Mappings\ManyToOneMapping.cs" />
     <Compile Include="Mappings\OneToManyMapping.cs" />
     <Compile Include="Mappings\BooleanMapping.cs" />
+    <Compile Include="Mappings\SourceCollectionAccessor.cs" />
+    <Compile Include="Maintenance\IDatabaseUpgrader.cs" />
+    <Compile Include="Maintenance\DatabaseUpgradeResult.cs" />
+    <Compile Include="Maintenance\IUpgradeName.cs" />
+    <Compile Include="IDatabaseConfiguration.cs" />
+    <Compile Include="HardcodedDatabaseConfiguration.cs" />
+    <Compile Include="Maintenance\IDatabaseResetter.cs" />
+    <Compile Include="Maintenance\IDbSchemaExporter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mappings\" />
+    <Folder Include="Maintenance\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

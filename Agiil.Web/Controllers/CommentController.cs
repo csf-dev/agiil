@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Agiil.Domain.Tickets;
-using Agiil.Web.Models;
-using Agiil.Web.Services.Tickets;
+using Agiil.Web.Models.Tickets;
+using AutoMapper;
 using CSF.Entities;
 
 namespace Agiil.Web.Controllers
@@ -21,7 +18,6 @@ namespace Agiil.Web.Controllers
     readonly Lazy<ICommentCreator> commentCreator;
     readonly Lazy<ICommentEditor> commentEditor;
     readonly Lazy<ICommentReader> commentReader;
-    readonly CommentMapper mapper;
 
     [HttpPost]
     public ActionResult Add(AddCommentSpecification spec)
@@ -78,6 +74,7 @@ namespace Agiil.Web.Controllers
       return RedirectToAction(nameof(Edit), new { id = spec.CommentId?.Value });
     }
 
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
     CreateCommentRequest GetCreationRequest(AddCommentSpecification spec)
     {
       if(spec == null)
@@ -90,6 +87,7 @@ namespace Agiil.Web.Controllers
       };
     }
 
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
     AddCommentResponse MapResponse(CreateCommentResponse source)
     {
       if(source == null)
@@ -102,6 +100,7 @@ namespace Agiil.Web.Controllers
       };
     }
 
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
     EditCommentRequest MapRequest(EditCommentSpecification spec)
     {
       if(ReferenceEquals(spec, null))
@@ -114,12 +113,13 @@ namespace Agiil.Web.Controllers
       };
     }
 
-    Models.EditCommentResponse MapEditResponse(Domain.Tickets.EditCommentResponse response)
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
+    Models.Tickets.EditCommentResponse MapEditResponse(Domain.Tickets.EditCommentResponse response)
     {
       if(ReferenceEquals(response, null))
         return null;
 
-      return new Models.EditCommentResponse
+      return new Models.Tickets.EditCommentResponse
       {
         BodyIsInvalid = response.BodyIsInvalid,
         UserDoesNotHavePermission = response.UserDoesNotHavePermission,
@@ -129,28 +129,24 @@ namespace Agiil.Web.Controllers
     EditCommentModel GetEditCommentModel(Comment comment)
     {
       var model = ModelFactory.GetModel<EditCommentModel>();
-      model.Comment = mapper.Map(comment);
-      model.Response = GetTempData<Models.EditCommentResponse>(EditCommentResponseKey);
+      model.Comment = Mapper.Map<CommentDto>(comment);
+      model.Response = GetTempData<Models.Tickets.EditCommentResponse>(EditCommentResponseKey);
       model.Specification = GetTempData<EditCommentSpecification>(EditCommentSpecKey);
       return model;
     }
 
-    public CommentController(Services.SharedModel.StandardPageModelFactory modelFactory,
+    public CommentController(ControllerBaseDependencies baseDeps,
                              Lazy<ICommentCreator> commentCreator,
                              Lazy<ICommentEditor> commentEditor,
-                             Lazy<ICommentReader> commentReader,
-                             CommentMapper mapper)
-      : base(modelFactory)
+                             Lazy<ICommentReader> commentReader)
+      : base(baseDeps)
     {
-      if(mapper == null)
-        throw new ArgumentNullException(nameof(mapper));
       if(commentReader == null)
         throw new ArgumentNullException(nameof(commentReader));
       if(commentEditor == null)
         throw new ArgumentNullException(nameof(commentEditor));
       if(commentCreator == null)
         throw new ArgumentNullException(nameof(commentCreator));
-      this.mapper = mapper;
       this.commentCreator = commentCreator;
       this.commentEditor = commentEditor;
       this.commentReader = commentReader;

@@ -15,7 +15,7 @@
              tal:attributes="value here/Comment/Id | nothing" />
       <div class="form_element field">
         <label for="Body">Comment</label>
-        <textarea id="Body" name="Body"
+        <textarea id="Body" name="Body" class="long_text"
                   tal:content="value here/Specification/Body | here/Comment/Body | nothing"></textarea>
       </div>
       <div class="form_element feedback warning" tal:condition="here/Response/BodyIsInvalid | nothing">

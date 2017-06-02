@@ -1,4 +1,5 @@
 ﻿using System;
+using Agiil.Web.Models;
 using Agiil.Web.Models.Shared;
 
 namespace Agiil.Web.Services.SharedModel

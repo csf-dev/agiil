@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using Agiil.Domain.Sprints;
 using Agiil.Domain.Tickets;
-using Agiil.Web.Models;
+using Agiil.Web.Models.Sprints;
+using Agiil.Web.Models.Tickets;
 using CSF.Entities;
 
 namespace Agiil.Web.Controllers
@@ -14,6 +14,7 @@ namespace Agiil.Web.Controllers
     public static readonly string NewModelKey = "NewModel";
 
     readonly ITicketCreator ticketCreator;
+    readonly Lazy<ISprintLister> sprintLister;
 
     [HttpGet]
     public ActionResult Index()
@@ -26,20 +27,9 @@ namespace Agiil.Web.Controllers
     public ActionResult Create(NewTicketSpecification spec)
     {
       var model = GetModel(spec);
-      var request = new CreateTicketRequest
-      {
-        Title = model.Specification?.Title,
-        Description = model.Specification?.Description,
-      };
-
+      var request = Mapper.Map<CreateTicketRequest>(spec);
       var response = ticketCreator.Create(request);
-      model.Response = new NewTicketResponse
-      {
-        TitleIsInvalid = response.TitleIsInvalid,
-        DescriptionIsInvalid = response.DescriptionIsInvalid,
-        TicketIdentity = response.Ticket?.GetIdentity()?.Value,
-      };
-
+      model.Response = Mapper.Map<NewTicketResponse>(response);
       TempData.Add(NewModelKey, model);
       return RedirectToAction(nameof(NewTicketController.Index));
     }
@@ -48,16 +38,26 @@ namespace Agiil.Web.Controllers
     {
       var model = ModelFactory.GetModel<NewTicketModel>();
       model.Specification = spec;
+      model.AvailableSprints = sprintLister
+        .Value
+        .GetSprints()
+        .Select(x => Mapper.Map<SprintSummaryDto>(x))
+        .ToList();
       return model;
     }
 
-    public NewTicketController(ITicketCreator ticketCreator, Services.SharedModel.StandardPageModelFactory modelFactory)
-      : base(modelFactory)
+    public NewTicketController(ITicketCreator ticketCreator,
+                               Lazy<ISprintLister> sprintLister,
+                               ControllerBaseDependencies baseDeps)
+      : base(baseDeps)
     {
+      if(sprintLister == null)
+        throw new ArgumentNullException(nameof(sprintLister));
       if(ticketCreator == null)
         throw new ArgumentNullException(nameof(ticketCreator));
 
       this.ticketCreator = ticketCreator;
+      this.sprintLister = sprintLister;
     }
   }
 }

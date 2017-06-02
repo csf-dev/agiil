@@ -8,11 +8,11 @@
   <p>This is a list of the tickets which exist in the application.</p>
   <p tal:condition="here/ShowingClosedTickets">
     Displaying tickets marked as <strong>closed</strong>.
-    You may instead show <a href="Tickets">open tickets</a> instead.
+    You may instead show <a href="Tickets">open tickets</a>.
   </p>
   <p tal:condition="not:here/ShowingClosedTickets">
     Displaying tickets marked as <strong>open</strong>.
-    You may instead show <a href="Tickets?ShowClosedTickets=True">closed tickets</a> instead.
+    You may instead show <a href="Tickets?ShowClosedTickets=True">closed tickets</a>.
   </p>
   <table tal:define="tickets here/Tickets" class="ticket_list">
     <colgroup>
@@ -33,7 +33,7 @@
       <tr tal:repeat="ticket tickets" tal:attributes="class ticket/GetHtmlClasses">
         <td tal:content="ticket/Reference">AB123</td>
         <td tal:define="url string:Ticket/Index/${ticket/Id}">
-          <a href="Ticket/Index/1" tal:attributes="href url" tal:content="ticket/Title">Ticket title here</a>
+          <a href="Ticket/Index/0" tal:attributes="href url" tal:content="ticket/Title">Ticket title here</a>
         </td>
         <td tal:content="ticket/Creator">username</td>
         <td>

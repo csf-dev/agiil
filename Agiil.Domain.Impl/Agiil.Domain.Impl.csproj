@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Domain</RootNamespace>
     <AssemblyName>Agiil.Domain.Impl</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.1.0</ReleaseVersion>
+    <ReleaseVersion>0.2.0.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -75,6 +75,9 @@
     <Reference Include="CSF.Data.NHibernate">
       <HintPath>..\packages\CSF.Data.NHibernate.6.1.1\lib\net45\CSF.Data.NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,7 +91,7 @@
     <Compile Include="Data\DevelopmentInitialDataCreator.cs" />
     <Compile Include="Tickets\TicketLister.cs" />
     <Compile Include="Tickets\TicketDetailService.cs" />
-    <Compile Include="Tickets\EditTicketTitleAndDescriptionValidatorFactory.cs" />
+    <Compile Include="Tickets\EditTicketValidatorFactory.cs" />
     <Compile Include="IDomainImplementationAssemblyMarker.cs" />
     <Compile Include="Tickets\TicketEditor.cs" />
     <Compile Include="ValidationResultInterpreter.cs" />
@@ -102,6 +105,18 @@
     <Compile Include="Tickets\CommentEditor.cs" />
     <Compile Include="Tickets\CommentReader.cs" />
     <Compile Include="Tickets\TicketOpenerCloser.cs" />
+    <Compile Include="Projects\DummyCurrentProjectGetter.cs" />
+    <Compile Include="Sprints\SprintCreator.cs" />
+    <Compile Include="Validation\EndDateMustNotBeBeforeStartDateRule.cs" />
+    <Compile Include="Sprints\CreateSprintValidatorFactory.cs" />
+    <Compile Include="ResponseFactory.cs" />
+    <Compile Include="Sprints\SprintFactory.cs" />
+    <Compile Include="Sprints\SprintLister.cs" />
+    <Compile Include="Tickets\TicketReferenceParser.cs" />
+    <Compile Include="Tickets\TicketReferenceQuery.cs" />
+    <Compile Include="Sprints\SprintDetailService.cs" />
+    <Compile Include="Sprints\SprintEditor.cs" />
+    <Compile Include="Sprints\EditSprintValidatorFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
@@ -119,6 +134,8 @@
     <Folder Include="Resources\" />
     <Folder Include="Data\" />
     <Folder Include="Validation\" />
+    <Folder Include="Projects\" />
+    <Folder Include="Sprints\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

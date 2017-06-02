@@ -23,6 +23,15 @@
       Created by <strong tal:content="ticket/Creator">username</strong>
       on <strong tal:content="ticket/CreationTimestamp">2001-01-01 19:21:22</strong>.
     </p>
+    <p tal:condition="ticket/Sprint">
+      This ticket is part of sprint
+      <a href="Sprint/Index/0"
+         tal:define="url string:Sprint/Index/${ticket/Sprint/Id}"
+         tal:attributes="href url"><strong tal:content="ticket/Sprint/Name">Sprint name</strong></a>.
+    </p>
+    <p tal:condition="not:ticket/Sprint">
+      This ticket is not part of any sprint.
+    </p>
     <form class="open_close_ticket"
           action="OpenCloseTicket/Close/0"
           method="POST"

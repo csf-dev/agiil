@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Validation;
+using AutoMapper;
 using CSF.Data;
 using CSF.Data.Entities;
 using CSF.Validation;
@@ -10,10 +11,11 @@ namespace Agiil.Domain.Tickets
   {
     readonly IRepository<Ticket> ticketRepo;
     readonly ITransactionCreator transactionFactory;
-    readonly IValidatorFactory<EditTicketTitleAndDescriptionRequest> validatorFactory;
-    readonly Func<IValidationResult, Ticket, EditTicketTitleAndDescriptionResponse> responseCreator;
+    readonly IValidatorFactory<EditTicketRequest> validatorFactory;
+    readonly Func<IValidationResult, Ticket, EditTicketResponse> responseCreator;
+    readonly IMapper mapper;
 
-    public EditTicketTitleAndDescriptionResponse Edit(EditTicketTitleAndDescriptionRequest request)
+    public EditTicketResponse Edit(EditTicketRequest request)
     {
       var validationResult = ValidateRequest(request);
       if(!validationResult.IsSuccess)
@@ -24,7 +26,7 @@ namespace Agiil.Domain.Tickets
       using(var trans = transactionFactory.BeginTransaction())
       {
         ticket = ticketRepo.Get(request.Identity);
-        MapChangesToTicket(request, ticket);
+        mapper.Map(request, ticket);
         ticketRepo.Update(ticket);
         trans.Commit();
       }
@@ -32,23 +34,20 @@ namespace Agiil.Domain.Tickets
       return responseCreator(validationResult, ticket);
     }
 
-    IValidationResult ValidateRequest(EditTicketTitleAndDescriptionRequest request)
+    IValidationResult ValidateRequest(EditTicketRequest request)
     {
       var validator = validatorFactory.GetValidator();
       return validator.Validate(request);
     }
 
-    void MapChangesToTicket(EditTicketTitleAndDescriptionRequest request, Ticket ticket)
-    {
-      ticket.Title = request.Title;
-      ticket.Description = request.Description;
-    }
-
     public TicketEditor(IRepository<Ticket> ticketRepo,
                         ITransactionCreator transactionFactory,
-                        IValidatorFactory<EditTicketTitleAndDescriptionRequest> validatorFactory,
-                        Func<IValidationResult, Ticket, EditTicketTitleAndDescriptionResponse> responseCreator)
+                        IValidatorFactory<EditTicketRequest> validatorFactory,
+                        Func<IValidationResult, Ticket, EditTicketResponse> responseCreator,
+                        IMapper mapper)
     {
+      if(mapper == null)
+        throw new ArgumentNullException(nameof(mapper));
       if(responseCreator == null)
         throw new ArgumentNullException(nameof(responseCreator));
       if(validatorFactory == null)
@@ -62,6 +61,7 @@ namespace Agiil.Domain.Tickets
       this.transactionFactory = transactionFactory;
       this.validatorFactory = validatorFactory;
       this.responseCreator = responseCreator;
+      this.mapper = mapper;
     }
   }
 }

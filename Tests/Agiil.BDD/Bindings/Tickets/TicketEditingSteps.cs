@@ -2,6 +2,7 @@
 using Agiil.Domain.Tickets;
 using Agiil.Tests.Tickets;
 using Agiil.Web.Models;
+using Agiil.Web.Models.Tickets;
 using CSF.Entities;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -19,6 +20,12 @@ namespace Agiil.BDD.Bindings.Tickets
       var spec = ticketProperties.CreateInstance<EditTicketTitleAndDescriptionSpecification>();
       spec.Identity = Identity.Parse<Ticket>(ticketProperties.Rows[0].GetString("Id"));
       ticketEditor.Edit(spec);
+    }
+
+    [When(@"the user adds ticket ([^ ]+) to sprint '([^']+)'")]
+    public void WhenAUserAddsATicketToASprint(string ticketReference, string sprintName)
+    {
+      ticketEditor.AddToSprint(ticketReference, sprintName);
     }
 
     public TicketEditingSteps(IEditTicketController ticketEditor)

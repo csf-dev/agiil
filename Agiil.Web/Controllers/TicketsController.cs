@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Agiil.Domain.Tickets;
-using Agiil.Web.Models;
-using Agiil.Web.Services.Tickets;
+using Agiil.Web.Models.Tickets;
+using AutoMapper;
 
 namespace Agiil.Web.Controllers
 {
   public class TicketsController : ControllerBase
   {
     readonly ITicketLister lister;
-    readonly TicketSummaryMapper mapper;
 
     public ActionResult Index(AdHocTicketListSpecification spec)
     {
@@ -29,11 +27,12 @@ namespace Agiil.Web.Controllers
 
       model.ShowingClosedTickets = showingClosedTickets;
       if(tickets != null)
-        model.Tickets = mapper.Map(tickets);
+        model.Tickets = tickets.Select(x => Mapper.Map<TicketSummaryDto>(x)).ToList();
 
       return model;
     }
 
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
     TicketListRequest GetRequest(AdHocTicketListSpecification spec)
     {
       if(ReferenceEquals(spec, null))
@@ -47,15 +46,11 @@ namespace Agiil.Web.Controllers
     }
 
     public TicketsController(ITicketLister lister,
-                             TicketSummaryMapper mapper,
-                             Services.SharedModel.StandardPageModelFactory modelFactory)
-      : base(modelFactory)
+                             ControllerBaseDependencies baseDeps)
+      : base(baseDeps)
     {
-      if(mapper == null)
-        throw new ArgumentNullException(nameof(mapper));
       if(lister == null)
         throw new ArgumentNullException(nameof(lister));
-      this.mapper = mapper;
       this.lister = lister;
     }
   }

@@ -5,6 +5,8 @@ namespace Agiil.Tests.Tickets
   {
     public long? Id { get; set; }
 
+    public string Ref { get; set; }
+
     public string Title { get; set; }
 
     public string Creator { get; set; }

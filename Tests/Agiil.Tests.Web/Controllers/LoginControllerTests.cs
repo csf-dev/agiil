@@ -5,8 +5,8 @@ using Ploeh.AutoFixture.NUnit3;
 using Moq;
 using Agiil.Web.Controllers;
 using System.Web.Mvc;
-using Agiil.Web.Models;
 using Agiil.Domain.Auth;
+using Agiil.Web.Models.Auth;
 
 namespace Agiil.Tests.Web.Controllers
 {
@@ -35,7 +35,7 @@ namespace Agiil.Tests.Web.Controllers
 
     [Test, AutoMoqData]
     public void Login_uses_login_logout_manager_service([Frozen] ILoginLogoutManager loginLogoutManager,
-                                                        Agiil.Web.Models.LoginCredentials credentials,
+                                                        Agiil.Web.Models.Auth.LoginCredentials credentials,
                                                         [NoAutoProperties] LoginController sut)
     {
       // Arrange
@@ -52,7 +52,7 @@ namespace Agiil.Tests.Web.Controllers
 
     [Test, AutoMoqData]
     public void Login_redirects_to_home_controller_after_successful_login([Frozen] ILoginLogoutManager loginLogoutManager,
-                                                                          Agiil.Web.Models.LoginCredentials credentials,
+                                                                          Agiil.Web.Models.Auth.LoginCredentials credentials,
                                                                           string username,
                                                                           [NoAutoProperties] LoginController sut)
     {
@@ -74,7 +74,7 @@ namespace Agiil.Tests.Web.Controllers
 
     [Test, AutoMoqData]
     public void Login_redirects_to_return_url_after_successful_login([Frozen] ILoginLogoutManager loginLogoutManager,
-                                                                     Agiil.Web.Models.LoginCredentials credentials,
+                                                                     Agiil.Web.Models.Auth.LoginCredentials credentials,
                                                                      string username,
                                                                      [NoAutoProperties] LoginController sut)
     {
@@ -96,7 +96,7 @@ namespace Agiil.Tests.Web.Controllers
 
     [Test, AutoMoqData]
     public void Login_redirects_to_login_page_after_failed_login([Frozen] ILoginLogoutManager loginLogoutManager,
-                                                                 Agiil.Web.Models.LoginCredentials credentials,
+                                                                 Agiil.Web.Models.Auth.LoginCredentials credentials,
                                                                  [NoAutoProperties] LoginController sut)
     {
       // Arrange
@@ -117,7 +117,7 @@ namespace Agiil.Tests.Web.Controllers
 
     [Test, AutoMoqData]
     public void Login_ignores_return_url_on_failed_login([Frozen] ILoginLogoutManager loginLogoutManager,
-                                                         Agiil.Web.Models.LoginCredentials credentials,
+                                                         Agiil.Web.Models.Auth.LoginCredentials credentials,
                                                          [NoAutoProperties] LoginController sut)
     {
       // Arrange

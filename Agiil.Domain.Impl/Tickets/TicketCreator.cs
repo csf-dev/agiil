@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Auth;
+using Agiil.Domain.Sprints;
 using Agiil.Domain.Validation;
 using CSF.Data;
 using CSF.Data.Entities;
@@ -16,6 +17,10 @@ namespace Agiil.Domain.Tickets
     readonly ITransactionCreator transactionFactory;
     readonly IValidatorFactory<CreateTicketRequest> validatorFactory;
     Func<IValidationResult, Ticket, CreateTicketResponse> responseCreator;
+    readonly IRepository<Sprint> sprintRepo;
+
+    // TODO: This class has too many dependencies and thus too many responsibilities
+    // Refactor and push some of these outwards
 
     public CreateTicketResponse Create(CreateTicketRequest request)
     {
@@ -43,13 +48,17 @@ namespace Agiil.Domain.Tickets
 
     Ticket CreateTicket(CreateTicketRequest request)
     {
-      return ticketFactory.CreateTicket(request.Title,
-                                        request.Description,
-                                        userReader.RequireCurrentUser());
-
+      var ticket = ticketFactory.CreateTicket(request.Title,
+                                              request.Description,
+                                              userReader.RequireCurrentUser());
+      
+      if(request.SprintIdentity != null)
+        ticket.Sprint = sprintRepo.Theorise(request.SprintIdentity);
+      
+      return ticket;
     }
 
-    // TODO: Refactor this into a factory type, which may be substituted with a Mock in testing
+    // TODO: #AG8 - Refactor this into a factory type
     public Func<IValidationResult, Ticket, CreateTicketResponse> ResponseCreator
     {
       get { return responseCreator; }
@@ -61,8 +70,11 @@ namespace Agiil.Domain.Tickets
                          ITicketFactory ticketFactory,
                          ITransactionCreator transactionFactory,
                          IValidatorFactory<CreateTicketRequest> validatorFactory,
-                         Func<IValidationResult,Ticket,CreateTicketResponse> responseCreator)
+                         Func<IValidationResult,Ticket,CreateTicketResponse> responseCreator,
+                         IRepository<Sprint> sprintRepo)
     {
+      if(sprintRepo == null)
+        throw new ArgumentNullException(nameof(sprintRepo));
       if(responseCreator == null)
         throw new ArgumentNullException(nameof(responseCreator));
       if(validatorFactory == null)
@@ -82,6 +94,7 @@ namespace Agiil.Domain.Tickets
       this.transactionFactory = transactionFactory;
       this.validatorFactory = validatorFactory;
       this.responseCreator = responseCreator;
+      this.sprintRepo = sprintRepo;
     }
   }
 }

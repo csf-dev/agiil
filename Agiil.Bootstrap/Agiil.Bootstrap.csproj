@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Bootstrap</RootNamespace>
     <AssemblyName>Agiil.Bootstrap</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.1.0</ReleaseVersion>
+    <ReleaseVersion>0.2.0.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -103,6 +103,9 @@
     <Reference Include="CSF.Data.NHibernate">
       <HintPath>..\packages\CSF.Data.NHibernate.6.1.1\lib\net45\CSF.Data.NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -123,6 +126,12 @@
     <Compile Include="Validation\ValidationRulesModule.cs" />
     <Compile Include="Auth\DomainAuthModule.cs" />
     <Compile Include="Auth\CSFSecurityModule.cs" />
+    <Compile Include="ObjectMaps\AutomapperModule.cs" />
+    <Compile Include="Projects\ProjectsModule.cs" />
+    <Compile Include="Sprints\SprintsModule.cs" />
+    <Compile Include="ObjectMaps\AutomapperProfilesModule.cs" />
+    <Compile Include="ObjectMaps\AutomapperResolversModule.cs" />
+    <Compile Include="Data\DatabaseMaintenanceModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
@@ -145,6 +154,18 @@
       <Project>{FF544749-0A04-417F-AD83-E284BBF498E7}</Project>
       <Name>Agiil.Domain.Impl</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Agiil.ObjectMaps\Agiil.ObjectMaps.csproj">
+      <Project>{36A605F5-89BD-4FBA-BDB1-088C38E54886}</Project>
+      <Name>Agiil.ObjectMaps</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Web.Models\Agiil.Web.Models.csproj">
+      <Project>{53F1B62F-1BEE-4732-A1F3-433822529906}</Project>
+      <Name>Agiil.Web.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Data.Maintenance\Agiil.Data.Maintenance.csproj">
+      <Project>{93734A7F-7011-4C26-B14F-6228A7648DAC}</Project>
+      <Name>Agiil.Data.Maintenance</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -156,6 +177,9 @@
     <Folder Include="Config\" />
     <Folder Include="Tickets\" />
     <Folder Include="Validation\" />
+    <Folder Include="ObjectMaps\" />
+    <Folder Include="Projects\" />
+    <Folder Include="Sprints\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.0\build\net45\System.Data.SQLite.Core.targets')" />

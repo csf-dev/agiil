@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using Agiil.Bootstrap;
+using Agiil.Tests.ObjectMaps;
 using Autofac;
 
 namespace Agiil.Tests
@@ -19,6 +20,11 @@ namespace Agiil.Tests
     protected virtual void RegisterTestComponents(ContainerBuilder builder)
     {
       RegisterTestComponentModules(builder);
+    }
+
+    protected override Agiil.ObjectMaps.IProfileTypesProvider GetProfileTypesProvider()
+    {
+      return new TestingProfileTypesProvider();
     }
 
     internal static void RegisterTestComponentModules(ContainerBuilder builder)

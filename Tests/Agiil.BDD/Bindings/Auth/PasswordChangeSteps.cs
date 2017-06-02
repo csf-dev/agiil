@@ -1,6 +1,6 @@
 ﻿using System;
 using Agiil.Tests.Auth;
-using Agiil.Web.Models;
+using Agiil.Web.Models.Auth;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 

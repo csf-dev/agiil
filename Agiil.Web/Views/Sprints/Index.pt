@@ -1,0 +1,50 @@
+﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<head>
+<title metal:fill-slot="title_element">Sprints</title>
+</head>
+<body>
+<div metal:fill-slot="page_content"
+     class="page_content">
+  <h1>Sprints</h1>
+  <p tal:condition="not:here/ShowingClosedSprints">
+    Currently displaying <strong>open</strong> sprints only.
+    You may instead view <a href="Sprints?ShowClosedSprints=True">closed sprints</a>.
+  </p>
+  <p tal:condition="here/ShowingClosedSprints">
+    Currently displaying <strong>closed</strong> sprints only.
+    You may instead view <a href="Sprints">open sprints</a>.
+  </p>
+  <table tal:define="sprints here/Sprints" class="sprint_list">
+    <colgroup>
+      <col class="name" />
+      <col class="start_date" />
+      <col class="end_date" />
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Start</th>
+        <th>End</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr tal:repeat="sprint sprints" tal:attributes="class sprint/GetHtmlClasses">
+        <td tal:define="url string:Sprint/Index/${sprint/Id}">
+          <a href="Sprint/Index/0" tal:attributes="href url" tal:content="sprint/Name">Sprint name here</a>
+        </td>
+        <td>
+          <span tal:content="sprint/GetShortStartDate"
+                tal:attributes="title sprint/GetLongStartDate"
+                title="2011-01-01 12:13:43">1 Jan 2001</span>
+        </td>
+        <td>
+          <span tal:content="sprint/GetShortEndDate"
+                tal:attributes="title sprint/GetLongEndDate"
+                title="2011-01-01 12:13:43">1 Jan 2001</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

@@ -14,9 +14,7 @@ namespace Agiil.Data
 {
   public class SessionFactoryFactory : ISessionFactoryFactory
   {
-    internal const string
-      ConnectionStringName = "Agiil",
-      MappingName = "ConventionMappings";
+    const string MappingName = "ConventionMappings";
 
     readonly IMappingProvider mappingProvider;
     readonly IConnectionStringProvider connectionStringProvider;
@@ -45,7 +43,7 @@ namespace Agiil.Data
 
     protected virtual void ConfigureDatabase(Configuration config)
     {
-      var connectionString = connectionStringProvider.GetConnectionString(ConnectionStringName);
+      var connectionString = connectionStringProvider.GetConnectionString();
 
       config.DataBaseIntegration(x => {
         x.SelectSQLiteDriver();

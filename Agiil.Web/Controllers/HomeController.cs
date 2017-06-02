@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using Agiil.Web.Models;
 using Agiil.Web.Models.Shared;
 
 namespace Agiil.Web.Controllers
@@ -13,8 +14,8 @@ namespace Agiil.Web.Controllers
       return View (model);
     }
 
-    public HomeController(Services.SharedModel.StandardPageModelFactory modelFactory)
-      : base(modelFactory)
+    public HomeController(ControllerBaseDependencies baseDeps)
+      : base(baseDeps)
     {}
   }
 }

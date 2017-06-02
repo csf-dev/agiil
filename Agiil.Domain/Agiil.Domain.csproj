@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Domain</RootNamespace>
     <AssemblyName>Agiil.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.1.0</ReleaseVersion>
+    <ReleaseVersion>0.2.0.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -80,9 +80,9 @@
     <Compile Include="Data\IInitialDataCreator.cs" />
     <Compile Include="Tickets\ITicketLister.cs" />
     <Compile Include="Tickets\ITicketDetailService.cs" />
-    <Compile Include="Tickets\EditTicketTitleAndDescriptionRequest.cs" />
+    <Compile Include="Tickets\EditTicketRequest.cs" />
     <Compile Include="Tickets\ITicketEditor.cs" />
-    <Compile Include="Tickets\EditTicketTitleAndDescriptionResponse.cs" />
+    <Compile Include="Tickets\EditTicketResponse.cs" />
     <Compile Include="IValidationResultInterpreter.cs" />
     <Compile Include="Tickets\Comment.cs" />
     <Compile Include="Tickets\ICommentCreator.cs" />
@@ -103,6 +103,23 @@
     <Compile Include="Tickets\ReopenTicketResponse.cs" />
     <Compile Include="Tickets\ITicketOpenerCloser.cs" />
     <Compile Include="Tickets\TicketListRequest.cs" />
+    <Compile Include="Sprints\Sprint.cs" />
+    <Compile Include="Sprints\ISprintCreator.cs" />
+    <Compile Include="Sprints\CreateSprintRequest.cs" />
+    <Compile Include="Sprints\CreateSprintResponse.cs" />
+    <Compile Include="Projects\ICurrentProjectGetter.cs" />
+    <Compile Include="IHasStartAndEndDates.cs" />
+    <Compile Include="IResponseFactory.cs" />
+    <Compile Include="Sprints\ISprintFactory.cs" />
+    <Compile Include="Sprints\ISprintLister.cs" />
+    <Compile Include="Tickets\ITicketReferenceParser.cs" />
+    <Compile Include="Tickets\TicketReference.cs" />
+    <Compile Include="Tickets\ITicketReferenceQuery.cs" />
+    <Compile Include="Sprints\ISprintDetailService.cs" />
+    <Compile Include="Sprints\ListSprintsRequest.cs" />
+    <Compile Include="Sprints\ISprintEditor.cs" />
+    <Compile Include="Sprints\EditSprintRequest.cs" />
+    <Compile Include="Sprints\EditSprintResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
@@ -110,6 +127,7 @@
     <Folder Include="Data\" />
     <Folder Include="Validation\" />
     <Folder Include="Projects\" />
+    <Folder Include="Sprints\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

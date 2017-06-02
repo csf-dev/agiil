@@ -3,6 +3,7 @@ using System.Net;
 using System.Web.Http;
 using Agiil.Domain.Tickets;
 using Agiil.Web.Models;
+using Agiil.Web.Models.Tickets;
 
 namespace Agiil.Web.ApiControllers
 {
@@ -19,13 +20,14 @@ namespace Agiil.Web.ApiControllers
       return MapResponse(sourceResponse);
     }
 
-    public Models.EditCommentResponse Post(EditCommentSpecification spec)
+    public Models.Tickets.EditCommentResponse Post(EditCommentSpecification spec)
     {
       if(spec == null)
       {
         throw new ArgumentNullException(nameof(spec));
       }
 
+      // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
       var request = new EditCommentRequest
       {
         CommentIdentity = spec.CommentId,
@@ -36,7 +38,8 @@ namespace Agiil.Web.ApiControllers
       if(response.CommentDoesNotExist)
         throw new HttpResponseException(HttpStatusCode.NotFound);
 
-      return new Models.EditCommentResponse
+      // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
+      return new Models.Tickets.EditCommentResponse
       {
         BodyIsInvalid = response.BodyIsInvalid,
         UserDoesNotHavePermission = response.UserDoesNotHavePermission,
@@ -44,6 +47,7 @@ namespace Agiil.Web.ApiControllers
       };
     }
 
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
     CreateCommentRequest GetCreationRequest(AddCommentSpecification spec)
     {
       if(spec == null)
@@ -56,6 +60,7 @@ namespace Agiil.Web.ApiControllers
       };
     }
 
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
     AddCommentResponse MapResponse(CreateCommentResponse source)
     {
       if(source == null)

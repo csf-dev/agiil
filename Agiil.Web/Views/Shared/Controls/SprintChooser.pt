@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Sprint chooser control</title>
+<base href="../../../" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+</style>
+</head>
+<body>
+  <form action="" method="post">
+    <fieldset>
+      <div class="form_element field">
+        <label for="SprintIdentity">Sprint</label>
+        <select id="SprintIdentity"
+                name="SprintIdentity"
+                tal:define="selectedSprintId sprintId | nothing"
+                metal:define-macro="sprint_chooser">
+          <option value="">None</option>
+          <option tal:repeat="sprint availableSprints"
+                  tal:attributes="selected csharp:(sprint.Id == selectedSprintId)? &quot;selected&quot; : null;
+                                  value sprint/Id"
+                  tal:content="sprint/Name">Sprint name</option>
+        </select>
+      </div>
+    </fieldset>
+  </form>
+<footer>
+
+</footer>
+</body>
+</html>

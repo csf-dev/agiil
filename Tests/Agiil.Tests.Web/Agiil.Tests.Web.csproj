@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Tests.Web</RootNamespace>
     <AssemblyName>Agiil.Tests.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.1.0</ReleaseVersion>
+    <ReleaseVersion>0.2.0.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -116,6 +116,10 @@
     <ProjectReference Include="..\..\Agiil.Domain\Agiil.Domain.csproj">
       <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
       <Name>Agiil.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Web.Models\Agiil.Web.Models.csproj">
+      <Project>{53F1B62F-1BEE-4732-A1F3-433822529906}</Project>
+      <Name>Agiil.Web.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

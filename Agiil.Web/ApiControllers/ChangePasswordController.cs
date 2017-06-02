@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Http;
 using Agiil.Auth;
-using Agiil.Web.Models;
+using Agiil.Web.Models.Auth;
 
 namespace Agiil.Web.ApiControllers
 {
@@ -19,6 +19,7 @@ namespace Agiil.Web.ApiControllers
       return GetResult(result);
     }
 
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
     PasswordChangeRequest MapRequest(ChangePasswordSpecification spec)
     {
       return new PasswordChangeRequest
@@ -29,6 +30,7 @@ namespace Agiil.Web.ApiControllers
       };
     }
 
+    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
     ChangePasswordResult GetResult(PasswordChangeResponse result)
     {
       return new ChangePasswordResult

@@ -8,5 +8,7 @@ namespace Agiil.Tests.Tickets
     public string Description { get; set; }
 
     public string User { get; set; }
+
+    public long? Sprint { get; set; }
   }
 }
