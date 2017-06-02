@@ -11,6 +11,7 @@ namespace Agiil.Domain.Sprints
     protected override void ConfigureManifest(IManifestBuilder<CreateSprintRequest> builder)
     {
       builder.AddRule<NotNullRule>();
+      builder.AddMemberRule<NotNullValueRule>(x => x.Name);
       builder.AddMemberRule<RegexMatchValueRule>(x => x.Name, c => {
         c.Configure(r => r.Pattern = @"^\S+");
       });
