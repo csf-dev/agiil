@@ -68,6 +68,7 @@
     <Compile Include="Sprints\EditSprintSpecificationToEditSprintRequestProfile.cs" />
     <Compile Include="CreateIdentityResolver.cs" />
     <Compile Include="Sprints\EditSprintResponseToWebEditSprintResponseProfile.cs" />
+    <Compile Include="Sprints\EditSprintRequestToSprintProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

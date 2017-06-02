@@ -30,6 +30,9 @@
     <p tal:condition="sprint/EndDate">
       End date: <strong tal:content="sprint/GetShortEndDate">2011-01-01</strong>
     </p>
+    <p>
+      <a href="Sprint/Edit/0" tal:attributes="href string:Sprint/Edit/${sprint/Id}">Edit this sprint</a>
+    </p>
   </section>
   <section class="description">
     <h2>Description</h2>

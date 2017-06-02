@@ -39,8 +39,10 @@ namespace Agiil.Web.Controllers
       if(ReferenceEquals(sprint, null))
         return HttpNotFound();
 
-      var model = GetTempData<EditSprintModel>(EditSprintModelKey)?? CreateModel();
-      model.SprintDetail = Mapper.Map<SprintDetailDto>(sprint);
+      var response = GetTempData<Models.Sprints.EditSprintResponse>(EditSprintModelKey);
+      var model = CreateModel();
+      model.Response = response;
+      model.Sprint = Mapper.Map<SprintDetailDto>(sprint);
       return View(model);
     }
 

@@ -5,7 +5,7 @@ namespace Agiil.Web.Models.Sprints
   {
     public EditSprintSpecification Specification { get; set; }
 
-    public SprintDetailDto SprintDetail { get; set; }
+    public SprintDetailDto Sprint { get; set; }
 
     public EditSprintResponse Response { get; set; }
   }

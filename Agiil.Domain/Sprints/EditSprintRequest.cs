@@ -3,7 +3,7 @@ using CSF.Entities;
 
 namespace Agiil.Domain.Sprints
 {
-  public class EditSprintRequest
+  public class EditSprintRequest : IHasStartAndEndDates
   {
     public IIdentity<Sprint> SprintIdentity { get; set; }
     public string Name { get; set; }
