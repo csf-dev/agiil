@@ -65,6 +65,9 @@
     <Compile Include="Sprints\AdHocSprintListingRequestToListSprintsRequestProfile.cs" />
     <Compile Include="Tickets\NewTicketSpecificationToCreateTicketRequestProfile.cs" />
     <Compile Include="Tickets\CreateTicketResponseToNewTicketResponseProfile.cs" />
+    <Compile Include="Sprints\EditSprintSpecificationToEditSprintRequestProfile.cs" />
+    <Compile Include="CreateIdentityResolver.cs" />
+    <Compile Include="Sprints\EditSprintResponseToWebEditSprintResponseProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -115,6 +115,8 @@
     <Compile Include="Tickets\TicketReferenceParser.cs" />
     <Compile Include="Tickets\TicketReferenceQuery.cs" />
     <Compile Include="Sprints\SprintDetailService.cs" />
+    <Compile Include="Sprints\SprintEditor.cs" />
+    <Compile Include="Sprints\EditSprintValidatorFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

@@ -11,11 +11,17 @@ namespace Agiil.Web.Controllers
 {
   public class SprintController : ControllerBase
   {
-    readonly ISprintDetailService detailService;
+    const string
+      EditSprintModelKey = "Edit sprint model",
+      SuccessfulEditKey = "Successful edit";
+
+
+    readonly Lazy<ISprintDetailService> detailService;
+    readonly Lazy<ISprintEditor> editor;
 
     public ActionResult Index(IIdentity<Sprint> id)
     {
-      var sprint = detailService.GetSprint(id);
+      var sprint = detailService.Value.GetSprint(id);
 
       if(ReferenceEquals(sprint, null))
         return HttpNotFound();
@@ -25,12 +31,57 @@ namespace Agiil.Web.Controllers
       return View(model);
     }
 
-    public SprintController(ControllerBaseDependencies deps,
-                            ISprintDetailService detailService) : base(deps)
+    [HttpGet]
+    public ActionResult Edit(IIdentity<Sprint> id)
     {
+      var sprint = detailService.Value.GetSprint(id);
+
+      if(ReferenceEquals(sprint, null))
+        return HttpNotFound();
+
+      var model = GetTempData<EditSprintModel>(EditSprintModelKey)?? CreateModel();
+      model.SprintDetail = Mapper.Map<SprintDetailDto>(sprint);
+      return View(model);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(EditSprintSpecification spec)
+    {
+      var request = Mapper.Map<EditSprintRequest>(spec);
+      var response = editor.Value.Edit(request);
+
+      if(response.IdIsInvalid)
+        return HttpNotFound();
+
+      TempData.Clear();
+
+      if(response.IsSuccess)
+      {
+        TempData.Add(SuccessfulEditKey, true);
+        return RedirectToAction(nameof(Index), new { id = spec.Id });
+      }
+
+      var responseModel = Mapper.Map<Models.Sprints.EditSprintResponse>(response);
+      TempData.Add(EditSprintModelKey, responseModel);
+
+      return RedirectToAction(nameof(Edit), new { id = spec.Id });
+    }
+
+    EditSprintModel CreateModel()
+    {
+      return ModelFactory.GetModel<EditSprintModel>();
+    }
+
+    public SprintController(ControllerBaseDependencies deps,
+                            Lazy<ISprintDetailService> detailService,
+                            Lazy<ISprintEditor> editor) : base(deps)
+    {
+      if(editor == null)
+        throw new ArgumentNullException(nameof(editor));
       if(detailService == null)
         throw new ArgumentNullException(nameof(detailService));
       this.detailService = detailService;
+      this.editor = editor;
     }
   }
 }

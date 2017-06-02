@@ -104,6 +104,7 @@
     <Compile Include="Bindings\Sprints\SprintCreationSteps.cs" />
     <Compile Include="Bindings\Sprints\SprintQuerySteps.cs" />
     <Compile Include="Bindings\Projects\ProjectCreationSteps.cs" />
+    <Compile Include="Bindings\Sprints\SprintEditingSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
