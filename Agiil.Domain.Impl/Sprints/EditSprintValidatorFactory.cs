@@ -6,11 +6,13 @@ using CSF.Validation.StockRules;
 
 namespace Agiil.Domain.Sprints
 {
-  public class CreateSprintValidatorFactory : ValidatorFactoryBase<CreateSprintRequest>
+  public class EditSprintValidatorFactory : ValidatorFactoryBase<EditSprintRequest>
   {
-    protected override void ConfigureManifest(IManifestBuilder<CreateSprintRequest> builder)
+    protected override void ConfigureManifest(IManifestBuilder<EditSprintRequest> builder)
     {
       builder.AddRule<NotNullRule>();
+      builder.AddMemberRule<NotNullValueRule>(x => x.SprintIdentity);
+      builder.AddMemberRule<EntityMustExistRule<Sprint>>(x => x.SprintIdentity);
       builder.AddMemberRule<NotNullValueRule>(x => x.Name);
       builder.AddMemberRule<RegexMatchValueRule>(x => x.Name, c => {
         c.Configure(r => r.Pattern = @"^\S+");
@@ -18,6 +20,6 @@ namespace Agiil.Domain.Sprints
       builder.AddRule<EndDateMustNotBeBeforeStartDateRule>();
     }
 
-    public CreateSprintValidatorFactory(IValidatorFactory validatorFactory) : base(validatorFactory) {}
+    public EditSprintValidatorFactory(IValidatorFactory validatorFactory) : base(validatorFactory) {}
   }
 }

@@ -132,6 +132,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AssignTicketToSprint.feature.cs</LastGenOutput>
     </None>
+    <None Include="Sprints\EditSprint.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>EditSprint.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tickets\TicketCreatorTests.cs" />
@@ -167,6 +171,9 @@
     </Compile>
     <Compile Include="Tickets\AssignTicketToSprint.feature.cs">
       <DependentUpon>AssignTicketToSprint.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Sprints\EditSprint.feature.cs">
+      <DependentUpon>EditSprint.feature</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
