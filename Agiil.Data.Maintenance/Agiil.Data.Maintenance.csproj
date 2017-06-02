@@ -81,6 +81,9 @@
     <EmbeddedResource Include="UpgradeScripts\Sqlite\2017-05-23-v0.1.0-Base-database.sqlite.sql">
       <LogicalName>2017-05-31-v0.1.0-Base-database.sqlite.sql</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="UpgradeScripts\Sqlite\2017-06-02-v0.2.0-Sprint-functionality.sqlite.sql">
+      <LogicalName>2017-06-02-v0.2.0-Sprint-functionality.sqlite.sql</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
