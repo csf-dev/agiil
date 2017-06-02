@@ -13,6 +13,8 @@ namespace Agiil.Web.Models
 
     public bool? UpgradesSuccessful { get; set; }
 
+    public bool UpgradeSuccess => UpgradesSuccessful.GetValueOrDefault();
+
     public bool HasPendingUpgrades => DatabaseUpgradesPending != null && DatabaseUpgradesPending.Any();
 
     public IEnumerable<string> DatabaseUpgradesApplied { get; set; }

@@ -33,10 +33,10 @@
   </p>
   <h2>Database upgrade scripts</h2>
   <div class="upgrade_feedback" tal:condition="here/UpgradesAttempted">
-    <p tal:condition="here/UpgradesSuccessful/Value">
+    <p tal:condition="here/UpgradeSuccess">
       Upgrades have been applied successfully.
     </p>
-    <p tal:condition="not:here/UpgradesSuccessful/Value">
+    <p tal:condition="not:here/UpgradeSuccess">
       Upgrades were unsuccessful!
     </p>
   </div>
