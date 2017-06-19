@@ -1,11 +1,12 @@
 ﻿version: '{branch}-{build}'
 init:
 - cmd: git config --global core.autocrlf true
+project: Agiil.sln
 before_build:
 - cmd: >-
     nuget restore Agiil.sln
 
-    git submodule update --init --recursive
+    git submodule update --init --recursive
 # As of 2017-05-15 it appears AppVeyor use a 32-bit MSBuild.
 # This means that we must compile for 32-bit, because otherwise
 # the custom 'CompileScssFiles' target will fail on usage of the
