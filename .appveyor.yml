@@ -1,7 +1,6 @@
 ﻿version: '{branch}-{build}'
 init:
 - cmd: git config --global core.autocrlf true
-project: Agiil.sln
 before_build:
 - cmd: >-
     nuget restore Agiil.sln
@@ -13,6 +12,7 @@ before_build:
 # 64-bit flavour of libsass.dll
 platform: x86
 build:
+  project: Agiil.sln
   verbosity: normal
 test:
   assemblies:
