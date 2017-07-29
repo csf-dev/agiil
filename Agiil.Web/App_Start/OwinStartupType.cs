@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Agiil.Bootstrap.DiConfiguration;
 using Agiil.Web.Bootstrap;
 using Agiil.Web.OAuth;
 using Autofac;
@@ -96,19 +97,36 @@ namespace Agiil.Web.App_Start
       return !(IsOAuthUrl(context) || IsWebApiUrl(context));
     }
 
-    private IContainer ConfigureDependencyInjection(IAppBuilder app, HttpConfiguration config)
+    IContainer ConfigureDependencyInjection(IAppBuilder app, HttpConfiguration config)
     {
-      var diConfig = new WebAppDiConfiguration(config, true);
-      var container = diConfig.GetContainerBuilder().Build();
+      var container = GetContainer(config);
 
-      var provider = new OwinCompatibleLifetimeScopeProvider(container);
+      var lifetimeScopeProvider = new OwinCompatibleLifetimeScopeProvider(container);
 
-      DependencyResolver.SetResolver(new AutofacDependencyResolver(container, provider));
+      DependencyResolver.SetResolver(new AutofacDependencyResolver(container, lifetimeScopeProvider));
 
       return container;
     }
 
-    private void ConfigureCookieAuthentication(IAppBuilder builder)
+    IContainer GetContainer(HttpConfiguration config)
+    {
+      var diFactory = GetContainerFactory();
+      diFactory.SetHttpConfiguration(config);
+      return diFactory.GetContainer();
+    }
+
+    IContainerFactoryWithHttpConfiguration GetContainerFactory()
+    {
+      var factoryProvider = new ContainerFactoryProvider();
+      var diFactory = factoryProvider.GetContainerBuilderFactory() as IContainerFactoryWithHttpConfiguration;
+
+      if(diFactory == null)
+        throw new InvalidOperationException($"The current Autofac container builder factory must implement {nameof(IContainerFactoryWithHttpConfiguration)}.");
+
+      return diFactory;
+    }
+
+    void ConfigureCookieAuthentication(IAppBuilder builder)
     {
       builder.UseCookieAuthentication(new CookieAuthenticationOptions {
         AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
@@ -121,7 +139,7 @@ namespace Agiil.Web.App_Start
       builder.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
     }
 
-    private void ConfigureBearerTokenAuthentication(IAppBuilder builder, IContainer container)
+    void ConfigureBearerTokenAuthentication(IAppBuilder builder, IContainer container)
     {
       var jwtOptions = container.Resolve<IJwtBearerAuthenticationOptionsFactory>();
       builder.UseJwtBearerAuthentication(jwtOptions.GetOptions());

@@ -2,7 +2,7 @@
 using AutoMapper;
 using CSF.Entities;
 
-namespace Agiil.ObjectMaps
+namespace Agiil.ObjectMaps.Resolvers
 {
   public class IdentityValueResolver : IValueResolver<IEntity, object, long>
   {

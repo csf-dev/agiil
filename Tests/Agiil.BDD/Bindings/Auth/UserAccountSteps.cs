@@ -30,6 +30,12 @@ namespace Agiil.BDD.Bindings.Auth
       userAccountModel.AddUser(username, password);
     }
 
+    [Given("([A-Za-z0-9_-]+) is a regular user")]
+    public void GivenTheyAreARegularUser(string username)
+    {
+      GivenThereIsAUser(username);
+    }
+
     public UserAccountSteps(IUserAccountController userAccountModel,
                             IFixture autofixture)
     {

@@ -83,6 +83,10 @@
     <Reference Include="Ploeh.AutoFixture">
       <HintPath>..\..\packages\AutoFixture.3.50.2\lib\net40\Ploeh.AutoFixture.dll</HintPath>
     </Reference>
+    <Reference Include="WebDriver">
+      <HintPath>..\..\packages\Selenium.WebDriver.3.4.0\lib\net40\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bindings\Auth\UserAccountSteps.cs" />
@@ -90,7 +94,7 @@
     <Compile Include="IBddAssemblyMarker.cs" />
     <Compile Include="BddDependencies.cs" />
     <Compile Include="Bootstrap\BindingsModule.cs" />
-    <Compile Include="BddTestDiConfiguration.cs" />
+    <Compile Include="BddContainerBuilderFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bindings\Tickets\TicketCreationSteps.cs" />
     <Compile Include="Bindings\Tickets\TicketQuerySteps.cs" />

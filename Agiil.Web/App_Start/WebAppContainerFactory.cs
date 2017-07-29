@@ -12,12 +12,11 @@ using NHibernate;
 
 namespace Agiil.Web.App_Start
 {
-  public class WebAppDiConfiguration : DomainDiConfiguration
+  public class WebAppContainerFactory : DomainContainerFactory, IContainerFactoryWithHttpConfiguration
   {
     #region fields
 
-    readonly HttpConfiguration config;
-    readonly bool overrideScope;
+    HttpConfiguration config;
 
     #endregion
 
@@ -69,9 +68,6 @@ namespace Agiil.Web.App_Start
 
     protected virtual void RegsiterOverriddenScopeComponents(ContainerBuilder builder)
     {
-      if(!overrideScope)
-        return;
-
       // ISession
       builder
         .Register((ctx, parameters) => {
@@ -91,14 +87,21 @@ namespace Agiil.Web.App_Start
       return Assembly.GetExecutingAssembly();
     }
 
+    public virtual void SetHttpConfiguration(HttpConfiguration config)
+    {
+      if(config == null)
+        throw new ArgumentNullException(nameof(config));
+      
+      this.config = config;
+    }
+
     #endregion
 
     #region constructors
 
-    public WebAppDiConfiguration(HttpConfiguration config = null, bool overrideScope = false)
+    public WebAppContainerFactory()
     {
-      this.config = config?? new HttpConfiguration();
-      this.overrideScope = overrideScope;
+      config = new HttpConfiguration();
     }
 
     #endregion

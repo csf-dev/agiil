@@ -3,27 +3,26 @@ using AutoMapper;
 using CSF.Data.Entities;
 using CSF.Entities;
 
-namespace Agiil.ObjectMaps
+namespace Agiil.ObjectMaps.Resolvers
 {
-  public class GetEntityByIdentityValueResolver<TEntity> : IMemberValueResolver<object, object, long, TEntity>
+  public class GetEntityByIdentityResolver<TEntity> : IMemberValueResolver<object, object, IIdentity<TEntity>, TEntity>
     where TEntity : class,IEntity
   {
     readonly IRepository<TEntity> repo;
 
     public TEntity Resolve(object source,
                            object destination,
-                           long sourceMember,
+                           IIdentity<TEntity> sourceMember,
                            TEntity destMember,
                            ResolutionContext context)
     {
-      var identity = Identity.Create<TEntity>(sourceMember);
-      if(ReferenceEquals(identity, null))
+      if(ReferenceEquals(sourceMember, null))
         return null;
 
-      return repo.Get(identity);
+      return repo.Get(sourceMember);
     }
 
-    public GetEntityByIdentityValueResolver(IRepository<TEntity> repo)
+    public GetEntityByIdentityResolver(IRepository<TEntity> repo)
     {
       if(repo == null)
         throw new ArgumentNullException(nameof(repo));

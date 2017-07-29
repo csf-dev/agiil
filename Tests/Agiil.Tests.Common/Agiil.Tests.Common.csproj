@@ -149,13 +149,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EntityExtensions.cs" />
     <Compile Include="AutoMoqDataAttribute.cs" />
-    <Compile Include="WebAppTestDiConfiguration.cs" />
+    <Compile Include="WebAppTestingContainerFactory.cs" />
     <Compile Include="Bootstrap\AuthModule.cs" />
     <Compile Include="Bootstrap\DataModule.cs" />
     <Compile Include="Bootstrap\TestFakesModule.cs" />
     <Compile Include="Auth\LoginController.cs" />
     <Compile Include="Auth\UserAccountController.cs" />
-    <Compile Include="UnitTestDiConfiguration.cs" />
+    <Compile Include="UnitTestContainerFactory.cs" />
     <Compile Include="HasIdentityAttribute.cs" />
     <Compile Include="Autofixture\HasIdentityCustomization.cs" />
     <Compile Include="Autofixture\TypeRelayCustomization.cs" />

@@ -246,6 +246,9 @@
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="Deleporter">
+      <HintPath>..\packages\Deleporter.0.1.9.15416\lib\Net40\Deleporter.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Css\" />
@@ -264,7 +267,7 @@
     <Compile Include="App_Start\RouteConfiguration.cs" />
     <Compile Include="App_Start\MvcViewConfiguration.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="App_Start\WebAppDiConfiguration.cs" />
+    <Compile Include="App_Start\WebAppContainerFactory.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Services\Auth\HttpContextPrincipalGetter.cs" />
     <Compile Include="Bootstrap\AuthModule.cs" />
@@ -307,6 +310,7 @@
     <Compile Include="Controllers\SprintsController.cs" />
     <Compile Include="ApiControllers\SprintsController.cs" />
     <Compile Include="Controllers\SprintController.cs" />
+    <Compile Include="App_Start\IContainerFactoryWithHttpConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -321,6 +325,7 @@
     <Content Include="Content\Scss\_AppWideVariables.scss" />
     <Content Include="Content\Scss\_ContentStyles.scss" />
     <Content Include="Content\Scss\_Forms.scss" />
+    <Content Include="web.Release.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Home\Index.pt" />

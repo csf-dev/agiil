@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{84E2316C-4CAA-4D80-8FFF-5F876258F3BF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Agiil.Web.TestBuild</RootNamespace>
+    <AssemblyName>Agiil.Web.TestBuild</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ReleaseVersion>0.2.0.1</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Autofac">
+      <HintPath>..\..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data">
+      <HintPath>..\..\packages\CSF.Data.1.1.0\lib\net45\CSF.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Entities">
+      <HintPath>..\..\packages\CSF.Entities.1.1.1\lib\net45\CSF.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data.Entities">
+      <HintPath>..\..\packages\CSF.Data.Entities.1.2.1\lib\net45\CSF.Data.Entities.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DataModule.cs" />
+    <Compile Include="InMemoryDatabase.cs" />
+    <Compile Include="BusinessTransactionModule.cs" />
+    <Compile Include="WebAppTestingContainerFactory.cs" />
+    <Compile Include="ApplicationContainer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Agiil.Web\Agiil.Web.csproj">
+      <Project>{EA6B20FB-9F7F-49C5-BE4E-BCD59ECA1D85}</Project>
+      <Name>Agiil.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
+      <Project>{79827CF5-CC58-4F87-BBCA-162B5983C563}</Project>
+      <Name>Agiil.Bootstrap</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
+      <Project>{E15F2064-D2EA-43EF-924C-733107675FF0}</Project>
+      <Name>Agiil.Tests.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Domain\Agiil.Domain.csproj">
+      <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
+      <Name>Agiil.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
