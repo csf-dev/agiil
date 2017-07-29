@@ -4,7 +4,7 @@ using CSF.Configuration;
 
 namespace Agiil.Bootstrap.DiConfiguration
 {
-  [ConfigurationPath("Agiil/DiConfiguration")]
+  [ConfigurationPath("Agiil/DependencyInjection")]
   public class DiConfigurationSection : ConfigurationSection
   {
     const string FactoryTypeNameConfigName = @"FactoryTypeName";
