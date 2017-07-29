@@ -48,6 +48,7 @@
     <Compile Include="InMemoryDatabase.cs" />
     <Compile Include="BusinessTransactionModule.cs" />
     <Compile Include="WebAppTestingContainerFactory.cs" />
+    <Compile Include="ApplicationContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

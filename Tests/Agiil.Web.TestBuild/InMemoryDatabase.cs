@@ -1,5 +1,7 @@
 ﻿using System;
+using Agiil.Domain.Data;
 using Agiil.Tests;
+using Autofac;
 using CSF.Data;
 using CSF.Data.Entities;
 using CSF.Entities;
@@ -17,7 +19,7 @@ namespace Agiil.Web.TestBuild
 
     #region methods
 
-    public InMemoryQuery GetDataStore()
+    internal InMemoryQuery GetDataStore()
     {
       CreateDataStoreIfRequired();
       return dataStore;
@@ -25,10 +27,25 @@ namespace Agiil.Web.TestBuild
 
     public void Reset()
     {
+      Clear();
+      AddTestData();
+    }
+
+    public void Clear()
+    {
       dataStore = null;
     }
 
-    public IRepository<T> GetRepository<T>()
+    public void AddTestData()
+    {
+      using(var scope = ApplicationContainer.Current.BeginLifetimeScope())
+      {
+        var dataCreator = scope.Resolve<IInitialDataCreator>();
+        dataCreator.Create();
+      }
+    }
+
+    internal IRepository<T> GetRepository<T>()
       where T : class, IEntity
     {
       var query = GetDataStore();
