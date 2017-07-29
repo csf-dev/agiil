@@ -20,3 +20,5 @@ test:
     - '**\Agiil.Tests.Common.dll'
     - '**\Agiil.BDD.dll'
     - '**\Ploeh.AutoFixture.NUnit3.dll'
+    - '**\Agiil.Tests.BDD.dll'
+    
