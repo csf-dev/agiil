@@ -87,7 +87,7 @@ namespace Agiil.Web.App_Start
       return Assembly.GetExecutingAssembly();
     }
 
-    public void SetHttpConfiguration(HttpConfiguration config)
+    public virtual void SetHttpConfiguration(HttpConfiguration config)
     {
       if(config == null)
         throw new ArgumentNullException(nameof(config));
