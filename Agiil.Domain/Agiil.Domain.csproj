@@ -120,6 +120,7 @@
     <Compile Include="Sprints\ISprintEditor.cs" />
     <Compile Include="Sprints\EditSprintRequest.cs" />
     <Compile Include="Sprints\EditSprintResponse.cs" />
+    <Compile Include="Tickets\IIdentifiesTicketByProjectAndNumber.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

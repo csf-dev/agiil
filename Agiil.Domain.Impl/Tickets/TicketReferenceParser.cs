@@ -11,12 +11,12 @@ namespace Agiil.Domain.Tickets
     const string ReferencePattern = @"^([A-Z]+)(\d+)$";
     static readonly Regex ReferenceMatcher = new Regex(ReferencePattern, ReferenceMatchOptions);
 
-    public string CreateReference(TicketReference reference)
+    public string CreateReference(IIdentifiesTicketByProjectAndNumber ticket)
     {
-      if(reference == null)
+      if(ticket == null)
         return null;
 
-      return CreateReference(reference.ProjectCode, reference.TicketNumber);
+      return CreateReference(ticket.ProjectCode, ticket.TicketNumber);
     }
 
     public string CreateReference(string projectCode, long ticketNumber)
@@ -30,14 +30,6 @@ namespace Agiil.Domain.Tickets
         return null;
 
       return output;
-    }
-
-    public string CreateReference(Ticket ticket)
-    {
-      if(ticket == null)
-        return null;
-      
-      return CreateReference(ticket.Project?.Code, ticket.TicketNumber);
     }
 
     public TicketReference ParseReferece(string reference)

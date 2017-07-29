@@ -6,7 +6,7 @@ using CSF.Entities;
 
 namespace Agiil.Domain.Tickets
 {
-  public class Ticket : Entity<long>
+  public class Ticket : Entity<long>, IIdentifiesTicketByProjectAndNumber
   {
     readonly EventRaisingSetWrapper<Comment> comments;
 
@@ -36,6 +36,8 @@ namespace Agiil.Domain.Tickets
     public virtual long TicketNumber { get; set; }
 
     public virtual bool Closed { get; set; }
+
+    string IIdentifiesTicketByProjectAndNumber.ProjectCode => Project?.Code;
 
     public Ticket()
     {
