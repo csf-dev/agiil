@@ -47,18 +47,15 @@
     <Compile Include="Tickets\CommentToCommentDtoProfile.cs" />
     <Compile Include="MapperConfigurationFactory.cs" />
     <Compile Include="Tickets\TicketToTicketSummaryDtoProfile.cs" />
-    <Compile Include="IdentityValueResolver.cs" />
     <Compile Include="Tickets\TicketToTicketDetailDtoProfile.cs" />
     <Compile Include="Sprints\NewSprintSpecificationToCreateSprintRequestProfile.cs" />
     <Compile Include="Sprints\CreateSprintResponseToNewSprintResultProfile.cs" />
     <Compile Include="IMapperConfigurationFactory.cs" />
-    <Compile Include="GetEntityByIdentityValueResolver.cs" />
     <Compile Include="IProfileTypesProvider.cs" />
     <Compile Include="ProfileTypesProvider.cs" />
     <Compile Include="Sprints\SprintToSprintSummaryDtoProfile.cs" />
     <Compile Include="Tickets\TicketToEditTicketSpecificationProfile.cs" />
     <Compile Include="Tickets\EditTicketRequestToTicketProfile.cs" />
-    <Compile Include="GetEntityByIdentityResolver.cs" />
     <Compile Include="Tickets\EditTicketSpecificationToEditTicketRequestProfile.cs" />
     <Compile Include="Tickets\EditTicketResponseToWebEditTicketResponseProfile.cs" />
     <Compile Include="Sprints\SprintToSprintDetailDtoProfile.cs" />
@@ -66,9 +63,14 @@
     <Compile Include="Tickets\NewTicketSpecificationToCreateTicketRequestProfile.cs" />
     <Compile Include="Tickets\CreateTicketResponseToNewTicketResponseProfile.cs" />
     <Compile Include="Sprints\EditSprintSpecificationToEditSprintRequestProfile.cs" />
-    <Compile Include="CreateIdentityResolver.cs" />
     <Compile Include="Sprints\EditSprintResponseToWebEditSprintResponseProfile.cs" />
     <Compile Include="Sprints\EditSprintRequestToSprintProfile.cs" />
+    <Compile Include="Resolvers\CreateIdentityResolver.cs" />
+    <Compile Include="Resolvers\GetEntityByIdentityResolver.cs" />
+    <Compile Include="Resolvers\GetEntityByIdentityValueResolver.cs" />
+    <Compile Include="Resolvers\IdentityValueResolver.cs" />
+    <Compile Include="Resolvers\TicketReferenceStringResolver.cs" />
+    <Compile Include="Resolvers\IResolversNamespaceMarker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -76,6 +78,7 @@
   <ItemGroup>
     <Folder Include="Tickets\" />
     <Folder Include="Sprints\" />
+    <Folder Include="Resolvers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
