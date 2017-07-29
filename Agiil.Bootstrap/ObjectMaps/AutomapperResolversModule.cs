@@ -35,7 +35,6 @@ namespace Agiil.Bootstrap.ObjectMaps
                 type.Namespace.StartsWith(searchNamespace, StringComparison.InvariantCulture)
                 && type.IsClass
                 && !type.IsAbstract
-                && type.IsAssignableTo<string>()
               select type);
     }
   }

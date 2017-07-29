@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Tickets;
+using Agiil.ObjectMaps.Resolvers;
 using Agiil.Web.Models.Tickets;
 using AutoMapper;
 using CSF.Entities;

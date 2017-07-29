@@ -1,6 +1,7 @@
 ﻿using System;
 using Agiil.Domain.Sprints;
 using Agiil.Domain.Tickets;
+using Agiil.ObjectMaps.Resolvers;
 using AutoMapper;
 using CSF.Data.Entities;
 
