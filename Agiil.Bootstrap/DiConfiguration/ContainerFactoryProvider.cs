@@ -13,7 +13,8 @@ namespace Agiil.Bootstrap.DiConfiguration
 
       var factoryType = GetFactoryType(config.FactoryTypeName);
       if(factoryType == null)
-        throw new InvalidOperationException($"The {nameof(DiConfigurationSection)} must specify a factory type which exists.");
+        throw new InvalidOperationException($"The {nameof(DiConfigurationSection)} must specify a factory type which exists.\n" +
+                                            $"The type '{config.FactoryTypeName}' was not found.");
 
       var factory = GetFactory(factoryType);
       if(factory == null)
