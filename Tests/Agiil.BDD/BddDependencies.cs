@@ -2,12 +2,13 @@
 using Autofac;
 using SpecFlow.Autofac;
 using Agiil.Bootstrap;
+using Agiil.Bootstrap.DiConfiguration;
 
 namespace Agiil.BDD
 {
   public class BddDependencies
   {
-    static readonly IDiConfiguration autofacContainerBuilderFactory;
+    static readonly IAutofacContainerBuilderFactory autofacContainerBuilderFactory;
 
     [ScenarioDependencies]
     public static ContainerBuilder CreateContainerBuilder()
@@ -17,7 +18,8 @@ namespace Agiil.BDD
 
     static BddDependencies()
     {
-      autofacContainerBuilderFactory = new BddTestDiConfiguration();
+      var provider = new ContainerBuilderFactoryProvider();
+      autofacContainerBuilderFactory = provider.GetContainerBuilderFactory();
     }
   }
 }

@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Reflection;
+using Agiil.Auth;
 using Agiil.Bootstrap;
 using Agiil.Tests.ObjectMaps;
+using Agiil.Web.App_Start;
 using Autofac;
 
 namespace Agiil.Tests
 {
-  public class UnitTestDiConfiguration : DomainDiConfiguration
+  public class WebAppTestingContainerBuilderFactory : WebAppContainerBuilderFactory
   {
     public override ContainerBuilder GetContainerBuilder()
     {
       var builder = base.GetContainerBuilder();
+
+      OverrideUnwantedWebComponents(builder);
 
       RegisterTestComponents(builder);
 
@@ -19,7 +23,7 @@ namespace Agiil.Tests
 
     protected virtual void RegisterTestComponents(ContainerBuilder builder)
     {
-      RegisterTestComponentModules(builder);
+      UnitTestContainerBuilderFactory.RegisterTestComponentModules(builder);
     }
 
     protected override Agiil.ObjectMaps.IProfileTypesProvider GetProfileTypesProvider()
@@ -27,9 +31,9 @@ namespace Agiil.Tests
       return new TestingProfileTypesProvider();
     }
 
-    internal static void RegisterTestComponentModules(ContainerBuilder builder)
+    protected virtual void OverrideUnwantedWebComponents(ContainerBuilder builder)
     {
-      builder.RegisterAssemblyModules(Assembly.GetExecutingAssembly());
+      builder.RegisterType<CurrentThreadPrincipalGetter>().As<IPrincipalGetter>();
     }
   }
 }

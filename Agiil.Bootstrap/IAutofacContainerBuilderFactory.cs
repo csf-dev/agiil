@@ -3,7 +3,7 @@ using Autofac;
 
 namespace Agiil.Bootstrap
 {
-  public interface IDiConfiguration
+  public interface IAutofacContainerBuilderFactory
   {
     ContainerBuilder GetContainerBuilder();
   }

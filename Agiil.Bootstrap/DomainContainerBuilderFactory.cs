@@ -6,7 +6,7 @@ using Autofac;
 
 namespace Agiil.Bootstrap
 {
-  public class DomainDiConfiguration : IDiConfiguration
+  public class DomainContainerBuilderFactory : IAutofacContainerBuilderFactory
   {
     public virtual ContainerBuilder GetContainerBuilder()
     {

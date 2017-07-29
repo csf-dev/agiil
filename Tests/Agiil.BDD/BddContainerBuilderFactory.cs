@@ -6,7 +6,7 @@ using NHibernate;
 
 namespace Agiil.BDD
 {
-  public class BddTestDiConfiguration : WebAppTestDiConfiguration
+  public class BddContainerBuilderFactory : WebAppTestingContainerBuilderFactory
   {
     public override ContainerBuilder GetContainerBuilder()
     {

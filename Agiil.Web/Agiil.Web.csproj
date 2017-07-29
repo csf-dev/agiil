@@ -264,7 +264,7 @@
     <Compile Include="App_Start\RouteConfiguration.cs" />
     <Compile Include="App_Start\MvcViewConfiguration.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="App_Start\WebAppDiConfiguration.cs" />
+    <Compile Include="App_Start\WebAppContainerBuilderFactory.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Services\Auth\HttpContextPrincipalGetter.cs" />
     <Compile Include="Bootstrap\AuthModule.cs" />
@@ -307,6 +307,7 @@
     <Compile Include="Controllers\SprintsController.cs" />
     <Compile Include="ApiControllers\SprintsController.cs" />
     <Compile Include="Controllers\SprintController.cs" />
+    <Compile Include="App_Start\IWebAppContainerBuilderFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
