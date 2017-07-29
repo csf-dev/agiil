@@ -1,5 +1,7 @@
 ﻿using System;
-using Agiil.ObjectMaps;
+using System.Collections.Generic;
+using System.Linq;
+using Agiil.ObjectMaps.Resolvers;
 using Autofac;
 
 namespace Agiil.Bootstrap.ObjectMaps
@@ -8,10 +10,33 @@ namespace Agiil.Bootstrap.ObjectMaps
   {
     protected override void Load(ContainerBuilder builder)
     {
-      builder.RegisterType<IdentityValueResolver>();
-      builder.RegisterGeneric(typeof(GetEntityByIdentityValueResolver<>));
-      builder.RegisterGeneric(typeof(GetEntityByIdentityResolver<>));
-      builder.RegisterGeneric(typeof(CreateIdentityResolver<>));
+      var types = GetCandidateTypes();
+
+      foreach(var type in types)
+      {
+        if(type.IsGenericTypeDefinition)
+        {
+          builder.RegisterGeneric(type);
+        }
+        else
+        {
+          builder.RegisterType(type);
+        }
+      }
+    }
+
+    IEnumerable<Type> GetCandidateTypes()
+    {
+      var marker = typeof(IResolversNamespaceMarker);
+      var searchNamespace = marker.Namespace;
+
+      return (from type in marker.Assembly.GetExportedTypes()
+              where
+                type.Namespace.StartsWith(searchNamespace, StringComparison.InvariantCulture)
+                && type.IsClass
+                && !type.IsAbstract
+                && type.IsAssignableTo<string>()
+              select type);
     }
   }
 }
