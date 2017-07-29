@@ -8,7 +8,7 @@ namespace Agiil.BDD
 {
   public class BddDependencies
   {
-    static readonly IAutofacContainerBuilderFactory autofacContainerBuilderFactory;
+    static readonly IAutofacContainerFactory autofacContainerBuilderFactory;
 
     [ScenarioDependencies]
     public static ContainerBuilder CreateContainerBuilder()
@@ -18,7 +18,7 @@ namespace Agiil.BDD
 
     static BddDependencies()
     {
-      var provider = new ContainerBuilderFactoryProvider();
+      var provider = new ContainerFactoryProvider();
       autofacContainerBuilderFactory = provider.GetContainerBuilderFactory();
     }
   }

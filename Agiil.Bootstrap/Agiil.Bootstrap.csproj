@@ -115,8 +115,8 @@
     <Compile Include="Data\DataModule.cs" />
     <Compile Include="Data\NHibernateModule.cs" />
     <Compile Include="Config\ConfigurationModule.cs" />
-    <Compile Include="IAutofacContainerBuilderFactory.cs" />
-    <Compile Include="DomainContainerBuilderFactory.cs" />
+    <Compile Include="IAutofacContainerFactory.cs" />
+    <Compile Include="DomainContainerFactory.cs" />
     <Compile Include="Tickets\TicketsModule.cs" />
     <Compile Include="EnvironmentModule.cs" />
     <Compile Include="Data\MappingModule.cs" />
@@ -133,7 +133,7 @@
     <Compile Include="ObjectMaps\AutomapperProfilesModule.cs" />
     <Compile Include="ObjectMaps\AutomapperResolversModule.cs" />
     <Compile Include="Data\DatabaseMaintenanceModule.cs" />
-    <Compile Include="DiConfiguration\ContainerBuilderFactoryProvider.cs" />
+    <Compile Include="DiConfiguration\ContainerFactoryProvider.cs" />
     <Compile Include="DiConfiguration\DiConfigurationSection.cs" />
   </ItemGroup>
   <ItemGroup>

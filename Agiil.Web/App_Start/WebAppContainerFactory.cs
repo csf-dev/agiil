@@ -12,7 +12,7 @@ using NHibernate;
 
 namespace Agiil.Web.App_Start
 {
-  public class WebAppContainerBuilderFactory : DomainContainerBuilderFactory, IWebAppContainerBuilderFactory
+  public class WebAppContainerFactory : DomainContainerFactory, IContainerFactoryWithHttpConfiguration
   {
     #region fields
 
@@ -99,7 +99,7 @@ namespace Agiil.Web.App_Start
 
     #region constructors
 
-    public WebAppContainerBuilderFactory()
+    public WebAppContainerFactory()
     {
       config = new HttpConfiguration();
     }

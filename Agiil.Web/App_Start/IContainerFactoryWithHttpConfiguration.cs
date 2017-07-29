@@ -4,7 +4,7 @@ using Agiil.Bootstrap;
 
 namespace Agiil.Web.App_Start
 {
-  public interface IWebAppContainerBuilderFactory : IAutofacContainerBuilderFactory
+  public interface IContainerFactoryWithHttpConfiguration : IAutofacContainerFactory
   {
     void SetHttpConfiguration(HttpConfiguration config);
   }

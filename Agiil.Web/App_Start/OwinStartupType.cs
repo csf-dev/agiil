@@ -110,18 +110,18 @@ namespace Agiil.Web.App_Start
 
     IContainer GetContainer(HttpConfiguration config)
     {
-      var diFactory = GetContainerBuilderFactory();
+      var diFactory = GetContainerFactory();
       diFactory.SetHttpConfiguration(config);
-      return diFactory.GetContainerBuilder().Build();
+      return diFactory.GetContainer();
     }
 
-    IWebAppContainerBuilderFactory GetContainerBuilderFactory()
+    IContainerFactoryWithHttpConfiguration GetContainerFactory()
     {
-      var factoryProvider = new ContainerBuilderFactoryProvider();
-      var diFactory = factoryProvider.GetContainerBuilderFactory() as IWebAppContainerBuilderFactory;
+      var factoryProvider = new ContainerFactoryProvider();
+      var diFactory = factoryProvider.GetContainerBuilderFactory() as IContainerFactoryWithHttpConfiguration;
 
       if(diFactory == null)
-        throw new InvalidOperationException($"The current Autofac container builder factory must implement {nameof(IWebAppContainerBuilderFactory)}.");
+        throw new InvalidOperationException($"The current Autofac container builder factory must implement {nameof(IContainerFactoryWithHttpConfiguration)}.");
 
       return diFactory;
     }

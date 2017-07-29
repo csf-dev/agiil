@@ -8,7 +8,7 @@ using Autofac;
 
 namespace Agiil.Tests
 {
-  public class WebAppTestingContainerBuilderFactory : WebAppContainerBuilderFactory
+  public class WebAppTestingContainerFactory : WebAppContainerFactory
   {
     public override ContainerBuilder GetContainerBuilder()
     {
@@ -23,7 +23,7 @@ namespace Agiil.Tests
 
     protected virtual void RegisterTestComponents(ContainerBuilder builder)
     {
-      UnitTestContainerBuilderFactory.RegisterTestComponentModules(builder);
+      UnitTestContainerFactory.RegisterTestComponentModules(builder);
     }
 
     protected override Agiil.ObjectMaps.IProfileTypesProvider GetProfileTypesProvider()

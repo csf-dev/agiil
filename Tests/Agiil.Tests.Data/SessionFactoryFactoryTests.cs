@@ -13,8 +13,7 @@ namespace Agiil.Tests.Data
   {
     const string SchemaExportFilename = "Agiil.db-schema-export.sql";
 
-    IAutofacContainerBuilderFactory containerBuilderFactory;
-    ContainerBuilder builder;
+    IAutofacContainerFactory containerFactory;
     IContainer container;
     ILifetimeScope diScope;
     string schemaExportPath;
@@ -22,9 +21,8 @@ namespace Agiil.Tests.Data
     [OneTimeSetUp]
     public void FixtureSetup()
     {
-      containerBuilderFactory = new UnitTestContainerBuilderFactory();
-      builder = containerBuilderFactory.GetContainerBuilder();
-      container = builder.Build();
+      containerFactory = new UnitTestContainerFactory();
+      container = containerFactory.GetContainer();
 
       var schemaExportDir = TestFilesystem.GetTestTemporaryDirectory<SessionFactoryFactoryTests>();
       if(schemaExportDir != null)

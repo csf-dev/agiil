@@ -6,7 +6,7 @@ using Autofac;
 
 namespace Agiil.Tests
 {
-  public class UnitTestContainerBuilderFactory : DomainContainerBuilderFactory
+  public class UnitTestContainerFactory : DomainContainerFactory
   {
     public override ContainerBuilder GetContainerBuilder()
     {

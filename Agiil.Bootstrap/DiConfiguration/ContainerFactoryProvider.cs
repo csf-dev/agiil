@@ -3,9 +3,9 @@ using CSF.Configuration;
 
 namespace Agiil.Bootstrap.DiConfiguration
 {
-  public class ContainerBuilderFactoryProvider
+  public class ContainerFactoryProvider
   {
-    public IAutofacContainerBuilderFactory GetContainerBuilderFactory()
+    public IAutofacContainerFactory GetContainerBuilderFactory()
     {
       var config = GetConfig();
       if(config == null)
@@ -33,9 +33,9 @@ namespace Agiil.Bootstrap.DiConfiguration
       return reader.ReadSection<DiConfigurationSection>();
     }
 
-    IAutofacContainerBuilderFactory GetFactory(Type factoryType)
+    IAutofacContainerFactory GetFactory(Type factoryType)
     {
-      return (IAutofacContainerBuilderFactory) Activator.CreateInstance(factoryType);
+      return (IAutofacContainerFactory) Activator.CreateInstance(factoryType);
     }
   }
 }

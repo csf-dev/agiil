@@ -47,7 +47,7 @@
     <Compile Include="DataModule.cs" />
     <Compile Include="InMemoryDatabase.cs" />
     <Compile Include="BusinessTransactionModule.cs" />
-    <Compile Include="WebAppTestingContainerBuilderFactory.cs" />
+    <Compile Include="WebAppTestingContainerFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -64,6 +64,10 @@
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
       <Project>{E15F2064-D2EA-43EF-924C-733107675FF0}</Project>
       <Name>Agiil.Tests.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Domain\Agiil.Domain.csproj">
+      <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
+      <Name>Agiil.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
