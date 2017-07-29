@@ -155,18 +155,6 @@
       <Project>{EA6B20FB-9F7F-49C5-BE4E-BCD59ECA1D85}</Project>
       <Name>Agiil.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Tools\CSF.Screenplay\CSF.Screenplay\CSF.Screenplay.csproj">
-      <Project>{46E6DEAA-E6D5-4EE6-A552-17376BEA80DC}</Project>
-      <Name>CSF.Screenplay</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Tools\CSF.Screenplay\CSF.Screenplay.Web\CSF.Screenplay.Web.csproj">
-      <Project>{13E2170A-AF71-40FF-8D8C-44FE3D0BDF3B}</Project>
-      <Name>CSF.Screenplay.Web</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Tools\CSF.Screenplay\CSF.WebDriverFactory\CSF.WebDriverFactory.csproj">
-      <Project>{C99466AD-CA21-4C12-9E05-6730CDC3C031}</Project>
-      <Name>CSF.WebDriverFactory</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

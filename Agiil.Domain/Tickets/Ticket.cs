@@ -37,12 +37,6 @@ namespace Agiil.Domain.Tickets
 
     public virtual bool Closed { get; set; }
 
-    [Obsolete("Instead use an instance of `ITicketReferenceParser' to get the reference.")]
-    public virtual string GetTicketReference()
-    {
-      return String.Concat(Project?.Code, TicketNumber.ToString());
-    }
-
     public Ticket()
     {
       comments = new EventRaisingSetWrapper<Comment>(new HashSet<Comment>());
