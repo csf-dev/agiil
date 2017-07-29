@@ -109,9 +109,6 @@
     <Compile Include="Bindings\Sprints\SprintQuerySteps.cs" />
     <Compile Include="Bindings\Projects\ProjectCreationSteps.cs" />
     <Compile Include="Bindings\Sprints\SprintEditingSteps.cs" />
-    <Compile Include="Bootstrap\ScreenplayModule.cs" />
-    <Compile Include="Bindings\Web\WebBrowsingSteps.cs" />
-    <Compile Include="Bootstrap\SeleniumModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -124,7 +121,6 @@
     <Folder Include="Bindings\Tickets\" />
     <Folder Include="Bindings\Sprints\" />
     <Folder Include="Bindings\Projects\" />
-    <Folder Include="Bindings\Web\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj">

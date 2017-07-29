@@ -1,6 +1,5 @@
 ﻿using System;
 using Agiil.Tests.Auth;
-using CSF.Screenplay.Actors;
 using Ploeh.AutoFixture;
 using TechTalk.SpecFlow;
 
@@ -10,7 +9,6 @@ namespace Agiil.BDD.Bindings.Auth
   public class UserAccountSteps
   {
     readonly IUserAccountController userAccountModel;
-    readonly ICast cast;
     readonly IFixture autofixture;
 
     [Given(@"there is not a user account named '([A-Za-z0-9_-]+)'")]
@@ -36,15 +34,11 @@ namespace Agiil.BDD.Bindings.Auth
     public void GivenTheyAreARegularUser(string username)
     {
       GivenThereIsAUser(username);
-      var actor = cast.Add(username);
     }
 
     public UserAccountSteps(IUserAccountController userAccountModel,
-                            IFixture autofixture,
-                            ICast cast)
+                            IFixture autofixture)
     {
-      if(cast == null)
-        throw new ArgumentNullException(nameof(cast));
       if(autofixture == null)
         throw new ArgumentNullException(nameof(autofixture));
       if(userAccountModel == null)
@@ -52,7 +46,6 @@ namespace Agiil.BDD.Bindings.Auth
 
       this.userAccountModel = userAccountModel;
       this.autofixture = autofixture;
-      this.cast = cast;
     }
   }
 }
