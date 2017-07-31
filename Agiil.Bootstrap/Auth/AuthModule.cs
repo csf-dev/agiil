@@ -31,7 +31,7 @@ namespace Agiil.Bootstrap.Auth
 
     protected override void Load (ContainerBuilder builder)
     {
-      base.Load(builder);
+      AspNetWebApiModule.Load(base, builder);
 
       builder
         .Register((context, parameters) => {

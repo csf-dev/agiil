@@ -311,6 +311,9 @@
     <Compile Include="ApiControllers\SprintsController.cs" />
     <Compile Include="Controllers\SprintController.cs" />
     <Compile Include="App_Start\IContainerFactoryWithHttpConfiguration.cs" />
+    <Compile Include="Bootstrap\AspNetMvcModule.cs" />
+    <Compile Include="Bootstrap\AspNetWebApiModule.cs" />
+    <Compile Include="Bootstrap\DataModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
