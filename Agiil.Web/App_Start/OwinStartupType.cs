@@ -99,31 +99,14 @@ namespace Agiil.Web.App_Start
 
     IContainer ConfigureDependencyInjection(IAppBuilder app, HttpConfiguration config)
     {
-      var container = GetContainer(config);
+      var factoryProvider = new ContainerFactoryProvider();
+      var container = factoryProvider.GetContainer(config);
 
       var lifetimeScopeProvider = new OwinCompatibleLifetimeScopeProvider(container);
 
       DependencyResolver.SetResolver(new AutofacDependencyResolver(container, lifetimeScopeProvider));
 
       return container;
-    }
-
-    IContainer GetContainer(HttpConfiguration config)
-    {
-      var diFactory = GetContainerFactory();
-      diFactory.SetHttpConfiguration(config);
-      return diFactory.GetContainer();
-    }
-
-    IContainerFactoryWithHttpConfiguration GetContainerFactory()
-    {
-      var factoryProvider = new ContainerFactoryProvider();
-      var diFactory = factoryProvider.GetContainerBuilderFactory() as IContainerFactoryWithHttpConfiguration;
-
-      if(diFactory == null)
-        throw new InvalidOperationException($"The current Autofac container builder factory must implement {nameof(IContainerFactoryWithHttpConfiguration)}.");
-
-      return diFactory;
     }
 
     void ConfigureCookieAuthentication(IAppBuilder builder)

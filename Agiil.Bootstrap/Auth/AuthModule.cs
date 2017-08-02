@@ -53,8 +53,7 @@ namespace Agiil.Bootstrap.Auth
           output = ctx.Authentication;
 
           return output;
-        })
-        .As<IAuthenticationManager>();
+        });
     }
   }
 }

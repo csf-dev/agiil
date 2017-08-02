@@ -2,7 +2,7 @@
 using Autofac;
 using CSF.Data;
 
-namespace Agiil.Web.TestBuild
+namespace Agiil.Web.TestBuild.Bootstrap
 {
   public class BusinessTransactionModule : Module
   {

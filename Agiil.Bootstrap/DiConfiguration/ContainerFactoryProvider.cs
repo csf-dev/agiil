@@ -7,25 +7,19 @@ namespace Agiil.Bootstrap.DiConfiguration
   {
     public IAutofacContainerFactory GetContainerBuilderFactory()
     {
-      var config = GetConfig();
-      if(config == null)
-        throw new InvalidOperationException($"The configuration file must include {nameof(DiConfigurationSection)}.");
+      var factoryType = GetFactoryType();
 
-      var factoryType = GetFactoryType(config.FactoryTypeName);
-      if(factoryType == null)
-        throw new InvalidOperationException($"The {nameof(DiConfigurationSection)} must specify a factory type which exists.\n" +
-                                            $"The type '{config.FactoryTypeName}' was not found.");
-
-      var factory = GetFactory(factoryType);
-      if(factory == null)
-        throw new InvalidOperationException($"An unexpected error occured whilst creating an instance of {factoryType.FullName}.");
-
-      return factory;
+      return GetFactory(factoryType);
     }
 
-    Type GetFactoryType(string typeName)
+    Type GetFactoryType()
     {
-      return Type.GetType(typeName);
+      var config = GetConfig();
+
+      if(config != null)
+        return Type.GetType(config.FactoryTypeName);
+
+      return typeof(DomainContainerFactory);
     }
 
     DiConfigurationSection GetConfig()
@@ -36,6 +30,9 @@ namespace Agiil.Bootstrap.DiConfiguration
 
     IAutofacContainerFactory GetFactory(Type factoryType)
     {
+      if(factoryType == null)
+        throw new ArgumentNullException(nameof(factoryType));
+
       return (IAutofacContainerFactory) Activator.CreateInstance(factoryType);
     }
   }

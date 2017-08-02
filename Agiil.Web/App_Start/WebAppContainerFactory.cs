@@ -1,14 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Web.Http;
-using System.Web.Http.ModelBinding;
-using System.Web.Mvc;
 using Agiil.Bootstrap;
-using Agiil.Web.ModelBinders;
 using Autofac;
-using Autofac.Integration.Mvc;
-using Autofac.Integration.WebApi;
-using NHibernate;
+using System.Linq;
+using Agiil.Web.Bootstrap;
+using Autofac.Core;
 
 namespace Agiil.Web.App_Start
 {
@@ -17,6 +15,12 @@ namespace Agiil.Web.App_Start
     #region fields
 
     HttpConfiguration config;
+
+    #endregion
+
+    #region properties
+
+    protected virtual HttpConfiguration HttpConfig => config;
 
     #endregion
 
@@ -32,59 +36,57 @@ namespace Agiil.Web.App_Start
 
       RegisterAspNetMvcComponents(builder);
 
-      RegsiterOverriddenScopeComponents(builder);
-
       return builder;
     }
 
     protected virtual void RegisterAspNetMvcComponents(ContainerBuilder builder)
     {
-      var mvcAssembly = GetMvcAssembly();
-
-      builder.RegisterControllers(mvcAssembly);
-      builder.RegisterModelBinders(mvcAssembly);
-      builder
-        .RegisterType<AutofacMvcModelBinderProviderWithOpenGenericSupport>()
-        .As<IModelBinderProvider>()
-        .SingleInstance();
-      builder.RegisterModule<AutofacWebTypesModule>();
+      builder.RegisterModule(new AspNetMvcModule());
     }
 
     protected virtual void RegisterAspNetWebApiComponents(ContainerBuilder builder)
     {
-      var apiAssembly = GetWebApiAssembly();
-
-      builder.RegisterApiControllers(apiAssembly);
-      builder.RegisterWebApiFilterProvider(config);
-      builder
-        .RegisterType<AutofacWebApiModelBinderProviderWithOpenGenericSupport>()
-        .As<ModelBinderProvider>();
+      builder.RegisterModule(new AspNetWebApiModule(HttpConfig));
     }
 
     protected virtual void RegisterWebAppComponents(ContainerBuilder builder)
     {
-      builder.RegisterAssemblyModules(Assembly.GetExecutingAssembly());
+      var modulesToAutoRegister = GetAllAssemblyModules()
+        .Except(GetModuleTypesNotToRegisterAutomatically())
+        .ToArray();
+
+      foreach(var moduleType in modulesToAutoRegister)
+      {
+        builder.RegisterModule((IModule) Activator.CreateInstance(moduleType));
+      }
     }
 
-    protected virtual void RegsiterOverriddenScopeComponents(ContainerBuilder builder)
+    protected virtual IEnumerable<Type> GetModuleTypesNotToRegisterAutomatically()
     {
-      // ISession
-      builder
-        .Register((ctx, parameters) => {
-          var factory = ctx.Resolve<ISessionFactory>();
-          return factory.OpenSession();
-        })
-        .InstancePerRequest();
+      return new [] {
+        typeof(AspNetMvcModule),
+        typeof(AspNetWebApiModule),
+      };
     }
 
-    protected virtual Assembly GetMvcAssembly()
+    protected virtual IEnumerable<Assembly> GetAssembliesToAutoscan()
     {
-      return Assembly.GetExecutingAssembly();
+      return new [] { Assembly.GetExecutingAssembly() };
     }
 
-    protected virtual Assembly GetWebApiAssembly()
+    protected virtual IEnumerable<Type> GetAllAssemblyModules()
     {
-      return Assembly.GetExecutingAssembly();
+      var moduleType = typeof(Autofac.Module);
+      var assembliesToScan = GetAssembliesToAutoscan();
+
+      return (from assembly in assembliesToScan
+              from type in assembly.GetExportedTypes()
+              where
+                moduleType.IsAssignableFrom(type)
+                && type.IsClass
+                && !type.IsAbstract
+              select type)
+        .ToArray();
     }
 
     public virtual void SetHttpConfiguration(HttpConfiguration config)

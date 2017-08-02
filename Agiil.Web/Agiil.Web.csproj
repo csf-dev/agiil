@@ -246,9 +246,6 @@
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Deleporter">
-      <HintPath>..\packages\Deleporter.0.1.9.15416\lib\Net40\Deleporter.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Css\" />
@@ -311,6 +308,10 @@
     <Compile Include="ApiControllers\SprintsController.cs" />
     <Compile Include="Controllers\SprintController.cs" />
     <Compile Include="App_Start\IContainerFactoryWithHttpConfiguration.cs" />
+    <Compile Include="Bootstrap\AspNetMvcModule.cs" />
+    <Compile Include="Bootstrap\AspNetWebApiModule.cs" />
+    <Compile Include="Bootstrap\DataModule.cs" />
+    <Compile Include="App_Start\ContainerFactoryProviderExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

@@ -78,6 +78,7 @@
     <Compile Include="Auth\LogIntoTheSite.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Actions\ClearTheCookies.cs" />
+    <Compile Include="Auth\ResetTheirBrowser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
