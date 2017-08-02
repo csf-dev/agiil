@@ -36,7 +36,7 @@ namespace Agiil.Tests.BDD
 
     [Test]
     [Description("After resetting the application state, an admin user can log in.")]
-    public void AfterResettingTheApplicationAdminCannotLogIn()
+    public void AfterResettingTheApplicationAdminCanLogIn()
     {
       var april = new Actor("April");
       april.IsAbleTo<ActAsTheApplication>();

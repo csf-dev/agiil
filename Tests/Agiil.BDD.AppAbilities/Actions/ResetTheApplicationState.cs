@@ -13,7 +13,7 @@ namespace Agiil.BDD.AppAbilities.Actions
     {
       return new HttpRequestMessage {
         Method = HttpMethod.Post,
-        RequestUri = new Uri("ResetTheApplication"),
+        RequestUri = new Uri("ResetTheApplication", UriKind.Relative),
       };
     }
 

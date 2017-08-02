@@ -4,10 +4,12 @@ using Agiil.Web.TestBuild.Services;
 
 namespace Agiil.Web.TestBuild.Controllers
 {
+  [AllowAnonymous]
   public class ResetTheApplicationController : ApiController
   {
     readonly DatabaseMaintainer maintainer;
 
+    [AllowAnonymous]
     public IHttpActionResult Post()
     {
       maintainer.Reset();
