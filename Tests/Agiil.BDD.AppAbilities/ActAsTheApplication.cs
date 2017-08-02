@@ -28,7 +28,7 @@ namespace Agiil.BDD.AppAbilities
       if(baseUri != null)
         httpClient.BaseAddress = baseUri;
       else
-        httpClient.BaseAddress = new Uri("http://localhost:8080/");
+        httpClient.BaseAddress = new Uri("http://localhost:8080/api/v1/");
 
       if(defaultTimeout.HasValue)
         requestTimeout = defaultTimeout.Value;
