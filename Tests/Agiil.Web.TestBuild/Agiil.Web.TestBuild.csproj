@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\ResetDatabaseController.cs" />
+    <Compile Include="Controllers\ResetTheApplicationController.cs" />
     <Compile Include="Bootstrap\BusinessTransactionModule.cs" />
     <Compile Include="Bootstrap\DataModule.cs" />
     <Compile Include="App_Start\WebAppTestingContainerFactory.cs" />

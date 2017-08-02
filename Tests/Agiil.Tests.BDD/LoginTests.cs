@@ -8,6 +8,7 @@ using Agiil.Tests.BDD.Pages;
 using FluentAssertions;
 using CSF.Screenplay;
 using Agiil.BDD.AppAbilities;
+using Agiil.BDD.AppAbilities.Actions;
 
 namespace Agiil.Tests.BDD
 {
@@ -15,14 +16,21 @@ namespace Agiil.Tests.BDD
   [Description("Logging in dependant upon the state of the application.")]
   public class LoginTests
   {
+    [SetUp]
+    public void Setup()
+    {
+      var adam = Stage.Cast.GetOrAdd("Adam");
+      Given(adam).WasAbleTo(ResetTheirBrowser.Now());
+    }
+
     [Test]
     [Description("Without resetting the application state, it is impossible for an admin to log in.")]
     public void WithoutResettingTheApplicationAdminCannotLogIn()
     {
-      var adam = Stage.Cast.Add("Adam");
+      var adam = Stage.Cast.GetOrAdd("Adam");
 
-      When(adam).AttemptsTo(LogIntoTheSite.WithTheUsernameAndPassword("admin", "secret"));
-      Then(adam).Should(Wait.ForAtMost(TimeSpan.FromSeconds(5)).Until(LoginPage.Heading).IsVisible());
+      When(adam).AttemptsTo(LogIntoTheSite.As("admin").WithThePassword("secret"));
+      Then(adam).Should(Wait.For(LoginPage.Heading).IsVisible());
       Then(adam).ShouldSee(TheText.Of(LoginPage.Heading)).Should().Be("Log in");
     }
 
@@ -35,14 +43,13 @@ namespace Agiil.Tests.BDD
       Stage.Reporter.Subscribe(april);
       Stage.Cast.Add(april);
 
-      Given(april).WasAbleTo(ResetTheApplication.Now());
+      Given(april).WasAbleTo(ResetTheApplicationState.Now());
 
-      var adam = Stage.Cast.Add("Adam");
+      var adam = Stage.Cast.GetOrAdd("Adam");
 
-      When(adam).AttemptsTo(LogIntoTheSite.WithTheUsernameAndPassword("admin", "secret"));
-      Then(adam).Should(Wait.ForAtMost(TimeSpan.FromSeconds(5))
-                            .Until(HomePage.HeaderLoginLogoutWidget.CurrentLoginUsername)
-                .IsVisible());
+      When(adam).AttemptsTo(LogIntoTheSite.As("admin").WithThePassword("secret"));
+      Then(adam).Should(Wait.For(HomePage.HeaderLoginLogoutWidget.CurrentLoginUsername)
+                            .IsVisible());
       Then(adam).ShouldSee(TheText.Of(HomePage.HeaderLoginLogoutWidget.CurrentLoginUsername)).Should().Be("admin");
     }
   }

@@ -1,18 +1,20 @@
 ﻿using System;
+using System.Net.Http;
 using CSF.Screenplay.Actors;
 using CSF.Screenplay.Performables;
 
-namespace Agiil.BDD.AppAbilities
+namespace Agiil.BDD.AppAbilities.Actions
 {
-  public abstract class AppAction : Performable
+  public abstract class ApplicationApiAction : Performable
   {
     protected override void PerformAs(IPerformer actor)
     {
       var ability = GetAbility(actor);
-      PerformAs(actor, ability);
+      var request = GetHttpRequest();
+      ability.PerformRequest(request);
     }
 
-    protected abstract void PerformAs(IPerformer actor, ActAsTheApplication ability);
+    protected abstract HttpRequestMessage GetHttpRequest();
 
     protected virtual ActAsTheApplication GetAbility(IPerformer actor)
     {

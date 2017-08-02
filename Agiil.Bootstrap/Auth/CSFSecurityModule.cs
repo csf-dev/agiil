@@ -21,7 +21,7 @@ namespace Agiil.Bootstrap.Auth
 
     protected override void Load(ContainerBuilder builder)
     {
-      AspNetWebApiModule.Load(base, builder);
+      base.Load(builder);
 
       builder
         .Register(ctx => new PBKDF2PasswordVerifier(iterationCount: 20000))

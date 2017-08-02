@@ -31,7 +31,7 @@ namespace Agiil.Bootstrap.Auth
 
     protected override void Load (ContainerBuilder builder)
     {
-      AspNetWebApiModule.Load(base, builder);
+      base.Load(builder);
 
       builder
         .Register((context, parameters) => {
@@ -53,8 +53,7 @@ namespace Agiil.Bootstrap.Auth
           output = ctx.Authentication;
 
           return output;
-        })
-        .As<IAuthenticationManager>();
+        });
     }
   }
 }

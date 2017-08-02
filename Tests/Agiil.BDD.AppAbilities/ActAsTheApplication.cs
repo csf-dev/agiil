@@ -1,27 +1,63 @@
 ﻿using System;
+using System.Net.Http;
 using CSF.Screenplay.Abilities;
 using CSF.Screenplay.Actors;
-using DeleporterCore.Client;
 
 namespace Agiil.BDD.AppAbilities
 {
   public class ActAsTheApplication : IAbility
   {
-    public void Dispose()
-    {
-      // Intentional no-op
-    }
+    readonly TimeSpan requestTimeout;
+    readonly HttpClient httpClient;
 
-    public void ExecuteAsAspplication(Action action)
+    public void PerformRequest(HttpRequestMessage request)
     {
-      Deleporter.Run(action);
-    }
-
-    public T ExecuteAsAspplication<T>(Func<T> function)
-    {
-      return Deleporter.Run(function);
+      if(request == null)
+        throw new ArgumentNullException(nameof(request));
+      
+      var success = httpClient.SendAsync(request).Wait(requestTimeout);
+      if(!success)
+        throw new TimeoutException($"Timeout acting as the application, gave up after {requestTimeout.ToString("g")}.");
     }
 
     public string GetReport(INamed actor) => $"{actor.Name} can act directly as the application.";
+
+    public ActAsTheApplication(Uri baseUri = null, TimeSpan? defaultTimeout = null)
+    {
+      httpClient = new HttpClient();
+      if(baseUri != null)
+        httpClient.BaseAddress = baseUri;
+      else
+        httpClient.BaseAddress = new Uri("http://localhost:8080/");
+
+      if(defaultTimeout.HasValue)
+        requestTimeout = defaultTimeout.Value;
+      else
+        requestTimeout = TimeSpan.FromSeconds(10);
+    }
+
+    public ActAsTheApplication() : this(baseUri: null, defaultTimeout: null) {}
+
+    #region IDisposable Support
+    private bool disposed = false;
+
+    protected virtual void Dispose(bool disposing)
+    {
+      if(!disposed)
+      {
+        if(disposing)
+        {
+          httpClient.Dispose();
+        }
+
+        disposed = true;
+      }
+    }
+
+    public void Dispose()
+    {
+      Dispose(true);
+    }
+    #endregion
   }
 }

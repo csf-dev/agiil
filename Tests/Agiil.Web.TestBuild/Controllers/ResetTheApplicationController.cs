@@ -4,7 +4,7 @@ using Agiil.Web.TestBuild.Services;
 
 namespace Agiil.Web.TestBuild.Controllers
 {
-  public class ResetDatabaseController : ApiController
+  public class ResetTheApplicationController : ApiController
   {
     readonly DatabaseMaintainer maintainer;
 
@@ -14,7 +14,7 @@ namespace Agiil.Web.TestBuild.Controllers
       return Ok();
     }
 
-    public ResetDatabaseController(DatabaseMaintainer maintainer)
+    public ResetTheApplicationController(DatabaseMaintainer maintainer)
     {
       if(maintainer == null)
         throw new ArgumentNullException(nameof(maintainer));

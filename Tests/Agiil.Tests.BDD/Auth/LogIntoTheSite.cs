@@ -11,27 +11,37 @@ namespace Agiil.Tests.BDD.Auth
   {
     string username, password;
 
-    protected override string GetReport(INamed actor) => $"{actor.Name} logs into the site with '{username}'/'{password}'.";
+    protected override string GetReport(INamed actor)
+    {
+      if(password == null)
+        return $"{actor.Name} logs into the site as '{username}' and no password.";
+      else
+        return $"{actor.Name} logs into the site as '{username}' with the password '{password}'.";
+    }
 
     protected override void PerformAs(IPerformer actor)
     {
       actor.Perform(OpenTheirBrowserOn.ThePage<HomePage>());
-      actor.Perform(Wait.ForAtMost(TimeSpan.FromSeconds(30)).Until(HomePage.PageContentArea).IsVisible());
-      actor.Perform(ClearTheCookies.ForTheCurrentSite());
-      actor.Perform(OpenTheirBrowserOn.ThePage<HomePage>());
-      actor.Perform(Wait.ForAtMost(TimeSpan.FromSeconds(4)).Until(HomePage.PageContentArea).IsVisible());
+      actor.Perform(Wait.For(HomePage.PageContentArea).IsVisible());
       actor.Perform(Enter.TheText(username).Into(HomePage.HeaderLoginLogoutWidget.UsernameField));
       actor.Perform(Enter.TheText(password).Into(HomePage.HeaderLoginLogoutWidget.PasswordField));
       actor.Perform(Click.On(HomePage.HeaderLoginLogoutWidget.LoginButton));
     }
 
-    public static IPerformable WithTheUsernameAndPassword(string username, string password)
+    public static LogIntoTheSite As(string username)
     {
-      return new LogIntoTheSite
-      {
+      if(username == null)
+        throw new ArgumentNullException(nameof(username));
+      
+      return new LogIntoTheSite {
         username = username,
-        password = password
       };
+    }
+
+    public IPerformable WithThePassword(string password)
+    {
+      this.password = password;
+      return this;
     }
   }
 }
