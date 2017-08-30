@@ -1,7 +1,7 @@
 ﻿using System;
 using CSF.Data;
 
-namespace Agiil.Web.TestBuild.Data
+namespace Agiil.Web.Data
 {
   public class InMemoryDatabase
   {

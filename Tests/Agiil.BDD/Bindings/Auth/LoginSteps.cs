@@ -1,75 +1,72 @@
 ﻿using System;
-using Agiil.Auth;
-using Agiil.Domain.Auth;
-using Agiil.Tests.Auth;
-using NUnit.Framework;
+using Agiil.BDD.Abilities;
+using Agiil.BDD.Actions;
+using Agiil.BDD.Tasks.Auth;
+using CSF.Screenplay;
+using Ploeh.AutoFixture;
 using TechTalk.SpecFlow;
+using static CSF.Screenplay.StepComposer;
 
 namespace Agiil.BDD.Bindings.Auth
 {
   [Binding]
   public class LoginSteps
   {
-    const string DUMMY_PASSWORD = "dummypassword";
+    readonly IScreenplayScenario screenplay;
 
-    readonly ILoginController loginController;
-    readonly IIdentityReader identityReader;
-    readonly IUserAccountController userAccountController;
-
-    [When("the user attempts to log in with a username '([A-Za-z0-9_-]+)' and password '([^']+)'")]
-    public void WhenTheUserAttemptsToLogin(string username, string password)
+    [Given("([A-Za-z0-9_-]+) is logged into the site as a normal user")]
+    public void GivenJoeIsLoggedIntoTheSiteAsANormalUser(string actorName)
     {
-      loginController.Login(username, password);
+      var autofixture = new Fixture();
+      var password = autofixture.Create<string>();
+
+      var april = screenplay.GetApril();
+      Given(april).WasAbleTo(AddAUserAccount.WithTheUsername(actorName).AndThePassword(password));
+
+      var joe = screenplay.GetJoe(actorName);
+      joe.IsAbleTo(LogInWithAUserAccount.WithTheUsername(actorName).AndThePassword(password));
+
+      Given(joe).WasAbleTo<LogInWithTheirAccount>();
     }
 
-    [When("the user logs out")]
-    public void WheTheUserLogsOut()
+    [When("([A-Za-z0-9_-]+) attempts to log in with a username '([A-Za-z0-9_-]+)' and password '([^']+)'")]
+    public void WhenJoeAttemptsToLogin(string actorName, string username, string password)
     {
-      loginController.Logout();
+      var joe = screenplay.GetJoe(actorName);
+
+      When(joe).AttemptsTo(LogIntoTheSite.As(username).WithThePassword(password));
     }
 
-    [Then("the user is logged in successfully")]
-    public void ThenTheUserIsLoggedInSuccessfully()
+    [Then("([A-Za-z0-9_-]+) should see a login failure message")]
+    public void ThenJoeShouldSeeALoginFailureMessage(string actorName)
     {
-      var currentUser = identityReader.GetCurrentUserInfo();
-      Assert.NotNull(currentUser);
+      var joe = screenplay.GetJoe(actorName);
+
+      Then(joe).Should<VerifyThatThereIsALoginFailureMessage>();
     }
 
-    [Then("the user is not logged in successfully")]
-    public void ThenTheUserIsNotLoggedInSuccessfully()
+    [Then("([A-Za-z0-9_-]+) should not be logged in")]
+    public void ThenJoeShouldNotBeLoggedIn(string actorName)
     {
-      var currentUser = identityReader.GetCurrentUserInfo();
-      Assert.IsNull(currentUser);
+      var joe = screenplay.GetJoe(actorName);
+
+      Then(joe).Should<VerifyThatTheyAreNotLoggedIn>();
     }
 
-    [Given("the user is logged in with a user account named '([A-Za-z0-9_-]+)'")]
-    public void GivenTheUserIsLoggedInWithAUserAccount(string accountName)
+    [Then("([A-Za-z0-9_-]+) should be logged in as ''([A-Za-z0-9_-]+)'")]
+    public void ThenJoeShouldBeLoggedIn(string actorName, string username)
     {
-      userAccountController.AddUser(accountName, DUMMY_PASSWORD);
-      loginController.Login(accountName, DUMMY_PASSWORD);
+      var joe = screenplay.GetJoe(actorName);
+
+      Then(joe).Should(VerifyThatTheyAreLoggedIn.As(username));
     }
 
-    [Given("the user is logged in with a user account named '([A-Za-z0-9_-]+)' with password '([A-Za-z0-9_-]+)'")]
-    public void GivenTheUserIsLoggedInWithAUserAccount(string accountName, string password)
+    public LoginSteps(IScreenplayScenario screenplay)
     {
-      userAccountController.AddUser(accountName, password);
-      loginController.Login(accountName, password);
-    }
-
-    public LoginSteps(ILoginController loginController,
-                      IIdentityReader identityReader,
-                      IUserAccountController userAccountController)
-    {
-      if(userAccountController == null)
-        throw new ArgumentNullException(nameof(userAccountController));
-      if(identityReader == null)
-        throw new ArgumentNullException(nameof(identityReader));
-      if(loginController == null)
-        throw new ArgumentNullException(nameof(loginController));
+      if(screenplay == null)
+        throw new ArgumentNullException(nameof(screenplay));
       
-      this.loginController = loginController;
-      this.identityReader = identityReader;
-      this.userAccountController = userAccountController;
+      this.screenplay = screenplay;
     }
   }
 }

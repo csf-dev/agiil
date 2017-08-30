@@ -3,9 +3,9 @@ using Agiil.Tests;
 using Autofac;
 using CSF.Data;
 using CSF.Data.Entities;
-using Agiil.Web.TestBuild.Data;
+using Agiil.Web.Data;
 
-namespace Agiil.Web.TestBuild.Bootstrap
+namespace Agiil.Web.Bootstrap
 {
   public class DataModule : Module
   {

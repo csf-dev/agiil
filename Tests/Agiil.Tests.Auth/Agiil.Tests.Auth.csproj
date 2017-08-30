@@ -103,23 +103,9 @@
     <Compile Include="LoginLogoutManagerTests.cs" />
     <Compile Include="PasswordChangerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ChangePassword.feature.cs">
-      <DependentUpon>ChangePassword.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Login.feature.cs">
-      <DependentUpon>Login.feature</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="ChangePassword.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ChangePassword.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Login.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Login.feature.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Auth.Impl\Agiil.Auth.Impl.csproj">

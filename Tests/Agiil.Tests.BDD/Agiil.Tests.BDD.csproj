@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E2DF5072-C55A-4B1F-942B-32C1F759545A}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Agiil.Tests.BDD</RootNamespace>
+    <RootNamespace>Agiil.Tests</RootNamespace>
     <AssemblyName>Agiil.Tests.BDD</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <ReleaseVersion>0.2.0.1</ReleaseVersion>
@@ -36,65 +36,69 @@
     <Reference Include="CSF.Reflection">
       <HintPath>..\..\packages\CSF.Reflection.1.0.1\lib\net45\CSF.Reflection.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Screenplay">
-      <HintPath>..\..\packages\CSF.Screenplay.0.1.1-alpha\lib\net45\CSF.Screenplay.dll</HintPath>
-    </Reference>
     <Reference Include="CSF.Utils">
       <HintPath>..\..\packages\CSF.Utils.6.0.0\lib\net45\CSF.Utils.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Screenplay.Reporting">
-      <HintPath>..\..\packages\CSF.Screenplay.Reporting.0.1.1-alpha\lib\net45\CSF.Screenplay.Reporting.dll</HintPath>
     </Reference>
     <Reference Include="WebDriver">
       <HintPath>..\..\packages\Selenium.WebDriver.3.4.0\lib\net40\WebDriver.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
-    <Reference Include="CSF.WebDriverFactory">
-      <HintPath>..\..\packages\CSF.WebDriverFactory.0.1.1-alpha\lib\net45\CSF.WebDriverFactory.dll</HintPath>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="TechTalk.SpecFlow">
+      <HintPath>..\..\packages\SpecFlow.2.2.0\lib\net45\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Screenplay">
+      <HintPath>..\..\packages\CSF.Screenplay.0.5.0-alpha\lib\net45\CSF.Screenplay.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Screenplay.SpecFlow">
+      <HintPath>..\..\packages\CSF.Screenplay.SpecFlow.0.5.0-alpha\lib\net45\CSF.Screenplay.SpecFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Screenplay.Reporting">
+      <HintPath>..\..\packages\CSF.Screenplay.Reporting.0.5.0-alpha\lib\net45\CSF.Screenplay.Reporting.dll</HintPath>
     </Reference>
     <Reference Include="WebDriver.Support">
       <HintPath>..\..\packages\Selenium.Support.3.4.0\lib\net40\WebDriver.Support.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Screenplay.Web">
-      <HintPath>..\..\packages\CSF.Screenplay.Web.0.1.1-alpha\lib\net45\CSF.Screenplay.Web.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Screenplay.Web.0.5.0-alpha\lib\net45\CSF.Screenplay.Web.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Screenplay.NUnit">
-      <HintPath>..\..\packages\CSF.Screenplay.NUnit.0.1.1-alpha\lib\net45\CSF.Screenplay.NUnit.dll</HintPath>
+    <Reference Include="CSF.WebDriverFactory">
+      <HintPath>..\..\packages\CSF.WebDriverFactory.0.5.0-alpha\lib\net45\CSF.WebDriverFactory.dll</HintPath>
     </Reference>
-    <Reference Include="FluentAssertions.Core">
-      <HintPath>..\..\packages\FluentAssertions.4.19.3\lib\net45\FluentAssertions.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentAssertions">
-      <HintPath>..\..\packages\FluentAssertions.4.19.3\lib\net45\FluentAssertions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BddTestSetup.cs" />
-    <Compile Include="LoginTests.cs" />
-    <Compile Include="Pages\HomePage.cs" />
-    <Compile Include="PageComponents\HeaderLoginWidget.cs" />
-    <Compile Include="Auth\LogIntoTheSite.cs" />
-    <Compile Include="Pages\LoginPage.cs" />
-    <Compile Include="Actions\ClearTheCookies.cs" />
-    <Compile Include="Auth\ResetTheirBrowser.cs" />
+    <Compile Include="Auth\ChangePassword.feature.cs">
+      <DependentUpon>ChangePassword.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Auth\Login.feature.cs">
+      <DependentUpon>Login.feature</DependentUpon>
+    </Compile>
+    <Compile Include="ScreenplayIntegrationConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="app.config" />
+    <None Include="App.config" />
+    <None Include="Auth\ChangePassword.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ChangePassword.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Auth\Login.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Login.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\" />
-    <Folder Include="PageComponents\" />
-    <Folder Include="Auth\" />
-    <Folder Include="Actions\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Agiil.BDD.AppAbilities\Agiil.BDD.AppAbilities.csproj">
-      <Project>{2C251228-5B33-4FAC-93E5-8BB0CAEB78E7}</Project>
-      <Name>Agiil.BDD.AppAbilities</Name>
+    <ProjectReference Include="..\Agiil.BDD\Agiil.BDD.csproj">
+      <Project>{63B32334-E2E3-4BC3-BEFE-96374AAD4093}</Project>
+      <Name>Agiil.BDD</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Auth\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

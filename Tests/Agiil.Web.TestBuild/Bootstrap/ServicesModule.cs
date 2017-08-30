@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Agiil.Bootstrap;
-using Agiil.Web.TestBuild.Services;
+using Agiil.Web.Services;
 
-namespace Agiil.Web.TestBuild.Bootstrap
+namespace Agiil.Web.Bootstrap
 {
   public class ServicesModule : NamespaceModule
   {

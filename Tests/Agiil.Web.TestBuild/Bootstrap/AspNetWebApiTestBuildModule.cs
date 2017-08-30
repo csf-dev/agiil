@@ -3,7 +3,7 @@ using System.Web.Http;
 using Agiil.Web.Bootstrap;
 using Autofac.Integration.WebApi;
 
-namespace Agiil.Web.TestBuild.Bootstrap
+namespace Agiil.Web.Bootstrap
 {
   public class AspNetWebApiTestBuildModule : AspNetWebApiModule
   {

@@ -154,7 +154,6 @@
     <Compile Include="Bootstrap\DataModule.cs" />
     <Compile Include="Bootstrap\TestFakesModule.cs" />
     <Compile Include="Auth\LoginController.cs" />
-    <Compile Include="Auth\UserAccountController.cs" />
     <Compile Include="UnitTestContainerFactory.cs" />
     <Compile Include="HasIdentityAttribute.cs" />
     <Compile Include="Autofixture\HasIdentityCustomization.cs" />

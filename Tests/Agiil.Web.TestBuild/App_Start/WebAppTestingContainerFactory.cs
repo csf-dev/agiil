@@ -1,13 +1,11 @@
 ﻿using System;
 using Autofac;
-using Agiil.Web.App_Start;
 using System.Reflection;
 using System.Collections.Generic;
 using Agiil.Web.Bootstrap;
-using Agiil.Web.TestBuild.Bootstrap;
 using System.Linq;
 
-namespace Agiil.Web.TestBuild.App_Start
+namespace Agiil.Web.App_Start
 {
   public class WebAppTestingContainerFactory : WebAppContainerFactory
   {
