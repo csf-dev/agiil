@@ -1,73 +1,53 @@
 ﻿using System;
-using System.Linq;
-using Agiil.Domain.Tickets;
-using Agiil.Tests.Autofixture;
-using Agiil.Tests.Tickets;
-using Agiil.Web.Models;
-using Agiil.Web.Models.Tickets;
-using CSF.Entities;
-using Ploeh.AutoFixture;
+using Agiil.BDD.Pages;
+using Agiil.BDD.Tasks.Tickets;
+using CSF.Screenplay;
+using CSF.Screenplay.Web.Builders;
+using FluentAssertions;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
+using static CSF.Screenplay.StepComposer;
 
 namespace Agiil.BDD.Bindings.Tickets
 {
   [Binding]
   public class TicketCreationSteps
   {
-    readonly INewTicketController ticketCreator;
-    readonly IBulkTicketCreator bulkTicketCreator;
-    readonly IFixture autofixture;
-    readonly ITicketModel ticketModel;
+    readonly IScreenplayScenario screenplay;
 
-    [When("the user attempts to create a ticket with the following properties:")]
-    public void TheUserAttemptsToCreateATicket(Table ticketProperties)
+    [When("Youssef creates the following ticket using the create ticket page")]
+    public void WhenYoussefCreatesATicket(Table detailsTable)
     {
-      var spec = ticketProperties.CreateInstance<NewTicketSpecification>();
-      ticketCreator.Create(spec);
+      var details = detailsTable.CreateInstance<TicketCreationDetails>();
+
+      var youssef = screenplay.GetYoussef();
+      When(youssef).AttemptsTo(CreateANewTicket.WithTheDetails(details));
     }
 
-    [Given("there are a number of tickets with the following properties:")]
-    public void ThereAreTicketsWithTheFollowingProperties(Table ticketSpecifications)
+    [Then("Youssef should see a ticket created success message")]
+    public void ThenYoussefShouldSeeATicketCreatedSuccessMessage()
     {
-      autofixture.Customize(new BulkTicketSpecificationCustomization());
-      var tickets = ticketSpecifications.CreateSet(() => autofixture.Create<BulkTicketSpecification>());
-      bulkTicketCreator.CreateTickets(tickets);
+      var youssef = screenplay.GetYoussef();
+      Then(youssef).ShouldSee(TheText.Of(CreateNewTicket.CreationSuccessMessage))
+                   .Should()
+                   .StartWith("The ticket was created successfully", because: "The ticket creation was a success");
     }
 
-    [Given(@"there is a ticket with ID (\d+)")]
-    public void ThereIsATicketWithAnId(long id)
+    [Then("Youssef should see a ticket creation failure message")]
+    public void ThenYoussefShouldSeeATicketCreationFailureMessage()
     {
-      var ticket = autofixture.Create<BulkTicketSpecification>();
-      ticket.Id = id;
-      bulkTicketCreator.CreateTickets(new [] { ticket });
+      var youssef = screenplay.GetYoussef();
+      Then(youssef).ShouldSee(TheText.Of(CreateNewTicket.CreationFailureMessage))
+                   .Should()
+                   .StartWith("The ticket was not created", because: "The ticket creation failed");
     }
 
-    [Given(@"there is no ticket with ID (\d+)")]
-    public void ThereIsNotATicketWithAnId(long id)
+    public TicketCreationSteps(IScreenplayScenario screenplay)
     {
-      var identity = Identity.Create<Ticket>(id);
-      ticketModel.Remove(identity);
-    }
+      if(screenplay == null)
+        throw new ArgumentNullException(nameof(screenplay));
 
-    public TicketCreationSteps(INewTicketController controller,
-                               IBulkTicketCreator bulkTicketCreator,
-                               IFixture autofixture,
-                               ITicketModel ticketModel)
-    {
-      if(ticketModel == null)
-        throw new ArgumentNullException(nameof(ticketModel));
-      if(autofixture == null)
-        throw new ArgumentNullException(nameof(autofixture));
-      if(bulkTicketCreator == null)
-        throw new ArgumentNullException(nameof(bulkTicketCreator));
-      if(controller == null)
-        throw new ArgumentNullException(nameof(controller));
-
-      this.ticketCreator = controller;
-      this.bulkTicketCreator = bulkTicketCreator;
-      this.autofixture = autofixture;
-      this.ticketModel = ticketModel;
+      this.screenplay = screenplay;
     }
   }
 }

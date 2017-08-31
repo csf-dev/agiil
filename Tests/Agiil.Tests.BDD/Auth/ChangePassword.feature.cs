@@ -83,14 +83,12 @@ this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line 10
-  testRunner.Given("Youssef opens his browser on the change password page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 11
    testRunner.When("Youssef correctly changes his password to 'test_password_123'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 12
+#line 11
     testRunner.And("Youssef logs out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
+#line 12
     testRunner.And("Youssef attempts to log in with a username 'Youssef' and password 'test_password_123'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 14
+#line 13
    testRunner.Then("Youssef should be logged in as 'Youssef'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -101,15 +99,13 @@ this.FeatureBackground();
         public virtual void YoussefShouldSeeASuccessMessageAfterHeHasChangedHisPasswordCorrectly()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef should see a success message after he has changed his password correctly", ((string[])(null)));
-#line 16
+#line 15
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
-#line 17
-  testRunner.Given("Youssef opens his browser on the change password page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 18
+#line 16
    testRunner.When("Youssef correctly changes his password to 'test_password_123'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 19
+#line 17
    testRunner.Then("Youssef should see a password-change success message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -120,15 +116,13 @@ this.FeatureBackground();
         public virtual void YoussefShouldSeeAFailureMessageIfHeTriesToChangeHisPasswordAndEntersAnIncorrectCurrentPassword()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef should see a failure message if he tries to change his password and enters an incorrect current password", ((string[])(null)));
-#line 21
+#line 19
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
-#line 22
-  testRunner.Given("Youssef opens his browser on the change password page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 23
+#line 20
    testRunner.When("Youssef attempts to change his password to 'test_password_123' using an incorrect current password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 24
+#line 21
    testRunner.Then("Youssef should see a password-change failure message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -139,19 +133,17 @@ this.FeatureBackground();
         public virtual void YoussefSPasswordShouldNotBeChangedIfHeEntersAnIncorrectCurrentPassword()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef's password should not be changed if he enters an incorrect current password", ((string[])(null)));
-#line 26
+#line 23
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
-#line 27
-  testRunner.Given("Youssef opens his browser on the change password page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 28
+#line 24
    testRunner.When("Youssef attempts to change his password to 'test_password_123' using an incorrect current password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 29
+#line 25
     testRunner.And("Youssef logs out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 30
+#line 26
     testRunner.And("Youssef attempts to log in with a username 'Youssef' and password 'test_password_123'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 31
+#line 27
    testRunner.Then("Youssef should not be logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

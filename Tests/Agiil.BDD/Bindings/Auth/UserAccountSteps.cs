@@ -12,13 +12,13 @@ namespace Agiil.BDD.Bindings.Auth
   {
     readonly IScreenplayScenario screenplay;
 
-    [Given(@"([A-Za-z0-9_-]+) has a user account with the username '([A-Za-z0-9_-]+)' and password '([^']+)'")]
-    public void GivenJoeHasAUserAccount(string actorName, string username, string password)
+    [Given(@"Joe has a user account with the username '([A-Za-z0-9_-]+)' and password '([^']+)'")]
+    public void GivenJoeHasAUserAccount(string username, string password)
     {
       var april = screenplay.GetApril();
-      Given(april).WasAbleTo(AddAUserAccount.WithTheUsername(username).AndThePassword(password));
+      var joe = screenplay.GetJoe();
 
-      var joe = screenplay.GetJoe(actorName);
+      Given(april).WasAbleTo(AddAUserAccount.WithTheUsername(username).AndThePassword(password));
       joe.IsAbleTo(LogInWithAUserAccount.WithTheUsername(username).AndThePassword(password));
     }
 

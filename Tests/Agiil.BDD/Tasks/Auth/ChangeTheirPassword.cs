@@ -12,29 +12,16 @@ namespace Agiil.BDD.Tasks.Auth
     string oldPassword, newPassword;
 
     protected override string GetReport(INamed actor)
-    {
-      if(oldPassword != null)
-        return $"{actor.Name} tries to change their password from '{oldPassword}' to {newPassword}";
-
-      return $"{actor.Name} tries to change their password from their old password to {newPassword}";
-    }
+      => $"{actor.Name} tries to change their password from '{oldPassword}' to {newPassword}";
 
     protected override void PerformAs(IPerformer actor)
     {
-      var old = oldPassword;
-
-      if(old == null && actor.HasAbility<LogInWithAUserAccount>())
-      {
-        var loginAbility = actor.GetAbility<LogInWithAUserAccount>();
-        old = loginAbility.Password;
-      }
-
-      actor.Perform(Enter.TheText(old).Into(ChangePasswordPage.ExistingPassword));
+      actor.Perform(OpenTheirBrowserOn.ThePage<ChangePasswordPage>());
+      actor.Perform(Enter.TheText(oldPassword).Into(ChangePasswordPage.ExistingPassword));
       actor.Perform(Enter.TheText(newPassword).Into(ChangePasswordPage.NewPassword));
       actor.Perform(Enter.TheText(newPassword).Into(ChangePasswordPage.ConfirmNewPassword));
       actor.Perform(Click.On(ChangePasswordPage.SubmitChangePasswordButton));
     }
-
 
     public static ChangeTheirPassword From(string old)
     {
@@ -43,17 +30,6 @@ namespace Agiil.BDD.Tasks.Auth
 
       return new ChangeTheirPassword {
         oldPassword = old,
-      };
-    }
-
-    public static IPerformable FromTheirOldPasswordTo(string newPassword)
-    {
-      if(newPassword == null)
-        throw new ArgumentNullException(nameof(newPassword));
-
-      return new ChangeTheirPassword {
-        oldPassword = null,
-        newPassword = newPassword,
       };
     }
 

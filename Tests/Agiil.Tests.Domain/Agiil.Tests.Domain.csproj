@@ -108,10 +108,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>EditComment.feature.cs</LastGenOutput>
     </None>
-    <None Include="Tickets\NewTicket.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>NewTicket.feature.cs</LastGenOutput>
-    </None>
     <None Include="Tickets\TicketList.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>TicketList.feature.cs</LastGenOutput>
@@ -153,9 +149,6 @@
     </Compile>
     <Compile Include="Tickets\EditComment.feature.cs">
       <DependentUpon>EditComment.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Tickets\NewTicket.feature.cs">
-      <DependentUpon>NewTicket.feature</DependentUpon>
     </Compile>
     <Compile Include="Tickets\TicketList.feature.cs">
       <DependentUpon>TicketList.feature</DependentUpon>

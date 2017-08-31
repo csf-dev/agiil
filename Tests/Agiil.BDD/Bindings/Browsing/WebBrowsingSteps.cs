@@ -13,18 +13,11 @@ namespace Agiil.BDD.Bindings.Browsing
   {
     readonly IScreenplayScenario screenplay;
 
-    [Given(@"([A-Za-z0-9_-]+) has a clean web browser on the application home page")]
-    public void GivenJoeHasACleanWebBrowserOnTheAppHomePage(string actorName)
+    [Given(@"Joe has a clean web browser on the application home page")]
+    public void GivenJoeHasACleanWebBrowserOnTheAppHomePage()
     {
-      var joe = screenplay.GetJoe(actorName);
+      var joe = screenplay.GetJoe();
       Given(joe).WasAbleTo<VisitTheHomePageWithACleanBrowser>();
-    }
-
-    [Given("([A-Za-z0-9_-]+) opens (?:his|her) browser on the change password page")]
-    public void GivenJoeOpensTheChangePasswordPage(string actorName)
-    {
-      var joe = screenplay.GetJoe(actorName);
-      Given(joe).WasAbleTo(OpenTheirBrowserOn.ThePage<ChangePasswordPage>());
     }
 
     public WebBrowsingSteps(IScreenplayScenario screenplay)

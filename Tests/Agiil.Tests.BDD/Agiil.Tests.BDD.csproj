@@ -78,6 +78,9 @@
       <DependentUpon>Login.feature</DependentUpon>
     </Compile>
     <Compile Include="ScreenplayIntegrationConfig.cs" />
+    <Compile Include="Tickets\CreateTicket.feature.cs">
+      <DependentUpon>CreateTicket.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -90,6 +93,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Login.feature.cs</LastGenOutput>
     </None>
+    <None Include="Tickets\CreateTicket.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateTicket.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.BDD\Agiil.BDD.csproj">
@@ -99,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
+    <Folder Include="Tickets\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

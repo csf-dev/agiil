@@ -13,11 +13,11 @@ namespace Agiil.BDD.Bindings.Auth
   {
     readonly IScreenplayScenario screenplay;
 
-    [When("([A-Za-z0-9_-]+) logs out")]
-    public void WhenJoeLogsOut(string actorName)
+    [When("Youssef logs out")]
+    public void WhenYoussefLogsOut()
     {
-      var joe = screenplay.GetJoe(actorName);
-      When(joe).AttemptsTo<LogOutOfTheSite>();
+      var youssef = screenplay.GetYoussef();
+      When(youssef).AttemptsTo<LogOutOfTheSite>();
     }
 
     public LogoutSteps(IScreenplayScenario screenplay)

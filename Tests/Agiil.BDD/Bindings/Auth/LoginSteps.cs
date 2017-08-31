@@ -1,6 +1,7 @@
 ﻿using System;
 using Agiil.BDD.Abilities;
 using Agiil.BDD.Actions;
+using Agiil.BDD.Personas;
 using Agiil.BDD.Tasks.Auth;
 using CSF.Screenplay;
 using Ploeh.AutoFixture;
@@ -14,50 +15,41 @@ namespace Agiil.BDD.Bindings.Auth
   {
     readonly IScreenplayScenario screenplay;
 
-    [Given("([A-Za-z0-9_-]+) is logged into the site as a normal user")]
-    public void GivenJoeIsLoggedIntoTheSiteAsANormalUser(string actorName)
+    [Given("Youssef is logged into the site as a normal user")]
+    public void GivenYoussefIsLoggedIntoTheSiteAsANormalUser()
     {
-      var autofixture = new Fixture();
-      var password = autofixture.Create<string>();
-
       var april = screenplay.GetApril();
-      Given(april).WasAbleTo(AddAUserAccount.WithTheUsername(actorName).AndThePassword(password));
+      var youssef = screenplay.GetYoussef();
 
-      var joe = screenplay.GetJoe(actorName);
-      joe.IsAbleTo(LogInWithAUserAccount.WithTheUsername(actorName).AndThePassword(password));
-
-      Given(joe).WasAbleTo<LogInWithTheirAccount>();
+      Given(april).WasAbleTo(AddAUserAccount.WithTheUsername(Youssef.Name).AndThePassword(Youssef.Password));
+      Given(youssef).WasAbleTo<LogInWithTheirAccount>();
     }
 
-    [When("([A-Za-z0-9_-]+) attempts to log in with a username '([A-Za-z0-9_-]+)' and password '([^']+)'")]
-    public void WhenJoeAttemptsToLogin(string actorName, string username, string password)
+    [When("Joe attempts to log in with a username '([A-Za-z0-9_-]+)' and password '([^']+)'")]
+    public void WhenJoeAttemptsToLogin(string username, string password)
     {
-      var joe = screenplay.GetJoe(actorName);
-
+      var joe = screenplay.GetJoe();
       When(joe).AttemptsTo(LogIntoTheSite.As(username).WithThePassword(password));
     }
 
-    [Then("([A-Za-z0-9_-]+) should see a login failure message")]
-    public void ThenJoeShouldSeeALoginFailureMessage(string actorName)
+    [Then("Joe should see a login failure message")]
+    public void ThenJoeShouldSeeALoginFailureMessage()
     {
-      var joe = screenplay.GetJoe(actorName);
-
+      var joe = screenplay.GetJoe();
       Then(joe).Should<VerifyThatThereIsALoginFailureMessage>();
     }
 
-    [Then("([A-Za-z0-9_-]+) should not be logged in")]
-    public void ThenJoeShouldNotBeLoggedIn(string actorName)
+    [Then("Joe should not be logged in")]
+    public void ThenJoeShouldNotBeLoggedIn()
     {
-      var joe = screenplay.GetJoe(actorName);
-
+      var joe = screenplay.GetJoe();
       Then(joe).Should<VerifyThatTheyAreNotLoggedIn>();
     }
 
-    [Then("([A-Za-z0-9_-]+) should be logged in as ''([A-Za-z0-9_-]+)'")]
-    public void ThenJoeShouldBeLoggedIn(string actorName, string username)
+    [Then("Joe should be logged in as '([A-Za-z0-9_-]+)'")]
+    public void ThenJoeShouldBeLoggedIn(string username)
     {
-      var joe = screenplay.GetJoe(actorName);
-
+      var joe = screenplay.GetJoe();
       Then(joe).Should(VerifyThatTheyAreLoggedIn.As(username));
     }
 

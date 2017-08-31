@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.BDD.Pages;
+using Agiil.BDD.Personas;
 using Agiil.BDD.Tasks.Auth;
 using CSF.Screenplay;
 using CSF.Screenplay.Web.Builders;
@@ -15,37 +16,37 @@ namespace Agiil.BDD.Bindings.Auth
   {
     readonly IScreenplayScenario screenplay;
 
-    [When("([A-Za-z0-9_-]+) correctly changes (?:his|her) password to '([^']+)'")]
-    public void WhenJoeChangesHisPassword(string actorName, string newPassword)
+    [When("Youssef correctly changes his password to '([^']+)'")]
+    public void WhenYoussefChangesHisPassword(string newPassword)
     {
-      var joe = screenplay.GetJoe(actorName);
-      When(joe).AttemptsTo(ChangeTheirPassword.FromTheirOldPasswordTo(newPassword));
+      var youssef = screenplay.GetYoussef();
+      When(youssef).AttemptsTo(ChangeTheirPassword.From(Youssef.Password).To(newPassword));
     }
 
-    [When("([A-Za-z0-9_-]+) attempts to change (?:his|her) password to '([^']+)' using an incorrect current password")]
-    public void WhenJoeChangesHisPasswordWithTheWrongCurrentPassword(string actorName, string newPassword)
+    [When("Youssef attempts to change his password to '([^']+)' using an incorrect current password")]
+    public void WhenYoussefChangesHisPasswordWithTheWrongCurrentPassword(string newPassword)
     {
       var fixture = new Fixture();
       var incorrectPassword = fixture.Create<string>();
 
-      var joe = screenplay.GetJoe(actorName);
-      When(joe).AttemptsTo(ChangeTheirPassword.From(incorrectPassword).To(newPassword));
+      var youssef = screenplay.GetYoussef();
+      When(youssef).AttemptsTo(ChangeTheirPassword.From(incorrectPassword).To(newPassword));
     }
 
-    [Then("([A-Za-z0-9_-]+) should see a password-change success message")]
-    public void ThenJoeShouldSeeASuccessMessage(string actorName)
+    [Then("Youssef should see a password-change success message")]
+    public void ThenYoussefShouldSeeASuccessMessage()
     {
-      var joe = screenplay.GetJoe(actorName);
-      Then(joe).ShouldSee(TheText.Of(ChangePasswordPage.PasswordChangeFeedbackMessage))
+      var youssef = screenplay.GetYoussef();
+      Then(youssef).ShouldSee(TheText.Of(ChangePasswordPage.PasswordChangeFeedbackMessage))
                .Should()
                .StartWith("Your password has been changed.", because: "The password change should be a success");
     }
 
-    [Then("([A-Za-z0-9_-]+) should see a password-change failure message")]
-    public void ThenJoeShouldSeeAFailureMessage(string actorName)
+    [Then("Youssef should see a password-change failure message")]
+    public void ThenYoussefShouldSeeAFailureMessage()
     {
-      var joe = screenplay.GetJoe(actorName);
-      Then(joe).ShouldSee(TheText.Of(ChangePasswordPage.PasswordChangeFeedbackMessage))
+      var youssef = screenplay.GetYoussef();
+      Then(youssef).ShouldSee(TheText.Of(ChangePasswordPage.PasswordChangeFeedbackMessage))
                .Should()
                .StartWith("Your password was not changed.", because: "The password change should have failed");
     }

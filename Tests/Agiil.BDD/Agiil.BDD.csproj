@@ -162,6 +162,21 @@
     <Compile Include="Tasks\Auth\ChangeTheirPassword.cs" />
     <Compile Include="Bindings\Auth\LogoutSteps.cs" />
     <Compile Include="Tasks\Auth\LogOutOfTheSite.cs" />
+    <Compile Include="Bindings\Tickets\TicketCreationDetails.cs" />
+    <Compile Include="Tasks\Tickets\CreateANewTicket.cs" />
+    <Compile Include="Personas\April.cs" />
+    <Compile Include="Personas\Joe.cs" />
+    <Compile Include="Personas\Youssef.cs" />
+    <Compile Include="Pages\CreateNewTicket.cs" />
+    <Compile Include="Bindings\Tickets\FindATicketSteps.cs" />
+    <Compile Include="Tasks\Tickets\FindATicketByTitle.cs" />
+    <Compile Include="Tasks\Tickets\ThereIsATicket.cs" />
+    <Compile Include="Bindings\Tickets\ReadATicketSteps.cs" />
+    <Compile Include="Tasks\Tickets\OpenTicketByTitle.cs" />
+    <Compile Include="Tasks\Tickets\OpenTheTicket.cs" />
+    <Compile Include="Tasks\Tickets\ReadTheTicketDescription.cs" />
+    <Compile Include="Tasks\Tickets\ReadTheTicketSprintTitle.cs" />
+    <Compile Include="Tasks\Tickets\ThatTheTicket.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -181,6 +196,8 @@
     <Folder Include="Bindings\App\" />
     <Folder Include="Bindings\Browsing\" />
     <Folder Include="Tasks\Browsing\" />
+    <Folder Include="Tasks\Tickets\" />
+    <Folder Include="Personas\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj">

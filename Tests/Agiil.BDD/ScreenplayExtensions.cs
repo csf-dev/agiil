@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.BDD.Abilities;
+using Agiil.BDD.Personas;
 using CSF.Screenplay;
 using CSF.Screenplay.Actors;
 
@@ -13,18 +14,25 @@ namespace Agiil.BDD
         throw new ArgumentNullException(nameof(screenplay));
 
       var cast = screenplay.GetCast();
-      return cast.Get("April", CustomiseApril);
+      return cast.Get(April.Name, CustomiseApril);
     }
 
-    public static IActor GetJoe(this IScreenplayScenario screenplay, string actorName)
+    public static IActor GetJoe(this IScreenplayScenario screenplay)
     {
       if(screenplay == null)
         throw new ArgumentNullException(nameof(screenplay));
-      if(actorName == null)
-        throw new ArgumentNullException(nameof(actorName));
+      
+      var cast = screenplay.GetCast();
+      return cast.Get(Joe.Name, CustomiseJoe, screenplay);
+    }
+
+    public static IActor GetYoussef(this IScreenplayScenario screenplay)
+    {
+      if(screenplay == null)
+        throw new ArgumentNullException(nameof(screenplay));
 
       var cast = screenplay.GetCast();
-      return cast.Get(actorName, CustomiseWebUser, screenplay);
+      return cast.Get(Youssef.Name, CustomiseYoussef, screenplay);
     }
 
     static void CustomiseApril(IActor april)
@@ -32,10 +40,17 @@ namespace Agiil.BDD
       april.HasAbility<ActAsTheApplication>();
     }
 
-    static void CustomiseWebUser(IActor actor, IScreenplayScenario scenario)
+    static void CustomiseJoe(IActor joe, IScreenplayScenario scenario)
     {
       var browseTheWeb = scenario.GetWebBrowser();
-      actor.IsAbleTo(browseTheWeb);
+      joe.IsAbleTo(browseTheWeb);
+    }
+
+    static void CustomiseYoussef(IActor youssef, IScreenplayScenario scenario)
+    {
+      var browseTheWeb = scenario.GetWebBrowser();
+      youssef.IsAbleTo(browseTheWeb);
+      youssef.IsAbleTo(LogInWithAUserAccount.WithTheUsername(Youssef.Name).AndThePassword(Youssef.Password));
     }
   }
 }
