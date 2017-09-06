@@ -25,6 +25,7 @@ Scenario: A user should be able to find the ticket they just created
   | Field       | Value               |
   | Title       | Create ticket 1     |
   | Description | Ticket description  |
+    And Youssef looks at the list of tickets
    Then Youssef should be able to find a ticket with the title 'Create ticket 1'
 
 Scenario: Users are marked as the creator of the tickets they create
@@ -57,5 +58,5 @@ Scenario: Users can choose sprints for a tickets as they create them
   | Title     | Create ticket 4   |
   | Sprint    | Sprint one        |
     And Youssef opens a ticket with the title 'Create ticket 4'
-   Then Youssef should see that the ticket is part of 'Sprint one'
+   Then Youssef should see that the ticket is part of the sprint 'Sprint one'
   

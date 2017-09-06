@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Agiil.BDD.Bindings.Tickets
+namespace Agiil.BDD.Models.Tickets
 {
   public class TicketCreationDetails
   {

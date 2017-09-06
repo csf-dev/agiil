@@ -128,17 +128,7 @@
     <Compile Include="Bindings\Auth\LoginSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bindings\Tickets\TicketCreationSteps.cs" />
-    <Compile Include="Bindings\Tickets\TicketQuerySteps.cs" />
-    <Compile Include="Bindings\Tickets\TicketEditingSteps.cs" />
-    <Compile Include="Bindings\Tickets\CommentCreationSteps.cs" />
-    <Compile Include="Bindings\Tickets\CommentQuerySteps.cs" />
-    <Compile Include="Bindings\Tickets\CommentEditingSteps.cs" />
     <Compile Include="Bindings\Auth\PasswordChangeSteps.cs" />
-    <Compile Include="Bindings\Tickets\OpenCloseTicketSteps.cs" />
-    <Compile Include="Bindings\Sprints\SprintCreationSteps.cs" />
-    <Compile Include="Bindings\Sprints\SprintQuerySteps.cs" />
-    <Compile Include="Bindings\Projects\ProjectCreationSteps.cs" />
-    <Compile Include="Bindings\Sprints\SprintEditingSteps.cs" />
     <Compile Include="Actions\ApplicationApiAction.cs" />
     <Compile Include="Actions\InstallTheApplication.cs" />
     <Compile Include="Abilities\ActAsTheApplication.cs" />
@@ -156,27 +146,36 @@
     <Compile Include="Tasks\Auth\VerifyThatThereIsALoginFailureMessage.cs" />
     <Compile Include="Tasks\Auth\VerifyThatTheyAreNotLoggedIn.cs" />
     <Compile Include="Tasks\Auth\VerifyThatTheyAreLoggedIn.cs" />
-    <Compile Include="Pages\ChangePasswordPage.cs" />
+    <Compile Include="Pages\ChangePassword.cs" />
     <Compile Include="ScreenplayExtensions.cs" />
     <Compile Include="Tasks\Auth\LogInWithTheirAccount.cs" />
     <Compile Include="Tasks\Auth\ChangeTheirPassword.cs" />
     <Compile Include="Bindings\Auth\LogoutSteps.cs" />
     <Compile Include="Tasks\Auth\LogOutOfTheSite.cs" />
-    <Compile Include="Bindings\Tickets\TicketCreationDetails.cs" />
     <Compile Include="Tasks\Tickets\CreateANewTicket.cs" />
     <Compile Include="Personas\April.cs" />
     <Compile Include="Personas\Joe.cs" />
     <Compile Include="Personas\Youssef.cs" />
     <Compile Include="Pages\CreateNewTicket.cs" />
     <Compile Include="Bindings\Tickets\FindATicketSteps.cs" />
-    <Compile Include="Tasks\Tickets\FindATicketByTitle.cs" />
-    <Compile Include="Tasks\Tickets\ThereIsATicket.cs" />
+    <Compile Include="Tasks\Tickets\FindTicketsByTitle.cs" />
+    <Compile Include="Tasks\Tickets\VerifyThatThereIsATicket.cs" />
     <Compile Include="Bindings\Tickets\ReadATicketSteps.cs" />
     <Compile Include="Tasks\Tickets\OpenTicketByTitle.cs" />
     <Compile Include="Tasks\Tickets\OpenTheTicket.cs" />
     <Compile Include="Tasks\Tickets\ReadTheTicketDescription.cs" />
     <Compile Include="Tasks\Tickets\ReadTheTicketSprintTitle.cs" />
-    <Compile Include="Tasks\Tickets\ThatTheTicket.cs" />
+    <Compile Include="Tasks\Tickets\TheTicket.cs" />
+    <Compile Include="Models\Tickets\TicketCreationDetails.cs" />
+    <Compile Include="Pages\TicketList.cs" />
+    <Compile Include="Tasks\Tickets\VerifyThatThereIsATicketTitled.cs" />
+    <Compile Include="Tasks\Tickets\FindTickets.cs" />
+    <Compile Include="Pages\TicketDetail.cs" />
+    <Compile Include="Bindings\App\ProjectSetupSteps.cs" />
+    <Compile Include="Tasks\App\SetupTheSimpleSampleProject.cs" />
+    <Compile Include="Actions\LoadTheDataPackage.cs" />
+    <Compile Include="Tasks\Tickets\VerifyThatThereIsNotATicket.cs" />
+    <Compile Include="Tasks\Tickets\VerifyThatThereIsNotATicketTitled.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -198,6 +197,9 @@
     <Folder Include="Tasks\Browsing\" />
     <Folder Include="Tasks\Tickets\" />
     <Folder Include="Personas\" />
+    <Folder Include="Models\" />
+    <Folder Include="Models\Tickets\" />
+    <Folder Include="Tasks\App\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj">

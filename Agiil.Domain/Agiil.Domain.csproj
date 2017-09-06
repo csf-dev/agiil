@@ -121,6 +121,8 @@
     <Compile Include="Sprints\EditSprintRequest.cs" />
     <Compile Include="Sprints\EditSprintResponse.cs" />
     <Compile Include="Tickets\IIdentifiesTicketByProjectAndNumber.cs" />
+    <Compile Include="Auth\AdminUser.cs" />
+    <Compile Include="Projects\AgiilProject.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

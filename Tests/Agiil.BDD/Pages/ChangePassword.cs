@@ -3,7 +3,7 @@ using CSF.Screenplay.Web.Models;
 
 namespace Agiil.BDD.Pages
 {
-  public class ChangePasswordPage : Page
+  public class ChangePassword : Page
   {
     public override string GetName() => "the change password page";
 

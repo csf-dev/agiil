@@ -37,7 +37,7 @@ namespace Agiil.BDD.Bindings.Auth
     public void ThenYoussefShouldSeeASuccessMessage()
     {
       var youssef = screenplay.GetYoussef();
-      Then(youssef).ShouldSee(TheText.Of(ChangePasswordPage.PasswordChangeFeedbackMessage))
+      Then(youssef).ShouldSee(TheText.Of(ChangePassword.PasswordChangeFeedbackMessage))
                .Should()
                .StartWith("Your password has been changed.", because: "The password change should be a success");
     }
@@ -46,7 +46,7 @@ namespace Agiil.BDD.Bindings.Auth
     public void ThenYoussefShouldSeeAFailureMessage()
     {
       var youssef = screenplay.GetYoussef();
-      Then(youssef).ShouldSee(TheText.Of(ChangePasswordPage.PasswordChangeFeedbackMessage))
+      Then(youssef).ShouldSee(TheText.Of(ChangePassword.PasswordChangeFeedbackMessage))
                .Should()
                .StartWith("Your password was not changed.", because: "The password change should have failed");
     }

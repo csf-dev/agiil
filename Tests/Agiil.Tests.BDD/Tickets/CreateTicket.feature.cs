@@ -154,6 +154,8 @@ this.FeatureBackground();
 #line 24
    testRunner.When("Youssef creates the following ticket using the create ticket page", ((string)(null)), table3, "When ");
 #line 28
+    testRunner.And("Youssef looks at the list of tickets", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 29
    testRunner.Then("Youssef should be able to find a ticket with the title 'Create ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -164,7 +166,7 @@ this.FeatureBackground();
         public virtual void UsersAreMarkedAsTheCreatorOfTheTicketsTheyCreate()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users are marked as the creator of the tickets they create", ((string[])(null)));
-#line 30
+#line 31
 this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
@@ -181,11 +183,11 @@ this.FeatureBackground();
                 {
                         "Description",
                         "Ticket description"});
-#line 31
+#line 32
    testRunner.When("Youssef creates the following ticket using the create ticket page", ((string)(null)), table4, "When ");
-#line 35
-    testRunner.And("Youssef opens a ticket with the title 'Create ticket 2'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 36
+    testRunner.And("Youssef opens a ticket with the title 'Create ticket 2'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 37
    testRunner.Then("Youssef should see that the creator of the current ticket is 'Youssef'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -196,7 +198,7 @@ this.FeatureBackground();
         public virtual void TheTicketDescriptionMustBeSavedWhenATicketIsCreated()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The ticket description must be saved when a ticket is created", ((string[])(null)));
-#line 38
+#line 39
 this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
@@ -213,11 +215,11 @@ this.FeatureBackground();
                 {
                         "Description",
                         "Ticket description"});
-#line 39
+#line 40
    testRunner.When("Youssef creates the following ticket using the create ticket page", ((string)(null)), table5, "When ");
-#line 43
-    testRunner.And("Youssef opens a ticket with the title 'Create ticket 3'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 44
+    testRunner.And("Youssef opens a ticket with the title 'Create ticket 3'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 45
    testRunner.Then("Youssef should see that the ticket description reads 'Ticket description'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -228,7 +230,7 @@ this.FeatureBackground();
         public virtual void UsersCannotCreateTicketsWithAnEmptyTitle()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users cannot create tickets with an empty title", ((string[])(null)));
-#line 46
+#line 47
 this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
@@ -245,9 +247,9 @@ this.FeatureBackground();
                 {
                         "Description",
                         "Invalid"});
-#line 47
+#line 48
    testRunner.When("Youssef creates the following ticket using the create ticket page", ((string)(null)), table6, "When ");
-#line 51
+#line 52
    testRunner.Then("Youssef should see a ticket creation failure message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -258,11 +260,11 @@ this.FeatureBackground();
         public virtual void UsersCanChooseSprintsForATicketsAsTheyCreateThem()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users can choose sprints for a tickets as they create them", ((string[])(null)));
-#line 53
+#line 54
 this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
-#line 54
+#line 55
   testRunner.Given("April has set up the simple sample project", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[]
@@ -277,12 +279,12 @@ this.FeatureBackground();
                 {
                         "Sprint",
                         "Sprint one"});
-#line 55
+#line 56
    testRunner.When("Youssef creates the following ticket using the create ticket page", ((string)(null)), table7, "When ");
-#line 59
-    testRunner.And("Youssef opens a ticket with the title 'Create ticket 4'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 60
-   testRunner.Then("Youssef should see that the ticket is part of 'Sprint one'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.And("Youssef opens a ticket with the title 'Create ticket 4'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 61
+   testRunner.Then("Youssef should see that the ticket is part of the sprint 'Sprint one'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

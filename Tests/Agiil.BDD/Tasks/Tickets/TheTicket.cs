@@ -3,7 +3,7 @@ using CSF.Screenplay.Performables;
 
 namespace Agiil.BDD.Tasks.Tickets
 {
-  public static class ThatTheTicket
+  public static class TheTicket
   {
     public static IQuestion<string> Description() => new ReadTheTicketDescription();
 

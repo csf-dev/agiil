@@ -45,7 +45,7 @@
         </p>
       </div>
       <div class="form_element button">
-        <button>Create</button>
+        <button id="CreateTicket">Create</button>
       </div>
     </fieldset>
   </form>

@@ -1,7 +1,9 @@
 ﻿using System;
-using Agiil.BDD.Bindings.Tickets;
+using Agiil.BDD.Models.Tickets;
+using Agiil.BDD.Pages;
 using CSF.Screenplay.Actors;
 using CSF.Screenplay.Performables;
+using CSF.Screenplay.Web.Builders;
 
 namespace Agiil.BDD.Tasks.Tickets
 {
@@ -13,7 +15,18 @@ namespace Agiil.BDD.Tasks.Tickets
 
     protected override void PerformAs(IPerformer actor)
     {
-      throw new NotImplementedException();
+      actor.Perform(OpenTheirBrowserOn.ThePage<CreateNewTicket>());
+
+      if(!String.IsNullOrEmpty(details.Title))
+        actor.Perform(Enter.TheText(details.Title).Into(CreateNewTicket.TicketTitle));
+
+      if(!String.IsNullOrEmpty(details.Description))
+        actor.Perform(Enter.TheText(details.Description).Into(CreateNewTicket.TicketDescription));
+
+      if(!String.IsNullOrEmpty(details.Sprint))
+        actor.Perform(Select.Item(details.Sprint).From(CreateNewTicket.TicketSprint));
+
+      actor.Perform(Click.On(CreateNewTicket.CreateButton));
     }
 
     CreateANewTicket(TicketCreationDetails details)

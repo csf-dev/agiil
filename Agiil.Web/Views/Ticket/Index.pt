@@ -27,7 +27,8 @@
       This ticket is part of sprint
       <a href="Sprint/Index/0"
          tal:define="url string:Sprint/Index/${ticket/Sprint/Id}"
-         tal:attributes="href url"><strong tal:content="ticket/Sprint/Name">Sprint name</strong></a>.
+         tal:attributes="href url"><strong tal:content="ticket/Sprint/Name"
+                                           class="TicketSprintName">Sprint name</strong></a>.
     </p>
     <p tal:condition="not:ticket/Sprint">
       This ticket is not part of any sprint.

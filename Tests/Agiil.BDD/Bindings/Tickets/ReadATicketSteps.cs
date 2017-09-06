@@ -1,8 +1,11 @@
 ﻿using System;
+using Agiil.BDD.Pages;
 using Agiil.BDD.Tasks.Tickets;
 using CSF.Screenplay;
+using CSF.Screenplay.Web.Builders;
 using FluentAssertions;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 using static CSF.Screenplay.StepComposer;
 
 namespace Agiil.BDD.Bindings.Tickets
@@ -13,7 +16,7 @@ namespace Agiil.BDD.Bindings.Tickets
     readonly IScreenplayScenario screenplay;
 
     [When("Youssef opens a ticket with the title '([^']+)'")]
-    public void WhenYoussefOpensATitleWithTheTitle(string title)
+    public void WhenYoussefOpensATicketWithTheTitle(string title)
     {
       var youssef = screenplay.GetYoussef();
       When(youssef).AttemptsTo(OpenTheTicket.Titled(title));
@@ -23,18 +26,29 @@ namespace Agiil.BDD.Bindings.Tickets
     public void ThenYoussefShouldSeeThatTheTicketDescriptionIs(string description)
     {
       var youssef = screenplay.GetYoussef();
-      Then(youssef).ShouldSee(ThatTheTicket.Description())
+      Then(youssef).ShouldSee(TheTicket.Description())
                    .Should()
                    .Be(description);
     }
 
-    [Then("Youssef should see that the ticket is part of '([^']+)'")]
-    public void ThenYoussefShouldSeeThatTheTicketIsAPartOf(string sprint)
+    [Then("Youssef should see that the ticket is part of the sprint '([^']+)'")]
+    public void ThenYoussefShouldSeeThatTheTicketIsAPartOfTheSprint(string sprint)
     {
       var youssef = screenplay.GetYoussef();
-      Then(youssef).ShouldSee(ThatTheTicket.SprintTitle())
+      Then(youssef).ShouldSee(TheTicket.SprintTitle())
                    .Should()
                    .Be(sprint);
+    }
+
+    [Then("Youssef should see comments with the following text, in order")]
+    public void ThenYoussefShouldSeeTheCommentsInOrder(Table expectedCommentsTable)
+    {
+      var expectedComments = expectedCommentsTable.CreateSet((TableRow arg) => arg[0]);
+
+      var youssef = screenplay.GetYoussef();
+      Then(youssef).ShouldSee(TheText.OfAll(TicketDetail.CommentBodies))
+                   .Should()
+                   .ContainInOrder(expectedComments);
     }
 
     public ReadATicketSteps(IScreenplayScenario screenplay)

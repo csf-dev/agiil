@@ -16,11 +16,11 @@ namespace Agiil.BDD.Tasks.Auth
 
     protected override void PerformAs(IPerformer actor)
     {
-      actor.Perform(OpenTheirBrowserOn.ThePage<ChangePasswordPage>());
-      actor.Perform(Enter.TheText(oldPassword).Into(ChangePasswordPage.ExistingPassword));
-      actor.Perform(Enter.TheText(newPassword).Into(ChangePasswordPage.NewPassword));
-      actor.Perform(Enter.TheText(newPassword).Into(ChangePasswordPage.ConfirmNewPassword));
-      actor.Perform(Click.On(ChangePasswordPage.SubmitChangePasswordButton));
+      actor.Perform(OpenTheirBrowserOn.ThePage<ChangePassword>());
+      actor.Perform(Enter.TheText(oldPassword).Into(ChangePassword.ExistingPassword));
+      actor.Perform(Enter.TheText(newPassword).Into(ChangePassword.NewPassword));
+      actor.Perform(Enter.TheText(newPassword).Into(ChangePassword.ConfirmNewPassword));
+      actor.Perform(Click.On(ChangePassword.SubmitChangePasswordButton));
     }
 
     public static ChangeTheirPassword From(string old)

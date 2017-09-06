@@ -54,6 +54,7 @@
     <Reference Include="Autofac.Integration.WebApi">
       <HintPath>..\..\packages\Autofac.WebApi2.4.0.1\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,6 +67,16 @@
     <Compile Include="Bootstrap\ServicesModule.cs" />
     <Compile Include="Bootstrap\AspNetWebApiTestBuildModule.cs" />
     <Compile Include="Controllers\AddUserController.cs" />
+    <Compile Include="Controllers\SetupDataPackageController.cs" />
+    <Compile Include="Services\DataPackageLoader.cs" />
+    <Compile Include="Models\SetupDataPackageRequest.cs" />
+    <Compile Include="Services\DataPackages\SimpleSampleProject.cs" />
+    <Compile Include="Services\IDataPackage.cs" />
+    <Compile Include="Services\DataPackageMetadata.cs" />
+    <Compile Include="Services\DataPackages\IDataPackagesNamespaceMarker.cs" />
+    <Compile Include="Bootstrap\DataPackagesModule.cs" />
+    <Compile Include="Services\IOverridesCurrentLogin.cs" />
+    <Compile Include="Services\OverridableLoginReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -91,6 +102,10 @@
       <Project>{922B2D9C-444E-451A-B626-DAE59E79C0E5}</Project>
       <Name>Agiil.Auth</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Auth.Impl\Agiil.Auth.Impl.csproj">
+      <Project>{71F8B1B3-C0F1-4D0A-BF44-1DC091EE62E3}</Project>
+      <Name>Agiil.Auth.Impl</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -98,6 +113,8 @@
     <Folder Include="Bootstrap\" />
     <Folder Include="App_Start\" />
     <Folder Include="Data\" />
+    <Folder Include="Models\" />
+    <Folder Include="Services\DataPackages\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

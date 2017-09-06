@@ -81,6 +81,15 @@
     <Compile Include="Tickets\CreateTicket.feature.cs">
       <DependentUpon>CreateTicket.feature</DependentUpon>
     </Compile>
+    <Compile Include="Tickets\TicketList.feature.cs">
+      <DependentUpon>TicketList.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Tickets\ViewTicketDetail.feature.cs">
+      <DependentUpon>ViewTicketDetail.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Tickets\EditTicket.feature.cs">
+      <DependentUpon>EditTicket.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -96,6 +105,18 @@
     <None Include="Tickets\CreateTicket.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateTicket.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Tickets\TicketList.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TicketList.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Tickets\ViewTicketDetail.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ViewTicketDetail.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Tickets\EditTicket.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>EditTicket.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

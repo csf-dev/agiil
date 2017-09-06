@@ -1,4 +1,5 @@
 ﻿using System;
+using Agiil.BDD.Models.Tickets;
 using Agiil.BDD.Pages;
 using Agiil.BDD.Tasks.Tickets;
 using CSF.Screenplay;
