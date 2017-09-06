@@ -92,10 +92,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="App.config" />
-    <None Include="Tickets\AddComment.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>AddComment.feature.cs</LastGenOutput>
-    </None>
     <None Include="Tickets\EditComment.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>EditComment.feature.cs</LastGenOutput>
@@ -118,9 +114,6 @@
     <Compile Include="Auth\CurrentUserReaderTests.cs" />
     <Compile Include="Tickets\TicketFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tickets\AddComment.feature.cs">
-      <DependentUpon>AddComment.feature</DependentUpon>
-    </Compile>
     <Compile Include="Tickets\EditComment.feature.cs">
       <DependentUpon>EditComment.feature</DependentUpon>
     </Compile>

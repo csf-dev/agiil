@@ -32,6 +32,15 @@ namespace Agiil.BDD.Pages
     public static ILocatorBasedTarget TicketState
       => new ElementId("TicketState", "the ticket state");
 
+    public static ILocatorBasedTarget AddCommentBody
+      => new ElementId("AddCommentBody", "the comment body");
+
+    public static ILocatorBasedTarget AddCommentSubmitButton
+      => new ElementId("AddCommentSubmit", "the add-comment button");
+
+    public static ILocatorBasedTarget AddCommentFeedbackMessage
+    => new ClassName("AddCommentFeedbackMessage", "the add-comment feedback message");
+
     public TicketDetail(long ticketId)
     {
       this.ticketId = ticketId;

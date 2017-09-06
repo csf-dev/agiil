@@ -190,6 +190,8 @@
     <Compile Include="Bindings\Tickets\OpenCloseTicketSteps.cs" />
     <Compile Include="Tasks\Tickets\CloseTheTicket.cs" />
     <Compile Include="Tasks\Tickets\ReopenTheTicket.cs" />
+    <Compile Include="Bindings\Tickets\CommentingOnATicket.cs" />
+    <Compile Include="Tasks\Tickets\AddACommentToTheTicket.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

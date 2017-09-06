@@ -93,6 +93,9 @@
     <Compile Include="Tickets\OpenAndCloseTicket.feature.cs">
       <DependentUpon>OpenAndCloseTicket.feature</DependentUpon>
     </Compile>
+    <Compile Include="Tickets\CommentingOnATicket.feature.cs">
+      <DependentUpon>CommentingOnATicket.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -124,6 +127,10 @@
     <None Include="Tickets\OpenAndCloseTicket.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>OpenAndCloseTicket.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Tickets\CommentingOnATicket.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CommentingOnATicket.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
