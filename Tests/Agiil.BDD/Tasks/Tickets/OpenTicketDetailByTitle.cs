@@ -8,7 +8,7 @@ using FluentAssertions;
 
 namespace Agiil.BDD.Tasks.Tickets
 {
-  public class OpenTicketByTitle : Performable
+  public class OpenTicketDetailByTitle : Performable
   {
     readonly string title;
 
@@ -32,7 +32,7 @@ namespace Agiil.BDD.Tasks.Tickets
       actor.Perform(Wait.Until(TicketDetail.DescriptionContent).IsVisible());
     }
 
-    public OpenTicketByTitle(string title)
+    public OpenTicketDetailByTitle(string title)
     {
       if(title == null)
         throw new ArgumentNullException(nameof(title));

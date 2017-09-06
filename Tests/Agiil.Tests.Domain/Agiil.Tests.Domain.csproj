@@ -96,10 +96,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AddComment.feature.cs</LastGenOutput>
     </None>
-    <None Include="Tickets\CloseTicket.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloseTicket.feature.cs</LastGenOutput>
-    </None>
     <None Include="Tickets\EditComment.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>EditComment.feature.cs</LastGenOutput>
@@ -111,10 +107,6 @@
     <None Include="Sprints\NewSprint.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>NewSprint.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Tickets\AssignTicketToSprint.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>AssignTicketToSprint.feature.cs</LastGenOutput>
     </None>
     <None Include="Sprints\EditSprint.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -129,9 +121,6 @@
     <Compile Include="Tickets\AddComment.feature.cs">
       <DependentUpon>AddComment.feature</DependentUpon>
     </Compile>
-    <Compile Include="Tickets\CloseTicket.feature.cs">
-      <DependentUpon>CloseTicket.feature</DependentUpon>
-    </Compile>
     <Compile Include="Tickets\EditComment.feature.cs">
       <DependentUpon>EditComment.feature</DependentUpon>
     </Compile>
@@ -140,9 +129,6 @@
     </Compile>
     <Compile Include="Sprints\NewSprint.feature.cs">
       <DependentUpon>NewSprint.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Tickets\AssignTicketToSprint.feature.cs">
-      <DependentUpon>AssignTicketToSprint.feature</DependentUpon>
     </Compile>
     <Compile Include="Sprints\EditSprint.feature.cs">
       <DependentUpon>EditSprint.feature</DependentUpon>

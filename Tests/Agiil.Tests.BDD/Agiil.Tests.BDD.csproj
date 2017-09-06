@@ -90,6 +90,9 @@
     <Compile Include="Tickets\EditTicket.feature.cs">
       <DependentUpon>EditTicket.feature</DependentUpon>
     </Compile>
+    <Compile Include="Tickets\OpenAndCloseTicket.feature.cs">
+      <DependentUpon>OpenAndCloseTicket.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -117,6 +120,10 @@
     <None Include="Tickets\EditTicket.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>EditTicket.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Tickets\OpenAndCloseTicket.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>OpenAndCloseTicket.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -22,7 +22,14 @@ namespace Agiil.BDD.Bindings.Tickets
       When(youssef).AttemptsTo(OpenTheTicket.Titled(title));
     }
 
-    [Then("Youssef should see that the ticket description reads '([^']+)'")]
+    [Given("Youssef has opened a ticket with the title '([^']+)'")]
+    public void GivenYoussefHasOpenedATicketWithTheTitle(string title)
+    {
+      var youssef = screenplay.GetYoussef();
+      Given(youssef).WasAbleTo(OpenTheTicket.Titled(title));
+    }
+
+    [Then("Youssef should see that the ticket description reads '([^']*)'")]
     public void ThenYoussefShouldSeeThatTheTicketDescriptionIs(string description)
     {
       var youssef = screenplay.GetYoussef();
@@ -49,6 +56,15 @@ namespace Agiil.BDD.Bindings.Tickets
       Then(youssef).ShouldSee(TheText.OfAll(TicketDetail.CommentBodies))
                    .Should()
                    .ContainInOrder(expectedComments);
+    }
+
+    [Then(@"Youssef should see that the ticket state is (.+)")]
+    public void ThenYoussefShouldSeeThatTheTicketStateIs(string expectedState)
+    {
+      var youssef = screenplay.GetYoussef();
+      Then(youssef).ShouldSee(TheText.Of(TicketDetail.TicketState))
+                   .Should()
+                   .Be(expectedState, because: "The ticket state should match");
     }
 
     public ReadATicketSteps(IScreenplayScenario screenplay)

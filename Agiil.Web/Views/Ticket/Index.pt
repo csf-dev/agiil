@@ -42,12 +42,12 @@
           tal:attributes="action openCloseUrl">
       <fieldset>
         <div class="form_element button" tal:condition="not:isClosed">
-          <p>This ticket is open</p>
-          <button>Close</button>
+          <p>This ticket is <span id="TicketState">open</span></p>
+          <button id="CloseTicket">Close</button>
         </div>
         <div class="form_element button" tal:condition="isClosed">
-          <p>This ticket is closed</p>
-          <button>Re-open</button>
+          <p>This ticket is <span id="TicketState">closed</span></p>
+          <button id="ReopenTicket">Re-open</button>
         </div>
       </fieldset>
     </form>
@@ -60,7 +60,8 @@
   </section>
   <a href="Ticket/Edit/0"
      tal:define="editUrl string:Ticket/Edit/${ticket/Id}"
-     tal:attributes="href editUrl">Edit this ticket</a>
+     tal:attributes="href editUrl"
+     id="EditTicketLink">Edit this ticket</a>
   <section class="comments">
     <header>
       <h2>Comments</h2>

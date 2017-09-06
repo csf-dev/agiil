@@ -161,7 +161,7 @@
     <Compile Include="Tasks\Tickets\FindTicketsByTitle.cs" />
     <Compile Include="Tasks\Tickets\VerifyThatThereIsATicket.cs" />
     <Compile Include="Bindings\Tickets\ReadATicketSteps.cs" />
-    <Compile Include="Tasks\Tickets\OpenTicketByTitle.cs" />
+    <Compile Include="Tasks\Tickets\OpenTicketDetailByTitle.cs" />
     <Compile Include="Tasks\Tickets\OpenTheTicket.cs" />
     <Compile Include="Tasks\Tickets\ReadTheTicketDescription.cs" />
     <Compile Include="Tasks\Tickets\ReadTheTicketSprintTitle.cs" />
@@ -176,6 +176,20 @@
     <Compile Include="Actions\LoadTheDataPackage.cs" />
     <Compile Include="Tasks\Tickets\VerifyThatThereIsNotATicket.cs" />
     <Compile Include="Tasks\Tickets\VerifyThatThereIsNotATicketTitled.cs" />
+    <Compile Include="Bindings\Tickets\TicketEditingSteps.cs" />
+    <Compile Include="Tasks\Tickets\BeginEditingTheTicket.cs" />
+    <Compile Include="Pages\EditTicket.cs" />
+    <Compile Include="Tasks\Tickets\OpenTicketForEditingByTitle.cs" />
+    <Compile Include="Tasks\Tickets\ChangeTheTicketTitle.cs" />
+    <Compile Include="Tasks\Tickets\ChangeTheTicketDescription.cs" />
+    <Compile Include="Tasks\Tickets\ChangeTheTicket.cs" />
+    <Compile Include="Actions\ClearTheContents.cs" />
+    <Compile Include="Actions\Clear.cs" />
+    <Compile Include="Tasks\Tickets\SubmitTheEditedTicket.cs" />
+    <Compile Include="Tasks\Tickets\ChangeTheTicketSprint.cs" />
+    <Compile Include="Bindings\Tickets\OpenCloseTicketSteps.cs" />
+    <Compile Include="Tasks\Tickets\CloseTheTicket.cs" />
+    <Compile Include="Tasks\Tickets\ReopenTheTicket.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
