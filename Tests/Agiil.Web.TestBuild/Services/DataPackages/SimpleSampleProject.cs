@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Agiil.Auth;
 using Agiil.Domain.Auth;
 using Agiil.Domain.Projects;
 using Agiil.Domain.Sprints;
@@ -13,28 +14,38 @@ namespace Agiil.Web.Services.DataPackages
   {
     readonly IRepository repo;
     readonly ITransactionCreator transactionCreator;
+    readonly IGetsUserByUsername userQuery;
+    readonly IUserCreator userCreator;
 
     public void Load()
     {
       using(var tran = transactionCreator.BeginTransaction())
       {
         var project = repo.Query<Project>().First();
-        var admin = repo.Query<User>().First(x => x.Username == AdminUser.Username);
+        var admin = userQuery.Get(AdminUser.Username);
+
+        var youssef = CreateYoussef();
 
         var sprint1 = CreateSprintOne(project);
         var sprint2 = CreateSprintTwo(project);
         var sprint3 = CreateSprintThree(project);
 
-        var ticket1 = CreateTicketOne(sprint1, admin);
-        var ticket2 = CreateTicketTwo(sprint1, admin);
-        var ticket3 = CreateTicketThree(sprint1, admin);
+        var ticket1 = CreateTicketOne(sprint1, youssef);
+        var ticket2 = CreateTicketTwo(sprint1, youssef);
+        var ticket3 = CreateTicketThree(sprint1, youssef);
 
-        var comment1 = CreateCommentOne(ticket1, admin);
-        var comment2 = CreateCommentTwo(ticket1, admin);
-        var comment3 = CreateCommentThree(ticket1, admin);
+        var comment1 = CreateCommentOne(ticket1, youssef);
+        var comment2 = CreateCommentTwo(ticket2, admin);
+        var comment3 = CreateCommentThree(ticket2, admin);
 
         tran.Commit();
       }
+    }
+
+    User CreateYoussef()
+    {
+      userCreator.Add("Youssef", "secret");
+      return userQuery.Get("Youssef");
     }
 
     Sprint CreateSprintOne(Project project)
@@ -219,15 +230,23 @@ namespace Agiil.Web.Services.DataPackages
     }
 
     public SimpleSampleProject(IRepository repo,
-                               ITransactionCreator transactionCreator)
+                               ITransactionCreator transactionCreator,
+                               IGetsUserByUsername userQuery,
+                               IUserCreator userCreator)
     {
+      if(userCreator == null)
+        throw new ArgumentNullException(nameof(userCreator));
       if(transactionCreator == null)
         throw new ArgumentNullException(nameof(transactionCreator));
       if(repo == null)
         throw new ArgumentNullException(nameof(repo));
+      if(userQuery == null)
+        throw new ArgumentNullException(nameof(userQuery));
       
       this.transactionCreator = transactionCreator;
       this.repo = repo;
+      this.userQuery = userQuery;
+      this.userCreator = userCreator;
     }
   }
 }

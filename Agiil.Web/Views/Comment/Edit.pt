@@ -5,7 +5,7 @@
 <body>
 <div metal:fill-slot="page_content" class="page_content">
   <h1>Edit comment</h1>
-  <form action="Comment/Edit" method="post">
+  <form action="Comment/Edit" method="post" id="EditComment">
     <p>
       Created by <strong tal:content="here/Comment/Author">username</strong>
       on <strong tal:content="here/Comment/AuthoredTimestamp">2001-01-01 19:21:22</strong>.
@@ -25,7 +25,7 @@
         <p>You do not have permission to edit this comment.</p>
       </div>
       <div class="form_element button">
-        <button>Submit</button>
+        <button id="Submit">Submit</button>
       </div>
     </fieldset>
   </form>

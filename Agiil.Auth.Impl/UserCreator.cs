@@ -10,6 +10,8 @@ namespace Agiil.Auth
     readonly IRepository<User> repo;
     readonly Func<User> userFactory;
 
+    protected IRepository<User> Repository => repo;
+
     public virtual void Add(string username, string password)
     {
       if(password == null)
@@ -35,7 +37,7 @@ namespace Agiil.Auth
 
     protected virtual void Save(User user)
     {
-      repo.Add(user);
+      Repository.Add(user);
     }
 
     public UserCreator(IRepository<User> repo,

@@ -1,4 +1,5 @@
 ﻿using System;
+using Agiil.BDD.PageComponents;
 using CSF.Screenplay.Web.Models;
 
 namespace Agiil.BDD.Pages
@@ -6,6 +7,7 @@ namespace Agiil.BDD.Pages
   public class TicketDetail : Page
   {
     long ticketId;
+    static TicketCommentList comments = new TicketCommentList();
 
     public override string GetName() => $"the ticket detail page for ticket ID {ticketId}";
 
@@ -40,6 +42,8 @@ namespace Agiil.BDD.Pages
 
     public static ILocatorBasedTarget AddCommentFeedbackMessage
     => new ClassName("AddCommentFeedbackMessage", "the add-comment feedback message");
+
+    public static TicketCommentList Comments => comments;
 
     public TicketDetail(long ticketId)
     {

@@ -117,6 +117,7 @@
     <Compile Include="Sprints\SprintDetailService.cs" />
     <Compile Include="Sprints\SprintEditor.cs" />
     <Compile Include="Sprints\EditSprintValidatorFactory.cs" />
+    <Compile Include="Auth\UserQueryByUsername.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

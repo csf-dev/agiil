@@ -85,9 +85,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line 12
-  testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 2'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 3'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 13
-  testRunner.When("Youssef adds a comment with the text 'Hi there, this is a comment'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+   testRunner.When("Youssef adds a comment with the text 'Hi there, this is a comment'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[]
                 {
@@ -108,11 +108,76 @@ this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line 18
-  testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 2'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 3'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 19
   testRunner.When("Youssef adds a comment with the text ''", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 20
    testRunner.Then("Youssef should see an add-comment error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Youssef may edit his own ticket comment")]
+        public virtual void YoussefMayEditHisOwnTicketComment()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef may edit his own ticket comment", ((string[])(null)));
+#line 22
+this.ScenarioSetup(scenarioInfo);
+#line 6
+this.FeatureBackground();
+#line 23
+  testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 24
+   testRunner.When("Youssef edits the first editable comment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 25
+    testRunner.And("Youssef changes the comment text to 'This is an edited comment'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 26
+    testRunner.And("Youssef opens a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "This is an edited comment"});
+#line 27
+   testRunner.Then("Youssef should see comments with the following text, in order", ((string)(null)), table2, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Youssef cannot see an edit-comment link for a comment which is not his own")]
+        public virtual void YoussefCannotSeeAnEdit_CommentLinkForACommentWhichIsNotHisOwn()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef cannot see an edit-comment link for a comment which is not his own", ((string[])(null)));
+#line 30
+this.ScenarioSetup(scenarioInfo);
+#line 6
+this.FeatureBackground();
+#line 31
+   testRunner.When("Youssef opens a ticket with the title 'Sample ticket 2'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 32
+   testRunner.Then("Youssef should not see any editable comments", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Youssef cannot edit a comment and set its body to an empty string")]
+        public virtual void YoussefCannotEditACommentAndSetItsBodyToAnEmptyString()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef cannot edit a comment and set its body to an empty string", ((string[])(null)));
+#line 34
+this.ScenarioSetup(scenarioInfo);
+#line 6
+this.FeatureBackground();
+#line 35
+  testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 36
+   testRunner.When("Youssef edits the first editable comment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 37
+    testRunner.And("Youssef changes the comment text to ''", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 38
+   testRunner.Then("Youssef should see a comment-editing failure message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

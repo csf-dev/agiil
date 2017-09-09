@@ -28,7 +28,8 @@
           </p>
           <p tal:condition="commentIsMine">
             <a href="Comment/Edit/0"
-               tal:attributes="href string:Comment/Edit/${comment/Id}">Edit this comment</a>
+               tal:attributes="href string:Comment/Edit/${comment/Id}"
+               class="edit_comment">Edit this comment</a>
           </p>
         </header>
         <div tal:content="comment/Body" class="comment_content">Comment text here</div>
