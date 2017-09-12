@@ -55,7 +55,7 @@ try_web_app_connection()
 
 copy_testing_files_to_web_app()
 {
-  cp "${TESTING_BIN}/*" "$WEB_APP_BIN"
+  cp "${TESTING_BIN}"/* "$WEB_APP_BIN"
 }
 
 copy_testing_files_to_web_app
