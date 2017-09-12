@@ -14,8 +14,7 @@ namespace Agiil.Web.App_Start
       if(config == null)
         throw new ArgumentNullException(nameof(config));
 
-      var factoryProvider = new ContainerFactoryProvider();
-      var diFactory = factoryProvider.GetContainerBuilderFactory() as IContainerFactoryWithHttpConfiguration;
+      var diFactory = provider.GetContainerBuilderFactory() as IContainerFactoryWithHttpConfiguration;
 
       if(diFactory == null)
         throw new InvalidOperationException($"The configured container builder factory must implement {nameof(IContainerFactoryWithHttpConfiguration)}.");
