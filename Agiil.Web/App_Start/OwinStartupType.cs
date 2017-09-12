@@ -39,6 +39,8 @@ namespace Agiil.Web.App_Start
       ConfigureOAuthServer(app, container);
       ConfigureWebApi(app, container, config);
       ConfigureWebApp(app, container);
+
+      config.EnsureInitialized();
     }
 
     void ConfigureOAuthServer(IAppBuilder app, IContainer container)
