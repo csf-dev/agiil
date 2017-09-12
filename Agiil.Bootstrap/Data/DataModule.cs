@@ -33,6 +33,10 @@ namespace Agiil.Bootstrap.Data
         .As(typeof(IRepository<>));
 
       builder
+        .RegisterType<Repository>()
+        .As<IRepository>();
+
+      builder
         .RegisterType<TransactionCreator>()
         .As<ITransactionCreator>();
 
