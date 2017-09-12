@@ -37,7 +37,7 @@ namespace Agiil.BDD
 
     static void CustomiseApril(IActor april)
     {
-      april.HasAbility<ActAsTheApplication>();
+      april.IsAbleTo<ActAsTheApplication>();
     }
 
     static void CustomiseJoe(IActor joe, IScreenplayScenario scenario)
