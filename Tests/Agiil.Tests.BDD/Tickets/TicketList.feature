@@ -3,9 +3,7 @@
   By default, closed tickets are filtered out of the results.
 
 Background:
-  Given Agiil has just been installed
-    And April has set up the simple sample project
-    And Youssef is logged into the site as a normal user
+  Given Youssef is logged into a fresh installation of the site containing the simple sample project
   
 Scenario: Youssef can see a ticket which exists in the list
    When Youssef looks at the list of tickets

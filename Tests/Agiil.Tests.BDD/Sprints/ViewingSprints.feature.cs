@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Agiil.Tests.Tickets
+namespace Agiil.Tests.Sprints
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace Agiil.Tests.Tickets
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Listing the tickets")]
-    public partial class ListingTheTicketsFeature
+    [NUnit.Framework.DescriptionAttribute("Viewing sprints")]
+    public partial class ViewingSprintsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "TicketList.feature"
+#line 1 "ViewingSprints.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Listing the tickets", "  Users should be able to see a list of the existing tickets, sorted by creation date.\n  By default, closed tickets are filtered out of the results.", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Viewing sprints", "  In order to see the available sprints, users should be able to see an ordered list of the open sprints.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -65,42 +65,53 @@ namespace Agiil.Tests.Tickets
         
         public virtual void FeatureBackground()
         {
-#line 5
-#line 6
+#line 8
+#line 9
   testRunner.Given("Youssef is logged into a fresh installation of the site containing the simple sample project", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Youssef can see a ticket which exists in the list")]
-        public virtual void YoussefCanSeeATicketWhichExistsInTheList()
+        [NUnit.Framework.DescriptionAttribute("Youssef can see a list of the open sprints")]
+        public virtual void YoussefCanSeeAListOfTheOpenSprints()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can see a ticket which exists in the list", ((string[])(null)));
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can see a list of the open sprints", ((string[])(null)));
+#line 11
 this.ScenarioSetup(scenarioInfo);
-#line 5
+#line 8
 this.FeatureBackground();
-#line 9
-   testRunner.When("Youssef looks at the list of tickets", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 10
-   testRunner.Then("Youssef should be able to find a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 12
+  testRunner.When("Youssef opens the sprint listing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "Sprint three"});
+            table1.AddRow(new string[]
+                {
+                        "Sprint one"});
+#line 13
+  testRunner.Then("Youssef should see the following sprints, in order", ((string)(null)), table1, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Youssef can't see closed tickets in the list")]
-        public virtual void YoussefCanTSeeClosedTicketsInTheList()
+        [NUnit.Framework.DescriptionAttribute("Youssef can see a list of the closed sprints")]
+        public virtual void YoussefCanSeeAListOfTheClosedSprints()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can't see closed tickets in the list", ((string[])(null)));
-#line 12
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can see a list of the closed sprints", ((string[])(null)));
+#line 17
 this.ScenarioSetup(scenarioInfo);
-#line 5
+#line 8
 this.FeatureBackground();
-#line 13
-   testRunner.When("Youssef looks at the list of tickets", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 14
-   testRunner.Then("Youssef should be not able to find a ticket with the title 'Sample ticket 4'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 18
+  testRunner.When("Youssef opens the sprint listing page for closed sprints", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "Sprint two"});
+#line 19
+  testRunner.Then("Youssef should see the following sprints, in order", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

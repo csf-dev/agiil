@@ -2,9 +2,7 @@
   A user should be able to edit an existing ticket when they are logged in.
 
 Background:
-  Given Agiil has just been installed
-    And April has set up the simple sample project
-    And Youssef is logged into the site as a normal user
+  Given Youssef is logged into a fresh installation of the site containing the simple sample project
 
 Scenario: Youssef can edit the title of a ticket
   Given Youssef has opened a ticket with the title 'Sample ticket 1' for editing

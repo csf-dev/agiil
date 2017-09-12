@@ -5,6 +5,10 @@ using Agiil.BDD.Tasks.Browsing;
 using CSF.Screenplay.Web.Builders;
 using Agiil.BDD.Pages;
 using CSF.Screenplay;
+using Agiil.BDD.Actions;
+using Agiil.BDD.Tasks.App;
+using Agiil.BDD.Personas;
+using Agiil.BDD.Tasks.Auth;
 
 namespace Agiil.BDD.Bindings.Browsing
 {
@@ -18,6 +22,18 @@ namespace Agiil.BDD.Bindings.Browsing
     {
       var joe = screenplay.GetJoe();
       Given(joe).WasAbleTo<VisitTheHomePageWithACleanBrowser>();
+    }
+
+    [Given(@"Youssef is logged into a fresh installation of the site containing the simple sample project")]
+    public void GivenYoussefIsLoggedIntoAFreshlyInstalledSiteWithSimpleSampleData()
+    {
+      var april = screenplay.GetApril();
+      var youssef = screenplay.GetYoussef();
+
+      Given(april).WasAbleTo<InstallTheApplication>();
+      Given(april).WasAbleTo<SetupTheSimpleSampleProject>();
+      Given(april).WasAbleTo(AddAUserAccount.WithTheUsername(Youssef.Name).AndThePassword(Youssef.Password));
+      Given(youssef).WasAbleTo<LogInWithTheirAccount>();
     }
 
     public WebBrowsingSteps(IScreenplayScenario screenplay)

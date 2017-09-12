@@ -67,11 +67,7 @@ namespace Agiil.Tests.Tickets
         {
 #line 4
 #line 5
-  testRunner.Given("Agiil has just been installed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 6
-    testRunner.And("April has set up the simple sample project", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 7
-    testRunner.And("Youssef is logged into the site as a normal user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.Given("Youssef is logged into a fresh installation of the site containing the simple sample project", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         
@@ -80,17 +76,17 @@ namespace Agiil.Tests.Tickets
         public virtual void YoussefCanEditTheTitleOfATicket()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can edit the title of a ticket", ((string[])(null)));
-#line 9
+#line 7
 this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
-#line 10
+#line 8
   testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1' for editing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 11
+#line 9
    testRunner.When("Youssef changes the ticket title to 'This is an edited ticket' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 12
+#line 10
    testRunner.Then("Youssef looks at the list of tickets", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 13
+#line 11
     testRunner.And("Youssef should be able to find a ticket with the title 'This is an edited ticket'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -101,15 +97,15 @@ this.FeatureBackground();
         public virtual void YoussefCanTChangeTheTitleOfATicketToAnEmptyString()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can't change the title of a ticket to an empty string", ((string[])(null)));
-#line 15
+#line 13
 this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
-#line 16
+#line 14
   testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1' for editing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 17
+#line 15
    testRunner.When("Youssef changes the ticket title to '' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 18
+#line 16
    testRunner.Then("Youssef should see a ticket-editing error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -120,17 +116,17 @@ this.FeatureBackground();
         public virtual void YoussefCanEditTheDescriptionOfATicket()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can edit the description of a ticket", ((string[])(null)));
-#line 20
+#line 18
 this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
-#line 21
+#line 19
   testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1' for editing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 22
+#line 20
    testRunner.When("Youssef changes the ticket description to 'This is an edited description' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 23
+#line 21
    testRunner.Then("Youssef opens a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 24
+#line 22
     testRunner.And("Youssef should see that the ticket description reads 'This is an edited description'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -141,17 +137,17 @@ this.FeatureBackground();
         public virtual void YoussefCanChangeTheDescriptionOfATicketToAnEmptyString()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can change the description of a ticket to an empty string", ((string[])(null)));
-#line 26
+#line 24
 this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
-#line 27
+#line 25
   testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1' for editing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 28
+#line 26
    testRunner.When("Youssef changes the ticket description to '' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 29
+#line 27
    testRunner.Then("Youssef opens a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 30
+#line 28
     testRunner.And("Youssef should see that the ticket description reads ''", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -162,17 +158,17 @@ this.FeatureBackground();
         public virtual void YoussefCanMoveATicketToADifferentSprint()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can move a ticket to a different sprint", ((string[])(null)));
-#line 32
+#line 30
 this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
-#line 33
+#line 31
   testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1' for editing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 34
+#line 32
    testRunner.When("Youssef changes the ticket sprint to 'Sprint three' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 35
+#line 33
    testRunner.Then("Youssef opens a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 36
+#line 34
     testRunner.And("Youssef should see that the ticket is part of the sprint 'Sprint three'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

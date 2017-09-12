@@ -17,7 +17,6 @@ namespace Agiil.BDD.Bindings.App
     {
       var april = screenplay.GetApril();
 
-      Given(april).WasAbleTo<InstallTheApplication>();
       Given(april).WasAbleTo<SetupTheSimpleSampleProject>();
     }
 

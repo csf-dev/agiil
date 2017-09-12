@@ -96,6 +96,15 @@
     <Compile Include="Tickets\CommentingOnATicket.feature.cs">
       <DependentUpon>CommentingOnATicket.feature</DependentUpon>
     </Compile>
+    <Compile Include="Sprints\ViewingSprints.feature.cs">
+      <DependentUpon>ViewingSprints.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Sprints\CreatingSprints.feature.cs">
+      <DependentUpon>CreatingSprints.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Sprints\EditingSprints.feature.cs">
+      <DependentUpon>EditingSprints.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -131,6 +140,18 @@
     <None Include="Tickets\CommentingOnATicket.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CommentingOnATicket.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Sprints\ViewingSprints.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ViewingSprints.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Sprints\CreatingSprints.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreatingSprints.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Sprints\EditingSprints.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>EditingSprints.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

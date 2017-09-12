@@ -29,7 +29,7 @@
     </thead>
     <tbody>
       <tr tal:repeat="sprint sprints" tal:attributes="class sprint/GetHtmlClasses">
-        <td tal:define="url string:Sprint/Index/${sprint/Id}">
+        <td tal:define="url string:Sprint/Index/${sprint/Id}" class="sprint_name">
           <a href="Sprint/Index/0" tal:attributes="href url" tal:content="sprint/Name">Sprint name here</a>
         </td>
         <td>

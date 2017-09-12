@@ -55,8 +55,8 @@ namespace Agiil.Web.Services.DataPackages
         Name = "Sprint one",
         Description = "This is sprint number one",
         CreationDate = new DateTime(2011, 1, 1),
-        StartDate = new DateTime(2011, 1, 1),
-        EndDate = new DateTime(2011, 2, 1),
+        StartDate = new DateTime(2011, 3, 1),
+        EndDate = new DateTime(2011, 4, 1),
       };
 
       project.Sprints.Add(sprint);
@@ -89,9 +89,9 @@ namespace Agiil.Web.Services.DataPackages
       {
         Name = "Sprint three",
         Description = "This is sprint number three",
-        CreationDate = new DateTime(2011, 1, 1),
-        StartDate = new DateTime(2011, 3, 1),
-        EndDate = new DateTime(2011, 4, 1),
+        CreationDate = new DateTime(2011, 1, 2),
+        StartDate = new DateTime(2011, 1, 1),
+        EndDate = new DateTime(2011, 2, 1),
       };
 
       project.Sprints.Add(sprint);

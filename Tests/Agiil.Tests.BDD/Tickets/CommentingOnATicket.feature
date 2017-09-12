@@ -4,9 +4,7 @@
   on both the requirements and the solution.
 
 Background:
-  Given Agiil has just been installed
-    And April has set up the simple sample project
-    And Youssef is logged into the site as a normal user
+  Given Youssef is logged into a fresh installation of the site containing the simple sample project
   
 Scenario: Youssef can add a comment to a ticket
   Given Youssef has opened a ticket with the title 'Sample ticket 3'

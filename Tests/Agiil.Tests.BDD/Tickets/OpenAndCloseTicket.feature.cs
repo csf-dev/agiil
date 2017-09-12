@@ -67,11 +67,7 @@ namespace Agiil.Tests.Tickets
         {
 #line 5
 #line 6
-  testRunner.Given("Agiil has just been installed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 7
-    testRunner.And("April has set up the simple sample project", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 8
-    testRunner.And("Youssef is logged into the site as a normal user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.Given("Youssef is logged into a fresh installation of the site containing the simple sample project", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         
@@ -80,15 +76,15 @@ namespace Agiil.Tests.Tickets
         public virtual void YoussefCanCloseATicket()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can close a ticket", ((string[])(null)));
-#line 10
+#line 8
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
-#line 11
+#line 9
   testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 12
+#line 10
    testRunner.When("Youssef closes the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 13
+#line 11
    testRunner.Then("Youssef should see that the ticket state is closed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -99,15 +95,15 @@ this.FeatureBackground();
         public virtual void YoussefCanRe_OpenATicket()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can re-open a ticket", ((string[])(null)));
-#line 15
+#line 13
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
-#line 16
+#line 14
   testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 17
+#line 15
    testRunner.When("Youssef reopens the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 18
+#line 16
    testRunner.Then("Youssef should see that the ticket state is open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
