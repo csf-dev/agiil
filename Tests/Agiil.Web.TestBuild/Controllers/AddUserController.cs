@@ -2,6 +2,7 @@
 using System.Web.Http;
 using Agiil.Auth;
 using Agiil.Domain.Auth;
+using Agiil.Web.Models;
 
 namespace Agiil.Web.Controllers
 {
@@ -12,24 +13,26 @@ namespace Agiil.Web.Controllers
     readonly IGetsUserByUsername userQuery;
     readonly IUserPasswordUpdater passwordChanger;
 
-    public IHttpActionResult Post(string username, string password)
+    public IHttpActionResult Post(CreateUserModel model)
     {
-      if(username == null)
-        throw new ArgumentNullException(nameof(username));
-      if(password == null)
-        throw new ArgumentNullException(nameof(password));
+      if(model == null)
+        throw new ArgumentNullException(nameof(model));
 
-      var existingUser = userQuery.Get(username);
+      bool exists;
+
+      var existingUser = userQuery.Get(model.username);
       if(existingUser == null)
       {
-        userCreator.Add(username, password);
+        userCreator.Add(model.username, model.password);
+        exists = false;
       }
       else
       {
-        passwordChanger.ChangePassword(existingUser, password);
+        passwordChanger.ChangePassword(existingUser, model.password);
+        exists = true;
       }
       
-      return Ok();
+      return Ok(exists? $"The existing user '{model.username}' was updated" : $"The user '{model.username}' was created");
     }
 
     public AddUserController(IUserCreator userCreator,
