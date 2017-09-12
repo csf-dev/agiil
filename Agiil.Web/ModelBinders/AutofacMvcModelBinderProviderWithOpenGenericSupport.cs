@@ -33,6 +33,9 @@ namespace Agiil.Web.ModelBinders
         .Current
         .GetServices<Meta<Lazy<IModelBinder>>>();
 
+      if(!modelType.IsGenericType)
+        throw new InvalidOperationException($"The type {modelType.FullName} must be an open generic type.");
+
       var meta = (from binder in allBinders
                   where binder.Metadata.ContainsKey(MetadataKey)
                   let types = (List<Type>) binder.Metadata[MetadataKey]
