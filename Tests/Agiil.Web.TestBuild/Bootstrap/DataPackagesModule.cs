@@ -24,6 +24,7 @@ namespace Agiil.Web.Bootstrap
       {
         builder
           .RegisterType(packageType)
+          .As<IDataPackage>()
           .WithMetadata<DataPackageMetadata>(config => {
             config.For(x => x.PackageTypeName, packageType.Name);
           });
