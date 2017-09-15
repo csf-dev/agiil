@@ -28,6 +28,10 @@
       <div class="form_element feedback warning" tal:condition="result/NewPasswordDoesNotMatchConfirmation | nothing">
         <p>The password confirmation must match the new password.</p>
       </div>
+      <p class="feedback warning"
+         id="password_change_feedback"
+         tal:define="failure result/Failure | nothing"
+         tal:condition="failure">Your password was not changed.</p>
       <div class="form_element button">
         <button id="ChangePasswordButton">Change</button>
       </div>
