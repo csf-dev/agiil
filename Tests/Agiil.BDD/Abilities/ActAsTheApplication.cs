@@ -22,10 +22,7 @@ namespace Agiil.BDD.Abilities
       if(!waitSuccess)
         throw new TimeoutException($"Timeout acting as the application, gave up after {requestTimeout.ToString("g")}.");
 
-      var result = httpRequest.Result;
-
-      if((int) result.StatusCode >= 400)
-        throw new ApplicationApiException($"HTTP request returned status: {result.StatusCode}");
+      EnsureResultIsSuccess(httpRequest.Result);
     }
 
     protected override string GetReport(INamed actor)
@@ -35,6 +32,23 @@ namespace Agiil.BDD.Abilities
     {
       if(disposing)
         httpClient.Dispose();
+    }
+
+    void EnsureResultIsSuccess(HttpResponseMessage message)
+    {
+      try
+      {
+        message.EnsureSuccessStatusCode();
+      }
+      catch(HttpRequestException ex)
+      {
+        var content = message.Content.ReadAsStringAsync();
+        content.Wait(requestTimeout);
+        var response = content.Result;
+
+        throw new ApplicationApiException($@"The API request failed
+{response}", ex);
+      }
     }
 
     public ActAsTheApplication(Uri baseUri = null, TimeSpan? defaultTimeout = null)

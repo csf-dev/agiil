@@ -14,7 +14,7 @@ namespace Agiil.Web.Data
 
     #region methods
 
-    public IQuery CurrentQuery
+    public InMemoryQuery CurrentQuery
     {
       get {
         CreateDataStoreIfRequired();

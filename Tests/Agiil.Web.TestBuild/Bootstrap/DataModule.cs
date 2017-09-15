@@ -15,7 +15,10 @@ namespace Agiil.Web.Bootstrap
         .RegisterType<InMemoryDataManager>()
         .SingleInstance();
 
-      builder.Register(GetQuery);
+      builder
+        .Register(GetQuery)
+        .AsSelf()
+        .As<IQuery>();
 
       builder
         .RegisterType<InMemoryPersister>()
@@ -41,7 +44,7 @@ namespace Agiil.Web.Bootstrap
                                               ctx.Resolve<IIdentityGenerator>());
     }
 
-    IQuery GetQuery(IComponentContext ctx)
+    InMemoryQuery GetQuery(IComponentContext ctx)
     {
       var manager = ctx.Resolve<InMemoryDataManager>();
       return manager.CurrentQuery;
