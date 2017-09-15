@@ -85,6 +85,9 @@ this.FeatureBackground();
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[]
                 {
+                        "Sprint name"});
+            table1.AddRow(new string[]
+                {
                         "Sprint three"});
             table1.AddRow(new string[]
                 {
@@ -100,17 +103,20 @@ this.FeatureBackground();
         public virtual void YoussefCanSeeAListOfTheClosedSprints()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can see a list of the closed sprints", ((string[])(null)));
-#line 17
+#line 18
 this.ScenarioSetup(scenarioInfo);
 #line 8
 this.FeatureBackground();
-#line 18
+#line 19
   testRunner.When("Youssef opens the sprint listing page for closed sprints", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[]
                 {
+                        "Sprint name"});
+            table2.AddRow(new string[]
+                {
                         "Sprint two"});
-#line 19
+#line 20
   testRunner.Then("Youssef should see the following sprints, in order", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();

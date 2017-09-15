@@ -32,7 +32,10 @@ namespace Agiil.BDD.Bindings.Sprints
     [Then(@"Youssef should see the following sprints, in order")]
     public void ThenYoussefShouldSeeTheSprintsInOrder(Table expectedSprintNamesTable)
     {
-      var expectedSprintNames = expectedSprintNamesTable.CreateSet<string>().ToArray();
+      var expectedSprintNames = expectedSprintNamesTable
+        .Rows
+        .Select(x => x.Values.Single())
+        .ToArray();
 
       var youssef = screenplay.GetYoussef();
       Then(youssef).ShouldSee(TheText.OfAll(SprintList.SprintNames))

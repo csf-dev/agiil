@@ -11,10 +11,12 @@ Background:
 Scenario: Youssef can see a list of the open sprints
   When Youssef opens the sprint listing page
   Then Youssef should see the following sprints, in order
- | Sprint three |
- | Sprint one   |
+  | Sprint name  |
+  | Sprint three |
+  | Sprint one   |
 
 Scenario: Youssef can see a list of the closed sprints
   When Youssef opens the sprint listing page for closed sprints
   Then Youssef should see the following sprints, in order
- | Sprint two |
+  | Sprint name  |
+  | Sprint two |
