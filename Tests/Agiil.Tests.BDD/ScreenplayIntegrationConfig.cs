@@ -29,7 +29,7 @@ namespace Agiil.Tests.BDD
     void WriteReport(Report report)
     {
       var directory = TestingEnvironment.GetArtifactsDirectory();
-      var reportPath = Path.Combine(directory.FullName, "Agiil.Tests.BDD.screenplay-report.txt");
+      var reportPath = Path.Combine(directory.FullName, $"Agiil.Tests.BDD.{DateTime.Now.ToString("s")}.report.txt");
       TextReportWriter.WriteToFile(report, reportPath);
     }
 

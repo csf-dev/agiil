@@ -29,12 +29,8 @@ namespace Agiil.Bootstrap.Data
         .As<IInitialDataCreator>();
 
       builder
-        .RegisterGeneric(typeof(GenericRepository<>))
-        .As(typeof(IRepository<>));
-
-      builder
-        .RegisterType<Repository>()
-        .As<IRepository>();
+        .RegisterType<EntityData>()
+        .As<IEntityData>();
 
       builder
         .RegisterType<TransactionCreator>()
