@@ -7,6 +7,7 @@ using CSF.Screenplay.Reporting;
 using CSF.Screenplay.Web.Abilities;
 using OpenQA.Selenium;
 using CSF.WebDriverFactory;
+using System.IO;
 
 namespace Agiil.Tests.BDD
 {
@@ -27,7 +28,8 @@ namespace Agiil.Tests.BDD
 
     void WriteReport(Report report)
     {
-      var reportPath = "Agiil.BDD-report.txt";
+      var directory = TestingEnvironment.GetArtifactsDirectory();
+      var reportPath = Path.Combine(directory.FullName, "Agiil.Tests.BDD.screenplay-report.txt");
       TextReportWriter.WriteToFile(report, reportPath);
     }
 
