@@ -10,6 +10,7 @@ Scenario: Youssef can add a comment to a ticket
   Given Youssef has opened a ticket with the title 'Sample ticket 3'
    When Youssef adds a comment with the text 'Hi there, this is a comment'
    Then Youssef should see comments with the following text, in order
+  | Comment text                |
   | Hi there, this is a comment |
 
 Scenario: Youssef cannot add a comment with an empty body
@@ -23,7 +24,8 @@ Scenario: Youssef may edit his own ticket comment
     And Youssef changes the comment text to 'This is an edited comment'
     And Youssef opens a ticket with the title 'Sample ticket 1'
    Then Youssef should see comments with the following text, in order
-  | This is an edited comment |
+  | Comment text                |
+  | This is an edited comment   |
 
 Scenario: Youssef cannot see an edit-comment link for a comment which is not his own
    When Youssef opens a ticket with the title 'Sample ticket 2'

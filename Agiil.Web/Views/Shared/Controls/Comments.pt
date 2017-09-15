@@ -47,8 +47,11 @@
           <textarea id="AddCommentBody" name="Body" class="long_text"
                     tal:content="here/AddCommentSpecification/Body | nothing"></textarea>
         </div>
-        <div class="form_element feedback warning" tal:condition="here/AddCommentResponse/BodyIsInvalid | nothing">
+        <div class="form_element feedback warning AddCommentFeedbackMessage" tal:condition="here/AddCommentResponse/BodyIsInvalid | nothing">
           <p>Please enter a comment.</p>
+        </div>
+        <div class="form_element feedback success AddCommentFeedbackMessage" tal:condition="here/AddCommentResponse/Success | nothing">
+          <p>Your comment was added.</p>
         </div>
         <div class="form_element button">
           <button id="AddCommentSubmit">Submit</button>

@@ -12,9 +12,10 @@ Scenario: Youssef can create a new sprint with just a title
   | Title | New sprint created by Youssef |
     And Youssef opens the sprint listing page
    Then Youssef should see the following sprints
- | Sprint three                   |
- | Sprint one                     |
- | New sprint created by Youssef  |
+  | Sprint name                    |
+  | Sprint three                   |
+  | Sprint one                     |
+  | New sprint created by Youssef  |
 
 Scenario: Youssef cannot create a sprint with an empty title
   Given Youssef has opened the new sprint page

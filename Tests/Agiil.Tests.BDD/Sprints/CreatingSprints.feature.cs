@@ -98,6 +98,9 @@ this.FeatureBackground();
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[]
                 {
+                        "Sprint name"});
+            table2.AddRow(new string[]
+                {
                         "Sprint three"});
             table2.AddRow(new string[]
                 {
@@ -116,11 +119,11 @@ this.FeatureBackground();
         public virtual void YoussefCannotCreateASprintWithAnEmptyTitle()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef cannot create a sprint with an empty title", ((string[])(null)));
-#line 19
+#line 20
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
-#line 20
+#line 21
   testRunner.Given("Youssef has opened the new sprint page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[]
@@ -131,9 +134,9 @@ this.FeatureBackground();
                 {
                         "Title",
                         ""});
-#line 21
+#line 22
    testRunner.When("Youssef enters the following sprint details and presses submit", ((string)(null)), table3, "When ");
-#line 24
+#line 25
    testRunner.Then("Youssef should see a create-sprint failure message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -144,11 +147,11 @@ this.FeatureBackground();
         public virtual void YoussefCanAssignAStartAndEndDateToASprintAsItIsCreated()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can assign a start and end date to a sprint as it is created", ((string[])(null)));
-#line 26
+#line 27
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
-#line 27
+#line 28
   testRunner.Given("Youssef has opened the new sprint page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[]
@@ -167,13 +170,13 @@ this.FeatureBackground();
                 {
                         "EndDate",
                         "2014-02-01"});
-#line 28
+#line 29
    testRunner.When("Youssef enters the following sprint details and presses submit", ((string)(null)), table4, "When ");
-#line 33
-    testRunner.And("Youssef opens the sprint listing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 34
-   testRunner.Then("Youssef should see that the sprint titled 'New sprint created by Youssef' starts on 2014-01-01", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.And("Youssef opens the sprint listing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 35
+   testRunner.Then("Youssef should see that the sprint titled 'New sprint created by Youssef' starts on 2014-01-01", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 36
     testRunner.And("Youssef should see that the sprint titled 'New sprint created by Youssef' ends on 2014-02-01", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -184,11 +187,11 @@ this.FeatureBackground();
         public virtual void YoussefCanSetTheDescriptionOfASprintAsItIsCreated()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can set the description of a sprint as it is created", ((string[])(null)));
-#line 37
+#line 38
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
-#line 38
+#line 39
   testRunner.Given("Youssef has opened the new sprint page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[]
@@ -203,11 +206,11 @@ this.FeatureBackground();
                 {
                         "Description",
                         "This is the sprint description"});
-#line 39
+#line 40
    testRunner.When("Youssef enters the following sprint details and presses submit", ((string)(null)), table5, "When ");
-#line 43
-    testRunner.And("Youssef opens the sprint listing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 44
+    testRunner.And("Youssef opens the sprint listing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 45
    testRunner.Then("Youssef should see that the sprint titled 'New sprint created by Youssef' has the description 'This is the sprint description'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -218,11 +221,11 @@ this.FeatureBackground();
         public virtual void YoussefCannotGiveANewSprintAStartDateWhichIsAfterItsEndDate()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef cannot give a new sprint a start date which is after its end date", ((string[])(null)));
-#line 46
+#line 47
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
-#line 47
+#line 48
   testRunner.Given("Youssef has opened the new sprint page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[]
@@ -241,9 +244,9 @@ this.FeatureBackground();
                 {
                         "EndDate",
                         "2014-02-01"});
-#line 48
+#line 49
    testRunner.When("Youssef enters the following sprint details and presses submit", ((string)(null)), table6, "When ");
-#line 53
+#line 54
    testRunner.Then("Youssef should see a create-sprint failure message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

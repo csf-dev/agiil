@@ -53,7 +53,7 @@ namespace Agiil.BDD.Bindings.Tickets
       var youssef = screenplay.GetYoussef();
       Then(youssef).ShouldSee(TheText.Of(TicketDetail.AddCommentFeedbackMessage))
                    .Should()
-                   .Be("The comment was not created", because: "The comment should not have been created.");
+                   .Be("Please enter a comment.", because: "The comment should not have been created.");
     }
 
     [Then(@"Youssef should see a comment-editing failure message")]
@@ -62,7 +62,7 @@ namespace Agiil.BDD.Bindings.Tickets
       var youssef = screenplay.GetYoussef();
       Then(youssef).ShouldSee(TheVisibility.Of(EditComment.EditCommentFailureMessage))
                    .Should()
-                   .BeFalse(because: "The failure message should be shown");
+                   .BeTrue(because: "The failure message should be shown");
     }
 
     public CommentingOnATicketSteps(IScreenplayScenario screenplay)

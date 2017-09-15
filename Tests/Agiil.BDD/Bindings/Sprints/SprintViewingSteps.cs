@@ -43,6 +43,20 @@ namespace Agiil.BDD.Bindings.Sprints
                    .ContainInOrder(expectedSprintNames, because: "The displayed sprints should match the expectation");
     }
 
+    [Then(@"Youssef should see the following sprints")]
+    public void ThenYoussefShouldSeeTheSprints(Table expectedSprintNamesTable)
+    {
+      var expectedSprintNames = expectedSprintNamesTable
+        .Rows
+        .Select(x => x.Values.Single())
+        .ToArray();
+
+      var youssef = screenplay.GetYoussef();
+      Then(youssef).ShouldSee(TheText.OfAll(SprintList.SprintNames))
+                   .Should()
+                   .Contain(expectedSprintNames, because: "The displayed sprints should match the expectation");
+    }
+
     public SprintViewingSteps(IScreenplayScenario screenplay)
     {
       if(screenplay == null)

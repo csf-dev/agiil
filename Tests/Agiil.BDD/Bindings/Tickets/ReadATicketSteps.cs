@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Agiil.BDD.Pages;
 using Agiil.BDD.Tasks.Tickets;
 using CSF.Screenplay;
@@ -50,7 +51,10 @@ namespace Agiil.BDD.Bindings.Tickets
     [Then("Youssef should see comments with the following text, in order")]
     public void ThenYoussefShouldSeeTheCommentsInOrder(Table expectedCommentsTable)
     {
-      var expectedComments = expectedCommentsTable.CreateSet((TableRow arg) => arg[0]);
+      var expectedComments = expectedCommentsTable
+        .Rows
+        .Select(x => x.Values.Single())
+        .ToArray();
 
       var youssef = screenplay.GetYoussef();
       Then(youssef).ShouldSee(TheText.OfAll(TicketDetail.CommentBodies))
