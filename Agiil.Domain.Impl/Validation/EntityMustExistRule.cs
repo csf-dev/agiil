@@ -9,7 +9,7 @@ namespace Agiil.Domain.Validation
 {
   public class EntityMustExistRule<TEntity> : ValueRule<IIdentity<TEntity>> where TEntity : class,IEntity
   {
-    readonly IRepository<TEntity> repository;
+    readonly IEntityData repository;
 
     protected override RuleOutcome GetValueOutcome(IIdentity<TEntity> value)
     {
@@ -24,7 +24,7 @@ namespace Agiil.Domain.Validation
       return Success;
     }
 
-    public EntityMustExistRule(IRepository<TEntity> repository)
+    public EntityMustExistRule(IEntityData repository)
     {
       if(repository == null)
         throw new ArgumentNullException(nameof(repository));

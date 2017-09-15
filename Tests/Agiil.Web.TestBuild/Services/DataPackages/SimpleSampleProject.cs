@@ -12,7 +12,7 @@ namespace Agiil.Web.Services.DataPackages
 {
   public class SimpleSampleProject : IDataPackage
   {
-    readonly IRepository repo;
+    readonly IEntityData repo;
     readonly ITransactionCreator transactionCreator;
     readonly IGetsUserByUsername userQuery;
     readonly IUserCreator userCreator;
@@ -229,7 +229,7 @@ namespace Agiil.Web.Services.DataPackages
       return comment;
     }
 
-    public SimpleSampleProject(IRepository repo,
+    public SimpleSampleProject(IEntityData repo,
                                ITransactionCreator transactionCreator,
                                IGetsUserByUsername userQuery,
                                IUserCreator userCreator)

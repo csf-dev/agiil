@@ -9,7 +9,7 @@ namespace Agiil.Domain.Tickets
 {
   public class TicketEditor : ITicketEditor
   {
-    readonly IRepository<Ticket> ticketRepo;
+    readonly IEntityData ticketRepo;
     readonly ITransactionCreator transactionFactory;
     readonly IValidatorFactory<EditTicketRequest> validatorFactory;
     readonly Func<IValidationResult, Ticket, EditTicketResponse> responseCreator;
@@ -40,7 +40,7 @@ namespace Agiil.Domain.Tickets
       return validator.Validate(request);
     }
 
-    public TicketEditor(IRepository<Ticket> ticketRepo,
+    public TicketEditor(IEntityData ticketRepo,
                         ITransactionCreator transactionFactory,
                         IValidatorFactory<EditTicketRequest> validatorFactory,
                         Func<IValidationResult, Ticket, EditTicketResponse> responseCreator,

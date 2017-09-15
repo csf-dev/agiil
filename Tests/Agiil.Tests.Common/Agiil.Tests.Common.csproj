@@ -150,10 +150,6 @@
     <Compile Include="EntityExtensions.cs" />
     <Compile Include="AutoMoqDataAttribute.cs" />
     <Compile Include="WebAppTestingContainerFactory.cs" />
-    <Compile Include="Bootstrap\AuthModule.cs" />
-    <Compile Include="Bootstrap\DataModule.cs" />
-    <Compile Include="Bootstrap\TestFakesModule.cs" />
-    <Compile Include="Auth\LoginController.cs" />
     <Compile Include="UnitTestContainerFactory.cs" />
     <Compile Include="HasIdentityAttribute.cs" />
     <Compile Include="Autofixture\HasIdentityCustomization.cs" />
@@ -162,72 +158,10 @@
     <Compile Include="CurrentUserReaderExtensions.cs" />
     <Compile Include="Autofixture\LoggedInCustomization.cs" />
     <Compile Include="LoggedInAttribute.cs" />
-    <Compile Include="Auth\ILoginController.cs" />
-    <Compile Include="Auth\IUserAccountController.cs" />
-    <Compile Include="Tickets\INewTicketController.cs" />
-    <Compile Include="Tickets\NewTicketController.cs" />
-    <Compile Include="Tickets\ITicketQueryController.cs" />
-    <Compile Include="Tickets\TicketQueryController.cs" />
-    <Compile Include="Tickets\TicketSearchCriteria.cs" />
-    <Compile Include="Bootstrap\TicketsModule.cs" />
-    <Compile Include="Bootstrap\EnvironmentModule.cs" />
-    <Compile Include="RandomEnvironment.cs" />
-    <Compile Include="IdentityCreatingRepository.cs" />
-    <Compile Include="Bootstrap\BusinessTransactionModule.cs" />
-    <Compile Include="Auth\TestingUserCreator.cs" />
-    <Compile Include="Tickets\IBulkTicketCreator.cs" />
-    <Compile Include="Tickets\BulkTicketSpecification.cs" />
-    <Compile Include="Tickets\BulkTicketCreator.cs" />
-    <Compile Include="Tickets\TicketListModelContext.cs" />
-    <Compile Include="Autofixture\BulkTicketSpecificationCustomization.cs" />
-    <Compile Include="Tickets\TicketSummaryDtoComparer.cs" />
-    <Compile Include="Tickets\TicketDetailDtoComparer.cs" />
-    <Compile Include="Tickets\TicketDetailModelContext.cs" />
     <Compile Include="TestFilesystem.cs" />
-    <Compile Include="Tickets\IEditTicketController.cs" />
-    <Compile Include="Tickets\EditTicketController.cs" />
-    <Compile Include="Tickets\ITicketModel.cs" />
-    <Compile Include="Tickets\TicketModel.cs" />
-    <Compile Include="Tickets\ICommentController.cs" />
-    <Compile Include="Tickets\CommentController.cs" />
-    <Compile Include="Tickets\ICommentQueryController.cs" />
-    <Compile Include="Tickets\CommentSearchCriteria.cs" />
-    <Compile Include="Tickets\CommentQueryController.cs" />
-    <Compile Include="Tickets\CommentDtoComparer.cs" />
-    <Compile Include="Tickets\IBulkCommentCreator.cs" />
-    <Compile Include="Tickets\BulkCommentSpecification.cs" />
-    <Compile Include="Tickets\BulkCommentCreator.cs" />
-    <Compile Include="Auth\IChangePasswordController.cs" />
-    <Compile Include="Auth\ChangePasswordController.cs" />
-    <Compile Include="Tickets\IOpenCloseTicketController.cs" />
-    <Compile Include="Tickets\OpenCloseTicketController.cs" />
-    <Compile Include="Sprints\ISprintCreationController.cs" />
-    <Compile Include="Sprints\SprintCreationController.cs" />
-    <Compile Include="Sprints\ISprintQueryController.cs" />
-    <Compile Include="Sprints\SprintSearchCriteria.cs" />
-    <Compile Include="Sprints\SprintQueryController.cs" />
-    <Compile Include="Bootstrap\SprintsModule.cs" />
-    <Compile Include="Projects\IProjectCreationController.cs" />
-    <Compile Include="Projects\ProjectCreationController.cs" />
     <Compile Include="Autofixture\ProjectCustomization.cs" />
-    <Compile Include="Bootstrap\ProjectsModule.cs" />
-    <Compile Include="Sprints\IBulkSprintCreator.cs" />
-    <Compile Include="Sprints\BulkSprintCreationSpecification.cs" />
-    <Compile Include="Sprints\BulkSprintCreator.cs" />
-    <Compile Include="ObjectMaps\Sprints\BulkSprintCreationSpecificationToSprintProfile.cs" />
     <Compile Include="ObjectMaps\TestingProfileTypesProvider.cs" />
-    <Compile Include="Sprints\SprintListModelContext.cs" />
-    <Compile Include="Sprints\ISprintListController.cs" />
-    <Compile Include="Sprints\SprintListController.cs" />
-    <Compile Include="Sprints\SprintSummaryDtoComparer.cs" />
     <Compile Include="TestComparerBase.cs" />
-    <Compile Include="Autofixture\BulkSprintCreationSpecificationCustomization.cs" />
-    <Compile Include="Tickets\EditTicketTitleAndDescriptionSpecification.cs" />
-    <Compile Include="ObjectMaps\Tickets\EditTicketTitleAndDescriptionSpecificationToEditTicketSpecificationProfile.cs" />
-    <Compile Include="Tickets\ITicketListController.cs" />
-    <Compile Include="Tickets\TicketListController.cs" />
-    <Compile Include="Sprints\ISprintEditingController.cs" />
-    <Compile Include="Sprints\SprintEditingController.cs" />
     <Compile Include="TestingEnvironment.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -265,15 +199,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Bootstrap\" />
-    <Folder Include="Auth\" />
     <Folder Include="Autofixture\" />
-    <Folder Include="Tickets\" />
-    <Folder Include="Sprints\" />
-    <Folder Include="Projects\" />
     <Folder Include="ObjectMaps\" />
-    <Folder Include="ObjectMaps\Sprints\" />
-    <Folder Include="ObjectMaps\Tickets\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

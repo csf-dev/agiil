@@ -11,7 +11,7 @@ namespace Agiil.Domain.Tickets
     readonly IValidatorFactory<EditCommentRequest> validatorFactory;
     readonly Func<IValidationResult, EditCommentResponse> responseCreator;
     readonly ITransactionCreator transactionCreator;
-    readonly IRepository<Comment> commentRepo;
+    readonly IEntityData commentRepo;
     readonly IEnvironment environment;
 
     public EditCommentResponse Edit(EditCommentRequest request)
@@ -37,7 +37,7 @@ namespace Agiil.Domain.Tickets
     public CommentEditor(IValidatorFactory<EditCommentRequest> validatorFactory,
                          Func<IValidationResult, EditCommentResponse> responseCreator,
                          ITransactionCreator transactionCreator,
-                         IRepository<Comment> commentRepo,
+                         IEntityData commentRepo,
                          IEnvironment environment)
     {
       if(environment == null)

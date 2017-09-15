@@ -17,7 +17,7 @@ namespace Agiil.Tests.Domain.Tickets
   public class TicketCreatorTests
   {
     [Test, AutoMoqData]
-    public void Create_saves_newly_created_ticket([Frozen] IRepository<Ticket> repo,
+    public void Create_saves_newly_created_ticket([Frozen] IEntityData repo,
                                                   [Frozen] ITicketFactory ticketFactory,
                                                   [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
                                                   Ticket ticket,
@@ -128,7 +128,7 @@ namespace Agiil.Tests.Domain.Tickets
 
     [Test, AutoMoqData]
     public void Create_does_not_persist_if_validation_fails(CreateTicketRequest request,
-                                                            [Frozen] IRepository<Ticket> repo,
+                                                            [Frozen] IEntityData repo,
                                                             [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
                                                             [Frozen] ITicketFactory ticketFactory,
                                                             Ticket ticket,

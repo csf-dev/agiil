@@ -6,17 +6,17 @@ namespace Agiil.Domain.Auth
 {
   public class UserQueryByUsername : IGetsUserByUsername
   {
-    readonly IRepository<User> repo;
+    readonly IEntityData repo;
 
     public User Get(string username)
     {
       if(username == null)
         throw new ArgumentNullException(nameof(username));
 
-      return repo.Query().FirstOrDefault(x => x.Username == username);
+      return repo.Query<User>().FirstOrDefault(x => x.Username == username);
     }
 
-    public UserQueryByUsername(IRepository<User> repo)
+    public UserQueryByUsername(IEntityData repo)
     {
       if(repo == null)
         throw new ArgumentNullException(nameof(repo));

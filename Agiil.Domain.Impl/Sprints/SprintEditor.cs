@@ -9,7 +9,7 @@ namespace Agiil.Domain.Sprints
 {
   public class SprintEditor : ISprintEditor
   {
-    readonly IRepository<Sprint> sprintRepo;
+    readonly IEntityData sprintRepo;
     readonly ITransactionCreator transactionFactory;
     readonly IValidatorFactory<EditSprintRequest> validatorFactory;
     readonly Func<IValidationResult, Sprint, EditSprintResponse> responseCreator;
@@ -40,7 +40,7 @@ namespace Agiil.Domain.Sprints
       return validator.Validate(request);
     }
 
-    public SprintEditor(IRepository<Sprint> sprintRepo,
+    public SprintEditor(IEntityData sprintRepo,
                         ITransactionCreator transactionFactory,
                         IValidatorFactory<EditSprintRequest> validatorFactory,
                         Func<IValidationResult, Sprint, EditSprintResponse> responseCreator,

@@ -6,7 +6,7 @@ namespace Agiil.Domain.Tickets
 {
   public class CommentReader : ICommentReader
   {
-    readonly IRepository<Comment> commentRepo;
+    readonly IEntityData commentRepo;
 
     public Comment Read(IIdentity<Comment> id)
     {
@@ -16,7 +16,7 @@ namespace Agiil.Domain.Tickets
       return commentRepo.Get(id);
     }
 
-    public CommentReader(IRepository<Comment> commentRepo)
+    public CommentReader(IEntityData commentRepo)
     {
       if(commentRepo == null)
         throw new ArgumentNullException(nameof(commentRepo));

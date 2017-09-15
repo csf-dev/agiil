@@ -8,7 +8,7 @@ namespace Agiil.ObjectMaps.Resolvers
   public class GetEntityByIdentityResolver<TEntity> : IMemberValueResolver<object, object, IIdentity<TEntity>, TEntity>
     where TEntity : class,IEntity
   {
-    readonly IRepository<TEntity> repo;
+    readonly IEntityData repo;
 
     public TEntity Resolve(object source,
                            object destination,
@@ -22,7 +22,7 @@ namespace Agiil.ObjectMaps.Resolvers
       return repo.Get(sourceMember);
     }
 
-    public GetEntityByIdentityResolver(IRepository<TEntity> repo)
+    public GetEntityByIdentityResolver(IEntityData repo)
     {
       if(repo == null)
         throw new ArgumentNullException(nameof(repo));

@@ -10,7 +10,7 @@ namespace Agiil.Domain.Validation
   public class MustBeLoggedInAsCommentAuthorRule : ValueRule<IIdentity<Comment>>
   {
     readonly ICurrentUserReader userReader;
-    readonly IRepository<Comment> commentRepo;
+    readonly IEntityData commentRepo;
 
     protected override RuleOutcome GetValueOutcome(IIdentity<Comment> value)
     {
@@ -28,7 +28,7 @@ namespace Agiil.Domain.Validation
     }
 
     public MustBeLoggedInAsCommentAuthorRule(ICurrentUserReader userReader,
-                                             IRepository<Comment> commentRepo)
+                                             IEntityData commentRepo)
     {
       if(commentRepo == null)
         throw new ArgumentNullException(nameof(commentRepo));
