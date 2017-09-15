@@ -51,23 +51,23 @@
     <Reference Include="TechTalk.SpecFlow">
       <HintPath>..\..\packages\SpecFlow.2.2.0\lib\net45\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Screenplay">
-      <HintPath>..\..\packages\CSF.Screenplay.0.5.0-alpha\lib\net45\CSF.Screenplay.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Screenplay.SpecFlow">
-      <HintPath>..\..\packages\CSF.Screenplay.SpecFlow.0.5.0-alpha\lib\net45\CSF.Screenplay.SpecFlow.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Screenplay.Reporting">
-      <HintPath>..\..\packages\CSF.Screenplay.Reporting.0.5.0-alpha\lib\net45\CSF.Screenplay.Reporting.dll</HintPath>
-    </Reference>
     <Reference Include="WebDriver.Support">
       <HintPath>..\..\packages\Selenium.Support.3.4.0\lib\net40\WebDriver.Support.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Screenplay.Web">
-      <HintPath>..\..\packages\CSF.Screenplay.Web.0.5.0-alpha\lib\net45\CSF.Screenplay.Web.dll</HintPath>
-    </Reference>
     <Reference Include="CSF.WebDriverFactory">
       <HintPath>..\..\packages\CSF.WebDriverFactory.0.5.0-alpha\lib\net45\CSF.WebDriverFactory.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Screenplay">
+      <HintPath>..\..\packages\CSF.Screenplay.0.5.1-alpha\lib\net45\CSF.Screenplay.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Screenplay.SpecFlow">
+      <HintPath>..\..\packages\CSF.Screenplay.SpecFlow.0.5.1-alpha\lib\net45\CSF.Screenplay.SpecFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Screenplay.Reporting">
+      <HintPath>..\..\packages\CSF.Screenplay.Reporting.0.5.1-alpha\lib\net45\CSF.Screenplay.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Screenplay.Web">
+      <HintPath>..\..\packages\CSF.Screenplay.Web.0.5.1-alpha\lib\net45\CSF.Screenplay.Web.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
