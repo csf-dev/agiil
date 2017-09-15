@@ -12,6 +12,6 @@ namespace Agiil.BDD.Pages
     public static ITarget Heading => new CssSelector(".page_content h1", "the page header");
 
     public static ILocatorBasedTarget LoginFailureMessage
-      => new CssSelector(".login_form .feedback.failure", "the login failure message");
+      => new CssSelector("#LoginForm .feedback.warning", "the login failure message");
   }
 }
