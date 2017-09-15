@@ -14,10 +14,18 @@ namespace Agiil.BDD.Abilities
     {
       if(request == null)
         throw new ArgumentNullException(nameof(request));
-      
-      var success = httpClient.SendAsync(request).Wait(requestTimeout);
-      if(!success)
+
+
+      var httpRequest = httpClient.SendAsync(request);
+      var waitSuccess = httpRequest.Wait(requestTimeout);
+
+      if(!waitSuccess)
         throw new TimeoutException($"Timeout acting as the application, gave up after {requestTimeout.ToString("g")}.");
+
+      var result = httpRequest.Result;
+
+      if((int) result.StatusCode >= 400)
+        throw new ApplicationApiException($"HTTP request returned status: {result.StatusCode}");
     }
 
     protected override string GetReport(INamed actor)

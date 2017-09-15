@@ -198,6 +198,7 @@
     <Compile Include="Tasks\Tickets\ChangeTheCommentText.cs" />
     <Compile Include="Bindings\Sprints\SprintViewingSteps.cs" />
     <Compile Include="Pages\SprintList.cs" />
+    <Compile Include="Abilities\ApplicationApiException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
