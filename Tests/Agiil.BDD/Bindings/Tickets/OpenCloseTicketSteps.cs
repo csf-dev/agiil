@@ -11,6 +11,13 @@ namespace Agiil.BDD.Bindings.Tickets
   {
     readonly IScreenplayScenario screenplay;
 
+    [Given(@"Youssef has closed the ticket")]
+    public void GivenYoussefHasClosedTheTicket()
+    {
+      var youssef = screenplay.GetYoussef();
+      Given(youssef).WasAbleTo(ChangeTheTicket.StatusToClosed());
+    }
+
     [When(@"Youssef closes the ticket")]
     public void WhenYoussefClosesTheTicket()
     {

@@ -50,6 +50,11 @@
           is not part of any sprint.
         </p>
       </div>
+      <p id="SubmissionFailedMessage"
+         class="feedback warning"
+         tal:condition="here/Response/Failure | nothing">
+        The ticket has not been edited.
+      </p>
       <div class="form_element button">
         <button id="SubmitButton">Submit</button>
       </div>

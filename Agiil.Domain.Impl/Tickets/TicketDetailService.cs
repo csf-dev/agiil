@@ -22,6 +22,7 @@ namespace Agiil.Domain.Tickets
         .Query<Ticket>()
         .Where(x => x == ticketTheory)
         .FetchMany(x => x.Comments)
+        .ToArray()
         .FirstOrDefault();
     }
 

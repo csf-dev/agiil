@@ -4,8 +4,7 @@
   The created ticket will be stamped with their current user account.
 
 Background:
-  Given Agiil has just been installed
-    And Youssef is logged into the site as a normal user
+  Given Youssef is logged into a fresh installation of the site containing the simple sample project
   
 Scenario: Users should be able to create a ticket with a title and description
    When Youssef creates the following ticket using the create ticket page
@@ -52,7 +51,6 @@ Scenario: Users cannot create tickets with an empty title
    Then Youssef should see a ticket creation failure message
 
 Scenario: Users can choose sprints for a tickets as they create them
-  Given April has set up the simple sample project
    When Youssef creates the following ticket using the create ticket page
   | Field     | Value             |
   | Title     | Create ticket 4   |

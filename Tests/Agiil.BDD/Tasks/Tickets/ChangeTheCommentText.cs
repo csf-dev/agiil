@@ -18,7 +18,6 @@ namespace Agiil.BDD.Tasks.Tickets
       actor.Perform(Clear.TheContentsOf(EditComment.CommentBody));
       actor.Perform(Enter.TheText(newText).Into(EditComment.CommentBody));
       actor.Perform(Click.On(EditComment.SubmitButton));
-      actor.Perform(Wait.Until(TicketDetail.DescriptionContent).IsVisible());
     }
 
     ChangeTheCommentText(string newText)

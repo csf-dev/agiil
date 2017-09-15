@@ -12,5 +12,6 @@ Scenario: Youssef can close a ticket
 
 Scenario: Youssef can re-open a ticket
   Given Youssef has opened a ticket with the title 'Sample ticket 1'
+    And Youssef has closed the ticket
    When Youssef reopens the ticket
    Then Youssef should see that the ticket state is open

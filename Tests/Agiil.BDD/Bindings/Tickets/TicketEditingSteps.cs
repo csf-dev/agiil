@@ -33,9 +33,11 @@ namespace Agiil.BDD.Bindings.Tickets
     public void ThenYoussefShouldSeeATicketEditingErrorMessage()
     {
       var youssef = screenplay.GetYoussef();
-      Then(youssef).ShouldSee(TheVisibility.Of(EditTicket.SubmissionFailedErrorMessage))
+      Then(youssef).Should(Wait.Until(EditTicket.SubmissionFailedErrorMessage).IsVisible());
+
+      Then(youssef).ShouldSee(TheText.Of(EditTicket.SubmissionFailedErrorMessage))
                    .Should()
-                   .BeTrue(because: "The error message should be visible");
+                   .Be("The ticket has not been edited.", because: "The error message should be visible");
     }
 
     [When(@"Youssef changes the ticket description to '([^']*)' and clicks submit")]

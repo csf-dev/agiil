@@ -9,8 +9,9 @@ Scenario: Youssef can read the description of a ticket
    Then Youssef should see that the ticket description reads 'This ticket has a description'
 
 Scenario: Youssef can see the comments for a ticket listed in chronological order
-   When Youssef opens a ticket with the title 'Sample ticket 1'
+   When Youssef opens a ticket with the title 'Sample ticket 2'
    Then Youssef should see comments with the following text, in order
-  | Comment number one    |
+  | Comment text          |
   | Comment number three  |
+  | Comment number four   |
   | Comment number two    |

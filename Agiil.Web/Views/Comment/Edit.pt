@@ -18,10 +18,14 @@
         <textarea id="Body" name="Body" class="long_text"
                   tal:content="value here/Specification/Body | here/Comment/Body | nothing"></textarea>
       </div>
-      <div class="form_element feedback warning" tal:condition="here/Response/BodyIsInvalid | nothing">
+      <div class="form_element feedback warning"
+           tal:condition="here/Response/BodyIsInvalid | nothing"
+           id="EditFailureMessage">
         <p>Please enter a comment.</p>
       </div>
-      <div class="form_element feedback warning" tal:condition="here/Response/UserDoesNotHavePermission | nothing">
+      <div class="form_element feedback warning"
+           tal:condition="here/Response/UserDoesNotHavePermission | nothing"
+           id="EditFailureMessage">
         <p>You do not have permission to edit this comment.</p>
       </div>
       <div class="form_element button">

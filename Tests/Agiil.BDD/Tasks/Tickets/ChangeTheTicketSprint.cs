@@ -15,7 +15,6 @@ namespace Agiil.BDD.Tasks.Tickets
 
     protected override void PerformAs(IPerformer actor)
     {
-      actor.Perform(Deselect.EverythingFrom(EditTicket.Sprint));
       actor.Perform(Select.Item(title).From(EditTicket.Sprint));
     }
 

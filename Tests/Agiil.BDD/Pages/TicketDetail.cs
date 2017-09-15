@@ -13,6 +13,9 @@ namespace Agiil.BDD.Pages
 
     public override IUriProvider GetUriProvider() => new AppUri($"Ticket/Index/{ticketId}");
 
+    public static ILocatorBasedTarget TitleContent
+      => new ClassName("title_content", "the ticket title");
+
     public static ILocatorBasedTarget DescriptionContent
       => new ClassName("description_content", "the ticket description");
 

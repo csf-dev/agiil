@@ -37,6 +37,7 @@ namespace Agiil.Web.Services.DataPackages
         var comment1 = CreateCommentOne(ticket1, youssef);
         var comment2 = CreateCommentTwo(ticket2, admin);
         var comment3 = CreateCommentThree(ticket2, admin);
+        var comment4 = CreateCommentFour(ticket2, admin);
 
         tran.Commit();
       }
@@ -220,6 +221,23 @@ namespace Agiil.Web.Services.DataPackages
         LastEditTimestamp = new DateTime(2011, 1, 25),
         User = user,
         Body = "Comment number three",
+      };
+
+      ticket.Comments.Add(comment);
+
+      repo.Add(comment);
+
+      return comment;
+    }
+
+    Comment CreateCommentFour(Ticket ticket, User user)
+    {
+      var comment = new Comment
+      {
+        CreationTimestamp = new DateTime(2011, 1, 16),
+        LastEditTimestamp = new DateTime(2011, 1, 17),
+        User = user,
+        Body = "Comment number four",
       };
 
       ticket.Comments.Add(comment);

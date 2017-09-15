@@ -29,7 +29,7 @@ namespace Agiil.BDD.Tasks.Tickets
                                      .Called($"the hyperlink for ticket '{title}'"));
 
       actor.Perform(Click.On(ticketLink));
-      actor.Perform(Wait.Until(TicketDetail.DescriptionContent).IsVisible());
+      actor.Perform(Wait.Until(TicketDetail.TitleContent).IsVisible());
     }
 
     public OpenTicketDetailByTitle(string title)

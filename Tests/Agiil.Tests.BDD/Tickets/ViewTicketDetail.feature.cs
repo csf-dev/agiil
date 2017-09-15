@@ -98,14 +98,17 @@ this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line 12
-   testRunner.When("Youssef opens a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+   testRunner.When("Youssef opens a ticket with the title 'Sample ticket 2'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[]
                 {
-                        "Comment number one"});
+                        "Comment text"});
             table1.AddRow(new string[]
                 {
                         "Comment number three"});
+            table1.AddRow(new string[]
+                {
+                        "Comment number four"});
             table1.AddRow(new string[]
                 {
                         "Comment number two"});

@@ -13,7 +13,7 @@
          class="page_content ticket_detail"
          tal:define="ticket here/Ticket">
   <header>
-    <h1 tal:content="ticket/Title">Ticket title</h1>
+    <h1 tal:content="ticket/Title" class="title_content">Ticket title</h1>
     <p>
       Ticket <strong tal:content="string:#${ticket/Reference}">AB123</strong>.
     </p>

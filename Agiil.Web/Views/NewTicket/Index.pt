@@ -44,6 +44,11 @@
           is not part of any sprint.
         </p>
       </div>
+      <p class="feedback warning"
+         id="ticket_creation_failure_feedback"
+         tal:condition="here/Response/Failure | nothing">
+        The ticket was not created.
+      </p>
       <div class="form_element button">
         <button id="CreateTicket">Create</button>
       </div>
