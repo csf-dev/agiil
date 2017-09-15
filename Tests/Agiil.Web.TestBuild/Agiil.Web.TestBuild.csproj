@@ -63,7 +63,7 @@
     <Compile Include="Bootstrap\DataModule.cs" />
     <Compile Include="App_Start\WebAppTestingContainerFactory.cs" />
     <Compile Include="Services\DatabaseMaintainer.cs" />
-    <Compile Include="Data\InMemoryDatabase.cs" />
+    <Compile Include="Data\InMemoryDataManager.cs" />
     <Compile Include="Bootstrap\ServicesModule.cs" />
     <Compile Include="Bootstrap\AspNetWebApiTestBuildModule.cs" />
     <Compile Include="Controllers\AddUserController.cs" />

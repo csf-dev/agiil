@@ -3,39 +3,39 @@ using CSF.Data;
 
 namespace Agiil.Web.Data
 {
-  public class InMemoryDatabase
+  public class InMemoryDataManager
   {
     #region fields
 
-    static readonly object syncRoot;
-    static InMemoryQuery dataStore;
+    readonly object syncRoot;
+    InMemoryQuery data;
 
     #endregion
 
     #region methods
 
-    public static InMemoryQuery Current
+    public IQuery CurrentQuery
     {
       get {
         CreateDataStoreIfRequired();
-        return dataStore;
+        return data;
       }
     }
 
-    public static void Clear()
+    public void Clear()
     {
       lock(syncRoot)
       {
-        dataStore = null;
+        data = null;
       }
     }
 
-    static void CreateDataStoreIfRequired()
+    void CreateDataStoreIfRequired()
     {
       lock(syncRoot)
       {
-        if(dataStore == null)
-          dataStore = new InMemoryQuery();
+        if(data == null)
+          data = new InMemoryQuery();
       }
     }
 
@@ -43,7 +43,7 @@ namespace Agiil.Web.Data
 
     #region constructor
 
-    static InMemoryDatabase()
+    public InMemoryDataManager()
     {
       syncRoot = new object();
     }

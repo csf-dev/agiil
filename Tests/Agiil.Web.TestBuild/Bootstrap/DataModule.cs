@@ -12,9 +12,10 @@ namespace Agiil.Web.Bootstrap
     protected override void Load(ContainerBuilder builder)
     {
       builder
-        .Register(ctx => InMemoryDatabase.Current)
-        .AsSelf()
-        .As<IQuery>();
+        .RegisterType<InMemoryDataManager>()
+        .SingleInstance();
+
+      builder.Register(GetQuery);
 
       builder
         .RegisterType<InMemoryPersister>()
@@ -22,8 +23,28 @@ namespace Agiil.Web.Bootstrap
         .As<IPersister>();
 
       builder
-        .RegisterGeneric(typeof(IdentityCreatingRepository<>))
-        .As(typeof(IRepository<>));
+        .Register(CreateEntityData)
+        .AsSelf()
+        .As<IEntityData>();
+
+      builder
+        .RegisterType<InMemoryIdentityGenerator>()
+        .AsSelf()
+        .As<IIdentityGenerator>();
+
+    }
+
+    IdentityGeneratingEntityData CreateEntityData(IComponentContext ctx)
+    {
+      return new IdentityGeneratingEntityData(ctx.Resolve<IQuery>(),
+                                              ctx.Resolve<IPersister>(),
+                                              ctx.Resolve<IIdentityGenerator>());
+    }
+
+    IQuery GetQuery(IComponentContext ctx)
+    {
+      var manager = ctx.Resolve<InMemoryDataManager>();
+      return manager.CurrentQuery;
     }
   }
 }
