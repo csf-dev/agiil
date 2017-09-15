@@ -159,6 +159,10 @@
       <Project>{63B32334-E2E3-4BC3-BEFE-96374AAD4093}</Project>
       <Name>Agiil.BDD</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
+      <Project>{E15F2064-D2EA-43EF-924C-733107675FF0}</Project>
+      <Name>Agiil.Tests.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
