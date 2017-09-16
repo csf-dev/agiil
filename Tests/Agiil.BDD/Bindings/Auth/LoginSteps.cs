@@ -32,6 +32,13 @@ namespace Agiil.BDD.Bindings.Auth
       When(joe).AttemptsTo(LogIntoTheSite.As(username).WithThePassword(password));
     }
 
+    [When("Youssef attempts to log in with a username '([A-Za-z0-9_-]+)' and password '([^']+)'")]
+    public void WhenYoussefAttemptsToLogin(string username, string password)
+    {
+      var youssef = screenplay.GetYoussef();
+      When(youssef).AttemptsTo(LogIntoTheSite.As(username).WithThePassword(password));
+    }
+
     [Then("Joe should see a login failure message")]
     public void ThenJoeShouldSeeALoginFailureMessage()
     {
