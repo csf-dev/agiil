@@ -8,7 +8,13 @@ TEST_ASSEMBLIES="$(find ./Tests/ -type f -path "*/bin/Debug/*" -name "Agiil.Test
 
 "$SOLUTION_ROOT"/Tools/start_application.sh
 
-mono "${SOLUTION_ROOT}/${RUNNER_PATH}" $TEST_ASSEMBLIES
+if [ "$?" -eq "0" ]
+then
+  mono "${SOLUTION_ROOT}/${RUNNER_PATH}" $TEST_ASSEMBLIES
+fi
 
-kill `cat .xsp4.pid`
-rm .xsp4.pid
+if [ -e .xsp4.pid ]
+then
+  kill `cat .xsp4.pid`
+  rm .xsp4.pid
+fi

@@ -2,8 +2,9 @@
 
 SERVER_PORT="8080"
 SERVER_ADDR="127.0.0.1"
-SERVER_WEB_APP="/:Agiil.Web/"
-WEB_APP_BIN="Agiil.Web/bin"
+WEB_APP_HOME="Agiil.Web"
+SERVER_WEB_APP="/:./"
+WEB_APP_BIN="${WEB_APP_HOME}/bin"
 TESTING_BIN="Tests/Agiil.Web.TestBuild/bin/Debug"
 SERVER_PID=".xsp4.pid"
 APP_HOMEPAGE="http://localhost:8080/Home"
@@ -15,13 +16,15 @@ app_available=1
 start_webserver()
 {
   echo "Starting a testing build of Agiil on a web server ..."
-  xsp4 \
+  original_dir="$(pwd)"
+  cd "./${WEB_APP_HOME}/" && xsp4 \
     --nonstop \
     --address "$SERVER_ADDR" \
     --port "$SERVER_PORT" \
     --applications "$SERVER_WEB_APP" \
-    --pidfile "$SERVER_PID" \
+    --pidfile "../$SERVER_PID" \
     &
+  cd "$original_dir"
 }
 
 wait_for_app_to_become_available()
@@ -38,12 +41,24 @@ wait_for_app_to_become_available()
       break
     fi
   done
+  
+  if [ "$app_available" -eq "1" ]
+  then
+    echo "Connection to the web app was unsuccessful!" >&2
+    wget \
+    -T 120 \
+    --content-on-error \
+    -O - \
+    "$APP_HOMEPAGE" \
+    >&2
+  fi
 }
 
 try_web_app_connection()
 {
   wget \
     -T 120 \
+    -q \
     -O - \
     "$APP_HOMEPAGE" \
     >/dev/null
