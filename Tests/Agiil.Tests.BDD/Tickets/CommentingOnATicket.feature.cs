@@ -147,17 +147,46 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Youssef cannot see an edit-comment link for a comment which is not his own")]
-        public virtual void YoussefCannotSeeAnEdit_CommentLinkForACommentWhichIsNotHisOwn()
+        [NUnit.Framework.DescriptionAttribute("Youssef may add a second comment to a ticket which already has one (AG46)")]
+        public virtual void YoussefMayAddASecondCommentToATicketWhichAlreadyHasOneAG46()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef cannot see an edit-comment link for a comment which is not his own", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef may add a second comment to a ticket which already has one (AG46)", ((string[])(null)));
 #line 30
 this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line 31
-   testRunner.When("Youssef opens a ticket with the title 'Sample ticket 2'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 32
+   testRunner.When("Youssef adds a comment with the text 'Hi there, this is a comment'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "Comment text"});
+            table3.AddRow(new string[]
+                {
+                        "Comment number one"});
+            table3.AddRow(new string[]
+                {
+                        "Hi there, this is a comment"});
+#line 33
+   testRunner.Then("Youssef should see comments with the following text, in order", ((string)(null)), table3, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Youssef cannot see an edit-comment link for a comment which is not his own")]
+        public virtual void YoussefCannotSeeAnEdit_CommentLinkForACommentWhichIsNotHisOwn()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef cannot see an edit-comment link for a comment which is not his own", ((string[])(null)));
+#line 38
+this.ScenarioSetup(scenarioInfo);
+#line 6
+this.FeatureBackground();
+#line 39
+   testRunner.When("Youssef opens a ticket with the title 'Sample ticket 2'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 40
    testRunner.Then("Youssef should not see any editable comments", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -168,17 +197,17 @@ this.FeatureBackground();
         public virtual void YoussefCannotEditACommentAndSetItsBodyToAnEmptyString()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef cannot edit a comment and set its body to an empty string", ((string[])(null)));
-#line 34
+#line 42
 this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
-#line 35
+#line 43
   testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 36
+#line 44
    testRunner.When("Youssef edits the first editable comment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 37
+#line 45
     testRunner.And("Youssef changes the comment text to ''", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 38
+#line 46
    testRunner.Then("Youssef should see a comment-editing failure message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

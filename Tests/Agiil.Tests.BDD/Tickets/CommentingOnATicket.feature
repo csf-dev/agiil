@@ -27,6 +27,14 @@ Scenario: Youssef may edit his own ticket comment
   | Comment text                |
   | This is an edited comment   |
 
+Scenario: Youssef may add a second comment to a ticket which already has one (AG46)
+  Given Youssef has opened a ticket with the title 'Sample ticket 1'
+   When Youssef adds a comment with the text 'Hi there, this is a comment'
+   Then Youssef should see comments with the following text, in order
+  | Comment text                |
+  | Comment number one          |
+  | Hi there, this is a comment |
+
 Scenario: Youssef cannot see an edit-comment link for a comment which is not his own
    When Youssef opens a ticket with the title 'Sample ticket 2'
    Then Youssef should not see any editable comments
