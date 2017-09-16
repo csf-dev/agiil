@@ -3,6 +3,7 @@ using System.Web.Http;
 using Agiil.Auth;
 using Agiil.Domain.Auth;
 using Agiil.Web.Models;
+using CSF.Data;
 
 namespace Agiil.Web.Controllers
 {
@@ -12,6 +13,7 @@ namespace Agiil.Web.Controllers
     readonly IUserCreator userCreator;
     readonly IGetsUserByUsername userQuery;
     readonly IUserPasswordUpdater passwordChanger;
+    readonly ITransactionCreator transactionCreator;
 
     public IHttpActionResult Post(CreateUserModel model)
     {
@@ -20,25 +22,34 @@ namespace Agiil.Web.Controllers
 
       bool exists;
 
-      var existingUser = userQuery.Get(model.username);
-      if(existingUser == null)
+      using(var tran = transactionCreator.BeginTransaction())
       {
-        userCreator.Add(model.username, model.password);
-        exists = false;
+        var existingUser = userQuery.Get(model.username);
+
+        if(existingUser == null)
+        {
+          userCreator.Add(model.username, model.password);
+          exists = false;
+        }
+        else
+        {
+          passwordChanger.ChangePassword(existingUser, model.password);
+          exists = true;
+        }
+
+        tran.Commit();
       }
-      else
-      {
-        passwordChanger.ChangePassword(existingUser, model.password);
-        exists = true;
-      }
-      
+
       return Ok(exists? $"The existing user '{model.username}' was updated" : $"The user '{model.username}' was created");
     }
 
     public AddUserController(IUserCreator userCreator,
                              IGetsUserByUsername userQuery,
-                             IUserPasswordUpdater passwordChanger)
+                             IUserPasswordUpdater passwordChanger,
+                             ITransactionCreator transactionCreator)
     {
+      if(transactionCreator == null)
+        throw new ArgumentNullException(nameof(transactionCreator));
       if(passwordChanger == null)
         throw new ArgumentNullException(nameof(passwordChanger));
       if(userQuery == null)
@@ -49,6 +60,7 @@ namespace Agiil.Web.Controllers
       this.userCreator = userCreator;
       this.passwordChanger = passwordChanger;
       this.userQuery = userQuery;
+      this.transactionCreator = transactionCreator;
     }
   }
 }
