@@ -203,8 +203,11 @@
     <Compile Include="Pages\CreateSprint.cs" />
     <Compile Include="Tasks\Sprints\TheStartDateFromTheSprintList.cs" />
     <Compile Include="Tasks\Sprints\TheEndDateFromTheSprintList.cs" />
-    <Compile Include="Models\Sprints\SprintCreationDetails.cs" />
+    <Compile Include="Models\Sprints\SprintDetails.cs" />
     <Compile Include="Tasks\Sprints\CreateASprint.cs" />
+    <Compile Include="Tasks\Sprints\ViewTheSprintDetail.cs" />
+    <Compile Include="Pages\SprintDetail.cs" />
+    <Compile Include="Tasks\Sprints\VerifyThatTheSprintDetailsMatch.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

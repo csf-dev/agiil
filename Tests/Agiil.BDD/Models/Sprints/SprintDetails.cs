@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Agiil.BDD.Models.Sprints
 {
-  public class SprintCreationDetails
+  public class SprintDetails
   {
     public string Title { get; set; }
     public string Description { get; set; }

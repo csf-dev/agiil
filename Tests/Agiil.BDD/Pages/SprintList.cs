@@ -16,6 +16,13 @@ namespace Agiil.BDD.Pages
     public static ILocatorBasedTarget SprintNames => new CssSelector(".sprint_list .sprint_name",
                                                                      "the names of the displayed sprints");
 
+    public static ILocatorBasedTarget TheSprintNamed(string name)
+    {
+      var xpath = $@"//table[@class='sprint_list']/tbody/tr/td/a[@class = 'sprint_name'] = '{name}']";
+      return new XPath(xpath, $"the sprint-details link for {name}");
+    }
+
+
     public static ILocatorBasedTarget SprintStartDate(string sprintName)
     {
       var xpath = $@"//table[@class='sprint_list']/tbody/tr[td/a[@class = 'sprint_name'] = '{sprintName}']/td/span[@class = 'sprint_start_date']";

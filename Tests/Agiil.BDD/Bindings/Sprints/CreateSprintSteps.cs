@@ -26,7 +26,7 @@ namespace Agiil.BDD.Bindings.Sprints
     [When(@"Youssef enters the following sprint details and presses submit")]
     public void WhenYoussefEntersTheFollowingSprintDetailsAndPressesSubmit(Table table)
     {
-      var details = table.CreateInstance<SprintCreationDetails>();
+      var details = table.CreateInstance<SprintDetails>();
 
       var youssef = screenplay.GetYoussef();
       When(youssef).AttemptsTo(CreateASprint.WithTheDetails(details));

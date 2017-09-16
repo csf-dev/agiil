@@ -8,6 +8,7 @@ using Agiil.BDD.Pages;
 using System.Linq;
 using FluentAssertions;
 using Agiil.BDD.Tasks.Sprints;
+using Agiil.BDD.Models.Sprints;
 
 namespace Agiil.BDD.Bindings.Sprints
 {
@@ -85,6 +86,22 @@ namespace Agiil.BDD.Bindings.Sprints
       Then(youssef).ShouldSee(TheEndDateFromTheSprintList.ForTheSprintTitle(sprintTitle))
                    .Should()
                    .Be(expected, because: "the sprint end date should match");
+    }
+
+    [When(@"Youssef views the sprint titled '([^']+)'")]
+    public void WhenYoussefViewsTheSprintTitled(string sprintTitle)
+    {
+      var youssef = screenplay.GetYoussef();
+      When(youssef).AttemptsTo(ViewTheSprintDetail.ForSprint(sprintTitle));
+    }
+
+    [Then(@"Youssef should see that the sprint has the following details")]
+    public void ThenYoussefShouldSeeThatTheSprintHasTheFollowingDetails(Table table)
+    {
+      var expectedDetails = table.CreateInstance<SprintDetails>();
+    
+      var youssef = screenplay.GetYoussef();
+      Then(youssef).Should(VerifyThatTheSprintDetailsMatch.TheExpectations(expectedDetails));
     }
 
     public SprintViewingSteps(IScreenplayScenario screenplay)

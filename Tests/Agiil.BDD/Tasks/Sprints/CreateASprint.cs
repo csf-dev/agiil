@@ -10,7 +10,7 @@ namespace Agiil.BDD.Tasks.Sprints
 {
   public class CreateASprint : Performable
   {
-    readonly SprintCreationDetails details;
+    readonly SprintDetails details;
 
     protected override string GetReport(INamed actor)
       => $"{actor.Name} creates a sprint with supplied details";
@@ -33,14 +33,14 @@ namespace Agiil.BDD.Tasks.Sprints
       actor.Perform(Click.On(CreateSprint.SubmitButton));
     }
 
-    CreateASprint(SprintCreationDetails details)
+    CreateASprint(SprintDetails details)
     {
       if(details == null)
         throw new ArgumentNullException(nameof(details));
       this.details = details;
     }
 
-    public static IPerformable WithTheDetails(SprintCreationDetails details)
+    public static IPerformable WithTheDetails(SprintDetails details)
       => new CreateASprint(details);
   }
 }
