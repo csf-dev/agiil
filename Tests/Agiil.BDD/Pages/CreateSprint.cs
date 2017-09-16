@@ -16,5 +16,8 @@ namespace Agiil.BDD.Pages
     public static ILocatorBasedTarget EndDate => new ElementId("EndDate", "the end date");
 
     public static ILocatorBasedTarget SubmitButton => new ElementId("Submit", "the submit button");
+
+
+    public static ILocatorBasedTarget FailureMessage => new ElementId("FailureMessage", "the failure message");
   }
 }

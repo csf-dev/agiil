@@ -20,7 +20,7 @@
   </header>
   <section class="details">
     <p>
-      Created by <strong tal:content="ticket/Creator">username</strong>
+      Created by <strong tal:content="ticket/Creator" id="TicketCreatorUsername">username</strong>
       on <strong tal:content="ticket/CreationTimestamp">2001-01-01 19:21:22</strong>.
     </p>
     <p tal:condition="ticket/Sprint">

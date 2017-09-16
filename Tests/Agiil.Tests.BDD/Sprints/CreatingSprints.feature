@@ -35,15 +35,6 @@ Scenario: Youssef can assign a start and end date to a sprint as it is created
    Then Youssef should see that the sprint titled 'New sprint created by Youssef' starts on 2014-01-01
     And Youssef should see that the sprint titled 'New sprint created by Youssef' ends on 2014-02-01
 
-Scenario: Youssef can set the description of a sprint as it is created
-  Given Youssef has opened the new sprint page
-   When Youssef enters the following sprint details and presses submit
-  | Field       | Value                           |
-  | Title       | New sprint created by Youssef   |
-  | Description | This is the sprint description  |
-    And Youssef opens the sprint listing page
-   Then Youssef should see that the sprint titled 'New sprint created by Youssef' has the description 'This is the sprint description'
-
 Scenario: Youssef cannot give a new sprint a start date which is after its end date
   Given Youssef has opened the new sprint page
    When Youssef enters the following sprint details and presses submit

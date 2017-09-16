@@ -58,7 +58,7 @@ namespace Agiil.BDD.Bindings.Sprints
                    .Contain(expectedSprintNames, because: "The displayed sprints should match the expectation");
     }
 
-    [Then(@"Youssef should see that the sprint titled '([^']*)' starts on (\d{4}-\d{1,2}-\d{1-2})")]
+    [Then(@"Youssef should see that the sprint titled '([^']*)' starts on (\d{4}-\d{1,2}-\d{1,2})")]
     public void ThenYoussefShouldVerifyTheSprintStartDate(string sprintTitle, string dateString)
     {
       var expected = DateTime.Parse(dateString);
@@ -69,7 +69,7 @@ namespace Agiil.BDD.Bindings.Sprints
                    .Be(expected, because: "the sprint start date should match");
     }
 
-    [Then(@"Youssef should see that the sprint titled '([^']*)' ends on (\d{4}-\d{1,2}-\d{1-2})")]
+    [Then(@"Youssef should see that the sprint titled '([^']*)' ends on (\d{4}-\d{1,2}-\d{1,2})")]
     public void ThenYoussefShouldVerifyTheSprintEndDate(string sprintTitle, string dateString)
     {
       var expected = DateTime.Parse(dateString);

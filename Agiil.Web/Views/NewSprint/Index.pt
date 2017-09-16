@@ -30,6 +30,11 @@
       <div class="form_element feedback warning" tal:condition="here/Result/EndDateMustNotBeBeforeStartDate | nothing">
         <p>The end date must not fall before the start date.</p>
       </div>
+      <p id="FailureMessage"
+         class="feedback warning"
+         tal:condition="here/Result/IsFailure | nothing">
+        The sprint was not created.
+      </p>
       <div class="form_element button">
         <button id="Submit">Create</button>
       </div>

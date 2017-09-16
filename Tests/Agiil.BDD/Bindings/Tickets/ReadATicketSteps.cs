@@ -62,6 +62,15 @@ namespace Agiil.BDD.Bindings.Tickets
                    .ContainInOrder(expectedComments);
     }
 
+    [Then(@"Youssef should see that the creator of the current ticket is '([^']+)'")]
+    public void ThenYoussefShouldSeeThatTheCreatorOfTheCurrentTicketIs(string username)
+    {
+      var youssef = screenplay.GetYoussef();
+      Then(youssef).ShouldSee(TheText.OfAll(TicketDetail.TicketCreatorUsername))
+                   .Should()
+                   .ContainInOrder(username);
+    }
+
     [Then(@"Youssef should see that the ticket state is (.+)")]
     public void ThenYoussefShouldSeeThatTheTicketStateIs(string expectedState)
     {

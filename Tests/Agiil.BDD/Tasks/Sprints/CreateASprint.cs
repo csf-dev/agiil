@@ -23,11 +23,11 @@ namespace Agiil.BDD.Tasks.Sprints
         actor.Perform(Enter.TheText(details.Title).Into(CreateSprint.Name));
         
       if(details.StartDate.HasValue)
-        actor.Perform(Enter.TheText(details.StartDate.Value.ToString("yyyy-MM-dd"))
+        actor.Perform(Enter.TheText(details.StartDate.Value.ToString("dd/MM/yyyy"))
                            .Into(CreateSprint.StartDate));
 
       if(details.EndDate.HasValue)
-        actor.Perform(Enter.TheText(details.EndDate.Value.ToString("yyyy-MM-dd"))
+        actor.Perform(Enter.TheText(details.EndDate.Value.ToString("dd/MM/yyyy"))
                            .Into(CreateSprint.EndDate));
 
       actor.Perform(Click.On(CreateSprint.SubmitButton));
