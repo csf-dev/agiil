@@ -199,6 +199,12 @@
     <Compile Include="Bindings\Sprints\SprintViewingSteps.cs" />
     <Compile Include="Pages\SprintList.cs" />
     <Compile Include="Abilities\ApplicationApiException.cs" />
+    <Compile Include="Bindings\Sprints\CreateSprintSteps.cs" />
+    <Compile Include="Pages\CreateSprint.cs" />
+    <Compile Include="Tasks\Sprints\TheStartDateFromTheSprintList.cs" />
+    <Compile Include="Tasks\Sprints\TheEndDateFromTheSprintList.cs" />
+    <Compile Include="Models\Sprints\SprintCreationDetails.cs" />
+    <Compile Include="Tasks\Sprints\CreateASprint.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -223,6 +229,8 @@
     <Folder Include="Models\" />
     <Folder Include="Models\Tickets\" />
     <Folder Include="Tasks\App\" />
+    <Folder Include="Tasks\Sprints\" />
+    <Folder Include="Models\Sprints\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj">

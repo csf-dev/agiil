@@ -7,6 +7,7 @@ using CSF.Screenplay.Web.Builders;
 using Agiil.BDD.Pages;
 using System.Linq;
 using FluentAssertions;
+using Agiil.BDD.Tasks.Sprints;
 
 namespace Agiil.BDD.Bindings.Sprints
 {
@@ -55,6 +56,28 @@ namespace Agiil.BDD.Bindings.Sprints
       Then(youssef).ShouldSee(TheText.OfAll(SprintList.SprintNames))
                    .Should()
                    .Contain(expectedSprintNames, because: "The displayed sprints should match the expectation");
+    }
+
+    [Then(@"Youssef should see that the sprint titled '([^']*)' starts on (\d{4}-\d{1,2}-\d{1-2})")]
+    public void ThenYoussefShouldVerifyTheSprintStartDate(string sprintTitle, string dateString)
+    {
+      var expected = DateTime.Parse(dateString);
+
+      var youssef = screenplay.GetYoussef();
+      Then(youssef).ShouldSee(TheStartDateFromTheSprintList.ForTheSprintTitle(sprintTitle))
+                   .Should()
+                   .Be(expected, because: "the sprint start date should match");
+    }
+
+    [Then(@"Youssef should see that the sprint titled '([^']*)' ends on (\d{4}-\d{1,2}-\d{1-2})")]
+    public void ThenYoussefShouldVerifyTheSprintEndDate(string sprintTitle, string dateString)
+    {
+      var expected = DateTime.Parse(dateString);
+
+      var youssef = screenplay.GetYoussef();
+      Then(youssef).ShouldSee(TheEndDateFromTheSprintList.ForTheSprintTitle(sprintTitle))
+                   .Should()
+                   .Be(expected, because: "the sprint end date should match");
     }
 
     public SprintViewingSteps(IScreenplayScenario screenplay)

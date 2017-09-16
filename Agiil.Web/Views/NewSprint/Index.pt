@@ -31,7 +31,7 @@
         <p>The end date must not fall before the start date.</p>
       </div>
       <div class="form_element button">
-        <button>Create</button>
+        <button id="Submit">Create</button>
       </div>
     </fieldset>
   </form>

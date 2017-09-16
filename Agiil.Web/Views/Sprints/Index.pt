@@ -38,12 +38,14 @@
         <td>
           <span tal:content="sprint/GetShortStartDate"
                 tal:attributes="title sprint/GetLongStartDate"
-                title="2011-01-01 12:13:43">1 Jan 2001</span>
+                title="2011-01-01 12:13:43"
+                class="sprint_start_date">1 Jan 2001</span>
         </td>
         <td>
           <span tal:content="sprint/GetShortEndDate"
                 tal:attributes="title sprint/GetLongEndDate"
-                title="2011-01-01 12:13:43">1 Jan 2001</span>
+                title="2011-01-01 12:13:43"
+                class="sprint_end_date">1 Jan 2001</span>
         </td>
       </tr>
     </tbody>
