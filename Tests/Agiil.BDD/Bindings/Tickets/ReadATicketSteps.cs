@@ -23,6 +23,13 @@ namespace Agiil.BDD.Bindings.Tickets
       When(youssef).AttemptsTo(OpenTheTicket.Titled(title));
     }
 
+    [Then(@"Youssef opens a ticket with the title '([^']+)'")]
+    public void ThenYoussefOpensATicketWithTheTitle(string title)
+    {
+      var youssef = screenplay.GetYoussef();
+      Then(youssef).Should(OpenTheTicket.Titled(title));
+    }
+
     [Given("Youssef has opened a ticket with the title '([^']+)'")]
     public void GivenYoussefHasOpenedATicketWithTheTitle(string title)
     {

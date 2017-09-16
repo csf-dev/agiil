@@ -16,6 +16,13 @@ namespace Agiil.BDD.Bindings.Sprints
   {
     readonly IScreenplayScenario screenplay;
 
+    [Given(@"Youssef has opened the sprint listing page")]
+    public void GivenYoussefHasOpenedTheSprintListingPage()
+    {
+      var youssef = screenplay.GetYoussef();
+      Given(youssef).WasAbleTo(OpenTheirBrowserOn.ThePage(SprintList.ForOpenSprints()));
+    }
+
     [When(@"Youssef opens the sprint listing page")]
     public void WhenYoussedOpensTheSprintListingPage()
     {

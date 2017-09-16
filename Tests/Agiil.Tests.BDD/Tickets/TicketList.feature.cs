@@ -100,7 +100,7 @@ this.FeatureBackground();
 #line 13
    testRunner.When("Youssef looks at the list of tickets", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 14
-   testRunner.Then("Youssef should be not able to find a ticket with the title 'Sample ticket 4'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("Youssef should not be able to find a ticket with the title 'Sample ticket 4'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
