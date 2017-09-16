@@ -34,7 +34,7 @@
       <div class="form_element field">
         <label for="EndDate">End date</label>
         <input type="date" id="EndDate" name="EndDate" value="2010-01-01"
-                  tal:attributes="value spec/StartDate | sprint/StartDate | nothing" />
+                  tal:attributes="value spec/EndDate | sprint/EndDate | nothing" />
       </div>
       <div class="form_element feedback warning" tal:condition="here/Response/EndDateMustNotBeBeforeStartDate | nothing">
         <p>The end date must not fall before the start date.</p>
@@ -47,8 +47,13 @@
                            isChecked csharp:isOpen? (bool?) null : true"
                tal:attributes="checked isChecked" />
       </div>
+      <p class="feedback warning"
+         id="EditFailureMessage"
+         tal:condition="here/Response/IsFailure | nothing">
+        The sprint was nt edited.
+      </p>
       <div class="form_element button">
-        <button>Submit</button>
+        <button id="Submit">Submit</button>
       </div>
     </fieldset>
   </form>

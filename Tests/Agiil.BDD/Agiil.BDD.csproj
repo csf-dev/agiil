@@ -208,6 +208,10 @@
     <Compile Include="Tasks\Sprints\ViewTheSprintDetail.cs" />
     <Compile Include="Pages\SprintDetail.cs" />
     <Compile Include="Tasks\Sprints\VerifyThatTheSprintDetailsMatch.cs" />
+    <Compile Include="Bindings\Sprints\SprintEditingSteps.cs" />
+    <Compile Include="Tasks\Sprints\BeginEditingTheSprint.cs" />
+    <Compile Include="Pages\EditSprint.cs" />
+    <Compile Include="Tasks\Sprints\EditTheSprint.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

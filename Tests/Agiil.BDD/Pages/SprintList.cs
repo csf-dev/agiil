@@ -18,7 +18,7 @@ namespace Agiil.BDD.Pages
 
     public static ILocatorBasedTarget TheSprintNamed(string name)
     {
-      var xpath = $@"//table[@class='sprint_list']/tbody/tr/td/a[@class = 'sprint_name'] = '{name}']";
+      var xpath = $@"//table[@class='sprint_list']/tbody/tr/td/a[@class = 'sprint_name' and text() = '{name}']";
       return new XPath(xpath, $"the sprint-details link for {name}");
     }
 

@@ -5,11 +5,18 @@ namespace Agiil.BDD.Pages
 {
   public class SprintDetail : Page
   {
-    long sprintId;
+    readonly long sprintId;
 
     public override string GetName() => "the sprint detail page";
 
     public override IUriProvider GetUriProvider() => new AppUri($"Sprint/{sprintId}");
+
+    SprintDetail(long sprintId)
+    {
+      this.sprintId = sprintId;
+    }
+
+    public static Page ForSprintId(long id) => new SprintDetail(id);
 
     public static ILocatorBasedTarget SprintName => new ElementId("SprintName", $"the sprint name");
 
@@ -19,5 +26,9 @@ namespace Agiil.BDD.Pages
 
     public static ILocatorBasedTarget Description
       => new CssSelector("section.description .description_content", $"the sprint description");
+
+    public static ILocatorBasedTarget EditLink => new ElementId("EditSprintLink", $"the edit sprint link");
+
+
   }
 }
