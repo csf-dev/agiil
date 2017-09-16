@@ -16,6 +16,7 @@ namespace Agiil.Web.Controllers
     {
       loginOverride.OverrideLogin(AdminUser.Username);
       loader.LoadDataPackage(request.PackageTypeName);
+      loginOverride.ClearOverride();
       return Ok();
     }
 
