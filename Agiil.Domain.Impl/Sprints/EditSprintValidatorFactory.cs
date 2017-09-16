@@ -17,7 +17,9 @@ namespace Agiil.Domain.Sprints
       builder.AddMemberRule<RegexMatchValueRule>(x => x.Name, c => {
         c.Configure(r => r.Pattern = @"^\S+");
       });
-      builder.AddRule<EndDateMustNotBeBeforeStartDateRule>();
+      builder.AddRule<EndDateMustNotBeBeforeStartDateRule>(c => {
+        c.Name(RuleNames.EndDateBeforeStartDate);
+      });
     }
 
     public EditSprintValidatorFactory(IValidatorFactory validatorFactory) : base(validatorFactory) {}
