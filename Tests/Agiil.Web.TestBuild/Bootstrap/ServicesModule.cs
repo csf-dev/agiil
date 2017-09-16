@@ -16,7 +16,7 @@ namespace Agiil.Web.Bootstrap
     }
 
     protected override string Namespace
-      => typeof(DatabaseMaintainer).Namespace;
+      => typeof(IServicesNamespaceMarker).Namespace;
 
     protected override IEnumerable<Assembly> GetSearchAssemblies()
       => new [] { Assembly.GetExecutingAssembly() };

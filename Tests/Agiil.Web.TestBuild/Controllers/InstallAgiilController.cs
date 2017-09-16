@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Http;
+using Agiil.Data.Maintenance;
 using Agiil.Web.Services;
 
 namespace Agiil.Web.Controllers
@@ -7,20 +8,20 @@ namespace Agiil.Web.Controllers
   [AllowAnonymous]
   public class InstallAgiilController : ApiController
   {
-    readonly DatabaseMaintainer maintainer;
+    readonly IDatabaseResetter dbResetter;
 
     public IHttpActionResult Post()
     {
-      maintainer.Reset();
+      dbResetter.ResetDatabase();
       return Ok();
     }
 
-    public InstallAgiilController(DatabaseMaintainer maintainer)
+    public InstallAgiilController(IDatabaseResetter resetter)
     {
-      if(maintainer == null)
-        throw new ArgumentNullException(nameof(maintainer));
+      if(resetter == null)
+        throw new ArgumentNullException(nameof(resetter));
 
-      this.maintainer = maintainer;
+      this.dbResetter = resetter;
     }
   }
 }

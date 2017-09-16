@@ -52,6 +52,9 @@
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Utils">
+      <HintPath>..\packages\CSF.Utils.6.0.0\lib\net45\CSF.Utils.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,10 +62,20 @@
     <Compile Include="SimpleUpgradeName.cs" />
     <Compile Include="DevelopmentDatabaseResetter.cs" />
     <Compile Include="NHibernateSchemaExporter.cs" />
+    <Compile Include="Sqlite\Snapshot.cs" />
+    <Compile Include="Sqlite\SnapshotService.cs" />
+    <Compile Include="Sqlite\ConnectionStringAdapter.cs" />
+    <Compile Include="Sqlite\ExtensionChanger.cs" />
+    <Compile Include="ISnapshotService.cs" />
+    <Compile Include="Sqlite\SnapshotFileService.cs" />
+    <Compile Include="Sqlite\ISnapshotFileService.cs" />
+    <Compile Include="SnapshotStore.cs" />
+    <Compile Include="SnapshottingDatabaseResetter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UpgradeScripts\" />
     <Folder Include="UpgradeScripts\Sqlite\" />
+    <Folder Include="Sqlite\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Data\Agiil.Data.csproj">

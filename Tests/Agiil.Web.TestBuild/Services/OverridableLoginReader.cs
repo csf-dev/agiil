@@ -1,23 +1,21 @@
 ﻿using System;
-using System.Linq;
 using Agiil.Auth;
 using Agiil.Domain.Auth;
-using CSF.Data;
 using CSF.Entities;
 
 namespace Agiil.Web.Services
 {
   public class OverridableLoginReader : ClaimsIdentityReader, IOverridesCurrentLogin
   {
-    IQuery query;
     ICurrentUserInfo overriddenUser;
+    readonly IGetsUserByUsername userQuery;
 
     public void OverrideLogin(string username)
     {
       if(username == null)
         throw new ArgumentNullException(nameof(username));
 
-      var user = query.Query<User>().FirstOrDefault(x => x.Username == username);
+      var user = userQuery.Get(username);
       if(user == null)
         throw new ArgumentException($"The user '{username}' does not exist.", nameof(username));
 
@@ -38,12 +36,12 @@ namespace Agiil.Web.Services
     }
 
     public OverridableLoginReader(IPrincipalGetter principalGetter,
-                                  IQuery query) : base(principalGetter)
+                                  IGetsUserByUsername userQuery) : base(principalGetter)
     {
-      if(query == null)
-        throw new ArgumentNullException(nameof(query));
+      if(userQuery == null)
+        throw new ArgumentNullException(nameof(userQuery));
 
-      this.query = query;
+      this.userQuery = userQuery;
     }
   }
 }

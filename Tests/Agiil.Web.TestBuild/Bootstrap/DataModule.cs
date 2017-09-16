@@ -4,6 +4,8 @@ using Autofac;
 using CSF.Data;
 using CSF.Data.Entities;
 using Agiil.Web.Data;
+using Agiil.Data;
+using Agiil.Data.Maintenance;
 
 namespace Agiil.Web.Bootstrap
 {
@@ -12,42 +14,21 @@ namespace Agiil.Web.Bootstrap
     protected override void Load(ContainerBuilder builder)
     {
       builder
-        .RegisterType<InMemoryDataManager>()
-        .SingleInstance();
+        .RegisterType<TestingDatabaseConfiguration>()
+        .As<IDatabaseConfiguration>();
 
       builder
-        .Register(GetQuery)
-        .AsSelf()
-        .As<IQuery>();
-
-      builder
-        .RegisterType<InMemoryPersister>()
-        .AsSelf()
-        .As<IPersister>();
-
-      builder
-        .Register(CreateEntityData)
-        .AsSelf()
-        .As<IEntityData>();
-
-      builder
-        .RegisterType<InMemoryIdentityGenerator>()
-        .AsSelf()
-        .As<IIdentityGenerator>();
-
+        .Register(BuildSnapshotDatabaseResetter)
+        .As<IDatabaseResetter>();
     }
 
-    IdentityGeneratingEntityData CreateEntityData(IComponentContext ctx)
+    SnapshottingDatabaseResetter BuildSnapshotDatabaseResetter(IComponentContext ctx)
     {
-      return new IdentityGeneratingEntityData(ctx.Resolve<IQuery>(),
-                                              ctx.Resolve<IPersister>(),
-                                              ctx.Resolve<IIdentityGenerator>());
-    }
+      var baseResetter = ctx.Resolve<DevelopmentDatabaseResetter>();
+      var snapshotStore = ctx.Resolve<SnapshotStore>();
+      var snapshotService = ctx.Resolve<ISnapshotService>();
 
-    InMemoryQuery GetQuery(IComponentContext ctx)
-    {
-      var manager = ctx.Resolve<InMemoryDataManager>();
-      return manager.CurrentQuery;
+      return new SnapshottingDatabaseResetter(baseResetter, snapshotStore, snapshotService);
     }
   }
 }

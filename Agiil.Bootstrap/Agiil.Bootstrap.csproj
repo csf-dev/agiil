@@ -135,6 +135,7 @@
     <Compile Include="Data\DatabaseMaintenanceModule.cs" />
     <Compile Include="DiConfiguration\ContainerFactoryProvider.cs" />
     <Compile Include="DiConfiguration\DiConfigurationSection.cs" />
+    <Compile Include="Data\SqliteDatabaseMaintenanceModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
