@@ -1,51 +1,32 @@
 ﻿using System;
-using Agiil.Tests.Auth;
-using Ploeh.AutoFixture;
+using Agiil.BDD.Abilities;
+using Agiil.BDD.Actions;
+using CSF.Screenplay;
 using TechTalk.SpecFlow;
+using static CSF.Screenplay.StepComposer;
 
 namespace Agiil.BDD.Bindings.Auth
 {
   [Binding]
   public class UserAccountSteps
   {
-    readonly IUserAccountController userAccountModel;
-    readonly IFixture autofixture;
+    readonly IScreenplayScenario screenplay;
 
-    [Given(@"there is not a user account named '([A-Za-z0-9_-]+)'")]
-    public void GivenThereIsNotAUser(string username)
+    [Given(@"Joe has a user account with the username '([A-Za-z0-9_-]+)' and password '([^']+)'")]
+    public void GivenJoeHasAUserAccount(string username, string password)
     {
-      userAccountModel.RemoveUser(username);
+      var april = screenplay.GetApril();
+      var joe = screenplay.GetJoe();
+
+      Given(april).WasAbleTo(AddAUserAccount.WithTheUsername(username).AndThePassword(password));
+      joe.IsAbleTo(LogInWithAUserAccount.WithTheUsername(username).AndThePassword(password));
     }
 
-    [Given(@"there is a user account named '([A-Za-z0-9_-]+)' with the password '([^']+)'")]
-    public void GivenThereIsAUserWithAPassword(string username, string password)
+    public UserAccountSteps(IScreenplayScenario screenplay)
     {
-      userAccountModel.AddUser(username, password);
-    }
-
-    [Given(@"there is a user account named '([A-Za-z0-9_-]+)'")]
-    public void GivenThereIsAUser(string username)
-    {
-      var password = autofixture.Create<string>();
-      userAccountModel.AddUser(username, password);
-    }
-
-    [Given("([A-Za-z0-9_-]+) is a regular user")]
-    public void GivenTheyAreARegularUser(string username)
-    {
-      GivenThereIsAUser(username);
-    }
-
-    public UserAccountSteps(IUserAccountController userAccountModel,
-                            IFixture autofixture)
-    {
-      if(autofixture == null)
-        throw new ArgumentNullException(nameof(autofixture));
-      if(userAccountModel == null)
-        throw new ArgumentNullException(nameof(userAccountModel));
-
-      this.userAccountModel = userAccountModel;
-      this.autofixture = autofixture;
+      if(screenplay == null)
+        throw new ArgumentNullException(nameof(screenplay));
+      this.screenplay = screenplay;
     }
   }
 }

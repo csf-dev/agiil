@@ -11,13 +11,13 @@ namespace Agiil.Domain.Tickets
 {
   public class TicketCreator : ITicketCreator
   {
-    readonly IRepository<Ticket> ticketRepo;
+    readonly IEntityData ticketRepo;
     readonly ICurrentUserReader userReader;
     readonly ITicketFactory ticketFactory;
     readonly ITransactionCreator transactionFactory;
     readonly IValidatorFactory<CreateTicketRequest> validatorFactory;
     Func<IValidationResult, Ticket, CreateTicketResponse> responseCreator;
-    readonly IRepository<Sprint> sprintRepo;
+    readonly IEntityData sprintRepo;
 
     // TODO: This class has too many dependencies and thus too many responsibilities
     // Refactor and push some of these outwards
@@ -65,13 +65,13 @@ namespace Agiil.Domain.Tickets
       set { responseCreator = value; }
     }
 
-    public TicketCreator(IRepository<Ticket> ticketRepo,
+    public TicketCreator(IEntityData ticketRepo,
                          ICurrentUserReader userReader,
                          ITicketFactory ticketFactory,
                          ITransactionCreator transactionFactory,
                          IValidatorFactory<CreateTicketRequest> validatorFactory,
                          Func<IValidationResult,Ticket,CreateTicketResponse> responseCreator,
-                         IRepository<Sprint> sprintRepo)
+                         IEntityData sprintRepo)
     {
       if(sprintRepo == null)
         throw new ArgumentNullException(nameof(sprintRepo));

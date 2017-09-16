@@ -13,3 +13,4 @@ Agiil.Web/Temp/
 *.log
 *.orig
 testrunner/
+test-artifacts/

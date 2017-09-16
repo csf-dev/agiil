@@ -6,7 +6,7 @@ namespace Agiil.Domain.Tickets
 {
   public class TicketOpenerCloser : ITicketOpenerCloser
   {
-    readonly IRepository<Ticket> repo;
+    readonly IEntityData repo;
     readonly ITransactionCreator transactionFactory;
 
     public CloseTicketResponse Close(CloseTicketRequest request)
@@ -53,7 +53,7 @@ namespace Agiil.Domain.Tickets
       return new ReopenTicketResponse();
     }
 
-    public TicketOpenerCloser(IRepository<Ticket> repo,
+    public TicketOpenerCloser(IEntityData repo,
                               ITransactionCreator transactionFactory)
     {
       if(transactionFactory == null)

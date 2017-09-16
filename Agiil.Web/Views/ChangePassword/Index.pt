@@ -1,4 +1,4 @@
-﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
 <head>
 <title metal:fill-slot="title_element">Change password</title>
 </head>
@@ -28,8 +28,12 @@
       <div class="form_element feedback warning" tal:condition="result/NewPasswordDoesNotMatchConfirmation | nothing">
         <p>The password confirmation must match the new password.</p>
       </div>
+      <p class="feedback warning"
+         id="password_change_feedback"
+         tal:define="failure result/Failure | nothing"
+         tal:condition="failure">Your password was not changed.</p>
       <div class="form_element button">
-        <button>Change</button>
+        <button id="ChangePasswordButton">Change</button>
       </div>
     </fieldset>
   </form>

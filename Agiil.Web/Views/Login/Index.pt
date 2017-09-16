@@ -10,7 +10,7 @@
                  username here/LoginState/Username | nothing"
      class="page_content">
   <h1>Log in</h1>
-  <form method="post" action="Login/Login" tal:condition="not:username">
+  <form method="post" id="LoginForm" action="Login/Login" tal:condition="not:username">
     <fieldset>
       <input type="hidden" name="ReturnUrl" value="/"
              tal:attributes="value here/ReturnUrl | nothing" />

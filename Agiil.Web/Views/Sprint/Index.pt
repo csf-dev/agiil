@@ -13,7 +13,7 @@
          class="page_content sprint_detail"
          tal:define="sprint here/Sprint">
   <header>
-    <h1 tal:content="sprint/Name">Sprint name</h1>
+    <h1 tal:content="sprint/Name" id="SprintName">Sprint name</h1>
   </header>
   <section class="details">
     <p>
@@ -25,13 +25,13 @@
     <p tal:condition="sprint/Closed">This sprint is <strong>closed</strong>.</p>
     <p tal:condition="not:sprint/Closed">This sprint is <strong>open</strong>.</p>
     <p tal:condition="sprint/StartDate">
-      Start date: <strong tal:content="sprint/GetShortStartDate">2011-01-01</strong>
+      Start date: <strong tal:content="sprint/GetShortStartDate" id="SprintStartDate">2011-01-01</strong>
     </p>
     <p tal:condition="sprint/EndDate">
-      End date: <strong tal:content="sprint/GetShortEndDate">2011-01-01</strong>
+      End date: <strong tal:content="sprint/GetShortEndDate" id="SprintEndDate">2011-01-01</strong>
     </p>
     <p>
-      <a href="Sprint/Edit/0" tal:attributes="href string:Sprint/Edit/${sprint/Id}">Edit this sprint</a>
+      <a href="Sprint/Edit/0" tal:attributes="href string:Sprint/Edit/${sprint/Id}" id="EditSprintLink">Edit this sprint</a>
     </p>
   </section>
   <section class="description">

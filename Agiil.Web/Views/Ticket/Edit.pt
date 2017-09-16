@@ -5,7 +5,7 @@
 <body>
 <div metal:fill-slot="page_content" class="page_content">
   <h1 tal:content="here/Ticket/Title">Edit ticket</h1>
-  <form action="Ticket/Edit" method="post" tal:define="ticket here/Ticket">
+  <form id="EditTicketForm" action="Ticket/Edit" method="post" tal:define="ticket here/Ticket">
     <p>
       Created by <strong tal:content="ticket/Creator">username</strong>
       on <strong tal:content="ticket/CreationTimestamp">2001-01-01 19:21:22</strong>.
@@ -50,8 +50,13 @@
           is not part of any sprint.
         </p>
       </div>
+      <p id="SubmissionFailedMessage"
+         class="feedback warning"
+         tal:condition="here/Response/Failure | nothing">
+        The ticket has not been edited.
+      </p>
       <div class="form_element button">
-        <button>Submit</button>
+        <button id="SubmitButton">Submit</button>
       </div>
     </fieldset>
   </form>

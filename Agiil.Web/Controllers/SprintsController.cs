@@ -16,12 +16,21 @@ namespace Agiil.Web.Controllers
     {
       var request = Mapper.Map<ListSprintsRequest>(spec);
       var sprints = lister.GetSprints(request);
+      var model = GetModel(spec, sprints);
+      return View(model);
+    }
+
+    ListSprintModel GetModel(AdHocSprintListingRequest spec, IList<Sprint> sprints)
+    {
       var model = ModelFactory.GetModel<ListSprintModel>();
       if(spec != null)
+      {
         model.ShowingClosedSprints = spec.ShowClosedSprints;
+      }
+
       model.Sprints = sprints.Select(x => Mapper.Map<SprintSummaryDto>(x)).ToList();
 
-      return View(model);
+      return model;
     }
 
     public SprintsController(ControllerBaseDependencies deps, ISprintLister lister) : base(deps)

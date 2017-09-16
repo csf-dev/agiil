@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Linq;
 using System.Security.Claims;
-using CSF.Data;
-using CSF.Entities;
+using Agiil.Auth;
 using Agiil.Domain.Auth;
+using CSF.Entities;
 using Microsoft.Owin.Security;
 using Moq;
 using NUnit.Framework;
 using Ploeh.AutoFixture.NUnit3;
-using Agiil.Auth;
 
 namespace Agiil.Tests.Auth
 {

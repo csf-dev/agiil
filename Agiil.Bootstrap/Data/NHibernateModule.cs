@@ -11,29 +11,35 @@ namespace Agiil.Bootstrap.Data
   {
     protected override void Load(ContainerBuilder builder)
     {
-      // Configuration
       builder
-        .Register((ctx, parameters) => {
-          var factory = ctx.Resolve<ISessionFactoryFactory>();
-          return factory.GetConfiguration();
-        })
+        .Register(BuildNHibernateConfiguration)
         .SingleInstance();
 
-      // ISessionFactory
       builder
-        .Register((ctx, parameters) => {
-          var config = ctx.Resolve<Configuration>();
-          return config.BuildSessionFactory();
-        })
+        .Register(BuildSessionFactory)
         .SingleInstance();
 
-      // ISession
       builder
-        .Register((ctx, parameters) => {
-          var factory = ctx.Resolve<ISessionFactory>();
-          return factory.OpenSession();
-        })
+        .Register(BuildSession)
         .InstancePerMatchingLifetimeScope(ComponentScope.ApplicationConnection);
+    }
+
+    Configuration BuildNHibernateConfiguration(IComponentContext ctx)
+    {
+      var factory = ctx.Resolve<ISessionFactoryFactory>();
+      return factory.GetConfiguration();
+    }
+
+    ISessionFactory BuildSessionFactory(IComponentContext ctx)
+    {
+      var config = ctx.Resolve<Configuration>();
+      return config.BuildSessionFactory();
+    }
+
+    ISession BuildSession(IComponentContext ctx)
+    {
+      var factory = ctx.Resolve<ISessionFactory>();
+      return factory.OpenSession();
     }
   }
 }

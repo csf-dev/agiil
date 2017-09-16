@@ -73,6 +73,7 @@
     <Compile Include="Sprints\EditSprintSpecification.cs" />
     <Compile Include="Sprints\EditSprintResponse.cs" />
     <Compile Include="Sprints\EditSprintModel.cs" />
+    <Compile Include="DateTimeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

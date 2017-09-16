@@ -7,7 +7,7 @@ namespace Agiil.Domain.Tickets
   public class TicketReferenceQuery : ITicketReferenceQuery
   {
     readonly ITicketReferenceParser parser;
-    readonly IRepository<Ticket> repo;
+    readonly IEntityData repo;
 
     public Ticket GetTicketByReference(string reference)
     {
@@ -17,7 +17,7 @@ namespace Agiil.Domain.Tickets
         return null;
 
       return repo
-        .Query()
+        .Query<Ticket>()
         .Where(x => x.Project != null
                     && x.Project.Code == parsed.ProjectCode
                     && x.TicketNumber == parsed.TicketNumber)
@@ -25,7 +25,7 @@ namespace Agiil.Domain.Tickets
     }
 
     public TicketReferenceQuery(ITicketReferenceParser parser,
-                                IRepository<Ticket> repo)
+                                IEntityData repo)
     {
       if(repo == null)
         throw new ArgumentNullException(nameof(repo));

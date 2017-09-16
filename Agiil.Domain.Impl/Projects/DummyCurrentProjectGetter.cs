@@ -6,14 +6,14 @@ namespace Agiil.Domain.Projects
 {
   public class DummyCurrentProjectGetter : ICurrentProjectGetter
   {
-    readonly IRepository<Project> projectRepo;
+    readonly IEntityData projectRepo;
 
     public Project GetCurrentProject()
     {
-      return projectRepo.Query().FirstOrDefault();
+      return projectRepo.Query<Project>().FirstOrDefault();
     }
 
-    public DummyCurrentProjectGetter(IRepository<Project> projectRepo)
+    public DummyCurrentProjectGetter(IEntityData projectRepo)
     {
       if(projectRepo == null)
         throw new ArgumentNullException(nameof(projectRepo));

@@ -19,19 +19,28 @@
       </div>
       <div class="form_element field">
         <label for="StartDate">Start date</label>
-        <input type="date" id="StartDate" name="StartDate"
-                  tal:attributes="value here/Specification/StartDate | nothing" />
+        <input type="date"
+               id="StartDate"
+               name="StartDate"
+               tal:attributes="value here/Specification/StartDateWebValue | nothing" />
       </div>
       <div class="form_element field">
         <label for="EndDate">End date</label>
-        <input type="date" id="EndDate" name="EndDate"
-                  tal:attributes="value here/Specification/EndDate | nothing" />
+        <input type="date"
+               id="EndDate"
+               name="EndDate"
+               tal:attributes="value here/Specification/EndDateWebValue | nothing" />
       </div>
       <div class="form_element feedback warning" tal:condition="here/Result/EndDateMustNotBeBeforeStartDate | nothing">
         <p>The end date must not fall before the start date.</p>
       </div>
+      <p id="FailureMessage"
+         class="feedback warning"
+         tal:condition="here/Result/IsFailure | nothing">
+        The sprint was not created.
+      </p>
       <div class="form_element button">
-        <button>Create</button>
+        <button id="Submit">Create</button>
       </div>
     </fieldset>
   </form>

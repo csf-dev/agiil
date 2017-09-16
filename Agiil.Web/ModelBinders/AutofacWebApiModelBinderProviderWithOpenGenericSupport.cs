@@ -20,6 +20,9 @@ namespace Agiil.Web.ModelBinders
       if(baseBinder != null)
         return baseBinder;
 
+      if(!modelType.IsGenericType)
+        return null;
+
       var allBinders = configuration
         .DependencyResolver
         .GetServices(typeof(Meta<Lazy<IModelBinder>>))

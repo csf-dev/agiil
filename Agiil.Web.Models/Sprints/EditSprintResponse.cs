@@ -10,5 +10,7 @@ namespace Agiil.Web.Models.Sprints
     public bool EndDateMustNotBeBeforeStartDate { get; set; }
 
     public bool IsSuccess { get; set; }
+
+    public bool IsFailure => !IsSuccess;
   }
 }

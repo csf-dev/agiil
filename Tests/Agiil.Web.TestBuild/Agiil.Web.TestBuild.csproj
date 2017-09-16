@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{84E2316C-4CAA-4D80-8FFF-5F876258F3BF}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Agiil.Web.TestBuild</RootNamespace>
+    <RootNamespace>Agiil.Web</RootNamespace>
     <AssemblyName>Agiil.Web.TestBuild</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <ReleaseVersion>0.2.0.1</ReleaseVersion>
@@ -38,12 +38,6 @@
     <Reference Include="CSF.Entities">
       <HintPath>..\..\packages\CSF.Entities.1.1.1\lib\net45\CSF.Entities.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Data.Entities">
-      <HintPath>..\..\packages\CSF.Data.Entities.1.2.1\lib\net45\CSF.Data.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http.Formatting">
       <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -54,17 +48,35 @@
     <Reference Include="Autofac.Integration.WebApi">
       <HintPath>..\..\packages\Autofac.WebApi2.4.0.1\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data.Entities">
+      <HintPath>..\..\packages\CSF.Data.Entities.1.3.0\lib\net45\CSF.Data.Entities.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\ResetTheApplicationController.cs" />
-    <Compile Include="Bootstrap\BusinessTransactionModule.cs" />
+    <Compile Include="Controllers\InstallAgiilController.cs" />
     <Compile Include="Bootstrap\DataModule.cs" />
     <Compile Include="App_Start\WebAppTestingContainerFactory.cs" />
-    <Compile Include="Services\DatabaseMaintainer.cs" />
-    <Compile Include="Data\InMemoryDatabase.cs" />
     <Compile Include="Bootstrap\ServicesModule.cs" />
     <Compile Include="Bootstrap\AspNetWebApiTestBuildModule.cs" />
+    <Compile Include="Controllers\AddUserController.cs" />
+    <Compile Include="Controllers\SetupDataPackageController.cs" />
+    <Compile Include="Services\DataPackageLoader.cs" />
+    <Compile Include="Models\SetupDataPackageRequest.cs" />
+    <Compile Include="Services\DataPackages\SimpleSampleProject.cs" />
+    <Compile Include="Services\IDataPackage.cs" />
+    <Compile Include="Services\DataPackageMetadata.cs" />
+    <Compile Include="Services\DataPackages\IDataPackagesNamespaceMarker.cs" />
+    <Compile Include="Bootstrap\DataPackagesModule.cs" />
+    <Compile Include="Services\IOverridesCurrentLogin.cs" />
+    <Compile Include="Services\OverridableLoginReader.cs" />
+    <Compile Include="Models\CreateUserModel.cs" />
+    <Compile Include="Data\TestingDatabaseConfiguration.cs" />
+    <Compile Include="Services\IServicesNamespaceMarker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -86,6 +98,22 @@
       <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
       <Name>Agiil.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj">
+      <Project>{922B2D9C-444E-451A-B626-DAE59E79C0E5}</Project>
+      <Name>Agiil.Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Auth.Impl\Agiil.Auth.Impl.csproj">
+      <Project>{71F8B1B3-C0F1-4D0A-BF44-1DC091EE62E3}</Project>
+      <Name>Agiil.Auth.Impl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Data\Agiil.Data.csproj">
+      <Project>{AB167238-0D06-4D8A-A646-198D63575AF5}</Project>
+      <Name>Agiil.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Data.Maintenance\Agiil.Data.Maintenance.csproj">
+      <Project>{93734A7F-7011-4C26-B14F-6228A7648DAC}</Project>
+      <Name>Agiil.Data.Maintenance</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -93,6 +121,8 @@
     <Folder Include="Bootstrap\" />
     <Folder Include="App_Start\" />
     <Folder Include="Data\" />
+    <Folder Include="Models\" />
+    <Folder Include="Services\DataPackages\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

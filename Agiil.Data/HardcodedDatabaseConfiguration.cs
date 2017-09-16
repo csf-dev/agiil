@@ -5,6 +5,6 @@ namespace Agiil.Data
   {
     const string ConnectionStringName = "Agiil";
 
-    public string GetConnectionStringName() => ConnectionStringName;
+    public virtual string GetConnectionStringName() => ConnectionStringName;
   }
 }

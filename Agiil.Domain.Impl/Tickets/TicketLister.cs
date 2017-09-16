@@ -8,7 +8,7 @@ namespace Agiil.Domain.Tickets
 {
   public class TicketLister : ITicketLister
   {
-    readonly IRepository<Ticket> ticketRepo;
+    readonly IEntityData ticketRepo;
 
     public IList<Ticket> GetTickets()
     {
@@ -27,7 +27,7 @@ namespace Agiil.Domain.Tickets
 
     IQueryable<Ticket> GetQuery()
     {
-      return ticketRepo.Query();
+      return ticketRepo.Query<Ticket>();
     }
 
     IQueryable<Ticket> ConfigureQuery(IQueryable<Ticket> query, TicketListRequest request)
@@ -47,7 +47,7 @@ namespace Agiil.Domain.Tickets
       return query;
     }
 
-    public TicketLister(IRepository<Ticket> ticketRepo)
+    public TicketLister(IEntityData ticketRepo)
     {
       if(ticketRepo == null)
         throw new ArgumentNullException(nameof(ticketRepo));

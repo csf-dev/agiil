@@ -14,21 +14,16 @@ namespace Agiil.Domain.Tickets
     public Ticket Ticket { get; private set; }
 
     public bool TitleIsInvalid
-    {
-      get {
-        return resultInterpreter.IncludesFailureFor<CreateTicketRequest>(validationResult, x => x.Title);
-      }
-    }
+      => resultInterpreter.IncludesFailureFor<CreateTicketRequest>(validationResult, x => x.Title);
 
     public bool DescriptionIsInvalid
-    {
-      get {
-        return resultInterpreter.IncludesFailureFor<CreateTicketRequest>(validationResult, x => x.Description);
-      }
-    }
+      => resultInterpreter.IncludesFailureFor<CreateTicketRequest>(validationResult, x => x.Description);
 
     public bool SprintIsInvalid
       => resultInterpreter.IncludesFailureFor<CreateTicketRequest>(validationResult, x => x.SprintIdentity);
+
+    public bool IsSuccess
+      => !TitleIsInvalid && !DescriptionIsInvalid && !SprintIsInvalid && Ticket != null;
 
     public CreateTicketResponse(IValidationResult result,
                                 IValidationResultInterpreter resultInterpreter,
