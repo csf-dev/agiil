@@ -60,6 +60,13 @@ namespace Agiil.BDD.Bindings.Auth
       Then(joe).Should(VerifyThatTheyAreLoggedIn.As(username));
     }
 
+    [Then("Youssef should be logged in as '([A-Za-z0-9_-]+)'")]
+    public void ThenYoussefShouldBeLoggedIn(string username)
+    {
+      var youssef = screenplay.GetYoussef();
+      Then(youssef).Should(VerifyThatTheyAreLoggedIn.As(username));
+    }
+
     public LoginSteps(IScreenplayScenario screenplay)
     {
       if(screenplay == null)
