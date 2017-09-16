@@ -15,7 +15,7 @@ namespace Agiil.Data.Maintenance.Sqlite
       if(extensionToAdd == null)
         throw new ArgumentNullException(nameof(extensionToAdd));
 
-      return LastExtensionMatcher.Replace(filename, match => $".{extensionToAdd}.{match.Value}");
+      return LastExtensionMatcher.Replace(filename, match => $"{extensionToAdd}.{match.Value}");
     }
 
     public string AppendExtension(string filename, string extensionToAdd)
