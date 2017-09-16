@@ -29,12 +29,12 @@
       <div class="form_element field">
         <label for="StartDate">Start date</label>
         <input type="date" id="StartDate" name="StartDate" value="2010-01-01"
-                  tal:attributes="value spec/StartDate | sprint/StartDate | nothing" />
+                  tal:attributes="value spec/StartDateWebValue | sprint/StartDateWebValue | nothing" />
       </div>
       <div class="form_element field">
         <label for="EndDate">End date</label>
         <input type="date" id="EndDate" name="EndDate" value="2010-01-01"
-                  tal:attributes="value spec/EndDate | sprint/EndDate | nothing" />
+                  tal:attributes="value spec/EndDateWebValue | sprint/EndDateWebValue | nothing" />
       </div>
       <div class="form_element feedback warning" tal:condition="here/Response/EndDateMustNotBeBeforeStartDate | nothing">
         <p>The end date must not fall before the start date.</p>

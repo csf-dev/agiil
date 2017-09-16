@@ -40,5 +40,8 @@ namespace Agiil.Web.Models.Sprints
 
       return EndDate.Value.ToString("u");
     }
+
+    public string StartDateWebValue => StartDate.ToWebDateValue();
+    public string EndDateWebValue => EndDate.ToWebDateValue();
   }
 }
