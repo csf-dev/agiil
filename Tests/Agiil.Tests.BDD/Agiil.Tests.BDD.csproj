@@ -153,6 +153,7 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>EditingSprints.feature.cs</LastGenOutput>
     </None>
+    <None Include="App.Travis.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.BDD\Agiil.BDD.csproj">
