@@ -312,7 +312,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="web.config">
+    <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Global.asax" />
@@ -323,7 +323,6 @@
     <Content Include="Content\Scss\_AppWideVariables.scss" />
     <Content Include="Content\Scss\_ContentStyles.scss" />
     <Content Include="Content\Scss\_Forms.scss" />
-    <Content Include="web.Release.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Home\Index.pt" />
@@ -349,6 +348,13 @@
     <None Include="Views\Sprint\Index.pt" />
     <None Include="Views\Shared\Controls\SprintChooser.pt" />
     <None Include="Views\Sprint\Edit.pt" />
+    <None Include="Web.Debug.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web.Release.config" />
+    <None Include="Web.Travis.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
