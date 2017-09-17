@@ -3,13 +3,12 @@
 SERVER_PORT="8080"
 SERVER_ADDR="127.0.0.1"
 WEB_APP_HOME="Agiil.Web"
-SERVER_WEB_APP="/:./"
-WEB_APP_BIN="${WEB_APP_HOME}/bin"
-TESTING_BIN="Tests/Agiil.Web.TestBuild/bin/Debug"
+SERVER_WEB_APP="/:."
 SERVER_PID=".xsp4.pid"
 APP_HOMEPAGE="http://localhost:8080/Home"
 SECONDS_BETWEEN_CONNECT_ATTEMPTS="2"
 MAX_ATTEMPTS="5"
+FAKE_REGISTRY_DIR="missing_registry_workaround"
 
 app_available=1
 
@@ -17,14 +16,52 @@ start_webserver()
 {
   echo "Starting a testing build of Agiil on a web server ..."
   original_dir="$(pwd)"
-  cd "./${WEB_APP_HOME}/" && xsp4 \
+  
+  work_around_missing_registry_dir
+  
+  cd "./${WEB_APP_HOME}/"
+  
+  xsp4 \
     --nonstop \
+    --verbose \
     --address "$SERVER_ADDR" \
     --port "$SERVER_PORT" \
     --applications "$SERVER_WEB_APP" \
     --pidfile "../$SERVER_PID" \
     &
+  
   cd "$original_dir"
+}
+
+work_around_missing_registry_dir()
+{
+  # OWIN (used by this app) makes use of the .NET Registry API,
+  # obviously GNU/Linux-based systems have no registry.
+  # There is an equivalent mechanism provided, backed by the filesystem
+  # and by default this filesystem is found at either the location
+  # MONO_REGISTRY_PATH or (if that is unset) the path /etc/mono/registry
+  # 
+  # Unfortunately, some distributions leave both that env var unset
+  # AND also do not provide the fallback location.  This leads to the
+  # OWIN SystemWeb hosting mechanism crashing really early on (before it
+  # invokes the startup type), because it can't access the registry.
+  # 
+  # This workaround detects that scenario and creates a local version
+  # of that registry filesystem and then sets the registry path to that
+  # location.
+
+  if [ -n "$MONO_REGISTRY_PATH" ]
+  then
+    # Default location
+    MONO_REGISTRY_PATH="/etc/mono/registry"
+  fi
+  
+  if [ ! -d "$MONO_REGISTRY_PATH" ]
+  then
+    # We need to apply the workaround
+    mkdir -p "$FAKE_REGISTRY_DIR"
+    export MONO_REGISTRY_PATH="$(readlink -f "$FAKE_REGISTRY_DIR")"
+  fi
 }
 
 wait_for_app_to_become_available()
@@ -68,12 +105,6 @@ try_web_app_connection()
   fi
 }
 
-copy_testing_files_to_web_app()
-{
-  cp "${TESTING_BIN}"/* "$WEB_APP_BIN"
-}
-
-copy_testing_files_to_web_app
 start_webserver
 wait_for_app_to_become_available
 

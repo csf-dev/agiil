@@ -105,6 +105,7 @@
     <Compile Include="Sprints\EditingSprints.feature.cs">
       <DependentUpon>EditingSprints.feature</DependentUpon>
     </Compile>
+    <Compile Include="SauceConnectWebDriverFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -153,6 +154,7 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>EditingSprints.feature.cs</LastGenOutput>
     </None>
+    <None Include="App.Travis.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.BDD\Agiil.BDD.csproj">

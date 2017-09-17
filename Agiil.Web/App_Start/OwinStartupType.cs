@@ -1,24 +1,22 @@
 ﻿using System;
-using System.IdentityModel.Tokens;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Agiil.Bootstrap.DiConfiguration;
 using Agiil.Web.Bootstrap;
 using Agiil.Web.OAuth;
+using Agiil.Web.App_Start;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
-using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using Owin.Security.AesDataProtectorProvider;
 
-[assembly: OwinStartup(typeof(Agiil.Web.App_Start.OwinStartupType))]
+[assembly: OwinStartup(typeof(OwinStartupType), nameof(OwinStartupType.Configuration))]
 
 namespace Agiil.Web.App_Start
 {

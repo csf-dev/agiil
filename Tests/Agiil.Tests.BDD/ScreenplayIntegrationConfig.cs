@@ -8,6 +8,8 @@ using CSF.Screenplay.Web.Abilities;
 using OpenQA.Selenium;
 using CSF.WebDriverFactory;
 using System.IO;
+using CSF.Screenplay.Scenarios;
+using System.Collections.Generic;
 
 namespace Agiil.Tests.BDD
 {
@@ -28,16 +30,30 @@ namespace Agiil.Tests.BDD
 
     void WriteReport(Report report)
     {
-      var directory = TestingEnvironment.GetArtifactsDirectory();
-      var reportPath = Path.Combine(directory.FullName, $"Agiil.Tests.BDD.{DateTime.Now.ToString("s")}.report.txt");
+      var directory = TestFilesystem.GetTestTemporaryDirectory();
+      var reportPath = Path.Combine(directory.FullName, $"Agiil.Tests.BDD.report.txt");
       TextReportWriter.WriteToFile(report, reportPath);
     }
 
-    IWebDriver GetWebDriver()
+    IWebDriver GetWebDriver(IServiceResolver resolver)
     {
       var provider = new ConfigurationWebDriverFactoryProvider();
       var factory = provider.GetFactory();
-      return factory.GetWebDriver();
+
+      var caps = new Dictionary<string,object>();
+
+      if(factory is SauceConnectWebDriverFactory)
+      {
+        caps.Add(SauceConnectWebDriverFactory.TestNameCapability, GetTestName(resolver));
+      }
+
+      return factory.GetWebDriver(caps);
+    }
+
+    string GetTestName(IServiceResolver resolver)
+    {
+      var scenarioName = resolver.GetService<IScenarioName>();
+      return $"{scenarioName.FeatureId.Name} -> {scenarioName.ScenarioId.Name}";
     }
   }
 }

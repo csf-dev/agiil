@@ -14,3 +14,4 @@ Agiil.Web/Temp/
 *.orig
 testrunner/
 test-artifacts/
+.xsp4.pid
