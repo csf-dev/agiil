@@ -162,7 +162,6 @@
     <Compile Include="Autofixture\ProjectCustomization.cs" />
     <Compile Include="ObjectMaps\TestingProfileTypesProvider.cs" />
     <Compile Include="TestComparerBase.cs" />
-    <Compile Include="TestingEnvironment.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
