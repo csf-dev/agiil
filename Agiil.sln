@@ -34,7 +34,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.Web.OAuth", "Agiil.We
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{C9C2673C-FBFD-4C42-A110-F64D0C77405A}"
 	ProjectSection(SolutionItems) = preProject
-		Tools\run-tests.sh = Tools\run-tests.sh
+		Tools\Start-webserver.sh = Tools\Start-webserver.sh
+		Tools\Stop-webserver.sh = Tools\Stop-webserver.sh
+		Tools\Travis-build.sh = Tools\Travis-build.sh
+		Tools\Travis-install.sh = Tools\Travis-install.sh
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.Web.Sass", "Tools\Agiil.Web.Sass\Agiil.Web.Sass.csproj", "{02389EF3-90E1-4A21-AD29-23CF7128B730}"
