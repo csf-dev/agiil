@@ -10,6 +10,7 @@ using CSF.WebDriverFactory;
 using System.IO;
 using CSF.Screenplay.Scenarios;
 using System.Collections.Generic;
+using CSF.Screenplay.Web.Reporting;
 
 namespace Agiil.Tests.BDD
 {
@@ -21,6 +22,9 @@ namespace Agiil.Tests.BDD
       builder.UseReporting(reporting => {
         reporting
           .SubscribeToActorsCreatedInCast()
+          .WithFormatter<StringArrayFormatter>()
+          .WithFormatter<OptionCollectionFormatter>()
+          .WithFormatter<ElementCollectionFormatter>()
           .WriteReport(WriteReport);
       });
       builder.UseUriTransformer(new RootUriPrependingTransformer("http://localhost:8080/"));
@@ -28,11 +32,11 @@ namespace Agiil.Tests.BDD
       builder.UseWebBrowser();
     }
 
-    void WriteReport(Report report)
+    void WriteReport(IObjectFormattingService formatter, Report report)
     {
       var directory = TestFilesystem.GetTestTemporaryDirectory();
       var reportPath = Path.Combine(directory.FullName, $"Agiil.Tests.BDD.report.txt");
-      TextReportWriter.WriteToFile(report, reportPath);
+      TextReportWriter.WriteToFile(report, reportPath, formatter);
     }
 
     IWebDriver GetWebDriver(IServiceResolver resolver)
@@ -48,6 +52,36 @@ namespace Agiil.Tests.BDD
       }
 
       return factory.GetWebDriver(caps);
+    }
+
+    BrowseTheWeb GetWebBrowser(IServiceResolver scenario)
+    {
+      var provider = new ConfigurationWebDriverFactoryProvider();
+      var factory = provider.GetFactory();
+
+      var driver = scenario.GetService<IWebDriver>();
+      var transformer = scenario.GetOptionalService<IUriTransformer>();
+      var ability = new BrowseTheWeb(driver, transformer?? NoOpUriTransformer.Default);
+
+      ConfigureBrowserCapabilities(ability, factory);
+
+      return ability;
+    }
+
+    void ConfigureBrowserCapabilities(BrowseTheWeb ability, IWebDriverFactory factory)
+    {
+      var browserName = factory.GetBrowserName();
+
+      ability.AddCapabilityExceptWhereUnsupported(Capabilities.ClearDomainCookies,
+                                                  browserName,
+                                                  BrowserName.Edge);
+      ability.AddCapabilityWhereSupported(Capabilities.EnterDatesInLocaleFormat,
+                                          browserName,
+                                          BrowserName.Chrome);
+      ability.AddCapabilityExceptWhereUnsupported(Capabilities.EnterDatesAsIsoStrings,
+                                                  browserName,
+                                                  BrowserName.Chrome,
+                                                  BrowserName.Edge);
     }
 
     string GetTestName(IServiceResolver resolver)

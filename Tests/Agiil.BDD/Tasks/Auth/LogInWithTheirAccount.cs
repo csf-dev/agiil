@@ -14,7 +14,7 @@ namespace Agiil.BDD.Tasks.Auth
     {
       var loginAbility = actor.GetAbility<LogInWithAUserAccount>();
 
-      actor.Perform<VisitTheHomePageWithACleanBrowser>();
+      actor.Perform<VisitTheHomePage>();
       actor.Perform(LogIntoTheSite.As(loginAbility.Username).WithThePassword(loginAbility.Password));
     }
   }

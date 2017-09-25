@@ -39,7 +39,7 @@ namespace Agiil.BDD.Bindings.Tickets
     public void ThenYoussefShouldNotSeeAnyEditableComments()
     {
       var youssef = screenplay.GetYoussef();
-      Then(youssef).ShouldSee(Elements.OnThePage()
+      Then(youssef).ShouldSee(Elements.InThePageBody()
                               .ThatAre(TicketDetail.Comments.EditCommentLink)
                               .Called("the edit comment links"))
                    .Elements

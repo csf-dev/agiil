@@ -16,7 +16,7 @@ namespace Agiil.BDD.Tasks.Tickets
 
     protected override ElementCollection PerformAs(IPerformer actor)
     {
-      return actor.Perform(Elements.OnThePage()
+      return actor.Perform(Elements.InThePageBody()
                            .ThatAre(TicketList.TicketsTitled(title))
                            .Called($"the tickets titled {title}"));
     }

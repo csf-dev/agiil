@@ -13,7 +13,7 @@ namespace Agiil.BDD.Tasks.Tickets
 
     protected override void PerformAs(IPerformer actor)
     {
-      var links = actor.Perform(Elements.OnThePage()
+      var links = actor.Perform(Elements.InThePageBody()
                                 .ThatAre(TicketDetail.Comments.EditCommentLink)
                                 .Called("the edit comment links"));
       actor.Perform(Click.On(links.Elements.First()));

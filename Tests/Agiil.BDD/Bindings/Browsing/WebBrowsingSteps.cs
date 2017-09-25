@@ -21,7 +21,7 @@ namespace Agiil.BDD.Bindings.Browsing
     public void GivenJoeHasACleanWebBrowserOnTheAppHomePage()
     {
       var joe = screenplay.GetJoe();
-      Given(joe).WasAbleTo<VisitTheHomePageWithACleanBrowser>();
+      Given(joe).WasAbleTo<VisitTheHomePage>();
     }
 
     [Given(@"Youssef is logged into a fresh installation of the site containing the simple sample project")]

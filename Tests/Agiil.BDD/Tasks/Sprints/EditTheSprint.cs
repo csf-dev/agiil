@@ -29,16 +29,10 @@ namespace Agiil.BDD.Tasks.Sprints
       }
 
       if(spec.StartDate.HasValue)
-      {
-        var date = spec.StartDate.Value.ToString("dd/MM/yyyy");
-        actor.Perform(Enter.TheText(date).Into(EditSprint.StartDate));
-      }
+        actor.Perform(Enter.TheDate(spec.StartDate.Value).Into(EditSprint.StartDate));
 
       if(spec.EndDate.HasValue)
-      {
-        var date = spec.EndDate.Value.ToString("dd/MM/yyyy");
-        actor.Perform(Enter.TheText(date).Into(EditSprint.EndDate));
-      }
+        actor.Perform(Enter.TheDate(spec.EndDate.Value).Into(EditSprint.EndDate));
 
       actor.Perform(Click.On(EditSprint.SubmitButton));
     }
