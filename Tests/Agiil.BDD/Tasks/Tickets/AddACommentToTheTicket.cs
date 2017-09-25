@@ -18,7 +18,7 @@ namespace Agiil.BDD.Tasks.Tickets
     {
       actor.Perform(Clear.TheContentsOf(TicketDetail.AddCommentBody));
       actor.Perform(Enter.TheText(commentText).Into(TicketDetail.AddCommentBody));
-      actor.Perform(Click.On(TicketDetail.AddCommentSubmitButton));
+      actor.Perform(Navigate.ToAnotherPageByClicking(TicketDetail.AddCommentSubmitButton));
       actor.Perform(Wait.Until(TicketDetail.AddCommentFeedbackMessage).IsVisible());
     }
 

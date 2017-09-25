@@ -16,7 +16,7 @@ namespace Agiil.BDD.Tasks.Tickets
       var links = actor.Perform(Elements.InThePageBody()
                                 .ThatAre(TicketDetail.Comments.EditCommentLink)
                                 .Called("the edit comment links"));
-      actor.Perform(Click.On(links.Elements.First()));
+      actor.Perform(Navigate.ToAnotherPageByClicking(links.Elements.First()));
       actor.Perform(Wait.Until(EditComment.EditCommentForm).IsVisible());
     }
   }

@@ -26,7 +26,7 @@ namespace Agiil.BDD.Tasks.Tickets
       if(!String.IsNullOrEmpty(details.Sprint))
         actor.Perform(Select.Item(details.Sprint).From(CreateNewTicket.TicketSprint));
 
-      actor.Perform(Click.On(CreateNewTicket.CreateButton));
+      actor.Perform(Navigate.ToAnotherPageByClicking(CreateNewTicket.CreateButton));
     }
 
     CreateANewTicket(TicketCreationDetails details)

@@ -28,7 +28,7 @@ namespace Agiil.BDD.Tasks.Tickets
       var ticketLink = actor.Perform(Elements.In(ticket).ThatAre(TicketList.TicketLink)
                                      .Called($"the hyperlink for ticket '{title}'"));
 
-      actor.Perform(Click.On(ticketLink));
+      actor.Perform(Navigate.ToAnotherPageByClicking(ticketLink));
       actor.Perform(Wait.Until(TicketDetail.TitleContent).IsVisible());
     }
 

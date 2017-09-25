@@ -16,7 +16,7 @@ namespace Agiil.BDD.Tasks.Sprints
     {
       actor.Perform(OpenTheirBrowserOn.ThePage(SprintList.ForOpenSprints()));
       actor.Perform(Wait.Until(SprintList.SprintListTable).IsVisible());
-      actor.Perform(Click.On(SprintList.TheSprintNamed(sprintTitle)));
+      actor.Perform(Navigate.ToAnotherPageByClicking(SprintList.TheSprintNamed(sprintTitle)));
       actor.Perform(Wait.Until(SprintDetail.SprintName).IsVisible());
     }
 

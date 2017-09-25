@@ -10,7 +10,7 @@ namespace Agiil.BDD.Tasks.Auth
   {
     protected override void PerformAs(IPerformer actor)
     {
-      actor.Perform(Click.On(HeaderLoginLogoutWidget.OnAnyPage.LogoutButton));
+      actor.Perform(Navigate.ToAnotherPageByClicking(HeaderLoginLogoutWidget.OnAnyPage.LogoutButton));
     }
   }
 }

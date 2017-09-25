@@ -13,7 +13,7 @@ namespace Agiil.BDD.Tasks.Tickets
 
     protected override void PerformAs(IPerformer actor)
     {
-      actor.Perform(Click.On(TicketDetail.ReopenTicketButton));
+      actor.Perform(Navigate.ToAnotherPageByClicking(TicketDetail.ReopenTicketButton));
       actor.Perform(Wait.Until(TicketDetail.CloseTicketButton).IsVisible());
     }
   }

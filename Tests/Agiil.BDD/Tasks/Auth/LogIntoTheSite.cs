@@ -23,7 +23,7 @@ namespace Agiil.BDD.Tasks.Auth
     {
       actor.Perform(Enter.TheText(username).Into(HeaderLoginLogoutWidget.OnAnyPage.UsernameField));
       actor.Perform(Enter.TheText(password).Into(HeaderLoginLogoutWidget.OnAnyPage.PasswordField));
-      actor.Perform(Click.On(HeaderLoginLogoutWidget.OnAnyPage.LoginButton));
+      actor.Perform(Navigate.ToAnotherPageByClicking(HeaderLoginLogoutWidget.OnAnyPage.LoginButton));
       actor.Perform(Wait.Until(LoginPage.Heading).IsVisible());
     }
 

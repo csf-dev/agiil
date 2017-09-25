@@ -20,7 +20,7 @@ namespace Agiil.BDD.Tasks.Auth
       actor.Perform(Enter.TheText(oldPassword).Into(ChangePassword.ExistingPassword));
       actor.Perform(Enter.TheText(newPassword).Into(ChangePassword.NewPassword));
       actor.Perform(Enter.TheText(newPassword).Into(ChangePassword.ConfirmNewPassword));
-      actor.Perform(Click.On(ChangePassword.SubmitChangePasswordButton));
+      actor.Perform(Navigate.ToAnotherPageByClicking(ChangePassword.SubmitChangePasswordButton));
     }
 
     public static ChangeTheirPassword From(string old)

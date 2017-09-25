@@ -28,7 +28,7 @@ namespace Agiil.BDD.Tasks.Sprints
       if(details.EndDate.HasValue)
         actor.Perform(Enter.TheDate(details.EndDate.Value).Into(CreateSprint.EndDate));
 
-      actor.Perform(Click.On(CreateSprint.SubmitButton));
+      actor.Perform(Navigate.ToAnotherPageByClicking(CreateSprint.SubmitButton));
     }
 
     CreateASprint(SprintDetails details)

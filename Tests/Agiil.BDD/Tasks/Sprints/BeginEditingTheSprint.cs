@@ -15,7 +15,7 @@ namespace Agiil.BDD.Tasks.Sprints
     protected override void PerformAs(IPerformer actor)
     {
       actor.Perform(ViewTheSprintDetail.ForSprint(sprintTitle));
-      actor.Perform(Click.On(SprintDetail.EditLink));
+      actor.Perform(Navigate.ToAnotherPageByClicking(SprintDetail.EditLink));
       actor.Perform(Wait.Until(EditSprint.SprintName).IsVisible());
     }
 

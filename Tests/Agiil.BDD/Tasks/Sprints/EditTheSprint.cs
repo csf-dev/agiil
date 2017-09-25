@@ -34,7 +34,7 @@ namespace Agiil.BDD.Tasks.Sprints
       if(spec.EndDate.HasValue)
         actor.Perform(Enter.TheDate(spec.EndDate.Value).Into(EditSprint.EndDate));
 
-      actor.Perform(Click.On(EditSprint.SubmitButton));
+      actor.Perform(Navigate.ToAnotherPageByClicking(EditSprint.SubmitButton));
     }
 
     EditTheSprint(SprintDetails spec)

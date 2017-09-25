@@ -17,7 +17,7 @@ namespace Agiil.BDD.Tasks.Tickets
     {
       actor.Perform(Clear.TheContentsOf(EditComment.CommentBody));
       actor.Perform(Enter.TheText(newText).Into(EditComment.CommentBody));
-      actor.Perform(Click.On(EditComment.SubmitButton));
+      actor.Perform(Navigate.ToAnotherPageByClicking(EditComment.SubmitButton));
     }
 
     ChangeTheCommentText(string newText)
