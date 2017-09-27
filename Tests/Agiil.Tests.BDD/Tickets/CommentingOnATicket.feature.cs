@@ -212,6 +212,31 @@ this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Youssef can use markdown syntax in a ticket comment, to create a richly-formatted comment")]
+        public virtual void YoussefCanUseMarkdownSyntaxInATicketCommentToCreateARichly_FormattedComment()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can use markdown syntax in a ticket comment, to create a richly-formatted comment", ((string[])(null)));
+#line 48
+this.ScenarioSetup(scenarioInfo);
+#line 6
+this.FeatureBackground();
+#line 49
+  testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 50
+   testRunner.When("Youssef edits the first editable comment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 51
+    testRunner.And("Youssef changes the comment text to 'This text **should be bold** and _this is italic_.'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 52
+   testRunner.Then("Youssef reads the first comment on the ticket 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 53
+    testRunner.And("Youssef should see that the comment text 'should be bold' is displayed in a bold font", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 54
+    testRunner.And("Youssef should see that the comment text 'this is italic' is displayed in an italic font", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

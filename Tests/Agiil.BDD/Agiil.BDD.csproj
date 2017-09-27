@@ -210,6 +210,9 @@
     <Compile Include="Tasks\Sprints\BeginEditingTheSprint.cs" />
     <Compile Include="Pages\EditSprint.cs" />
     <Compile Include="Tasks\Sprints\EditTheSprint.cs" />
+    <Compile Include="Bindings\Tickets\ReadingACommentSteps.cs" />
+    <Compile Include="Tasks\Markdown\VerifyThatTheTextHasTheCorrectFormatting.cs" />
+    <Compile Include="Tasks\Markdown\VerifyThat.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -236,6 +239,7 @@
     <Folder Include="Tasks\App\" />
     <Folder Include="Tasks\Sprints\" />
     <Folder Include="Models\Sprints\" />
+    <Folder Include="Tasks\Markdown\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj">

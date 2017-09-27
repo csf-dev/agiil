@@ -44,3 +44,11 @@ Scenario: Youssef cannot edit a comment and set its body to an empty string
    When Youssef edits the first editable comment
     And Youssef changes the comment text to ''
    Then Youssef should see a comment-editing failure message
+
+Scenario: Youssef can use markdown syntax in a ticket comment, to create a richly-formatted comment
+  Given Youssef has opened a ticket with the title 'Sample ticket 1'
+   When Youssef edits the first editable comment
+    And Youssef changes the comment text to 'This text **should be bold** and _this is italic_.'
+   Then Youssef reads the first comment on the ticket 'Sample ticket 1'
+    And Youssef should see that the comment text 'should be bold' is displayed in a bold font
+    And Youssef should see that the comment text 'this is italic' is displayed in an italic font
