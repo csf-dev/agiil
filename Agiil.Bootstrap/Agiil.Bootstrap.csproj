@@ -136,6 +136,7 @@
     <Compile Include="DiConfiguration\ContainerFactoryProvider.cs" />
     <Compile Include="DiConfiguration\DiConfigurationSection.cs" />
     <Compile Include="Data\SqliteDatabaseMaintenanceModule.cs" />
+    <Compile Include="Rendering\MarkdownRenderingModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
@@ -170,6 +171,14 @@
       <Project>{93734A7F-7011-4C26-B14F-6228A7648DAC}</Project>
       <Name>Agiil.Data.Maintenance</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Agiil.Web.Rendering\Agiil.Web.Rendering.csproj">
+      <Project>{8080A385-823C-44F0-B090-71F52337F04A}</Project>
+      <Name>Agiil.Web.Rendering</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Web.Rendering.Impl\Agiil.Web.Rendering.Impl.csproj">
+      <Project>{02F8FE6A-DB8D-44D0-903A-304E85333F32}</Project>
+      <Name>Agiil.Web.Rendering.Impl</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -185,6 +194,7 @@
     <Folder Include="Projects\" />
     <Folder Include="Sprints\" />
     <Folder Include="DiConfiguration\" />
+    <Folder Include="Rendering\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.0\build\net45\System.Data.SQLite.Core.targets')" />

@@ -8,6 +8,7 @@ namespace Agiil.Web.Models.Tickets
   public class TicketDetailDto : TicketInfoDtoBase
   {
     public string Description { get; set; }
+    public string HtmlDescription { get; set; }
 
     public SprintSummaryDto Sprint { get; set; }
 
