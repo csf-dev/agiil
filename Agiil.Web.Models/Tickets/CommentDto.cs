@@ -10,5 +10,6 @@ namespace Agiil.Web.Models.Tickets
     public string AuthoredTimestamp => Timestamp.ToString("u");
     public string EditedTimestamp => LastEditTimestamp.ToString("u");
     public string Body { get; set; }
+    public string HtmlBody { get; set; }
   }
 }
