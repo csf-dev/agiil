@@ -54,7 +54,7 @@
   </section>
   <section class="description">
     <h2>Description</h2>
-    <div tal:content="ticket/Description" class="description_content">
+    <div tal:content="structure ticket/HtmlDescription" class="description_content">
       Ticket description here.
     </div>
   </section>

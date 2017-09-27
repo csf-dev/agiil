@@ -32,7 +32,7 @@
                class="edit_comment">Edit this comment</a>
           </p>
         </header>
-        <div tal:content="comment/Body" class="comment_content">Comment text here</div>
+        <div tal:content="structure comment/HtmlBody" class="comment_content">Comment text here</div>
       </li>
     </ol>
     <form metal:define-macro="add_a_comment"
