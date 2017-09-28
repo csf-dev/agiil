@@ -39,7 +39,7 @@ namespace Agiil.Tests.BDD
 
     string GetCommitHash() => Environment.GetEnvironmentVariable(TravisCommitEnvVariable);
 
-    string GetBrowserName() => Environment.GetEnvironmentVariable(BrowserNameEnvVariable);
+    public override string GetBrowserName() => Environment.GetEnvironmentVariable(BrowserNameEnvVariable);
 
     string GetJobNumber() => Environment.GetEnvironmentVariable(TravisJobNumberEnvVariable);
 
