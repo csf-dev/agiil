@@ -121,9 +121,6 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Reflection">
-      <HintPath>..\..\packages\CSF.Reflection.1.0.0\lib\net45\CSF.Reflection.dll</HintPath>
-    </Reference>
     <Reference Include="CSF.Utils">
       <HintPath>..\..\packages\CSF.Utils.6.0.0\lib\net45\CSF.Utils.dll</HintPath>
     </Reference>
@@ -139,6 +136,9 @@
     </Reference>
     <Reference Include="CSF.Data.Entities">
       <HintPath>..\..\packages\CSF.Data.Entities.1.3.0\lib\net45\CSF.Data.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Reflection">
+      <HintPath>..\..\packages\CSF.Reflection.1.0.1\lib\net45\CSF.Reflection.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
