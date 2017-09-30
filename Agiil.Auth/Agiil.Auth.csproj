@@ -73,6 +73,9 @@
     <Compile Include="PasswordChangeResponse.cs" />
     <Compile Include="IUserPasswordUpdater.cs" />
     <Compile Include="IPasswordPolicy.cs" />
+    <Compile Include="ILoginThrottlingService.cs" />
+    <Compile Include="LoginThrottlingResponse.cs" />
+    <Compile Include="ILogsUserInOrOut.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -104,7 +104,6 @@
     <Compile Include="FakeAuthenticationManager.cs" />
     <Compile Include="StoredUserInformation.cs" />
     <Compile Include="AuthenticationRequest.cs" />
-    <Compile Include="AuthenticationResult.cs" />
     <Compile Include="AuthenticationService.cs" />
     <Compile Include="CurrentThreadPrincipalGetter.cs" />
     <Compile Include="ClaimsIdentityFactory.cs" />
@@ -113,6 +112,8 @@
     <Compile Include="PasswordPolicy.cs" />
     <Compile Include="UserPasswordUpdater.cs" />
     <Compile Include="UserPasswordSetterBase.cs" />
+    <Compile Include="UserLoginLogoutService.cs" />
+    <Compile Include="AuthenticationResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

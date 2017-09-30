@@ -15,18 +15,14 @@ namespace Agiil.Auth
     #region fields
 
     readonly IPasswordAuthenticationService authenticationService;
-    readonly IAuthenticationManager authenticationManager;
-    readonly IClaimsIdentityFactory claimsIdentityFactory;
+    readonly ILogsUserInOrOut loginLogoutService;
+    readonly ILoginThrottlingService throttlingService;
 
     #endregion
 
     #region properties
 
-    protected IAuthenticationManager AuthenticationManager => authenticationManager;
-
     protected IPasswordAuthenticationService AuthenticationService => authenticationService;
-
-    protected IClaimsIdentityFactory ClaimsIdentityFactory => claimsIdentityFactory;
 
     #endregion
 
@@ -50,19 +46,13 @@ namespace Agiil.Auth
 
     public virtual LogoutResult AttemptLogout()
     {
-      AuthenticationManager.SignOut();
+      loginLogoutService.LogUserOut();
       return LogoutResult.LogoutSuccessful;
     }
 
     protected virtual ICurrentUserInfo LogUserIn(ILoginRequest request, AuthenticationResult result)
     {
-      var identity = ClaimsIdentityFactory.GetIdentity(result, DefaultAuthenticationTypes.ApplicationCookie);
-
-      AuthenticationManager.SignIn(new AuthenticationProperties() {
-        AllowRefresh = true,
-        IsPersistent = true,
-      }, identity);
-
+      loginLogoutService.LogUserIn(result);
       return new UserInformation(result.UserIdentity, result.Username);
     }
 
@@ -71,19 +61,19 @@ namespace Agiil.Auth
     #region constructor
 
     public LoginLogoutManager(IPasswordAuthenticationService authenticationService,
-                              IAuthenticationManager authenticationManager,
-                              IClaimsIdentityFactory claimsIdentityFactory)
+                              ILogsUserInOrOut loginLogoutService,
+                              ILoginThrottlingService throttlingService)
     {
-      if(claimsIdentityFactory == null)
-        throw new ArgumentNullException(nameof(claimsIdentityFactory));
-      if(authenticationManager == null)
-        throw new ArgumentNullException(nameof(authenticationManager));
+      if(loginLogoutService == null)
+        throw new ArgumentNullException(nameof(loginLogoutService));
+      if(throttlingService == null)
+        throw new ArgumentNullException(nameof(throttlingService));
       if(authenticationService == null)
         throw new ArgumentNullException(nameof(authenticationService));
       
       this.authenticationService = authenticationService;
-      this.authenticationManager = authenticationManager;
-      this.claimsIdentityFactory = claimsIdentityFactory;
+      this.loginLogoutService = loginLogoutService;
+      this.throttlingService = throttlingService;
     }
 
     #endregion
