@@ -95,6 +95,7 @@
     <Compile Include="LoginLogoutManagerTests.cs" />
     <Compile Include="PasswordChangerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserLoginLogoutServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -7,6 +7,7 @@ using Agiil.Web.Controllers;
 using System.Web.Mvc;
 using Agiil.Domain.Auth;
 using Agiil.Web.Models.Auth;
+using Agiil.Tests.Attributes;
 
 namespace Agiil.Tests.Web.Controllers
 {

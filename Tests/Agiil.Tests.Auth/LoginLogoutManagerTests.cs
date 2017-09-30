@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Security.Claims;
 using Agiil.Auth;
 using Agiil.Domain.Auth;
+using Agiil.Tests.Attributes;
 using CSF.Entities;
-using Microsoft.Owin.Security;
 using Moq;
 using NUnit.Framework;
 using Ploeh.AutoFixture.NUnit3;
@@ -165,7 +164,8 @@ namespace Agiil.Tests.Auth
                                                                                       LoginLogoutManager sut,
                                                                                       ILoginRequest request,
                                                                                       LoginCredentials credentials,
-                                                                                      [HasIdentity] User user)
+                                                                                      [HasIdentity] User user,
+                                                                                      TimeSpan time)
     {
       // Arrange
       Mock.Get(request)
@@ -176,7 +176,7 @@ namespace Agiil.Tests.Auth
           .Returns(new AuthenticationResult(user.GetIdentity(), user.Username, true));
       Mock.Get(throttling)
           .Setup(x => x.GetThrottlingResponse(request))
-          .Returns(new LoginThrottlingResponse(TimeSpan.FromMinutes(1)));
+          .Returns(new LoginThrottlingResponse(time));
 
       user.Username = credentials.Username;
       user.GenerateIdentity();

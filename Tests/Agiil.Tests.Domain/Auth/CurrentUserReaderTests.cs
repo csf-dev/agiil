@@ -5,6 +5,7 @@ using CSF.Data;
 using Agiil.Domain.Auth;
 using Moq;
 using CSF.Entities;
+using Agiil.Tests.Attributes;
 
 namespace Agiil.Tests.Domain.Auth
 {

@@ -148,20 +148,20 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EntityExtensions.cs" />
-    <Compile Include="AutoMoqDataAttribute.cs" />
     <Compile Include="WebAppTestingContainerFactory.cs" />
     <Compile Include="UnitTestContainerFactory.cs" />
-    <Compile Include="HasIdentityAttribute.cs" />
     <Compile Include="Autofixture\HasIdentityCustomization.cs" />
     <Compile Include="Autofixture\TypeRelayCustomization.cs" />
-    <Compile Include="ProvidesServiceAttribute.cs" />
     <Compile Include="CurrentUserReaderExtensions.cs" />
     <Compile Include="Autofixture\LoggedInCustomization.cs" />
-    <Compile Include="LoggedInAttribute.cs" />
     <Compile Include="TestFilesystem.cs" />
     <Compile Include="Autofixture\ProjectCustomization.cs" />
     <Compile Include="ObjectMaps\TestingProfileTypesProvider.cs" />
     <Compile Include="TestComparerBase.cs" />
+    <Compile Include="Attributes\AutoMoqDataAttribute.cs" />
+    <Compile Include="Attributes\HasIdentityAttribute.cs" />
+    <Compile Include="Attributes\LoggedInAttribute.cs" />
+    <Compile Include="Attributes\ProvidesServiceAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
@@ -200,6 +200,7 @@
   <ItemGroup>
     <Folder Include="Autofixture\" />
     <Folder Include="ObjectMaps\" />
+    <Folder Include="Attributes\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

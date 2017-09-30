@@ -28,32 +28,57 @@ namespace Agiil.Auth
 
     #region methods
 
-    public virtual LoginResult AttemptLogin(ILoginRequest request)
+    public LoginResult AttemptLogin(ILoginRequest request)
     {
       if(request == null)
         throw new ArgumentNullException(nameof(request));
-      
-      var result = (AuthenticationResult) AuthenticationService.Authenticate(request.GetCredentials());
 
-      if(!result.Success)
-      {
-        return LoginResult.LoginFailed;
-      }
+      LoginResult output = null;
+      AuthenticationResult authResult;
 
-      var currentUser = LogUserIn(request, result);
+      output = GetLoginThrottledResult(request);
+      if(output != null) return output;
+
+      output = GetAuthenticationFailedLoginResult(request, out authResult);
+      if(output != null) return output;
+
+      var currentUser = LogUserIn(request, authResult);
       return new LoginResult(currentUser.Username);
     }
 
-    public virtual LogoutResult AttemptLogout()
+    public LogoutResult AttemptLogout()
     {
-      loginLogoutService.LogUserOut();
+      LogUserOut();
       return LogoutResult.LogoutSuccessful;
     }
 
-    protected virtual ICurrentUserInfo LogUserIn(ILoginRequest request, AuthenticationResult result)
+    void LogUserOut()
+    {
+      loginLogoutService.LogUserOut();
+    }
+
+    ICurrentUserInfo LogUserIn(ILoginRequest request, AuthenticationResult result)
     {
       loginLogoutService.LogUserIn(result);
       return new UserInformation(result.UserIdentity, result.Username);
+    }
+
+    LoginResult GetLoginThrottledResult(ILoginRequest request)
+    {
+      var throttlingResult = throttlingService.GetThrottlingResponse(request);
+
+      if(throttlingResult == null || throttlingResult.ShouldAttemptBeHonoured) return null;
+
+      var time = throttlingResult.TimeUntilNextAttemptPermitted.GetValueOrDefault();
+      return LoginResult.LoginFailedDueToThrottling(time);
+    }
+
+    LoginResult GetAuthenticationFailedLoginResult(ILoginRequest request, out AuthenticationResult result)
+    {
+      result = (AuthenticationResult) AuthenticationService.Authenticate(request.GetCredentials());
+
+      if(result != null && result.Success) return null;
+      else return LoginResult.LoginFailed;
     }
 
     #endregion

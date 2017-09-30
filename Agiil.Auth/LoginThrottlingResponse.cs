@@ -9,7 +9,7 @@ namespace Agiil.Auth
     readonly TimeSpan? timeUntilNextAttemptPermitted;
     public virtual TimeSpan? TimeUntilNextAttemptPermitted => timeUntilNextAttemptPermitted;
 
-    LoginThrottlingResponse()
+    protected LoginThrottlingResponse()
     {
       shouldAttemptBeHonoured = true;
     }
