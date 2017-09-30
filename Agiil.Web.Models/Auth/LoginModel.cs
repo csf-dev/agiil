@@ -29,10 +29,15 @@ namespace Agiil.Web.Models.Auth
         var time = TimeBeforeNextAttempt;
         if(!time.HasValue) return null;
 
-        if(time.Value.Minutes > 0)
+        if(time.Value.Minutes == 1)
+          return $"1 minute";
+        else if(time.Value.Minutes > 1)
           return $"{time.Value.Minutes} minutes";
 
-        return $"{time.Value.Seconds} seconds";
+        if(time.Value.Seconds == 1)
+          return $"1 second";
+        else
+          return $"{time.Value.Seconds} seconds";
       }
     }
   }

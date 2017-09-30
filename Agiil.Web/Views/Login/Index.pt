@@ -24,10 +24,10 @@
         <label for="Password">Password</label>
         <input type="password" id="Password" name="Password" />
       </div>
-      <div class="form_element feedback warning" tal:condition="csharp:loginFailed &mp;&amp; !loginThrottled">
+      <div class="form_element feedback warning" tal:condition="csharp:loginFailed &amp;&amp; !loginThrottled">
         <p>Please enter a valid username/password combination.</p>
       </div>
-      <div class="form_element feedback warning" tal:condition="csharp:loginFailed &mp;&amp; loginThrottled">
+      <div class="form_element feedback warning" tal:condition="csharp:loginFailed &amp;&amp; loginThrottled">
         <p>
           You have made too many unsuccessful login attempts.
           Please wait <span tal:replace="here/TimeBeforeNextLoginAttempt | nothing" /> before trying again.

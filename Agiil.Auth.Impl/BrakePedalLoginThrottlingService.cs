@@ -5,17 +5,14 @@ namespace Agiil.Auth
 {
   public class BrakePedalLoginThrottlingService : ILoginThrottlingService
   {
-    readonly BrakePedalThrottlePolicyProvider policyProvider;
+    readonly IThrottlePolicy throttlePolicy;
 
     public LoginThrottlingResponse GetThrottlingResponse(ILoginRequest request)
     {
       var key = GetThrottleKey(request);
       if(key == null) return LoginThrottlingResponse.AttemptPermitted;
 
-      var policy = policyProvider.GetThrottlePolicy();
-      if(policy == null) return LoginThrottlingResponse.AttemptPermitted;
-
-      var result = policy.Check(key);
+      var result = throttlePolicy.Check(key);
 
       if(result.IsLocked)
         return new LoginThrottlingResponse(result.Limiter.LockDuration.GetValueOrDefault());
@@ -34,11 +31,11 @@ namespace Agiil.Auth
       return new SimpleThrottleKey(request.SourceAddress);
     }
 
-    public BrakePedalLoginThrottlingService(BrakePedalThrottlePolicyProvider policyProvider)
+    public BrakePedalLoginThrottlingService(IThrottlePolicy throttlePolicy)
     {
-      if(policyProvider == null)
-        throw new ArgumentNullException(nameof(policyProvider));
-      this.policyProvider = policyProvider;
+      if(throttlePolicy == null)
+        throw new ArgumentNullException(nameof(throttlePolicy));
+      this.throttlePolicy = throttlePolicy;
     }
   }
 }
