@@ -31,7 +31,7 @@ namespace Agiil.Web.OAuth
 
     public void CheckAuthentication(OAuthGrantResourceOwnerCredentialsContext context)
     {
-      var request = loginRequestCreator(context.UserName, context.Password);
+      var request = loginRequestCreator(context.UserName, context.Password, context.Request.RemoteIpAddress);
 
       var result = (Agiil.Auth.IAuthenticationResult) authService.Authenticate(request.GetCredentials());
 

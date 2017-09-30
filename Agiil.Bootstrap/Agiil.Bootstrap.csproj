@@ -113,6 +113,9 @@
     <Reference Include="HtmlSanitizer">
       <HintPath>..\packages\HtmlSanitizer.3.4.156\lib\net45\HtmlSanitizer.dll</HintPath>
     </Reference>
+    <Reference Include="BrakePedal">
+      <HintPath>..\packages\BrakePedal.1.0.3\lib\net45\BrakePedal.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,6 +146,7 @@
     <Compile Include="DiConfiguration\DiConfigurationSection.cs" />
     <Compile Include="Data\SqliteDatabaseMaintenanceModule.cs" />
     <Compile Include="Rendering\MarkdownRenderingModule.cs" />
+    <Compile Include="Auth\BrakePedalPolicyModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

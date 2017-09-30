@@ -45,10 +45,11 @@ namespace Agiil.Bootstrap.Auth
     {
       var username = parameters.Named<string>("username");
       var password = parameters.Named<string>("password");
+      var sourceAddress = parameters.Named<string>("sourceAddress");
 
       var credentials = new LoginCredentials { Username = username, Password = password };
 
-      return new LoginRequest(credentials);
+      return new LoginRequest(credentials, sourceAddress);
     }
 
     IAuthenticationManager GetAuthenticationManagerFromCurrentOwinContext(IComponentContext ctx)
