@@ -9,7 +9,7 @@ using Agiil.Tests.Attributes;
 
 namespace Agiil.Tests.Domain.Auth
 {
-  [TestFixture]
+  [TestFixture,Parallelizable]
   public class CurrentUserReaderTests
   {
     [Test, AutoMoqData]

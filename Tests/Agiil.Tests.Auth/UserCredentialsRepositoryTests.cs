@@ -12,7 +12,7 @@ using Agiil.Tests.Attributes;
 
 namespace Agiil.Tests.Auth
 {
-  [TestFixture]
+  [TestFixture,Parallelizable]
   public class UserCredentialsRepositoryTests
   {
     #region tests

@@ -9,7 +9,7 @@ using Ploeh.AutoFixture.NUnit3;
 
 namespace Agiil.Tests.Auth
 {
-  [TestFixture]
+  [TestFixture,Parallelizable]
   public class LoginLogoutManagerTests
   {
     #region tests

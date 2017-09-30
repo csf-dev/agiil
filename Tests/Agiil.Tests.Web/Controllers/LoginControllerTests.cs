@@ -11,7 +11,7 @@ using Agiil.Tests.Attributes;
 
 namespace Agiil.Tests.Web.Controllers
 {
-  [TestFixture]
+  [TestFixture,Parallelizable]
   public class LoginControllerTests
   {
     #region tests

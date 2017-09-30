@@ -8,7 +8,7 @@ using Ploeh.AutoFixture.NUnit3;
 
 namespace Agiil.Tests.Sprints
 {
-  [TestFixture]
+  [TestFixture,Parallelizable]
   public class SprintListerTests
   {
     [Test,AutoMoqData]

@@ -14,7 +14,7 @@ using Agiil.Tests.Attributes;
 
 namespace Agiil.Tests.Domain.Tickets
 {
-  [TestFixture]
+  [TestFixture,Parallelizable]
   public class TicketCreatorTests
   {
     [Test, AutoMoqData]
