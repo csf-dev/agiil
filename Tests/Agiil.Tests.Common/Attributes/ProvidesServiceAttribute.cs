@@ -4,7 +4,7 @@ using Agiil.Tests.Autofixture;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.NUnit3;
 
-namespace Agiil.Tests
+namespace Agiil.Tests.Attributes
 {
   public class ProvidesServiceAttribute : CustomizeAttribute
   {

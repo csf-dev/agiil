@@ -21,7 +21,7 @@ namespace Agiil.Tests.Data
     [OneTimeSetUp]
     public void FixtureSetup()
     {
-      containerFactory = new UnitTestContainerFactory();
+      containerFactory = new DomainContainerFactory();
       container = containerFactory.GetContainer();
 
       var schemaExportDir = TestFilesystem.GetTestTemporaryDirectory<SessionFactoryFactoryTests>();

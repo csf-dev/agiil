@@ -8,10 +8,11 @@ using NUnit.Framework;
 using Ploeh.AutoFixture.NUnit3;
 using Agiil.Auth;
 using CSF.Entities;
+using Agiil.Tests.Attributes;
 
 namespace Agiil.Tests.Auth
 {
-  [TestFixture]
+  [TestFixture,Parallelizable]
   public class UserCredentialsRepositoryTests
   {
     #region tests

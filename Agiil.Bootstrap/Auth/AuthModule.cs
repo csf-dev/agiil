@@ -34,26 +34,28 @@ namespace Agiil.Bootstrap.Auth
       base.Load(builder);
 
       builder
-        .Register((context, parameters) => {
-          var username = parameters.Named<string>("username");
-          var password = parameters.Named<string>("password");
-
-          var credentials = new LoginCredentials { Username = username, Password = password };
-
-          return new LoginRequest(credentials);
-        })
+        .Register(GetLoginRequest)
         .As<ILoginRequest>();
 
       builder
-        .Register((context, parameters) => {
-          IAuthenticationManager output;
+        .Register(GetAuthenticationManagerFromCurrentOwinContext);
+    }
 
-          var ctx = HttpContext.Current.GetOwinContext();
-          ctx.TraceOutput = Console.Out;
-          output = ctx.Authentication;
+    LoginRequest GetLoginRequest(IComponentContext ctx, IEnumerable<Autofac.Core.Parameter> parameters)
+    {
+      var username = parameters.Named<string>("username");
+      var password = parameters.Named<string>("password");
+      var sourceAddress = parameters.Named<string>("sourceAddress");
 
-          return output;
-        });
+      var credentials = new LoginCredentials { Username = username, Password = password };
+
+      return new LoginRequest(credentials, sourceAddress);
+    }
+
+    IAuthenticationManager GetAuthenticationManagerFromCurrentOwinContext(IComponentContext ctx)
+    {
+      var owinContext = HttpContext.Current.GetOwinContext();
+      return owinContext.Authentication;
     }
   }
 }

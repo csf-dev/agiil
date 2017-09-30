@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Sprints;
+using Agiil.Tests.Attributes;
 using CSF.Data;
 using CSF.Data.Entities;
 using NUnit.Framework;
@@ -7,7 +8,7 @@ using Ploeh.AutoFixture.NUnit3;
 
 namespace Agiil.Tests.Sprints
 {
-  [TestFixture]
+  [TestFixture,Parallelizable]
   public class SprintListerTests
   {
     [Test,AutoMoqData]

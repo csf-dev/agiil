@@ -3,7 +3,7 @@ using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.AutoMoq;
 using Ploeh.AutoFixture.NUnit3;
 
-namespace Agiil.Tests
+namespace Agiil.Tests.Attributes
 {
   public class AutoMoqDataAttribute : AutoDataAttribute
   {

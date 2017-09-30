@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Agiil.Tests.Web.Sass
 {
-  [TestFixture]
+  [TestFixture,Parallelizable]
   #if !DEBUG
   [Ignore("The tests in this fixture expect the output from a DEBUG build, they would fail outside of such a build.")]
   #endif

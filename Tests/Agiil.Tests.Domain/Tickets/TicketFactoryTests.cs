@@ -2,13 +2,14 @@
 using Agiil.Domain;
 using Agiil.Domain.Auth;
 using Agiil.Domain.Tickets;
+using Agiil.Tests.Attributes;
 using Moq;
 using NUnit.Framework;
 using Ploeh.AutoFixture.NUnit3;
 
 namespace Agiil.Tests.Domain.Tickets
 {
-  [TestFixture]
+  [TestFixture,Parallelizable]
   public class TicketFactoryTests
   {
     [Test,AutoMoqData]

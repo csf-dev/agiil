@@ -16,3 +16,4 @@ testrunner/
 test-artifacts/
 .xsp4.pid
 missing_registry_workaround/
+.nuget/

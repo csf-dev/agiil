@@ -39,8 +39,7 @@ build_solution()
 run_unit_tests()
 {
   echo "Running unit tests ..."
-  test_assemblies=$(find ./Tests/ -type f -path "*/bin/Debug/*" -name "$TEST_PATTERN" \! -name "$WEB_TESTS" \! -name "$TEST_SUPPORT" )
-  mono "$NUNIT_PATH" $test_assemblies
+  Tools/Run-unit-tests.sh
   stop_if_failure $? "Run unit tests"
 }
 

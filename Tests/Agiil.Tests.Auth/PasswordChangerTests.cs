@@ -1,6 +1,7 @@
 ﻿using System;
 using Agiil.Auth;
 using Agiil.Domain.Auth;
+using Agiil.Tests.Attributes;
 using CSF.Entities;
 using CSF.Security.Authentication;
 using Moq;
@@ -9,7 +10,7 @@ using Ploeh.AutoFixture.NUnit3;
 
 namespace Agiil.Tests.Auth
 {
-  [TestFixture]
+  [TestFixture,Parallelizable]
   public class PasswordChangerTests
   {
     [Test,AutoMoqData]

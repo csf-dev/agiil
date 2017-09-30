@@ -10,10 +10,11 @@ using CSF.Validation;
 using CSF.Data.Entities;
 using CSF.Data;
 using Agiil.Domain.Validation;
+using Agiil.Tests.Attributes;
 
 namespace Agiil.Tests.Domain.Tickets
 {
-  [TestFixture]
+  [TestFixture,Parallelizable]
   public class TicketCreatorTests
   {
     [Test, AutoMoqData]
