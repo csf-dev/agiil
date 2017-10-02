@@ -49,6 +49,9 @@ namespace Agiil.BDD.Pages
     public static ILocatorBasedTarget AddCommentFeedbackMessage
     => new ClassName("AddCommentFeedbackMessage", "the add-comment feedback message");
 
+    public static ILocatorBasedTarget CommentDeletedFeedbackMessage
+      => new ClassName("DeleteCommentFeedbackMessage", "the delete-comment feedback message");
+
     public static TicketCommentList Comments => comments;
 
     public TicketDetail(long ticketId)

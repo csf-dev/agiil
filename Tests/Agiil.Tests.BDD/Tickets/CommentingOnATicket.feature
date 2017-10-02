@@ -35,7 +35,7 @@ Scenario: Youssef may add a second comment to a ticket which already has one (AG
   | Comment number one          |
   | Hi there, this is a comment |
 
-Scenario: Youssef cannot see an edit-comment link for a comment which is not his own
+Scenario: Youssef cannot see an edit-comment link for a comment which he did not write
    When Youssef opens a ticket with the title 'Sample ticket 2'
    Then Youssef should not see any editable comments
 
@@ -52,3 +52,13 @@ Scenario: Youssef can use markdown syntax in a ticket comment, to create a richl
    Then Youssef reads the first comment on the ticket 'Sample ticket 1'
     And Youssef should see that the comment text 'should be bold' is displayed in a bold font
     And Youssef should see that the comment text 'this is italic' is displayed in an italic font
+
+Scenario: Youssef may delete his own comment on a ticket
+  Given Youssef has opened a ticket with the title 'Sample ticket 1'
+   When Youssef deletes the first editable comment
+    And Youssef opens a ticket with the title 'Sample ticket 1'
+   Then Youssef should see that there are no comments on the ticket
+
+Scenario: Youssef may not delete comments which he did not write
+   When Youssef opens a ticket with the title 'Sample ticket 2'
+   Then Youssef should not see any comments which may be deleted

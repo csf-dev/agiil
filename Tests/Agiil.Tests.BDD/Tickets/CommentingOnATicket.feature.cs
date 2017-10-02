@@ -176,10 +176,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Youssef cannot see an edit-comment link for a comment which is not his own")]
-        public virtual void YoussefCannotSeeAnEdit_CommentLinkForACommentWhichIsNotHisOwn()
+        [NUnit.Framework.DescriptionAttribute("Youssef cannot see an edit-comment link for a comment which he did not write")]
+        public virtual void YoussefCannotSeeAnEdit_CommentLinkForACommentWhichHeDidNotWrite()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef cannot see an edit-comment link for a comment which is not his own", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef cannot see an edit-comment link for a comment which he did not write", ((string[])(null)));
 #line 38
 this.ScenarioSetup(scenarioInfo);
 #line 6
@@ -234,6 +234,44 @@ this.FeatureBackground();
     testRunner.And("Youssef should see that the comment text 'should be bold' is displayed in a bold font", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 54
     testRunner.And("Youssef should see that the comment text 'this is italic' is displayed in an italic font", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Youssef may delete his own comment on a ticket")]
+        public virtual void YoussefMayDeleteHisOwnCommentOnATicket()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef may delete his own comment on a ticket", ((string[])(null)));
+#line 56
+this.ScenarioSetup(scenarioInfo);
+#line 6
+this.FeatureBackground();
+#line 57
+  testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 58
+   testRunner.When("Youssef deletes the first editable comment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 59
+    testRunner.And("Youssef opens a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 60
+   testRunner.Then("Youssef should see that there are no comments on the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Youssef may not delete comments which he did not write")]
+        public virtual void YoussefMayNotDeleteCommentsWhichHeDidNotWrite()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef may not delete comments which he did not write", ((string[])(null)));
+#line 62
+this.ScenarioSetup(scenarioInfo);
+#line 6
+this.FeatureBackground();
+#line 63
+   testRunner.When("Youssef opens a ticket with the title 'Sample ticket 2'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 64
+   testRunner.Then("Youssef should not see any comments which may be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
