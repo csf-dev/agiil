@@ -45,29 +45,15 @@ run_unit_tests()
 
 prepare_webapp_for_testing()
 {
-  echo "Configuring Agiil for BDD tests ..."
-  cp "$TESTING_BIN"/* "${WEB_APP_BIN}/"
+  echo "Configuring Travis-specific settings for BDD tests ..."
   cp "${TEST_HOME}/Agiil.Tests.BDD/App.Travis.config" "${WEB_TESTS_PATH}.config"
   cp "${WEB_APP_HOME}/Web.Travis.config" "${WEB_APP_HOME}/Web.config"
 }
 
-start_webserver()
-{
-  echo "Starting up the application ..."
-  bash "$SCRIPT_DIR/Start-webserver.sh"
-  stop_if_failure $? "Starting the application"
-}
-
 run_integration_tests()
 {
-  echo "Running integration tests ..."
-  mono "$NUNIT_PATH" --labels=All "$WEB_TESTS_PATH"
+  Tools/Run-integration-tests.sh
   test_outcome=$?
-}
-
-shutdown_webserver()
-{
-  bash "$SCRIPT_DIR/Stop-webserver.sh"
 }
 
 echo_integration_test_results_to_console()
@@ -78,9 +64,7 @@ echo_integration_test_results_to_console()
 build_solution
 run_unit_tests
 prepare_webapp_for_testing
-start_webserver
 run_integration_tests
 echo_integration_test_results_to_console
-shutdown_webserver
 
 exit $test_outcome
