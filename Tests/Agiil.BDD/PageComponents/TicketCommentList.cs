@@ -11,5 +11,8 @@ namespace Agiil.BDD.PageComponents
     public ILocatorBasedTarget EditCommentLink => new CssSelector("ol.comment_list a.edit_comment",
                                                                   "the edit-comment link");
 
+    public ILocatorBasedTarget DeleteCommentButton => new CssSelector("ol.comment_list button.delete_comment",
+                                                                      "the delete-comment button");
+
   }
 }

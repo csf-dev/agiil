@@ -28,6 +28,13 @@ namespace Agiil.BDD.Bindings.Tickets
       When(youssef).AttemptsTo<BeginEditingTheFirstEditableComment>();
     }
 
+    [When(@"Youssef deletes the first editable comment")]
+    public void WhenYoussefDeletesTheMostRecentComment()
+    {
+      var youssef = screenplay.GetYoussef();
+      When(youssef).AttemptsTo<DeleteTheFirstDeletableComment>();
+    }
+
     [When(@"Youssef changes the comment text to '([^']*)'")]
     public void WhenYoussefChangesTheCommentTextTo(string newCommentText)
     {
@@ -44,7 +51,19 @@ namespace Agiil.BDD.Bindings.Tickets
                               .Called("the edit comment links"))
                    .Elements
                    .Should()
-                   .BeEmpty(because: "There should be no editable comments available");
+                   .BeEmpty(because: "there should be no editable comments available");
+    }
+
+    [Then(@"Youssef should not see any comments which may be deleted")]
+    public void ThenYoussefShouldNotSeeAnyDeletableComments()
+    {
+      var youssef = screenplay.GetYoussef();
+      Then(youssef).ShouldSee(Elements.InThePageBody()
+                              .ThatAre(TicketDetail.Comments.DeleteCommentButton)
+                              .Called("the delete comment buttons"))
+                   .Elements
+                   .Should()
+                   .BeEmpty(because: "there should be no deletable comments available");
     }
 
     [Then(@"Youssef should see an add-comment error message")]

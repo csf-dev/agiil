@@ -69,6 +69,16 @@ namespace Agiil.BDD.Bindings.Tickets
                    .ContainInOrder(expectedComments);
     }
 
+    [Then(@"Youssef should see that there are no comments on the ticket")]
+    public void ThenYoussefShouldSeeThatThereAreNoComments()
+    {
+      var youssef = screenplay.GetYoussef();
+      var comments = Then(youssef).ShouldSee(Elements.InThePageBody()
+                                                     .ThatAre(TicketDetail.CommentBodies)
+                                                     .Called("the comment bodies"));
+      comments.Elements.Should().BeEmpty(because: "there are no comments");
+    }
+
     [Then(@"Youssef should see that the creator of the current ticket is '([^']+)'")]
     public void ThenYoussefShouldSeeThatTheCreatorOfTheCurrentTicketIs(string username)
     {

@@ -209,6 +209,7 @@
     <Compile Include="Bindings\Tickets\ReadingACommentSteps.cs" />
     <Compile Include="Tasks\Markdown\VerifyThatTheTextHasTheCorrectFormatting.cs" />
     <Compile Include="Tasks\Markdown\VerifyThat.cs" />
+    <Compile Include="Tasks\Tickets\DeleteTheFirstDeletableComment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
