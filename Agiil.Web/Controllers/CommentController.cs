@@ -18,6 +18,7 @@ namespace Agiil.Web.Controllers
     readonly Lazy<ICommentCreator> commentCreator;
     readonly Lazy<ICommentEditor> commentEditor;
     readonly Lazy<ICommentReader> commentReader;
+    readonly Lazy<ICommentDeleter> commentDeleter;
 
     [HttpPost]
     public ActionResult Add(AddCommentSpecification spec)
@@ -33,6 +34,27 @@ namespace Agiil.Web.Controllers
       return RedirectToAction(nameof(TicketController.Index),
                               GetControllerName<TicketController>(),
                               new { id = spec.TicketId?.Value });
+    }
+
+    [HttpPost]
+    public ActionResult Delete(IIdentity<Comment> id)
+    {
+      var comment = commentReader.Value.Read(id);
+
+      if(ReferenceEquals(comment, null))
+        return HttpNotFound();
+
+      var ticketId = comment.Ticket.GetIdentity();
+
+      var request = new DeleteCommentRequest { CommentId = id };
+      var sourceResponse = commentDeleter.Value.Delete(request);
+
+      if(!sourceResponse.IsSuccess)
+        return new HttpStatusCodeResult(System.Net.HttpStatusCode.Forbidden);
+
+      return RedirectToAction(nameof(TicketController.Index),
+                              GetControllerName<TicketController>(),
+                              new { id = ticketId.Value });
     }
 
     [HttpGet]
@@ -138,7 +160,8 @@ namespace Agiil.Web.Controllers
     public CommentController(ControllerBaseDependencies baseDeps,
                              Lazy<ICommentCreator> commentCreator,
                              Lazy<ICommentEditor> commentEditor,
-                             Lazy<ICommentReader> commentReader)
+                             Lazy<ICommentReader> commentReader,
+                             Lazy<ICommentDeleter> commentDeleter)
       : base(baseDeps)
     {
       if(commentReader == null)
@@ -147,9 +170,13 @@ namespace Agiil.Web.Controllers
         throw new ArgumentNullException(nameof(commentEditor));
       if(commentCreator == null)
         throw new ArgumentNullException(nameof(commentCreator));
+      if(commentDeleter == null)
+        throw new ArgumentNullException(nameof(commentDeleter));
+
       this.commentCreator = commentCreator;
       this.commentEditor = commentEditor;
       this.commentReader = commentReader;
+      this.commentDeleter = commentDeleter;
     }
   }
 }

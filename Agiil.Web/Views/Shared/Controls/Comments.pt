@@ -26,11 +26,19 @@
             Written by <strong tal:content="comment/Author">Username</strong> on
             <strong tal:content="comment/AuthoredTimestamp">2001-01-01 19:21:22</strong>.
           </p>
-          <p tal:condition="commentIsMine">
+          <tal:block condition="commentIsMine">
+          <p>
             <a href="Comment/Edit/0"
                tal:attributes="href string:Comment/Edit/${comment/Id}"
                class="edit_comment">Edit this comment</a>
           </p>
+          <form method="post" action="Comment/Delete" >
+            <fieldset>
+              <input type="hidden" name="id" value="0" tal:attributes="value comment/Id" />
+              <button class="delete_comment">Delete this comment</button>
+            </fieldset>
+          </form>
+          </tal:block>
         </header>
         <div tal:content="structure comment/HtmlBody" class="comment_content">Comment text here</div>
       </li>

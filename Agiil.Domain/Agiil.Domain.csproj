@@ -124,6 +124,9 @@
     <Compile Include="Auth\AdminUser.cs" />
     <Compile Include="Projects\AgiilProject.cs" />
     <Compile Include="Auth\IGetsUserByUsername.cs" />
+    <Compile Include="Tickets\ICommentDeleter.cs" />
+    <Compile Include="Tickets\DeleteCommentResponse.cs" />
+    <Compile Include="Tickets\DeleteCommentRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
