@@ -121,6 +121,64 @@ this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Youssef can see a list of the open tickets in a sprint")]
+        public virtual void YoussefCanSeeAListOfTheOpenTicketsInASprint()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can see a list of the open tickets in a sprint", ((string[])(null)));
+#line 24
+this.ScenarioSetup(scenarioInfo);
+#line 8
+this.FeatureBackground();
+#line 25
+    testRunner.Given("Youssef was able to open the sprint titled 'Sprint one'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 26
+     testRunner.When("Youssef reads the open tickets in this sprint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "Ticket name"});
+            table3.AddRow(new string[]
+                {
+                        "Sample ticket 1"});
+            table3.AddRow(new string[]
+                {
+                        "Sample ticket 2"});
+            table3.AddRow(new string[]
+                {
+                        "Sample ticket 3"});
+#line 27
+     testRunner.Then("Youssef should see the following tickets, in any order:", ((string)(null)), table3, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Youssef can see a list of the closed tickets in a sprint")]
+        public virtual void YoussefCanSeeAListOfTheClosedTicketsInASprint()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can see a list of the closed tickets in a sprint", ((string[])(null)));
+#line 33
+this.ScenarioSetup(scenarioInfo);
+#line 8
+this.FeatureBackground();
+#line 34
+    testRunner.Given("Youssef was able to open the sprint titled 'Sprint one'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 35
+     testRunner.When("Youssef reads the closed tickets in this sprint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "Ticket name"});
+            table4.AddRow(new string[]
+                {
+                        "Sample ticket 4"});
+#line 36
+     testRunner.Then("Youssef should see the following tickets, in any order:", ((string)(null)), table4, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

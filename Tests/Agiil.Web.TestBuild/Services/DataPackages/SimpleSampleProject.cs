@@ -33,6 +33,7 @@ namespace Agiil.Web.Services.DataPackages
         var ticket1 = CreateTicketOne(sprint1, youssef);
         var ticket2 = CreateTicketTwo(sprint1, youssef);
         var ticket3 = CreateTicketThree(sprint1, youssef);
+        var ticket4 = CreateTicketFour(sprint1, youssef);
 
         var comment1 = CreateCommentOne(ticket1, youssef);
         var comment2 = CreateCommentTwo(ticket2, admin);

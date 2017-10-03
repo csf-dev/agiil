@@ -210,6 +210,7 @@
     <Compile Include="Tasks\Markdown\VerifyThatTheTextHasTheCorrectFormatting.cs" />
     <Compile Include="Tasks\Markdown\VerifyThat.cs" />
     <Compile Include="Tasks\Tickets\DeleteTheFirstDeletableComment.cs" />
+    <Compile Include="Tasks\Sprints\ReadTheTicketTitlesFromTheCurrentSprint.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

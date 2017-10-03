@@ -20,3 +20,19 @@ Scenario: Youssef can see a list of the closed sprints
   Then Youssef should see the following sprints, in order
   | Sprint name  |
   | Sprint two |
+
+Scenario: Youssef can see a list of the open tickets in a sprint
+    Given Youssef was able to open the sprint titled 'Sprint one'
+     When Youssef reads the open tickets in this sprint
+     Then Youssef should see the following tickets, in any order:
+  | Ticket name     |
+  | Sample ticket 1 |
+  | Sample ticket 2 |
+  | Sample ticket 3 |
+
+Scenario: Youssef can see a list of the closed tickets in a sprint
+    Given Youssef was able to open the sprint titled 'Sprint one'
+     When Youssef reads the closed tickets in this sprint
+     Then Youssef should see the following tickets, in any order:
+  | Ticket name     |
+  | Sample ticket 4 |

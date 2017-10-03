@@ -47,10 +47,11 @@
       <li tal:repeat="ticket sprint/Tickets">
         <a href="Ticket/Index/0"
            tal:define="url string:Ticket/Index/${ticket/Id}"
-           tal:attributes="href url">
+           tal:attributes="href url"
+           class="ticket">
           <span class="ticket_reference" tal:content="ticket/Reference">AB12</span>
           -
-          <span tal:content="ticket/Title">Sample ticket title</span>
+          <span tal:content="ticket/Title" class="title">Sample ticket title</span>
         </a>
       </li>
     </ul>
