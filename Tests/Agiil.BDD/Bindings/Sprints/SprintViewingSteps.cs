@@ -9,19 +9,30 @@ using System.Linq;
 using FluentAssertions;
 using Agiil.BDD.Tasks.Sprints;
 using Agiil.BDD.Models.Sprints;
+using System.Collections.Generic;
 
 namespace Agiil.BDD.Bindings.Sprints
 {
   [Binding]
   public class SprintViewingSteps
   {
+    const string CurrentTicketTitlesKey = "The ticket titles";
+
     readonly IScreenplayScenario screenplay;
+    readonly ScenarioContext context;
 
     [Given(@"Youssef has opened the sprint listing page")]
     public void GivenYoussefHasOpenedTheSprintListingPage()
     {
       var youssef = screenplay.GetYoussef();
       Given(youssef).WasAbleTo(OpenTheirBrowserOn.ThePage(SprintList.ForOpenSprints()));
+    }
+
+    [Given(@"Youssef was able to open the sprint titled '([^']+)'")]
+    public void GivenYoussefViewsTheSprintTitled(string sprintTitle)
+    {
+      var youssef = screenplay.GetYoussef();
+      Given(youssef).WasAbleTo(ViewTheSprintDetail.ForSprint(sprintTitle));
     }
 
     [When(@"Youssef opens the sprint listing page")]
@@ -36,6 +47,37 @@ namespace Agiil.BDD.Bindings.Sprints
     {
       var youssef = screenplay.GetYoussef();
       When(youssef).AttemptsTo(OpenTheirBrowserOn.ThePage(SprintList.ForClosedSprints()));
+    }
+
+    [When(@"Youssef views the sprint titled '([^']+)'")]
+    public void WhenYoussefViewsTheSprintTitled(string sprintTitle)
+    {
+      var youssef = screenplay.GetYoussef();
+      When(youssef).AttemptsTo(ViewTheSprintDetail.ForSprint(sprintTitle));
+    }
+
+    [When(@"Youssef reads the (open|closed) tickets in this sprint")]
+    public void WhenYoussefReadsTheTicketsInThisSprint(string openOrClosed)
+    {
+      var youssef = screenplay.GetYoussef();
+      var ticketTitles = When(youssef).AttemptsTo(ReadTheTicketTitlesFromTheCurrentSprint.WhichAre(openOrClosed));
+      context.Set(ticketTitles, CurrentTicketTitlesKey);
+    }
+
+    [Then(@"Youssef should see the following tickets, in any order:")]
+    public void ThenYoussefShouldSeeTheFollowingTicketsInAnyOrder(Table expectedTicketTitles)
+    {
+      var ticketTitles = context.Get<IReadOnlyList<string>>(CurrentTicketTitlesKey);
+      if(ticketTitles == null)
+        throw new InvalidOperationException("There must be a collection of ticket titles in the current context");
+
+      var expectedTitles = expectedTicketTitles
+        .Rows
+        .Select(x => x.Values.Single())
+        .ToArray();
+      ticketTitles
+        .Should()
+        .BeEquivalentTo(expectedTitles, because: "the ticket titles should match");
     }
 
     [Then(@"Youssef should see the following sprints, in order")]
@@ -88,13 +130,6 @@ namespace Agiil.BDD.Bindings.Sprints
                    .Be(expected, because: "the sprint end date should match");
     }
 
-    [When(@"Youssef views the sprint titled '([^']+)'")]
-    public void WhenYoussefViewsTheSprintTitled(string sprintTitle)
-    {
-      var youssef = screenplay.GetYoussef();
-      When(youssef).AttemptsTo(ViewTheSprintDetail.ForSprint(sprintTitle));
-    }
-
     [Then(@"Youssef should see that the sprint has the following details")]
     public void ThenYoussefShouldSeeThatTheSprintHasTheFollowingDetails(Table table)
     {
@@ -104,12 +139,16 @@ namespace Agiil.BDD.Bindings.Sprints
       Then(youssef).Should(VerifyThatTheSprintDetailsMatch.TheExpectations(expectedDetails));
     }
 
-    public SprintViewingSteps(IScreenplayScenario screenplay)
+    public SprintViewingSteps(IScreenplayScenario screenplay,
+                              ScenarioContext context)
     {
+      if(context == null)
+        throw new ArgumentNullException(nameof(context));
       if(screenplay == null)
         throw new ArgumentNullException(nameof(screenplay));
 
       this.screenplay = screenplay;
+      this.context = context;
     }
   }
 }

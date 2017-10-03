@@ -42,15 +42,30 @@
   </section>
   <section class="contained_tickets">
     <h2>Tickets</h2>
-    <p>These are the tickets contained within this sprint:</p>
-    <ul tal:define="refParser here/TicketReferenceParser">
-      <li tal:repeat="ticket sprint/Tickets">
+    <p><strong tal:content="sprint/Name">This sprint</strong> contains the following tickets</p>
+    <h3>Open tickets</h3>
+    <ul class="open_tickets">
+      <li tal:repeat="ticket sprint/OpenTickets">
         <a href="Ticket/Index/0"
            tal:define="url string:Ticket/Index/${ticket/Id}"
-           tal:attributes="href url">
+           tal:attributes="href url"
+           class="ticket">
           <span class="ticket_reference" tal:content="ticket/Reference">AB12</span>
           -
-          <span tal:content="ticket/Title">Sample ticket title</span>
+          <span tal:content="ticket/Title" class="title">Sample ticket title</span>
+        </a>
+      </li>
+    </ul>
+    <h3>Closed tickets</h3>
+    <ul class="closed_tickets">
+      <li tal:repeat="ticket sprint/ClosedTickets">
+        <a href="Ticket/Index/0"
+           tal:define="url string:Ticket/Index/${ticket/Id}"
+           tal:attributes="href url"
+           class="ticket">
+          <span class="ticket_reference" tal:content="ticket/Reference">AB12</span>
+          -
+          <span tal:content="ticket/Title" class="title">Sample ticket title</span>
         </a>
       </li>
     </ul>
