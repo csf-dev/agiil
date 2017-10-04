@@ -127,6 +127,7 @@
     <Compile Include="Tickets\ICommentDeleter.cs" />
     <Compile Include="Tickets\DeleteCommentResponse.cs" />
     <Compile Include="Tickets\DeleteCommentRequest.cs" />
+    <Compile Include="Tickets\TicketType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

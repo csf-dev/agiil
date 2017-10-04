@@ -30,10 +30,13 @@ namespace Agiil.Web.Services.DataPackages
         var sprint2 = CreateSprintTwo(project);
         var sprint3 = CreateSprintThree(project);
 
-        var ticket1 = CreateTicketOne(sprint1, youssef);
-        var ticket2 = CreateTicketTwo(sprint1, youssef);
-        var ticket3 = CreateTicketThree(sprint1, youssef);
-        var ticket4 = CreateTicketFour(sprint1, youssef);
+        var bug = CreateBugType();
+        var enhancement = CreateEnhancementType();
+
+        var ticket1 = CreateTicketOne(sprint1, youssef, enhancement);
+        var ticket2 = CreateTicketTwo(sprint1, youssef, enhancement);
+        var ticket3 = CreateTicketThree(sprint1, youssef, enhancement);
+        var ticket4 = CreateTicketFour(sprint1, youssef, bug);
 
         var comment1 = CreateCommentOne(ticket1, youssef);
         var comment2 = CreateCommentTwo(ticket2, admin);
@@ -49,6 +52,10 @@ namespace Agiil.Web.Services.DataPackages
       userCreator.Add("Youssef", "secret");
       return userQuery.Get("Youssef");
     }
+
+    TicketType CreateBugType() => new TicketType { Name = "Bug" };
+
+    TicketType CreateEnhancementType() => new TicketType { Name = "Enhancement" };
 
     Sprint CreateSprintOne(Project project)
     {
@@ -103,7 +110,7 @@ namespace Agiil.Web.Services.DataPackages
       return sprint;
     }
 
-    Ticket CreateTicketOne(Sprint sprint, User user)
+    Ticket CreateTicketOne(Sprint sprint, User user, TicketType type)
     {
       var ticket = new Ticket
       {
@@ -113,6 +120,7 @@ namespace Agiil.Web.Services.DataPackages
         CreationTimestamp = new DateTime(2011, 1, 4),
         Project = sprint.Project,
         User = user,
+        Type = type,
       };
 
       sprint.Tickets.Add(ticket);
@@ -122,7 +130,7 @@ namespace Agiil.Web.Services.DataPackages
       return ticket;
     }
 
-    Ticket CreateTicketTwo(Sprint sprint, User user)
+    Ticket CreateTicketTwo(Sprint sprint, User user, TicketType type)
     {
       var ticket = new Ticket
       {
@@ -132,6 +140,7 @@ namespace Agiil.Web.Services.DataPackages
         CreationTimestamp = new DateTime(2011, 1, 1),
         Project = sprint.Project,
         User = user,
+        Type = type,
       };
 
       sprint.Tickets.Add(ticket);
@@ -141,7 +150,7 @@ namespace Agiil.Web.Services.DataPackages
       return ticket;
     }
 
-    Ticket CreateTicketThree(Sprint sprint, User user)
+    Ticket CreateTicketThree(Sprint sprint, User user, TicketType type)
     {
       var ticket = new Ticket
       {
@@ -151,6 +160,7 @@ namespace Agiil.Web.Services.DataPackages
         CreationTimestamp = new DateTime(2011, 1, 6),
         Project = sprint.Project,
         User = user,
+        Type = type,
       };
 
       sprint.Tickets.Add(ticket);
@@ -160,7 +170,7 @@ namespace Agiil.Web.Services.DataPackages
       return ticket;
     }
 
-    Ticket CreateTicketFour(Sprint sprint, User user)
+    Ticket CreateTicketFour(Sprint sprint, User user, TicketType type)
     {
       var ticket = new Ticket
       {
@@ -171,6 +181,7 @@ namespace Agiil.Web.Services.DataPackages
         Closed = true,
         Project = sprint.Project,
         User = user,
+        Type = type,
       };
 
       sprint.Tickets.Add(ticket);

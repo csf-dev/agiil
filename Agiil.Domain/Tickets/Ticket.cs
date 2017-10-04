@@ -37,6 +37,8 @@ namespace Agiil.Domain.Tickets
 
     public virtual bool Closed { get; set; }
 
+    public virtual TicketType Type { get; set; }
+
     string IIdentifiesTicketByProjectAndNumber.ProjectCode => Project?.Code;
 
     public Ticket()
