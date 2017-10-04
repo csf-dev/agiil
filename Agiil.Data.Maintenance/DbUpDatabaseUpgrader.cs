@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using DbUp;
 using DbUp.Engine;
+using log4net;
 
 namespace Agiil.Data.Maintenance
 {
   public class DbUpDatabaseUpgrader : IDatabaseUpgrader
   {
+    static readonly ILog logger;
+
     readonly IConnectionStringProvider connectionStringProvider;
     readonly UpgradeEngine upgradeEngine;
 
@@ -17,11 +19,8 @@ namespace Agiil.Data.Maintenance
     {
       var result = upgradeEngine.PerformUpgrade();
 
-      #if DEBUG
-      // TODO: Improve this when (at some point) we have proper error/diagnostic logging implemented.
       if(result.Error != null)
-        Console.WriteLine(result.Error);
-      #endif
+        logger.Error("Database upgrade process raised an error", result.Error);
 
       return new DatabaseUpgradeResult
       {
@@ -68,6 +67,11 @@ namespace Agiil.Data.Maintenance
       
       this.connectionStringProvider = connectionStringProvider;
       this.upgradeEngine = GetDbUpEngine();
+    }
+
+    static DbUpDatabaseUpgrader()
+    {
+      logger = LogManager.GetLogger(typeof(DbUpDatabaseUpgrader));
     }
   }
 }
