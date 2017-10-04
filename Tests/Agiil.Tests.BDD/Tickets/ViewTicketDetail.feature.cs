@@ -89,15 +89,32 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Youssef can see the comments for a ticket listed in chronological order")]
-        public virtual void YoussefCanSeeTheCommentsForATicketListedInChronologicalOrder()
+        [NUnit.Framework.DescriptionAttribute("Youssef can see the type of a ticket")]
+        public virtual void YoussefCanSeeTheTypeOfATicket()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can see the comments for a ticket listed in chronological order", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can see the type of a ticket", ((string[])(null)));
 #line 11
 this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line 12
+   testRunner.When("Youssef opens a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 13
+   testRunner.Then("Youssef should see that the ticket type is 'Enhancement'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Youssef can see the comments for a ticket listed in chronological order")]
+        public virtual void YoussefCanSeeTheCommentsForATicketListedInChronologicalOrder()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can see the comments for a ticket listed in chronological order", ((string[])(null)));
+#line 15
+this.ScenarioSetup(scenarioInfo);
+#line 4
+this.FeatureBackground();
+#line 16
    testRunner.When("Youssef opens a ticket with the title 'Sample ticket 2'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[]
@@ -112,7 +129,7 @@ this.FeatureBackground();
             table1.AddRow(new string[]
                 {
                         "Comment number two"});
-#line 13
+#line 17
    testRunner.Then("Youssef should see comments with the following text, in order", ((string)(null)), table1, "Then ");
 #line hidden
             this.ScenarioCleanup();
