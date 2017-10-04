@@ -19,10 +19,7 @@ namespace Agiil.Data.Maintenance
     {
       var result = upgradeEngine.PerformUpgrade();
 
-      if(result.Error != null)
-        logger.Error("Database upgrade process raised an error", result.Error);
-
-      return new DatabaseUpgradeResult
+      var output = new DatabaseUpgradeResult
       {
         Success = result.Successful,
         UpgradesApplied = result
@@ -31,6 +28,26 @@ namespace Agiil.Data.Maintenance
           .Cast<IUpgradeName>()
           .ToList(),
       };
+
+      LogCompletion(output, result.Error);
+
+      return output;
+    }
+
+    void LogCompletion(DatabaseUpgradeResult result, Exception exception)
+    {
+      string message;
+
+      if(exception != null)
+        message = "Completed database upgrade process, with errors";
+      else
+        message = "Completed database upgrade process successfully";
+
+      logger.Info(message);
+      logger.Info(result);
+
+      if(exception != null)
+        logger.Error("The database upgrade process raised an exception", exception);
     }
 
     public IList<IUpgradeName> GetAppliedUpgrades()
