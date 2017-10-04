@@ -16,6 +16,9 @@ namespace Agiil.BDD.Pages
     public static ILocatorBasedTarget TitleContent
       => new ClassName("title_content", "the ticket title");
 
+    public static ILocatorBasedTarget TicketType
+    => new ClassName("ticket_type", "the ticket type");
+
     public static ILocatorBasedTarget DescriptionContent
       => new ClassName("description_content", "the ticket description");
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Sprints;
+using Agiil.Domain.Tickets;
 using CSF.Entities;
 
 namespace Agiil.Web.Models.Tickets
@@ -12,6 +13,8 @@ namespace Agiil.Web.Models.Tickets
 
     public IIdentity<Sprint> SprintIdentity { get; set; }
 
+    public IIdentity<TicketType> TicketTypeIdentity { get; set; }
+
     public long? SprintId
     {
       get { return (long?) SprintIdentity?.Value; }
@@ -20,6 +23,17 @@ namespace Agiil.Web.Models.Tickets
           SprintIdentity = null;
 
         SprintIdentity = Identity.Create<Sprint>(value.Value);
+      }
+    }
+
+    public long? TicketTypeId
+    {
+      get { return (long?) TicketTypeIdentity?.Value; }
+      set {
+        if(!value.HasValue)
+          TicketTypeIdentity = null;
+
+        TicketTypeIdentity = Identity.Create<TicketType>(value.Value);
       }
     }
   }

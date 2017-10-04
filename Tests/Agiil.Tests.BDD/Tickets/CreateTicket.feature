@@ -57,4 +57,19 @@ Scenario: Users can choose sprints for a tickets as they create them
   | Sprint    | Sprint one        |
     And Youssef opens a ticket with the title 'Create ticket 4'
    Then Youssef should see that the ticket is part of the sprint 'Sprint one'
-  
+
+Scenario: Youssef can create enhancement tickets
+   When Youssef creates the following ticket using the create ticket page
+  | Field     | Value             |
+  | Title     | Create ticket 4   |
+  | Type      | Enhancement       |
+    And Youssef opens a ticket with the title 'Create ticket 4'
+   Then Youssef should see that the ticket type is 'Enhancement'
+
+Scenario: Youssef can create bug tickets
+   When Youssef creates the following ticket using the create ticket page
+  | Field     | Value             |
+  | Title     | Create ticket 4   |
+  | Type      | Bug               |
+    And Youssef opens a ticket with the title 'Create ticket 4'
+   Then Youssef should see that the ticket type is 'Bug'

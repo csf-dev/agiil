@@ -94,7 +94,16 @@ namespace Agiil.BDD.Bindings.Tickets
       var youssef = screenplay.GetYoussef();
       Then(youssef).ShouldSee(TheText.Of(TicketDetail.TicketState))
                    .Should()
-                   .Be(expectedState, because: "The ticket state should match");
+                   .Be(expectedState, because: "the state should match");
+    }
+
+    [Then(@"Youssef should see that the ticket type is '([^']+)'")]
+    public void ThenYoussefShouldSeeThatTheTicketTypeIsAsExpected(string type)
+    {
+      var youssef = screenplay.GetYoussef();
+      Then(youssef).ShouldSee(TheText.Of(TicketDetail.TicketType))
+                   .Should()
+                   .Be(type, because: "the type should match");
     }
 
     public ReadATicketSteps(IScreenplayScenario screenplay)

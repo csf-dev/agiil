@@ -14,30 +14,37 @@ namespace Agiil.Bootstrap.Data
     {
       builder
         .RegisterType<NHibernateQuery>()
+        .AsSelf()
         .As<IQuery>();
 
       builder
         .RegisterType<NHibernatePersister>()
+        .AsSelf()
         .As<IPersister>();
 
       builder
-        .RegisterType<DatabaseCreator>()
+        .RegisterType<NHibernateSchemaExportingDatabaseCreator>()
+        .AsSelf()
         .As<IDatabaseCreator>();
 
       builder
         .RegisterType<DevelopmentInitialDataCreator>()
+        .AsSelf()
         .As<IInitialDataCreator>();
 
       builder
         .RegisterType<EntityData>()
+        .AsSelf()
         .As<IEntityData>();
 
       builder
         .RegisterType<TransactionCreator>()
+        .AsSelf()
         .As<ITransactionCreator>();
 
       builder
         .RegisterType<HardcodedDatabaseConfiguration>()
+        .AsSelf()
         .As<IDatabaseConfiguration>();
     }
   }

@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Ticket type chooser control</title>
+<base href="../../../" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+</style>
+</head>
+<body>
+  <form action="" method="post">
+    <fieldset>
+      <div class="form_element field">
+        <label for="TicketTypeIdentity">Type</label>
+        <select id="TicketTypeIdentity"
+                name="TicketTypeIdentity"
+                tal:define="selectedTypeId typeId | nothing"
+                metal:define-macro="type_chooser">
+          <option tal:repeat="type availableTypes"
+                  tal:attributes="selected csharp:(type.Id == selectedTypeId)? &quot;selected&quot; : null;
+                                  value type/Id"
+                  tal:content="type/Name">Type name</option>
+        </select>
+      </div>
+    </fieldset>
+  </form>
+<footer>
+
+</footer>
+</body>
+</html>

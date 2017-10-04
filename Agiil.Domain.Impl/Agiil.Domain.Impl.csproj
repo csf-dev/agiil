@@ -120,6 +120,7 @@
     <Compile Include="Auth\UserQueryByUsername.cs" />
     <Compile Include="Tickets\CommentDeleter.cs" />
     <Compile Include="Tickets\DeleteCommentValidatorFactory.cs" />
+    <Compile Include="Tickets\NewTicketTypeProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

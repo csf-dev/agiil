@@ -13,6 +13,8 @@ namespace Agiil.Web.Models.Tickets
 
     public IList<SprintSummaryDto> AvailableSprints { get; set; }
 
+    public IList<TicketTypeDto> AvailableTicketTypes { get; set; }
+
     public NewTicketModel()
     {
       Specification = new NewTicketSpecification();

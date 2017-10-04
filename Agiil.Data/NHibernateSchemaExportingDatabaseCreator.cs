@@ -8,7 +8,7 @@ using NHibernate.Tool.hbm2ddl;
 
 namespace Agiil.Data
 {
-  public class DatabaseCreator : IDatabaseCreator
+  public class NHibernateSchemaExportingDatabaseCreator : IDatabaseCreator
   {
     readonly ISessionFactoryFactory sessionFactoryFactory;
 
@@ -112,7 +112,7 @@ namespace Agiil.Data
       return factory.OpenSession();
     }
 
-    public DatabaseCreator(ISessionFactoryFactory sessionFactoryFactory)
+    public NHibernateSchemaExportingDatabaseCreator(ISessionFactoryFactory sessionFactoryFactory)
     {
       if(sessionFactoryFactory == null)
         throw new ArgumentNullException(nameof(sessionFactoryFactory));

@@ -15,7 +15,8 @@
   <header>
     <h1 tal:content="ticket/Title" class="title_content">Ticket title</h1>
     <p>
-      Ticket <strong tal:content="string:#${ticket/Reference}">AB123</strong>.
+      Ticket <strong tal:content="string:#${ticket/Reference}" class="ticket_reference">AB123</strong>:
+      <span class="ticket_type" tal:content="ticket/TypeName">Thing</span>.
     </p>
   </header>
   <section class="details">

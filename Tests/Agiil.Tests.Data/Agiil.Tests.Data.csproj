@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="SessionFactoryFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="NHibernateSchemaExportingDatabaseCreatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Data\Agiil.Data.csproj">

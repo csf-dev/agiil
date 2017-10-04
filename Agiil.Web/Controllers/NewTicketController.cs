@@ -15,6 +15,7 @@ namespace Agiil.Web.Controllers
 
     readonly ITicketCreator ticketCreator;
     readonly Lazy<ISprintLister> sprintLister;
+    readonly Lazy<INewTicketTypeProvider> ticketTypeProvider;
 
     [HttpGet]
     public ActionResult Index()
@@ -43,14 +44,22 @@ namespace Agiil.Web.Controllers
         .GetSprints()
         .Select(x => Mapper.Map<SprintSummaryDto>(x))
         .ToList();
+      model.AvailableTicketTypes = ticketTypeProvider
+        .Value
+        .GetTicketTypes()
+        .Select(x => Mapper.Map<TicketTypeDto>(x))
+        .ToList();
       return model;
     }
 
     public NewTicketController(ITicketCreator ticketCreator,
                                Lazy<ISprintLister> sprintLister,
+                               Lazy<INewTicketTypeProvider> ticketTypeProvider,
                                ControllerBaseDependencies baseDeps)
       : base(baseDeps)
     {
+      if(ticketTypeProvider == null)
+        throw new ArgumentNullException(nameof(ticketTypeProvider));
       if(sprintLister == null)
         throw new ArgumentNullException(nameof(sprintLister));
       if(ticketCreator == null)
@@ -58,6 +67,7 @@ namespace Agiil.Web.Controllers
 
       this.ticketCreator = ticketCreator;
       this.sprintLister = sprintLister;
+      this.ticketTypeProvider = ticketTypeProvider;
     }
   }
 }

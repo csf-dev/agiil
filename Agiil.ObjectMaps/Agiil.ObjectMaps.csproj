@@ -88,6 +88,7 @@
     <Compile Include="Resolvers\TicketReferenceStringResolver.cs" />
     <Compile Include="Resolvers\IResolversNamespaceMarker.cs" />
     <Compile Include="Resolvers\MarkdownToHtmlResolver.cs" />
+    <Compile Include="Tickets\TicketTypeToTicketTypeDtoProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

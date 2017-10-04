@@ -159,6 +159,7 @@
     <Compile Include="Attributes\HasIdentityAttribute.cs" />
     <Compile Include="Attributes\LoggedInAttribute.cs" />
     <Compile Include="Attributes\ProvidesServiceAttribute.cs" />
+    <Compile Include="CachingDomainContainerFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">

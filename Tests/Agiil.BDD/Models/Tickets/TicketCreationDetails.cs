@@ -11,6 +11,8 @@ namespace Agiil.BDD.Models.Tickets
 
     public string Sprint { get; set; }
 
+    public string Type { get; set; }
+
     public override string ToString()
     {
       var components = new List<string>();
@@ -22,6 +24,9 @@ namespace Agiil.BDD.Models.Tickets
 
       if(!String.IsNullOrEmpty(Sprint))
         components.Add($"Sprint: {Sprint}");
+
+      if(!String.IsNullOrEmpty(Type))
+        components.Add($"Type: {Type}");
 
       return $"[{String.Join(", ", components)}]";
     }

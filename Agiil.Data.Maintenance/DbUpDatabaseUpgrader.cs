@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using DbUp;
 using DbUp.Engine;
+using log4net;
 
 namespace Agiil.Data.Maintenance
 {
   public class DbUpDatabaseUpgrader : IDatabaseUpgrader
   {
+    static readonly ILog logger;
+
     readonly IConnectionStringProvider connectionStringProvider;
     readonly UpgradeEngine upgradeEngine;
 
@@ -17,13 +19,7 @@ namespace Agiil.Data.Maintenance
     {
       var result = upgradeEngine.PerformUpgrade();
 
-      #if DEBUG
-      // TODO: Improve this when (at some point) we have proper error/diagnostic logging implemented.
-      if(result.Error != null)
-        Console.WriteLine(result.Error);
-      #endif
-
-      return new DatabaseUpgradeResult
+      var output = new DatabaseUpgradeResult
       {
         Success = result.Successful,
         UpgradesApplied = result
@@ -32,6 +28,26 @@ namespace Agiil.Data.Maintenance
           .Cast<IUpgradeName>()
           .ToList(),
       };
+
+      LogCompletion(output, result.Error);
+
+      return output;
+    }
+
+    void LogCompletion(DatabaseUpgradeResult result, Exception exception)
+    {
+      string message;
+
+      if(exception != null)
+        message = "Completed database upgrade process, with errors";
+      else
+        message = "Completed database upgrade process successfully";
+
+      logger.Info(message);
+      logger.Info(result);
+
+      if(exception != null)
+        logger.Error("The database upgrade process raised an exception", exception);
     }
 
     public IList<IUpgradeName> GetAppliedUpgrades()
@@ -68,6 +84,11 @@ namespace Agiil.Data.Maintenance
       
       this.connectionStringProvider = connectionStringProvider;
       this.upgradeEngine = GetDbUpEngine();
+    }
+
+    static DbUpDatabaseUpgrader()
+    {
+      logger = LogManager.GetLogger(typeof(DbUpDatabaseUpgrader));
     }
   }
 }

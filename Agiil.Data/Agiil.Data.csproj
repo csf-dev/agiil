@@ -81,7 +81,7 @@
     <Compile Include="SessionFactoryFactory.cs" />
     <Compile Include="IDatabaseCreator.cs" />
     <Compile Include="ISessionFactoryFactory.cs" />
-    <Compile Include="DatabaseCreator.cs" />
+    <Compile Include="NHibernateSchemaExportingDatabaseCreator.cs" />
     <Compile Include="IMapping.cs" />
     <Compile Include="IMappingProvider.cs" />
     <Compile Include="MappingProvider.cs" />

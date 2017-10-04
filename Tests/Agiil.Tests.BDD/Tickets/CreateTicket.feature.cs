@@ -284,6 +284,70 @@ this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Youssef can create enhancement tickets")]
+        public virtual void YoussefCanCreateEnhancementTickets()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can create enhancement tickets", ((string[])(null)));
+#line 61
+this.ScenarioSetup(scenarioInfo);
+#line 6
+this.FeatureBackground();
+#line hidden
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "Field",
+                        "Value"});
+            table8.AddRow(new string[]
+                {
+                        "Title",
+                        "Create ticket 4"});
+            table8.AddRow(new string[]
+                {
+                        "Type",
+                        "Enhancement"});
+#line 62
+   testRunner.When("Youssef creates the following ticket using the create ticket page", ((string)(null)), table8, "When ");
+#line 66
+    testRunner.And("Youssef opens a ticket with the title 'Create ticket 4'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 67
+   testRunner.Then("Youssef should see that the ticket type is 'Enhancement'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Youssef can create bug tickets")]
+        public virtual void YoussefCanCreateBugTickets()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can create bug tickets", ((string[])(null)));
+#line 69
+this.ScenarioSetup(scenarioInfo);
+#line 6
+this.FeatureBackground();
+#line hidden
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "Field",
+                        "Value"});
+            table9.AddRow(new string[]
+                {
+                        "Title",
+                        "Create ticket 4"});
+            table9.AddRow(new string[]
+                {
+                        "Type",
+                        "Bug"});
+#line 70
+   testRunner.When("Youssef creates the following ticket using the create ticket page", ((string)(null)), table9, "When ");
+#line 74
+    testRunner.And("Youssef opens a ticket with the title 'Create ticket 4'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 75
+   testRunner.Then("Youssef should see that the ticket type is 'Bug'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
