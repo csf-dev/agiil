@@ -21,6 +21,7 @@ namespace Agiil.Domain.Sprints
         .Where(x => x == theory)
         .Fetch(x => x.Project)
         .FetchMany(x => x.Tickets)
+        .ThenFetch(x => x.Type)
         .ToList()
         .SingleOrDefault();
     }

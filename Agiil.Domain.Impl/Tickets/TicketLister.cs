@@ -22,6 +22,7 @@ namespace Agiil.Domain.Tickets
 
       return query
         .Fetch(x => x.User)
+        .Fetch(x => x.Type)
         .ToList();
     }
 
