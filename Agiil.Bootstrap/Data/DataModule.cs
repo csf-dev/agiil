@@ -21,7 +21,7 @@ namespace Agiil.Bootstrap.Data
         .As<IPersister>();
 
       builder
-        .RegisterType<DatabaseCreator>()
+        .RegisterType<NHibernateSchemaExportingDatabaseCreator>()
         .As<IDatabaseCreator>();
 
       builder
