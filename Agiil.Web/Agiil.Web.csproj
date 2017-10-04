@@ -360,6 +360,7 @@
     <None Include="Web.Travis.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Views\Shared\Controls\TicketTypeChooser.pt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

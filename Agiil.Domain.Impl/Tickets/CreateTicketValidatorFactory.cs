@@ -18,6 +18,8 @@ namespace Agiil.Domain.Tickets
         c.Configure(r => r.Pattern = @"^\S+");
       });
       builder.AddMemberRule<EntityMustExistRule<Sprint>>(x => x.SprintIdentity);
+      builder.AddMemberRule<NotNullValueRule>(x => x.TicketTypeIdentity);
+      builder.AddMemberRule<EntityMustExistRule<TicketType>>(x => x.TicketTypeIdentity);
     }
 
     public CreateTicketValidatorFactory(IValidatorFactory validatorFactory) : base(validatorFactory) {}

@@ -6,6 +6,6 @@ namespace Agiil.Domain.Tickets
 {
   public interface ITicketFactory
   {
-    Ticket CreateTicket(string title, string description, User creator);
+    Ticket CreateTicket(string title, string description, User creator, TicketType type);
   }
 }

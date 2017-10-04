@@ -18,7 +18,7 @@ namespace Agiil.ObjectMaps.Tickets
         .ForMember(x => x.Created, o => o.ResolveUsing(t => t.CreationTimestamp))
         .ForMember(x => x.Reference, o => o.ResolveUsing(ticketRefResolver))
         .ForMember(x => x.HtmlDescription, o => o.ResolveUsing(markdownResolver, m => m.Description))
-        .ForMember(x => x.TypeName, o => o.ResolveUsing(t => t.Type.Name))
+        .ForMember(x => x.TypeName, o => o.ResolveUsing(t => t.Type?.Name))
         .AfterMap((ticket, dto) => {
           dto.Comments = dto.Comments.OrderBy(x => x.Timestamp).ToArray();
         })
