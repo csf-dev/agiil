@@ -20,6 +20,7 @@ namespace Agiil.Web.Controllers
     readonly ITicketDetailService ticketDetailService;
     readonly Lazy<ITicketEditor> editor;
     readonly Lazy<ISprintLister> sprintLister;
+    readonly Lazy<ITicketTypeProvider> typeProvider;
 
     public ActionResult Index(IIdentity<Ticket> id)
     {
@@ -99,15 +100,24 @@ namespace Agiil.Web.Controllers
         .GetSprints()
         .Select(x => Mapper.Map<SprintSummaryDto>(x))
         .ToList();
+      model.AvailableTicketTypes = typeProvider
+        .Value
+        .GetTicketTypes()
+        .Select(x => Mapper.Map<TicketTypeDto>(x))
+        .ToList();
+      
       return model;
     }
 
     public TicketController(ITicketDetailService ticketDetailService,
                             Lazy<ITicketEditor> editor,
                             Lazy<ISprintLister> sprintLister,
+                            Lazy<ITicketTypeProvider> typeProvider,
                             ControllerBaseDependencies baseDeps)
       : base(baseDeps)
     {
+      if(typeProvider == null)
+        throw new ArgumentNullException(nameof(typeProvider));
       if(sprintLister == null)
         throw new ArgumentNullException(nameof(sprintLister));
       if(editor == null)
@@ -118,6 +128,7 @@ namespace Agiil.Web.Controllers
       this.ticketDetailService = ticketDetailService;
       this.editor = editor;
       this.sprintLister = sprintLister;
+      this.typeProvider = typeProvider;
     }
   }
 }

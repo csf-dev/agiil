@@ -33,6 +33,17 @@
         <p>Please enter a valid ticket description.</p>
       </div>
       <div class="form_element field"
+           tal:define="typeId nothing;
+                       availableTypes here/AvailableTicketTypes">
+        <label for="TicketTypeIdentity">Type</label>
+        <select id="TicketTypeIdentity"
+                name="TicketTypeIdentity"
+                metal:use-macro="Views/Shared/Controls/TicketTypeChooser/macros/type_chooser">
+          <option value="0">Bug</option>
+          <option value="0">Enhancement</option>
+        </select>
+      </div>
+      <div class="form_element field"
            tal:define="sprintId ticket/Sprint/Id | nothing;
                        availableSprints here/AvailableSprints">
         <label for="SprintIdentity">Sprint</label>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Agiil.Domain.Tickets
 {
-  public interface INewTicketTypeProvider
+  public interface ITicketTypeProvider
   {
     IReadOnlyCollection<TicketType> GetTicketTypes();
   }

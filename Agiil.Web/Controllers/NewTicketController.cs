@@ -15,7 +15,7 @@ namespace Agiil.Web.Controllers
 
     readonly ITicketCreator ticketCreator;
     readonly Lazy<ISprintLister> sprintLister;
-    readonly Lazy<INewTicketTypeProvider> ticketTypeProvider;
+    readonly Lazy<ITicketTypeProvider> ticketTypeProvider;
 
     [HttpGet]
     public ActionResult Index()
@@ -54,7 +54,7 @@ namespace Agiil.Web.Controllers
 
     public NewTicketController(ITicketCreator ticketCreator,
                                Lazy<ISprintLister> sprintLister,
-                               Lazy<INewTicketTypeProvider> ticketTypeProvider,
+                               Lazy<ITicketTypeProvider> ticketTypeProvider,
                                ControllerBaseDependencies baseDeps)
       : base(baseDeps)
     {
