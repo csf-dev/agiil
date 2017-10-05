@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Web.Models</RootNamespace>
     <AssemblyName>Agiil.Web.Models</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.2.0.1</ReleaseVersion>
+    <ReleaseVersion>0.3.0.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
