@@ -6,7 +6,6 @@ $form_row_spacing: 0.4em;
   .form_element {
     display: block;
     margin-bottom: $form_row_spacing;
-    overflow: auto;
     
     &.field label {
       display: inline-block;
