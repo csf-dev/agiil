@@ -32,3 +32,10 @@ Scenario: Youssef can move a ticket to a different sprint
    When Youssef changes the ticket sprint to 'Sprint three' and clicks submit
    Then Youssef opens a ticket with the title 'Sample ticket 1'
     And Youssef should see that the ticket is part of the sprint 'Sprint three'
+
+Scenario: Youssef can change an enhancement ticket to a bug ticket
+  Given Youssef has opened a ticket with the title 'Sample ticket 1' for editing
+   When Youssef changes the ticket type to 'Bug' and clicks submit
+   Then Youssef opens a ticket with the title 'Sample ticket 1'
+    And Youssef should see that the ticket type is 'Bug'
+  
