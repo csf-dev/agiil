@@ -1,0 +1,9 @@
+@import '_Forms';
+
+#EditTicketForm {
+  @include full_page_form;
+  
+  #Title {
+    @extend %full-width-text;
+  }
+}

@@ -1,12 +1,24 @@
-﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
 <head>
-<title metal:fill-slot="title_element">Edit sprint</title>
+<title metal:fill-slot="title_element"
+       tal:content="string: ${here/Sprint/Name} (editing)">Sprint name (editing)</title>
+<base href="../../" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+</style>
+<style metal:fill-slot="extra_styles">
+@import url('Content/Css/EditSprint.css');
+</style>
 </head>
 <body>
 <div metal:fill-slot="page_content" class="page_content">
   <h1 tal:content="here/Sprint/Name">Edit sprint</h1>
-  <form action="Sprint/Edit" method="post" tal:define="sprint here/Sprint;
-                                                       spec here/Specification">
+  <form action="Sprint/Edit"
+        method="post"
+        tal:define="sprint here/Sprint; spec here/Specification"
+        class="edit_sprint">
     <fieldset>
       <input type="hidden" name="Id" value="/"
              tal:attributes="value sprint/Id | nothing" />
@@ -18,9 +30,9 @@
       <div class="form_element feedback warning" tal:condition="here/Response/NameIsInvalid | nothing">
         <p>Please enter a sprint name.</p>
       </div>
-      <div class="form_element field">
+      <div class="form_element field long_text">
         <label for="Description">Description</label>
-        <textarea id="Description" name="Description" class="long_text"
+        <textarea id="Description" name="Description"
                   tal:content="spec/Description | sprint/Description |  nothing"></textarea>
       </div>
       <div class="form_element feedback warning" tal:condition="here/Response/DescriptionIsInvalid | nothing">
@@ -50,7 +62,7 @@
       <p class="feedback warning"
          id="EditFailureMessage"
          tal:condition="here/Response/IsFailure | nothing">
-        The sprint was nt edited.
+        The sprint was not edited.
       </p>
       <div class="form_element button">
         <button id="Submit">Submit</button>

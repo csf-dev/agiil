@@ -328,6 +328,12 @@
     <Content Include="Content\Scss\_AppWideVariables.scss" />
     <Content Include="Content\Scss\_ContentStyles.scss" />
     <Content Include="Content\Scss\_Forms.scss" />
+    <Content Include="Content\Scss\CreateSprint.scss" />
+    <Content Include="Content\Scss\CreateTicket.scss" />
+    <Content Include="Content\Scss\EditSprint.scss" />
+    <Content Include="Content\Scss\EditTicket.scss" />
+    <Content Include="Content\Scss\SprintDetail.scss" />
+    <Content Include="Content\Scss\TicketDetail.scss" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Home\Index.pt" />

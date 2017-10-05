@@ -1,17 +1,30 @@
-﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
 <head>
-<title metal:fill-slot="title_element">Edit ticket</title>
+<title metal:fill-slot="title_element"
+       tal:define="ticket here/Ticket;
+                   ref string:#${ticket/Reference};
+                   title ticket/Title;
+                   titleContent string:${ref}: $title (editing)"
+       tal:content="titleContent">AB123: Ticket title (editing)</title>
+<base href="../../" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+</style>
+<style metal:fill-slot="extra_styles">
+@import url('Content/Css/EditTicket.css');
+</style>
 </head>
 <body>
 <div metal:fill-slot="page_content" class="page_content">
-  <h1 tal:content="here/Ticket/Title">Edit ticket</h1>
+  <h1 tal:content="here/Ticket/Title">
+    Edit <span tal:content="string:#${ticket/Reference}">AB123</span>
+  </h1>
   <form id="EditTicketForm" action="Ticket/Edit" method="post" tal:define="ticket here/Ticket">
     <p>
-      Created by <strong tal:content="ticket/Creator">username</strong>
+      This ticket was created by <strong tal:content="ticket/Creator">username</strong>
       on <strong tal:content="ticket/CreationTimestamp">2001-01-01 19:21:22</strong>.
-    </p>
-    <p>
-      Ticket <strong tal:content="string:#${ticket/Reference}">AB123</strong>.
     </p>
     <fieldset>
       <input type="hidden" name="Identity" value="/"
@@ -24,9 +37,9 @@
       <div class="form_element feedback warning" tal:condition="here/Response/TitleIsInvalid | nothing">
         <p>Please enter a ticket title.</p>
       </div>
-      <div class="form_element field">
+      <div class="form_element field long_text">
         <label for="Description">Description</label>
-        <textarea id="Description" name="Description" class="long_text"
+        <textarea id="Description" name="Description"
                   tal:content="here/Specification/Description | ticket/Description |  nothing"></textarea>
       </div>
       <div class="form_element feedback warning" tal:condition="here/Response/DescriptionIsInvalid | nothing">

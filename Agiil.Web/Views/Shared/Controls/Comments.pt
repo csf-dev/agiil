@@ -7,6 +7,7 @@
 <style>
 @import url('Content/Css/Reset.css');
 @import url('Content/Css/StandardPage.css');
+@import url('Content/Css/TicketDetail.css');
 </style>
 </head>
 <body>
@@ -50,9 +51,9 @@
       <fieldset>
         <input type="hidden" name="TicketId" value="0"
                tal:attributes="value ticket/Id | nothing" />
-        <div class="form_element field">
+        <div class="form_element field long_text">
           <label for="AddCommentBody">Body</label>
-          <textarea id="AddCommentBody" name="Body" class="long_text"
+          <textarea id="AddCommentBody" name="Body"
                     tal:content="here/AddCommentSpecification/Body | nothing"></textarea>
         </div>
         <div class="form_element feedback warning AddCommentFeedbackMessage" tal:condition="here/AddCommentResponse/BodyIsInvalid | nothing">

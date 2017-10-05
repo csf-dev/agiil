@@ -1,11 +1,15 @@
 <html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
 <head>
-<title metal:fill-slot="title_element">Sprint detail</title>
+<title metal:fill-slot="title_element"
+       tal:content="here/Sprint/Name">Sprint name</title>
 <base href="../../" />
 <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
 <style>
 @import url('Content/Css/Reset.css');
 @import url('Content/Css/StandardPage.css');
+</style>
+<style metal:fill-slot="extra_styles">
+@import url('Content/Css/SprintDetail.css');
 </style>
 </head>
 <body>

@@ -1,0 +1,5 @@
+@import '_Forms';
+
+form.add_a_comment {
+  @include full_page_form;
+}
