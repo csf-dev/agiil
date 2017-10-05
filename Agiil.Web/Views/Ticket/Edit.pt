@@ -46,7 +46,7 @@
         <p>Please enter a valid ticket description.</p>
       </div>
       <div class="form_element field"
-           tal:define="typeId nothing;
+           tal:define="typeId ticket/Type/Id | nothing;
                        availableTypes here/AvailableTicketTypes">
         <label for="TicketTypeIdentity">Type</label>
         <select id="TicketTypeIdentity"

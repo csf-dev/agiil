@@ -12,6 +12,8 @@ namespace Agiil.Web.Models.Tickets
 
     public SprintSummaryDto Sprint { get; set; }
 
+    public TicketTypeDto Type { get; set; }
+
     public IEnumerable<CommentDto> Comments { get; set; }
 
     public TicketDetailDto()
