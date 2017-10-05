@@ -1,0 +1,28 @@
+﻿@import '_AppWideVariables';
+
+@mixin rich_description {
+  ul {
+    padding-left: 1.6em;
+    list-style: disc outside;
+  }
+  p, li {
+    margin-bottom: $paragraph-spacing;
+  }
+  code {
+    font-family: $monospace-font-stack;
+    background-color: $subtle-keyline-color;
+    padding: 0 0.1em;
+    font-size: 95%;
+  }
+  pre {
+    @extend %subtle_box;
+    padding: 0.2em;
+    
+    code {
+      background: transparent none;
+      padding: 0;
+      font-size: 90%;
+      line-height: 120%;
+    }
+  }
+}

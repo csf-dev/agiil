@@ -1,38 +1,9 @@
 @import '_Reset';
 @import '_AppWideVariables';
 @import '_ContentStyles';
-@import '_Forms';
 @import '_PageHeader';
 
 body {
   font-family: $proportional-font-stack;
   margin: 1em;
-}
-.ticket_detail {
-  .description_content,
-  .comment_content {
-    font-family: $monospace-font-stack;
-    white-space: pre-line;
-  }
-}
-.sprint_detail {
-  .description_content {
-    font-family: $monospace-font-stack;
-    white-space: pre-line;
-  }
-}
-table.ticket_list {
-  border: 1px solid $subtle-keyline-color;
-  border-collapse: collapse;
-  
-  td, th {
-    padding: 0.2em 0.4em;
-    border-bottom: 1px solid $faint-keyline-color;
-  }
-  tr:last-child td, th {
-    border-color: $subtle-keyline-color;
-  }
-  th {
-    font-weight: bold;
-  }
 }

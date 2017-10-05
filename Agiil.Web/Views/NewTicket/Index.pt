@@ -1,6 +1,15 @@
-﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
 <head>
 <title metal:fill-slot="title_element">Create a new ticket</title>
+<base href="../../" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+</style>
+<style metal:fill-slot="extra_styles">
+@import url('Content/Css/CreateTicket.css');
+</style>
 </head>
 <body>
 <div metal:fill-slot="page_content"
@@ -8,7 +17,7 @@
                  createSuccess here/Response/Success | nothing"
      class="page_content">
   <h1>Create ticket</h1>
-  <form method="post" action="NewTicket/Create" tal:condition="not:createSuccess">
+  <form method="post" action="NewTicket/Create" tal:condition="not:createSuccess" class="create_ticket">
     <fieldset>
       <div class="form_element field">
         <label for="Title">Title</label>
@@ -18,9 +27,9 @@
       <div class="form_element feedback warning" tal:condition="here/Response/TitleIsInvalid | nothing">
         <p>Please enter a ticket title.</p>
       </div>
-      <div class="form_element field">
+      <div class="form_element field long_text">
         <label for="Description">Description</label>
-        <textarea id="Description" name="Description" class="long_text"
+        <textarea id="Description" name="Description"
                   tal:content="here/Specification/Description | nothing"></textarea>
       </div>
       <div class="form_element feedback warning" tal:condition="here/Response/DescriptionIsInvalid | nothing">

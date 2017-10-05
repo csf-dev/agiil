@@ -1,0 +1,10 @@
+@import '_Forms';
+@import '_RichDescriptions';
+
+form.add_a_comment {
+  @include full_page_form;
+}
+.description_content,
+.comment_content {
+  @include rich_description;
+}

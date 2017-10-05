@@ -14,14 +14,6 @@
   <div metal:define-macro="site_navigation"
        tal:omit-tag=""
        tal:define="isLoggedIn here/LoginState/IsLoggedIn | nothing">
-  <nav class="site_navigation anonymous"
-       tal:condition="not:isLoggedIn">
-    <h5>Application navigation</h5>
-    <ul>
-      <li><a href="">Home</a></li>
-      <li><a href="Login">Log in</a></li>
-    </ul>
-  </nav>
   <nav class="site_navigation"
        tal:condition="isLoggedIn">
     <h5>Application navigation</h5>

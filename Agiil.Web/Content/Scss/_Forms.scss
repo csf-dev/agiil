@@ -1,7 +1,41 @@
-﻿.field label {
-  display: block;
+@import '_AppWideVariables';
+
+$form_row_spacing: 0.4em;
+
+@mixin full_page_form {
+  .form_element {
+    display: block;
+    margin-bottom: $form_row_spacing;
+    
+    &.field label {
+      display: inline-block;
+      width: 10em;
+    }
+    &.field.long_text label {
+      display: block;
+    }
+    &.long_text textarea {
+      width: 100%;
+      min-height: 10em;
+    }
+  }
 }
-textarea.long_text {
-  width: 100%;
-  min-height: 10em;
+%full-width-text {
+  width: calc(100% - 15em);
+}
+.feedback {
+  @extend %subtle_box;
+  font-style: italic;
+  color: #999;
+  display: inline-block;
+  padding: 0.2em 0.6em;
+}
+.warning {
+  @extend .feedback;
+  color: #840;
+}
+p.warning {
+  @extend .warning;
+  display: block;
+  margin-bottom: $form_row_spacing;
 }

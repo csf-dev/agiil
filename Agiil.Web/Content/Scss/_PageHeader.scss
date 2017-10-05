@@ -8,54 +8,59 @@ body>header.standard {
   overflow: auto;
 }
 body>header {
+  .site_navigation h5,
+  .login_logout_control h5
+  {
+    @include invisible;
+  }
+  
   .site_navigation {
     float: left;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    
+    li {
+      display: inline-block;
+      margin-right: 0.4em;
+    }
+    a {
+      padding: 0.2em 0.4em;
+      text-decoration: none;
+      border-radius: 2px;
+    }
+    a:hover {
+      background-color: $subtle-keyline-color;
+      color: #009;
+    }
   }
-  .site_navigation h5 {
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    margin: 0 -1px -1px 0;
-    color: transparent;
-    background: transparent none;
-  }
+  
   .login_logout_control {
     float: right;
-  }
-  .login_logout_control h5 {
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    margin: 0 -1px -1px 0;
-    color: transparent;
-    background: transparent none;
-  }
-  .login_logout_control strong {
-    font-weight: 700;
-  }
-  .login_logout_control p,
-  .login_logout_control label {
-    padding: 4px 0.8em 4px 0;
-  }
-  .login_logout_control label {
-    padding-left: 1em;
-    padding-right: 0.4em;
-    display: inline;
-  }
-  .login_logout_control button,
-  .login_logout_control input {
-    font-family: $proportional-font-stack;
-    padding: 3px 0.5em;
-    border: 1px solid hsla(0, 0%, 75%, 1);
-    border-radius: 2px;
-    background: #FFF;
-    color: hsla(0, 0%, 35%, 1);
-  }
-  .login_logout_control .login button {
-    margin-left: 1em;
-  }
-  .login_logout_control p,
-  .login_logout_control .form_element {
-    float: left;
+    
+    strong {
+      font-weight: 700;
+    }
+    p, label {
+      padding: 4px 0.8em 4px 0;
+    }
+    label {
+      padding-left: 1em;
+      padding-right: 0.4em;
+      display: inline;
+    }
+    button, input {
+      font-family: $proportional-font-stack;
+      padding: 3px 0.5em;
+      border: 1px solid hsla(0, 0%, 75%, 1);
+      border-radius: 2px;
+      background: #FFF;
+      color: hsla(0, 0%, 35%, 1);
+    }
+    .login button {
+      margin-left: 1em;
+    }
+    p, .form_element {
+      float: left;
+    }
   }
 }
