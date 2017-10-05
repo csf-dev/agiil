@@ -173,6 +173,27 @@ this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Youssef can change an enhancement ticket to a bug ticket")]
+        public virtual void YoussefCanChangeAnEnhancementTicketToABugTicket()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can change an enhancement ticket to a bug ticket", ((string[])(null)));
+#line 36
+this.ScenarioSetup(scenarioInfo);
+#line 4
+this.FeatureBackground();
+#line 37
+  testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1' for editing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 38
+   testRunner.When("Youssef changes the ticket type to 'Bug' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 39
+   testRunner.Then("Youssef opens a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 40
+    testRunner.And("Youssef should see that the ticket type is 'Bug'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

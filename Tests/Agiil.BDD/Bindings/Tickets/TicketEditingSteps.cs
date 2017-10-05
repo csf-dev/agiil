@@ -56,6 +56,14 @@ namespace Agiil.BDD.Bindings.Tickets
       When(youssef).AttemptsTo<SubmitTheEditedTicket>();
     }
 
+    [When(@"Youssef changes the ticket type to '([^']+)' and clicks submit")]
+    public void WhenYoussefChangesTheTicketTypeAndSubmits(string newType)
+    {
+      var youssef = screenplay.GetYoussef();
+      When(youssef).AttemptsTo(ChangeTheTicket.TypeTo(newType));
+      When(youssef).AttemptsTo<SubmitTheEditedTicket>();
+    }
+
     public TicketEditingSteps(IScreenplayScenario screenplay)
     {
       if(screenplay == null)

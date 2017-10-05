@@ -25,6 +25,9 @@ namespace Agiil.BDD.Pages
     public static ILocatorBasedTarget Sprint
       => new ElementId("SprintIdentity", "the ticket's sprint");
 
+    public static ILocatorBasedTarget Type
+    => new ElementId("TicketTypeIdentity", "the ticket's type");
+
     public EditTicket(long ticketId)
     {
       this.ticketId = ticketId;

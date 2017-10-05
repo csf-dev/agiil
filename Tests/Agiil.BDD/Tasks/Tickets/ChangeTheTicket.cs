@@ -11,6 +11,8 @@ namespace Agiil.BDD.Tasks.Tickets
 
     public static IPerformable SprintTo(string sprintTitle) => new ChangeTheTicketSprint(sprintTitle);
 
+    public static IPerformable TypeTo(string type) => new ChangeTheTicketType(type);
+
     public static IPerformable StatusToClosed() => new CloseTheTicket();
 
     public static IPerformable StatusToReopened() => new ReopenTheTicket();
