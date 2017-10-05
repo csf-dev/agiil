@@ -1,6 +1,15 @@
-﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
 <head>
 <title metal:fill-slot="title_element">Edit comment</title>
+<base href="../../" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+</style>
+<style metal:fill-slot="extra_styles">
+@import url('Content/Css/EditComment.css');
+</style>
 </head>
 <body>
 <div metal:fill-slot="page_content" class="page_content">
@@ -13,9 +22,9 @@
     <fieldset>
       <input type="hidden" name="CommentId" value="/"
              tal:attributes="value here/Comment/Id | nothing" />
-      <div class="form_element field">
+      <div class="form_element field long_text">
         <label for="Body">Comment</label>
-        <textarea id="Body" name="Body" class="long_text"
+        <textarea id="Body" name="Body"
                   tal:content="value here/Specification/Body | here/Comment/Body | nothing"></textarea>
       </div>
       <div class="form_element feedback warning"

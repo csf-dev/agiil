@@ -21,7 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <ReleaseVersion>0.2.0.1</ReleaseVersion>
+    <ReleaseVersion>0.3.0.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -337,6 +337,7 @@
     <Content Include="Content\Scss\TicketList.scss" />
     <Content Include="Content\Scss\SprintList.scss" />
     <Content Include="Content\Scss\_RichDescriptions.scss" />
+    <Content Include="Content\Scss\EditComment.scss" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Home\Index.pt" />
