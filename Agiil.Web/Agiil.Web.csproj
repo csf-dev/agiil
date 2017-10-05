@@ -334,6 +334,9 @@
     <Content Include="Content\Scss\EditTicket.scss" />
     <Content Include="Content\Scss\SprintDetail.scss" />
     <Content Include="Content\Scss\TicketDetail.scss" />
+    <Content Include="Content\Scss\TicketList.scss" />
+    <Content Include="Content\Scss\SprintList.scss" />
+    <Content Include="Content\Scss\_RichDescriptions.scss" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Home\Index.pt" />

@@ -1,0 +1,5 @@
+@import '_RichDescriptions';
+
+.description_content {
+  @include rich_description;
+}
