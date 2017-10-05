@@ -50,7 +50,7 @@ namespace Agiil.Auth
 
     #region singletons & static factories
 
-    static readonly LoginResult loginFailed, loginThrottled;
+    static readonly LoginResult loginFailed;
 
     public static LoginResult LoginFailed => loginFailed;
 
