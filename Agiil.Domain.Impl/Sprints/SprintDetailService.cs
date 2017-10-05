@@ -8,7 +8,7 @@ namespace Agiil.Domain.Sprints
 {
   public class SprintDetailService : ISprintDetailService
   {
-    readonly IRepository<Sprint> repo;
+    readonly IEntityData repo;
 
     public Sprint GetSprint(IIdentity<Sprint> identity)
     {
@@ -17,14 +17,16 @@ namespace Agiil.Domain.Sprints
 
       var theory = repo.Theorise(identity);
       return repo
-        .Query()
+        .Query<Sprint>()
         .Where(x => x == theory)
         .Fetch(x => x.Project)
         .FetchMany(x => x.Tickets)
+        .ThenFetch(x => x.Type)
+        .ToList()
         .SingleOrDefault();
     }
 
-    public SprintDetailService(IRepository<Sprint> repo)
+    public SprintDetailService(IEntityData repo)
     {
       if(repo == null)
         throw new ArgumentNullException(nameof(repo));

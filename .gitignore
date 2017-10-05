@@ -12,4 +12,8 @@ Tests/Temp/
 Agiil.Web/Temp/
 *.log
 *.orig
-
+testrunner/
+test-artifacts/
+.xsp4.pid
+missing_registry_workaround/
+.nuget/

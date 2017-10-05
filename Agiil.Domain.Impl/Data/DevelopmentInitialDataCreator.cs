@@ -11,7 +11,7 @@ namespace Agiil.Domain.Data
   {
     readonly IUserCreator userCreator;
     readonly ITransactionCreator transactionCreator;
-    readonly IRepository<Project> projectRepo;
+    readonly IEntityData projectRepo;
 
     public void Create()
     {
@@ -21,15 +21,15 @@ namespace Agiil.Domain.Data
 
     void CreateInitialUser()
     {
-      userCreator.Add("admin", "secret");
+      userCreator.Add(AdminUser.Username, AdminUser.Password);
     }
 
     void CreateInitialProject()
     {
       var project = new Project
       {
-        Name = "Agiil issue tracker",
-        Code = "AG",
+        Name = AgiilProject.Name,
+        Code = AgiilProject.Code,
         NextAvailableTicketNumber = 1,
       };
 
@@ -42,7 +42,7 @@ namespace Agiil.Domain.Data
 
     public DevelopmentInitialDataCreator(IUserCreator userCreator,
                                          ITransactionCreator transactionCreator,
-                                         IRepository<Project> projectRepo)
+                                         IEntityData projectRepo)
     {
       if(projectRepo == null)
         throw new ArgumentNullException(nameof(projectRepo));

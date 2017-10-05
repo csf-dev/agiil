@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.BDD</RootNamespace>
     <AssemblyName>Agiil.BDD</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.2.0.1</ReleaseVersion>
+    <ReleaseVersion>0.3.0.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,19 +45,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="TechTalk.SpecFlow">
-      <HintPath>..\..\packages\SpecFlow.2.1.0\lib\net45\TechTalk.SpecFlow.dll</HintPath>
-    </Reference>
-    <Reference Include="Autofac">
-      <HintPath>..\..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="SpecFlow.Autofac.SpecFlowPlugin">
-      <HintPath>..\..\packages\SpecFlow.Autofac.1.0.2\lib\net45\SpecFlow.Autofac.SpecFlowPlugin.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.core.interfaces">
-      <HintPath>..\..\packages\NUnit.Console.3.0.0\tools\addins\nunit.core.interfaces.dll</HintPath>
-      <Package>nunit</Package>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -83,40 +70,175 @@
     <Reference Include="Ploeh.AutoFixture">
       <HintPath>..\..\packages\AutoFixture.3.50.2\lib\net40\Ploeh.AutoFixture.dll</HintPath>
     </Reference>
+    <Reference Include="WebDriver">
+      <HintPath>..\..\packages\Selenium.WebDriver.3.4.0\lib\net40\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Utils">
+      <HintPath>..\..\packages\CSF.Utils.6.0.0\lib\net45\CSF.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\..\packages\Selenium.Support.3.4.0\lib\net40\WebDriver.Support.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Configuration">
+      <HintPath>..\..\packages\CSF.Configuration.1.1.0\lib\net45\CSF.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Reflection">
+      <HintPath>..\..\packages\CSF.Reflection.1.0.1\lib\net45\CSF.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentAssertions.Core">
+      <HintPath>..\..\packages\FluentAssertions.4.19.3\lib\net45\FluentAssertions.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentAssertions">
+      <HintPath>..\..\packages\FluentAssertions.4.19.3\lib\net45\FluentAssertions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="TechTalk.SpecFlow">
+      <HintPath>..\..\packages\SpecFlow.2.2.0\lib\net45\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Screenplay">
+      <HintPath>..\..\packages\CSF.Screenplay.0.6.0-alpha\lib\net45\CSF.Screenplay.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Screenplay.Web">
+      <HintPath>..\..\packages\CSF.Screenplay.Web.0.6.0-alpha\lib\net45\CSF.Screenplay.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Screenplay.Reporting">
+      <HintPath>..\..\packages\CSF.Screenplay.Reporting.0.6.0-alpha\lib\net45\CSF.Screenplay.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Screenplay.SpecFlow">
+      <HintPath>..\..\packages\CSF.Screenplay.SpecFlow.0.6.0-alpha\lib\net45\CSF.Screenplay.SpecFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.WebDriverFactory">
+      <HintPath>..\..\packages\CSF.WebDriverFactory.0.6.0-alpha\lib\net45\CSF.WebDriverFactory.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bindings\Auth\UserAccountSteps.cs" />
     <Compile Include="Bindings\Auth\LoginSteps.cs" />
-    <Compile Include="IBddAssemblyMarker.cs" />
-    <Compile Include="BddDependencies.cs" />
-    <Compile Include="Bootstrap\BindingsModule.cs" />
-    <Compile Include="BddTestDiConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bindings\Tickets\TicketCreationSteps.cs" />
-    <Compile Include="Bindings\Tickets\TicketQuerySteps.cs" />
-    <Compile Include="Bootstrap\ContextsModule.cs" />
-    <Compile Include="Bindings\Tickets\TicketEditingSteps.cs" />
-    <Compile Include="Bindings\Tickets\CommentCreationSteps.cs" />
-    <Compile Include="Bindings\Tickets\CommentQuerySteps.cs" />
-    <Compile Include="Bindings\Tickets\CommentEditingSteps.cs" />
     <Compile Include="Bindings\Auth\PasswordChangeSteps.cs" />
+    <Compile Include="Actions\ApplicationApiAction.cs" />
+    <Compile Include="Actions\InstallTheApplication.cs" />
+    <Compile Include="Abilities\ActAsTheApplication.cs" />
+    <Compile Include="Tasks\Auth\LogIntoTheSite.cs" />
+    <Compile Include="Pages\HomePage.cs" />
+    <Compile Include="Pages\LoginPage.cs" />
+    <Compile Include="PageComponents\HeaderLoginLogoutWidget.cs" />
+    <Compile Include="Bindings\App\InstallationSteps.cs" />
+    <Compile Include="Abilities\LogInWithAUserAccount.cs" />
+    <Compile Include="Actions\AddAUserAccount.cs" />
+    <Compile Include="Bindings\Browsing\WebBrowsingSteps.cs" />
+    <Compile Include="Tasks\Browsing\OpenTheHomePage.cs" />
+    <Compile Include="Tasks\Browsing\ResetTheirBrowser.cs" />
+    <Compile Include="Tasks\Browsing\VisitTheHomePage.cs" />
+    <Compile Include="Tasks\Auth\VerifyThatThereIsALoginFailureMessage.cs" />
+    <Compile Include="Tasks\Auth\VerifyThatTheyAreNotLoggedIn.cs" />
+    <Compile Include="Tasks\Auth\VerifyThatTheyAreLoggedIn.cs" />
+    <Compile Include="Pages\ChangePassword.cs" />
+    <Compile Include="ScreenplayExtensions.cs" />
+    <Compile Include="Tasks\Auth\LogInWithTheirAccount.cs" />
+    <Compile Include="Tasks\Auth\ChangeTheirPassword.cs" />
+    <Compile Include="Bindings\Auth\LogoutSteps.cs" />
+    <Compile Include="Tasks\Auth\LogOutOfTheSite.cs" />
+    <Compile Include="Tasks\Tickets\CreateANewTicket.cs" />
+    <Compile Include="Personas\April.cs" />
+    <Compile Include="Personas\Joe.cs" />
+    <Compile Include="Personas\Youssef.cs" />
+    <Compile Include="Pages\CreateNewTicket.cs" />
+    <Compile Include="Bindings\Tickets\FindATicketSteps.cs" />
+    <Compile Include="Tasks\Tickets\FindTicketsByTitle.cs" />
+    <Compile Include="Tasks\Tickets\VerifyThatThereIsATicket.cs" />
+    <Compile Include="Bindings\Tickets\ReadATicketSteps.cs" />
+    <Compile Include="Tasks\Tickets\OpenTicketDetailByTitle.cs" />
+    <Compile Include="Tasks\Tickets\OpenTheTicket.cs" />
+    <Compile Include="Tasks\Tickets\ReadTheTicketDescription.cs" />
+    <Compile Include="Tasks\Tickets\ReadTheTicketSprintTitle.cs" />
+    <Compile Include="Tasks\Tickets\TheTicket.cs" />
+    <Compile Include="Models\Tickets\TicketCreationDetails.cs" />
+    <Compile Include="Pages\TicketList.cs" />
+    <Compile Include="Tasks\Tickets\VerifyThatThereIsATicketTitled.cs" />
+    <Compile Include="Tasks\Tickets\FindTickets.cs" />
+    <Compile Include="Pages\TicketDetail.cs" />
+    <Compile Include="Bindings\App\ProjectSetupSteps.cs" />
+    <Compile Include="Tasks\App\SetupTheSimpleSampleProject.cs" />
+    <Compile Include="Actions\LoadTheDataPackage.cs" />
+    <Compile Include="Tasks\Tickets\VerifyThatThereIsNotATicket.cs" />
+    <Compile Include="Tasks\Tickets\VerifyThatThereIsNotATicketTitled.cs" />
+    <Compile Include="Bindings\Tickets\TicketEditingSteps.cs" />
+    <Compile Include="Tasks\Tickets\BeginEditingTheTicket.cs" />
+    <Compile Include="Pages\EditTicket.cs" />
+    <Compile Include="Tasks\Tickets\OpenTicketForEditingByTitle.cs" />
+    <Compile Include="Tasks\Tickets\ChangeTheTicketTitle.cs" />
+    <Compile Include="Tasks\Tickets\ChangeTheTicketDescription.cs" />
+    <Compile Include="Tasks\Tickets\ChangeTheTicket.cs" />
+    <Compile Include="Tasks\Tickets\SubmitTheEditedTicket.cs" />
+    <Compile Include="Tasks\Tickets\ChangeTheTicketSprint.cs" />
     <Compile Include="Bindings\Tickets\OpenCloseTicketSteps.cs" />
-    <Compile Include="Bindings\Sprints\SprintCreationSteps.cs" />
-    <Compile Include="Bindings\Sprints\SprintQuerySteps.cs" />
-    <Compile Include="Bindings\Projects\ProjectCreationSteps.cs" />
+    <Compile Include="Tasks\Tickets\CloseTheTicket.cs" />
+    <Compile Include="Tasks\Tickets\ReopenTheTicket.cs" />
+    <Compile Include="Bindings\Tickets\CommentingOnATicketSteps.cs" />
+    <Compile Include="Tasks\Tickets\AddACommentToTheTicket.cs" />
+    <Compile Include="PageComponents\TicketCommentList.cs" />
+    <Compile Include="Tasks\Tickets\BeginEditingTheFirstEditableComment.cs" />
+    <Compile Include="Pages\EditComment.cs" />
+    <Compile Include="Tasks\Tickets\ChangeTheCommentText.cs" />
+    <Compile Include="Bindings\Sprints\SprintViewingSteps.cs" />
+    <Compile Include="Pages\SprintList.cs" />
+    <Compile Include="Abilities\ApplicationApiException.cs" />
+    <Compile Include="Bindings\Sprints\CreateSprintSteps.cs" />
+    <Compile Include="Pages\CreateSprint.cs" />
+    <Compile Include="Tasks\Sprints\TheStartDateFromTheSprintList.cs" />
+    <Compile Include="Tasks\Sprints\TheEndDateFromTheSprintList.cs" />
+    <Compile Include="Models\Sprints\SprintDetails.cs" />
+    <Compile Include="Tasks\Sprints\CreateASprint.cs" />
+    <Compile Include="Tasks\Sprints\ViewTheSprintDetail.cs" />
+    <Compile Include="Pages\SprintDetail.cs" />
+    <Compile Include="Tasks\Sprints\VerifyThatTheSprintDetailsMatch.cs" />
     <Compile Include="Bindings\Sprints\SprintEditingSteps.cs" />
+    <Compile Include="Tasks\Sprints\BeginEditingTheSprint.cs" />
+    <Compile Include="Pages\EditSprint.cs" />
+    <Compile Include="Tasks\Sprints\EditTheSprint.cs" />
+    <Compile Include="Bindings\Tickets\ReadingACommentSteps.cs" />
+    <Compile Include="Tasks\Markdown\VerifyThatTheTextHasTheCorrectFormatting.cs" />
+    <Compile Include="Tasks\Markdown\VerifyThat.cs" />
+    <Compile Include="Tasks\Tickets\DeleteTheFirstDeletableComment.cs" />
+    <Compile Include="Tasks\Sprints\ReadTheTicketTitlesFromTheCurrentSprint.cs" />
+    <Compile Include="Tasks\Tickets\ChangeTheTicketType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Bindings\" />
     <Folder Include="Bindings\Auth\" />
-    <Folder Include="Bootstrap\" />
     <Folder Include="Bindings\Tickets\" />
     <Folder Include="Bindings\Sprints\" />
     <Folder Include="Bindings\Projects\" />
+    <Folder Include="Actions\" />
+    <Folder Include="Abilities\" />
+    <Folder Include="Tasks\" />
+    <Folder Include="Tasks\Auth\" />
+    <Folder Include="Pages\" />
+    <Folder Include="PageComponents\" />
+    <Folder Include="Bindings\App\" />
+    <Folder Include="Bindings\Browsing\" />
+    <Folder Include="Tasks\Browsing\" />
+    <Folder Include="Tasks\Tickets\" />
+    <Folder Include="Personas\" />
+    <Folder Include="Models\" />
+    <Folder Include="Models\Tickets\" />
+    <Folder Include="Tasks\App\" />
+    <Folder Include="Tasks\Sprints\" />
+    <Folder Include="Models\Sprints\" />
+    <Folder Include="Tasks\Markdown\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj">
@@ -150,6 +272,10 @@
     <ProjectReference Include="..\..\Agiil.Web\Agiil.Web.csproj">
       <Project>{EA6B20FB-9F7F-49C5-BE4E-BCD59ECA1D85}</Project>
       <Name>Agiil.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Web.TestBuild\Agiil.Web.TestBuild.csproj">
+      <Project>{84E2316C-4CAA-4D80-8FFF-5F876258F3BF}</Project>
+      <Name>Agiil.Web.TestBuild</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -11,13 +11,12 @@ namespace Agiil.Domain.Tickets
 {
   public class TicketCreator : ITicketCreator
   {
-    readonly IRepository<Ticket> ticketRepo;
+    readonly IEntityData data;
     readonly ICurrentUserReader userReader;
     readonly ITicketFactory ticketFactory;
     readonly ITransactionCreator transactionFactory;
     readonly IValidatorFactory<CreateTicketRequest> validatorFactory;
     Func<IValidationResult, Ticket, CreateTicketResponse> responseCreator;
-    readonly IRepository<Sprint> sprintRepo;
 
     // TODO: This class has too many dependencies and thus too many responsibilities
     // Refactor and push some of these outwards
@@ -33,7 +32,7 @@ namespace Agiil.Domain.Tickets
       using(var trans = transactionFactory.BeginTransaction())
       {
         ticket = CreateTicket(request);
-        ticketRepo.Add(ticket);
+        data.Add(ticket);
         trans.Commit();
       }
 
@@ -48,12 +47,14 @@ namespace Agiil.Domain.Tickets
 
     Ticket CreateTicket(CreateTicketRequest request)
     {
+      var type = data.Theorise(request.TicketTypeIdentity);
       var ticket = ticketFactory.CreateTicket(request.Title,
                                               request.Description,
-                                              userReader.RequireCurrentUser());
+                                              userReader.RequireCurrentUser(),
+                                              type);
       
       if(request.SprintIdentity != null)
-        ticket.Sprint = sprintRepo.Theorise(request.SprintIdentity);
+        ticket.Sprint = data.Theorise(request.SprintIdentity);
       
       return ticket;
     }
@@ -65,16 +66,13 @@ namespace Agiil.Domain.Tickets
       set { responseCreator = value; }
     }
 
-    public TicketCreator(IRepository<Ticket> ticketRepo,
+    public TicketCreator(IEntityData data,
                          ICurrentUserReader userReader,
                          ITicketFactory ticketFactory,
                          ITransactionCreator transactionFactory,
                          IValidatorFactory<CreateTicketRequest> validatorFactory,
-                         Func<IValidationResult,Ticket,CreateTicketResponse> responseCreator,
-                         IRepository<Sprint> sprintRepo)
+                         Func<IValidationResult,Ticket,CreateTicketResponse> responseCreator)
     {
-      if(sprintRepo == null)
-        throw new ArgumentNullException(nameof(sprintRepo));
       if(responseCreator == null)
         throw new ArgumentNullException(nameof(responseCreator));
       if(validatorFactory == null)
@@ -85,16 +83,15 @@ namespace Agiil.Domain.Tickets
         throw new ArgumentNullException(nameof(ticketFactory));
       if(userReader == null)
         throw new ArgumentNullException(nameof(userReader));
-      if(ticketRepo == null)
-        throw new ArgumentNullException(nameof(ticketRepo));
+      if(data == null)
+        throw new ArgumentNullException(nameof(data));
 
       this.ticketFactory = ticketFactory;
       this.userReader = userReader;
-      this.ticketRepo = ticketRepo;
+      this.data = data;
       this.transactionFactory = transactionFactory;
       this.validatorFactory = validatorFactory;
       this.responseCreator = responseCreator;
-      this.sprintRepo = sprintRepo;
     }
   }
 }

@@ -13,17 +13,8 @@ namespace Agiil.Domain.Tickets
     readonly IEnvironment environment;
     readonly ICurrentProjectGetter projectGetter;
 
-    public Ticket CreateTicket(string title, string description, User creator)
+    public Ticket CreateTicket(string title, string description, User creator, TicketType type)
     {
-      if(title == null)
-      {
-        throw new ArgumentNullException(nameof(title));
-      }
-      if(creator == null)
-      {
-        throw new ArgumentNullException(nameof(creator));
-      }
-
       var project = projectGetter.GetCurrentProject();
 
       return new Ticket
@@ -34,6 +25,7 @@ namespace Agiil.Domain.Tickets
         CreationTimestamp = environment.GetCurrentUtcTimestamp(),
         Project = project,
         TicketNumber = (project != null)? project.NextAvailableTicketNumber++ : default(long),
+        Type = type,
       };
     }
 

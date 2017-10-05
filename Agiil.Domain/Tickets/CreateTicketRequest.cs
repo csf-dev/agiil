@@ -11,5 +11,7 @@ namespace Agiil.Domain.Tickets
     public string Description { get; set; }
 
     public IIdentity<Sprint> SprintIdentity { get; set; }
+
+    public IIdentity<TicketType> TicketTypeIdentity { get; set; }
   }
 }

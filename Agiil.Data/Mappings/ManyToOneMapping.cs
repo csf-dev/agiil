@@ -16,7 +16,7 @@ namespace Agiil.Data.Mappings
         propertyCustomizer.Column(formatter.GetIdentityColumnName(parentType));
         propertyCustomizer.ForeignKey(formatter.GetForeignKeyConstraintName(parentType, childType));
         propertyCustomizer.Index(formatter.GetIndexName(childType, parentType));
-        propertyCustomizer.Cascade(Cascade.All);
+        propertyCustomizer.Cascade(Cascade.Persist);
       };
     }
 

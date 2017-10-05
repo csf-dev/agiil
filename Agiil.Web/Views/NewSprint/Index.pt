@@ -1,13 +1,22 @@
-﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
 <head>
 <title metal:fill-slot="title_element">Create a new sprint</title>
+<base href="../../" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+</style>
+<style metal:fill-slot="extra_styles">
+@import url('Content/Css/CreateSprint.css');
+</style>
 </head>
 <body>
 <div metal:fill-slot="page_content"
      tal:define="submitted here/Result"
      class="page_content">
   <h1>Create sprint</h1>
-  <form method="post" action="NewSprint/Index">
+  <form method="post" action="NewSprint/Index" class="create_sprint">
     <fieldset>
       <div class="form_element field">
         <label for="Name">Name</label>
@@ -19,19 +28,28 @@
       </div>
       <div class="form_element field">
         <label for="StartDate">Start date</label>
-        <input type="date" id="StartDate" name="StartDate"
-                  tal:attributes="value here/Specification/StartDate | nothing" />
+        <input type="date"
+               id="StartDate"
+               name="StartDate"
+               tal:attributes="value here/Specification/StartDateWebValue | nothing" />
       </div>
       <div class="form_element field">
         <label for="EndDate">End date</label>
-        <input type="date" id="EndDate" name="EndDate"
-                  tal:attributes="value here/Specification/EndDate | nothing" />
+        <input type="date"
+               id="EndDate"
+               name="EndDate"
+               tal:attributes="value here/Specification/EndDateWebValue | nothing" />
       </div>
       <div class="form_element feedback warning" tal:condition="here/Result/EndDateMustNotBeBeforeStartDate | nothing">
         <p>The end date must not fall before the start date.</p>
       </div>
+      <p id="FailureMessage"
+         class="feedback warning"
+         tal:condition="here/Result/IsFailure | nothing">
+        The sprint was not created.
+      </p>
       <div class="form_element button">
-        <button>Create</button>
+        <button id="Submit">Create</button>
       </div>
     </fieldset>
   </form>

@@ -1,6 +1,9 @@
 ﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
 <head>
 <title metal:fill-slot="title_element">Sprints</title>
+<style metal:fill-slot="extra_styles">
+@import url('Content/Css/SprintList.css');
+</style>
 </head>
 <body>
 <div metal:fill-slot="page_content"
@@ -30,17 +33,22 @@
     <tbody>
       <tr tal:repeat="sprint sprints" tal:attributes="class sprint/GetHtmlClasses">
         <td tal:define="url string:Sprint/Index/${sprint/Id}">
-          <a href="Sprint/Index/0" tal:attributes="href url" tal:content="sprint/Name">Sprint name here</a>
+          <a href="Sprint/Index/0"
+             tal:attributes="href url"
+             tal:content="sprint/Name"
+             class="sprint_name">Sprint name here</a>
         </td>
         <td>
           <span tal:content="sprint/GetShortStartDate"
                 tal:attributes="title sprint/GetLongStartDate"
-                title="2011-01-01 12:13:43">1 Jan 2001</span>
+                title="2011-01-01 12:13:43"
+                class="sprint_start_date">1 Jan 2001</span>
         </td>
         <td>
           <span tal:content="sprint/GetShortEndDate"
                 tal:attributes="title sprint/GetLongEndDate"
-                title="2011-01-01 12:13:43">1 Jan 2001</span>
+                title="2011-01-01 12:13:43"
+                class="sprint_end_date">1 Jan 2001</span>
         </td>
       </tr>
     </tbody>

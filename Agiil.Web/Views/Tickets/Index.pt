@@ -1,6 +1,9 @@
 ﻿<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
 <head>
 <title metal:fill-slot="title_element">Tickets</title>
+<style metal:fill-slot="extra_styles">
+@import url('Content/Css/TicketList.css');
+</style>
 </head>
 <body>
 <div metal:fill-slot="page_content" class="page_content">
@@ -31,12 +34,18 @@
     </thead>
     <tbody>
       <tr tal:repeat="ticket tickets" tal:attributes="class ticket/GetHtmlClasses">
-        <td tal:content="ticket/Reference">AB123</td>
-        <td tal:define="url string:Ticket/Index/${ticket/Id}">
-          <a href="Ticket/Index/0" tal:attributes="href url" tal:content="ticket/Title">Ticket title here</a>
+        <td tal:content="ticket/Reference"
+            class="TicketReference">AB123</td>
+        <td tal:define="url string:Ticket/Index/${ticket/Id}"
+            class="TicketTitle">
+          <a href="Ticket/Index/0"
+             tal:attributes="href url"
+             tal:content="ticket/Title"
+             class="TicketLink">Ticket title here</a>
         </td>
-        <td tal:content="ticket/Creator">username</td>
-        <td>
+        <td tal:content="ticket/Creator"
+            class="TicketCreator">username</td>
+        <td class="TicketTimestamp">
           <span tal:attributes="title ticket/CreationTimestamp"
                 tal:content="ticket/ShortTimestamp"
                 title="2011-01-01 12:13:43">4th May 2001</span>

@@ -8,8 +8,8 @@ namespace Agiil.Domain.Tickets
 {
   public class CommentCreator : ICommentCreator
   {
-    readonly IRepository<Ticket> ticketRepo;
-    readonly IRepository<Comment> commentRepo;
+    readonly IEntityData ticketRepo;
+    readonly IEntityData commentRepo;
     readonly ICommentFactory commentFactory;
     readonly ITransactionCreator transactionCreator;
     readonly IValidatorFactory<CreateCommentRequest> validatorFactory;
@@ -40,10 +40,10 @@ namespace Agiil.Domain.Tickets
       return responseCreator(validationResult, comment);
     }
 
-    public CommentCreator(IRepository<Ticket> ticketRepo,
+    public CommentCreator(IEntityData ticketRepo,
                           ICommentFactory commentFactory,
                           ITransactionCreator transactionCreator,
-                          IRepository<Comment> commentRepo,
+                          IEntityData commentRepo,
                           IValidatorFactory<CreateCommentRequest> validatorFactory,
                           Func<IValidationResult,Comment,CreateCommentResponse> responseCreator)
     {

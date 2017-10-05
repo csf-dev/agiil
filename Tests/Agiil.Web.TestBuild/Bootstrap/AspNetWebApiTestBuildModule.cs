@@ -1,0 +1,22 @@
+﻿using System;
+using System.Web.Http;
+using Agiil.Web.Bootstrap;
+using Autofac.Integration.WebApi;
+
+namespace Agiil.Web.Bootstrap
+{
+  public class AspNetWebApiTestBuildModule : AspNetWebApiModule
+  {
+    protected override void RegisterControllers(Autofac.ContainerBuilder builder)
+    {
+      var assemblies = new [] {
+        typeof(AspNetWebApiModule).Assembly,
+        System.Reflection.Assembly.GetExecutingAssembly(),
+      };
+
+      builder.RegisterApiControllers(assemblies);
+    }
+
+    public AspNetWebApiTestBuildModule(HttpConfiguration config) : base(config) { }
+  }
+}

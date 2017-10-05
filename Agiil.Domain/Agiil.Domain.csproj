@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Domain</RootNamespace>
     <AssemblyName>Agiil.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.2.0.1</ReleaseVersion>
+    <ReleaseVersion>0.3.0.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -120,6 +120,15 @@
     <Compile Include="Sprints\ISprintEditor.cs" />
     <Compile Include="Sprints\EditSprintRequest.cs" />
     <Compile Include="Sprints\EditSprintResponse.cs" />
+    <Compile Include="Tickets\IIdentifiesTicketByProjectAndNumber.cs" />
+    <Compile Include="Auth\AdminUser.cs" />
+    <Compile Include="Projects\AgiilProject.cs" />
+    <Compile Include="Auth\IGetsUserByUsername.cs" />
+    <Compile Include="Tickets\ICommentDeleter.cs" />
+    <Compile Include="Tickets\DeleteCommentResponse.cs" />
+    <Compile Include="Tickets\DeleteCommentRequest.cs" />
+    <Compile Include="Tickets\TicketType.cs" />
+    <Compile Include="Tickets\ITicketTypeProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

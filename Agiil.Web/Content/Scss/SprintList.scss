@@ -1,0 +1,17 @@
+﻿@import '_AppWideVariables';
+
+table.sprint_list {
+  border: 1px solid $subtle-keyline-color;
+  border-collapse: collapse;
+  
+  td, th {
+    padding: 0.2em 0.4em;
+    border-bottom: 1px solid $faint-keyline-color;
+  }
+  tr:last-child td, th {
+    border-color: $subtle-keyline-color;
+  }
+  th {
+    font-weight: bold;
+  }
+}

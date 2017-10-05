@@ -7,7 +7,7 @@ namespace Agiil.Auth
 {
   public class UserPasswordUpdater : UserPasswordSetterBase, IUserPasswordUpdater
   {
-    readonly IRepository<User> repo;
+    readonly IEntityData repo;
 
     public void ChangePassword(User user, string newPassword)
     {
@@ -32,7 +32,7 @@ namespace Agiil.Auth
 
     public UserPasswordUpdater(ICredentialsCreator credentialsCreator,
                        ICredentialsSerializer credentialsSerializer,
-                       IRepository<User> repo)
+                       IEntityData repo)
       : base(credentialsCreator, credentialsSerializer)
     {
       if(repo == null)

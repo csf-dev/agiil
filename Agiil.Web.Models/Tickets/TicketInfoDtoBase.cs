@@ -16,5 +16,7 @@ namespace Agiil.Web.Models.Tickets
     public bool Closed { get; set; }
 
     public string CreationTimestamp => Created.ToString("u");
+
+    public string TypeName { get; set; }
   }
 }

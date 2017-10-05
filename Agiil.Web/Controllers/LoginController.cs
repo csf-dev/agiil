@@ -43,7 +43,7 @@ namespace Agiil.Web.Controllers
     [HttpPost]
     public ActionResult Login(Models.Auth.LoginCredentials credentials)
     {
-      var loginRequest = loginRequestCreator(credentials.Username, credentials.Password);
+      var loginRequest = loginRequestCreator(credentials.Username, credentials.Password, Request?.UserHostAddress);
       var result = loginLogoutManager.AttemptLogin(loginRequest);
 
       TempData.Clear();

@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Web.Models</RootNamespace>
     <AssemblyName>Agiil.Web.Models</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.2.0.1</ReleaseVersion>
+    <ReleaseVersion>0.3.0.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,6 +26,22 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <Optimize>false</Optimize>
+    <OutputPath>bin</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <Optimize>false</Optimize>
+    <OutputPath>bin</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -73,6 +89,8 @@
     <Compile Include="Sprints\EditSprintSpecification.cs" />
     <Compile Include="Sprints\EditSprintResponse.cs" />
     <Compile Include="Sprints\EditSprintModel.cs" />
+    <Compile Include="DateTimeExtensions.cs" />
+    <Compile Include="Tickets\TicketTypeDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CSF.Data;
 using CSF.Data.Entities;
 
 namespace Agiil.Domain.Sprints
 {
   public class SprintLister : ISprintLister
   {
-    readonly IRepository<Sprint> repo;
+    readonly IQuery queryProvider;
 
     public IList<Sprint> GetSprints()
     {
@@ -16,12 +17,11 @@ namespace Agiil.Domain.Sprints
 
     public IList<Sprint> GetSprints(ListSprintsRequest request)
     {
-      var query = repo.Query();
+      var query = queryProvider.Query<Sprint>();
       query = ApplyFilters(query, request?? new ListSprintsRequest());
       return query
         .OrderBy(x => x.StartDate.HasValue? x.StartDate : x.CreationDate)
         .ToList();
-      
     }
 
     IQueryable<Sprint> ApplyFilters(IQueryable<Sprint> query, ListSprintsRequest request)
@@ -38,11 +38,11 @@ namespace Agiil.Domain.Sprints
       return query;
     }
 
-    public SprintLister(IRepository<Sprint> repo)
+    public SprintLister(IQuery query)
     {
-      if(repo == null)
-        throw new ArgumentNullException(nameof(repo));
-      this.repo = repo;
+      if(query == null)
+        throw new ArgumentNullException(nameof(query));
+      this.queryProvider = query;
     }
   }
 }

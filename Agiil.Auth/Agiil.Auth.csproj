@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Auth</RootNamespace>
     <AssemblyName>Agiil.Auth</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.2.0.1</ReleaseVersion>
+    <ReleaseVersion>0.3.0.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -73,6 +73,9 @@
     <Compile Include="PasswordChangeResponse.cs" />
     <Compile Include="IUserPasswordUpdater.cs" />
     <Compile Include="IPasswordPolicy.cs" />
+    <Compile Include="ILoginThrottlingService.cs" />
+    <Compile Include="LoginThrottlingResponse.cs" />
+    <Compile Include="ILogsUserInOrOut.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

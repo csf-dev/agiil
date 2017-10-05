@@ -1,11 +1,19 @@
 <html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
 <head>
-<title metal:fill-slot="title_element">Ticket detail</title>
+<title metal:fill-slot="title_element"
+       tal:define="ticket here/Ticket;
+                   ref string:#${ticket/Reference};
+                   title ticket/Title;
+                   titleContent string:${ref}: $title"
+       tal:content="titleContent">AB123: Ticket title</title>
 <base href="../../" />
 <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
 <style>
 @import url('Content/Css/Reset.css');
 @import url('Content/Css/StandardPage.css');
+</style>
+<style metal:fill-slot="extra_styles">
+@import url('Content/Css/TicketDetail.css');
 </style>
 </head>
 <body>
@@ -13,21 +21,23 @@
          class="page_content ticket_detail"
          tal:define="ticket here/Ticket">
   <header>
-    <h1 tal:content="ticket/Title">Ticket title</h1>
+    <h1 tal:content="ticket/Title" class="title_content">Ticket title</h1>
     <p>
-      Ticket <strong tal:content="string:#${ticket/Reference}">AB123</strong>.
+      Ticket <strong tal:content="string:#${ticket/Reference}" class="ticket_reference">AB123</strong>:
+      <span class="ticket_type" tal:content="ticket/TypeName">Thing</span>.
     </p>
   </header>
   <section class="details">
     <p>
-      Created by <strong tal:content="ticket/Creator">username</strong>
+      Created by <strong tal:content="ticket/Creator" id="TicketCreatorUsername">username</strong>
       on <strong tal:content="ticket/CreationTimestamp">2001-01-01 19:21:22</strong>.
     </p>
     <p tal:condition="ticket/Sprint">
       This ticket is part of sprint
       <a href="Sprint/Index/0"
          tal:define="url string:Sprint/Index/${ticket/Sprint/Id}"
-         tal:attributes="href url"><strong tal:content="ticket/Sprint/Name">Sprint name</strong></a>.
+         tal:attributes="href url"><strong tal:content="ticket/Sprint/Name"
+                                           class="TicketSprintName">Sprint name</strong></a>.
     </p>
     <p tal:condition="not:ticket/Sprint">
       This ticket is not part of any sprint.
@@ -41,25 +51,26 @@
           tal:attributes="action openCloseUrl">
       <fieldset>
         <div class="form_element button" tal:condition="not:isClosed">
-          <p>This ticket is open</p>
-          <button>Close</button>
+          <p>This ticket is <span id="TicketState">open</span></p>
+          <button id="CloseTicket">Close</button>
         </div>
         <div class="form_element button" tal:condition="isClosed">
-          <p>This ticket is closed</p>
-          <button>Re-open</button>
+          <p>This ticket is <span id="TicketState">closed</span></p>
+          <button id="ReopenTicket">Re-open</button>
         </div>
       </fieldset>
     </form>
   </section>
   <section class="description">
     <h2>Description</h2>
-    <div tal:content="ticket/Description" class="description_content">
+    <div tal:content="structure ticket/HtmlDescription" class="description_content">
       Ticket description here.
     </div>
   </section>
   <a href="Ticket/Edit/0"
      tal:define="editUrl string:Ticket/Edit/${ticket/Id}"
-     tal:attributes="href editUrl">Edit this ticket</a>
+     tal:attributes="href editUrl"
+     id="EditTicketLink">Edit this ticket</a>
   <section class="comments">
     <header>
       <h2>Comments</h2>

@@ -1,0 +1,9 @@
+@import '_Forms';
+
+form.edit_sprint {
+  @include full_page_form;
+  
+  #Name {
+    @extend %full-width-text;
+  }
+}

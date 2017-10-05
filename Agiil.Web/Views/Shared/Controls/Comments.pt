@@ -7,6 +7,7 @@
 <style>
 @import url('Content/Css/Reset.css');
 @import url('Content/Css/StandardPage.css');
+@import url('Content/Css/TicketDetail.css');
 </style>
 </head>
 <body>
@@ -26,12 +27,21 @@
             Written by <strong tal:content="comment/Author">Username</strong> on
             <strong tal:content="comment/AuthoredTimestamp">2001-01-01 19:21:22</strong>.
           </p>
-          <p tal:condition="commentIsMine">
+          <tal:block condition="commentIsMine">
+          <p>
             <a href="Comment/Edit/0"
-               tal:attributes="href string:Comment/Edit/${comment/Id}">Edit this comment</a>
+               tal:attributes="href string:Comment/Edit/${comment/Id}"
+               class="edit_comment">Edit this comment</a>
           </p>
+          <form method="post" action="Comment/Delete" >
+            <fieldset>
+              <input type="hidden" name="id" value="0" tal:attributes="value comment/Id" />
+              <button class="delete_comment">Delete this comment</button>
+            </fieldset>
+          </form>
+          </tal:block>
         </header>
-        <div tal:content="comment/Body" class="comment_content">Comment text here</div>
+        <div tal:content="structure comment/HtmlBody" class="comment_content">Comment text here</div>
       </li>
     </ol>
     <form metal:define-macro="add_a_comment"
@@ -41,16 +51,19 @@
       <fieldset>
         <input type="hidden" name="TicketId" value="0"
                tal:attributes="value ticket/Id | nothing" />
-        <div class="form_element field">
-          <label for="Body">Body</label>
-          <textarea id="Body" name="Body" class="long_text"
+        <div class="form_element field long_text">
+          <label for="AddCommentBody">Body</label>
+          <textarea id="AddCommentBody" name="Body"
                     tal:content="here/AddCommentSpecification/Body | nothing"></textarea>
         </div>
-        <div class="form_element feedback warning" tal:condition="here/AddCommentResponse/BodyIsInvalid | nothing">
+        <div class="form_element feedback warning AddCommentFeedbackMessage" tal:condition="here/AddCommentResponse/BodyIsInvalid | nothing">
           <p>Please enter a comment.</p>
         </div>
+        <div class="form_element feedback success AddCommentFeedbackMessage" tal:condition="here/AddCommentResponse/Success | nothing">
+          <p>Your comment was added.</p>
+        </div>
         <div class="form_element button">
-          <button>Submit</button>
+          <button id="AddCommentSubmit">Submit</button>
         </div>
       </fieldset>
     </form>

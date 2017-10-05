@@ -1,15 +1,45 @@
+sudo: false
 language: csharp
 solution: Agiil.sln
+  
+addons:
+  sauce_connect: true
+  apt:
+    sources:
+      - sourceline: 'ppa:ubuntu-toolchain-r/test'
+    packages:
+      - mono-xsp4
+      - libstdc++6-4.7-dev
 
-before_install:
-  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-  - sudo apt-get update
-  - sudo apt-get -y install libstdc++6-4.7-dev
+matrix:
+  include:
+    - env:
+      - SAUCE_USERNAME="craigfowler_agiil"
+      - secure: "I3YU/78BjSITaIDJafGOoRfrZbWnINBA1OSBECUIEzZ1MM8EY57m08D5sapN2jHRgTCGj0rGwJWZOEE24+rWPJQOA2Z27G2GbQvZ21DZEot1/bNbhxWUYkFxtQY6PAkkG0MxJa8xXTLOavlnMpigEC30Yxd2kxGO9MGdeb/6FziX0gNo3eD6P+0G80J7SwIgBS1Ea7Ldp6VGXKaEF4s+25fU+j2inMIQU3SuLS0SQ8b/L9Hq00E6NkUiAV6xsh7QsTUmCRxez37D0JGwBN0phw2WDOzUfor5nNUUtGbOtvQ/acuAghPv0RHDRzFdDpY1KpKiAjW9vV0/+yslMmJSA04m/RTZoc5oYqdL8466zAepuQa2tTl+q7mX0SN7KCxRyc8R7gR97Bbnc8J5aNwHcp3cBSHPFOdm6XfpjXpeJ2WU4HF4GTuxknx5/8z+zGK4Lcgb7jepFDToB4O4MTUd2+alkiXCxIM1b1Kf/KKvJYdm8rgvWHKDGMnPIOt4iYOT4sJJsNnMV7RGCrmCC9P3Nj6i9rkjnxdczGMleVY2MIbesbwXakbmbu+280wQDxGFMLuFavCwfSbTJrQxR7gYZa1aZ1ExHk4mKF/i2YDtIsSMbbJtsW7A2GQPADR56nfBqWEiQbMeU9sfpy2fKe0EUaZQVA4qaJxsJHqDqKI8cZc="
+      - BROWSER_PLATFORM="Windows 10"
+      - BROWSER_NAME="Chrome"
+    - env:
+      - SAUCE_USERNAME="craigfowler_agiil"
+      - secure: "I3YU/78BjSITaIDJafGOoRfrZbWnINBA1OSBECUIEzZ1MM8EY57m08D5sapN2jHRgTCGj0rGwJWZOEE24+rWPJQOA2Z27G2GbQvZ21DZEot1/bNbhxWUYkFxtQY6PAkkG0MxJa8xXTLOavlnMpigEC30Yxd2kxGO9MGdeb/6FziX0gNo3eD6P+0G80J7SwIgBS1Ea7Ldp6VGXKaEF4s+25fU+j2inMIQU3SuLS0SQ8b/L9Hq00E6NkUiAV6xsh7QsTUmCRxez37D0JGwBN0phw2WDOzUfor5nNUUtGbOtvQ/acuAghPv0RHDRzFdDpY1KpKiAjW9vV0/+yslMmJSA04m/RTZoc5oYqdL8466zAepuQa2tTl+q7mX0SN7KCxRyc8R7gR97Bbnc8J5aNwHcp3cBSHPFOdm6XfpjXpeJ2WU4HF4GTuxknx5/8z+zGK4Lcgb7jepFDToB4O4MTUd2+alkiXCxIM1b1Kf/KKvJYdm8rgvWHKDGMnPIOt4iYOT4sJJsNnMV7RGCrmCC9P3Nj6i9rkjnxdczGMleVY2MIbesbwXakbmbu+280wQDxGFMLuFavCwfSbTJrQxR7gYZa1aZ1ExHk4mKF/i2YDtIsSMbbJtsW7A2GQPADR56nfBqWEiQbMeU9sfpy2fKe0EUaZQVA4qaJxsJHqDqKI8cZc="
+      - BROWSER_PLATFORM="Windows 10"
+      - BROWSER_NAME="Firefox"
+    - env:
+      - SAUCE_USERNAME="craigfowler_agiil"
+      - secure: "I3YU/78BjSITaIDJafGOoRfrZbWnINBA1OSBECUIEzZ1MM8EY57m08D5sapN2jHRgTCGj0rGwJWZOEE24+rWPJQOA2Z27G2GbQvZ21DZEot1/bNbhxWUYkFxtQY6PAkkG0MxJa8xXTLOavlnMpigEC30Yxd2kxGO9MGdeb/6FziX0gNo3eD6P+0G80J7SwIgBS1Ea7Ldp6VGXKaEF4s+25fU+j2inMIQU3SuLS0SQ8b/L9Hq00E6NkUiAV6xsh7QsTUmCRxez37D0JGwBN0phw2WDOzUfor5nNUUtGbOtvQ/acuAghPv0RHDRzFdDpY1KpKiAjW9vV0/+yslMmJSA04m/RTZoc5oYqdL8466zAepuQa2tTl+q7mX0SN7KCxRyc8R7gR97Bbnc8J5aNwHcp3cBSHPFOdm6XfpjXpeJ2WU4HF4GTuxknx5/8z+zGK4Lcgb7jepFDToB4O4MTUd2+alkiXCxIM1b1Kf/KKvJYdm8rgvWHKDGMnPIOt4iYOT4sJJsNnMV7RGCrmCC9P3Nj6i9rkjnxdczGMleVY2MIbesbwXakbmbu+280wQDxGFMLuFavCwfSbTJrQxR7gYZa1aZ1ExHk4mKF/i2YDtIsSMbbJtsW7A2GQPADR56nfBqWEiQbMeU9sfpy2fKe0EUaZQVA4qaJxsJHqDqKI8cZc="
+      - BROWSER_PLATFORM="Windows 10"
+      - BROWSER_NAME="Internet Explorer"
+# TODO: #AG66 - Reinstate testing in Edge once problems are fixed
+#    - env:
+#      - SAUCE_USERNAME="craigfowler_agiil"
+#      - secure: "I3YU/78BjSITaIDJafGOoRfrZbWnINBA1OSBECUIEzZ1MM8EY57m08D5sapN2jHRgTCGj0rGwJWZOEE24+rWPJQOA2Z27G2GbQvZ21DZEot1/bNbhxWUYkFxtQY6PAkkG0MxJa8xXTLOavlnMpigEC30Yxd2kxGO9MGdeb/6FziX0gNo3eD6P+0G80J7SwIgBS1Ea7Ldp6VGXKaEF4s+25fU+j2inMIQU3SuLS0SQ8b/L9Hq00E6NkUiAV6xsh7QsTUmCRxez37D0JGwBN0phw2WDOzUfor5nNUUtGbOtvQ/acuAghPv0RHDRzFdDpY1KpKiAjW9vV0/+yslMmJSA04m/RTZoc5oYqdL8466zAepuQa2tTl+q7mX0SN7KCxRyc8R7gR97Bbnc8J5aNwHcp3cBSHPFOdm6XfpjXpeJ2WU4HF4GTuxknx5/8z+zGK4Lcgb7jepFDToB4O4MTUd2+alkiXCxIM1b1Kf/KKvJYdm8rgvWHKDGMnPIOt4iYOT4sJJsNnMV7RGCrmCC9P3Nj6i9rkjnxdczGMleVY2MIbesbwXakbmbu+280wQDxGFMLuFavCwfSbTJrQxR7gYZa1aZ1ExHk4mKF/i2YDtIsSMbbJtsW7A2GQPADR56nfBqWEiQbMeU9sfpy2fKe0EUaZQVA4qaJxsJHqDqKI8cZc="
+#      - BROWSER_PLATFORM="Windows 10"
+#      - BROWSER_NAME="MicrosoftEdge"
+    - env:
+      - SAUCE_USERNAME="craigfowler_agiil"
+      - secure: "I3YU/78BjSITaIDJafGOoRfrZbWnINBA1OSBECUIEzZ1MM8EY57m08D5sapN2jHRgTCGj0rGwJWZOEE24+rWPJQOA2Z27G2GbQvZ21DZEot1/bNbhxWUYkFxtQY6PAkkG0MxJa8xXTLOavlnMpigEC30Yxd2kxGO9MGdeb/6FziX0gNo3eD6P+0G80J7SwIgBS1Ea7Ldp6VGXKaEF4s+25fU+j2inMIQU3SuLS0SQ8b/L9Hq00E6NkUiAV6xsh7QsTUmCRxez37D0JGwBN0phw2WDOzUfor5nNUUtGbOtvQ/acuAghPv0RHDRzFdDpY1KpKiAjW9vV0/+yslMmJSA04m/RTZoc5oYqdL8466zAepuQa2tTl+q7mX0SN7KCxRyc8R7gR97Bbnc8J5aNwHcp3cBSHPFOdm6XfpjXpeJ2WU4HF4GTuxknx5/8z+zGK4Lcgb7jepFDToB4O4MTUd2+alkiXCxIM1b1Kf/KKvJYdm8rgvWHKDGMnPIOt4iYOT4sJJsNnMV7RGCrmCC9P3Nj6i9rkjnxdczGMleVY2MIbesbwXakbmbu+280wQDxGFMLuFavCwfSbTJrQxR7gYZa1aZ1ExHk4mKF/i2YDtIsSMbbJtsW7A2GQPADR56nfBqWEiQbMeU9sfpy2fKe0EUaZQVA4qaJxsJHqDqKI8cZc="
+      - BROWSER_PLATFORM="macOS 10.12"
+      - BROWSER_NAME="Safari"
 
-install:
-  - nuget restore Agiil.sln
-  - nuget install NUnit.ConsoleRunner -Version 3.6.1 -OutputDirectory testrunner
+install: ./Tools/Travis-install.sh
 
-script:
-  - xbuild /p:Configuration=Debug Agiil.sln
-  - mono "./testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe" $(find ./Tests/ -type f -path "*/bin/Debug/*" -name "Agiil.Tests*.dll" \! -name "Agiil.Tests.Common.dll")
+script: ./Tools/Travis-build.sh  

@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Domain</RootNamespace>
     <AssemblyName>Agiil.Domain.Impl</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.2.0.1</ReleaseVersion>
+    <ReleaseVersion>0.3.0.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -69,14 +69,14 @@
     <Reference Include="CSF.Data">
       <HintPath>..\packages\CSF.Data.1.1.0\lib\net45\CSF.Data.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Data.Entities">
-      <HintPath>..\packages\CSF.Data.Entities.1.2.1\lib\net45\CSF.Data.Entities.dll</HintPath>
-    </Reference>
     <Reference Include="CSF.Data.NHibernate">
       <HintPath>..\packages\CSF.Data.NHibernate.6.1.1\lib\net45\CSF.Data.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data.Entities">
+      <HintPath>..\packages\CSF.Data.Entities.1.3.0\lib\net45\CSF.Data.Entities.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +117,10 @@
     <Compile Include="Sprints\SprintDetailService.cs" />
     <Compile Include="Sprints\SprintEditor.cs" />
     <Compile Include="Sprints\EditSprintValidatorFactory.cs" />
+    <Compile Include="Auth\UserQueryByUsername.cs" />
+    <Compile Include="Tickets\CommentDeleter.cs" />
+    <Compile Include="Tickets\DeleteCommentValidatorFactory.cs" />
+    <Compile Include="Tickets\TicketTypeProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

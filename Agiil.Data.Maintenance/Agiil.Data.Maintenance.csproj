@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Data.Maintenance</RootNamespace>
     <AssemblyName>Agiil.Data.Maintenance</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.2.0.1</ReleaseVersion>
+    <ReleaseVersion>0.3.0.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,6 +26,22 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <Optimize>false</Optimize>
+    <OutputPath>bin</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <Optimize>false</Optimize>
+    <OutputPath>bin</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -52,6 +68,12 @@
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Utils">
+      <HintPath>..\packages\CSF.Utils.6.0.0\lib\net45\CSF.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,10 +81,20 @@
     <Compile Include="SimpleUpgradeName.cs" />
     <Compile Include="DevelopmentDatabaseResetter.cs" />
     <Compile Include="NHibernateSchemaExporter.cs" />
+    <Compile Include="Sqlite\Snapshot.cs" />
+    <Compile Include="Sqlite\SnapshotService.cs" />
+    <Compile Include="Sqlite\ConnectionStringAdapter.cs" />
+    <Compile Include="Sqlite\ExtensionChanger.cs" />
+    <Compile Include="ISnapshotService.cs" />
+    <Compile Include="Sqlite\SnapshotFileService.cs" />
+    <Compile Include="Sqlite\ISnapshotFileService.cs" />
+    <Compile Include="SnapshotStore.cs" />
+    <Compile Include="SnapshottingDatabaseResetter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UpgradeScripts\" />
     <Folder Include="UpgradeScripts\Sqlite\" />
+    <Folder Include="Sqlite\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Data\Agiil.Data.csproj">
@@ -83,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UpgradeScripts\Sqlite\2017-06-02-v0.2.0-Sprint-functionality.sqlite.sql">
       <LogicalName>2017-06-02-v0.2.0-Sprint-functionality.sqlite.sql</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpgradeScripts\Sqlite\2017-10-04-v0.3.0-Ticket-type.sqlite.sql">
+      <LogicalName>2017-10-04-v0.3.0-Ticket-type.sqlite.sql</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

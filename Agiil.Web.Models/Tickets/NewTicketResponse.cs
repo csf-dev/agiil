@@ -15,5 +15,7 @@ namespace Agiil.Web.Models.Tickets
     public bool SprintIsInvalid { get; set; }
 
     public bool Success => !ReferenceEquals(TicketIdentity, null);
+
+    public bool Failure => !Success;
   }
 }

@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.ObjectMaps</RootNamespace>
     <AssemblyName>Agiil.ObjectMaps</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.2.0.1</ReleaseVersion>
+    <ReleaseVersion>0.3.0.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -27,6 +27,22 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <Optimize>false</Optimize>
+    <OutputPath>bin</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <Optimize>false</Optimize>
+    <OutputPath>bin</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="AutoMapper">
@@ -39,7 +55,7 @@
       <HintPath>..\packages\CSF.Data.1.1.0\lib\net45\CSF.Data.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Data.Entities">
-      <HintPath>..\packages\CSF.Data.Entities.1.2.1\lib\net45\CSF.Data.Entities.dll</HintPath>
+      <HintPath>..\packages\CSF.Data.Entities.1.3.0\lib\net45\CSF.Data.Entities.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -47,18 +63,15 @@
     <Compile Include="Tickets\CommentToCommentDtoProfile.cs" />
     <Compile Include="MapperConfigurationFactory.cs" />
     <Compile Include="Tickets\TicketToTicketSummaryDtoProfile.cs" />
-    <Compile Include="IdentityValueResolver.cs" />
     <Compile Include="Tickets\TicketToTicketDetailDtoProfile.cs" />
     <Compile Include="Sprints\NewSprintSpecificationToCreateSprintRequestProfile.cs" />
     <Compile Include="Sprints\CreateSprintResponseToNewSprintResultProfile.cs" />
     <Compile Include="IMapperConfigurationFactory.cs" />
-    <Compile Include="GetEntityByIdentityValueResolver.cs" />
     <Compile Include="IProfileTypesProvider.cs" />
     <Compile Include="ProfileTypesProvider.cs" />
     <Compile Include="Sprints\SprintToSprintSummaryDtoProfile.cs" />
     <Compile Include="Tickets\TicketToEditTicketSpecificationProfile.cs" />
     <Compile Include="Tickets\EditTicketRequestToTicketProfile.cs" />
-    <Compile Include="GetEntityByIdentityResolver.cs" />
     <Compile Include="Tickets\EditTicketSpecificationToEditTicketRequestProfile.cs" />
     <Compile Include="Tickets\EditTicketResponseToWebEditTicketResponseProfile.cs" />
     <Compile Include="Sprints\SprintToSprintDetailDtoProfile.cs" />
@@ -66,9 +79,16 @@
     <Compile Include="Tickets\NewTicketSpecificationToCreateTicketRequestProfile.cs" />
     <Compile Include="Tickets\CreateTicketResponseToNewTicketResponseProfile.cs" />
     <Compile Include="Sprints\EditSprintSpecificationToEditSprintRequestProfile.cs" />
-    <Compile Include="CreateIdentityResolver.cs" />
     <Compile Include="Sprints\EditSprintResponseToWebEditSprintResponseProfile.cs" />
     <Compile Include="Sprints\EditSprintRequestToSprintProfile.cs" />
+    <Compile Include="Resolvers\CreateIdentityResolver.cs" />
+    <Compile Include="Resolvers\GetEntityByIdentityResolver.cs" />
+    <Compile Include="Resolvers\GetEntityByIdentityValueResolver.cs" />
+    <Compile Include="Resolvers\IdentityValueResolver.cs" />
+    <Compile Include="Resolvers\TicketReferenceStringResolver.cs" />
+    <Compile Include="Resolvers\IResolversNamespaceMarker.cs" />
+    <Compile Include="Resolvers\MarkdownToHtmlResolver.cs" />
+    <Compile Include="Tickets\TicketTypeToTicketTypeDtoProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -76,6 +96,7 @@
   <ItemGroup>
     <Folder Include="Tickets\" />
     <Folder Include="Sprints\" />
+    <Folder Include="Resolvers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
@@ -89,6 +110,10 @@
     <ProjectReference Include="..\Agiil.Web.Models\Agiil.Web.Models.csproj">
       <Project>{53F1B62F-1BEE-4732-A1F3-433822529906}</Project>
       <Name>Agiil.Web.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Web.Rendering\Agiil.Web.Rendering.csproj">
+      <Project>{8080A385-823C-44F0-B090-71F52337F04A}</Project>
+      <Name>Agiil.Web.Rendering</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

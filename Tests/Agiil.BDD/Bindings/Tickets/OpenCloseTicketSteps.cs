@@ -1,50 +1,42 @@
 ﻿using System;
-using Agiil.Domain.Tickets;
-using Agiil.Tests.Tickets;
-using CSF.Entities;
+using Agiil.BDD.Tasks.Tickets;
+using CSF.Screenplay;
 using TechTalk.SpecFlow;
+using static CSF.Screenplay.StepComposer;
 
 namespace Agiil.BDD.Bindings.Tickets
 {
   [Binding]
   public class OpenCloseTicketSteps
   {
-    readonly IOpenCloseTicketController controller;
+    readonly IScreenplayScenario screenplay;
 
-    [When(@"the user closes ticket ID (\d+)")]
-    public void WhenTheUserClosesATicket(long id)
+    [Given(@"Youssef has closed the ticket")]
+    public void GivenYoussefHasClosedTheTicket()
     {
-      var identity = Identity.Create<Ticket>(id);
-      controller.Close(identity);
+      var youssef = screenplay.GetYoussef();
+      Given(youssef).WasAbleTo(ChangeTheTicket.StatusToClosed());
     }
 
-    [When(@"the user reopens ticket ID (\d+)")]
-    public void WhenTheUserReopensATicket(long id)
+    [When(@"Youssef closes the ticket")]
+    public void WhenYoussefClosesTheTicket()
     {
-      var identity = Identity.Create<Ticket>(id);
-      controller.Reopen(identity);
+      var youssef = screenplay.GetYoussef();
+      When(youssef).AttemptsTo(ChangeTheTicket.StatusToClosed());
     }
 
-    [Then(@"ticket ID (\d+) should be open")]
-    public void TheTicketShouldBeOpen(long id)
+    [When(@"Youssef reopens the ticket")]
+    public void WhenYoussefReopensTheTicket()
     {
-      var identity = Identity.Create<Ticket>(id);
-      controller.VerifyOpen(identity);
+      var youssef = screenplay.GetYoussef();
+      When(youssef).AttemptsTo(ChangeTheTicket.StatusToReopened());
     }
 
-    [Then(@"ticket ID (\d+) should be closed")]
-    public void TheTicketShouldBeClosed(long id)
+    public OpenCloseTicketSteps(IScreenplayScenario screenplay)
     {
-      var identity = Identity.Create<Ticket>(id);
-      controller.VerifyClosed(identity);
-    }
-
-    public OpenCloseTicketSteps(IOpenCloseTicketController controller)
-    {
-      if(controller == null)
-        throw new ArgumentNullException(nameof(controller));
-      
-      this.controller = controller;
+      if(screenplay == null)
+        throw new ArgumentNullException(nameof(screenplay));
+      this.screenplay = screenplay;
     }
   }
 }

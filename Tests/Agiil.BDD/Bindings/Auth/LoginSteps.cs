@@ -1,75 +1,93 @@
 ﻿using System;
-using Agiil.Auth;
-using Agiil.Domain.Auth;
-using Agiil.Tests.Auth;
-using NUnit.Framework;
+using Agiil.BDD.Abilities;
+using Agiil.BDD.Actions;
+using Agiil.BDD.Personas;
+using Agiil.BDD.Tasks.Auth;
+using CSF.Screenplay;
+using Ploeh.AutoFixture;
 using TechTalk.SpecFlow;
+using static CSF.Screenplay.StepComposer;
 
 namespace Agiil.BDD.Bindings.Auth
 {
   [Binding]
   public class LoginSteps
   {
-    const string DUMMY_PASSWORD = "dummypassword";
+    readonly IScreenplayScenario screenplay;
 
-    readonly ILoginController loginController;
-    readonly IIdentityReader identityReader;
-    readonly IUserAccountController userAccountController;
+    #region Joe
 
-    [When("the user attempts to log in with a username '([A-Za-z0-9_-]+)' and password '([^']+)'")]
-    public void WhenTheUserAttemptsToLogin(string username, string password)
+    [When("Joe attempts to log in with a username '([A-Za-z0-9_-]+)' and password '([^']+)'")]
+    public void WhenJoeAttemptsToLogin(string username, string password)
     {
-      loginController.Login(username, password);
+      var joe = screenplay.GetJoe();
+      When(joe).AttemptsTo(LogIntoTheSite.As(username).WithThePassword(password));
     }
 
-    [When("the user logs out")]
-    public void WheTheUserLogsOut()
+    [Then("Joe should see a login failure message")]
+    public void ThenJoeShouldSeeALoginFailureMessage()
     {
-      loginController.Logout();
+      var joe = screenplay.GetJoe();
+      Then(joe).Should<VerifyThatThereIsALoginFailureMessage>();
     }
 
-    [Then("the user is logged in successfully")]
-    public void ThenTheUserIsLoggedInSuccessfully()
+    [Then("Joe should not be logged in")]
+    public void ThenJoeShouldNotBeLoggedIn()
     {
-      var currentUser = identityReader.GetCurrentUserInfo();
-      Assert.NotNull(currentUser);
+      var joe = screenplay.GetJoe();
+      Then(joe).Should<VerifyThatTheyAreNotLoggedIn>();
     }
 
-    [Then("the user is not logged in successfully")]
-    public void ThenTheUserIsNotLoggedInSuccessfully()
+    [Then("Joe should be logged in as '([A-Za-z0-9_-]+)'")]
+    public void ThenJoeShouldBeLoggedIn(string username)
     {
-      var currentUser = identityReader.GetCurrentUserInfo();
-      Assert.IsNull(currentUser);
+      var joe = screenplay.GetJoe();
+      Then(joe).Should(VerifyThatTheyAreLoggedIn.As(username));
     }
 
-    [Given("the user is logged in with a user account named '([A-Za-z0-9_-]+)'")]
-    public void GivenTheUserIsLoggedInWithAUserAccount(string accountName)
+    #endregion
+
+    #region Youssef
+
+    [Given("Youssef is logged into the site as a normal user")]
+    public void GivenYoussefIsLoggedIntoTheSiteAsANormalUser()
     {
-      userAccountController.AddUser(accountName, DUMMY_PASSWORD);
-      loginController.Login(accountName, DUMMY_PASSWORD);
+      var april = screenplay.GetApril();
+      var youssef = screenplay.GetYoussef();
+
+      Given(april).WasAbleTo(AddAUserAccount.WithTheUsername(Youssef.Name).AndThePassword(Youssef.Password));
+      Given(youssef).WasAbleTo<LogInWithTheirAccount>();
     }
 
-    [Given("the user is logged in with a user account named '([A-Za-z0-9_-]+)' with password '([A-Za-z0-9_-]+)'")]
-    public void GivenTheUserIsLoggedInWithAUserAccount(string accountName, string password)
+    [When("Youssef attempts to log in with a username '([A-Za-z0-9_-]+)' and password '([^']+)'")]
+    public void WhenYoussefAttemptsToLogin(string username, string password)
     {
-      userAccountController.AddUser(accountName, password);
-      loginController.Login(accountName, password);
+      var youssef = screenplay.GetYoussef();
+      When(youssef).AttemptsTo(LogIntoTheSite.As(username).WithThePassword(password));
     }
 
-    public LoginSteps(ILoginController loginController,
-                      IIdentityReader identityReader,
-                      IUserAccountController userAccountController)
+    [Then("Youssef should be logged in as '([A-Za-z0-9_-]+)'")]
+    public void ThenYoussefShouldBeLoggedIn(string username)
     {
-      if(userAccountController == null)
-        throw new ArgumentNullException(nameof(userAccountController));
-      if(identityReader == null)
-        throw new ArgumentNullException(nameof(identityReader));
-      if(loginController == null)
-        throw new ArgumentNullException(nameof(loginController));
+      var youssef = screenplay.GetYoussef();
+      Then(youssef).Should(VerifyThatTheyAreLoggedIn.As(username));
+    }
+
+    [Then("Youssef should not be logged in")]
+    public void ThenYoussefShouldNotBeLoggedIn()
+    {
+      var youssef = screenplay.GetYoussef();
+      Then(youssef).Should<VerifyThatTheyAreNotLoggedIn>();
+    }
+
+    #endregion
+
+    public LoginSteps(IScreenplayScenario screenplay)
+    {
+      if(screenplay == null)
+        throw new ArgumentNullException(nameof(screenplay));
       
-      this.loginController = loginController;
-      this.identityReader = identityReader;
-      this.userAccountController = userAccountController;
+      this.screenplay = screenplay;
     }
   }
 }

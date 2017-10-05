@@ -23,7 +23,7 @@
       <h5 aria-hidden="true">Login status</h5>
       <p>You are logged in as <strong tal:content="username">username</strong>.</p>
       <div class="form_element button">
-        <button>Log out</button>
+        <button id="HeaderLogoutButton">Log out</button>
       </div>
     </fieldset>
     <fieldset tal:condition="not:loggedIn" class="login">
@@ -37,7 +37,7 @@
         <input type="password" id="header_login_password" name="Password" />
       </div>
       <div class="form_element button">
-        <button>Log in</button>
+        <button id="HeaderLoginButton">Log in</button>
       </div>
     </fieldset>
   </form>

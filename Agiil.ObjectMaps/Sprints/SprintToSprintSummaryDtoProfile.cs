@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Sprints;
+using Agiil.ObjectMaps.Resolvers;
 using Agiil.Web.Models.Sprints;
 using AutoMapper;
 

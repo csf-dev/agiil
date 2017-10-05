@@ -1,23 +1,22 @@
 ﻿using System;
-using System.IdentityModel.Tokens;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Agiil.Bootstrap.DiConfiguration;
 using Agiil.Web.Bootstrap;
 using Agiil.Web.OAuth;
+using Agiil.Web.App_Start;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
-using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using Owin.Security.AesDataProtectorProvider;
 
-[assembly: OwinStartup(typeof(Agiil.Web.App_Start.OwinStartupType))]
+[assembly: OwinStartup(typeof(OwinStartupType), nameof(OwinStartupType.Configuration))]
 
 namespace Agiil.Web.App_Start
 {
@@ -38,6 +37,8 @@ namespace Agiil.Web.App_Start
       ConfigureOAuthServer(app, container);
       ConfigureWebApi(app, container, config);
       ConfigureWebApp(app, container);
+
+      config.EnsureInitialized();
     }
 
     void ConfigureOAuthServer(IAppBuilder app, IContainer container)
@@ -96,19 +97,19 @@ namespace Agiil.Web.App_Start
       return !(IsOAuthUrl(context) || IsWebApiUrl(context));
     }
 
-    private IContainer ConfigureDependencyInjection(IAppBuilder app, HttpConfiguration config)
+    IContainer ConfigureDependencyInjection(IAppBuilder app, HttpConfiguration config)
     {
-      var diConfig = new WebAppDiConfiguration(config, true);
-      var container = diConfig.GetContainerBuilder().Build();
+      var factoryProvider = new ContainerFactoryProvider();
+      var container = factoryProvider.GetContainer(config);
 
-      var provider = new OwinCompatibleLifetimeScopeProvider(container);
+      var lifetimeScopeProvider = new OwinCompatibleLifetimeScopeProvider(container);
 
-      DependencyResolver.SetResolver(new AutofacDependencyResolver(container, provider));
+      DependencyResolver.SetResolver(new AutofacDependencyResolver(container, lifetimeScopeProvider));
 
       return container;
     }
 
-    private void ConfigureCookieAuthentication(IAppBuilder builder)
+    void ConfigureCookieAuthentication(IAppBuilder builder)
     {
       builder.UseCookieAuthentication(new CookieAuthenticationOptions {
         AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
@@ -121,7 +122,7 @@ namespace Agiil.Web.App_Start
       builder.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
     }
 
-    private void ConfigureBearerTokenAuthentication(IAppBuilder builder, IContainer container)
+    void ConfigureBearerTokenAuthentication(IAppBuilder builder, IContainer container)
     {
       var jwtOptions = container.Resolve<IJwtBearerAuthenticationOptionsFactory>();
       builder.UseJwtBearerAuthentication(jwtOptions.GetOptions());

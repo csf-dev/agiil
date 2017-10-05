@@ -8,7 +8,7 @@ namespace Agiil.Domain.Tickets
 {
   public class TicketDetailService : ITicketDetailService
   {
-    readonly IRepository<Ticket> repo;
+    readonly IEntityData repo;
 
     public Ticket GetTicket(IIdentity<Ticket> ticket)
     {
@@ -19,13 +19,15 @@ namespace Agiil.Domain.Tickets
 
       var ticketTheory = repo.Theorise(ticket);
       return repo
-        .Query()
+        .Query<Ticket>()
         .Where(x => x == ticketTheory)
         .FetchMany(x => x.Comments)
+        .Fetch(x => x.Type)
+        .ToArray()
         .FirstOrDefault();
     }
 
-    public TicketDetailService(IRepository<Ticket> repo)
+    public TicketDetailService(IEntityData repo)
     {
       if(repo == null)
         throw new ArgumentNullException(nameof(repo));

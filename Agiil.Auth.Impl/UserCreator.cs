@@ -7,8 +7,10 @@ namespace Agiil.Auth
 {
   public class UserCreator : UserPasswordSetterBase, IUserCreator
   {
-    readonly IRepository<User> repo;
+    readonly IEntityData repo;
     readonly Func<User> userFactory;
+
+    protected IEntityData Repository => repo;
 
     public virtual void Add(string username, string password)
     {
@@ -35,10 +37,10 @@ namespace Agiil.Auth
 
     protected virtual void Save(User user)
     {
-      repo.Add(user);
+      Repository.Add(user);
     }
 
-    public UserCreator(IRepository<User> repo,
+    public UserCreator(IEntityData repo,
                        Func<User> userFactory,
                        ICredentialsCreator credentialsCreator,
                        ICredentialsSerializer credentialsSerializer)
