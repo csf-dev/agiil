@@ -1,7 +1,7 @@
 ﻿using System;
-using Agiil.BDD.Abilities;
 using Agiil.BDD.Actions;
-using CSF.Screenplay;
+using Agiil.BDD.Personas;
+using CSF.Screenplay.Actors;
 using TechTalk.SpecFlow;
 using static CSF.Screenplay.StepComposer;
 
@@ -10,22 +10,28 @@ namespace Agiil.BDD.Bindings.App
   [Binding]
   public class InstallationSteps
   {
-    readonly IScreenplayScenario screenplay;
+    readonly ICast cast;
+    readonly Lazy<ITestRunner> testRunner;
 
     [Given("Agiil has just been installed")]
     public void AgiilHasJustBeenInstalled()
     {
-      var april = screenplay.GetApril();
+      testRunner.Value.Given("April can act as the application");
+
+      var april = cast.Get<April>();
 
       Given(april).WasAbleTo<InstallTheApplication>();
     }
 
-    public InstallationSteps(IScreenplayScenario screenplay)
+    public InstallationSteps(ICast cast, Lazy<ITestRunner> testRunner)
     {
-      if(screenplay == null)
-        throw new ArgumentNullException(nameof(screenplay));
+      if(testRunner == null)
+        throw new ArgumentNullException(nameof(testRunner));
+      if(cast == null)
+        throw new ArgumentNullException(nameof(cast));
       
-      this.screenplay = screenplay;
+      this.cast = cast;
+      this.testRunner = testRunner;
     }
   }
 }

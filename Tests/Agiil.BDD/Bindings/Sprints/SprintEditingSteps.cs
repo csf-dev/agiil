@@ -1,51 +1,56 @@
 ﻿using System;
-using CSF.Screenplay;
 using static CSF.Screenplay.StepComposer;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using Agiil.BDD.Tasks.Sprints;
-using CSF.Screenplay.Web.Builders;
 using Agiil.BDD.Pages;
 using FluentAssertions;
 using Agiil.BDD.Models.Sprints;
+using CSF.Screenplay.Actors;
+using CSF.Screenplay.Selenium.Builders;
 
 namespace Agiil.BDD.Bindings.Sprints
 {
   [Binding]
   public class SprintEditingSteps
   {
-    readonly IScreenplayScenario screenplay;
+    readonly ICast cast;
+    readonly IStage stage;
 
-    [Given(@"Youssef begins editing the sprint titled '([^']+)'")]
-    public void GivenYoussefBeginsEditingTheSprintTitled(string title)
+    [Given(@"(?:he|she|they) begins? editing the sprint titled '([^']+)'")]
+    public void GivenTheyBeginEditingTheSprintTitled(string title)
     {
-      var youssef = screenplay.GetYoussef();
-      Given(youssef).WasAbleTo(BeginEditingTheSprint.Titled(title));
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Given(theActor).WasAbleTo(BeginEditingTheSprint.Titled(title));
     }
 
-    [When(@"Youssef enters the following sprint details and clicks submit")]
-    public void WhenYoussefEntersTheFollowingSprintDetailsAndClicksSubmit(Table table)
+    [When(@"(?:he|she|they) enters? the following sprint details and clicks submit")]
+    public void WhenTheyEnterTheFollowingSprintDetailsAndClicksSubmit(Table table)
     {
       var spec = table.CreateInstance<SprintDetails>();
 
-      var youssef = screenplay.GetYoussef();
-      When(youssef).AttemptsTo(EditTheSprint.UsingTheSpecification(spec));
+      var theActor = stage.GetTheActorInTheSpotlight();
+      When(theActor).AttemptsTo(EditTheSprint.UsingTheSpecification(spec));
     }
 
-    [Then(@"Youssef should see a sprint-editing failure message")]
-    public void ThenYoussefShouldSeeASprint_EditingFailureMessage()
+    [Then(@"(?:he|she|they) should see a sprint-editing failure message")]
+    public void ThenTheyShouldSeeASprint_EditingFailureMessage()
     {
-      var youssef = screenplay.GetYoussef();
-      Then(youssef).ShouldSee(TheVisibility.Of(EditSprint.EditFailureMessage))
-                   .Should()
-                   .BeTrue("the message should be visible");
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).ShouldSee(TheVisibility.Of(EditSprint.EditFailureMessage))
+                    .Should()
+                    .BeTrue("the message should be visible");
     }
 
-    public SprintEditingSteps(IScreenplayScenario screenplay)
+    public SprintEditingSteps(ICast cast, IStage stage)
     {
-      if(screenplay == null)
-        throw new ArgumentNullException(nameof(screenplay));
-      this.screenplay = screenplay;
+      if(cast == null)
+        throw new ArgumentNullException(nameof(cast));
+      if(stage == null)
+        throw new ArgumentNullException(nameof(stage));
+
+      this.cast = cast;
+      this.stage = stage;
     }
   }
 }

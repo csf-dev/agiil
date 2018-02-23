@@ -2,45 +2,64 @@
 using TechTalk.SpecFlow;
 using static CSF.Screenplay.StepComposer;
 using Agiil.BDD.Tasks.Browsing;
-using CSF.Screenplay.Web.Builders;
-using Agiil.BDD.Pages;
-using CSF.Screenplay;
 using Agiil.BDD.Actions;
 using Agiil.BDD.Tasks.App;
 using Agiil.BDD.Personas;
 using Agiil.BDD.Tasks.Auth;
+using CSF.Screenplay.Actors;
+using CSF.Screenplay.Selenium.Abilities;
+using CSF.Screenplay.JsonApis.Abilities;
+using Agiil.BDD.Abilities;
 
 namespace Agiil.BDD.Bindings.Browsing
 {
   [Binding]
   public class WebBrowsingSteps
   {
-    readonly IScreenplayScenario screenplay;
+    readonly ICast cast;
+    readonly Lazy<ITestRunner> testRunner;
 
-    [Given(@"Joe has a clean web browser on the application home page")]
-    public void GivenJoeHasACleanWebBrowserOnTheAppHomePage()
+    [Given(@"Joe is on on the application home page")]
+    public void GivenJoeIsLookingAtTheAppHomePage()
     {
-      var joe = screenplay.GetJoe();
+      testRunner.Value.Given("Joe can browse the web");
+
+      var joe = cast.Get<Joe>();
       Given(joe).WasAbleTo<VisitTheHomePage>();
     }
 
-    [Given(@"Youssef is logged into a fresh installation of the site containing the simple sample project")]
+    [Given(@"Youssef is logged into a fresh installation of the site")]
     public void GivenYoussefIsLoggedIntoAFreshlyInstalledSiteWithSimpleSampleData()
     {
-      var april = screenplay.GetApril();
-      var youssef = screenplay.GetYoussef();
+      testRunner.Value.Given("Agiil has just been installed");
+      testRunner.Value.Given("Youssef has a user account");
+      testRunner.Value.Given("Youssef can browse the web");
 
-      Given(april).WasAbleTo<InstallTheApplication>();
-      Given(april).WasAbleTo<SetupTheSimpleSampleProject>();
-      Given(april).WasAbleTo(AddAUserAccount.WithTheUsername(Youssef.Name).AndThePassword(Youssef.Password));
+      var youssef = cast.Get<Youssef>();
       Given(youssef).WasAbleTo<LogInWithTheirAccount>();
     }
 
-    public WebBrowsingSteps(IScreenplayScenario screenplay)
+    [Given(@"Youssef is logged into a fresh installation of the site containing the simple sample project")]
+    public void GivenYoussefIsLoggedIntoAFreshlyInstalledSite()
     {
-      if(screenplay == null)
-        throw new ArgumentNullException(nameof(screenplay));
-      this.screenplay = screenplay;
+      testRunner.Value.Given("Agiil has just been installed");
+      testRunner.Value.Given("April has set up the simple sample project");
+      testRunner.Value.Given("Youssef has a user account");
+      testRunner.Value.Given("Youssef can browse the web");
+
+      var youssef = cast.Get<Youssef>();
+      Given(youssef).WasAbleTo<LogInWithTheirAccount>();
+    }
+
+    public WebBrowsingSteps(ICast cast, Lazy<ITestRunner> testRunner)
+    {
+      if(cast == null)
+        throw new ArgumentNullException(nameof(cast));
+      if(testRunner == null)
+        throw new ArgumentNullException(nameof(testRunner));
+
+      this.cast = cast;
+      this.testRunner = testRunner;
     }
   }
 }
