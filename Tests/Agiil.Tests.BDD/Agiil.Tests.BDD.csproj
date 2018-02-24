@@ -127,8 +127,6 @@
     <Compile Include="Sprints\EditingSprints.feature.cs">
       <DependentUpon>EditingSprints.feature</DependentUpon>
     </Compile>
-    <Compile Include="SauceConnectWebDriverFactory.cs" />
-    <Compile Include="BrowserName.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

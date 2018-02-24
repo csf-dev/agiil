@@ -3,7 +3,7 @@ using System.Linq;
 using Agiil.BDD.Pages;
 using CSF.Screenplay.Actors;
 using CSF.Screenplay.Performables;
-using CSF.Screenplay.Web.Builders;
+using CSF.Screenplay.Selenium.Builders;
 using FluentAssertions;
 
 namespace Agiil.BDD.Tasks.Tickets

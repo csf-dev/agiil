@@ -11,13 +11,13 @@ Scenario: Users should be able to create a ticket with a title and description
   | Field       | Value               |
   | Title       | Ticket title        |
   | Description | Ticket description  |
-   Then Youssef should see a ticket created success message
+   Then he should see a ticket created success message
 
 Scenario: Users should be able to create a ticket with just a title
    When Youssef creates the following ticket using the create ticket page
   | Field       | Value               |
   | Title       | Ticket title        |
-   Then Youssef should see a ticket created success message
+   Then he should see a ticket created success message
 
 Scenario: A user should be able to find the ticket they just created
    When Youssef creates the following ticket using the create ticket page
@@ -48,7 +48,7 @@ Scenario: Users cannot create tickets with an empty title
   | Field       | Value        |
   | Title       |              |
   | Description | Invalid      |
-   Then Youssef should see a ticket creation failure message
+   Then he should see a ticket creation failure message
 
 Scenario: Users can choose sprints for a tickets as they create them
    When Youssef creates the following ticket using the create ticket page

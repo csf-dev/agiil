@@ -214,7 +214,7 @@
     <Compile Include="Tasks\Sprints\BeginEditingTheSprint.cs" />
     <Compile Include="Pages\EditSprint.cs" />
     <Compile Include="Tasks\Sprints\EditTheSprint.cs" />
-    <Compile Include="Bindings\Tickets\ReadingACommentSteps.cs" />
+    <Compile Include="Bindings\Tickets\ReadingCommentSteps.cs" />
     <Compile Include="Tasks\Markdown\VerifyThatTheTextHasTheCorrectFormatting.cs" />
     <Compile Include="Tasks\Markdown\VerifyThat.cs" />
     <Compile Include="Tasks\Tickets\DeleteTheFirstDeletableComment.cs" />
@@ -225,6 +225,7 @@
     <Compile Include="Bindings\Actors\AprilSteps.cs" />
     <Compile Include="Bindings\Actors\JoeSteps.cs" />
     <Compile Include="Bindings\Actors\YoussefSteps.cs" />
+    <Compile Include="Bindings\Tickets\NavigatingToATicketSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

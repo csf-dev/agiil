@@ -3,7 +3,7 @@ using Agiil.BDD.Abilities;
 using Agiil.BDD.Pages;
 using CSF.Screenplay.Actors;
 using CSF.Screenplay.Performables;
-using CSF.Screenplay.Web.Builders;
+using CSF.Screenplay.Selenium.Builders;
 
 namespace Agiil.BDD.Tasks.Auth
 {

@@ -96,7 +96,7 @@ this.FeatureBackground();
 #line 10
    testRunner.When("Youssef creates the following ticket using the create ticket page", ((string)(null)), table1, "When ");
 #line 14
-   testRunner.Then("Youssef should see a ticket created success message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he should see a ticket created success message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -122,7 +122,7 @@ this.FeatureBackground();
 #line 17
    testRunner.When("Youssef creates the following ticket using the create ticket page", ((string)(null)), table2, "When ");
 #line 20
-   testRunner.Then("Youssef should see a ticket created success message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he should see a ticket created success message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -248,7 +248,7 @@ this.FeatureBackground();
 #line 47
    testRunner.When("Youssef creates the following ticket using the create ticket page", ((string)(null)), table6, "When ");
 #line 51
-   testRunner.Then("Youssef should see a ticket creation failure message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he should see a ticket creation failure message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

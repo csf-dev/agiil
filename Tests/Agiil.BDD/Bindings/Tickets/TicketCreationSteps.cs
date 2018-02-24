@@ -16,6 +16,7 @@ namespace Agiil.BDD.Bindings.Tickets
   public class TicketCreationSteps
   {
     readonly ICast cast;
+    readonly IStage stage;
 
     [When("Youssef creates the following ticket using the create ticket page")]
     public void WhenYoussefCreatesATicket(Table detailsTable)
@@ -23,33 +24,37 @@ namespace Agiil.BDD.Bindings.Tickets
       var details = detailsTable.CreateInstance<TicketCreationDetails>();
 
       var youssef = cast.Get<Youssef>();
+      stage.ShineTheSpotlightOn(youssef);
       When(youssef).AttemptsTo(CreateANewTicket.WithTheDetails(details));
     }
 
-    [Then("Youssef should see a ticket created success message")]
-    public void ThenYoussefShouldSeeATicketCreatedSuccessMessage()
+    [Then("(?:he|she|they) should see a ticket created success message")]
+    public void ThenTheyShouldSeeATicketCreatedSuccessMessage()
     {
-      var youssef = cast.Get<Youssef>();
-      Then(youssef).ShouldSee(TheText.Of(CreateNewTicket.CreationSuccessMessage))
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).ShouldSee(TheText.Of(CreateNewTicket.CreationSuccessMessage))
                    .Should()
                    .StartWith("The ticket was created successfully", because: "The ticket creation was a success");
     }
 
-    [Then("Youssef should see a ticket creation failure message")]
-    public void ThenYoussefShouldSeeATicketCreationFailureMessage()
+    [Then("(?:he|she|they) should see a ticket creation failure message")]
+    public void ThenTheyShouldSeeATicketCreationFailureMessage()
     {
-      var youssef = cast.Get<Youssef>();
-      Then(youssef).ShouldSee(TheText.Of(CreateNewTicket.CreationFailureMessage))
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).ShouldSee(TheText.Of(CreateNewTicket.CreationFailureMessage))
                    .Should()
                    .StartWith("The ticket was not created", because: "The ticket creation failed");
     }
 
-    public TicketCreationSteps(ICast cast)
+    public TicketCreationSteps(ICast cast, IStage stage)
     {
+      if(stage == null)
+        throw new ArgumentNullException(nameof(stage));
       if(cast == null)
         throw new ArgumentNullException(nameof(cast));
 
       this.cast = cast;
+      this.stage = stage;
     }
   }
 }

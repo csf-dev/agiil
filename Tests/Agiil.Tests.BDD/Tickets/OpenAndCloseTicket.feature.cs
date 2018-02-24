@@ -83,7 +83,7 @@ this.FeatureBackground();
 #line 9
   testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
-   testRunner.When("Youssef closes the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+   testRunner.When("he closes the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
    testRunner.Then("Youssef should see that the ticket state is closed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -102,9 +102,9 @@ this.FeatureBackground();
 #line 14
   testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 15
-    testRunner.And("Youssef has closed the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("he has closed the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
-   testRunner.When("Youssef reopens the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+   testRunner.When("he reopens the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 17
    testRunner.Then("Youssef should see that the ticket state is open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

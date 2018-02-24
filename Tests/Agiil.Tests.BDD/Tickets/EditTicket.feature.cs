@@ -81,9 +81,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line 8
-  testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1' for editing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.Given("Youssef has navigated to the ticket with the title 'Sample ticket 1' and opened it for editing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-   testRunner.When("Youssef changes the ticket title to 'This is an edited ticket' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+   testRunner.When("he changes the ticket title to 'This is an edited ticket' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
    testRunner.Then("Youssef looks at the list of tickets", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 11
@@ -102,11 +102,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line 14
-  testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1' for editing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.Given("Youssef has navigated to the ticket with the title 'Sample ticket 1' and opened it for editing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 15
-   testRunner.When("Youssef changes the ticket title to '' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+   testRunner.When("he changes the ticket title to '' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 16
-   testRunner.Then("Youssef should see a ticket-editing error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he should see a ticket-editing error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -121,9 +121,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line 19
-  testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1' for editing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.Given("Youssef has navigated to the ticket with the title 'Sample ticket 1' and opened it for editing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 20
-   testRunner.When("Youssef changes the ticket description to 'This is an edited description' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+   testRunner.When("he changes the ticket description to 'This is an edited description' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 21
    testRunner.Then("Youssef opens a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 22
@@ -142,9 +142,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line 25
-  testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1' for editing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.Given("Youssef has navigated to the ticket with the title 'Sample ticket 1' and opened it for editing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 26
-   testRunner.When("Youssef changes the ticket description to '' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+   testRunner.When("he changes the ticket description to '' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 27
    testRunner.Then("Youssef opens a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 28
@@ -163,9 +163,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line 31
-  testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1' for editing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.Given("Youssef has navigated to the ticket with the title 'Sample ticket 1' and opened it for editing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 32
-   testRunner.When("Youssef changes the ticket sprint to 'Sprint three' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+   testRunner.When("he changes the ticket sprint to 'Sprint three' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 33
    testRunner.Then("Youssef opens a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 34
@@ -184,9 +184,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line 37
-  testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1' for editing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.Given("Youssef has navigated to the ticket with the title 'Sample ticket 1' and opened it for editing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 38
-   testRunner.When("Youssef changes the ticket type to 'Bug' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+   testRunner.When("he changes the ticket type to 'Bug' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 39
    testRunner.Then("Youssef opens a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 40
