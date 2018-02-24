@@ -1,15 +1,14 @@
-﻿using System;
-using CSF.Screenplay.Integration;
+﻿using CSF.Screenplay.Integration;
 using CSF.Screenplay;
 using CSF.Screenplay.Selenium;
 using CSF.Screenplay.Reporting.Models;
 using CSF.Screenplay.Reporting;
 using CSF.Screenplay.Selenium.Abilities;
-using OpenQA.Selenium;
 using System.IO;
-using CSF.Screenplay.Scenarios;
-using System.Collections.Generic;
 using CSF.Screenplay.Selenium.Reporting;
+using CSF.Screenplay.SpecFlow;
+
+[assembly: ScreenplayAssembly(typeof(Agiil.Tests.BDD.ScreenplayIntegrationConfig))]
 
 namespace Agiil.Tests.BDD
 {
