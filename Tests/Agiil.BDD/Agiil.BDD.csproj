@@ -134,9 +134,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bindings\Tickets\TicketCreationSteps.cs" />
     <Compile Include="Bindings\Auth\PasswordChangeSteps.cs" />
-    <Compile Include="Actions\ApplicationApiAction.cs" />
     <Compile Include="Actions\InstallTheApplication.cs" />
-    <Compile Include="Abilities\ActAsTheApplication.cs" />
     <Compile Include="Tasks\Auth\LogIntoTheSite.cs" />
     <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
@@ -200,7 +198,6 @@
     <Compile Include="Tasks\Tickets\ChangeTheCommentText.cs" />
     <Compile Include="Bindings\Sprints\SprintViewingSteps.cs" />
     <Compile Include="Pages\SprintList.cs" />
-    <Compile Include="Abilities\ApplicationApiException.cs" />
     <Compile Include="Bindings\Sprints\CreateSprintSteps.cs" />
     <Compile Include="Pages\CreateSprint.cs" />
     <Compile Include="Tasks\Sprints\TheStartDateFromTheSprintList.cs" />
@@ -226,6 +223,10 @@
     <Compile Include="Bindings\Actors\JoeSteps.cs" />
     <Compile Include="Bindings\Actors\YoussefSteps.cs" />
     <Compile Include="Bindings\Tickets\NavigatingToATicketSteps.cs" />
+    <Compile Include="ServiceEndpoints\AddUserAccountService.cs" />
+    <Compile Include="ServiceEndpoints\ControllerJsonServiceDescription.cs" />
+    <Compile Include="ServiceEndpoints\InstallAgiilService.cs" />
+    <Compile Include="ServiceEndpoints\LoadDataPackageService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -254,6 +255,7 @@
     <Folder Include="Models\Sprints\" />
     <Folder Include="Tasks\Markdown\" />
     <Folder Include="Bindings\Actors\" />
+    <Folder Include="ServiceEndpoints\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj">

@@ -2,14 +2,12 @@
 using TechTalk.SpecFlow;
 using static CSF.Screenplay.StepComposer;
 using Agiil.BDD.Tasks.Browsing;
-using Agiil.BDD.Actions;
-using Agiil.BDD.Tasks.App;
 using Agiil.BDD.Personas;
 using Agiil.BDD.Tasks.Auth;
 using CSF.Screenplay.Actors;
-using CSF.Screenplay.Selenium.Abilities;
-using CSF.Screenplay.JsonApis.Abilities;
-using Agiil.BDD.Abilities;
+using CSF.FlexDi;
+using Agiil.BDD.Bindings.Actors;
+using Agiil.BDD.Bindings.App;
 
 namespace Agiil.BDD.Bindings.Browsing
 {
@@ -18,11 +16,14 @@ namespace Agiil.BDD.Bindings.Browsing
   {
     readonly ICast cast;
     readonly Lazy<ITestRunner> testRunner;
+    readonly IResolvesServices resolver;
 
     [Given(@"Joe is on on the application home page")]
     public void GivenJoeIsLookingAtTheAppHomePage()
     {
-      testRunner.Value.Given("Joe can browse the web");
+      // Currently bugged due to https://github.com/csf-dev/CSF.Screenplay/issues/126
+      //testRunner.Value.Given("Joe can browse the web");
+      resolver.Resolve<JoeSteps>().GivenJoeCanBrowseTheWeb();
 
       var joe = cast.Get<Joe>();
       Given(joe).WasAbleTo<VisitTheHomePage>();
@@ -31,9 +32,13 @@ namespace Agiil.BDD.Bindings.Browsing
     [Given(@"Youssef is logged into a fresh installation of the site")]
     public void GivenYoussefIsLoggedIntoAFreshlyInstalledSiteWithSimpleSampleData()
     {
-      testRunner.Value.Given("Agiil has just been installed");
-      testRunner.Value.Given("Youssef has a user account");
-      testRunner.Value.Given("Youssef can browse the web");
+      // Currently bugged due to https://github.com/csf-dev/CSF.Screenplay/issues/126
+      //testRunner.Value.Given("Agiil has just been installed");
+      //testRunner.Value.Given("Youssef has a user account");
+      //testRunner.Value.Given("Youssef can browse the web");
+      resolver.Resolve<InstallationSteps>().GivenAgiilHasJustBeenInstalled();
+      resolver.Resolve<YoussefSteps>().GivenYoussefCanLogInWithAUsernameAndPassword();
+      resolver.Resolve<YoussefSteps>().GivenYoussefCanBrowseTheWeb();
 
       var youssef = cast.Get<Youssef>();
       Given(youssef).WasAbleTo<LogInWithTheirAccount>();
@@ -42,22 +47,32 @@ namespace Agiil.BDD.Bindings.Browsing
     [Given(@"Youssef is logged into a fresh installation of the site containing the simple sample project")]
     public void GivenYoussefIsLoggedIntoAFreshlyInstalledSite()
     {
-      testRunner.Value.Given("Agiil has just been installed");
-      testRunner.Value.Given("April has set up the simple sample project");
-      testRunner.Value.Given("Youssef has a user account");
-      testRunner.Value.Given("Youssef can browse the web");
+      // Currently bugged due to https://github.com/csf-dev/CSF.Screenplay/issues/126
+      //testRunner.Value.Given("Agiil has just been installed");
+      //testRunner.Value.Given("April has set up the simple sample project");
+      //testRunner.Value.Given("Youssef has a user account");
+      //testRunner.Value.Given("Youssef can browse the web");
+      resolver.Resolve<InstallationSteps>().GivenAgiilHasJustBeenInstalled();
+      resolver.Resolve<ProjectSetupSteps>().GivenAprilHasSetUpTheSimpleSampleProject();
+      resolver.Resolve<YoussefSteps>().GivenYoussefCanLogInWithAUsernameAndPassword();
+      resolver.Resolve<YoussefSteps>().GivenYoussefCanBrowseTheWeb();
 
       var youssef = cast.Get<Youssef>();
       Given(youssef).WasAbleTo<LogInWithTheirAccount>();
     }
 
-    public WebBrowsingSteps(ICast cast, Lazy<ITestRunner> testRunner)
+    public WebBrowsingSteps(ICast cast,
+                            Lazy<ITestRunner> testRunner,
+                            IResolvesServices resolver)
     {
+      if(resolver == null)
+        throw new ArgumentNullException(nameof(resolver));
       if(cast == null)
         throw new ArgumentNullException(nameof(cast));
       if(testRunner == null)
         throw new ArgumentNullException(nameof(testRunner));
 
+      this.resolver = resolver;
       this.cast = cast;
       this.testRunner = testRunner;
     }

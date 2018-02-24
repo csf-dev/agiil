@@ -1,5 +1,6 @@
 ﻿using CSF.Screenplay.Integration;
 using CSF.Screenplay;
+using CSF.Screenplay.JsonApis.Abilities;
 using CSF.Screenplay.Selenium;
 using CSF.Screenplay.Reporting.Models;
 using CSF.Screenplay.Reporting;
@@ -28,6 +29,10 @@ namespace Agiil.Tests.BDD
       builder.UseSharedUriTransformer(new RootUriPrependingTransformer("http://localhost:8080/"));
       builder.UseWebDriverFromConfiguration();
       builder.UseWebBrowser();
+      builder.UseBrowserFlags();
+      builder.ServiceRegistrations.PerScenario.Add(helper => {
+        helper.RegisterFactory(() => new ConsumeJsonWebServices("http://localhost:8080/api/v1/"));
+      });
     }
 
     void WriteReport(IObjectFormattingService formatter, Report report)

@@ -91,6 +91,9 @@
     <Reference Include="CSF.Screenplay.SpecFlowPlugin">
       <HintPath>..\..\packages\CSF.Screenplay.SpecFlow.0.11.0-beta\lib\net45\CSF.Screenplay.SpecFlowPlugin.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Screenplay.JsonApis">
+      <HintPath>..\..\packages\CSF.Screenplay.JsonApis.0.11.0-beta\lib\net45\CSF.Screenplay.JsonApis.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auth\ChangePassword.feature.cs">
