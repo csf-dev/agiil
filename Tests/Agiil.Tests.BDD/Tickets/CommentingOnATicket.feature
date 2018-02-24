@@ -22,7 +22,7 @@ Scenario: Youssef may edit his own ticket comment
   Given Youssef has navigated to the ticket with the title 'Sample ticket 1'
    When he edits the first editable comment
     And he changes the comment text to 'This is an edited comment'
-    And he navigates to the ticket with title 'Sample ticket 1'
+    And he navigates to the ticket with the title 'Sample ticket 1'
    Then he should see comments with the following text, in order
   | Comment text                |
   | This is an edited comment   |
@@ -40,7 +40,7 @@ Scenario: Youssef cannot see an edit-comment link for a comment which he did not
    Then he should not see any editable comments
 
 Scenario: Youssef cannot edit a comment and set its body to an empty string
-  Given Youssef has opened a ticket with the title 'Sample ticket 1'
+  Given Youssef has navigated to the ticket with the title 'Sample ticket 1'
    When he edits the first editable comment
     And he changes the comment text to ''
    Then he should see a comment-editing failure message
@@ -56,7 +56,7 @@ Scenario: Youssef can use markdown syntax in a ticket comment, to create a richl
 Scenario: Youssef may delete his own comment on a ticket
   Given Youssef has navigated to the ticket with the title 'Sample ticket 1'
    When he deletes the first editable comment
-    And he navigates to the ticket with title 'Sample ticket 1'
+    And he navigates to the ticket with the title 'Sample ticket 1'
    Then he should see that the ticket has no comments
 
 Scenario: Youssef may not delete comments which he did not write

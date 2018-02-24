@@ -24,24 +24,24 @@ Scenario: A user should be able to find the ticket they just created
   | Field       | Value               |
   | Title       | Create ticket 1     |
   | Description | Ticket description  |
-    And Youssef looks at the list of tickets
-   Then Youssef should be able to find a ticket with the title 'Create ticket 1'
+    And he looks at the list of tickets
+   Then he should be able to find a ticket with the title 'Create ticket 1'
 
 Scenario: Users are marked as the creator of the tickets they create
    When Youssef creates the following ticket using the create ticket page
   | Field       | Value               |
   | Title       | Create ticket 2     |
   | Description | Ticket description  |
-    And Youssef opens a ticket with the title 'Create ticket 2'
-   Then Youssef should see that the creator of the current ticket is 'Youssef'
+    And he navigates to the ticket with the title 'Create ticket 2'
+   Then he should see that the creator of the current ticket is 'Youssef'
 
 Scenario: The ticket description must be saved when a ticket is created
    When Youssef creates the following ticket using the create ticket page
   | Field       | Value               |
   | Title       | Create ticket 3     |
   | Description | Ticket description  |
-    And Youssef opens a ticket with the title 'Create ticket 3'
-   Then Youssef should see that the ticket description reads 'Ticket description'
+    And he navigates to the ticket with the title 'Create ticket 3'
+   Then he should see that the ticket description reads 'Ticket description'
 
 Scenario: Users cannot create tickets with an empty title
    When Youssef creates the following ticket using the create ticket page
@@ -55,21 +55,21 @@ Scenario: Users can choose sprints for a tickets as they create them
   | Field     | Value             |
   | Title     | Create ticket 4   |
   | Sprint    | Sprint one        |
-    And Youssef opens a ticket with the title 'Create ticket 4'
-   Then Youssef should see that the ticket is part of the sprint 'Sprint one'
+    And he navigates to the ticket with the title 'Create ticket 4'
+   Then he should see that the ticket is part of the sprint 'Sprint one'
 
 Scenario: Youssef can create enhancement tickets
    When Youssef creates the following ticket using the create ticket page
   | Field     | Value             |
   | Title     | Create ticket 4   |
   | Type      | Enhancement       |
-    And Youssef opens a ticket with the title 'Create ticket 4'
-   Then Youssef should see that the ticket type is 'Enhancement'
+    And he navigates to the ticket with the title 'Create ticket 4'
+   Then he should see that the ticket type is 'Enhancement'
 
 Scenario: Youssef can create bug tickets
    When Youssef creates the following ticket using the create ticket page
   | Field     | Value             |
   | Title     | Create ticket 4   |
   | Type      | Bug               |
-    And Youssef opens a ticket with the title 'Create ticket 4'
-   Then Youssef should see that the ticket type is 'Bug'
+    And he navigates to the ticket with the title 'Create ticket 4'
+   Then he should see that the ticket type is 'Bug'

@@ -85,9 +85,9 @@ this.FeatureBackground();
 #line 9
    testRunner.When("he changes the ticket title to 'This is an edited ticket' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
-   testRunner.Then("Youssef looks at the list of tickets", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he looks at the list of tickets", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 11
-    testRunner.And("Youssef should be able to find a ticket with the title 'This is an edited ticket'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("he should be able to find a ticket with the title 'This is an edited ticket'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -125,9 +125,9 @@ this.FeatureBackground();
 #line 20
    testRunner.When("he changes the ticket description to 'This is an edited description' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 21
-   testRunner.Then("Youssef opens a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he navigates to the ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 22
-    testRunner.And("Youssef should see that the ticket description reads 'This is an edited description'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("he should see that the ticket description reads 'This is an edited description'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -146,9 +146,9 @@ this.FeatureBackground();
 #line 26
    testRunner.When("he changes the ticket description to '' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 27
-   testRunner.Then("Youssef opens a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he navigates to the ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 28
-    testRunner.And("Youssef should see that the ticket description reads ''", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("he should see that the ticket description reads ''", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -167,9 +167,9 @@ this.FeatureBackground();
 #line 32
    testRunner.When("he changes the ticket sprint to 'Sprint three' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 33
-   testRunner.Then("Youssef opens a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he navigates to the ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 34
-    testRunner.And("Youssef should see that the ticket is part of the sprint 'Sprint three'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("he should see that the ticket is part of the sprint 'Sprint three'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -188,9 +188,9 @@ this.FeatureBackground();
 #line 38
    testRunner.When("he changes the ticket type to 'Bug' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 39
-   testRunner.Then("Youssef opens a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he navigates to the ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 40
-    testRunner.And("Youssef should see that the ticket type is 'Bug'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("he should see that the ticket type is 'Bug'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

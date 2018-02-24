@@ -81,9 +81,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line 8
-   testRunner.When("Youssef opens a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+   testRunner.When("Youssef navigates to the ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
-   testRunner.Then("Youssef should see that the ticket description reads 'This ticket has a description'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he should see that the ticket description reads 'This ticket has a description'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -98,9 +98,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line 12
-   testRunner.When("Youssef opens a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+   testRunner.When("Youssef navigates to the ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
-   testRunner.Then("Youssef should see that the ticket type is 'Enhancement'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he should see that the ticket type is 'Enhancement'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -115,7 +115,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line 16
-   testRunner.When("Youssef opens a ticket with the title 'Sample ticket 2'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+   testRunner.When("Youssef navigates to the ticket with the title 'Sample ticket 2'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[]
                 {
@@ -130,7 +130,7 @@ this.FeatureBackground();
                 {
                         "Comment number two"});
 #line 17
-   testRunner.Then("Youssef should see comments with the following text, in order", ((string)(null)), table1, "Then ");
+   testRunner.Then("he should see comments with the following text, in order", ((string)(null)), table1, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

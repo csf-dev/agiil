@@ -29,7 +29,7 @@ namespace Agiil.BDD.Bindings.Tickets
       Given(youssef).WasAbleTo(OpenTheTicket.ForEditingByTitle(ticketTitle));
     }
 
-    [When("Youssef navigates to the ticket with title '([^']+)'")]
+    [When("Youssef navigates to the ticket with the title '([^']+)'")]
     public void WhenYoussefNavigatesToTheTicketWithTheTitle(string title)
     {
       var youssef = cast.Get<Youssef>();
@@ -37,11 +37,18 @@ namespace Agiil.BDD.Bindings.Tickets
       When(youssef).AttemptsTo(OpenTheTicket.Titled(title));
     }
 
-    [When("(?:he|she|they) navigates? to the ticket with title '([^']+)'")]
+    [When("(?:he|she|they) navigates? to the ticket with the title '([^']+)'")]
     public void WhenTheyNavigateToTheTicketWithTheTitle(string title)
     {
       var theActor = stage.GetTheActorInTheSpotlight();
       When(theActor).AttemptsTo(OpenTheTicket.Titled(title));
+    }
+
+    [Then("(?:he|she|they) navigates? to the ticket with the title '([^']+)'")]
+    public void ThenTheyNavigateToTheTicketWithTheTitle(string title)
+    {
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).Should(OpenTheTicket.Titled(title));
     }
 
     public NavigatingToATicketSteps(ICast cast, IStage stage)

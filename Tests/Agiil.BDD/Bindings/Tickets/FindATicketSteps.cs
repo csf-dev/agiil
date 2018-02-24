@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.BDD.Pages;
+using Agiil.BDD.Personas;
 using Agiil.BDD.Tasks.Tickets;
 using CSF.Screenplay.Actors;
 using CSF.Screenplay.Selenium.Builders;
@@ -14,6 +15,14 @@ namespace Agiil.BDD.Bindings.Tickets
   {
     readonly ICast cast;
     readonly IStage stage;
+
+    [When("Youssef looks at the list of tickets")]
+    public void WhenYoussefLooksAtTheListOfTickets()
+    {
+      var youssef = cast.Get<Youssef>();
+      stage.ShineTheSpotlightOn(youssef);
+      When(youssef).AttemptsTo(OpenTheirBrowserOn.ThePage<TicketList>());
+    }
 
     [When("(?:he|she|they) looks? at the list of tickets")]
     public void WhenTheyLookAtTheListOfTickets()

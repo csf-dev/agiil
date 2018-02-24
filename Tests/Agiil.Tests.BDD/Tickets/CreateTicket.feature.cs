@@ -152,9 +152,9 @@ this.FeatureBackground();
 #line 23
    testRunner.When("Youssef creates the following ticket using the create ticket page", ((string)(null)), table3, "When ");
 #line 27
-    testRunner.And("Youssef looks at the list of tickets", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("he looks at the list of tickets", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
-   testRunner.Then("Youssef should be able to find a ticket with the title 'Create ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he should be able to find a ticket with the title 'Create ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -184,9 +184,9 @@ this.FeatureBackground();
 #line 31
    testRunner.When("Youssef creates the following ticket using the create ticket page", ((string)(null)), table4, "When ");
 #line 35
-    testRunner.And("Youssef opens a ticket with the title 'Create ticket 2'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("he navigates to the ticket with the title 'Create ticket 2'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 36
-   testRunner.Then("Youssef should see that the creator of the current ticket is 'Youssef'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he should see that the creator of the current ticket is 'Youssef'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -216,9 +216,9 @@ this.FeatureBackground();
 #line 39
    testRunner.When("Youssef creates the following ticket using the create ticket page", ((string)(null)), table5, "When ");
 #line 43
-    testRunner.And("Youssef opens a ticket with the title 'Create ticket 3'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("he navigates to the ticket with the title 'Create ticket 3'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 44
-   testRunner.Then("Youssef should see that the ticket description reads 'Ticket description'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he should see that the ticket description reads 'Ticket description'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -278,9 +278,9 @@ this.FeatureBackground();
 #line 54
    testRunner.When("Youssef creates the following ticket using the create ticket page", ((string)(null)), table7, "When ");
 #line 58
-    testRunner.And("Youssef opens a ticket with the title 'Create ticket 4'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("he navigates to the ticket with the title 'Create ticket 4'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 59
-   testRunner.Then("Youssef should see that the ticket is part of the sprint 'Sprint one'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he should see that the ticket is part of the sprint 'Sprint one'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -310,9 +310,9 @@ this.FeatureBackground();
 #line 62
    testRunner.When("Youssef creates the following ticket using the create ticket page", ((string)(null)), table8, "When ");
 #line 66
-    testRunner.And("Youssef opens a ticket with the title 'Create ticket 4'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("he navigates to the ticket with the title 'Create ticket 4'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 67
-   testRunner.Then("Youssef should see that the ticket type is 'Enhancement'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he should see that the ticket type is 'Enhancement'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -342,9 +342,9 @@ this.FeatureBackground();
 #line 70
    testRunner.When("Youssef creates the following ticket using the create ticket page", ((string)(null)), table9, "When ");
 #line 74
-    testRunner.And("Youssef opens a ticket with the title 'Create ticket 4'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("he navigates to the ticket with the title 'Create ticket 4'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 75
-   testRunner.Then("Youssef should see that the ticket type is 'Bug'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he should see that the ticket type is 'Bug'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

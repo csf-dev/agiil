@@ -3,8 +3,7 @@
   This will help users self-manage security risks due to compromised or aged passwords.
 
 Background:
-  Given Agiil has just been installed
-    And Youssef is logged into a fresh installation of the site
+  Given Youssef is logged into a fresh installation of the site
 
 Scenario: Youssef can change his password if he enters appropriate details
    When Youssef correctly changes his password to 'test_password_123'

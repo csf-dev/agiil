@@ -2,12 +2,18 @@
 using TechTalk.SpecFlow;
 using static CSF.Screenplay.StepComposer;
 using Agiil.BDD.Tasks.Browsing;
+using Agiil.BDD.Actions;
+using Agiil.BDD.Tasks.App;
 using Agiil.BDD.Personas;
 using Agiil.BDD.Tasks.Auth;
 using CSF.Screenplay.Actors;
+using CSF.Screenplay.Selenium.Abilities;
+using CSF.Screenplay.JsonApis.Abilities;
+using Agiil.BDD.Abilities;
 using CSF.FlexDi;
 using Agiil.BDD.Bindings.Actors;
 using Agiil.BDD.Bindings.App;
+using Agiil.BDD.Bindings.Auth;
 
 namespace Agiil.BDD.Bindings.Browsing
 {
@@ -30,14 +36,14 @@ namespace Agiil.BDD.Bindings.Browsing
     }
 
     [Given(@"Youssef is logged into a fresh installation of the site")]
-    public void GivenYoussefIsLoggedIntoAFreshlyInstalledSiteWithSimpleSampleData()
+    public void GivenYoussefIsLoggedIntoAFreshlyInstalledSite()
     {
       // Currently bugged due to https://github.com/csf-dev/CSF.Screenplay/issues/126
       //testRunner.Value.Given("Agiil has just been installed");
       //testRunner.Value.Given("Youssef has a user account");
       //testRunner.Value.Given("Youssef can browse the web");
       resolver.Resolve<InstallationSteps>().GivenAgiilHasJustBeenInstalled();
-      resolver.Resolve<YoussefSteps>().GivenYoussefCanLogInWithAUsernameAndPassword();
+      resolver.Resolve<UserAccountSteps>().GivenYoussefHasAUserAccount();
       resolver.Resolve<YoussefSteps>().GivenYoussefCanBrowseTheWeb();
 
       var youssef = cast.Get<Youssef>();
@@ -45,7 +51,7 @@ namespace Agiil.BDD.Bindings.Browsing
     }
 
     [Given(@"Youssef is logged into a fresh installation of the site containing the simple sample project")]
-    public void GivenYoussefIsLoggedIntoAFreshlyInstalledSite()
+    public void GivenYoussefIsLoggedIntoAFreshlyInstalledSiteWithSimpleSampleData()
     {
       // Currently bugged due to https://github.com/csf-dev/CSF.Screenplay/issues/126
       //testRunner.Value.Given("Agiil has just been installed");
@@ -54,7 +60,7 @@ namespace Agiil.BDD.Bindings.Browsing
       //testRunner.Value.Given("Youssef can browse the web");
       resolver.Resolve<InstallationSteps>().GivenAgiilHasJustBeenInstalled();
       resolver.Resolve<ProjectSetupSteps>().GivenAprilHasSetUpTheSimpleSampleProject();
-      resolver.Resolve<YoussefSteps>().GivenYoussefCanLogInWithAUsernameAndPassword();
+      resolver.Resolve<UserAccountSteps>().GivenYoussefHasAUserAccount();
       resolver.Resolve<YoussefSteps>().GivenYoussefCanBrowseTheWeb();
 
       var youssef = cast.Get<Youssef>();

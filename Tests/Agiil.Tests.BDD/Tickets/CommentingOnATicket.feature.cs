@@ -132,7 +132,7 @@ this.FeatureBackground();
 #line 24
     testRunner.And("he changes the comment text to 'This is an edited comment'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 25
-    testRunner.And("he navigates to the ticket with title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("he navigates to the ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[]
                 {
@@ -202,7 +202,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line 43
-  testRunner.Given("Youssef has opened a ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.Given("Youssef has navigated to the ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 44
    testRunner.When("he edits the first editable comment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 45
@@ -252,7 +252,7 @@ this.FeatureBackground();
 #line 58
    testRunner.When("he deletes the first editable comment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 59
-    testRunner.And("he navigates to the ticket with title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("he navigates to the ticket with the title 'Sample ticket 1'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 60
    testRunner.Then("he should see that the ticket has no comments", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

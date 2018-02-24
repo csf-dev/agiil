@@ -67,9 +67,7 @@ namespace Agiil.Tests.Auth
         {
 #line 5
 #line 6
-  testRunner.Given("Agiil has just been installed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 7
-    testRunner.And("Youssef is logged into a fresh installation of the site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.Given("Youssef is logged into a fresh installation of the site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         
@@ -78,17 +76,17 @@ namespace Agiil.Tests.Auth
         public virtual void YoussefCanChangeHisPasswordIfHeEntersAppropriateDetails()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can change his password if he enters appropriate details", ((string[])(null)));
-#line 9
+#line 8
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
-#line 10
+#line 9
    testRunner.When("Youssef correctly changes his password to 'test_password_123'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
+#line 10
     testRunner.And("he logs out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
+#line 11
     testRunner.And("he attempts to log in with a username 'Youssef' and password 'test_password_123'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
+#line 12
    testRunner.Then("he should be logged in as 'Youssef'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -99,13 +97,13 @@ this.FeatureBackground();
         public virtual void YoussefShouldSeeASuccessMessageAfterHeHasChangedHisPasswordCorrectly()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef should see a success message after he has changed his password correctly", ((string[])(null)));
-#line 15
+#line 14
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
-#line 16
+#line 15
    testRunner.When("Youssef correctly changes his password to 'test_password_123'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 17
+#line 16
    testRunner.Then("he should see a password-change success message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -116,13 +114,13 @@ this.FeatureBackground();
         public virtual void YoussefShouldSeeAFailureMessageIfHeTriesToChangeHisPasswordAndEntersAnIncorrectCurrentPassword()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef should see a failure message if he tries to change his password and enters an incorrect current password", ((string[])(null)));
-#line 19
+#line 18
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
-#line 20
+#line 19
    testRunner.When("Youssef attempts to change his password to 'test_password_123' using an incorrect current password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 21
+#line 20
    testRunner.Then("he should see a password-change failure message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -133,17 +131,17 @@ this.FeatureBackground();
         public virtual void YoussefSPasswordShouldNotBeChangedIfHeEntersAnIncorrectCurrentPassword()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef's password should not be changed if he enters an incorrect current password", ((string[])(null)));
-#line 23
+#line 22
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
-#line 24
+#line 23
    testRunner.When("Youssef attempts to change his password to 'test_password_123' using an incorrect current password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 25
+#line 24
     testRunner.And("he logs out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 26
+#line 25
     testRunner.And("he attempts to log in with a username 'Youssef' and password 'test_password_123'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 27
+#line 26
    testRunner.Then("he should not be logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
