@@ -5,9 +5,11 @@ namespace Agiil.BDD.Personas
   /// Youssef is a standard user of the application.  He has a user account and a password, and is permitted to log
   /// in.  He can do things which normal users can do.
   /// </summary>
-  public static class Youssef
+  public class Youssef : IPersona
   {
-    public static string Name => "Youssef";
+    public string Name => Username;
+
+    public static string Username => "Youssef";
 
     public static string Password => "CorrectHorseBatteryStaple1";
   }

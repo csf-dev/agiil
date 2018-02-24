@@ -2,8 +2,8 @@
 using Agiil.BDD.Pages;
 using Agiil.BDD.Personas;
 using Agiil.BDD.Tasks.Auth;
-using CSF.Screenplay;
-using CSF.Screenplay.Web.Builders;
+using CSF.Screenplay.Actors;
+using CSF.Screenplay.Selenium.Builders;
 using FluentAssertions;
 using Ploeh.AutoFixture;
 using TechTalk.SpecFlow;
@@ -14,12 +14,14 @@ namespace Agiil.BDD.Bindings.Auth
   [Binding]
   public class PasswordChangeSteps
   {
-    readonly IScreenplayScenario screenplay;
+    readonly ICast cast;
+    readonly IStage stage;
 
     [When("Youssef correctly changes his password to '([^']+)'")]
     public void WhenYoussefChangesHisPassword(string newPassword)
     {
-      var youssef = screenplay.GetYoussef();
+      var youssef = cast.Get<Youssef>();
+      stage.ShineTheSpotlightOn(youssef);
       When(youssef).AttemptsTo(ChangeTheirPassword.From(Youssef.Password).To(newPassword));
     }
 
@@ -29,33 +31,38 @@ namespace Agiil.BDD.Bindings.Auth
       var fixture = new Fixture();
       var incorrectPassword = fixture.Create<string>();
 
-      var youssef = screenplay.GetYoussef();
+      var youssef = cast.Get<Youssef>();
+      stage.ShineTheSpotlightOn(youssef);
       When(youssef).AttemptsTo(ChangeTheirPassword.From(incorrectPassword).To(newPassword));
     }
 
-    [Then("Youssef should see a password-change success message")]
-    public void ThenYoussefShouldSeeASuccessMessage()
+    [Then("(?:he|she|they) should see a password-change success message")]
+    public void ThenTheyShouldSeeASuccessMessage()
     {
-      var youssef = screenplay.GetYoussef();
-      Then(youssef).ShouldSee(TheText.Of(ChangePassword.PasswordChangeFeedbackMessage))
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).ShouldSee(TheText.Of(ChangePassword.PasswordChangeFeedbackMessage))
                .Should()
                .StartWith("Your password has been changed.", because: "The password change should be a success");
     }
 
-    [Then("Youssef should see a password-change failure message")]
-    public void ThenYoussefShouldSeeAFailureMessage()
+    [Then("(?:he|she|they) should see a password-change failure message")]
+    public void ThenTheyShouldSeeAFailureMessage()
     {
-      var youssef = screenplay.GetYoussef();
-      Then(youssef).ShouldSee(TheText.Of(ChangePassword.PasswordChangeFeedbackMessage))
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).ShouldSee(TheText.Of(ChangePassword.PasswordChangeFeedbackMessage))
                .Should()
                .StartWith("Your password was not changed.", because: "The password change should have failed");
     }
 
-    public PasswordChangeSteps(IScreenplayScenario screenplay)
+    public PasswordChangeSteps(ICast cast, IStage stage)
     {
-      if(screenplay == null)
-        throw new ArgumentNullException(nameof(screenplay));
-      this.screenplay = screenplay;
+      if(cast == null)
+        throw new ArgumentNullException(nameof(cast));
+      if(stage == null)
+        throw new ArgumentNullException(nameof(stage));
+
+      this.cast = cast;
+      this.stage = stage;
     }
   }
 }

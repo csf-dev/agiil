@@ -5,8 +5,8 @@ namespace Agiil.BDD.Personas
   /// Joe is a persona representing an anonymous user.  They don't neccesarily have a user account unless
   /// granted one specifically and they most certainly aren't signed in.
   /// </summary>
-  public static class Joe
+  public class Joe : IPersona
   {
-    public static string Name => "Joe";
+    public string Name => "Joe";
   }
 }

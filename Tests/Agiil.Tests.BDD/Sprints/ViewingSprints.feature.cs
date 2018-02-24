@@ -93,7 +93,7 @@ this.FeatureBackground();
                 {
                         "Sprint one"});
 #line 13
-  testRunner.Then("Youssef should see the following sprints, in order", ((string)(null)), table1, "Then ");
+  testRunner.Then("he should see the following sprints, in order", ((string)(null)), table1, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -117,7 +117,7 @@ this.FeatureBackground();
                 {
                         "Sprint two"});
 #line 20
-  testRunner.Then("Youssef should see the following sprints, in order", ((string)(null)), table2, "Then ");
+  testRunner.Then("he should see the following sprints, in order", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -134,7 +134,7 @@ this.FeatureBackground();
 #line 25
     testRunner.Given("Youssef was able to open the sprint titled 'Sprint one'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 26
-     testRunner.When("Youssef reads the open tickets in this sprint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+     testRunner.When("he reads the open tickets in this sprint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[]
                 {
@@ -149,7 +149,7 @@ this.FeatureBackground();
                 {
                         "Sample ticket 3"});
 #line 27
-     testRunner.Then("Youssef should see the following tickets, in any order:", ((string)(null)), table3, "Then ");
+     testRunner.Then("he should see the following tickets, in any order:", ((string)(null)), table3, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -166,7 +166,7 @@ this.FeatureBackground();
 #line 34
     testRunner.Given("Youssef was able to open the sprint titled 'Sprint one'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 35
-     testRunner.When("Youssef reads the closed tickets in this sprint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+     testRunner.When("he reads the closed tickets in this sprint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[]
                 {
@@ -175,7 +175,7 @@ this.FeatureBackground();
                 {
                         "Sample ticket 4"});
 #line 36
-     testRunner.Then("Youssef should see the following tickets, in any order:", ((string)(null)), table4, "Then ");
+     testRunner.Then("he should see the following tickets, in any order:", ((string)(null)), table4, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

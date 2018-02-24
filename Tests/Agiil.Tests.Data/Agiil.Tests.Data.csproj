@@ -82,9 +82,6 @@
     <Reference Include="CSF.Data">
       <HintPath>..\..\packages\CSF.Data.1.1.0\lib\net45\CSF.Data.dll</HintPath>
     </Reference>
-    <Reference Include="BrakePedal">
-      <HintPath>..\..\packages\BrakePedal.1.0.3\lib\net45\BrakePedal.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SessionFactoryFactoryTests.cs" />

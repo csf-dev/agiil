@@ -1,6 +1,6 @@
 ﻿using System;
 using CSF.Screenplay.Performables;
-using CSF.Screenplay.Web.Models;
+using CSF.Screenplay.Selenium.Models;
 
 namespace Agiil.BDD.Tasks.Tickets
 {

@@ -1,8 +1,9 @@
 ﻿using System;
 using Agiil.BDD.Pages;
+using Agiil.BDD.Personas;
 using Agiil.BDD.Tasks.Tickets;
-using CSF.Screenplay;
-using CSF.Screenplay.Web.Builders;
+using CSF.Screenplay.Actors;
+using CSF.Screenplay.Selenium.Builders;
 using FluentAssertions;
 using TechTalk.SpecFlow;
 using static CSF.Screenplay.StepComposer;
@@ -12,42 +13,54 @@ namespace Agiil.BDD.Bindings.Tickets
   [Binding]
   public class FindATicketSteps
   {
-    readonly IScreenplayScenario screenplay;
+    readonly ICast cast;
+    readonly IStage stage;
 
     [When("Youssef looks at the list of tickets")]
     public void WhenYoussefLooksAtTheListOfTickets()
     {
-      var youssef = screenplay.GetYoussef();
+      var youssef = cast.Get<Youssef>();
+      stage.ShineTheSpotlightOn(youssef);
       When(youssef).AttemptsTo(OpenTheirBrowserOn.ThePage<TicketList>());
     }
 
-    [Then("Youssef looks at the list of tickets")]
-    public void ThenYoussefLooksAtTheListOfTickets()
+    [When("(?:he|she|they) looks? at the list of tickets")]
+    public void WhenTheyLookAtTheListOfTickets()
     {
-      var youssef = screenplay.GetYoussef();
-      Then(youssef).Should(OpenTheirBrowserOn.ThePage<TicketList>());
+      var theActor = stage.GetTheActorInTheSpotlight();
+      When(theActor).AttemptsTo(OpenTheirBrowserOn.ThePage<TicketList>());
     }
 
-    [Then("Youssef should be able to find a ticket with the title '([^']+)'")]
-    public void ThenYoussefShouldBeAbleToFindATicketByTitle(string title)
+    [Then("(?:he|she|they) looks at the list of tickets")]
+    public void ThenTheyLookAtTheListOfTickets()
     {
-      var youssef = screenplay.GetYoussef();
-      Then(youssef).Should(VerifyThatThereIsATicket.WithTheTitle(title));
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).Should(OpenTheirBrowserOn.ThePage<TicketList>());
     }
 
-    [Then("Youssef should not be able to find a ticket with the title '([^']+)'")]
-    public void ThenYoussefShouldNotBeAbleToFindATicketByTitle(string title)
+    [Then("(?:he|she|they) should be able to find a ticket with the title '([^']+)'")]
+    public void ThenTheyShouldBeAbleToFindATicketByTitle(string title)
     {
-      var youssef = screenplay.GetYoussef();
-      Then(youssef).Should(VerifyThatThereIsNotATicket.WithTheTitle(title));
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).Should(VerifyThatThereIsATicket.WithTheTitle(title));
     }
 
-    public FindATicketSteps(IScreenplayScenario screenplay)
+    [Then("(?:he|she|they) should not be able to find a ticket with the title '([^']+)'")]
+    public void ThenTheyShouldNotBeAbleToFindATicketByTitle(string title)
     {
-      if(screenplay == null)
-        throw new ArgumentNullException(nameof(screenplay));
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).Should(VerifyThatThereIsNotATicket.WithTheTitle(title));
+    }
 
-      this.screenplay = screenplay;
+    public FindATicketSteps(ICast cast, IStage stage)
+    {
+      if(stage == null)
+        throw new ArgumentNullException(nameof(stage));
+      if(cast == null)
+        throw new ArgumentNullException(nameof(cast));
+
+      this.cast = cast;
+      this.stage = stage;
     }
   }
 }

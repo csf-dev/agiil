@@ -10,21 +10,21 @@ Background:
 
 Scenario: Youssef can see a list of the open sprints
   When Youssef opens the sprint listing page
-  Then Youssef should see the following sprints, in order
+  Then he should see the following sprints, in order
   | Sprint name  |
   | Sprint three |
   | Sprint one   |
 
 Scenario: Youssef can see a list of the closed sprints
   When Youssef opens the sprint listing page for closed sprints
-  Then Youssef should see the following sprints, in order
+  Then he should see the following sprints, in order
   | Sprint name  |
-  | Sprint two |
+  | Sprint two   |
 
 Scenario: Youssef can see a list of the open tickets in a sprint
     Given Youssef was able to open the sprint titled 'Sprint one'
-     When Youssef reads the open tickets in this sprint
-     Then Youssef should see the following tickets, in any order:
+     When he reads the open tickets in this sprint
+     Then he should see the following tickets, in any order:
   | Ticket name     |
   | Sample ticket 1 |
   | Sample ticket 2 |
@@ -32,7 +32,7 @@ Scenario: Youssef can see a list of the open tickets in a sprint
 
 Scenario: Youssef can see a list of the closed tickets in a sprint
     Given Youssef was able to open the sprint titled 'Sprint one'
-     When Youssef reads the closed tickets in this sprint
-     Then Youssef should see the following tickets, in any order:
+     When he reads the closed tickets in this sprint
+     Then he should see the following tickets, in any order:
   | Ticket name     |
   | Sample ticket 4 |

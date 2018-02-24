@@ -1,6 +1,6 @@
 ﻿using System;
 using Agiil.BDD.Tasks.Tickets;
-using CSF.Screenplay;
+using CSF.Screenplay.Actors;
 using TechTalk.SpecFlow;
 using static CSF.Screenplay.StepComposer;
 
@@ -9,34 +9,35 @@ namespace Agiil.BDD.Bindings.Tickets
   [Binding]
   public class OpenCloseTicketSteps
   {
-    readonly IScreenplayScenario screenplay;
+    readonly IStage stage;
 
-    [Given(@"Youssef has closed the ticket")]
-    public void GivenYoussefHasClosedTheTicket()
+    [Given(@"(?:he|she|they) (?:has|have) closed the ticket")]
+    public void GivenTheyHaveClosedTheTicket()
     {
-      var youssef = screenplay.GetYoussef();
-      Given(youssef).WasAbleTo(ChangeTheTicket.StatusToClosed());
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Given(theActor).WasAbleTo(ChangeTheTicket.StatusToClosed());
     }
 
-    [When(@"Youssef closes the ticket")]
-    public void WhenYoussefClosesTheTicket()
+    [When(@"(?:he|she|they) closes? the ticket")]
+    public void WhenTheyCloseTheTicket()
     {
-      var youssef = screenplay.GetYoussef();
-      When(youssef).AttemptsTo(ChangeTheTicket.StatusToClosed());
+      var theActor = stage.GetTheActorInTheSpotlight();
+      When(theActor).AttemptsTo(ChangeTheTicket.StatusToClosed());
     }
 
-    [When(@"Youssef reopens the ticket")]
-    public void WhenYoussefReopensTheTicket()
+    [When(@"(?:he|she|they) reopens? the ticket")]
+    public void WhenTheyReopenTheTicket()
     {
-      var youssef = screenplay.GetYoussef();
-      When(youssef).AttemptsTo(ChangeTheTicket.StatusToReopened());
+      var theActor = stage.GetTheActorInTheSpotlight();
+      When(theActor).AttemptsTo(ChangeTheTicket.StatusToReopened());
     }
 
-    public OpenCloseTicketSteps(IScreenplayScenario screenplay)
+    public OpenCloseTicketSteps(IStage stage)
     {
-      if(screenplay == null)
-        throw new ArgumentNullException(nameof(screenplay));
-      this.screenplay = screenplay;
+      if(stage == null)
+        throw new ArgumentNullException(nameof(stage));
+
+      this.stage = stage;
     }
   }
 }

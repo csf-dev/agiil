@@ -71,7 +71,7 @@ namespace Agiil.Tests.Auth
 #line 7
     testRunner.And("Joe has a user account with the username 'joebloggs' and password 'secret'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 8
-    testRunner.And("Joe has a clean web browser on the application home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("Joe is on on the application home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
@@ -87,9 +87,9 @@ this.FeatureBackground();
 #line 11
    testRunner.When("Joe attempts to log in with a username 'johndoe' and password 'secret'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
-   testRunner.Then("Joe should see a login failure message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he should see a login failure message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
-    testRunner.And("Joe should not be logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("he should not be logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -106,9 +106,9 @@ this.FeatureBackground();
 #line 16
    testRunner.When("Joe attempts to log in with a username 'joebloggs' and password 'incorrect'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 17
-   testRunner.Then("Joe should see a login failure message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he should see a login failure message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 18
-    testRunner.And("Joe should not be logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("he should not be logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -125,7 +125,7 @@ this.FeatureBackground();
 #line 21
    testRunner.When("Joe attempts to log in with a username 'joebloggs' and password 'secret'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 22
-   testRunner.Then("Joe should be logged in as 'joebloggs'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he should be logged in as 'joebloggs'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

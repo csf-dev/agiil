@@ -83,7 +83,7 @@ this.FeatureBackground();
 #line 8
   testRunner.Given("Youssef has opened the sprint listing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-    testRunner.And("Youssef begins editing the sprint titled 'Sprint three'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("he begins editing the sprint titled 'Sprint three'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[]
                 {
@@ -106,9 +106,9 @@ this.FeatureBackground();
                         "EndDate",
                         "2001-08-05"});
 #line 10
-   testRunner.When("Youssef enters the following sprint details and clicks submit", ((string)(null)), table1, "When ");
+   testRunner.When("he enters the following sprint details and clicks submit", ((string)(null)), table1, "When ");
 #line 16
-    testRunner.And("Youssef views the sprint titled 'Edited sprint 3'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("he views the sprint titled 'Edited sprint 3'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[]
                 {
@@ -131,7 +131,7 @@ this.FeatureBackground();
                         "EndDate",
                         "2001-08-05"});
 #line 17
-   testRunner.Then("Youssef should see that the sprint has the following details", ((string)(null)), table2, "Then ");
+   testRunner.Then("he should see that the sprint has the following details", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -148,7 +148,7 @@ this.FeatureBackground();
 #line 25
   testRunner.Given("Youssef has opened the sprint listing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 26
-    testRunner.And("Youssef begins editing the sprint titled 'Sprint three'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("he begins editing the sprint titled 'Sprint three'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[]
                 {
@@ -159,9 +159,9 @@ this.FeatureBackground();
                         "Title",
                         ""});
 #line 27
-   testRunner.When("Youssef enters the following sprint details and clicks submit", ((string)(null)), table3, "When ");
+   testRunner.When("he enters the following sprint details and clicks submit", ((string)(null)), table3, "When ");
 #line 30
-   testRunner.Then("Youssef should see a sprint-editing failure message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he should see a sprint-editing failure message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -178,7 +178,7 @@ this.FeatureBackground();
 #line 33
   testRunner.Given("Youssef has opened the sprint listing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 34
-    testRunner.And("Youssef begins editing the sprint titled 'Sprint three'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("he begins editing the sprint titled 'Sprint three'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[]
                 {
@@ -193,9 +193,9 @@ this.FeatureBackground();
                         "EndDate",
                         "2001-04-05"});
 #line 35
-   testRunner.When("Youssef enters the following sprint details and clicks submit", ((string)(null)), table4, "When ");
+   testRunner.When("he enters the following sprint details and clicks submit", ((string)(null)), table4, "When ");
 #line 39
-   testRunner.Then("Youssef should see a sprint-editing failure message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("he should see a sprint-editing failure message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
