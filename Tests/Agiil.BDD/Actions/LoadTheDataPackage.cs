@@ -2,8 +2,9 @@
 using Agiil.BDD.ServiceEndpoints;
 using Agiil.Web.Services;
 using CSF.Screenplay.Actors;
-using CSF.Screenplay.JsonApis.Abilities;
 using CSF.Screenplay.Performables;
+using CSF.Screenplay.WebApis.Builders;
+using Agiil.Web.Models;
 
 namespace Agiil.BDD.Actions
 {
@@ -16,10 +17,11 @@ namespace Agiil.BDD.Actions
 
     protected override void PerformAs(IPerformer actor)
     {
-      var ability = actor.GetAbility<ConsumeJsonWebServices>();
-      var invocation = new LoadDataPackageService(dataPackageTypeName);
-      ability.Execute(invocation);
+      actor.Perform(Invoke.TheJsonWebService<LoadDataPackageService>().WithTheData(GetTheDataPackage()).AndVerifyItSucceeds());
     }
+
+    SetupDataPackageRequest GetTheDataPackage()
+      => new SetupDataPackageRequest() { PackageTypeName = dataPackageTypeName };
 
     LoadTheDataPackage(string dataPackageName)
     {

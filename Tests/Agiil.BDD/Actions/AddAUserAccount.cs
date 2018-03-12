@@ -1,8 +1,9 @@
 ﻿using System;
-using CSF.Screenplay.JsonApis.Abilities;
 using CSF.Screenplay.Actors;
 using CSF.Screenplay.Performables;
 using Agiil.BDD.ServiceEndpoints;
+using CSF.Screenplay.WebApis.Builders;
+using Agiil.Web.Models;
 
 namespace Agiil.BDD.Actions
 {
@@ -15,10 +16,11 @@ namespace Agiil.BDD.Actions
 
     protected override void PerformAs(IPerformer actor)
     {
-      var ability = actor.GetAbility<ConsumeJsonWebServices>();
-      var invocation = new AddUserAccountService(username, password);
-      ability.Execute(invocation);
+      actor.Perform(Invoke.TheJsonWebService<AddUserAccountService>().WithTheData(GetUserDetails()).AndVerifyItSucceeds());
     }
+
+    CreateUserModel GetUserDetails()
+      => new CreateUserModel { username = username, password = password };
 
     public AddAUserAccount(string username, string password)
     {

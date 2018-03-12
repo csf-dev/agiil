@@ -1,4 +1,6 @@
 ﻿using System;
+using CSF.Screenplay.Actors;
+
 namespace Agiil.BDD.Personas
 {
   /// <summary>

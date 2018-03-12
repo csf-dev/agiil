@@ -1,7 +1,8 @@
 ﻿using System;
 using Agiil.BDD.Personas;
+using CSF.Screenplay;
 using CSF.Screenplay.Actors;
-using CSF.Screenplay.JsonApis.Abilities;
+using CSF.Screenplay.WebApis.Abilities;
 using TechTalk.SpecFlow;
 
 namespace Agiil.BDD.Bindings.Actors
@@ -10,19 +11,19 @@ namespace Agiil.BDD.Bindings.Actors
   public class AprilSteps
   {
     readonly ICast cast;
-    readonly ConsumeJsonWebServices actAsTheApplication;
+    readonly ConsumeWebServices actAsTheApplication;
 
     [Given(@"April can act as the application")]
     public void GivenAprilCanActAsTheApplication()
     {
       var april = cast.Get<April>();
 
-      if(april.HasAbility<ConsumeJsonWebServices>()) return;
+      if(april.HasAbility<ConsumeWebServices>()) return;
 
       april.IsAbleTo(actAsTheApplication);
     }
 
-    public AprilSteps(ICast cast, ConsumeJsonWebServices actAsTheApplication)
+    public AprilSteps(ICast cast, ConsumeWebServices actAsTheApplication)
     {
       if(actAsTheApplication == null)
         throw new ArgumentNullException(nameof(actAsTheApplication));

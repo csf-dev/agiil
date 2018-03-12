@@ -8,6 +8,7 @@ using FluentAssertions;
 using Agiil.BDD.Models.Sprints;
 using CSF.Screenplay.Actors;
 using CSF.Screenplay.Selenium.Builders;
+using CSF.Screenplay;
 
 namespace Agiil.BDD.Bindings.Sprints
 {

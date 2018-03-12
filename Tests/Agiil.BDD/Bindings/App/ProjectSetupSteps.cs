@@ -2,6 +2,7 @@
 using Agiil.BDD.Bindings.Actors;
 using Agiil.BDD.Personas;
 using Agiil.BDD.Tasks.App;
+using CSF.Screenplay;
 using CSF.Screenplay.Actors;
 using TechTalk.SpecFlow;
 using static CSF.Screenplay.StepComposer;

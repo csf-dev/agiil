@@ -3,6 +3,7 @@ using static CSF.Screenplay.StepComposer;
 using TechTalk.SpecFlow;
 using Agiil.BDD.Tasks.Auth;
 using CSF.Screenplay.Actors;
+using CSF.Screenplay;
 
 namespace Agiil.BDD.Bindings.Auth
 {

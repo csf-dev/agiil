@@ -103,29 +103,32 @@
     <Reference Include="CSF.FlexDi">
       <HintPath>..\..\packages\CSF.FlexDi.1.0.0\lib\net45\CSF.FlexDi.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Screenplay">
-      <HintPath>..\..\packages\CSF.Screenplay.0.11.0-beta\lib\net45\CSF.Screenplay.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="CSF.WebDriverExtras">
       <HintPath>..\..\packages\CSF.WebDriverExtras.1.0.0\lib\net45\CSF.WebDriverExtras.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Screenplay">
+      <HintPath>..\..\packages\CSF.Screenplay.0.12.0-beta\lib\net45\CSF.Screenplay.dll</HintPath>
+    </Reference>
     <Reference Include="CSF.Screenplay.Selenium.BrowserFlags">
-      <HintPath>..\..\packages\CSF.Screenplay.Selenium.BrowserFlags.0.2.2-alpha\lib\net45\CSF.Screenplay.Selenium.BrowserFlags.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Screenplay.Selenium.BrowserFlags.0.3.2-beta\lib\net45\CSF.Screenplay.Selenium.BrowserFlags.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Screenplay.Selenium">
-      <HintPath>..\..\packages\CSF.Screenplay.Selenium.0.2.2-alpha\lib\net45\CSF.Screenplay.Selenium.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Screenplay.Selenium.0.3.2-beta\lib\net45\CSF.Screenplay.Selenium.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Screenplay.SpecFlowPlugin">
-      <HintPath>..\..\packages\CSF.Screenplay.SpecFlow.0.11.0-beta\lib\net45\CSF.Screenplay.SpecFlowPlugin.dll</HintPath>
+    <Reference Include="CSF.Screenplay.Selenium.JavaScriptWorkarounds">
+      <HintPath>..\..\packages\CSF.Screenplay.Selenium.0.3.2-beta\lib\net45\CSF.Screenplay.Selenium.JavaScriptWorkarounds.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Screenplay.Reporting">
-      <HintPath>..\..\packages\CSF.Screenplay.Reporting.0.11.0-beta\lib\net45\CSF.Screenplay.Reporting.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Screenplay.Reporting.0.12.0-beta\lib\net45\CSF.Screenplay.Reporting.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Screenplay.JsonApis">
-      <HintPath>..\..\packages\CSF.Screenplay.JsonApis.0.11.0-beta\lib\net45\CSF.Screenplay.JsonApis.dll</HintPath>
+    <Reference Include="CSF.Screenplay.SpecFlowPlugin">
+      <HintPath>..\..\packages\CSF.Screenplay.SpecFlow.0.12.0-beta\lib\net45\CSF.Screenplay.SpecFlowPlugin.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Screenplay.WebApis">
+      <HintPath>..\..\packages\CSF.Screenplay.WebApis.0.12.0-beta\lib\net45\CSF.Screenplay.WebApis.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -217,8 +220,6 @@
     <Compile Include="Tasks\Tickets\DeleteTheFirstDeletableComment.cs" />
     <Compile Include="Tasks\Sprints\ReadTheTicketTitlesFromTheCurrentSprint.cs" />
     <Compile Include="Tasks\Tickets\ChangeTheTicketType.cs" />
-    <Compile Include="CastExtensions.cs" />
-    <Compile Include="Personas\IPersona.cs" />
     <Compile Include="Bindings\Actors\AprilSteps.cs" />
     <Compile Include="Bindings\Actors\JoeSteps.cs" />
     <Compile Include="Bindings\Actors\YoussefSteps.cs" />
