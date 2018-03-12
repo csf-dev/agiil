@@ -6,6 +6,7 @@ using Agiil.BDD.Pages;
 using FluentAssertions;
 using CSF.Screenplay.Actors;
 using CSF.Screenplay.Selenium.Builders;
+using CSF.Screenplay;
 
 namespace Agiil.BDD.Bindings.Tickets
 {

@@ -11,6 +11,7 @@ using Agiil.BDD.Tasks.Sprints;
 using Agiil.BDD.Models.Sprints;
 using System.Collections.Generic;
 using Agiil.BDD.Personas;
+using CSF.Screenplay;
 
 namespace Agiil.BDD.Bindings.Sprints
 {

@@ -3,6 +3,7 @@ using Agiil.BDD.Models.Sprints;
 using Agiil.BDD.Pages;
 using Agiil.BDD.Personas;
 using Agiil.BDD.Tasks.Sprints;
+using CSF.Screenplay;
 using CSF.Screenplay.Actors;
 using CSF.Screenplay.Selenium.Builders;
 using FluentAssertions;

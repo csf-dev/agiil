@@ -220,8 +220,6 @@
     <Compile Include="Tasks\Tickets\DeleteTheFirstDeletableComment.cs" />
     <Compile Include="Tasks\Sprints\ReadTheTicketTitlesFromTheCurrentSprint.cs" />
     <Compile Include="Tasks\Tickets\ChangeTheTicketType.cs" />
-    <Compile Include="CastExtensions.cs" />
-    <Compile Include="Personas\IPersona.cs" />
     <Compile Include="Bindings\Actors\AprilSteps.cs" />
     <Compile Include="Bindings\Actors\JoeSteps.cs" />
     <Compile Include="Bindings\Actors\YoussefSteps.cs" />

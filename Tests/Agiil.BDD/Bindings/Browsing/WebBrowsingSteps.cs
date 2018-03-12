@@ -8,12 +8,13 @@ using Agiil.BDD.Personas;
 using Agiil.BDD.Tasks.Auth;
 using CSF.Screenplay.Actors;
 using CSF.Screenplay.Selenium.Abilities;
-using CSF.Screenplay.JsonApis.Abilities;
+using CSF.Screenplay.WebApis.Abilities;
 using Agiil.BDD.Abilities;
 using CSF.FlexDi;
 using Agiil.BDD.Bindings.Actors;
 using Agiil.BDD.Bindings.App;
 using Agiil.BDD.Bindings.Auth;
+using CSF.Screenplay;
 
 namespace Agiil.BDD.Bindings.Browsing
 {

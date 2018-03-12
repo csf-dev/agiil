@@ -2,6 +2,7 @@
 using System.Linq;
 using Agiil.BDD.Pages;
 using Agiil.BDD.Tasks.Tickets;
+using CSF.Screenplay;
 using CSF.Screenplay.Actors;
 using CSF.Screenplay.Selenium.Builders;
 using FluentAssertions;

@@ -1,6 +1,7 @@
 ﻿using System;
 using Agiil.BDD.Personas;
 using Agiil.BDD.Tasks.Auth;
+using CSF.Screenplay;
 using CSF.Screenplay.Actors;
 using TechTalk.SpecFlow;
 using static CSF.Screenplay.StepComposer;

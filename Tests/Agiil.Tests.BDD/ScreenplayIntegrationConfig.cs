@@ -1,6 +1,6 @@
 ﻿using CSF.Screenplay.Integration;
 using CSF.Screenplay;
-using CSF.Screenplay.JsonApis.Abilities;
+using CSF.Screenplay.WebApis.Abilities;
 using CSF.Screenplay.Selenium;
 using CSF.Screenplay.Reporting.Models;
 using CSF.Screenplay.Reporting;
@@ -16,6 +16,10 @@ namespace Agiil.Tests.BDD
 {
   public class ScreenplayIntegrationConfig : IIntegrationConfig
   {
+    const string
+      ApplicationBaseUri = "http://localhost:8080/",
+      ApiBaseUri = ApplicationBaseUri + "api/v1/";
+
     public void Configure(IIntegrationConfigBuilder builder)
     {
       builder.UseCast();
@@ -28,12 +32,13 @@ namespace Agiil.Tests.BDD
           .WithFormatter<ElementCollectionFormatter>()
           .WriteReport(WriteReport);
       });
-      builder.UseSharedUriTransformer(new RootUriPrependingTransformer("http://localhost:8080/"));
+      builder.UseSharedUriTransformer(new RootUriPrependingTransformer(ApplicationBaseUri));
       builder.UseWebDriverFromConfiguration();
       builder.UseWebBrowser();
       builder.UseBrowserFlags();
       builder.ServiceRegistrations.PerScenario.Add(helper => {
-        helper.RegisterFactory(() => new ConsumeJsonWebServices("http://localhost:8080/api/v1/"));
+        
+        helper.RegisterFactory(() => new ConsumeWebServices(new Uri(ApiBaseUri)));
       });
     }
 

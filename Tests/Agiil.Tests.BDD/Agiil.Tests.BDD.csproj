@@ -139,6 +139,7 @@
     <Reference Include="CSF.Screenplay.WebApis">
       <HintPath>..\..\packages\CSF.Screenplay.WebApis.0.12.0-beta\lib\net45\CSF.Screenplay.WebApis.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auth\ChangePassword.feature.cs">

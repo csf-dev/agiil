@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.BDD.Personas;
+using CSF.Screenplay;
 using CSF.Screenplay.Actors;
 using CSF.Screenplay.Selenium.Abilities;
 using TechTalk.SpecFlow;
