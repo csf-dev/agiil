@@ -15,5 +15,12 @@
   </PropertyGroup>
 	
   <UsingTask TaskName="CompileScssFiles" AssemblyFile="$(TasksAssemblyPath)" />
+  
+  <Target Name="CopyWebApplicationTestingLogic">
+    <ItemGroup>
+      <WebAppTestingLogic Include="..\..\Tests\Agiil.Web.TestBuild\bin\Debug\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(WebAppTestingLogic)" DestinationFolder="..\..\Agiil.Web\bin" />
+  </Target>
 	
 </Project>
