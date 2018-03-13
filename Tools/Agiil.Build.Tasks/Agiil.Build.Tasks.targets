@@ -9,7 +9,7 @@
   </ItemGroup>
 	
   <PropertyGroup>
-    <TasksConfig Condition="'$(Configuration)' == 'Debug'">Debug</TasksConfig>
+    <TasksConfig Condition="'$(Configuration)' != 'Release'">Debug</TasksConfig>
     <TasksConfig Condition="'$(Configuration)' == 'Release'">Release</TasksConfig>
     <TasksAssemblyPath>bin\$(TasksConfig)\Agiil.Build.Tasks.dll</TasksAssemblyPath>
   </PropertyGroup>
