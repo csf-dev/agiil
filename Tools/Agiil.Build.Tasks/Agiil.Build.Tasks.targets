@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <!-- PropertyGroup sets up a reference to the current project, so that the build is ordered correctly -->
   <ItemGroup>
-    <ProjectReference Include="..\Tools\Agiil.Build.Tasks\Agiil.Build.Tasks.csproj">
+    <ProjectReference Include="$(MSBuildThisFileDirectory)\Agiil.Build.Tasks.csproj">
       <Project>{3E1DAACE-519B-4C6C-80E3-3F06A1A33C66}</Project>
       <Name>Agiil.Build.Tasks</Name>
     </ProjectReference>
