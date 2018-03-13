@@ -301,9 +301,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="Content\Scss\_Reset.scss" />
@@ -347,12 +344,29 @@
     <None Include="Views\Sprint\Index.pt" />
     <None Include="Views\Shared\Controls\SprintChooser.pt" />
     <None Include="Views\Sprint\Edit.pt" />
-    <None Include="Web.Debug.config">
-      <SubType>Designer</SubType>
+    <None Include="Web.template.config">
+      <TransformOnBuild>true</TransformOnBuild>
+      <Link>Web.config</Link>
     </None>
-    <None Include="Web.Release.config" />
-    <None Include="Web.Travis.config">
-      <SubType>Designer</SubType>
+    <None Include="Web.template.Debug.config">
+      <DependentUpon>Web.template.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="Web.template.Release.config">
+      <DependentUpon>Web.template.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="Web.template.Testing.config">
+      <DependentUpon>Web.template.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="Web.template.AppVeyorCI.config">
+      <DependentUpon>Web.template.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="Web.template.TravisCI.config">
+      <DependentUpon>Web.template.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
     </None>
     <None Include="Views\Shared\Controls\TicketTypeChooser.pt" />
   </ItemGroup>
@@ -397,6 +411,9 @@
   <Target Name="AfterBuild">
     <CompileScssFiles SourcePath="Content\Scss" DestinationPath="Content\Css" />
   </Target>
+  <Target Name="MoveWebConfigToCorrectLocation" AfterTargets="ScApplyTransforms">
+    <Move SourceFiles="bin\Web.config" DestinationFiles="Web.config" />
+  </Target>
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>
@@ -429,4 +446,5 @@
   </Target>
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Import Project="..\packages\Microsoft.VisualStudio.SlowCheetah.3.0.61\build\Microsoft.VisualStudio.SlowCheetah.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.SlowCheetah.3.0.61\build\Microsoft.VisualStudio.SlowCheetah.targets')" />
 </Project>
