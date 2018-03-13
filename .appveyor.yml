@@ -11,6 +11,7 @@ before_build:
 # the custom 'CompileScssFiles' target will fail on usage of the
 # 64-bit flavour of libsass.dll
 platform: x86
+configuration: AppVeyorCI
 build:
   project: Agiil.sln
   verbosity: normal
