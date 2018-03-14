@@ -349,7 +349,6 @@
     <Compile Include="Bootstrap\WebApiModelBindersModule.cs" />
     <Compile Include="ModelBinders\IdentityWebApiModelBinder.cs" />
     <Compile Include="App_Start\WebApiModelBindingRules.cs" />
-    <Compile Include="App_Start\MvcGlobalFilterConfiguration.cs" />
     <Compile Include="Bootstrap\ServicesModule.cs" />
     <Compile Include="App_Start\WebApiFilterConfiguration.cs" />
     <Compile Include="Controllers\CommentController.cs" />

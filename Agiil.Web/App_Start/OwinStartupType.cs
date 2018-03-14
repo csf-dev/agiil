@@ -70,7 +70,6 @@ namespace Agiil.Web.App_Start
       app.MapWhen(IsWebAppUrl, inner => {
         new RouteConfiguration().RegisterMvcRoutes (RouteTable.Routes);
         new MvcViewConfiguration().RegisterViewEngines(ViewEngines.Engines);
-        new MvcGlobalFilterConfiguration().RegisterFilters(GlobalFilters.Filters);
         ConfigureCookieAuthentication(inner);
         inner.UseAutofacMvc();
       });
