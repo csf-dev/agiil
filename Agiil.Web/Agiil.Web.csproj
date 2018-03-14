@@ -330,7 +330,6 @@
     <Compile Include="App_Start\MvcViewConfiguration.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="App_Start\WebAppContainerFactory.cs" />
-    <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Services\Auth\HttpContextPrincipalGetter.cs" />
     <Compile Include="Bootstrap\AuthModule.cs" />
     <Compile Include="Bootstrap\OwinCompatibleLifetimeScopeProvider.cs" />
@@ -350,11 +349,7 @@
     <Compile Include="Bootstrap\WebApiModelBindersModule.cs" />
     <Compile Include="ModelBinders\IdentityWebApiModelBinder.cs" />
     <Compile Include="App_Start\WebApiModelBindingRules.cs" />
-    <Compile Include="Services\SharedModel\LoginStateReader.cs" />
-    <Compile Include="Services\SharedModel\StandardPageModelPopulator.cs" />
-    <Compile Include="Services\SharedModel\StandardPageModelFactory.cs" />
-    <Compile Include="Bootstrap\SharedModelServicesModule.cs" />
-    <Compile Include="App_Start\MvcGlobalFilterConfiguration.cs" />
+    <Compile Include="Bootstrap\ServicesModule.cs" />
     <Compile Include="App_Start\WebApiFilterConfiguration.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="ApiControllers\CommentController.cs" />
@@ -364,8 +359,6 @@
     <Compile Include="ApiControllers\OpenCloseTicketController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\NewSprintController.cs" />
-    <Compile Include="Controllers\ControllerBaseDependencies.cs" />
-    <Compile Include="Bootstrap\ControllerDependenciesModule.cs" />
     <Compile Include="ApiControllers\SprintController.cs" />
     <Compile Include="ApiControllers\ApiControllerBaseDependencies.cs" />
     <Compile Include="ApiControllers\ApiControllerBase.cs" />
@@ -378,6 +371,11 @@
     <Compile Include="Bootstrap\DataModule.cs" />
     <Compile Include="App_Start\ContainerFactoryProviderExtensions.cs" />
     <Compile Include="Services\Logging\LogUnexpectedErrorsAttribute.cs" />
+    <Compile Include="TempDataDictionaryExtensions.cs" />
+    <Compile Include="ControllerExtensions.cs" />
+    <Compile Include="Services\LoginStateReader.cs" />
+    <Compile Include="Services\LoginStateModelPopulator.cs" />
+    <Compile Include="Bootstrap\AspNetMvcGlobalFiltersModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -424,6 +422,9 @@
     <None Include="Views\Sprint\Index.pt" />
     <None Include="Views\Shared\Controls\SprintChooser.pt" />
     <None Include="Views\Sprint\Edit.pt" />
+    <None Include="Views\Shared\Controls\TicketTypeChooser.pt" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Web.template.config">
       <TransformOnBuild>true</TransformOnBuild>
       <Link>Web.config</Link>
@@ -448,7 +449,6 @@
       <DependentUpon>Web.template.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
     </None>
-    <None Include="Views\Shared\Controls\TicketTypeChooser.pt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

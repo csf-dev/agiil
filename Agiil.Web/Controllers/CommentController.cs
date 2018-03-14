@@ -7,7 +7,7 @@ using CSF.Entities;
 
 namespace Agiil.Web.Controllers
 {
-  public class CommentController : ControllerBase
+  public class CommentController : Controller
   {
     internal const string
       CommentSpecKey          = "New comment specification",
@@ -19,6 +19,7 @@ namespace Agiil.Web.Controllers
     readonly Lazy<ICommentEditor> commentEditor;
     readonly Lazy<ICommentReader> commentReader;
     readonly Lazy<ICommentDeleter> commentDeleter;
+    readonly IMapper mapper;
 
     [HttpPost]
     public ActionResult Add(AddCommentSpecification spec)
@@ -32,7 +33,7 @@ namespace Agiil.Web.Controllers
       TempData[CommentResponseKey] = response;
 
       return RedirectToAction(nameof(TicketController.Index),
-                              GetControllerName<TicketController>(),
+                              this.GetName<TicketController>(),
                               new { id = spec.TicketId?.Value });
     }
 
@@ -53,7 +54,7 @@ namespace Agiil.Web.Controllers
         return new HttpStatusCodeResult(System.Net.HttpStatusCode.Forbidden);
 
       return RedirectToAction(nameof(TicketController.Index),
-                              GetControllerName<TicketController>(),
+                              this.GetName<TicketController>(),
                               new { id = ticketId.Value });
     }
 
@@ -85,7 +86,7 @@ namespace Agiil.Web.Controllers
       {
         var comment = commentReader.Value.Read(spec.CommentId);
         return RedirectToAction(nameof(TicketController.Index),
-                                GetControllerName<TicketController>(),
+                                this.GetName<TicketController>(),
                                 new { id = comment.Ticket.GetIdentity()?.Value });
       }
 
@@ -150,20 +151,21 @@ namespace Agiil.Web.Controllers
 
     EditCommentModel GetEditCommentModel(Comment comment)
     {
-      var model = ModelFactory.GetModel<EditCommentModel>();
-      model.Comment = Mapper.Map<CommentDto>(comment);
-      model.Response = GetTempData<Models.Tickets.EditCommentResponse>(EditCommentResponseKey);
-      model.Specification = GetTempData<EditCommentSpecification>(EditCommentSpecKey);
+      var model = new EditCommentModel();
+      model.Comment = mapper.Map<CommentDto>(comment);
+      model.Response = TempData.TryGet<Models.Tickets.EditCommentResponse>(EditCommentResponseKey);
+      model.Specification = TempData.TryGet<EditCommentSpecification>(EditCommentSpecKey);
       return model;
     }
 
-    public CommentController(ControllerBaseDependencies baseDeps,
-                             Lazy<ICommentCreator> commentCreator,
+    public CommentController(Lazy<ICommentCreator> commentCreator,
                              Lazy<ICommentEditor> commentEditor,
                              Lazy<ICommentReader> commentReader,
-                             Lazy<ICommentDeleter> commentDeleter)
-      : base(baseDeps)
+                             Lazy<ICommentDeleter> commentDeleter,
+                             IMapper mapper)
     {
+      if(mapper == null)
+        throw new ArgumentNullException(nameof(mapper));
       if(commentReader == null)
         throw new ArgumentNullException(nameof(commentReader));
       if(commentEditor == null)
@@ -173,6 +175,7 @@ namespace Agiil.Web.Controllers
       if(commentDeleter == null)
         throw new ArgumentNullException(nameof(commentDeleter));
 
+      this.mapper = mapper;
       this.commentCreator = commentCreator;
       this.commentEditor = commentEditor;
       this.commentReader = commentReader;

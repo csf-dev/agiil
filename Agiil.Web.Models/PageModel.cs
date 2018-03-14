@@ -3,7 +3,7 @@ using Agiil.Web.Models.Shared;
 
 namespace Agiil.Web.Models
 {
-  public class StandardPageModel
+  public class PageModel : IHasLoginState
   {
     public LoginStateModel LoginState { get; set; }
   }

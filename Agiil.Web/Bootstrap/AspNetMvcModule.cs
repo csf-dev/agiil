@@ -14,12 +14,13 @@ namespace Agiil.Web.Bootstrap
 
       builder.RegisterControllers(assembly);
       builder.RegisterModelBinders(assembly);
+      builder.RegisterFilterProvider();
 
       builder
         .RegisterType<AutofacMvcModelBinderProviderWithOpenGenericSupport>()
         .As<IModelBinderProvider>()
         .SingleInstance();
-      
+
       builder.RegisterModule<AutofacWebTypesModule>();
     }
   }

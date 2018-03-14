@@ -6,7 +6,7 @@ using Agiil.Web.Models;
 
 namespace Agiil.Web.Controllers
 {
-  public class DatabaseController : ControllerBase
+  public class DatabaseController : Controller
   {
     const string TempModelKey = "Reset model";
 
@@ -16,7 +16,7 @@ namespace Agiil.Web.Controllers
     [HttpGet]
     public ActionResult Index()
     {
-      var model = base.GetTempData<DatabaseResetModel>(TempModelKey);
+      var model = TempData.TryGet<DatabaseResetModel>(TempModelKey);
       model = model?? GetModel();
       model.DatabaseUpgradesApplied = upgrader.Value.GetAppliedUpgrades().Select(x => x.GetName());
       model.DatabaseUpgradesPending = upgrader.Value.GetPendingUpgrades().Select(x => x.GetName());
@@ -51,9 +51,7 @@ namespace Agiil.Web.Controllers
     }
 
     public DatabaseController(Lazy<IDatabaseResetter> resetter,
-                              Lazy<IDatabaseUpgrader> upgrader,
-                              ControllerBaseDependencies baseDeps)
-      : base(baseDeps)
+                              Lazy<IDatabaseUpgrader> upgrader)
     {
       if(upgrader == null)
         throw new ArgumentNullException(nameof(upgrader));

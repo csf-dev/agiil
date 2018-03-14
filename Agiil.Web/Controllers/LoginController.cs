@@ -7,7 +7,7 @@ using Agiil.Web.Models.Auth;
 namespace Agiil.Web.Controllers
 {
   [AllowAnonymous]
-  public class LoginController : ControllerBase
+  public class LoginController : Controller
   {
     #region constants
 
@@ -57,7 +57,7 @@ namespace Agiil.Web.Controllers
         return Redirect(credentials.ReturnUrl);
       }
 
-      return RedirectToAction(nameof(LoginController.Index), GetControllerName<LoginController>());
+      return RedirectToAction(nameof(LoginController.Index), this.GetName<LoginController>());
     }
 
     [HttpPost]
@@ -71,14 +71,14 @@ namespace Agiil.Web.Controllers
         throw new NotSupportedException("Failure to log out is not supported.");
       }
 
-      return RedirectToAction(nameof(LoginController.LoggedOut), GetControllerName<LoginController>());
+      return RedirectToAction(nameof(LoginController.LoggedOut), this.GetName<LoginController>());
     }
 
     LoginModel GetLoginModel()
     {
-      var model = ModelFactory.GetModel<LoginModel>();
-      model.Result = GetTempData<LoginResult>(LoginResultKey);
-      model.EnteredCredentials = GetTempData<Models.Auth.LoginCredentials>(CredentialsKey);
+      var model = new LoginModel();
+      model.Result = TempData.TryGet<LoginResult>(LoginResultKey);
+      model.EnteredCredentials = TempData.TryGet<Models.Auth.LoginCredentials>(CredentialsKey);
       return model;
     }
 
@@ -87,9 +87,7 @@ namespace Agiil.Web.Controllers
     #region constructor
 
     public LoginController(LoginRequestCreator loginRequestCreator,
-                           ILoginLogoutManager loginLogoutManager,
-                           ControllerBaseDependencies baseDeps)
-      : base(baseDeps)
+                           ILoginLogoutManager loginLogoutManager)
     {
       if(loginLogoutManager == null)
         throw new ArgumentNullException(nameof(loginLogoutManager));

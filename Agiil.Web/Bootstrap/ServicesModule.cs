@@ -1,14 +1,14 @@
 ﻿using System;
-using Agiil.Web.Controllers;
+using Agiil.Web.Services;
 using Autofac;
 
 namespace Agiil.Web.Bootstrap
 {
-  public class ControllerDependenciesModule : Module
+  public class ServicesModule : Module
   {
     protected override void Load(ContainerBuilder builder)
     {
-      builder.RegisterType<ControllerBaseDependencies>();
+      builder.RegisterType<LoginStateReader>();
     }
   }
 }

@@ -6,7 +6,7 @@ using AutoMapper;
 
 namespace Agiil.Web.Controllers
 {
-  public class ChangePasswordController : ControllerBase
+  public class ChangePasswordController : Controller
   {
     const string ResultKey = "Change password result";
 
@@ -44,8 +44,8 @@ namespace Agiil.Web.Controllers
 
     ChangePasswordModel GetModel()
     {
-      var model = ModelFactory.GetModel<ChangePasswordModel>();
-      model.Result = GetTempData<ChangePasswordResult>(ResultKey);
+      var model = new ChangePasswordModel();
+      model.Result = TempData.TryGet<ChangePasswordResult>(ResultKey);
       return model;
     }
 
@@ -70,9 +70,7 @@ namespace Agiil.Web.Controllers
       };
     }
 
-    public ChangePasswordController(ControllerBaseDependencies baseDeps,
-                                    Lazy<IPasswordChanger> passwordChanger)
-      : base(baseDeps)
+    public ChangePasswordController(Lazy<IPasswordChanger> passwordChanger)
     {
       if(passwordChanger == null)
         throw new ArgumentNullException(nameof(passwordChanger)); ;
