@@ -9,7 +9,7 @@ using CSF.Entities;
 
 namespace Agiil.Web.Controllers
 {
-  public class OpenCloseTicketController : ControllerBase
+  public class OpenCloseTicketController : Controller
   {
     readonly ITicketOpenerCloser openerCloser;
 
@@ -28,7 +28,7 @@ namespace Agiil.Web.Controllers
       }
 
       return RedirectToAction(nameof(TicketController.Index),
-                              GetControllerName<TicketController>(),
+                              this.GetName<TicketController>(),
                               new { id = id.Value });
     }
 
@@ -47,13 +47,11 @@ namespace Agiil.Web.Controllers
       }
 
       return RedirectToAction(nameof(TicketController.Index),
-                              GetControllerName<TicketController>(),
+                              this.GetName<TicketController>(),
                               new { id = id.Value });
     }
 
-    public OpenCloseTicketController(ControllerBaseDependencies baseDeps,
-                                 ITicketOpenerCloser openerCloser)
-      : base(baseDeps)
+    public OpenCloseTicketController(ITicketOpenerCloser openerCloser)
     {
       if(openerCloser == null)
         throw new ArgumentNullException(nameof(openerCloser));

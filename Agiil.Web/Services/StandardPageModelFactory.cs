@@ -2,20 +2,20 @@
 using Agiil.Web.Models;
 using Agiil.Web.Models.Shared;
 
-namespace Agiil.Web.Services.SharedModel
+namespace Agiil.Web.Services
 {
   public class StandardPageModelFactory
   {
-    readonly StandardPageModelPopulator populator;
+    readonly LoginStateModelPopulator populator;
 
-    public T GetModel<T>() where T : StandardPageModel,new()
+    public T GetModel<T>() where T : PageModel,new()
     {
       var output = new T();
       populator.Populate(output);
       return output;
     }
 
-    public StandardPageModelFactory(StandardPageModelPopulator populator)
+    public StandardPageModelFactory(LoginStateModelPopulator populator)
     {
       if(populator == null)
         throw new ArgumentNullException(nameof(populator));

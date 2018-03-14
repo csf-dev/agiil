@@ -19,7 +19,7 @@ namespace Agiil.Web.Bootstrap
         .RegisterType<AutofacMvcModelBinderProviderWithOpenGenericSupport>()
         .As<IModelBinderProvider>()
         .SingleInstance();
-      
+
       builder.RegisterModule<AutofacWebTypesModule>();
     }
   }

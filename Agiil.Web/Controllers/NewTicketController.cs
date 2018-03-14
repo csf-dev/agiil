@@ -5,22 +5,24 @@ using Agiil.Domain.Sprints;
 using Agiil.Domain.Tickets;
 using Agiil.Web.Models.Sprints;
 using Agiil.Web.Models.Tickets;
+using AutoMapper;
 using CSF.Entities;
 
 namespace Agiil.Web.Controllers
 {
-  public class NewTicketController : ControllerBase
+  public class NewTicketController : Controller
   {
     public static readonly string NewModelKey = "NewModel";
 
     readonly ITicketCreator ticketCreator;
     readonly Lazy<ISprintLister> sprintLister;
     readonly Lazy<ITicketTypeProvider> ticketTypeProvider;
+    readonly IMapper mapper;
 
     [HttpGet]
     public ActionResult Index()
     {
-      var model = GetTempData<NewTicketModel>(NewModelKey)?? GetModel();
+      var model = TempData.TryGet<NewTicketModel>(NewModelKey)?? GetModel();
       return View(model);
     }
 
@@ -28,26 +30,26 @@ namespace Agiil.Web.Controllers
     public ActionResult Create(NewTicketSpecification spec)
     {
       var model = GetModel(spec);
-      var request = Mapper.Map<CreateTicketRequest>(spec);
+      var request = mapper.Map<CreateTicketRequest>(spec);
       var response = ticketCreator.Create(request);
-      model.Response = Mapper.Map<NewTicketResponse>(response);
+      model.Response = mapper.Map<NewTicketResponse>(response);
       TempData.Add(NewModelKey, model);
       return RedirectToAction(nameof(NewTicketController.Index));
     }
 
     NewTicketModel GetModel(NewTicketSpecification spec = null)
     {
-      var model = ModelFactory.GetModel<NewTicketModel>();
+      var model = new NewTicketModel();
       model.Specification = spec;
       model.AvailableSprints = sprintLister
         .Value
         .GetSprints()
-        .Select(x => Mapper.Map<SprintSummaryDto>(x))
+        .Select(x => mapper.Map<SprintSummaryDto>(x))
         .ToList();
       model.AvailableTicketTypes = ticketTypeProvider
         .Value
         .GetTicketTypes()
-        .Select(x => Mapper.Map<TicketTypeDto>(x))
+        .Select(x => mapper.Map<TicketTypeDto>(x))
         .ToList();
       return model;
     }
@@ -55,9 +57,11 @@ namespace Agiil.Web.Controllers
     public NewTicketController(ITicketCreator ticketCreator,
                                Lazy<ISprintLister> sprintLister,
                                Lazy<ITicketTypeProvider> ticketTypeProvider,
-                               ControllerBaseDependencies baseDeps)
-      : base(baseDeps)
+                              IMapper mapper)
     {
+      if(mapper == null)
+        throw new ArgumentNullException(nameof(mapper));
+      this.mapper = mapper;
       if(ticketTypeProvider == null)
         throw new ArgumentNullException(nameof(ticketTypeProvider));
       if(sprintLister == null)

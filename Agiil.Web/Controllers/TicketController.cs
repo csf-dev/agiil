@@ -10,7 +10,7 @@ using CSF.Entities;
 
 namespace Agiil.Web.Controllers
 {
-  public class TicketController : ControllerBase
+  public class TicketController : Controller
   {
     const string 
       EditTicketResponseKey = "Edit ticket response",
@@ -21,6 +21,7 @@ namespace Agiil.Web.Controllers
     readonly Lazy<ITicketEditor> editor;
     readonly Lazy<ISprintLister> sprintLister;
     readonly Lazy<ITicketTypeProvider> typeProvider;
+    readonly IMapper mapper;
 
     public ActionResult Index(IIdentity<Ticket> id)
     {
@@ -50,7 +51,7 @@ namespace Agiil.Web.Controllers
     [HttpPost]
     public ActionResult Edit(EditTicketSpecification spec)
     {
-      var request = Mapper.Map<EditTicketRequest>(spec);
+      var request = mapper.Map<EditTicketRequest>(spec);
       var response = editor.Value.Edit(request);
 
       if(response.IdentityIsInvalid)
@@ -64,7 +65,7 @@ namespace Agiil.Web.Controllers
         return RedirectToAction(nameof(Index), new { id = spec.Identity?.Value });
       }
 
-      var responseModel = Mapper.Map<Models.Tickets.EditTicketResponse>(response);
+      var responseModel = mapper.Map<Models.Tickets.EditTicketResponse>(response);
       TempData.Add(EditTicketResponseKey, responseModel);
       TempData.Add(EditTicketSpecKey, spec);
 
@@ -73,10 +74,10 @@ namespace Agiil.Web.Controllers
 
     TicketDetailModel GetViewTicketModel(Ticket ticket)
     {
-      var model = ModelFactory.GetModel<TicketDetailModel>();
-      model.Ticket = Mapper.Map<TicketDetailDto>(ticket);
-      model.AddCommentSpecification = GetTempData<AddCommentSpecification>(CommentController.CommentSpecKey);
-      model.AddCommentResponse = GetTempData<AddCommentResponse>(CommentController.CommentResponseKey);
+      var model = new TicketDetailModel();
+      model.Ticket = mapper.Map<TicketDetailDto>(ticket);
+      model.AddCommentSpecification = TempData.TryGet<AddCommentSpecification>(CommentController.CommentSpecKey);
+      model.AddCommentResponse = TempData.TryGet<AddCommentResponse>(CommentController.CommentResponseKey);
       return model;
     }
 
@@ -85,25 +86,25 @@ namespace Agiil.Web.Controllers
       if(model == null)
         throw new ArgumentNullException(nameof(model));
 
-      model.AddCommentSpecification = GetTempData<AddCommentSpecification>(CommentController.CommentSpecKey);
-      model.AddCommentResponse = GetTempData<AddCommentResponse>(CommentController.CommentResponseKey);
+      model.AddCommentSpecification = TempData.TryGet<AddCommentSpecification>(CommentController.CommentSpecKey);
+      model.AddCommentResponse = TempData.TryGet<AddCommentResponse>(CommentController.CommentResponseKey);
     }
 
     EditTicketModel GetEditTicketModel(Ticket ticket)
     {
-      var model = ModelFactory.GetModel<EditTicketModel>();
-      model.Ticket = Mapper.Map<TicketDetailDto>(ticket);
-      model.Response = GetTempData<Models.Tickets.EditTicketResponse>(EditTicketResponseKey);
-      model.Specification = GetTempData<EditTicketSpecification>(EditTicketSpecKey);
+      var model = new EditTicketModel();
+      model.Ticket = mapper.Map<TicketDetailDto>(ticket);
+      model.Response = TempData.TryGet<Models.Tickets.EditTicketResponse>(EditTicketResponseKey);
+      model.Specification = TempData.TryGet<EditTicketSpecification>(EditTicketSpecKey);
       model.AvailableSprints = sprintLister
         .Value
         .GetSprints()
-        .Select(x => Mapper.Map<SprintSummaryDto>(x))
+        .Select(x => mapper.Map<SprintSummaryDto>(x))
         .ToList();
       model.AvailableTicketTypes = typeProvider
         .Value
         .GetTicketTypes()
-        .Select(x => Mapper.Map<TicketTypeDto>(x))
+        .Select(x => mapper.Map<TicketTypeDto>(x))
         .ToList();
       
       return model;
@@ -113,9 +114,10 @@ namespace Agiil.Web.Controllers
                             Lazy<ITicketEditor> editor,
                             Lazy<ISprintLister> sprintLister,
                             Lazy<ITicketTypeProvider> typeProvider,
-                            ControllerBaseDependencies baseDeps)
-      : base(baseDeps)
+                           IMapper mapper)
     {
+      if(mapper == null)
+        throw new ArgumentNullException(nameof(mapper));
       if(typeProvider == null)
         throw new ArgumentNullException(nameof(typeProvider));
       if(sprintLister == null)
@@ -125,6 +127,7 @@ namespace Agiil.Web.Controllers
       if(ticketDetailService == null)
         throw new ArgumentNullException(nameof(ticketDetailService));
       
+      this.mapper = mapper;
       this.ticketDetailService = ticketDetailService;
       this.editor = editor;
       this.sprintLister = sprintLister;

@@ -3,7 +3,7 @@ using Agiil.Web.Models.Shared;
 
 namespace Agiil.Web.Models.Tickets
 {
-  public class EditCommentModel : StandardPageModel
+  public class EditCommentModel : PageModel
   {
     public CommentDto Comment { get; set; }
 
