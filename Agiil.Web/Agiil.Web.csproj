@@ -376,6 +376,8 @@
     <Compile Include="Services\LoginStateReader.cs" />
     <Compile Include="Services\LoginStateModelPopulator.cs" />
     <Compile Include="Bootstrap\AspNetMvcGlobalFiltersModule.cs" />
+    <Compile Include="Services\VersionInfoProvider.cs" />
+    <Compile Include="Services\VersionInfoModelPopulator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -423,6 +425,7 @@
     <None Include="Views\Shared\Controls\SprintChooser.pt" />
     <None Include="Views\Sprint\Edit.pt" />
     <None Include="Views\Shared\Controls\TicketTypeChooser.pt" />
+    <None Include="Views\Shared\StandardFooter.pt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.template.config">

@@ -92,6 +92,8 @@
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="Tickets\TicketTypeDto.cs" />
     <Compile Include="Shared\IHasLoginState.cs" />
+    <Compile Include="Shared\IHasApplicationVersion.cs" />
+    <Compile Include="Shared\ApplicationVersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

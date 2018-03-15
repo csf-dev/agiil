@@ -9,7 +9,7 @@ namespace Agiil.BDD.ServiceEndpoints
   {
     public override HttpMethod HttpMethod => HttpMethod.Post;
 
-    public override string Name => "the 'add a user account' service";
+    public override string Name => "the add a user account service";
 
     protected override string GetControllerName() => nameof(AddUserController);
   }

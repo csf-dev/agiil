@@ -120,6 +120,8 @@
     <Compile Include="Services\IServicesNamespaceMarker.cs" />
     <Compile Include="Services\Auth\PermissiveBrakePedalThrottlePolicyProvider.cs" />
     <Compile Include="Bootstrap\BrakePedalPolicyModule.cs" />
+    <Compile Include="Services\OverridableVersionInfoProvider.cs" />
+    <Compile Include="Controllers\OverrideVersionNumberController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

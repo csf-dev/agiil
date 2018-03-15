@@ -13,6 +13,7 @@ namespace Agiil.Web.Bootstrap
     {
       base.Load(builder);
       RegisterLoginReader(builder);
+      RegisterVersionNumberProvider(builder);
     }
 
     protected override string Namespace
@@ -26,6 +27,7 @@ namespace Agiil.Web.Bootstrap
       get {
         return new [] {
           typeof(OverridableLoginReader),
+          typeof(OverridableVersionInfoProvider),
         };
       }
     }
@@ -37,6 +39,15 @@ namespace Agiil.Web.Bootstrap
         .AsSelf()
         .AsImplementedInterfaces()
         .InstancePerRequest();
+    }
+
+    void RegisterVersionNumberProvider(ContainerBuilder builder)
+    {
+      builder
+        .RegisterType<OverridableVersionInfoProvider>()
+        .AsSelf()
+        .AsImplementedInterfaces()
+        .SingleInstance();
     }
   }
 }
