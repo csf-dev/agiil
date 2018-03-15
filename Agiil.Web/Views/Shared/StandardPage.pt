@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title metal:define-slot="title_element">Agiil</title>
 <base href="../../" tal:attributes="href string:/" />
+<link rel="icon" href="data:;base64,iVBORw0KGgo=" />
 <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
 <style metal:define-slot="standard_styles">
 @import url('Content/Css/StandardPage.css');
