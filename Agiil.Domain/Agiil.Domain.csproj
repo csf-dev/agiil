@@ -130,6 +130,8 @@
     <Compile Include="Tickets\DeleteCommentRequest.cs" />
     <Compile Include="Tickets\TicketType.cs" />
     <Compile Include="Tickets\ITicketTypeProvider.cs" />
+    <Compile Include="IProvidesVersionInformation.cs" />
+    <Compile Include="ComponentVersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
