@@ -376,6 +376,7 @@
     <Compile Include="Services\LoginStateReader.cs" />
     <Compile Include="Services\LoginStateModelPopulator.cs" />
     <Compile Include="Bootstrap\AspNetMvcGlobalFiltersModule.cs" />
+    <Compile Include="Services\VersionInfoProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
