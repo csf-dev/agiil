@@ -11,7 +11,7 @@
 </style>
 </head>
 <body>
-<header class="standard" metal:define-macro="header">
+<header class="standard PageHeader" metal:define-macro="header">
   <nav class="site_navigation" metal:use-macro="Views/Shared/Controls/SiteNavigation/macros/site_navigation">
     Site navigation
   </nav>

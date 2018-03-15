@@ -30,6 +30,11 @@ namespace Agiil.Web.Bootstrap
         .Register(c => new LoginStateModelPopulator(c.Resolve<LoginStateReader>()))
         .AsActionFilterFor<Controller>()
         .InstancePerRequest();
+
+      builder
+        .Register(c => new VersionInfoModelPopulator(c.Resolve<Domain.IProvidesVersionInformation>()))
+        .AsActionFilterFor<Controller>()
+        .InstancePerRequest();
     }
   }
 }
