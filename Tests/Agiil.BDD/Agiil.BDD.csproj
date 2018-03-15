@@ -229,6 +229,10 @@
     <Compile Include="ServiceEndpoints\ControllerJsonServiceDescription.cs" />
     <Compile Include="ServiceEndpoints\InstallAgiilService.cs" />
     <Compile Include="ServiceEndpoints\LoadDataPackageService.cs" />
+    <Compile Include="ServiceEndpoints\OverrideVersionNumberService.cs" />
+    <Compile Include="Bindings\App\VersionNumberSteps.cs" />
+    <Compile Include="Tasks\App\OverrideTheApplicationVersion.cs" />
+    <Compile Include="Pages\AnyPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
