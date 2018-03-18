@@ -360,8 +360,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\NewSprintController.cs" />
     <Compile Include="ApiControllers\SprintController.cs" />
-    <Compile Include="ApiControllers\ApiControllerBaseDependencies.cs" />
-    <Compile Include="ApiControllers\ApiControllerBase.cs" />
     <Compile Include="Controllers\SprintsController.cs" />
     <Compile Include="ApiControllers\SprintsController.cs" />
     <Compile Include="Controllers\SprintController.cs" />

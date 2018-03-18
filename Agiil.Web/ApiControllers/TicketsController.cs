@@ -8,15 +8,16 @@ using AutoMapper;
 
 namespace Agiil.Web.ApiControllers
 {
-  public class TicketsController : ApiControllerBase
+  public class TicketsController : ApiController
   {
     readonly ITicketLister lister;
+    readonly Lazy<IMapper> mapper;
 
     public IList<TicketSummaryDto> Get(AdHocTicketListSpecification spec)
     {
       var request = GetRequest(spec);
       var tickets = lister.GetTickets(request);
-      return tickets.Select(x => Mapper.Map<TicketSummaryDto>(x)).ToList();
+      return tickets.Select(x => mapper.Value.Map<TicketSummaryDto>(x)).ToList();
     }
 
     TicketListRequest GetRequest(AdHocTicketListSpecification spec)
@@ -33,12 +34,15 @@ namespace Agiil.Web.ApiControllers
     }
 
     public TicketsController(ITicketLister lister,
-                             ApiControllerBaseDependencies deps) : base(deps)
+                             Lazy<IMapper> mapper)
     {
       if(lister == null)
         throw new ArgumentNullException(nameof(lister));
+      if(mapper == null)
+        throw new ArgumentNullException(nameof(mapper));
       
       this.lister = lister;
+      this.mapper = mapper;
     }
   }
 }
