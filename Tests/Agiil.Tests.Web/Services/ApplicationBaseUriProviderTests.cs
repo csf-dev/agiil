@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Web.Mvc;
 using Agiil.Web.Services;
+using Moq;
 using NUnit.Framework;
 
 namespace Agiil.Tests.Web.Services
 {
   [TestFixture,Parallelizable]
-  public class RootOfTheRequestDomainUriProviderTests
+  public class ApplicationBaseUriProviderTests
   {
     [Test]
     public void GetBaseUri_returns_root_of_the_domain_when_the_request_has_a_long_path()
@@ -13,7 +15,7 @@ namespace Agiil.Tests.Web.Services
       // Arrange
       var requestUri = new Uri("http://example.com/foo/bar/baz");
       var expectedUri = new Uri("http://example.com/");
-      var sut = new InjectedUriProvider(requestUri);
+      var sut = new ApplicationBaseUriProvider(requestUri, null);
 
       // Act
       var result = sut.GetBaseUri();
@@ -28,7 +30,7 @@ namespace Agiil.Tests.Web.Services
       // Arrange
       var requestUri = new Uri("http://example.com:8080/foo");
       var expectedUri = new Uri("http://example.com:8080/");
-      var sut = new InjectedUriProvider(requestUri);
+      var sut = new ApplicationBaseUriProvider(requestUri, null);
 
       // Act
       var result = sut.GetBaseUri();
@@ -43,7 +45,7 @@ namespace Agiil.Tests.Web.Services
       // Arrange
       var requestUri = new Uri("https://example.com/foo");
       var expectedUri = new Uri("https://example.com/");
-      var sut = new InjectedUriProvider(requestUri);
+      var sut = new ApplicationBaseUriProvider(requestUri, null);
 
       // Act
       var result = sut.GetBaseUri();
@@ -52,19 +54,20 @@ namespace Agiil.Tests.Web.Services
       Assert.That(result, Is.EqualTo(expectedUri));
     }
 
-    class InjectedUriProvider : ApplicationRootUriProvider
+    [Test]
+    public void GetBaseUri_returns_root_of_the_application_when_url_helper_indicates_a_path()
     {
-      readonly Uri injectedRequestUri;
+      // Arrange
+      var requestUri = new Uri("https://example.com/foo/bar/baz");
+      var urlHelper = Mock.Of<UrlHelper>(x => x.Content("~") == "/foo/");
+      var expectedUri = new Uri("https://example.com/foo/");
+      var sut = new ApplicationBaseUriProvider(requestUri, urlHelper);
 
-      protected override Uri GetRequestUri()
-      {
-        return injectedRequestUri ?? base.GetRequestUri();
-      }
+      // Act
+      var result = sut.GetBaseUri();
 
-      public InjectedUriProvider(Uri injectedRequestUri)
-      {
-        this.injectedRequestUri = injectedRequestUri;
-      }
+      // Assert
+      Assert.That(result, Is.EqualTo(expectedUri));
     }
   }
 }
