@@ -9,7 +9,11 @@ namespace Agiil.Web.Bootstrap
     protected override void Load(ContainerBuilder builder)
     {
       builder.RegisterType<LoginStateReader>();
-      builder.RegisterType<VersionInfoProvider>().AsImplementedInterfaces();
+      builder.RegisterType<VersionInfoProvider>().AsSelf().AsImplementedInterfaces();
+      builder
+        .Register(c => ApplicationBaseUriProvider.CreateFromHttpContext())
+        .AsSelf()
+        .AsImplementedInterfaces();
     }
   }
 }
