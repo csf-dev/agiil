@@ -11,7 +11,7 @@ namespace Agiil.Domain.Sprints
   {
     readonly IEntityData sprintRepo;
     readonly ITransactionCreator transactionFactory;
-    readonly IValidatorFactory<EditSprintRequest> validatorFactory;
+    readonly ICreatesValidators<EditSprintRequest> validatorFactory;
     readonly Func<IValidationResult, Sprint, EditSprintResponse> responseCreator;
     readonly IMapper mapper;
 
@@ -42,7 +42,7 @@ namespace Agiil.Domain.Sprints
 
     public SprintEditor(IEntityData sprintRepo,
                         ITransactionCreator transactionFactory,
-                        IValidatorFactory<EditSprintRequest> validatorFactory,
+                        ICreatesValidators<EditSprintRequest> validatorFactory,
                         Func<IValidationResult, Sprint, EditSprintResponse> responseCreator,
                         IMapper mapper)
     {

@@ -15,7 +15,7 @@ namespace Agiil.Domain.Tickets
     readonly ICurrentUserReader userReader;
     readonly ITicketFactory ticketFactory;
     readonly ITransactionCreator transactionFactory;
-    readonly IValidatorFactory<CreateTicketRequest> validatorFactory;
+    readonly ICreatesValidators<CreateTicketRequest> validatorFactory;
     Func<IValidationResult, Ticket, CreateTicketResponse> responseCreator;
 
     // TODO: This class has too many dependencies and thus too many responsibilities
@@ -70,7 +70,7 @@ namespace Agiil.Domain.Tickets
                          ICurrentUserReader userReader,
                          ITicketFactory ticketFactory,
                          ITransactionCreator transactionFactory,
-                         IValidatorFactory<CreateTicketRequest> validatorFactory,
+                         ICreatesValidators<CreateTicketRequest> validatorFactory,
                          Func<IValidationResult,Ticket,CreateTicketResponse> responseCreator)
     {
       if(responseCreator == null)

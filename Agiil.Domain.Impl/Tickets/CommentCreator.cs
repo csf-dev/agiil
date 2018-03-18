@@ -12,7 +12,7 @@ namespace Agiil.Domain.Tickets
     readonly IEntityData commentRepo;
     readonly ICommentFactory commentFactory;
     readonly ITransactionCreator transactionCreator;
-    readonly IValidatorFactory<CreateCommentRequest> validatorFactory;
+    readonly ICreatesValidators<CreateCommentRequest> validatorFactory;
     readonly Func<IValidationResult, Comment, CreateCommentResponse> responseCreator;
 
     public CreateCommentResponse Create(CreateCommentRequest request)
@@ -44,7 +44,7 @@ namespace Agiil.Domain.Tickets
                           ICommentFactory commentFactory,
                           ITransactionCreator transactionCreator,
                           IEntityData commentRepo,
-                          IValidatorFactory<CreateCommentRequest> validatorFactory,
+                          ICreatesValidators<CreateCommentRequest> validatorFactory,
                           Func<IValidationResult,Comment,CreateCommentResponse> responseCreator)
     {
       if(responseCreator == null)
