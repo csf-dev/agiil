@@ -1,16 +1,15 @@
-﻿using NUnit.Framework;
-using System;
-using NHibernate;
-using Ploeh.AutoFixture.NUnit3;
-using Agiil.Domain.Auth;
-using Moq;
-using Agiil.Domain.Tickets;
+﻿using System;
 using Agiil.Domain;
-using CSF.Validation;
-using CSF.Data.Entities;
-using CSF.Data;
+using Agiil.Domain.Auth;
+using Agiil.Domain.Tickets;
 using Agiil.Domain.Validation;
 using Agiil.Tests.Attributes;
+using CSF.Data;
+using CSF.Data.Entities;
+using CSF.Validation;
+using Moq;
+using NUnit.Framework;
+using Ploeh.AutoFixture.NUnit3;
 
 namespace Agiil.Tests.Domain.Tickets
 {
