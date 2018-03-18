@@ -378,6 +378,7 @@
     <Compile Include="Bootstrap\AspNetMvcGlobalFiltersModule.cs" />
     <Compile Include="Services\VersionInfoProvider.cs" />
     <Compile Include="Services\VersionInfoModelPopulator.cs" />
+    <Compile Include="Services\RootOfTheRequestDomainUriProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
