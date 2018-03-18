@@ -19,7 +19,7 @@ namespace Agiil.Tests.Domain.Tickets
     [Test, AutoMoqData]
     public void Create_saves_newly_created_ticket([Frozen] IEntityData repo,
                                                   [Frozen] ITicketFactory ticketFactory,
-                                                  [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
+                                                  [Frozen,AlwaysPasses] ICreatesValidators<CreateTicketRequest> validatorFactory,
                                                   Ticket ticket,
                                                   CreateTicketRequest request,
                                                   [HasIdentity,LoggedIn] User user,
@@ -30,7 +30,6 @@ namespace Agiil.Tests.Domain.Tickets
           .Setup(x => x.CreateTicket(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<User>(), It.IsAny<TicketType>()))
           .Returns(ticket);
       Mock.Get(repo).Setup(x => x.Add(ticket));
-      SetupValidatorWhichAlwaysPasses(validatorFactory);
 
       // Act
       sut.Create(request);
@@ -42,7 +41,7 @@ namespace Agiil.Tests.Domain.Tickets
     [Test, AutoMoqData]
     public void Create_uses_ticket_factory(CreateTicketRequest request,
                                            [Frozen] ITicketFactory ticketFactory,
-                                           [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
+                                           [Frozen,AlwaysPasses] ICreatesValidators<CreateTicketRequest> validatorFactory,
                                            Ticket ticket,
                                            [HasIdentity,LoggedIn] User user,
                                            TicketCreator sut)
@@ -51,7 +50,6 @@ namespace Agiil.Tests.Domain.Tickets
       Mock.Get(ticketFactory)
           .Setup(x => x.CreateTicket(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<User>(), It.IsAny<TicketType>()))
           .Returns(ticket);
-      SetupValidatorWhichAlwaysPasses(validatorFactory);
 
       // Act
       sut.Create(request);
@@ -63,7 +61,7 @@ namespace Agiil.Tests.Domain.Tickets
 
     [Test, AutoMoqData]
     public void Create_returns_created_ticket_in_response(CreateTicketRequest request,
-                                                          [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
+                                                          [Frozen,AlwaysPasses] ICreatesValidators<CreateTicketRequest> validatorFactory,
                                                           [Frozen] ITicketFactory ticketFactory,
                                                           Ticket ticket,
                                                           [HasIdentity,LoggedIn] User user,
@@ -73,7 +71,6 @@ namespace Agiil.Tests.Domain.Tickets
       Mock.Get(ticketFactory)
           .Setup(x => x.CreateTicket(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<User>(), It.IsAny<TicketType>()))
           .Returns(ticket);
-      SetupValidatorWhichAlwaysPasses(validatorFactory);
       SetupResponseCreator(sut);
 
       // Act
@@ -85,7 +82,7 @@ namespace Agiil.Tests.Domain.Tickets
 
     [Test, AutoMoqData]
     public void Create_returns_a_response(CreateTicketRequest request,
-                                          [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
+                                          [Frozen,AlwaysPasses] ICreatesValidators<CreateTicketRequest> validatorFactory,
                                           [Frozen] ITicketFactory ticketFactory,
                                           Ticket ticket,
                                           [HasIdentity,LoggedIn] User user,
@@ -95,7 +92,6 @@ namespace Agiil.Tests.Domain.Tickets
       Mock.Get(ticketFactory)
           .Setup(x => x.CreateTicket(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<User>(), It.IsAny<TicketType>()))
           .Returns(ticket);
-      SetupValidatorWhichAlwaysPasses(validatorFactory);
 
       // Act
       var result = sut.Create(request);
@@ -106,7 +102,8 @@ namespace Agiil.Tests.Domain.Tickets
 
     [Test, AutoMoqData]
     public void Create_uses_a_validator(CreateTicketRequest request,
-                                        [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
+                                        [Frozen] ICreatesValidators<CreateTicketRequest> validatorFactory,
+                                        IValidator validator,
                                         [Frozen] ITicketFactory ticketFactory,
                                         Ticket ticket,
                                         [HasIdentity,LoggedIn] User user,
@@ -116,7 +113,9 @@ namespace Agiil.Tests.Domain.Tickets
       Mock.Get(ticketFactory)
           .Setup(x => x.CreateTicket(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<User>(), It.IsAny<TicketType>()))
           .Returns(ticket);
-      var validator = SetupValidatorWhichAlwaysPasses(validatorFactory);
+      Mock.Get(validatorFactory)
+          .Setup(x => x.GetValidator())
+          .Returns(validator);
 
       // Act
       sut.Create(request);
@@ -129,7 +128,8 @@ namespace Agiil.Tests.Domain.Tickets
     [Test, AutoMoqData]
     public void Create_does_not_persist_if_validation_fails(CreateTicketRequest request,
                                                             [Frozen] IEntityData repo,
-                                                            [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
+                                                            [Frozen] ICreatesValidators<CreateTicketRequest> validatorFactory,
+                                                            IValidator validator,
                                                             [Frozen] ITicketFactory ticketFactory,
                                                             Ticket ticket,
                                                             [HasIdentity,LoggedIn] User user,
@@ -139,7 +139,9 @@ namespace Agiil.Tests.Domain.Tickets
       Mock.Get(ticketFactory)
           .Setup(x => x.CreateTicket(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<User>(), It.IsAny<TicketType>()))
           .Returns(ticket);
-      var validator = SetupValidatorWhichAlwaysPasses(validatorFactory);
+      Mock.Get(validatorFactory)
+          .Setup(x => x.GetValidator())
+          .Returns(validator);
       Mock.Get(validator)
           .Setup(x => x.Validate(request))
           .Returns(Mock.Of<IValidationResult>(x => x.IsSuccess == false));
@@ -154,7 +156,8 @@ namespace Agiil.Tests.Domain.Tickets
 
     [Test, AutoMoqData]
     public void Create_returns_null_ticket_instance_if_validation_fails(CreateTicketRequest request,
-                                                                        [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
+                                                                        [Frozen] ICreatesValidators<CreateTicketRequest> validatorFactory,
+                                                                        IValidator validator,
                                                                         [Frozen] ITicketFactory ticketFactory,
                                                                         Ticket ticket,
                                                                         [HasIdentity,LoggedIn] User user,
@@ -164,7 +167,9 @@ namespace Agiil.Tests.Domain.Tickets
       Mock.Get(ticketFactory)
           .Setup(x => x.CreateTicket(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<User>(), It.IsAny<TicketType>()))
           .Returns(ticket);
-      var validator = SetupValidatorWhichAlwaysPasses(validatorFactory);
+      Mock.Get(validatorFactory)
+          .Setup(x => x.GetValidator())
+          .Returns(validator);
       Mock.Get(validator)
           .Setup(x => x.Validate(request))
           .Returns(Mock.Of<IValidationResult>(x => x.IsSuccess == false));
@@ -179,7 +184,7 @@ namespace Agiil.Tests.Domain.Tickets
 
     [Test, AutoMoqData]
     public void Create_uses_transaction(CreateTicketRequest request,
-                                        [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
+                                        [Frozen,AlwaysPasses] ICreatesValidators<CreateTicketRequest> validatorFactory,
                                         [Frozen] ITicketFactory ticketFactory,
                                         Ticket ticket,
                                         [HasIdentity,LoggedIn] User user,
@@ -195,24 +200,12 @@ namespace Agiil.Tests.Domain.Tickets
           .Setup(x => x.BeginTransaction())
           .Returns(trans);
       Mock.Get(trans).Setup(x => x.Commit());
-      SetupValidatorWhichAlwaysPasses(validatorFactory);
 
       // Act
       sut.Create(request);
 
       // Assert
       Mock.Get(trans).Verify(x => x.Commit(), Times.Once());
-    }
-
-    IValidator SetupValidatorWhichAlwaysPasses(IValidatorFactory<CreateTicketRequest> factory)
-    {
-      var validator = Mock.Of<IValidator>(x => x.Validate(It.IsAny<object>()).IsSuccess == true);
-
-      Mock.Get(factory)
-          .Setup(x => x.GetValidator())
-          .Returns(validator);
-
-      return validator;
     }
 
     void SetupResponseCreator(TicketCreator sut)
