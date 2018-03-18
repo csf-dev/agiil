@@ -8,14 +8,13 @@ using System.Web.Mvc;
 using Agiil.Domain.Auth;
 using Agiil.Web.Models.Auth;
 using Agiil.Tests.Attributes;
+using Agiil.Web.Services.Auth;
 
 namespace Agiil.Tests.Web.Controllers
 {
   [TestFixture,Parallelizable]
   public class LoginControllerTests
   {
-    #region tests
-
     [Test, AutoMoqData]
     public void Index_returns_view_using_existing_model(LoginResult loginResult,
                                                         [NoAutoProperties] LoginController sut)
@@ -75,6 +74,7 @@ namespace Agiil.Tests.Web.Controllers
 
     [Test, AutoMoqData]
     public void Login_redirects_to_return_url_after_successful_login([Frozen] ILoginLogoutManager loginLogoutManager,
+                                                                     [Frozen] IValidatesRedirectUrls redirectValidator,
                                                                      Agiil.Web.Models.Auth.LoginCredentials credentials,
                                                                      string username,
                                                                      [NoAutoProperties] LoginController sut)
@@ -84,6 +84,9 @@ namespace Agiil.Tests.Web.Controllers
           .Setup(x => x.AttemptLogin(It.IsAny<ILoginRequest>()))
           .Returns(new LoginResult(username));
       credentials.ReturnUrl = "/Sample/Url";
+      Mock.Get(redirectValidator)
+          .Setup(x => x.IsValid(It.IsAny<string>()))
+          .Returns(true);
 
       // Act
       var result = sut.Login(credentials);
@@ -93,6 +96,32 @@ namespace Agiil.Tests.Web.Controllers
       var redirect = (RedirectResult) result;
       Assert.AreEqual("/Sample/Url", redirect.Url, "Correct URL");
       Assert.IsFalse(redirect.Permanent, "Non-permanent redirect");
+    }
+
+    [Test, AutoMoqData]
+    public void Login_ignores_return_url_if_it_is_not_valid([Frozen] ILoginLogoutManager loginLogoutManager,
+                                                            [Frozen] IValidatesRedirectUrls redirectValidator,
+                                                            Agiil.Web.Models.Auth.LoginCredentials credentials,
+                                                            string username,
+                                                            [NoAutoProperties] LoginController sut)
+    {
+      // Arrange
+      Mock.Get(loginLogoutManager)
+          .Setup(x => x.AttemptLogin(It.IsAny<ILoginRequest>()))
+          .Returns(new LoginResult(username));
+      credentials.ReturnUrl = "/Sample/Url";
+      Mock.Get(redirectValidator)
+          .Setup(x => x.IsValid(It.IsAny<string>()))
+          .Returns(false);
+
+      // Act
+      var result = sut.Login(credentials);
+
+      // Assert
+      Assert.IsInstanceOf<RedirectToRouteResult>(result, "Result is a redirect-to-URL");
+      var redirect = (RedirectToRouteResult) result;
+      Assert.AreEqual("Login", redirect.RouteValues["controller"], "Correct controller");
+      Assert.AreEqual(nameof(LoginController.Index), redirect.RouteValues["action"], "Correct action");
     }
 
     [Test, AutoMoqData]
@@ -171,7 +200,5 @@ namespace Agiil.Tests.Web.Controllers
       Assert.AreEqual("Login", redirect.RouteValues["controller"], "Correct controller");
       Assert.AreEqual(nameof(LoginController.LoggedOut), redirect.RouteValues["action"], "Correct action");
     }
-
-    #endregion
   }
 }
