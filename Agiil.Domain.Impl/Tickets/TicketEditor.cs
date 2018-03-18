@@ -11,7 +11,7 @@ namespace Agiil.Domain.Tickets
   {
     readonly IEntityData ticketRepo;
     readonly ITransactionCreator transactionFactory;
-    readonly IValidatorFactory<EditTicketRequest> validatorFactory;
+    readonly ICreatesValidators<EditTicketRequest> validatorFactory;
     readonly Func<IValidationResult, Ticket, EditTicketResponse> responseCreator;
     readonly IMapper mapper;
 
@@ -42,7 +42,7 @@ namespace Agiil.Domain.Tickets
 
     public TicketEditor(IEntityData ticketRepo,
                         ITransactionCreator transactionFactory,
-                        IValidatorFactory<EditTicketRequest> validatorFactory,
+                        ICreatesValidators<EditTicketRequest> validatorFactory,
                         Func<IValidationResult, Ticket, EditTicketResponse> responseCreator,
                         IMapper mapper)
     {

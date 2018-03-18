@@ -90,7 +90,7 @@
     <Compile Include="Tickets\CreateCommentRequest.cs" />
     <Compile Include="Tickets\CreateCommentResponse.cs" />
     <Compile Include="Tickets\ICommentFactory.cs" />
-    <Compile Include="Validation\IValidatorFactory.cs" />
+    <Compile Include="Validation\ICreatesValidators.cs" />
     <Compile Include="Tickets\ICommentEditor.cs" />
     <Compile Include="Tickets\EditCommentRequest.cs" />
     <Compile Include="Tickets\EditCommentResponse.cs" />

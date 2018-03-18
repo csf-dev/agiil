@@ -8,7 +8,7 @@ namespace Agiil.Domain.Tickets
 {
   public class CommentEditor : ICommentEditor
   {
-    readonly IValidatorFactory<EditCommentRequest> validatorFactory;
+    readonly ICreatesValidators<EditCommentRequest> validatorFactory;
     readonly Func<IValidationResult, EditCommentResponse> responseCreator;
     readonly ITransactionCreator transactionCreator;
     readonly IEntityData commentRepo;
@@ -34,7 +34,7 @@ namespace Agiil.Domain.Tickets
       return responseCreator(validationResult);
     }
 
-    public CommentEditor(IValidatorFactory<EditCommentRequest> validatorFactory,
+    public CommentEditor(ICreatesValidators<EditCommentRequest> validatorFactory,
                          Func<IValidationResult, EditCommentResponse> responseCreator,
                          ITransactionCreator transactionCreator,
                          IEntityData commentRepo,

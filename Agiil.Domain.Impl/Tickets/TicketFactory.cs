@@ -12,6 +12,10 @@ namespace Agiil.Domain.Tickets
   {
     readonly IEnvironment environment;
     readonly ICurrentProjectGetter projectGetter;
+    readonly ICurrentUserReader userReader;
+
+    public Ticket CreateTicketForCurrentUser(string title, string description, TicketType type)
+      => CreateTicket(title, description, userReader.RequireCurrentUser(), type);
 
     public Ticket CreateTicket(string title, string description, User creator, TicketType type)
     {
@@ -30,12 +34,16 @@ namespace Agiil.Domain.Tickets
     }
 
     public TicketFactory(IEnvironment environment,
-                         ICurrentProjectGetter projectGetter)
+                         ICurrentProjectGetter projectGetter,
+                         ICurrentUserReader userReader)
     {
+      if(userReader == null)
+        throw new ArgumentNullException(nameof(userReader));
       if(projectGetter == null)
         throw new ArgumentNullException(nameof(projectGetter));
       if(environment == null)
         throw new ArgumentNullException(nameof(environment));
+      this.userReader = userReader;
       this.environment = environment;
       this.projectGetter = projectGetter;
     }

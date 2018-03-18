@@ -122,6 +122,8 @@
     <Compile Include="Tickets\CommentDeleter.cs" />
     <Compile Include="Tickets\DeleteCommentValidatorFactory.cs" />
     <Compile Include="Tickets\TicketTypeProvider.cs" />
+    <Compile Include="Tickets\ICreatesCreateTicketResponse.cs" />
+    <Compile Include="Tickets\CreateTicketResponseFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
