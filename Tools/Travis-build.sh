@@ -53,7 +53,7 @@ prepare_screenplay_env_variables()
 
 run_integration_tests()
 {
-  travis_retry Tools/Run-integration-tests.sh
+  Tools/Run-integration-tests.sh
   test_outcome=$?
 }
 
