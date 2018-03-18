@@ -379,6 +379,7 @@
     <Compile Include="Services\ApplicationBaseUriProvider.cs" />
     <Compile Include="Services\Auth\RedirectionUriValidator.cs" />
     <Compile Include="Services\Auth\IValidatesRedirectUrls.cs" />
+    <Compile Include="ModelBinders\IdentityJsonConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
