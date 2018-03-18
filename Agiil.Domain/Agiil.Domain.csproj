@@ -132,6 +132,7 @@
     <Compile Include="Tickets\ITicketTypeProvider.cs" />
     <Compile Include="IProvidesVersionInformation.cs" />
     <Compile Include="ComponentVersionInfo.cs" />
+    <Compile Include="IProvidesApplicationBaseUri.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
