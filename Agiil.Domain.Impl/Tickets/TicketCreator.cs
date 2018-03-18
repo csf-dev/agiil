@@ -1,11 +1,9 @@
 ﻿using System;
 using Agiil.Domain.Auth;
-using Agiil.Domain.Sprints;
 using Agiil.Domain.Validation;
 using CSF.Data;
 using CSF.Data.Entities;
 using CSF.Validation;
-using NHibernate;
 
 namespace Agiil.Domain.Tickets
 {
@@ -16,7 +14,7 @@ namespace Agiil.Domain.Tickets
     readonly ITicketFactory ticketFactory;
     readonly ITransactionCreator transactionFactory;
     readonly ICreatesValidators<CreateTicketRequest> validatorFactory;
-    Func<IValidationResult, Ticket, CreateTicketResponse> responseCreator;
+    readonly ICreatesCreateTicketResponse responseCreator;
 
     // TODO: This class has too many dependencies and thus too many responsibilities
     // Refactor and push some of these outwards
@@ -25,7 +23,7 @@ namespace Agiil.Domain.Tickets
     {
       var validationResult = ValidateRequest(request);
       if(!validationResult.IsSuccess)
-        return responseCreator(validationResult, null);
+        return responseCreator.GetResponse(validationResult);
 
       Ticket ticket;
 
@@ -36,7 +34,7 @@ namespace Agiil.Domain.Tickets
         trans.Commit();
       }
 
-      return responseCreator(validationResult, ticket);
+      return responseCreator.GetResponse(validationResult, ticket);
     }
 
     IValidationResult ValidateRequest(CreateTicketRequest request)
@@ -59,19 +57,12 @@ namespace Agiil.Domain.Tickets
       return ticket;
     }
 
-    // TODO: #AG8 - Refactor this into a factory type
-    public Func<IValidationResult, Ticket, CreateTicketResponse> ResponseCreator
-    {
-      get { return responseCreator; }
-      set { responseCreator = value; }
-    }
-
     public TicketCreator(IEntityData data,
                          ICurrentUserReader userReader,
                          ITicketFactory ticketFactory,
                          ITransactionCreator transactionFactory,
                          ICreatesValidators<CreateTicketRequest> validatorFactory,
-                         Func<IValidationResult,Ticket,CreateTicketResponse> responseCreator)
+                         ICreatesCreateTicketResponse responseCreator)
     {
       if(responseCreator == null)
         throw new ArgumentNullException(nameof(responseCreator));

@@ -63,6 +63,7 @@ namespace Agiil.Tests.Domain.Tickets
     public void Create_returns_created_ticket_in_response(CreateTicketRequest request,
                                                           [Frozen,AlwaysPasses] ICreatesValidators<CreateTicketRequest> validatorFactory,
                                                           [Frozen] ITicketFactory ticketFactory,
+                                                          [Frozen] ICreatesCreateTicketResponse responseFactory,
                                                           Ticket ticket,
                                                           [HasIdentity,LoggedIn] User user,
                                                           TicketCreator sut)
@@ -71,7 +72,12 @@ namespace Agiil.Tests.Domain.Tickets
       Mock.Get(ticketFactory)
           .Setup(x => x.CreateTicket(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<User>(), It.IsAny<TicketType>()))
           .Returns(ticket);
-      SetupResponseCreator(sut);
+      Mock.Get(responseFactory)
+          .Setup(x => x.GetResponse(It.IsAny<IValidationResult>()))
+          .Returns((IValidationResult r) => new CreateTicketResponse(r, Mock.Of<IValidationResultInterpreter>()));
+      Mock.Get(responseFactory)
+          .Setup(x => x.GetResponse(It.IsAny<IValidationResult>(), It.IsAny<Ticket>()))
+          .Returns((IValidationResult r, Ticket t) => new CreateTicketResponse(r, Mock.Of<IValidationResultInterpreter>(), t));
 
       // Act
       var result = sut.Create(request);
@@ -159,6 +165,7 @@ namespace Agiil.Tests.Domain.Tickets
                                                                         [Frozen] ICreatesValidators<CreateTicketRequest> validatorFactory,
                                                                         IValidator validator,
                                                                         [Frozen] ITicketFactory ticketFactory,
+                                                                        [Frozen] ICreatesCreateTicketResponse responseFactory,
                                                                         Ticket ticket,
                                                                         [HasIdentity,LoggedIn] User user,
                                                                         TicketCreator sut)
@@ -173,7 +180,12 @@ namespace Agiil.Tests.Domain.Tickets
       Mock.Get(validator)
           .Setup(x => x.Validate(request))
           .Returns(Mock.Of<IValidationResult>(x => x.IsSuccess == false));
-      SetupResponseCreator(sut);
+      Mock.Get(responseFactory)
+          .Setup(x => x.GetResponse(It.IsAny<IValidationResult>()))
+          .Returns((IValidationResult r) => new CreateTicketResponse(r, Mock.Of<IValidationResultInterpreter>()));
+      Mock.Get(responseFactory)
+          .Setup(x => x.GetResponse(It.IsAny<IValidationResult>(), It.IsAny<Ticket>()))
+          .Returns((IValidationResult r, Ticket t) => new CreateTicketResponse(r, Mock.Of<IValidationResultInterpreter>(), t));
 
       // Act
       var result = sut.Create(request);
@@ -206,13 +218,6 @@ namespace Agiil.Tests.Domain.Tickets
 
       // Assert
       Mock.Get(trans).Verify(x => x.Commit(), Times.Once());
-    }
-
-    void SetupResponseCreator(TicketCreator sut)
-    {
-      sut.ResponseCreator = (IValidationResult result, Ticket ticket) => {
-        return new CreateTicketResponse(result, Mock.Of<IValidationResultInterpreter>(), ticket);
-      };
     }
   }
 }

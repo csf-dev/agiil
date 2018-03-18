@@ -25,6 +25,8 @@ namespace Agiil.Domain.Tickets
     public bool IsSuccess
       => !TitleIsInvalid && !DescriptionIsInvalid && !SprintIsInvalid && Ticket != null;
 
+    protected CreateTicketResponse() {}
+
     public CreateTicketResponse(IValidationResult result,
                                 IValidationResultInterpreter resultInterpreter,
                                 Ticket createdTicket = null)
