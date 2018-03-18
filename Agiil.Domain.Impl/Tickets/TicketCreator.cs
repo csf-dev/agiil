@@ -1,5 +1,4 @@
 ﻿using System;
-using Agiil.Domain.Auth;
 using Agiil.Domain.Validation;
 using CSF.Data;
 using CSF.Data.Entities;
@@ -10,14 +9,10 @@ namespace Agiil.Domain.Tickets
   public class TicketCreator : ITicketCreator
   {
     readonly IEntityData data;
-    readonly ICurrentUserReader userReader;
     readonly ITicketFactory ticketFactory;
     readonly ITransactionCreator transactionFactory;
     readonly ICreatesValidators<CreateTicketRequest> validatorFactory;
     readonly ICreatesCreateTicketResponse responseCreator;
-
-    // TODO: This class has too many dependencies and thus too many responsibilities
-    // Refactor and push some of these outwards
 
     public CreateTicketResponse Create(CreateTicketRequest request)
     {
@@ -46,10 +41,9 @@ namespace Agiil.Domain.Tickets
     Ticket CreateTicket(CreateTicketRequest request)
     {
       var type = data.Theorise(request.TicketTypeIdentity);
-      var ticket = ticketFactory.CreateTicket(request.Title,
-                                              request.Description,
-                                              userReader.RequireCurrentUser(),
-                                              type);
+      var ticket = ticketFactory.CreateTicketForCurrentUser(request.Title,
+                                                            request.Description,
+                                                            type);
       
       if(request.SprintIdentity != null)
         ticket.Sprint = data.Theorise(request.SprintIdentity);
@@ -58,7 +52,6 @@ namespace Agiil.Domain.Tickets
     }
 
     public TicketCreator(IEntityData data,
-                         ICurrentUserReader userReader,
                          ITicketFactory ticketFactory,
                          ITransactionCreator transactionFactory,
                          ICreatesValidators<CreateTicketRequest> validatorFactory,
@@ -72,13 +65,10 @@ namespace Agiil.Domain.Tickets
         throw new ArgumentNullException(nameof(transactionFactory));
       if(ticketFactory == null)
         throw new ArgumentNullException(nameof(ticketFactory));
-      if(userReader == null)
-        throw new ArgumentNullException(nameof(userReader));
       if(data == null)
         throw new ArgumentNullException(nameof(data));
 
       this.ticketFactory = ticketFactory;
-      this.userReader = userReader;
       this.data = data;
       this.transactionFactory = transactionFactory;
       this.validatorFactory = validatorFactory;
