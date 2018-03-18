@@ -378,6 +378,9 @@
     <Compile Include="Bootstrap\AspNetMvcGlobalFiltersModule.cs" />
     <Compile Include="Services\VersionInfoProvider.cs" />
     <Compile Include="Services\VersionInfoModelPopulator.cs" />
+    <Compile Include="Services\ApplicationBaseUriProvider.cs" />
+    <Compile Include="Services\Auth\RedirectionUriValidator.cs" />
+    <Compile Include="Services\Auth\IValidatesRedirectUrls.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

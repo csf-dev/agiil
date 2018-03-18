@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Web.Mvc;
 using Agiil.Auth;
+using Agiil.Domain;
 using Agiil.Domain.Auth;
 using Agiil.Web.Models.Auth;
+using Agiil.Web.Services.Auth;
 
 namespace Agiil.Web.Controllers
 {
@@ -21,6 +23,7 @@ namespace Agiil.Web.Controllers
 
     readonly LoginRequestCreator loginRequestCreator;
     readonly ILoginLogoutManager loginLogoutManager;
+    readonly IValidatesRedirectUrls redirectUriValidator;
 
     #endregion
 
@@ -51,11 +54,8 @@ namespace Agiil.Web.Controllers
       TempData.Add(LoginResultKey, result);
       TempData.Add(CredentialsKey, credentials);
 
-      if(result.Success && !String.IsNullOrEmpty(credentials.ReturnUrl))
-      {
-        // TODO: #AG28 - I should sanitise this URL before we blindly redirect
+      if(result.Success && redirectUriValidator.IsValid(credentials.ReturnUrl))
         return Redirect(credentials.ReturnUrl);
-      }
 
       return RedirectToAction(nameof(LoginController.Index), this.GetName<LoginController>());
     }
@@ -87,13 +87,17 @@ namespace Agiil.Web.Controllers
     #region constructor
 
     public LoginController(LoginRequestCreator loginRequestCreator,
-                           ILoginLogoutManager loginLogoutManager)
+                           ILoginLogoutManager loginLogoutManager,
+                           IValidatesRedirectUrls redirectUriValidator)
     {
+      if(redirectUriValidator == null)
+        throw new ArgumentNullException(nameof(redirectUriValidator));
       if(loginLogoutManager == null)
         throw new ArgumentNullException(nameof(loginLogoutManager));
       if(loginRequestCreator == null)
         throw new ArgumentNullException(nameof(loginRequestCreator));
 
+      this.redirectUriValidator = redirectUriValidator;
       this.loginRequestCreator = loginRequestCreator;
       this.loginLogoutManager = loginLogoutManager;
     }
