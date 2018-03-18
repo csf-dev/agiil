@@ -379,6 +379,8 @@
     <Compile Include="Services\VersionInfoProvider.cs" />
     <Compile Include="Services\VersionInfoModelPopulator.cs" />
     <Compile Include="Services\RootOfTheRequestDomainUriProvider.cs" />
+    <Compile Include="Services\Auth\RedirectionUriValidator.cs" />
+    <Compile Include="Services\Auth\IValidatesRedirectUrls.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
