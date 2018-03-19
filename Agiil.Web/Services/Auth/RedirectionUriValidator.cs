@@ -6,17 +6,19 @@ namespace Agiil.Web.Services.Auth
   public class RedirectionUriValidator : IValidatesRedirectUrls
   {
     readonly IProvidesApplicationBaseUri baseUriProvider;
+    readonly RedirectUriParser uriParser;
 
     public bool IsValid(string redirectUri)
     {
-      if(String.IsNullOrEmpty(redirectUri)) return false;
-      return IsValid(new Uri(redirectUri));
+      var uri = uriParser.Parse(redirectUri);
+      if(uri == null) return false;
+
+      return IsValid(uri);
     }
 
     public bool IsValid(Uri redirectUri)
     {
       if(redirectUri == null) return false;
-      if(!redirectUri.IsAbsoluteUri) return true;
 
       var redirectWithHost = GetUriWithHost(redirectUri);
       var appBaseUri = baseUriProvider.GetBaseUri();
@@ -25,7 +27,7 @@ namespace Agiil.Web.Services.Auth
 
     Uri GetUriWithHost(Uri redirectUri)
     {
-      if(!String.IsNullOrEmpty(redirectUri.Host))
+      if(redirectUri.IsAbsoluteUri)
         return redirectUri;
 
       var domainRoot = new Uri(baseUriProvider.GetBaseUri().GetLeftPart(UriPartial.Authority));
@@ -37,6 +39,7 @@ namespace Agiil.Web.Services.Auth
       if(baseUriProvider == null)
         throw new ArgumentNullException(nameof(baseUriProvider));
       this.baseUriProvider = baseUriProvider;
+      uriParser = new RedirectUriParser();
     }
   }
 }
