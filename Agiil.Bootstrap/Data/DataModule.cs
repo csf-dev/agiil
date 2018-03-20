@@ -25,7 +25,8 @@ namespace Agiil.Bootstrap.Data
       builder
         .RegisterType<NHibernateSchemaExportingDatabaseCreator>()
         .AsSelf()
-        .As<IDatabaseCreator>();
+        .As<ICreatesDatabaseSchema>()
+        .As<Agiil.Data.Maintenance.IExportsDatabaseSchema>();
 
       builder
         .RegisterType<DevelopmentInitialDataCreator>()

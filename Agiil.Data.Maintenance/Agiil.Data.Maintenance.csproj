@@ -81,7 +81,6 @@
     <Compile Include="DbUpDatabaseUpgrader.cs" />
     <Compile Include="SimpleUpgradeName.cs" />
     <Compile Include="DevelopmentDatabaseResetter.cs" />
-    <Compile Include="NHibernateSchemaExporter.cs" />
     <Compile Include="Sqlite\Snapshot.cs" />
     <Compile Include="Sqlite\SnapshotService.cs" />
     <Compile Include="Sqlite\ConnectionStringAdapter.cs" />

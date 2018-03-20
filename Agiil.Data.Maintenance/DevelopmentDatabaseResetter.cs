@@ -7,18 +7,18 @@ namespace Agiil.Data.Maintenance
   public class DevelopmentDatabaseResetter : IDatabaseResetter
   {
     readonly ISession session;
-    readonly IDatabaseCreator dbCreator;
+    readonly ICreatesDatabaseSchema dbCreator;
     readonly IInitialDataCreator dataCreator;
 
     public void ResetDatabase()
     {
       var connection = session.Connection;
-      dbCreator.Create(connection, null);
+      dbCreator.CreateSchema(connection);
       dataCreator.Create();
     }
 
     public DevelopmentDatabaseResetter(ISession session,
-                                       IDatabaseCreator dbCreator,
+                                       ICreatesDatabaseSchema dbCreator,
                                        IInitialDataCreator dataCreator)
     {
       if(dataCreator == null)
