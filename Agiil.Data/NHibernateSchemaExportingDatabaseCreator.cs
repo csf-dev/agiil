@@ -31,11 +31,10 @@ namespace Agiil.Data
     public string Export()
     {
       var builder = new StringBuilder();
+
       using(var writer = new StringWriter(builder))
-      {
         Export(writer);
-        writer.Flush();
-      }
+      
       return builder.ToString();
     }
 
@@ -51,10 +50,7 @@ namespace Agiil.Data
     public void ExportToFile(string outputFile)
     {
       using(var writer = GetTextWriterForFile(outputFile))
-      {
         Export(writer);
-        writer.Flush();
-      }
     }
 
     #endregion
