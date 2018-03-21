@@ -2,24 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Agiil.Domain.Data;
 using DbUp;
 using DbUp.Engine;
 using log4net;
 
 namespace Agiil.Data.Maintenance
 {
-  public class DbUpDatabaseUpgrader : IDatabaseUpgrader
+  public class DbUpDatabaseUpgrader : IPerformsDatabaseUpgrades
   {
     static readonly ILog logger;
 
     readonly IConnectionStringProvider connectionStringProvider;
     readonly UpgradeEngine upgradeEngine;
 
-    public DatabaseUpgradeResult ApplyAllUpgrades()
+    public Domain.Data.DatabaseUpgradeResult ApplyAllUpgrades()
     {
       var result = upgradeEngine.PerformUpgrade();
 
-      var output = new DatabaseUpgradeResult
+      var output = new Domain.Data.DatabaseUpgradeResult
       {
         Success = result.Successful,
         UpgradesApplied = result
@@ -34,7 +35,7 @@ namespace Agiil.Data.Maintenance
       return output;
     }
 
-    void LogCompletion(DatabaseUpgradeResult result, Exception exception)
+    void LogCompletion(Domain.Data.DatabaseUpgradeResult result, Exception exception)
     {
       string message;
 

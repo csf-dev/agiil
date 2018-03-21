@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Agiil.Data.Maintenance
+namespace Agiil.Domain.Data
 {
   public class DatabaseUpgradeResult
   {

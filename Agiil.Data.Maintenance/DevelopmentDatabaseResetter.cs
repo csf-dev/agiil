@@ -4,7 +4,7 @@ using NHibernate;
 
 namespace Agiil.Data.Maintenance
 {
-  public class DevelopmentDatabaseResetter : IDatabaseResetter
+  public class DevelopmentDatabaseResetter : IResetsDatabase
   {
     readonly ISession session;
     readonly ICreatesDatabaseSchema dbCreator;

@@ -133,6 +133,10 @@
     <Compile Include="IProvidesVersionInformation.cs" />
     <Compile Include="ComponentVersionInfo.cs" />
     <Compile Include="IProvidesApplicationBaseUri.cs" />
+    <Compile Include="Data\IPerformsDatabaseUpgrades.cs" />
+    <Compile Include="Data\DatabaseUpgradeResult.cs" />
+    <Compile Include="Data\IUpgradeName.cs" />
+    <Compile Include="Data\IResetsDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

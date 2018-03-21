@@ -1,4 +1,6 @@
 ﻿using System;
+using Agiil.Domain.Data;
+
 namespace Agiil.Data.Maintenance
 {
   public class SimpleUpgradeName : IUpgradeName

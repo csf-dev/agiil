@@ -99,12 +99,8 @@
     <Compile Include="Mappings\OneToManyMapping.cs" />
     <Compile Include="Mappings\BooleanMapping.cs" />
     <Compile Include="Mappings\SourceCollectionAccessor.cs" />
-    <Compile Include="Maintenance\IDatabaseUpgrader.cs" />
-    <Compile Include="Maintenance\DatabaseUpgradeResult.cs" />
-    <Compile Include="Maintenance\IUpgradeName.cs" />
     <Compile Include="IDatabaseConfiguration.cs" />
     <Compile Include="HardcodedDatabaseConfiguration.cs" />
-    <Compile Include="Maintenance\IDatabaseResetter.cs" />
     <Compile Include="Maintenance\IExportsDatabaseSchema.cs" />
   </ItemGroup>
   <ItemGroup>

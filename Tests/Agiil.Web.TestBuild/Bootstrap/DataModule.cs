@@ -1,11 +1,9 @@
 ﻿using System;
-using Agiil.Tests;
 using Autofac;
-using CSF.Data;
-using CSF.Data.Entities;
 using Agiil.Web.Data;
-using Agiil.Data;
 using Agiil.Data.Maintenance;
+using Agiil.Domain.Data;
+using Agiil.Data;
 
 namespace Agiil.Web.Bootstrap
 {
@@ -19,7 +17,7 @@ namespace Agiil.Web.Bootstrap
 
       builder
         .Register(BuildSnapshotDatabaseResetter)
-        .As<IDatabaseResetter>();
+        .As<IResetsDatabase>();
     }
 
     SnapshottingDatabaseResetter BuildSnapshotDatabaseResetter(IComponentContext ctx)
