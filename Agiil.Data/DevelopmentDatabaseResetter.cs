@@ -2,7 +2,7 @@
 using Agiil.Domain.Data;
 using NHibernate;
 
-namespace Agiil.Data.Maintenance
+namespace Agiil.Data
 {
   public class DevelopmentDatabaseResetter : IResetsDatabase
   {

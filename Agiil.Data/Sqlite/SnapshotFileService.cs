@@ -3,7 +3,7 @@ using System.IO;
 using Agiil.Domain;
 using CSF.IO;
 
-namespace Agiil.Data.Maintenance.Sqlite
+namespace Agiil.Data.Sqlite
 {
   public class SnapshotFileService : ISnapshotFileService
   {

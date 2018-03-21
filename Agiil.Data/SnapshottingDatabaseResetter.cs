@@ -1,7 +1,7 @@
 ﻿using System;
 using Agiil.Domain.Data;
 
-namespace Agiil.Data.Maintenance
+namespace Agiil.Data
 {
   public class SnapshottingDatabaseResetter : IResetsDatabase
   {

@@ -7,7 +7,7 @@ using DbUp;
 using DbUp.Engine;
 using log4net;
 
-namespace Agiil.Data.Maintenance
+namespace Agiil.Data
 {
   public class DbUpDatabaseUpgrader : IPerformsDatabaseUpgrades
   {

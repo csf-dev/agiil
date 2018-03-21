@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Agiil.Data.Maintenance
+namespace Agiil.Data
 {
   public interface ISnapshotService
   {

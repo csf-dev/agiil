@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Agiil.Data.Maintenance;
+using Agiil.Data;
 using Autofac;
 
 namespace Agiil.Bootstrap.Data
