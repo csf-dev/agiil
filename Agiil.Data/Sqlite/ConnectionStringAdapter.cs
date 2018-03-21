@@ -32,5 +32,14 @@ namespace Agiil.Data.Sqlite
 
       this.connectionString = connectionString;
     }
+
+    public static ConnectionStringAdapter Create(IConnectionStringProvider connectionStringProvider)
+    {
+      if(connectionStringProvider == null)
+        throw new ArgumentNullException(nameof(connectionStringProvider));
+
+      var connString = connectionStringProvider.GetConnectionString();
+      return new ConnectionStringAdapter(connString);
+    }
   }
 }

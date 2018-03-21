@@ -33,15 +33,6 @@ namespace Agiil.Data.Sqlite
 
     Snapshot GetSnapshot(FileInfo file) => new Snapshot(file);
 
-    ConnectionStringAdapter GetConnectionStringAdapter(IConnectionStringProvider connectionStringProvider)
-    {
-      if(connectionStringProvider == null)
-        throw new ArgumentNullException(nameof(connectionStringProvider));
-
-      var connString = connectionStringProvider.GetConnectionString();
-      return new ConnectionStringAdapter(connString);
-    }
-
     object ISnapshotService.TakeDatabaseSnapshot() => TakeDatabaseSnapshot();
 
     void ISnapshotService.RestoreFromSnapshot(object snapshot)
@@ -56,7 +47,7 @@ namespace Agiil.Data.Sqlite
         throw new ArgumentNullException(nameof(fileService));
       
       this.fileService = fileService;
-      connectionStringAdapter = GetConnectionStringAdapter(connectionStringProvider);
+      connectionStringAdapter = ConnectionStringAdapter.Create(connectionStringProvider);
     }
   }
 }

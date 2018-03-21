@@ -133,6 +133,8 @@
     <Compile Include="Sqlite\SnapshotFileService.cs" />
     <Compile Include="Sqlite\SnapshotService.cs" />
     <Compile Include="IExportsDatabaseSchema.cs" />
+    <Compile Include="IDeletesDatabase.cs" />
+    <Compile Include="Sqlite\DatabaseDeleter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mappings\" />

@@ -9,7 +9,7 @@ using log4net;
 
 namespace Agiil.Data
 {
-  public class DbUpDatabaseUpgrader : IPerformsDatabaseUpgrades
+  public class DbUpDatabaseUpgrader : IPerformsDatabaseUpgrades, ICreatesDatabaseSchema
   {
     static readonly ILog logger;
 
@@ -34,6 +34,8 @@ namespace Agiil.Data
 
       return output;
     }
+
+    public void CreateSchema() => ApplyAllUpgrades();
 
     void LogCompletion(Domain.Data.DatabaseUpgradeResult result, Exception exception)
     {

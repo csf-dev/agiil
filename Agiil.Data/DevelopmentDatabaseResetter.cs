@@ -8,16 +8,21 @@ namespace Agiil.Data
   {
     readonly ICreatesDatabaseSchema dbCreator;
     readonly IInitialDataCreator dataCreator;
+    readonly IDeletesDatabase databaseDeleter;
 
     public void ResetDatabase()
     {
+      databaseDeleter.DeleteDatabase();
       dbCreator.CreateSchema();
       dataCreator.Create();
     }
 
-    public DevelopmentDatabaseResetter(ICreatesDatabaseSchema dbCreator,
+    public DevelopmentDatabaseResetter(IDeletesDatabase databaseDeleter,
+                                       ICreatesDatabaseSchema dbCreator,
                                        IInitialDataCreator dataCreator)
     {
+      if(databaseDeleter == null)
+        throw new ArgumentNullException(nameof(databaseDeleter));
       if(dataCreator == null)
         throw new ArgumentNullException(nameof(dataCreator));
       if(dbCreator == null)
@@ -25,6 +30,7 @@ namespace Agiil.Data
 
       this.dbCreator = dbCreator;
       this.dataCreator = dataCreator;
+      this.databaseDeleter = databaseDeleter;
     }
   }
 }
