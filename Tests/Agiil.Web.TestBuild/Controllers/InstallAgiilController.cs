@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Web.Http;
-using Agiil.Data.Maintenance;
-using Agiil.Web.Services;
+using Agiil.Domain.Data;
 
 namespace Agiil.Web.Controllers
 {
   [AllowAnonymous]
   public class InstallAgiilController : ApiController
   {
-    readonly IDatabaseResetter dbResetter;
+    readonly IResetsDatabase dbResetter;
 
     public IHttpActionResult Post()
     {
@@ -16,7 +15,7 @@ namespace Agiil.Web.Controllers
       return Ok();
     }
 
-    public InstallAgiilController(IDatabaseResetter resetter)
+    public InstallAgiilController(IResetsDatabase resetter)
     {
       if(resetter == null)
         throw new ArgumentNullException(nameof(resetter));

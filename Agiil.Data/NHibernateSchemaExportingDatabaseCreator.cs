@@ -2,7 +2,6 @@
 using System.Data;
 using System.IO;
 using System.Text;
-using Agiil.Data.Maintenance;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
@@ -15,13 +14,17 @@ namespace Agiil.Data
 
     #region ICreatesDatabaseSchema implementation
 
-    public void CreateSchema(IDbConnection connection)
+    public void CreateSchema()
     {
-      if(connection == null)
-        throw new ArgumentNullException(nameof(connection));
+      using(var session = GetSession())
+      {
+        var exporter = GetExporter();
 
-      var exporter = GetExporter();
-      exporter.Execute(false, true, false, connection, null);
+        if(session.Connection.State != ConnectionState.Open)
+          session.Connection.Open();
+        
+        exporter.Execute(false, true, false, session.Connection, null);
+      }
     }
 
     #endregion
@@ -68,6 +71,7 @@ namespace Agiil.Data
     }
 
     Configuration GetConfiguration() => sessionFactoryFactory.GetConfiguration();
+    ISession GetSession() => sessionFactoryFactory.GetSessionFactory().OpenSession();
 
     TextWriter GetTextWriterForFile(string outputFile) => new StreamWriter(outputFile, false, Encoding.UTF8);
 

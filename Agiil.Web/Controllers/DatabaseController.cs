@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
-using Agiil.Data.Maintenance;
+using Agiil.Domain.Data;
 using Agiil.Web.Models;
 
 namespace Agiil.Web.Controllers
@@ -10,8 +10,8 @@ namespace Agiil.Web.Controllers
   {
     const string TempModelKey = "Reset model";
 
-    readonly Lazy<IDatabaseResetter> resetter;
-    readonly Lazy<IDatabaseUpgrader> upgrader;
+    readonly Lazy<IResetsDatabase> resetter;
+    readonly Lazy<IPerformsDatabaseUpgrades> upgrader;
 
     [HttpGet]
     public ActionResult Index()
@@ -50,8 +50,8 @@ namespace Agiil.Web.Controllers
       return new DatabaseResetModel();
     }
 
-    public DatabaseController(Lazy<IDatabaseResetter> resetter,
-                              Lazy<IDatabaseUpgrader> upgrader)
+    public DatabaseController(Lazy<IResetsDatabase> resetter,
+                              Lazy<IPerformsDatabaseUpgrades> upgrader)
     {
       if(upgrader == null)
         throw new ArgumentNullException(nameof(upgrader));

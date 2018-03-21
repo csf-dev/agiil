@@ -1,14 +1,8 @@
 ﻿using System;
+using CSF.Data.NHibernate;
 using NHibernate;
 using NHibernate.Cfg;
-using NHibernate.Cfg.MappingSchema;
-using CSF.Data.NHibernate;
-using NHibernate.Mapping.ByCode;
-using CSF.Entities;
-using Agiil.Domain;
-using System.Linq;
 using NHibernate.Dialect;
-using System.Reflection;
 
 namespace Agiil.Data
 {

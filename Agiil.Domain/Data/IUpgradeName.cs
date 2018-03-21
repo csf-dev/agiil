@@ -1,5 +1,6 @@
 ﻿using System;
-namespace Agiil.Data.Maintenance
+
+namespace Agiil.Domain.Data
 {
   public interface IUpgradeName
   {

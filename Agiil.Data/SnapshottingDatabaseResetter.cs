@@ -1,11 +1,13 @@
 ﻿using System;
-namespace Agiil.Data.Maintenance
+using Agiil.Domain.Data;
+
+namespace Agiil.Data
 {
-  public class SnapshottingDatabaseResetter : IDatabaseResetter
+  public class SnapshottingDatabaseResetter : IResetsDatabase
   {
     static readonly object syncRoot;
 
-    readonly IDatabaseResetter baseResetter;
+    readonly IResetsDatabase baseResetter;
     readonly SnapshotStore snapshotStore;
     readonly ISnapshotService snapshotService;
 
@@ -31,7 +33,7 @@ namespace Agiil.Data.Maintenance
       return snapshotService.TakeDatabaseSnapshot();
     }
 
-    public SnapshottingDatabaseResetter(IDatabaseResetter baseResetter,
+    public SnapshottingDatabaseResetter(IResetsDatabase baseResetter,
                                         SnapshotStore snapshotStore,
                                         ISnapshotService snapshotService)
     {

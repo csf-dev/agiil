@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Agiil.Data.Maintenance
+namespace Agiil.Data
 {
   public interface IExportsDatabaseSchema
   {

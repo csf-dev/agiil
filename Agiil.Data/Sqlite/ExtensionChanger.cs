@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Agiil.Data.Maintenance.Sqlite
+namespace Agiil.Data.Sqlite
 {
   public class ExtensionChanger
   {

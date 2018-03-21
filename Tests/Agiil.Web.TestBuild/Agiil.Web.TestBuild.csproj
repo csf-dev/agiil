@@ -155,10 +155,6 @@
       <Project>{AB167238-0D06-4D8A-A646-198D63575AF5}</Project>
       <Name>Agiil.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Agiil.Data.Maintenance\Agiil.Data.Maintenance.csproj">
-      <Project>{93734A7F-7011-4C26-B14F-6228A7648DAC}</Project>
-      <Name>Agiil.Data.Maintenance</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
