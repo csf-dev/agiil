@@ -137,6 +137,10 @@
     <Compile Include="Data\DatabaseUpgradeResult.cs" />
     <Compile Include="Data\IUpgradeName.cs" />
     <Compile Include="Data\IResetsDatabase.cs" />
+    <Compile Include="Data\IGetsDatabaseBackups.cs" />
+    <Compile Include="Data\DatabaseBackupInfo.cs" />
+    <Compile Include="Data\ITakesDatabaseBackup.cs" />
+    <Compile Include="Data\IGetsDataDirectory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

@@ -148,6 +148,7 @@
     <Compile Include="Data\SqliteDatabaseMaintenanceModule.cs" />
     <Compile Include="Rendering\MarkdownRenderingModule.cs" />
     <Compile Include="Auth\BrakePedalPolicyModule.cs" />
+    <Compile Include="ContainerBuilderExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

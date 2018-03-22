@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Configuration;
 using Agiil.Data;
+using Agiil.Domain.Data;
 using Autofac;
 
 namespace Agiil.Bootstrap.Data
@@ -26,6 +28,7 @@ namespace Agiil.Bootstrap.Data
           typeof(SnapshotStore),
           typeof(SnapshottingDatabaseResetter),
           typeof(NHibernateSchemaExportingDatabaseCreator),
+          typeof(DataDirectoryConfigurationSection)
         };
       }
     }
@@ -46,7 +49,11 @@ namespace Agiil.Bootstrap.Data
         .RegisterType<NHibernateSchemaExportingDatabaseCreator>()
         .AsSelf()
         .As<IExportsDatabaseSchema>();
-      
+
+      builder
+        .RegisterConfiguration<DataDirectoryConfigurationSection>()
+        .AsSelf()
+        .As<IGetsDataDirectory>();
     }
   }
 }

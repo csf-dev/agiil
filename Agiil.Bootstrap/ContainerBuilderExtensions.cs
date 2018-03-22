@@ -4,7 +4,7 @@ using Autofac;
 using Autofac.Builder;
 using CSF.Configuration;
 
-namespace Agiil.Web.Bootstrap
+namespace Agiil.Bootstrap
 {
   public static class ContainerBuilderExtensions
   {
