@@ -76,6 +76,10 @@
     <h3>Database backups</h3>
     <form method="post" action="DatabaseBackup/TakeBackup">
       <fieldset>
+      <div class="form_element text">
+        <label for="backup_name">Backup name</label>
+        <input type="text" id="backup_name" name="name" placeholder="Name your backup (optional)">
+      </div>
       <div class="form_element button">
         <button>Take a new backup</button>
       </div>

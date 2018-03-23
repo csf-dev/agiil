@@ -12,9 +12,9 @@ namespace Agiil.Web.Controllers
     readonly ITakesDatabaseBackup backupService;
 
     [HttpPost]
-    public ActionResult TakeBackup()
+    public ActionResult TakeBackup(string name)
     {
-      backupService.TakeDatabaseBackup("Sample");
+      backupService.TakeDatabaseBackup(name);
       return RedirectToAction(nameof(DatabaseController.Index), this.GetName<DatabaseController>());
     }
 
