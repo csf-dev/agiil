@@ -320,6 +320,7 @@
     <Folder Include="Views\Sprints\" />
     <Folder Include="Views\Sprint\" />
     <Folder Include="Services\Logging\" />
+    <Folder Include="Views\DatabaseBackup\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -429,6 +430,7 @@
     <None Include="Views\Sprint\Edit.pt" />
     <None Include="Views\Shared\Controls\TicketTypeChooser.pt" />
     <None Include="Views\Shared\StandardFooter.pt" />
+    <None Include="Views\DatabaseBackup\Index.pt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.template.config">

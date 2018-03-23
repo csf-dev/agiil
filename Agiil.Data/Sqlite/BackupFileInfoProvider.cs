@@ -12,11 +12,16 @@ namespace Agiil.Data.Sqlite
     readonly IProvidesVersionInformation versionProvider;
     readonly IEnvironment environment;
 
-    public virtual FileInfo GetBackupFile(string name)
+    public virtual FileInfo GetBackupFileFromBackupName(string name)
     {
       var backupInfo = GetBackupInfo(name);
       var backupFilename = backupFilenameFormatter.GetFilename(backupInfo);
-      var backupFilePath = Path.Combine(dataDirectoryProvider.GetDataDirectory().FullName, backupFilename);
+      return GetBackupFileFromFilename(backupFilename);
+    }
+
+    public virtual FileInfo GetBackupFileFromFilename(string filename)
+    {
+      var backupFilePath = Path.Combine(dataDirectoryProvider.GetDataDirectory().FullName, filename);
       return new FileInfo(backupFilePath);
     }
 
