@@ -30,8 +30,16 @@ namespace Agiil.Bootstrap.Data
           typeof(SnapshotStore),
           typeof(SnapshottingDatabaseResetter),
           typeof(NHibernateSchemaExportingDatabaseCreator),
+          typeof(DbUpDatabaseUpgrader),
         };
       }
+    }
+
+    BackupTakingUpgrader GetBackupTakingUpgrader(IComponentContext c)
+    {
+      var innerUpgrader = c.Resolve<DbUpDatabaseUpgrader>();
+      var backupService = c.Resolve<ITakesDatabaseBackup>();
+      return new BackupTakingUpgrader(innerUpgrader, backupService);
     }
 
     protected override void Load(ContainerBuilder builder)
@@ -50,6 +58,16 @@ namespace Agiil.Bootstrap.Data
         .RegisterType<NHibernateSchemaExportingDatabaseCreator>()
         .AsSelf()
         .As<IExportsDatabaseSchema>();
+
+      builder
+        .RegisterType<DbUpDatabaseUpgrader>()
+        .AsSelf()
+        .AsImplementedInterfaces();
+
+      builder
+        .Register(GetBackupTakingUpgrader)
+        .AsSelf()
+        .As<IPerformsDatabaseUpgrades>();
     }
   }
 }

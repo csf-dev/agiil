@@ -139,6 +139,7 @@
     <Compile Include="Sqlite\DatabaseFileProvider.cs" />
     <Compile Include="Sqlite\BackupFileInfoProvider.cs" />
     <Compile Include="Sqlite\IProvidesBackupFileInfo.cs" />
+    <Compile Include="BackupTakingUpgrader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mappings\" />
