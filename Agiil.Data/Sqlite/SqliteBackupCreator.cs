@@ -11,7 +11,7 @@ namespace Agiil.Data.Sqlite
 
     public void TakeDatabaseBackup(string name)
     {
-      var backupFile = backupFileProvider.GetBackupFile(name);
+      var backupFile = backupFileProvider.GetBackupFileFromBackupName(name);
       var dbFile = dbFileProvider.GetDatabaseFile();
       snapshotFileService.Copy(dbFile, backupFile);
     }

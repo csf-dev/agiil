@@ -142,6 +142,7 @@
     <Compile Include="Data\ITakesDatabaseBackup.cs" />
     <Compile Include="Data\IGetsDataDirectory.cs" />
     <Compile Include="Data\IFormatsDatabaseBackupFilenames.cs" />
+    <Compile Include="Data\IRestoresDatabaseBackup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

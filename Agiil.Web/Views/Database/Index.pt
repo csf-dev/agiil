@@ -75,7 +75,7 @@
   <div class="database_backup">
     <h3>Database backups</h3>
     <h4>Existing backups</h4>
-    <form method="post" action="DatabaseBackup/RestoreBackup">
+    <form method="get" action="DatabaseBackup">
       <table class="database_backups">
         <colgroup>
           <col class="timestamp">
@@ -101,7 +101,7 @@
             <td tal:content="backup/ApplicationVersion">v1.2.3</td>
             <td tal:content="nameContent" tal:attributes="class nameClass">Backup name here</td>
             <td>
-              <button value="FILENAME" tal:attributes="value backup/Filename">Restore</button>
+              <button name="filename" value="FILENAME" tal:attributes="value backup/Filename">Restore</button>
             </td>
           </tal:block>
           </tr>
@@ -113,7 +113,7 @@
       <fieldset>
       <div class="form_element text">
         <label for="backup_name">Backup name</label>
-        <input type="text" id="backup_name" name="name" placeholder="Name your backup (optional)">
+        <input type="text" id="backup_name" name="filename" placeholder="Name your backup (optional)">
       </div>
       <div class="form_element button">
         <button>Take a new backup</button>

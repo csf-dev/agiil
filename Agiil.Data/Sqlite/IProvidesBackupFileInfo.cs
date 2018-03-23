@@ -4,6 +4,8 @@ namespace Agiil.Data.Sqlite
 {
   public interface IProvidesBackupFileInfo
   {
-    FileInfo GetBackupFile(string name);
+    FileInfo GetBackupFileFromBackupName(string name);
+
+    FileInfo GetBackupFileFromFilename(string filename);
   }
 }
