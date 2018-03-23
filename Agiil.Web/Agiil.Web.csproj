@@ -334,7 +334,6 @@
     <Compile Include="Bootstrap\AuthModule.cs" />
     <Compile Include="Bootstrap\OwinCompatibleLifetimeScopeProvider.cs" />
     <Compile Include="App_Start\OwinStartupType.cs" />
-    <Compile Include="Bootstrap\ContainerBuilderExtensions.cs" />
     <Compile Include="Controllers\NewTicketController.cs" />
     <Compile Include="ApiControllers\TicketController.cs" />
     <Compile Include="Controllers\DatabaseController.cs" />
@@ -381,6 +380,7 @@
     <Compile Include="Services\Auth\IValidatesRedirectUrls.cs" />
     <Compile Include="ModelBinders\IdentityJsonConverter.cs" />
     <Compile Include="Services\Auth\RedirectUriParser.cs" />
+    <Compile Include="Controllers\DatabaseBackupController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

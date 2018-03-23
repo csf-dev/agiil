@@ -72,6 +72,16 @@
     <h3>Upgrades pending</h3>
     <p>There are no pending upgrades!</p>
   </div>
+  <div class="take_backup">
+    <h3>Database backups</h3>
+    <form method="post" action="DatabaseBackup/TakeBackup">
+      <fieldset>
+      <div class="form_element button">
+        <button>Take a new backup</button>
+      </div>
+      </fieldset>
+    </form>
+  </div>
 </div>
 </body>
 </html>

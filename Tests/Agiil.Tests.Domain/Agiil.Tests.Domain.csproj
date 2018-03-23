@@ -95,6 +95,7 @@
     <Compile Include="Tickets\TicketFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprints\SprintListerTests.cs" />
+    <Compile Include="Data\DatabaseBackupFilenameFormatterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
@@ -118,6 +119,7 @@
     <Folder Include="Auth\" />
     <Folder Include="Tickets\" />
     <Folder Include="Sprints\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
 ﻿using System;
+using Agiil.Bootstrap;
 using Agiil.Web.App_Start;
 using Agiil.Web.OAuth;
 using Autofac;
