@@ -129,7 +129,6 @@
     <Compile Include="Tickets\ICreatesCreateTicketResponse.cs" />
     <Compile Include="Tickets\CreateTicketResponseFactory.cs" />
     <Compile Include="Data\DataDirectoryConfigurationSection.cs" />
-    <Compile Include="Data\IFormatsDatabaseBackupFilenames.cs" />
     <Compile Include="Data\DatabaseBackupFilenameFormatter.cs" />
     <Compile Include="Data\DatabaseBackupFinder.cs" />
   </ItemGroup>

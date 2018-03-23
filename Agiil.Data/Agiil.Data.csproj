@@ -135,6 +135,10 @@
     <Compile Include="IExportsDatabaseSchema.cs" />
     <Compile Include="IDeletesDatabase.cs" />
     <Compile Include="Sqlite\DatabaseDeleter.cs" />
+    <Compile Include="Sqlite\SqliteBackupCreator.cs" />
+    <Compile Include="Sqlite\DatabaseFileProvider.cs" />
+    <Compile Include="Sqlite\BackupFileInfoProvider.cs" />
+    <Compile Include="Sqlite\IProvidesBackupFileInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mappings\" />

@@ -5,7 +5,7 @@ namespace Agiil.Data.Sqlite
 {
   public class SnapshotService : ISnapshotService
   {
-    readonly ConnectionStringAdapter connectionStringAdapter;
+    readonly DatabaseFileProvider dbFileProvider;
     readonly ISnapshotFileService fileService;
 
     public void RestoreFromSnapshot(Snapshot snapshot)
@@ -13,22 +13,16 @@ namespace Agiil.Data.Sqlite
       if(snapshot == null)
         throw new ArgumentNullException(nameof(snapshot));
       
-      var dataFile = GetDatabaseFile();
+      var dataFile = dbFileProvider.GetDatabaseFile();
       fileService.Replace(snapshot.File, dataFile);
     }
 
     public Snapshot TakeDatabaseSnapshot()
     {
-      var dataFile = GetDatabaseFile();
+      var dataFile = dbFileProvider.GetDatabaseFile();
       var snapshotFile = fileService.GetFileForNewSnapshot(dataFile);
       fileService.Copy(dataFile, snapshotFile);
       return GetSnapshot(snapshotFile);
-    }
-
-    FileInfo GetDatabaseFile()
-    {
-      var filePath = connectionStringAdapter.GetDataFile();
-      return new FileInfo(filePath);
     }
 
     Snapshot GetSnapshot(FileInfo file) => new Snapshot(file);
@@ -40,14 +34,16 @@ namespace Agiil.Data.Sqlite
       RestoreFromSnapshot((Snapshot) snapshot);
     }
 
-    public SnapshotService(IConnectionStringProvider connectionStringProvider,
+    public SnapshotService(DatabaseFileProvider dbFileProvider,
                            ISnapshotFileService fileService)
     {
+      if(dbFileProvider == null)
+        throw new ArgumentNullException(nameof(dbFileProvider));
       if(fileService == null)
         throw new ArgumentNullException(nameof(fileService));
       
       this.fileService = fileService;
-      connectionStringAdapter = ConnectionStringAdapter.Create(connectionStringProvider);
+      this.dbFileProvider = dbFileProvider;
     }
   }
 }

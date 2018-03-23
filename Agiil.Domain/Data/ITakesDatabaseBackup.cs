@@ -3,6 +3,6 @@ namespace Agiil.Domain.Data
 {
   public interface ITakesDatabaseBackup
   {
-    void TakeDatabaseBackup();
+    void TakeDatabaseBackup(string name);
   }
 }

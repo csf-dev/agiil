@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Configuration;
-using Agiil.Data;
+using Agiil.Domain;
 using Agiil.Domain.Data;
 using Autofac;
-using Agiil.Domain;
 
 namespace Agiil.Bootstrap.Data
 {
-  public class DataModule : NamespaceModule
+  public class DomainDataModule : NamespaceModule
   {
-    static readonly Type NamespaceMarkerType = typeof(ISnapshotService);
+    static readonly Type NamespaceMarkerType = typeof(ITakesDatabaseBackup);
 
     protected override string Namespace => NamespaceMarkerType.Namespace;
 
@@ -27,9 +25,7 @@ namespace Agiil.Bootstrap.Data
     {
       get {
         return new [] {
-          typeof(SnapshotStore),
-          typeof(SnapshottingDatabaseResetter),
-          typeof(NHibernateSchemaExportingDatabaseCreator),
+          typeof(DataDirectoryConfigurationSection)
         };
       }
     }
@@ -39,17 +35,9 @@ namespace Agiil.Bootstrap.Data
       base.Load(builder);
 
       builder
-        .RegisterType<SnapshotStore>()
-        .SingleInstance();
-
-      builder
-        .RegisterType<SnapshottingDatabaseResetter>()
-        .AsSelf();
-
-      builder
-        .RegisterType<NHibernateSchemaExportingDatabaseCreator>()
+        .RegisterConfiguration<DataDirectoryConfigurationSection>()
         .AsSelf()
-        .As<IExportsDatabaseSchema>();
+        .As<IGetsDataDirectory>();
     }
   }
 }
