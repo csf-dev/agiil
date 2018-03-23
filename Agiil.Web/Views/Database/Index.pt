@@ -72,8 +72,43 @@
     <h3>Upgrades pending</h3>
     <p>There are no pending upgrades!</p>
   </div>
-  <div class="take_backup">
+  <div class="database_backup">
     <h3>Database backups</h3>
+    <h4>Existing backups</h4>
+    <form method="post" action="DatabaseBackup/RestoreBackup">
+      <table class="database_backups">
+        <colgroup>
+          <col class="timestamp">
+          <col class="version">
+          <col class="name">
+          <col class="restore">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>Version</th>
+            <th>Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr tal:repeat="backup here/DatabaseBackups">
+          <tal:block define="timestamp backup/Timestamp;
+                             hasName csharp:backup.Name != null;
+                             nameContent csharp:((bool) hasName)? ((string) backup.Name) : &quot;-&quot;;
+                             nameClass csharp:((bool) hasName)? null : &quot;unnamed&quot;;">
+            <td tal:content="csharp: timestamp.ToString(&quot;u&quot;)">2017-03-01 09:45:22</td>
+            <td tal:content="backup/ApplicationVersion">v1.2.3</td>
+            <td tal:content="nameContent" tal:attributes="class nameClass">Backup name here</td>
+            <td>
+              <button value="FILENAME" tal:attributes="value backup/Filename">Restore</button>
+            </td>
+          </tal:block>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+    <h4>Take a new backup</h4>
     <form method="post" action="DatabaseBackup/TakeBackup">
       <fieldset>
       <div class="form_element text">

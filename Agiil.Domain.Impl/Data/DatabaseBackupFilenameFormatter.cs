@@ -24,6 +24,7 @@ namespace Agiil.Domain.Data
         Timestamp = timestamp.Value,
         ApplicationVersion = match.Groups[7].Value,
         Name = String.IsNullOrEmpty(name)? null : name,
+        Filename = filename
       };
     }
 

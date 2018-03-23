@@ -12,6 +12,7 @@ namespace Agiil.Web.Controllers
 
     readonly Lazy<IResetsDatabase> resetter;
     readonly Lazy<IPerformsDatabaseUpgrades> upgrader;
+    readonly Lazy<IGetsDatabaseBackups> backupFinder;
 
     [HttpGet]
     public ActionResult Index()
@@ -20,6 +21,7 @@ namespace Agiil.Web.Controllers
       model = model?? GetModel();
       model.DatabaseUpgradesApplied = upgrader.Value.GetAppliedUpgrades().Select(x => x.GetName());
       model.DatabaseUpgradesPending = upgrader.Value.GetPendingUpgrades().Select(x => x.GetName());
+      model.DatabaseBackups = backupFinder.Value.GetBackups();
       return View(model);
     }
 
@@ -51,13 +53,17 @@ namespace Agiil.Web.Controllers
     }
 
     public DatabaseController(Lazy<IResetsDatabase> resetter,
-                              Lazy<IPerformsDatabaseUpgrades> upgrader)
+                              Lazy<IPerformsDatabaseUpgrades> upgrader,
+                              Lazy<IGetsDatabaseBackups> backupFinder)
     {
+      if(backupFinder == null)
+        throw new ArgumentNullException(nameof(backupFinder));
       if(upgrader == null)
         throw new ArgumentNullException(nameof(upgrader));
       if(resetter == null)
         throw new ArgumentNullException(nameof(resetter));
 
+      this.backupFinder = backupFinder;
       this.resetter = resetter;
       this.upgrader = upgrader;
     }
