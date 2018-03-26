@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Web.Mvc;
 using Agiil.Auth;
+using Agiil.Domain;
 using Agiil.Domain.Auth;
 using Agiil.Web.Models.Auth;
+using Agiil.Web.Services.Auth;
 
 namespace Agiil.Web.Controllers
 {
   [AllowAnonymous]
-  public class LoginController : ControllerBase
+  public class LoginController : Controller
   {
     #region constants
 
@@ -21,6 +23,7 @@ namespace Agiil.Web.Controllers
 
     readonly LoginRequestCreator loginRequestCreator;
     readonly ILoginLogoutManager loginLogoutManager;
+    readonly IValidatesRedirectUrls redirectUriValidator;
 
     #endregion
 
@@ -51,13 +54,10 @@ namespace Agiil.Web.Controllers
       TempData.Add(LoginResultKey, result);
       TempData.Add(CredentialsKey, credentials);
 
-      if(result.Success && !String.IsNullOrEmpty(credentials.ReturnUrl))
-      {
-        // TODO: #AG28 - I should sanitise this URL before we blindly redirect
+      if(result.Success && redirectUriValidator.IsValid(credentials.ReturnUrl))
         return Redirect(credentials.ReturnUrl);
-      }
 
-      return RedirectToAction(nameof(LoginController.Index), GetControllerName<LoginController>());
+      return RedirectToAction(nameof(LoginController.Index), this.GetName<LoginController>());
     }
 
     [HttpPost]
@@ -71,14 +71,14 @@ namespace Agiil.Web.Controllers
         throw new NotSupportedException("Failure to log out is not supported.");
       }
 
-      return RedirectToAction(nameof(LoginController.LoggedOut), GetControllerName<LoginController>());
+      return RedirectToAction(nameof(LoginController.LoggedOut), this.GetName<LoginController>());
     }
 
     LoginModel GetLoginModel()
     {
-      var model = ModelFactory.GetModel<LoginModel>();
-      model.Result = GetTempData<LoginResult>(LoginResultKey);
-      model.EnteredCredentials = GetTempData<Models.Auth.LoginCredentials>(CredentialsKey);
+      var model = new LoginModel();
+      model.Result = TempData.TryGet<LoginResult>(LoginResultKey);
+      model.EnteredCredentials = TempData.TryGet<Models.Auth.LoginCredentials>(CredentialsKey);
       return model;
     }
 
@@ -88,14 +88,16 @@ namespace Agiil.Web.Controllers
 
     public LoginController(LoginRequestCreator loginRequestCreator,
                            ILoginLogoutManager loginLogoutManager,
-                           ControllerBaseDependencies baseDeps)
-      : base(baseDeps)
+                           IValidatesRedirectUrls redirectUriValidator)
     {
+      if(redirectUriValidator == null)
+        throw new ArgumentNullException(nameof(redirectUriValidator));
       if(loginLogoutManager == null)
         throw new ArgumentNullException(nameof(loginLogoutManager));
       if(loginRequestCreator == null)
         throw new ArgumentNullException(nameof(loginRequestCreator));
 
+      this.redirectUriValidator = redirectUriValidator;
       this.loginRequestCreator = loginRequestCreator;
       this.loginLogoutManager = loginLogoutManager;
     }

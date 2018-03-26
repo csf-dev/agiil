@@ -3,10 +3,10 @@ using System.Linq;
 using Agiil.BDD.Pages;
 using Agiil.BDD.Tasks.Tickets;
 using CSF.Screenplay;
-using CSF.Screenplay.Web.Builders;
+using CSF.Screenplay.Actors;
+using CSF.Screenplay.Selenium.Builders;
 using FluentAssertions;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
 using static CSF.Screenplay.StepComposer;
 
 namespace Agiil.BDD.Bindings.Tickets
@@ -14,104 +14,66 @@ namespace Agiil.BDD.Bindings.Tickets
   [Binding]
   public class ReadATicketSteps
   {
-    readonly IScreenplayScenario screenplay;
+    readonly IStage stage;
 
-    [When("Youssef opens a ticket with the title '([^']+)'")]
-    public void WhenYoussefOpensATicketWithTheTitle(string title)
+    [Then(@"(?:he|she|they) opens? a ticket with the title '([^']+)'")]
+    public void ThenTheyOpenATicketWithTheTitle(string title)
     {
-      var youssef = screenplay.GetYoussef();
-      When(youssef).AttemptsTo(OpenTheTicket.Titled(title));
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).Should(OpenTheTicket.Titled(title));
     }
 
-    [Then(@"Youssef opens a ticket with the title '([^']+)'")]
-    public void ThenYoussefOpensATicketWithTheTitle(string title)
+    [Then("(?:he|she|they) should see that the ticket description reads '([^']*)'")]
+    public void ThenTheyShouldSeeThatTheTicketDescriptionIs(string description)
     {
-      var youssef = screenplay.GetYoussef();
-      Then(youssef).Should(OpenTheTicket.Titled(title));
-    }
-
-    [Given("Youssef has opened a ticket with the title '([^']+)'")]
-    public void GivenYoussefHasOpenedATicketWithTheTitle(string title)
-    {
-      var youssef = screenplay.GetYoussef();
-      Given(youssef).WasAbleTo(OpenTheTicket.Titled(title));
-    }
-
-    [Then("Youssef should see that the ticket description reads '([^']*)'")]
-    public void ThenYoussefShouldSeeThatTheTicketDescriptionIs(string description)
-    {
-      var youssef = screenplay.GetYoussef();
-      Then(youssef).ShouldSee(TheTicket.Description())
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).ShouldSee(TheTicket.Description())
                    .Should()
                    .Be(description);
     }
 
-    [Then("Youssef should see that the ticket is part of the sprint '([^']+)'")]
-    public void ThenYoussefShouldSeeThatTheTicketIsAPartOfTheSprint(string sprint)
+    [Then("(?:he|she|they) should see that the ticket is part of the sprint '([^']+)'")]
+    public void ThenTheyShouldSeeThatTheTicketIsAPartOfTheSprint(string sprint)
     {
-      var youssef = screenplay.GetYoussef();
-      Then(youssef).ShouldSee(TheTicket.SprintTitle())
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).ShouldSee(TheTicket.SprintTitle())
                    .Should()
                    .Be(sprint);
     }
 
-    [Then("Youssef should see comments with the following text, in order")]
-    public void ThenYoussefShouldSeeTheCommentsInOrder(Table expectedCommentsTable)
+    [Then(@"(?:he|she|they) should see that the creator of the current ticket is '([^']+)'")]
+    public void ThenTheyShouldSeeThatTheCreatorOfTheCurrentTicketIs(string username)
     {
-      var expectedComments = expectedCommentsTable
-        .Rows
-        .Select(x => x.Values.Single())
-        .ToArray();
-
-      var youssef = screenplay.GetYoussef();
-      Then(youssef).ShouldSee(TheText.OfAll(TicketDetail.CommentBodies))
-                   .Should()
-                   .ContainInOrder(expectedComments);
-    }
-
-    [Then(@"Youssef should see that there are no comments on the ticket")]
-    public void ThenYoussefShouldSeeThatThereAreNoComments()
-    {
-      var youssef = screenplay.GetYoussef();
-      var comments = Then(youssef).ShouldSee(Elements.InThePageBody()
-                                                     .ThatAre(TicketDetail.CommentBodies)
-                                                     .Called("the comment bodies"));
-      comments.Elements.Should().BeEmpty(because: "there are no comments");
-    }
-
-    [Then(@"Youssef should see that the creator of the current ticket is '([^']+)'")]
-    public void ThenYoussefShouldSeeThatTheCreatorOfTheCurrentTicketIs(string username)
-    {
-      var youssef = screenplay.GetYoussef();
-      Then(youssef).ShouldSee(TheText.OfAll(TicketDetail.TicketCreatorUsername))
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).ShouldSee(TheText.OfAll(TicketDetail.TicketCreatorUsername))
                    .Should()
                    .ContainInOrder(username);
     }
 
-    [Then(@"Youssef should see that the ticket state is (.+)")]
-    public void ThenYoussefShouldSeeThatTheTicketStateIs(string expectedState)
+    [Then(@"(?:he|she|they) should see that the ticket state is (.+)")]
+    public void ThenTheyShouldSeeThatTheTicketStateIs(string expectedState)
     {
-      var youssef = screenplay.GetYoussef();
-      Then(youssef).ShouldSee(TheText.Of(TicketDetail.TicketState))
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).ShouldSee(TheText.Of(TicketDetail.TicketState))
                    .Should()
                    .Be(expectedState, because: "the state should match");
     }
 
-    [Then(@"Youssef should see that the ticket type is '([^']+)'")]
-    public void ThenYoussefShouldSeeThatTheTicketTypeIsAsExpected(string type)
+    [Then(@"(?:he|she|they) should see that the ticket type is '([^']+)'")]
+    public void ThenTheyShouldSeeThatTheTicketTypeIsAsExpected(string type)
     {
-      var youssef = screenplay.GetYoussef();
-      Then(youssef).ShouldSee(TheText.Of(TicketDetail.TicketType))
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).ShouldSee(TheText.Of(TicketDetail.TicketType))
                    .Should()
                    .Be(type, because: "the type should match");
     }
 
-    public ReadATicketSteps(IScreenplayScenario screenplay)
+    public ReadATicketSteps(IStage stage)
     {
-      if(screenplay == null)
-        throw new ArgumentNullException(nameof(screenplay));
+      if(stage == null)
+        throw new ArgumentNullException(nameof(stage));
 
-      this.screenplay = screenplay;
+      this.stage = stage;
     }
   }
 }

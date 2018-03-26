@@ -1,25 +1,27 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
-using Agiil.Data.Maintenance;
+using Agiil.Domain.Data;
 using Agiil.Web.Models;
 
 namespace Agiil.Web.Controllers
 {
-  public class DatabaseController : ControllerBase
+  public class DatabaseController : Controller
   {
     const string TempModelKey = "Reset model";
 
-    readonly Lazy<IDatabaseResetter> resetter;
-    readonly Lazy<IDatabaseUpgrader> upgrader;
+    readonly Lazy<IResetsDatabase> resetter;
+    readonly Lazy<IPerformsDatabaseUpgrades> upgrader;
+    readonly Lazy<IGetsDatabaseBackups> backupFinder;
 
     [HttpGet]
     public ActionResult Index()
     {
-      var model = base.GetTempData<DatabaseResetModel>(TempModelKey);
+      var model = TempData.TryGet<DatabaseResetModel>(TempModelKey);
       model = model?? GetModel();
       model.DatabaseUpgradesApplied = upgrader.Value.GetAppliedUpgrades().Select(x => x.GetName());
       model.DatabaseUpgradesPending = upgrader.Value.GetPendingUpgrades().Select(x => x.GetName());
+      model.DatabaseBackups = backupFinder.Value.GetBackups();
       return View(model);
     }
 
@@ -50,16 +52,18 @@ namespace Agiil.Web.Controllers
       return new DatabaseResetModel();
     }
 
-    public DatabaseController(Lazy<IDatabaseResetter> resetter,
-                              Lazy<IDatabaseUpgrader> upgrader,
-                              ControllerBaseDependencies baseDeps)
-      : base(baseDeps)
+    public DatabaseController(Lazy<IResetsDatabase> resetter,
+                              Lazy<IPerformsDatabaseUpgrades> upgrader,
+                              Lazy<IGetsDatabaseBackups> backupFinder)
     {
+      if(backupFinder == null)
+        throw new ArgumentNullException(nameof(backupFinder));
       if(upgrader == null)
         throw new ArgumentNullException(nameof(upgrader));
       if(resetter == null)
         throw new ArgumentNullException(nameof(resetter));
 
+      this.backupFinder = backupFinder;
       this.resetter = resetter;
       this.upgrader = upgrader;
     }

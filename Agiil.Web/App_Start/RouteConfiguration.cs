@@ -64,12 +64,20 @@ namespace Agiil.Web.App_Start
 
     internal static string GetControllerName<TController>() where TController : Controller
     {
-      var typeName = typeof(TController).Name;
+      return GetControllerName(typeof(TController));
+    }
+
+    internal static string GetControllerName(Type controllerType)
+    {
+      if(controllerType == null)
+        throw new ArgumentNullException(nameof(controllerType));
+      if(!typeof(Controller).IsAssignableFrom(controllerType))
+        throw new ArgumentException($"The given type must implement {nameof(Controller)}.", nameof(controllerType));
+
+      var typeName = controllerType.Name;
       var match = ControllerNameMatcher.Match(typeName);
       if(match.Success)
-      {
         return match.Groups[1].Value;
-      }
 
       return typeName;
     }

@@ -1,16 +1,15 @@
-﻿using NUnit.Framework;
-using System;
-using NHibernate;
-using Ploeh.AutoFixture.NUnit3;
-using Agiil.Domain.Auth;
-using Moq;
-using Agiil.Domain.Tickets;
+﻿using System;
 using Agiil.Domain;
-using CSF.Validation;
-using CSF.Data.Entities;
-using CSF.Data;
+using Agiil.Domain.Auth;
+using Agiil.Domain.Tickets;
 using Agiil.Domain.Validation;
 using Agiil.Tests.Attributes;
+using CSF.Data;
+using CSF.Data.Entities;
+using CSF.Validation;
+using Moq;
+using NUnit.Framework;
+using Ploeh.AutoFixture.NUnit3;
 
 namespace Agiil.Tests.Domain.Tickets
 {
@@ -20,18 +19,16 @@ namespace Agiil.Tests.Domain.Tickets
     [Test, AutoMoqData]
     public void Create_saves_newly_created_ticket([Frozen] IEntityData repo,
                                                   [Frozen] ITicketFactory ticketFactory,
-                                                  [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
+                                                  [Frozen,AlwaysPasses] ICreatesValidators<CreateTicketRequest> validatorFactory,
                                                   Ticket ticket,
                                                   CreateTicketRequest request,
-                                                  [HasIdentity,LoggedIn] User user,
                                                   TicketCreator sut)
     {
       // Arrange
       Mock.Get(ticketFactory)
-          .Setup(x => x.CreateTicket(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<User>(), It.IsAny<TicketType>()))
+          .Setup(x => x.CreateTicketForCurrentUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TicketType>()))
           .Returns(ticket);
       Mock.Get(repo).Setup(x => x.Add(ticket));
-      SetupValidatorWhichAlwaysPasses(validatorFactory);
 
       // Act
       sut.Create(request);
@@ -43,39 +40,41 @@ namespace Agiil.Tests.Domain.Tickets
     [Test, AutoMoqData]
     public void Create_uses_ticket_factory(CreateTicketRequest request,
                                            [Frozen] ITicketFactory ticketFactory,
-                                           [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
+                                           [Frozen,AlwaysPasses] ICreatesValidators<CreateTicketRequest> validatorFactory,
                                            Ticket ticket,
-                                           [HasIdentity,LoggedIn] User user,
                                            TicketCreator sut)
     {
       // Arrange
       Mock.Get(ticketFactory)
-          .Setup(x => x.CreateTicket(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<User>(), It.IsAny<TicketType>()))
+          .Setup(x => x.CreateTicketForCurrentUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TicketType>()))
           .Returns(ticket);
-      SetupValidatorWhichAlwaysPasses(validatorFactory);
 
       // Act
       sut.Create(request);
 
       // Assert
       Mock.Get(ticketFactory)
-          .Verify(x => x.CreateTicket(request.Title, request.Description, user, It.IsAny<TicketType>()), Times.Once());
+          .Verify(x => x.CreateTicketForCurrentUser(request.Title, request.Description, It.IsAny<TicketType>()), Times.Once());
     }
 
     [Test, AutoMoqData]
     public void Create_returns_created_ticket_in_response(CreateTicketRequest request,
-                                                          [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
+                                                          [Frozen,AlwaysPasses] ICreatesValidators<CreateTicketRequest> validatorFactory,
                                                           [Frozen] ITicketFactory ticketFactory,
+                                                          [Frozen] ICreatesCreateTicketResponse responseFactory,
                                                           Ticket ticket,
-                                                          [HasIdentity,LoggedIn] User user,
                                                           TicketCreator sut)
     {
       // Arrange
       Mock.Get(ticketFactory)
-          .Setup(x => x.CreateTicket(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<User>(), It.IsAny<TicketType>()))
+          .Setup(x => x.CreateTicketForCurrentUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TicketType>()))
           .Returns(ticket);
-      SetupValidatorWhichAlwaysPasses(validatorFactory);
-      SetupResponseCreator(sut);
+      Mock.Get(responseFactory)
+          .Setup(x => x.GetResponse(It.IsAny<IValidationResult>()))
+          .Returns((IValidationResult r) => new CreateTicketResponse(r, Mock.Of<IValidationResultInterpreter>()));
+      Mock.Get(responseFactory)
+          .Setup(x => x.GetResponse(It.IsAny<IValidationResult>(), It.IsAny<Ticket>()))
+          .Returns((IValidationResult r, Ticket t) => new CreateTicketResponse(r, Mock.Of<IValidationResultInterpreter>(), t));
 
       // Act
       var result = sut.Create(request);
@@ -86,17 +85,15 @@ namespace Agiil.Tests.Domain.Tickets
 
     [Test, AutoMoqData]
     public void Create_returns_a_response(CreateTicketRequest request,
-                                          [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
+                                          [Frozen,AlwaysPasses] ICreatesValidators<CreateTicketRequest> validatorFactory,
                                           [Frozen] ITicketFactory ticketFactory,
                                           Ticket ticket,
-                                          [HasIdentity,LoggedIn] User user,
                                           TicketCreator sut)
     {
       // Arrange
       Mock.Get(ticketFactory)
-          .Setup(x => x.CreateTicket(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<User>(), It.IsAny<TicketType>()))
+          .Setup(x => x.CreateTicketForCurrentUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TicketType>()))
           .Returns(ticket);
-      SetupValidatorWhichAlwaysPasses(validatorFactory);
 
       // Act
       var result = sut.Create(request);
@@ -107,17 +104,19 @@ namespace Agiil.Tests.Domain.Tickets
 
     [Test, AutoMoqData]
     public void Create_uses_a_validator(CreateTicketRequest request,
-                                        [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
+                                        [Frozen] ICreatesValidators<CreateTicketRequest> validatorFactory,
+                                        IValidator validator,
                                         [Frozen] ITicketFactory ticketFactory,
                                         Ticket ticket,
-                                        [HasIdentity,LoggedIn] User user,
                                         TicketCreator sut)
     {
       // Arrange
       Mock.Get(ticketFactory)
-          .Setup(x => x.CreateTicket(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<User>(), It.IsAny<TicketType>()))
+          .Setup(x => x.CreateTicketForCurrentUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TicketType>()))
           .Returns(ticket);
-      var validator = SetupValidatorWhichAlwaysPasses(validatorFactory);
+      Mock.Get(validatorFactory)
+          .Setup(x => x.GetValidator())
+          .Returns(validator);
 
       // Act
       sut.Create(request);
@@ -130,17 +129,19 @@ namespace Agiil.Tests.Domain.Tickets
     [Test, AutoMoqData]
     public void Create_does_not_persist_if_validation_fails(CreateTicketRequest request,
                                                             [Frozen] IEntityData repo,
-                                                            [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
+                                                            [Frozen] ICreatesValidators<CreateTicketRequest> validatorFactory,
+                                                            IValidator validator,
                                                             [Frozen] ITicketFactory ticketFactory,
                                                             Ticket ticket,
-                                                            [HasIdentity,LoggedIn] User user,
                                                             TicketCreator sut)
     {
       // Arrange
       Mock.Get(ticketFactory)
-          .Setup(x => x.CreateTicket(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<User>(), It.IsAny<TicketType>()))
+          .Setup(x => x.CreateTicketForCurrentUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TicketType>()))
           .Returns(ticket);
-      var validator = SetupValidatorWhichAlwaysPasses(validatorFactory);
+      Mock.Get(validatorFactory)
+          .Setup(x => x.GetValidator())
+          .Returns(validator);
       Mock.Get(validator)
           .Setup(x => x.Validate(request))
           .Returns(Mock.Of<IValidationResult>(x => x.IsSuccess == false));
@@ -155,21 +156,29 @@ namespace Agiil.Tests.Domain.Tickets
 
     [Test, AutoMoqData]
     public void Create_returns_null_ticket_instance_if_validation_fails(CreateTicketRequest request,
-                                                                        [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
+                                                                        [Frozen] ICreatesValidators<CreateTicketRequest> validatorFactory,
+                                                                        IValidator validator,
                                                                         [Frozen] ITicketFactory ticketFactory,
+                                                                        [Frozen] ICreatesCreateTicketResponse responseFactory,
                                                                         Ticket ticket,
-                                                                        [HasIdentity,LoggedIn] User user,
                                                                         TicketCreator sut)
     {
       // Arrange
       Mock.Get(ticketFactory)
-          .Setup(x => x.CreateTicket(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<User>(), It.IsAny<TicketType>()))
+          .Setup(x => x.CreateTicketForCurrentUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TicketType>()))
           .Returns(ticket);
-      var validator = SetupValidatorWhichAlwaysPasses(validatorFactory);
+      Mock.Get(validatorFactory)
+          .Setup(x => x.GetValidator())
+          .Returns(validator);
       Mock.Get(validator)
           .Setup(x => x.Validate(request))
           .Returns(Mock.Of<IValidationResult>(x => x.IsSuccess == false));
-      SetupResponseCreator(sut);
+      Mock.Get(responseFactory)
+          .Setup(x => x.GetResponse(It.IsAny<IValidationResult>()))
+          .Returns((IValidationResult r) => new CreateTicketResponse(r, Mock.Of<IValidationResultInterpreter>()));
+      Mock.Get(responseFactory)
+          .Setup(x => x.GetResponse(It.IsAny<IValidationResult>(), It.IsAny<Ticket>()))
+          .Returns((IValidationResult r, Ticket t) => new CreateTicketResponse(r, Mock.Of<IValidationResultInterpreter>(), t));
 
       // Act
       var result = sut.Create(request);
@@ -180,47 +189,27 @@ namespace Agiil.Tests.Domain.Tickets
 
     [Test, AutoMoqData]
     public void Create_uses_transaction(CreateTicketRequest request,
-                                        [Frozen] IValidatorFactory<CreateTicketRequest> validatorFactory,
+                                        [Frozen,AlwaysPasses] ICreatesValidators<CreateTicketRequest> validatorFactory,
                                         [Frozen] ITicketFactory ticketFactory,
                                         Ticket ticket,
-                                        [HasIdentity,LoggedIn] User user,
                                         [Frozen] ITransactionCreator transFactory,
                                         CSF.Data.ITransaction trans,
                                         TicketCreator sut)
     {
       // Arrange
       Mock.Get(ticketFactory)
-          .Setup(x => x.CreateTicket(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<User>(), It.IsAny<TicketType>()))
+          .Setup(x => x.CreateTicketForCurrentUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TicketType>()))
           .Returns(ticket);
       Mock.Get(transFactory)
           .Setup(x => x.BeginTransaction())
           .Returns(trans);
       Mock.Get(trans).Setup(x => x.Commit());
-      SetupValidatorWhichAlwaysPasses(validatorFactory);
 
       // Act
       sut.Create(request);
 
       // Assert
       Mock.Get(trans).Verify(x => x.Commit(), Times.Once());
-    }
-
-    IValidator SetupValidatorWhichAlwaysPasses(IValidatorFactory<CreateTicketRequest> factory)
-    {
-      var validator = Mock.Of<IValidator>(x => x.Validate(It.IsAny<object>()).IsSuccess == true);
-
-      Mock.Get(factory)
-          .Setup(x => x.GetValidator())
-          .Returns(validator);
-
-      return validator;
-    }
-
-    void SetupResponseCreator(TicketCreator sut)
-    {
-      sut.ResponseCreator = (IValidationResult result, Ticket ticket) => {
-        return new CreateTicketResponse(result, Mock.Of<IValidationResultInterpreter>(), ticket);
-      };
     }
   }
 }

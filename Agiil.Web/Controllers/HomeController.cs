@@ -6,16 +6,12 @@ using Agiil.Web.Models.Shared;
 namespace Agiil.Web.Controllers
 {
   [AllowAnonymous]
-  public class HomeController : ControllerBase
+  public class HomeController : Controller
   {
     public ActionResult Index ()
     {
-      var model = ModelFactory.GetModel<StandardPageModel>();
+      var model = new PageModel();
       return View (model);
     }
-
-    public HomeController(ControllerBaseDependencies baseDeps)
-      : base(baseDeps)
-    {}
   }
 }

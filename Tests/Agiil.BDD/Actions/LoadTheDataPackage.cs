@@ -1,25 +1,27 @@
 ﻿using System;
-using Agiil.Web.Controllers;
-using Agiil.Web.Models;
+using Agiil.BDD.ServiceEndpoints;
 using Agiil.Web.Services;
 using CSF.Screenplay.Actors;
 using CSF.Screenplay.Performables;
+using CSF.Screenplay.WebApis.Builders;
+using Agiil.Web.Models;
 
 namespace Agiil.BDD.Actions
 {
-  public class LoadTheDataPackage : ApplicationApiAction
+  public class LoadTheDataPackage : Performable
   {
     readonly string dataPackageTypeName;
 
     protected override string GetReport(INamed actor)
       => $"{actor.Name} sets up the data package '{dataPackageTypeName}'";
 
-    protected override string GetControllerName() => nameof(SetupDataPackageController);
-
-    protected override object GetHttpRequestContentData()
+    protected override void PerformAs(IPerformer actor)
     {
-      return new SetupDataPackageRequest { PackageTypeName = dataPackageTypeName };
+      actor.Perform(Invoke.TheJsonWebService<LoadDataPackageService>().WithTheData(GetTheDataPackage()).AndVerifyItSucceeds());
     }
+
+    SetupDataPackageRequest GetTheDataPackage()
+      => new SetupDataPackageRequest() { PackageTypeName = dataPackageTypeName };
 
     LoadTheDataPackage(string dataPackageName)
     {

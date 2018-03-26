@@ -8,7 +8,7 @@ namespace Agiil.Domain.Tickets
 {
   public class CommentDeleter : ICommentDeleter
   {
-    readonly IValidatorFactory<DeleteCommentRequest> validatorFactory;
+    readonly ICreatesValidators<DeleteCommentRequest> validatorFactory;
     readonly ITransactionCreator transactionCreator;
     readonly IEntityData data;
     readonly Func<IValidationResult, DeleteCommentResponse> responseCreator;
@@ -31,7 +31,7 @@ namespace Agiil.Domain.Tickets
       return responseCreator(validationResult);
     }
 
-    public CommentDeleter(IValidatorFactory<DeleteCommentRequest> validatorFactory,
+    public CommentDeleter(ICreatesValidators<DeleteCommentRequest> validatorFactory,
                           ITransactionCreator transactionCreator,
                           IEntityData data,
                           Func<IValidationResult, DeleteCommentResponse> responseCreator)

@@ -1,31 +1,30 @@
 ﻿using System;
-using CSF.Screenplay;
 using static CSF.Screenplay.StepComposer;
 using TechTalk.SpecFlow;
-using CSF.Screenplay.Web.Builders;
-using Agiil.BDD.PageComponents;
 using Agiil.BDD.Tasks.Auth;
+using CSF.Screenplay.Actors;
+using CSF.Screenplay;
 
 namespace Agiil.BDD.Bindings.Auth
 {
   [Binding]
   public class LogoutSteps
   {
-    readonly IScreenplayScenario screenplay;
+    readonly IStage stage;
 
-    [When("Youssef logs out")]
-    public void WhenYoussefLogsOut()
+    [When("(?:he|she|they) logs? out")]
+    public void WhenTheyLogOut()
     {
-      var youssef = screenplay.GetYoussef();
-      When(youssef).AttemptsTo<LogOutOfTheSite>();
+      var theActor = stage.GetTheActorInTheSpotlight();
+      When(theActor).AttemptsTo<LogOutOfTheSite>();
     }
 
-    public LogoutSteps(IScreenplayScenario screenplay)
+    public LogoutSteps(IStage stage)
     {
-      if(screenplay == null)
-        throw new ArgumentNullException(nameof(screenplay));
-      
-      this.screenplay = screenplay;
+      if(stage == null)
+        throw new ArgumentNullException(nameof(stage));
+
+      this.stage = stage;
     }
   }
 }

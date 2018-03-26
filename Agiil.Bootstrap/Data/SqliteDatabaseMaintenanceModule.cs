@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Agiil.Data.Maintenance.Sqlite;
+using Agiil.Data.Sqlite;
 using Autofac;
 
 namespace Agiil.Bootstrap.Data

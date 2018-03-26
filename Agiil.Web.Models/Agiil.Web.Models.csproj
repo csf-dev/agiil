@@ -8,14 +8,14 @@
     <RootNamespace>Agiil.Web.Models</RootNamespace>
     <AssemblyName>Agiil.Web.Models</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.3.0.1</ReleaseVersion>
+    <ReleaseVersion>v0.4.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -29,19 +29,19 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin</OutputPath>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <Optimize>false</Optimize>
-    <OutputPath>bin</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -81,7 +81,7 @@
     <Compile Include="Sprints\NewSprintResult.cs" />
     <Compile Include="Sprints\ListSprintModel.cs" />
     <Compile Include="Sprints\SprintSummaryDto.cs" />
-    <Compile Include="StandardPageModel.cs" />
+    <Compile Include="PageModel.cs" />
     <Compile Include="Sprints\SprintDetailDto.cs" />
     <Compile Include="Sprints\SprintDtoBase.cs" />
     <Compile Include="Sprints\ViewSprintModel.cs" />
@@ -91,6 +91,9 @@
     <Compile Include="Sprints\EditSprintModel.cs" />
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="Tickets\TicketTypeDto.cs" />
+    <Compile Include="Shared\IHasLoginState.cs" />
+    <Compile Include="Shared\IHasApplicationVersion.cs" />
+    <Compile Include="Shared\ApplicationVersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

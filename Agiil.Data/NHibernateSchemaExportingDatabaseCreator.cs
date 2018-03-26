@@ -8,116 +8,79 @@ using NHibernate.Tool.hbm2ddl;
 
 namespace Agiil.Data
 {
-  public class NHibernateSchemaExportingDatabaseCreator : IDatabaseCreator
+  public class NHibernateSchemaExportingDatabaseCreator : ICreatesDatabaseSchema, IExportsDatabaseSchema
   {
     readonly ISessionFactoryFactory sessionFactoryFactory;
 
-    public void Create(IDbConnection connection, TextWriter outputWriter)
+    #region ICreatesDatabaseSchema implementation
+
+    public void CreateSchema()
     {
-      Create(connection, outputWriter, null);
-    }
-
-    public void Create(string outputFile, bool execute)
-    {
-      if(outputFile == null && !execute)
+      using(var session = GetSession())
       {
-        throw new ArgumentException($"Either {nameof(outputFile)} must not be null or {nameof(execute)} must be true.");
-      }
+        var exporter = GetExporter();
 
-      TextWriter writer = null;
-      ISession session = null;
-      var configuration = GetConfiguration();
-
-      try
-      {
-        if(outputFile != null)
-        {
-          writer = GetTextWriter(outputFile);
-        }
-        if(execute)
-        {
-          session = GetSession(configuration);
-        }
-
-        Create(session.Connection, writer, configuration);
-      }
-      finally
-      {
-        if(writer != null)
-        {
-          writer.Dispose();
-        }
-
-        if(session != null)
-        {
-          session.Dispose();
-        }
+        if(session.Connection.State != ConnectionState.Open)
+          session.Connection.Open();
+        
+        exporter.Execute(false, true, false, session.Connection, null);
       }
     }
 
-    public void Create(string outputFile)
+    #endregion
+
+    #region IExportsDatabaseSchema implementation
+
+    public string Export()
     {
-      Create(outputFile, false);
+      var builder = new StringBuilder();
+
+      using(var writer = new StringWriter(builder))
+        Export(writer);
+      
+      return builder.ToString();
     }
 
-    public void Create()
+    public void Export(TextWriter writer)
     {
-      Create(null, true);
+      if(writer == null)
+        throw new ArgumentNullException(nameof(writer));
+
+      var exporter = GetExporter();
+      exporter.Execute(false, false, false, null, writer);
     }
 
-    private void Create(IDbConnection connection, TextWriter outputWriter, Configuration configuration)
+    public void ExportToFile(string outputFile)
     {
-      if(connection == null && outputWriter == null)
-      {
-        throw new ArgumentException($"Either of {nameof(connection)} or {nameof(outputWriter)} must not be null.");
-      }
-
-      var exporter = GetExporter(configuration);
-
-      var executeOperation = connection != null;
-
-      exporter.Execute(false, executeOperation, false, connection, outputWriter);
+      using(var writer = GetTextWriterForFile(outputFile))
+        Export(writer);
     }
 
-    private SchemaExport GetExporter(Configuration configuration)
+    #endregion
+
+    SchemaExport GetExporter() => GetExporter(GetConfiguration());
+
+    SchemaExport GetExporter(Configuration configuration)
     {
       if(configuration == null)
-      {
-        configuration = GetConfiguration();
-      }
+        throw new ArgumentNullException(nameof(configuration));
 
       var output = new SchemaExport(configuration);
       output.SetDelimiter(";");
       return output;
     }
 
-    private Configuration GetConfiguration()
-    {
-      return sessionFactoryFactory.GetConfiguration();
-    }
+    Configuration GetConfiguration() => sessionFactoryFactory.GetConfiguration();
+    ISession GetSession() => sessionFactoryFactory.GetSessionFactory().OpenSession();
 
-    private TextWriter GetTextWriter(string outputFile)
-    {
-      return new StreamWriter(outputFile, false, Encoding.UTF8);
-    }
-
-    private ISession GetSession(Configuration configuration)
-    {
-      if(configuration == null)
-      {
-        configuration = GetConfiguration();
-      }
-
-      var factory = configuration.BuildSessionFactory();
-      return factory.OpenSession();
-    }
+    TextWriter GetTextWriterForFile(string outputFile) => new StreamWriter(outputFile, false, Encoding.UTF8);
 
     public NHibernateSchemaExportingDatabaseCreator(ISessionFactoryFactory sessionFactoryFactory)
-    {
-      if(sessionFactoryFactory == null)
-        throw new ArgumentNullException(nameof(sessionFactoryFactory));
+		{
+		  if(sessionFactoryFactory == null)
+			  throw new ArgumentNullException(nameof(sessionFactoryFactory));
 
-      this.sessionFactoryFactory = sessionFactoryFactory;
-    }
+		  this.sessionFactoryFactory = sessionFactoryFactory;
+		}
   }
 }

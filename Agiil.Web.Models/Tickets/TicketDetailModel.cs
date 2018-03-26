@@ -3,7 +3,7 @@ using Agiil.Web.Models.Shared;
 
 namespace Agiil.Web.Models.Tickets
 {
-  public class TicketDetailModel : StandardPageModel
+  public class TicketDetailModel : PageModel
   {
     public bool IsSuccessfulEdit { get; set; }
 

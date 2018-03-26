@@ -5,16 +5,18 @@ using System.Web;
 using System.Web.Mvc;
 using Agiil.Domain.Sprints;
 using Agiil.Web.Models.Sprints;
+using AutoMapper;
 
 namespace Agiil.Web.Controllers
 {
-  public class NewSprintController : ControllerBase
+  public class NewSprintController : Controller
   {
     const string 
       NewSprintResultKey = "New sprint result",
       NewSprintSpecKey = "New sprint specification";
 
     readonly Lazy<ISprintCreator> creator;
+    readonly IMapper mapper;
 
     [HttpGet]
     public ActionResult Index()
@@ -39,9 +41,9 @@ namespace Agiil.Web.Controllers
     [HttpPost]
     public ActionResult Index(NewSprintSpecification spec)
     {
-      var request = Mapper.Map<CreateSprintRequest>(spec);
+      var request = mapper.Map<CreateSprintRequest>(spec);
       var response = creator.Value.Create(request);
-      var result = Mapper.Map<NewSprintResult>(response);
+      var result = mapper.Map<NewSprintResult>(response);
 
       TempData.Clear();
       TempData.Add(NewSprintResultKey, result);
@@ -57,17 +59,20 @@ namespace Agiil.Web.Controllers
 
     NewSprintModel GetModel()
     {
-      var model = ModelFactory.GetModel<NewSprintModel>();
-      model.Result = GetTempData<NewSprintResult>(NewSprintResultKey);
-      model.Specification = GetTempData<NewSprintSpecification>(NewSprintSpecKey);
+      var model = new NewSprintModel();
+      model.Result = TempData.TryGet<NewSprintResult>(NewSprintResultKey);
+      model.Specification = TempData.TryGet<NewSprintSpecification>(NewSprintSpecKey);
       return model;
     }
 
-    public NewSprintController(ControllerBaseDependencies deps,
-                               Lazy<ISprintCreator> creator) : base(deps)
+    public NewSprintController(Lazy<ISprintCreator> creator,
+                              IMapper mapper)
     {
+      if(mapper == null)
+        throw new ArgumentNullException(nameof(mapper));
       if(creator == null)
         throw new ArgumentNullException(nameof(creator));
+      this.mapper = mapper;
       this.creator = creator;
     }
   }

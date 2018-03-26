@@ -8,14 +8,14 @@
     <RootNamespace>Agiil.Domain</RootNamespace>
     <AssemblyName>Agiil.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.3.0.1</ReleaseVersion>
+    <ReleaseVersion>v0.4.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -29,19 +29,20 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\x86\Debug</OutputPath>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DefineConstants>DEBUG;</DefineConstants>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <Optimize>false</Optimize>
-    <OutputPath>bin\x64\Debug</OutputPath>
+    <OutputPath>bin\Release</OutputPath>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -89,7 +90,7 @@
     <Compile Include="Tickets\CreateCommentRequest.cs" />
     <Compile Include="Tickets\CreateCommentResponse.cs" />
     <Compile Include="Tickets\ICommentFactory.cs" />
-    <Compile Include="Validation\IValidatorFactory.cs" />
+    <Compile Include="Validation\ICreatesValidators.cs" />
     <Compile Include="Tickets\ICommentEditor.cs" />
     <Compile Include="Tickets\EditCommentRequest.cs" />
     <Compile Include="Tickets\EditCommentResponse.cs" />
@@ -129,6 +130,19 @@
     <Compile Include="Tickets\DeleteCommentRequest.cs" />
     <Compile Include="Tickets\TicketType.cs" />
     <Compile Include="Tickets\ITicketTypeProvider.cs" />
+    <Compile Include="IProvidesVersionInformation.cs" />
+    <Compile Include="ComponentVersionInfo.cs" />
+    <Compile Include="IProvidesApplicationBaseUri.cs" />
+    <Compile Include="Data\IPerformsDatabaseUpgrades.cs" />
+    <Compile Include="Data\DatabaseUpgradeResult.cs" />
+    <Compile Include="Data\IUpgradeName.cs" />
+    <Compile Include="Data\IResetsDatabase.cs" />
+    <Compile Include="Data\IGetsDatabaseBackups.cs" />
+    <Compile Include="Data\DatabaseBackupInfo.cs" />
+    <Compile Include="Data\ITakesDatabaseBackup.cs" />
+    <Compile Include="Data\IGetsDataDirectory.cs" />
+    <Compile Include="Data\IFormatsDatabaseBackupFilenames.cs" />
+    <Compile Include="Data\IRestoresDatabaseBackup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

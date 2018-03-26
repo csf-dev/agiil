@@ -8,14 +8,14 @@
     <RootNamespace>Agiil.BDD</RootNamespace>
     <AssemblyName>Agiil.BDD</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.3.0.1</ReleaseVersion>
+    <ReleaseVersion>v0.4.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -29,19 +29,20 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\x86\Debug</OutputPath>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DefineConstants>DEBUG;</DefineConstants>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <Optimize>false</Optimize>
-    <OutputPath>bin\x64\Debug</OutputPath>
+    <OutputPath>bin\Release</OutputPath>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -52,9 +53,6 @@
       <HintPath>..\..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
@@ -103,20 +101,35 @@
     <Reference Include="TechTalk.SpecFlow">
       <HintPath>..\..\packages\SpecFlow.2.2.0\lib\net45\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Screenplay">
-      <HintPath>..\..\packages\CSF.Screenplay.0.6.0-alpha\lib\net45\CSF.Screenplay.dll</HintPath>
+    <Reference Include="CSF.FlexDi">
+      <HintPath>..\..\packages\CSF.FlexDi.1.0.0\lib\net45\CSF.FlexDi.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Screenplay.Web">
-      <HintPath>..\..\packages\CSF.Screenplay.Web.0.6.0-alpha\lib\net45\CSF.Screenplay.Web.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.WebDriverExtras">
+      <HintPath>..\..\packages\CSF.WebDriverExtras.1.0.0\lib\net45\CSF.WebDriverExtras.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Screenplay">
+      <HintPath>..\..\packages\CSF.Screenplay.0.12.0-beta\lib\net45\CSF.Screenplay.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Screenplay.Selenium.BrowserFlags">
+      <HintPath>..\..\packages\CSF.Screenplay.Selenium.BrowserFlags.0.3.2-beta\lib\net45\CSF.Screenplay.Selenium.BrowserFlags.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Screenplay.Selenium">
+      <HintPath>..\..\packages\CSF.Screenplay.Selenium.0.3.2-beta\lib\net45\CSF.Screenplay.Selenium.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Screenplay.Selenium.JavaScriptWorkarounds">
+      <HintPath>..\..\packages\CSF.Screenplay.Selenium.0.3.2-beta\lib\net45\CSF.Screenplay.Selenium.JavaScriptWorkarounds.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Screenplay.Reporting">
-      <HintPath>..\..\packages\CSF.Screenplay.Reporting.0.6.0-alpha\lib\net45\CSF.Screenplay.Reporting.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Screenplay.Reporting.0.12.0-beta\lib\net45\CSF.Screenplay.Reporting.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Screenplay.SpecFlow">
-      <HintPath>..\..\packages\CSF.Screenplay.SpecFlow.0.6.0-alpha\lib\net45\CSF.Screenplay.SpecFlow.dll</HintPath>
+    <Reference Include="CSF.Screenplay.SpecFlowPlugin">
+      <HintPath>..\..\packages\CSF.Screenplay.SpecFlow.0.12.0-beta\lib\net45\CSF.Screenplay.SpecFlowPlugin.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.WebDriverFactory">
-      <HintPath>..\..\packages\CSF.WebDriverFactory.0.6.0-alpha\lib\net45\CSF.WebDriverFactory.dll</HintPath>
+    <Reference Include="CSF.Screenplay.WebApis">
+      <HintPath>..\..\packages\CSF.Screenplay.WebApis.0.12.0-beta\lib\net45\CSF.Screenplay.WebApis.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -125,9 +138,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bindings\Tickets\TicketCreationSteps.cs" />
     <Compile Include="Bindings\Auth\PasswordChangeSteps.cs" />
-    <Compile Include="Actions\ApplicationApiAction.cs" />
     <Compile Include="Actions\InstallTheApplication.cs" />
-    <Compile Include="Abilities\ActAsTheApplication.cs" />
     <Compile Include="Tasks\Auth\LogIntoTheSite.cs" />
     <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
@@ -143,7 +154,6 @@
     <Compile Include="Tasks\Auth\VerifyThatTheyAreNotLoggedIn.cs" />
     <Compile Include="Tasks\Auth\VerifyThatTheyAreLoggedIn.cs" />
     <Compile Include="Pages\ChangePassword.cs" />
-    <Compile Include="ScreenplayExtensions.cs" />
     <Compile Include="Tasks\Auth\LogInWithTheirAccount.cs" />
     <Compile Include="Tasks\Auth\ChangeTheirPassword.cs" />
     <Compile Include="Bindings\Auth\LogoutSteps.cs" />
@@ -192,7 +202,6 @@
     <Compile Include="Tasks\Tickets\ChangeTheCommentText.cs" />
     <Compile Include="Bindings\Sprints\SprintViewingSteps.cs" />
     <Compile Include="Pages\SprintList.cs" />
-    <Compile Include="Abilities\ApplicationApiException.cs" />
     <Compile Include="Bindings\Sprints\CreateSprintSteps.cs" />
     <Compile Include="Pages\CreateSprint.cs" />
     <Compile Include="Tasks\Sprints\TheStartDateFromTheSprintList.cs" />
@@ -206,12 +215,24 @@
     <Compile Include="Tasks\Sprints\BeginEditingTheSprint.cs" />
     <Compile Include="Pages\EditSprint.cs" />
     <Compile Include="Tasks\Sprints\EditTheSprint.cs" />
-    <Compile Include="Bindings\Tickets\ReadingACommentSteps.cs" />
+    <Compile Include="Bindings\Tickets\ReadingCommentSteps.cs" />
     <Compile Include="Tasks\Markdown\VerifyThatTheTextHasTheCorrectFormatting.cs" />
     <Compile Include="Tasks\Markdown\VerifyThat.cs" />
     <Compile Include="Tasks\Tickets\DeleteTheFirstDeletableComment.cs" />
     <Compile Include="Tasks\Sprints\ReadTheTicketTitlesFromTheCurrentSprint.cs" />
     <Compile Include="Tasks\Tickets\ChangeTheTicketType.cs" />
+    <Compile Include="Bindings\Actors\AprilSteps.cs" />
+    <Compile Include="Bindings\Actors\JoeSteps.cs" />
+    <Compile Include="Bindings\Actors\YoussefSteps.cs" />
+    <Compile Include="Bindings\Tickets\NavigatingToATicketSteps.cs" />
+    <Compile Include="ServiceEndpoints\AddUserAccountService.cs" />
+    <Compile Include="ServiceEndpoints\ControllerJsonServiceDescription.cs" />
+    <Compile Include="ServiceEndpoints\InstallAgiilService.cs" />
+    <Compile Include="ServiceEndpoints\LoadDataPackageService.cs" />
+    <Compile Include="ServiceEndpoints\OverrideVersionNumberService.cs" />
+    <Compile Include="Bindings\App\VersionNumberSteps.cs" />
+    <Compile Include="Tasks\App\OverrideTheApplicationVersion.cs" />
+    <Compile Include="Pages\AnyPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -239,6 +260,8 @@
     <Folder Include="Tasks\Sprints\" />
     <Folder Include="Models\Sprints\" />
     <Folder Include="Tasks\Markdown\" />
+    <Folder Include="Bindings\Actors\" />
+    <Folder Include="ServiceEndpoints\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj">

@@ -1,6 +1,6 @@
 ﻿using System;
 using Agiil.BDD.PageComponents;
-using CSF.Screenplay.Web.Models;
+using CSF.Screenplay.Selenium.Models;
 
 namespace Agiil.BDD.Pages
 {

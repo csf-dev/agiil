@@ -1,9 +1,11 @@
 ﻿using System;
 using Agiil.BDD.Models.Sprints;
 using Agiil.BDD.Pages;
+using Agiil.BDD.Personas;
 using Agiil.BDD.Tasks.Sprints;
 using CSF.Screenplay;
-using CSF.Screenplay.Web.Builders;
+using CSF.Screenplay.Actors;
+using CSF.Screenplay.Selenium.Builders;
 using FluentAssertions;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -14,38 +16,44 @@ namespace Agiil.BDD.Bindings.Sprints
   [Binding]
   public class CreateSprintSteps
   {
-    readonly IScreenplayScenario screenplay;
+    readonly ICast cast;
+    readonly IStage stage;
 
     [Given(@"Youssef has opened the new sprint page")]
     public void GivenYoussefHasOpenedTheNewSprintPage()
     {
-      var youssef = screenplay.GetYoussef();
+      var youssef = cast.Get<Youssef>();
+      stage.ShineTheSpotlightOn(youssef);
       Given(youssef).WasAbleTo(OpenTheirBrowserOn.ThePage<CreateSprint>());
     }
 
-    [When(@"Youssef enters the following sprint details and presses submit")]
-    public void WhenYoussefEntersTheFollowingSprintDetailsAndPressesSubmit(Table table)
+    [When(@"(?:he|she|they) enters? the following sprint details and presses submit")]
+    public void WhenTheyEnterTheFollowingSprintDetailsAndPressesSubmit(Table table)
     {
       var details = table.CreateInstance<SprintDetails>();
 
-      var youssef = screenplay.GetYoussef();
-      When(youssef).AttemptsTo(CreateASprint.WithTheDetails(details));
+      var theActor = stage.GetTheActorInTheSpotlight();
+      When(theActor).AttemptsTo(CreateASprint.WithTheDetails(details));
     }
 
-    [Then(@"Youssef should see a create-sprint failure message")]
-    public void ThenYoussefShouldSeeACreateSprintFailureMessage()
+    [Then(@"(?:he|she|they) should see a create-sprint failure message")]
+    public void ThenTheyShouldSeeACreateSprintFailureMessage()
     {
-      var youssef = screenplay.GetYoussef();
-      Then(youssef).ShouldSee(TheVisibility.Of(CreateSprint.FailureMessage))
-                   .Should()
-                   .BeTrue(because: "the sprint should not have been created");
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).ShouldSee(TheVisibility.Of(CreateSprint.FailureMessage))
+                    .Should()
+                    .BeTrue(because: "the sprint should not have been created");
     }
 
-    public CreateSprintSteps(IScreenplayScenario screenplay)
+    public CreateSprintSteps(ICast cast, IStage stage)
     {
-      if(screenplay == null)
-        throw new ArgumentNullException(nameof(screenplay));
-      this.screenplay = screenplay;
+      if(cast == null)
+        throw new ArgumentNullException(nameof(cast));
+      if(stage == null)
+        throw new ArgumentNullException(nameof(stage));
+
+      this.cast = cast;
+      this.stage = stage;
     }
   }
 }

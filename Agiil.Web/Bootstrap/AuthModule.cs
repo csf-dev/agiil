@@ -16,6 +16,9 @@ namespace Agiil.Web.Bootstrap
       builder
         .RegisterType<HttpContextPrincipalGetter>()
         .As<IPrincipalGetter>();
+      builder
+        .RegisterType<RedirectionUriValidator>()
+        .As<IValidatesRedirectUrls>();
     }
   }
 }

@@ -23,7 +23,7 @@ namespace Agiil.Tests.Data
         var exportPath = GetSchemaExportPath();
 
         // Act & assert
-        Assert.DoesNotThrow(() => databaseCreator.Create(exportPath, true));
+        Assert.DoesNotThrow(() => databaseCreator.ExportToFile(exportPath));
       }
     }
 

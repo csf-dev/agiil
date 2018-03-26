@@ -5,11 +5,12 @@ using System.Web;
 using System.Web.Mvc;
 using Agiil.Domain.Sprints;
 using Agiil.Web.Models.Sprints;
+using AutoMapper;
 using CSF.Entities;
 
 namespace Agiil.Web.Controllers
 {
-  public class SprintController : ControllerBase
+  public class SprintController : Controller
   {
     const string
       EditSprintModelKey = "Edit sprint model",
@@ -18,6 +19,7 @@ namespace Agiil.Web.Controllers
 
     readonly Lazy<ISprintDetailService> detailService;
     readonly Lazy<ISprintEditor> editor;
+    readonly IMapper mapper;
 
     public ActionResult Index(IIdentity<Sprint> id)
     {
@@ -26,8 +28,8 @@ namespace Agiil.Web.Controllers
       if(ReferenceEquals(sprint, null))
         return HttpNotFound();
 
-      var model = ModelFactory.GetModel<ViewSprintModel>();
-      model.Sprint = Mapper.Map<SprintDetailDto>(sprint);
+      var model = new ViewSprintModel();
+      model.Sprint = mapper.Map<SprintDetailDto>(sprint);
       return View(model);
     }
 
@@ -39,17 +41,17 @@ namespace Agiil.Web.Controllers
       if(ReferenceEquals(sprint, null))
         return HttpNotFound();
 
-      var response = GetTempData<Models.Sprints.EditSprintResponse>(EditSprintModelKey);
+      var response = TempData.TryGet<Models.Sprints.EditSprintResponse>(EditSprintModelKey);
       var model = CreateModel();
       model.Response = response;
-      model.Sprint = Mapper.Map<SprintDetailDto>(sprint);
+      model.Sprint = mapper.Map<SprintDetailDto>(sprint);
       return View(model);
     }
 
     [HttpPost]
     public ActionResult Edit(EditSprintSpecification spec)
     {
-      var request = Mapper.Map<EditSprintRequest>(spec);
+      var request = mapper.Map<EditSprintRequest>(spec);
       var response = editor.Value.Edit(request);
 
       if(response.IdIsInvalid)
@@ -63,7 +65,7 @@ namespace Agiil.Web.Controllers
         return RedirectToAction(nameof(Index), new { id = spec.Id });
       }
 
-      var responseModel = Mapper.Map<Models.Sprints.EditSprintResponse>(response);
+      var responseModel = mapper.Map<Models.Sprints.EditSprintResponse>(response);
       TempData.Add(EditSprintModelKey, responseModel);
 
       return RedirectToAction(nameof(Edit), new { id = spec.Id });
@@ -71,17 +73,20 @@ namespace Agiil.Web.Controllers
 
     EditSprintModel CreateModel()
     {
-      return ModelFactory.GetModel<EditSprintModel>();
+      return new EditSprintModel();
     }
 
-    public SprintController(ControllerBaseDependencies deps,
-                            Lazy<ISprintDetailService> detailService,
-                            Lazy<ISprintEditor> editor) : base(deps)
+    public SprintController(Lazy<ISprintDetailService> detailService,
+                            Lazy<ISprintEditor> editor,
+                            IMapper mapper)
     {
+      if(mapper == null)
+        throw new ArgumentNullException(nameof(mapper));
       if(editor == null)
         throw new ArgumentNullException(nameof(editor));
       if(detailService == null)
         throw new ArgumentNullException(nameof(detailService));
+      this.mapper = mapper;
       this.detailService = detailService;
       this.editor = editor;
     }

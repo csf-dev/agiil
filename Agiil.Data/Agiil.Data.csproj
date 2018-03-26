@@ -8,14 +8,14 @@
     <RootNamespace>Agiil.Data</RootNamespace>
     <AssemblyName>Agiil.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.3.0.1</ReleaseVersion>
+    <ReleaseVersion>v0.4.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -29,19 +29,20 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\x86\Debug</OutputPath>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DefineConstants>DEBUG;</DefineConstants>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <Optimize>false</Optimize>
-    <OutputPath>bin\x64\Debug</OutputPath>
+    <OutputPath>bin\Release</OutputPath>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -75,11 +76,30 @@
     <Reference Include="CSF.Data.NHibernate">
       <HintPath>..\packages\CSF.Data.NHibernate.6.1.1\lib\net45\CSF.Data.NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="DbUp">
+      <HintPath>..\packages\dbup.3.3.5\lib\net35\DbUp.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Data.Sqlite">
+      <HintPath>..\packages\Mono.Data.Sqlite.Portable.1.0.3.5\lib\net4\Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Portable">
+      <HintPath>..\packages\Mono.Data.Sqlite.Portable.1.0.3.5\lib\net4\System.Data.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions.Portable">
+      <HintPath>..\packages\Mono.Data.Sqlite.Portable.1.0.3.5\lib\net4\System.Transactions.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="DbUp.SQLite.Mono">
+      <HintPath>..\packages\dbup-sqlite-mono.3.3.5\lib\net40\DbUp.SQLite.Mono.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionFactoryFactory.cs" />
-    <Compile Include="IDatabaseCreator.cs" />
+    <Compile Include="ICreatesDatabaseSchema.cs" />
     <Compile Include="ISessionFactoryFactory.cs" />
     <Compile Include="NHibernateSchemaExportingDatabaseCreator.cs" />
     <Compile Include="IMapping.cs" />
@@ -98,17 +118,34 @@
     <Compile Include="Mappings\OneToManyMapping.cs" />
     <Compile Include="Mappings\BooleanMapping.cs" />
     <Compile Include="Mappings\SourceCollectionAccessor.cs" />
-    <Compile Include="Maintenance\IDatabaseUpgrader.cs" />
-    <Compile Include="Maintenance\DatabaseUpgradeResult.cs" />
-    <Compile Include="Maintenance\IUpgradeName.cs" />
     <Compile Include="IDatabaseConfiguration.cs" />
     <Compile Include="HardcodedDatabaseConfiguration.cs" />
-    <Compile Include="Maintenance\IDatabaseResetter.cs" />
-    <Compile Include="Maintenance\IDbSchemaExporter.cs" />
+    <Compile Include="DbUpDatabaseUpgrader.cs" />
+    <Compile Include="DevelopmentDatabaseResetter.cs" />
+    <Compile Include="ISnapshotService.cs" />
+    <Compile Include="SimpleUpgradeName.cs" />
+    <Compile Include="SnapshotStore.cs" />
+    <Compile Include="SnapshottingDatabaseResetter.cs" />
+    <Compile Include="Sqlite\ConnectionStringAdapter.cs" />
+    <Compile Include="Sqlite\ExtensionChanger.cs" />
+    <Compile Include="Sqlite\ISnapshotFileService.cs" />
+    <Compile Include="Sqlite\Snapshot.cs" />
+    <Compile Include="Sqlite\SnapshotFileService.cs" />
+    <Compile Include="Sqlite\SnapshotService.cs" />
+    <Compile Include="IExportsDatabaseSchema.cs" />
+    <Compile Include="IDeletesDatabase.cs" />
+    <Compile Include="Sqlite\DatabaseDeleter.cs" />
+    <Compile Include="Sqlite\SqliteBackupCreator.cs" />
+    <Compile Include="Sqlite\DatabaseFileProvider.cs" />
+    <Compile Include="Sqlite\BackupFileInfoProvider.cs" />
+    <Compile Include="Sqlite\IProvidesBackupFileInfo.cs" />
+    <Compile Include="BackupTakingUpgrader.cs" />
+    <Compile Include="Sqlite\SqliteBackupRestorer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mappings\" />
-    <Folder Include="Maintenance\" />
+    <Folder Include="Sqlite\" />
+    <Folder Include="UpgradeScripts\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -118,6 +155,17 @@
       <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
       <Name>Agiil.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpgradeScripts\Sqlite\2017-05-23-v0.1.0-Base-database.sqlite.sql">
+      <LogicalName>2017-05-31-v0.1.0-Base-database.sqlite.sql</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpgradeScripts\Sqlite\2017-06-02-v0.2.0-Sprint-functionality.sqlite.sql">
+      <LogicalName>2017-06-02-v0.2.0-Sprint-functionality.sqlite.sql</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpgradeScripts\Sqlite\2017-10-04-v0.3.0-Ticket-type.sqlite.sql">
+      <LogicalName>2017-10-04-v0.3.0-Ticket-type.sqlite.sql</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.0\build\net45\System.Data.SQLite.Core.targets')" />

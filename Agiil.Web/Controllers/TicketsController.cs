@@ -8,9 +8,10 @@ using AutoMapper;
 
 namespace Agiil.Web.Controllers
 {
-  public class TicketsController : ControllerBase
+  public class TicketsController : Controller
   {
     readonly ITicketLister lister;
+    readonly IMapper mapper;
 
     public ActionResult Index(AdHocTicketListSpecification spec)
     {
@@ -23,11 +24,11 @@ namespace Agiil.Web.Controllers
     TicketListModel GetModel(IList<Ticket> tickets = null,
                              bool showingClosedTickets = false)
     {
-      var model = ModelFactory.GetModel<TicketListModel>();
+      var model = new TicketListModel();
 
       model.ShowingClosedTickets = showingClosedTickets;
       if(tickets != null)
-        model.Tickets = tickets.Select(x => Mapper.Map<TicketSummaryDto>(x)).ToList();
+        model.Tickets = tickets.Select(x => mapper.Map<TicketSummaryDto>(x)).ToList();
 
       return model;
     }
@@ -45,12 +46,13 @@ namespace Agiil.Web.Controllers
       };
     }
 
-    public TicketsController(ITicketLister lister,
-                             ControllerBaseDependencies baseDeps)
-      : base(baseDeps)
+    public TicketsController(ITicketLister lister, IMapper mapper)
     {
+      if(mapper == null)
+        throw new ArgumentNullException(nameof(mapper));
       if(lister == null)
         throw new ArgumentNullException(nameof(lister));
+      this.mapper = mapper;
       this.lister = lister;
     }
   }

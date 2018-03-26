@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Agiil.Domain.Data;
 using Agiil.Web.Models.Shared;
 
 namespace Agiil.Web.Models
@@ -20,5 +21,7 @@ namespace Agiil.Web.Models
     public IEnumerable<string> DatabaseUpgradesApplied { get; set; }
 
     public IEnumerable<string> DatabaseUpgradesPending { get; set; }
+
+    public IReadOnlyList<DatabaseBackupInfo> DatabaseBackups { get; set; }
   }
 }

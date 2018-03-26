@@ -1,7 +1,7 @@
 #!/bin/bash
  
 NUNIT_CONSOLE_VERSION="3.7.0"
-NUNIT_PATH="./testrunner/NUnit.ConsoleRunner.${NUNIT_CONSOLE_VERSION}/tools/nunit3-console.exe"
+NUNIT_PATH="./packages/NUnit.ConsoleRunner.${NUNIT_CONSOLE_VERSION}/tools/nunit3-console.exe"
 TEST_PATTERN="Agiil.Tests.*.dll"
 WEB_TESTS="Agiil.Tests.BDD.dll"
 TEST_SUPPORT="Agiil.Tests.Common.dll"
@@ -31,7 +31,7 @@ stop_if_failure()
 build_solution()
 {
   echo "Building the solution ..."
-  msbuild /p:Configuration=Debug Agiil.sln
+  msbuild /p:Configuration=TravisCI Agiil.sln
 
   stop_if_failure $? "Build the solution"
 }
@@ -43,11 +43,12 @@ run_unit_tests()
   stop_if_failure $? "Run unit tests"
 }
 
-prepare_webapp_for_testing()
+prepare_screenplay_env_variables()
 {
-  echo "Configuring Travis-specific settings for BDD tests ..."
-  cp "${TEST_HOME}/Agiil.Tests.BDD/App.Travis.config" "${WEB_TESTS_PATH}.config"
-  cp "${WEB_APP_HOME}/Web.Travis.config" "${WEB_APP_HOME}/Web.config"
+  WebDriver_SauceLabsBuildName="Travis Agiil job ${TRAVIS_JOB_NUMBER}; ${WebDriver_BrowserName}"
+  WebDriver_TunnelIdentifier="$TRAVIS_JOB_NUMBER"
+  export WebDriver_SauceLabsBuildName
+  export WebDriver_TunnelIdentifier
 }
 
 run_integration_tests()
@@ -63,7 +64,7 @@ echo_integration_test_results_to_console()
 
 build_solution
 run_unit_tests
-prepare_webapp_for_testing
+prepare_screenplay_env_variables
 run_integration_tests
 echo_integration_test_results_to_console
 

@@ -1,21 +1,26 @@
 ﻿using System;
-using System.Net.Http;
-using Agiil.Web.Controllers;
 using CSF.Screenplay.Actors;
 using CSF.Screenplay.Performables;
+using Agiil.BDD.ServiceEndpoints;
+using CSF.Screenplay.WebApis.Builders;
+using Agiil.Web.Models;
 
 namespace Agiil.BDD.Actions
 {
-  public class AddAUserAccount : ApplicationApiAction
+  public class AddAUserAccount : Performable
   {
     string username, password;
 
     protected override string GetReport(INamed actor)
       => $"{actor.Name} adds a user account with username '{username}' and password '{password}'.";
 
-    protected override string GetControllerName() => nameof(AddUserController);
+    protected override void PerformAs(IPerformer actor)
+    {
+      actor.Perform(Invoke.TheJsonWebService<AddUserAccountService>().WithTheData(GetUserDetails()).AndVerifyItSucceeds());
+    }
 
-    protected override object GetHttpRequestContentData() => new { username, password };
+    CreateUserModel GetUserDetails()
+      => new CreateUserModel { username = username, password = password };
 
     public AddAUserAccount(string username, string password)
     {

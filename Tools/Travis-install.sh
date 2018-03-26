@@ -3,8 +3,6 @@
 NUGET_LATEST_DIST="https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
 NUGET_DIR=".nuget"
 NUGET_PATH="${NUGET_DIR}/nuget.exe"
-NUNIT_CONSOLE_VERSION="3.7.0"
-NUNIT_PATH="testrunner"
 
 stop_if_failure()
 {
@@ -32,16 +30,6 @@ echo_nuget_version_to_console()
   mono "$NUGET_PATH"
 }
 
-install_test_runner()
-{
-  echo "Downloading an NUnit test runner ..."
-  mono "$NUGET_PATH" install \
-    "NUnit.ConsoleRunner" \
-    -Version "$NUNIT_CONSOLE_VERSION" \
-    -OutputDirectory "$NUNIT_PATH"
-  stop_if_failure $? "Download NUnit test runner"
-}
-
 restore_solution_nuget_packages()
 {
   echo "Restoring NuGet packages for the solution ..."
@@ -51,7 +39,6 @@ restore_solution_nuget_packages()
 
 install_latest_nuget
 echo_nuget_version_to_console
-install_test_runner
 restore_solution_nuget_packages
 
 exit 0

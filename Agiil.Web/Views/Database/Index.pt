@@ -1,4 +1,5 @@
-﻿<html lang="en" metal:use-macro="Views/Shared/EmptyPage/macros/page">
+﻿<!DOCTYPE html>
+<html lang="en" metal:use-macro="Views/Shared/EmptyPage/macros/page">
 <head metal:fill-slot="head_element">
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,6 +71,55 @@
        tal:condition="not:here/HasPendingUpgrades">
     <h3>Upgrades pending</h3>
     <p>There are no pending upgrades!</p>
+  </div>
+  <div class="database_backup">
+    <h3>Database backups</h3>
+    <h4>Existing backups</h4>
+    <form method="get" action="DatabaseBackup">
+      <table class="database_backups">
+        <colgroup>
+          <col class="timestamp">
+          <col class="version">
+          <col class="name">
+          <col class="restore">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>Version</th>
+            <th>Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr tal:repeat="backup here/DatabaseBackups">
+          <tal:block define="timestamp backup/Timestamp;
+                             hasName csharp:backup.Name != null;
+                             nameContent csharp:((bool) hasName)? ((string) backup.Name) : &quot;-&quot;;
+                             nameClass csharp:((bool) hasName)? null : &quot;unnamed&quot;;">
+            <td tal:content="csharp: timestamp.ToString(&quot;u&quot;)">2017-03-01 09:45:22</td>
+            <td tal:content="backup/ApplicationVersion">v1.2.3</td>
+            <td tal:content="nameContent" tal:attributes="class nameClass">Backup name here</td>
+            <td>
+              <button name="filename" value="FILENAME" tal:attributes="value backup/Filename">Restore</button>
+            </td>
+          </tal:block>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+    <h4>Take a new backup</h4>
+    <form method="post" action="DatabaseBackup/TakeBackup">
+      <fieldset>
+      <div class="form_element text">
+        <label for="backup_name">Backup name</label>
+        <input type="text" id="backup_name" name="filename" placeholder="Name your backup (optional)">
+      </div>
+      <div class="form_element button">
+        <button>Take a new backup</button>
+      </div>
+      </fieldset>
+    </form>
   </div>
 </div>
 </body>

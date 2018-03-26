@@ -9,7 +9,7 @@ namespace Agiil.Domain.Sprints
 {
   public class SprintCreator : ISprintCreator
   {
-    readonly IValidatorFactory<CreateSprintRequest> validatorFactory;
+    readonly ICreatesValidators<CreateSprintRequest> validatorFactory;
     readonly ICurrentProjectGetter projectGetter;
     readonly IEntityData sprintRepo;
     readonly ITransactionCreator transactionFactory;
@@ -56,7 +56,7 @@ namespace Agiil.Domain.Sprints
       return sprintFactory.CreateSprint(request.Name, project, request.StartDate, request.EndDate);
     }
 
-    public SprintCreator(IValidatorFactory<CreateSprintRequest> validatorFactory,
+    public SprintCreator(ICreatesValidators<CreateSprintRequest> validatorFactory,
                          ICurrentProjectGetter projectGetter,
                          IEntityData sprintRepo,
                          ITransactionCreator transactionFactory,
