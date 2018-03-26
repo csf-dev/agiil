@@ -39,6 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{C9C2673C
 		Tools\Travis-build.sh = Tools\Travis-build.sh
 		Tools\Travis-install.sh = Tools\Travis-install.sh
 		Tools\Start-webserver.sh = Tools\Start-webserver.sh
+		Tools\Bump-versions.sh = Tools\Bump-versions.sh
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.Web.Sass", "Tools\Agiil.Web.Sass\Agiil.Web.Sass.csproj", "{02389EF3-90E1-4A21-AD29-23CF7128B730}"
@@ -400,6 +401,6 @@ Global
 		$8.String = T
 		$7.RequiredSuffixes = $9
 		$9.String = Exception
-		version = 0.3.0.1
+		version = v0.4.0-alpha
 	EndGlobalSection
 EndGlobal

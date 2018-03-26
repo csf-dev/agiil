@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Bootstrap</RootNamespace>
     <AssemblyName>Agiil.Bootstrap</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.3.0.1</ReleaseVersion>
+    <ReleaseVersion>v0.4.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
