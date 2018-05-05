@@ -173,18 +173,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Caches">
-      <HintPath>..\packages\CSF.Caches.1.0.0\lib\net45\CSF.Caches.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Configuration">
-      <HintPath>..\packages\CSF.Configuration.1.1.0\lib\net45\CSF.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Reflection">
-      <HintPath>..\packages\CSF.Reflection.1.0.1\lib\net45\CSF.Reflection.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Utils">
-      <HintPath>..\packages\CSF.Utils.6.0.0\lib\net45\CSF.Utils.dll</HintPath>
-    </Reference>
     <Reference Include="System.Dynamic" />
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -222,9 +210,6 @@
     <Reference Include="Microsoft.AspNet.Identity.Owin">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Security">
-      <HintPath>..\packages\CSF.Security.2.0.0\lib\net45\CSF.Security.dll</HintPath>
-    </Reference>
     <Reference Include="Autofac.Integration.Owin">
       <HintPath>..\packages\Autofac.Owin.4.0.0\lib\net45\Autofac.Integration.Owin.dll</HintPath>
     </Reference>
@@ -237,39 +222,6 @@
     <Reference Include="System.Web.Cors">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Zpt.Abstractions">
-      <HintPath>..\packages\CSF.Zpt.Abstractions.1.0.0\lib\net45\CSF.Zpt.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt">
-      <HintPath>..\packages\CSF.Zpt.1.0.0\lib\net45\CSF.Zpt.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.DocumentProviders.XmlLinq">
-      <HintPath>..\packages\CSF.Zpt.DocumentProviders.XmlLinq.1.0.0\lib\net45\CSF.Zpt.DocumentProviders.XmlLinq.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.ExpressionEvaluators.CSharpExpressions">
-      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.1.0.0\lib\net45\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.ExpressionEvaluators.CSharpFramework">
-      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.1.0.0\lib\net45\CSF.Zpt.ExpressionEvaluators.CSharpFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.ExpressionEvaluators.NotExpressions">
-      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.NotExpressions.1.0.0\lib\net45\CSF.Zpt.ExpressionEvaluators.NotExpressions.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.ExpressionEvaluators.PathExpressions">
-      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.PathExpressions.1.0.0\lib\net45\CSF.Zpt.ExpressionEvaluators.PathExpressions.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.ExpressionEvaluators.StringExpressions">
-      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.StringExpressions.1.0.0\lib\net45\CSF.Zpt.ExpressionEvaluators.StringExpressions.dll</HintPath>
-    </Reference>
-    <Reference Include="HtmlAgilityPack">
-      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.DocumentProviders.HtmlHAP">
-      <HintPath>..\packages\CSF.Zpt.DocumentProviders.HtmlHAP.1.0.0\lib\net45\CSF.Zpt.DocumentProviders.HtmlHAP.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.MVC5">
-      <HintPath>..\packages\CSF.Zpt.MVC5.1.0.0\lib\net45\CSF.Zpt.MVC5.dll</HintPath>
-    </Reference>
     <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
     </Reference>
@@ -277,12 +229,6 @@
       <HintPath>..\packages\Autofac.Mvc5.3.3.4\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Configuration" />
-    <Reference Include="CSF.Data">
-      <HintPath>..\packages\CSF.Data.1.1.0\lib\net45\CSF.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Entities">
-      <HintPath>..\packages\CSF.Entities.1.1.1\lib\net45\CSF.Entities.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -301,14 +247,68 @@
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Data.NHibernate">
-      <HintPath>..\packages\CSF.Data.NHibernate.6.1.1\lib\net45\CSF.Data.NHibernate.dll</HintPath>
-    </Reference>
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Caches">
+      <HintPath>..\packages\CSF.Caches.1.0.2\lib\net45\CSF.Caches.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Configuration">
+      <HintPath>..\packages\CSF.Configuration.1.1.2\lib\net45\CSF.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Reflection">
+      <HintPath>..\packages\CSF.Reflection.1.0.3\lib\net45\CSF.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Utils">
+      <HintPath>..\packages\CSF.Utils.6.1.1\lib\net45\CSF.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.Abstractions">
+      <HintPath>..\packages\CSF.Zpt.Abstractions.1.0.6\lib\net45\CSF.Zpt.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt">
+      <HintPath>..\packages\CSF.Zpt.1.0.6\lib\net45\CSF.Zpt.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.DocumentProviders.XmlLinq">
+      <HintPath>..\packages\CSF.Zpt.DocumentProviders.XmlLinq.1.0.6\lib\net45\CSF.Zpt.DocumentProviders.XmlLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.CSharpExpressions">
+      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.1.0.6\lib\net45\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.CSharpFramework">
+      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.1.0.6\lib\net45\CSF.Zpt.ExpressionEvaluators.CSharpFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.NotExpressions">
+      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.NotExpressions.1.0.6\lib\net45\CSF.Zpt.ExpressionEvaluators.NotExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.PathExpressions">
+      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.PathExpressions.1.0.6\lib\net45\CSF.Zpt.ExpressionEvaluators.PathExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.StringExpressions">
+      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.StringExpressions.1.0.6\lib\net45\CSF.Zpt.ExpressionEvaluators.StringExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.6.17\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.DocumentProviders.HtmlHAP">
+      <HintPath>..\packages\CSF.Zpt.DocumentProviders.HtmlHAP.1.0.6\lib\net45\CSF.Zpt.DocumentProviders.HtmlHAP.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.MVC5">
+      <HintPath>..\packages\CSF.Zpt.MVC5.1.0.6\lib\net45\CSF.Zpt.MVC5.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data">
+      <HintPath>..\packages\CSF.Data.1.2.1\lib\net45\CSF.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data.NHibernate">
+      <HintPath>..\packages\CSF.Data.NHibernate.6.1.3\lib\net45\CSF.Data.NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Entities">
+      <HintPath>..\packages\CSF.Entities.1.2.1\lib\net45\CSF.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Security">
+      <HintPath>..\packages\CSF.Security.2.0.2\lib\net45\CSF.Security.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
