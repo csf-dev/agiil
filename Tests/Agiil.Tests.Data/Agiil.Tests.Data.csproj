@@ -56,12 +56,6 @@
       <HintPath>..\..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="CSF.Entities">
-      <HintPath>..\..\packages\CSF.Entities.1.1.1\lib\net45\CSF.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Reflection">
-      <HintPath>..\..\packages\CSF.Reflection.1.0.1\lib\net45\CSF.Reflection.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data.SQLite">
       <HintPath>..\..\packages\System.Data.SQLite.Core.1.0.104.0\lib\net45\System.Data.SQLite.dll</HintPath>
     </Reference>
@@ -81,7 +75,13 @@
       <HintPath>..\..\packages\AutoFixture.NUnit3.3.50.2\lib\net40\Ploeh.AutoFixture.NUnit3.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Data">
-      <HintPath>..\..\packages\CSF.Data.1.1.0\lib\net45\CSF.Data.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Data.1.2.1\lib\net45\CSF.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Entities">
+      <HintPath>..\..\packages\CSF.Entities.1.2.1\lib\net45\CSF.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Reflection">
+      <HintPath>..\..\packages\CSF.Reflection.1.0.3\lib\net45\CSF.Reflection.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
