@@ -31,7 +31,8 @@ function bump_solution_version()
 function bump_package_json_version()
 {
   PACKAGE_JSON_FILE="$SOLUTION_ROOT/package.json"
-  sed -ri "s/\"version\" *: *\"[^\"]+\"/\"version\": \"${NEW_VERSION}\"" "$PACKAGE_JSON_FILE"
+  JSON_VERSION="$(echo "$NEW_VERSION" | egrep -o "([0-9]+\.){2}[0-9]+")"
+  sed -ri "s/\"version\" *: *\"[^\"]+\"/\"version\": \"${JSON_VERSION}\"" "$PACKAGE_JSON_FILE"
 }
 
 bump_assembly_info
