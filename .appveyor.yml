@@ -10,9 +10,6 @@ install:
   - ps: Install-Product node $env:nodejs_version
   - cmd: Tools\AppVeyor-install.bat
 
-before_build:
-  - cmd: Tools\AppVeyor-before-build.bat
-
 configuration: AppVeyorCI
 
 build:
