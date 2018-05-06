@@ -14,19 +14,21 @@ stop_if_failure()
 restore_solution_nuget_packages()
 {
   echo "Restoring NuGet packages for the solution ..."
-  mono nuget restore Agiil.sln
+  nuget restore Agiil.sln
   stop_if_failure $? "Restore NuGet packages"
 }
 
 install_npm_packages()
 {
   echo "Installing npm packages for the solution ..."
-  npm install Agiil.Web/
-  stop_if_failure $? "Install npm packages"
+  OLD_DIR="$(pwd)"
+  
+  cd Agiil.Web/
+  npm install
+  stop_if_failure $? "Install npm packages to 'Agiil.Web'"
+  cd "$OLD_DIR"
 }
 
-install_latest_nuget
-echo_nuget_version_to_console
 restore_solution_nuget_packages
 install_npm_packages
 

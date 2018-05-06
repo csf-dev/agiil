@@ -40,8 +40,12 @@ restore_solution_nuget_packages()
 install_npm_packages()
 {
   echo "Installing npm packages for the solution ..."
-  npm install Agiil.Web/
-  stop_if_failure $? "Install npm packages"
+  OLD_DIR="$(pwd)"
+  
+  cd Agiil.Web/
+  npm install
+  stop_if_failure $? "Install npm packages to 'Agiil.Web'"
+  cd "$OLD_DIR"
 }
 
 install_latest_nuget
