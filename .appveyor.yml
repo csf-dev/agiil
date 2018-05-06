@@ -4,14 +4,14 @@
 version: '{branch}-{build}'
 
 init:
-- cmd: git config --global core.autocrlf true
+  - cmd: git config --global core.autocrlf true
 
 install:
   - ps: Install-Product node $env:nodejs_version
   - cmd: Tools\AppVeyor-install.bat
 
 before_build:
-- cmd: Tools\AppVeyor-before-build.bat
+  - cmd: Tools\AppVeyor-before-build.bat
 
 configuration: AppVeyorCI
 
@@ -22,8 +22,8 @@ build:
 test:
   assemblies:
     except:
-    - '**\Agiil.Tests.Common.dll'
-    - '**\Agiil.BDD.dll'
-    - '**\Ploeh.AutoFixture.NUnit3.dll'
-    - '**\Agiil.Tests.BDD.dll'
+      - '**\Agiil.Tests.Common.dll'
+      - '**\Agiil.BDD.dll'
+      - '**\Ploeh.AutoFixture.NUnit3.dll'
+      - '**\Agiil.Tests.BDD.dll'
     
