@@ -59,10 +59,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Tools\Agiil.Web.Sass\Agiil.Web.Sass.csproj">
-      <Project>{02389EF3-90E1-4A21-AD29-23CF7128B730}</Project>
-      <Name>Agiil.Web.Sass</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
       <Project>{E15F2064-D2EA-43EF-924C-733107675FF0}</Project>
       <Name>Agiil.Tests.Common</Name>
