@@ -10,9 +10,10 @@ install:
   - ps: Install-Product node $env:nodejs_version
   - cmd: >-
     cd Agiil.Web
+    
     npm install
+    
     cd ..
-
 before_build:
 - cmd: >-
     git submodule update --init --recursive
