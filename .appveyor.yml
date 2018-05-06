@@ -4,29 +4,23 @@
 version: '{branch}-{build}'
 
 init:
-- cmd: git config --global core.autocrlf true
+  - cmd: git config --global core.autocrlf true
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - cmd: >-
-    cd Agiil.Web
-    npm install
-    cd ..
+  - cmd: Tools\AppVeyor-install.bat
 
-before_build:
-- cmd: >-
-    git submodule update --init --recursive
-
-    nuget restore Agiil.sln
 configuration: AppVeyorCI
+
 build:
   project: Agiil.sln
   verbosity: normal
+
 test:
   assemblies:
     except:
-    - '**\Agiil.Tests.Common.dll'
-    - '**\Agiil.BDD.dll'
-    - '**\Ploeh.AutoFixture.NUnit3.dll'
-    - '**\Agiil.Tests.BDD.dll'
+      - '**\Agiil.Tests.Common.dll'
+      - '**\Agiil.BDD.dll'
+      - '**\Ploeh.AutoFixture.NUnit3.dll'
+      - '**\Agiil.Tests.BDD.dll'
     

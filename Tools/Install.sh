@@ -25,8 +25,9 @@ install_npm_packages()
   
   cd Agiil.Web/
   npm install
-  stop_if_failure $? "Install npm packages to 'Agiil.Web'"
+  npm_exit=$?
   cd "$OLD_DIR"
+  stop_if_failure $npm_exit "Install npm packages to 'Agiil.Web'"
 }
 
 restore_solution_nuget_packages

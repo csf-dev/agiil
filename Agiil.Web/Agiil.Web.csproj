@@ -500,7 +500,7 @@
       <SassOutputDir>$(MSBuildThisFileDirectory)Content\Css</SassOutputDir>
       <SassNodePath>$(MSBuildThisFileDirectory)node_modules\node-sass\bin\node-sass</SassNodePath>
     </PropertyGroup>
-    <Exec Command="$(SassNodePath) $(SassInputDir) --output $(SassOutputDir) --source-map true"
+    <Exec Command="node $(SassNodePath) $(SassInputDir) --output $(SassOutputDir) --source-map true"
           WorkingDirectory="$(MSBuildThisFileDirectory)" />
   </Target>
   <Target Name="MoveWebConfigToCorrectLocation" AfterTargets="ScApplyTransforms">
