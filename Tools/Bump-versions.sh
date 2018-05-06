@@ -19,12 +19,19 @@ function bump_assembly_info()
 
 function bump_solution_version()
 {
-  sed -ri "s/version *= *.+/version = ${NEW_VERSION}/g" "$SOLUTION_ROOT/Agiil.sln"
+  SOLUTION_FILE="$SOLUTION_ROOT/Agiil.sln"
+  sed -ri "s/version *= *.+/version = ${NEW_VERSION}/g" "$SOLUTION_FILE"
   
   find "$SOLUTION_ROOT" \
     \! -path "*/.git/*" \
     -name "*.csproj" \
     -exec sed -ri "s/<ReleaseVersion>[^<]+<\\/ReleaseVersion>/<ReleaseVersion>${NEW_VERSION}<\\/ReleaseVersion>/g" '{}' \;
+}
+
+function bump_package_json_version()
+{
+  PACKAGE_JSON_FILE="$SOLUTION_ROOT/package.json"
+  sed -ri "s/\"version\" *: *\"[^\"]+\"/\"version\": \"${NEW_VERSION}\"" "$PACKAGE_JSON_FILE"
 }
 
 bump_assembly_info
