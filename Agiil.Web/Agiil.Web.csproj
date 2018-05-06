@@ -494,14 +494,13 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildThisFileDirectory)..\Tools\Agiil.Build.Tasks\Agiil.Build.Tasks.targets" />
-  <Import Project="$(MSBuildThisFileDirectory)..\Tools\Agiil.Web.Sass\Agiil.Web.Sass.targets" />
   <Target Name="CompileScssFiles" BeforeTargets="AfterBuild">
     <PropertyGroup>
       <SassInputDir>$(MSBuildThisFileDirectory)Content\Scss</SassInputDir>
       <SassOutputDir>$(MSBuildThisFileDirectory)Content\Css</SassOutputDir>
       <SassNodePath>$(MSBuildThisFileDirectory)node_modules\node-sass\bin\node-sass</SassNodePath>
     </PropertyGroup>
-    <Exec Command="$(SassNodePath) $(SassInputDir) --output $(SassOutputDir)"
+    <Exec Command="$(SassNodePath) $(SassInputDir) --output $(SassOutputDir) --source-map true"
           WorkingDirectory="$(MSBuildThisFileDirectory)" />
   </Target>
   <Target Name="MoveWebConfigToCorrectLocation" AfterTargets="ScApplyTransforms">

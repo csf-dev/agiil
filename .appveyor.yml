@@ -18,11 +18,6 @@ before_build:
     git submodule update --init --recursive
 
     nuget restore Agiil.sln
-# As of 2017-05-15 it appears AppVeyor use a 32-bit MSBuild.
-# This means that we must compile for 32-bit, because otherwise
-# the custom 'CompileScssFiles' target will fail on usage of the
-# 64-bit flavour of libsass.dll
-platform: x86
 configuration: AppVeyorCI
 build:
   project: Agiil.sln
