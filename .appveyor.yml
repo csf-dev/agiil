@@ -1,8 +1,4 @@
-﻿# Due to #AG127, it seems that I have to use x86 builds, or else
-# Sqlite will fall over.
-platform: x86
-
-environment:
+﻿environment:
   nodejs_version: "10.0"
 
 version: '{branch}-{build}'
