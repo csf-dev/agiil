@@ -37,8 +37,16 @@ restore_solution_nuget_packages()
   stop_if_failure $? "Restore NuGet packages"
 }
 
+install_npm_packages()
+{
+  echo "Installing npm packages for the solution ..."
+  npm install
+  stop_if_failure $? "Install npm packages"
+}
+
 install_latest_nuget
 echo_nuget_version_to_console
 restore_solution_nuget_packages
+install_npm_packages
 
 exit 0
