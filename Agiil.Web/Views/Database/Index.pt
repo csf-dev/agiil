@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" metal:use-macro="Views/Shared/EmptyPage/macros/page">
 <head metal:fill-slot="head_element">
 <meta charset="utf-8" />
