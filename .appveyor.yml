@@ -1,6 +1,15 @@
-﻿version: '{branch}-{build}'
+﻿environment:
+  nodejs_version: "10.0"
+
+version: '{branch}-{build}'
+
 init:
 - cmd: git config --global core.autocrlf true
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - npm install
+
 before_build:
 - cmd: >-
     git submodule update --init --recursive
