@@ -8,21 +8,17 @@ init:
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - cmd: >-
-    cd Agiil.Web
-    
-    npm install
-    
-    cd ..
-before_build:
-- cmd: >-
-    git submodule update --init --recursive
+  - cmd: Tools\AppVeyor-install.bat
 
-    nuget restore Agiil.sln
+before_build:
+- cmd: Tools\AppVeyor-before-build.bat
+
 configuration: AppVeyorCI
+
 build:
   project: Agiil.sln
   verbosity: normal
+
 test:
   assemblies:
     except:
