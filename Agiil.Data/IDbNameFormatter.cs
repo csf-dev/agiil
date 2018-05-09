@@ -7,6 +7,8 @@ namespace Agiil.Data
   {
     string GetTableName(Type entityType);
 
+    string GetManyToManyTableName(Type primaryEntityType, Type secondaryEntityType);
+
     string GetIdentityColumnName(Type entityType);
 
     string GetColumnName(MemberInfo member);
