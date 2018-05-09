@@ -132,8 +132,13 @@
     <Compile Include="Data\DatabaseBackupFilenameFormatter.cs" />
     <Compile Include="Data\DatabaseBackupFinder.cs" />
     <Compile Include="Labels\LabelNameParser.cs" />
+    <Compile Include="Labels\ExistingAndNewLabelProvider.cs" />
     <Compile Include="Labels\LabelFactory.cs" />
     <Compile Include="WhitespaceNormaliser.cs" />
+    <Compile Include="Labels\ExistingLabelProvider.cs" />
+    <Compile Include="Labels\LabelProviderBase.cs" />
+    <Compile Include="Labels\NewLabelProvider.cs" />
+    <Compile Include="Labels\LabelNameInSpecification.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
