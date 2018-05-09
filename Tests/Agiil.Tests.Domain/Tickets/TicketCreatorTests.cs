@@ -11,7 +11,7 @@ using Moq;
 using NUnit.Framework;
 using Ploeh.AutoFixture.NUnit3;
 
-namespace Agiil.Tests.Domain.Tickets
+namespace Agiil.Tests.Tickets
 {
   [TestFixture,Parallelizable]
   public class TicketCreatorTests

@@ -7,7 +7,7 @@ using Moq;
 using CSF.Entities;
 using Agiil.Tests.Attributes;
 
-namespace Agiil.Tests.Domain.Auth
+namespace Agiil.Tests.Auth
 {
   [TestFixture,Parallelizable]
   public class CurrentUserReaderTests
