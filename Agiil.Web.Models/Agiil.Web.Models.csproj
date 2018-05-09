@@ -94,12 +94,14 @@
     <Compile Include="Shared\IHasLoginState.cs" />
     <Compile Include="Shared\IHasApplicationVersion.cs" />
     <Compile Include="Shared\ApplicationVersionInfo.cs" />
+    <Compile Include="Labels\LabelDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
     <Folder Include="Shared\" />
     <Folder Include="Sprints\" />
     <Folder Include="Tickets\" />
+    <Folder Include="Labels\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
