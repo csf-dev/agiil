@@ -13,10 +13,6 @@ namespace Agiil.Bootstrap.Data
     protected override string Namespace => NamespaceMarkerType.Namespace;
 
     protected override IEnumerable<Assembly> GetSearchAssemblies()
-    {
-      return new [] {
-        NamespaceMarkerType.Assembly
-      };
-    }
+      => new[] { NamespaceMarkerType.Assembly };
   }
 }
