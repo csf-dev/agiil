@@ -141,6 +141,7 @@
     <Compile Include="Sqlite\IProvidesBackupFileInfo.cs" />
     <Compile Include="BackupTakingUpgrader.cs" />
     <Compile Include="Sqlite\SqliteBackupRestorer.cs" />
+    <Compile Include="Mappings\ManyToManyMapping.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mappings\" />

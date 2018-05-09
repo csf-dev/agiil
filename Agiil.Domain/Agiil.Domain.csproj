@@ -143,6 +143,7 @@
     <Compile Include="Data\IGetsDataDirectory.cs" />
     <Compile Include="Data\IFormatsDatabaseBackupFilenames.cs" />
     <Compile Include="Data\IRestoresDatabaseBackup.cs" />
+    <Compile Include="ManyToManyAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
