@@ -68,6 +68,20 @@ namespace Agiil.BDD.Bindings.Tickets
                    .Be(type, because: "the type should match");
     }
 
+    [Then(@"(?:he|she|they) should see that the ticket has the labels")]
+    public void ThenTheyShouldSeeThatTheTicketHasTheLabels(Table expectedLabelsTable)
+    {
+      var expectedLabelNames = expectedLabelsTable
+        .Rows
+        .Select(x => x.Values.Single())
+        .ToArray();
+
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).ShouldSee(TheText.OfAll(TicketDetail.LabelNames))
+                    .Should()
+                    .Contain(expectedLabelNames);
+    }
+
     public ReadATicketSteps(IStage stage)
     {
       if(stage == null)

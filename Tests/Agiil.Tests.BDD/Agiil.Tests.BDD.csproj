@@ -191,6 +191,9 @@
     <Compile Include="App\SeeTheVersionNumber.feature.cs">
       <DependentUpon>SeeTheVersionNumber.feature</DependentUpon>
     </Compile>
+    <Compile Include="Tickets\AddLabelsToATicket.feature.cs">
+      <DependentUpon>AddLabelsToATicket.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -248,6 +251,10 @@
     <None Include="App\SeeTheVersionNumber.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SeeTheVersionNumber.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Tickets\AddLabelsToATicket.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AddLabelsToATicket.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
