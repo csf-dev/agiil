@@ -132,6 +132,7 @@
     <Compile Include="Data\DatabaseBackupFilenameFormatter.cs" />
     <Compile Include="Data\DatabaseBackupFinder.cs" />
     <Compile Include="Labels\LabelNameParser.cs" />
+    <Compile Include="Labels\LabelFactory.cs" />
     <Compile Include="WhitespaceNormaliser.cs" />
   </ItemGroup>
   <ItemGroup>

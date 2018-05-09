@@ -146,6 +146,7 @@
     <Compile Include="Labels\Label.cs" />
     <Compile Include="ManyToManyAttribute.cs" />
     <Compile Include="Labels\IParsesLabelNames.cs" />
+    <Compile Include="Labels\ICreatesLabel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
