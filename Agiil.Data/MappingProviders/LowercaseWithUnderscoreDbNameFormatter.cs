@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using CSF.Reflection;
 
-namespace Agiil.Data
+namespace Agiil.Data.MappingProviders
 {
   public class LowercaseWithUnderscoreDbNameFormatter : IDbNameFormatter
   {
@@ -14,6 +16,7 @@ namespace Agiil.Data
       ConstraintPrefix = "Fk",
       ConstraintJoiner = "Has",
       IndexPrefix = "Idx",
+      UniqueJoiner = "Unique",
       ManyToManyJoiner = "To";
 
     static readonly Regex
@@ -49,6 +52,14 @@ namespace Agiil.Data
     {
       return GetDatabaseName(String.Concat(IndexPrefix, entityType?.Name, referencedType?.Name, IdentitySuffix));
     }
+
+    public string GetUniqueIndexName(Type entityType, MemberInfo member)
+    {
+      return GetDatabaseName(String.Concat(IndexPrefix, UniqueJoiner, entityType?.Name, member?.Name));
+    }
+
+    public string GetUniqueIndexName<TEntity>(Expression<Func<TEntity,object>> memberExpression)
+      => GetUniqueIndexName(typeof(TEntity), Reflect.Member(memberExpression));
 
     public string GetForeignKeyConstraintName(Type parent, Type child)
     {

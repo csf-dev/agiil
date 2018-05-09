@@ -7,13 +7,17 @@ using CSF.Entities;
 using NHibernate.Cfg.MappingSchema;
 using NHibernate.Mapping.ByCode;
 
-namespace Agiil.Data
+namespace Agiil.Data.MappingProviders
 {
-  public class MappingProvider : IMappingProvider
+  public class AgiilMappingProvider : IGetsHbmMapping
   {
+    const string MappingName = "AgiilMappingsByCode";
+
     internal static readonly Type BaseEntityType = typeof(IEntity);
 
-    readonly IEnumerable<Func<IMapping>> allMappings;
+    readonly IEnumerable<Func<IConventionMapping>> allMappings;
+
+    public string Name => MappingName;
 
     public HbmMapping GetHbmMapping()
     {
@@ -26,29 +30,29 @@ namespace Agiil.Data
         mapping.ApplyMapping(mapper);
       }
 
-      var entityTypes = GetEntityTypes();
+      var entityTypes = GetAutomappedEntityTypes();
 
       return mapper.CompileMappingFor(entityTypes);
     }
 
-    IEnumerable<IMapping> GetMappings()
+    IEnumerable<IConventionMapping> GetMappings()
     {
       return allMappings.Select(x => x()).ToArray();
     }
 
-    Type[] GetEntityTypes()
+    Type[] GetAutomappedEntityTypes()
     {
       var domainAssembly = typeof(IDomainAssemblyMarker).Assembly;
 
       return (from type in domainAssembly.GetExportedTypes()
               where
-              BaseEntityType.IsAssignableFrom(type)
-              && type.IsClass
+                BaseEntityType.IsAssignableFrom(type)
+                && type.IsClass
               select type)
         .ToArray();
     }
 
-    public MappingProvider(IEnumerable<Func<IMapping>> allMappings)
+    public AgiilMappingProvider(IEnumerable<Func<IConventionMapping>> allMappings)
     {
       if(allMappings == null)
         throw new ArgumentNullException(nameof(allMappings));

@@ -1,10 +1,11 @@
 ﻿using System;
 using CSF.Entities;
 using NHibernate.Mapping.ByCode;
+using Agiil.Data.MappingProviders;
 
-namespace Agiil.Data.Mappings
+namespace Agiil.Data.ConventionMappings
 {
-  public class EntityBaseTypeMapping : IMapping
+  public class EntityBaseTypeMapping : IConventionMapping
   {
     public void ApplyMapping(ConventionModelMapper mapper)
     {

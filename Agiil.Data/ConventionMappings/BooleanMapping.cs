@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Reflection;
+using Agiil.Data.MappingProviders;
 using NHibernate.Mapping.ByCode;
 
-namespace Agiil.Data.Mappings
+namespace Agiil.Data.ConventionMappings
 {
-  public class BooleanMapping : IMapping
+  public class BooleanMapping : IConventionMapping
   {
     public void ApplyMapping(ConventionModelMapper mapper)
     {

@@ -129,7 +129,7 @@
     <Compile Include="DomainContainerFactory.cs" />
     <Compile Include="Tickets\TicketsModule.cs" />
     <Compile Include="EnvironmentModule.cs" />
-    <Compile Include="Data\MappingModule.cs" />
+    <Compile Include="Data\MappingProvidersModule.cs" />
     <Compile Include="NamespaceModule.cs" />
     <Compile Include="DomainWideTypesModule.cs" />
     <Compile Include="Validation\ValidationModule.cs" />
@@ -151,6 +151,8 @@
     <Compile Include="ContainerBuilderExtensions.cs" />
     <Compile Include="Data\DomainDataModule.cs" />
     <Compile Include="Labels\LabelsModule.cs" />
+    <Compile Include="Data\ConventionMappingsModule.cs" />
+    <Compile Include="Data\ClassMappingsModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Agiil.Data
+namespace Agiil.Data.MappingProviders
 {
   public interface IDbNameFormatter
   {
@@ -16,6 +17,10 @@ namespace Agiil.Data
     string GetIndexName(Type entityType, MemberInfo member);
 
     string GetIndexName(Type entityType, Type referencedType);
+
+    string GetUniqueIndexName(Type entityType, MemberInfo member);
+
+    string GetUniqueIndexName<TEntity>(Expression<Func<TEntity,object>> memberExpression);
 
     string GetForeignKeyConstraintName(Type parent, Type child);
   }

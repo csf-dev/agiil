@@ -102,22 +102,17 @@
     <Compile Include="ICreatesDatabaseSchema.cs" />
     <Compile Include="ISessionFactoryFactory.cs" />
     <Compile Include="NHibernateSchemaExportingDatabaseCreator.cs" />
-    <Compile Include="IMapping.cs" />
-    <Compile Include="IMappingProvider.cs" />
-    <Compile Include="MappingProvider.cs" />
-    <Compile Include="Mappings\EntityBaseTypeMapping.cs" />
-    <Compile Include="Mappings\EntityTypeMapping.cs" />
-    <Compile Include="Mappings\IdentityMapping.cs" />
-    <Compile Include="Mappings\PropertyMapping.cs" />
+    <Compile Include="ConventionMappings\EntityBaseTypeMapping.cs" />
+    <Compile Include="ConventionMappings\EntityTypeMapping.cs" />
+    <Compile Include="ConventionMappings\IdentityMapping.cs" />
+    <Compile Include="ConventionMappings\PropertyMapping.cs" />
     <Compile Include="IConnectionStringProvider.cs" />
     <Compile Include="ConfigurationManagerConnectionStringProvider.cs" />
     <Compile Include="IDataAssemblyMarker.cs" />
-    <Compile Include="LowercaseWithUnderscoreDbNameFormatter.cs" />
-    <Compile Include="IDbNameFormatter.cs" />
-    <Compile Include="Mappings\ManyToOneMapping.cs" />
-    <Compile Include="Mappings\OneToManyMapping.cs" />
-    <Compile Include="Mappings\BooleanMapping.cs" />
-    <Compile Include="Mappings\SourceCollectionAccessor.cs" />
+    <Compile Include="ConventionMappings\ManyToOneMapping.cs" />
+    <Compile Include="ConventionMappings\OneToManyMapping.cs" />
+    <Compile Include="ConventionMappings\BooleanMapping.cs" />
+    <Compile Include="ConventionMappings\SourceCollectionAccessor.cs" />
     <Compile Include="IDatabaseConfiguration.cs" />
     <Compile Include="HardcodedDatabaseConfiguration.cs" />
     <Compile Include="DbUpDatabaseUpgrader.cs" />
@@ -141,12 +136,20 @@
     <Compile Include="Sqlite\IProvidesBackupFileInfo.cs" />
     <Compile Include="BackupTakingUpgrader.cs" />
     <Compile Include="Sqlite\SqliteBackupRestorer.cs" />
-    <Compile Include="Mappings\ManyToManyMapping.cs" />
+    <Compile Include="ConventionMappings\ManyToManyMapping.cs" />
+    <Compile Include="MappingProviders\AgiilMappingProvider.cs" />
+    <Compile Include="MappingProviders\IConventionMapping.cs" />
+    <Compile Include="MappingProviders\IGetsHbmMapping.cs" />
+    <Compile Include="MappingProviders\IDbNameFormatter.cs" />
+    <Compile Include="MappingProviders\LowercaseWithUnderscoreDbNameFormatter.cs" />
+    <Compile Include="ClassMappings\LabelMapping.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Mappings\" />
+    <Folder Include="ConventionMappings\" />
     <Folder Include="Sqlite\" />
     <Folder Include="UpgradeScripts\" />
+    <Folder Include="ClassMappings\" />
+    <Folder Include="MappingProviders\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
