@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Agiil.Data.MappingProviders;
 using CSF.Data.NHibernate;
 using NHibernate;
 using NHibernate.Cfg;
@@ -8,9 +10,7 @@ namespace Agiil.Data
 {
   public class SessionFactoryFactory : ISessionFactoryFactory
   {
-    const string MappingName = "ConventionMappings";
-
-    readonly IMappingProvider mappingProvider;
+    readonly IGetsHbmMapping mappingProvider;
     readonly IConnectionStringProvider connectionStringProvider;
 
     public virtual ISessionFactory GetSessionFactory()
@@ -32,7 +32,7 @@ namespace Agiil.Data
     protected virtual void ConfigureMappings(Configuration config)
     {
       var mappings = mappingProvider.GetHbmMapping();
-      config.AddDeserializedMapping(mappings, MappingName);
+      config.AddDeserializedMapping(mappings, mappingProvider.Name);
     }
 
     protected virtual void ConfigureDatabase(Configuration config)
@@ -46,7 +46,7 @@ namespace Agiil.Data
       });
     }
 
-    public SessionFactoryFactory(IMappingProvider mappingProvider,
+    public SessionFactoryFactory(IGetsHbmMapping mappingProvider,
                                  IConnectionStringProvider connectionStringProvider)
     {
       if(connectionStringProvider == null)

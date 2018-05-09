@@ -1,7 +1,7 @@
 ﻿using System;
 using NHibernate.Properties;
 
-namespace Agiil.Data.Mappings
+namespace Agiil.Data.ConventionMappings
 {
   public class SourceCollectionAccessor : IPropertyAccessor
   {

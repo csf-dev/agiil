@@ -43,6 +43,12 @@
     <p tal:condition="not:ticket/Sprint">
       This ticket is not part of any sprint.
     </p>
+    <h2 tal:condition="ticket/HasLabels">Labels</h2>
+    <ul class="ticket_labels" tal:condition="ticket/HasLabels">
+      <li tal:repeat="label ticket/Labels">
+        <span class="name" tal:content="label/Name">Label name</span>
+      </li>
+    </ul>
     <form class="open_close_ticket"
           action="OpenCloseTicket/Close/0"
           method="POST"

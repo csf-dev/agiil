@@ -1,9 +1,9 @@
 ﻿using System;
 using NHibernate.Mapping.ByCode;
 
-namespace Agiil.Data
+namespace Agiil.Data.MappingProviders
 {
-  public interface IMapping
+  public interface IConventionMapping
   {
     void ApplyMapping(ConventionModelMapper mapper);
   }

@@ -12,6 +12,14 @@ namespace Agiil.Bootstrap.Data
     protected override void Load(ContainerBuilder builder)
     {
       builder
+        .RegisterType<SessionFactoryFactory>()
+        .As<ISessionFactoryFactory>();
+
+      builder
+        .RegisterType<ConfigurationManagerConnectionStringProvider>()
+        .As<IConnectionStringProvider>();
+
+      builder
         .Register(BuildNHibernateConfiguration)
         .SingleInstance();
 

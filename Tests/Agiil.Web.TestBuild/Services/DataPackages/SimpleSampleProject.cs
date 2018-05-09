@@ -2,6 +2,7 @@
 using System.Linq;
 using Agiil.Auth;
 using Agiil.Domain.Auth;
+using Agiil.Domain.Labels;
 using Agiil.Domain.Projects;
 using Agiil.Domain.Sprints;
 using Agiil.Domain.Tickets;
@@ -42,6 +43,8 @@ namespace Agiil.Web.Services.DataPackages
         var comment2 = CreateCommentTwo(ticket2, admin);
         var comment3 = CreateCommentThree(ticket2, admin);
         var comment4 = CreateCommentFour(ticket2, admin);
+
+        CreateExistingLabelOne();
 
         tran.Commit();
       }
@@ -257,6 +260,15 @@ namespace Agiil.Web.Services.DataPackages
       repo.Add(comment);
 
       return comment;
+    }
+
+    Label CreateExistingLabelOne()
+    {
+      var label = new Label { Name = "existing label one" };
+
+      repo.Add(label);
+
+      return label;
     }
 
     public SimpleSampleProject(IEntityData repo,

@@ -1,16 +1,16 @@
 ﻿using System;
-using CSF.Entities;
 using NHibernate.Mapping.ByCode;
+using Agiil.Data.MappingProviders;
 
-namespace Agiil.Data.Mappings
+namespace Agiil.Data.ConventionMappings
 {
-  public class EntityTypeMapping : IMapping
+  public class EntityTypeMapping : IConventionMapping
   {
     readonly IDbNameFormatter formatter;
 
     public void ApplyMapping(ConventionModelMapper mapper)
     {
-      mapper.IsEntity((type, declared) => MappingProvider.BaseEntityType.IsAssignableFrom(type)
+      mapper.IsEntity((type, declared) => AgiilMappingProvider.BaseEntityType.IsAssignableFrom(type)
                       && type.IsClass);
 
       mapper.BeforeMapClass += (modelInspector, type, classCustomizer) => {

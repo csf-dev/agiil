@@ -1,9 +1,10 @@
 ﻿using System;
 using NHibernate.Mapping.ByCode;
+using Agiil.Data.MappingProviders;
 
-namespace Agiil.Data.Mappings
+namespace Agiil.Data.ConventionMappings
 {
-  public class ManyToOneMapping : IMapping
+  public class ManyToOneMapping : IConventionMapping
   {
     readonly IDbNameFormatter formatter;
 

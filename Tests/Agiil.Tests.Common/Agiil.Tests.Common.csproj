@@ -166,6 +166,8 @@
     <Compile Include="CachingDomainContainerFactory.cs" />
     <Compile Include="Attributes\AlwaysPassesAttribute.cs" />
     <Compile Include="Autofixture\AlwaysPassesValidationCustomization.cs" />
+    <Compile Include="Attributes\InMemoryAttribute.cs" />
+    <Compile Include="Autofixture\InMemoryEntityDataCustomization.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">

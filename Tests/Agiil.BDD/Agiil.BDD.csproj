@@ -233,6 +233,7 @@
     <Compile Include="Bindings\App\VersionNumberSteps.cs" />
     <Compile Include="Tasks\App\OverrideTheApplicationVersion.cs" />
     <Compile Include="Pages\AnyPage.cs" />
+    <Compile Include="Tasks\Tickets\ChangeTheTicketLabels.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

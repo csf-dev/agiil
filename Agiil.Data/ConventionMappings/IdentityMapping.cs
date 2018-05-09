@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Reflection;
-using NHibernate.Id;
 using NHibernate.Mapping.ByCode;
+using Agiil.Data.MappingProviders;
 
-namespace Agiil.Data.Mappings
+namespace Agiil.Data.ConventionMappings
 {
-  public class IdentityMapping : IMapping
+  public class IdentityMapping : IConventionMapping
   {
     internal const string IdentityPropertyName = "IdentityValue";
     const BindingFlags IdentityBindingFlags = BindingFlags.GetProperty | BindingFlags.Instance | BindingFlags.NonPublic;

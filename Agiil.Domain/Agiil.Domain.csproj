@@ -143,6 +143,11 @@
     <Compile Include="Data\IGetsDataDirectory.cs" />
     <Compile Include="Data\IFormatsDatabaseBackupFilenames.cs" />
     <Compile Include="Data\IRestoresDatabaseBackup.cs" />
+    <Compile Include="Labels\Label.cs" />
+    <Compile Include="ManyToManyAttribute.cs" />
+    <Compile Include="Labels\IParsesLabelNames.cs" />
+    <Compile Include="Labels\IGetsLabels.cs" />
+    <Compile Include="Labels\ICreatesLabel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
@@ -151,6 +156,7 @@
     <Folder Include="Validation\" />
     <Folder Include="Projects\" />
     <Folder Include="Sprints\" />
+    <Folder Include="Labels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

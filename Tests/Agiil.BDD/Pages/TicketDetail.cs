@@ -25,6 +25,9 @@ namespace Agiil.BDD.Pages
     public static ILocatorBasedTarget SprintTitle
       => new ClassName("TicketSprintName", "the ticket's sprint title");
 
+    public static ILocatorBasedTarget LabelNames
+      => new CssSelector("ul.ticket_labels li .name", "the label names");
+
     public static ILocatorBasedTarget CommentBodies
       => new CssSelector("ol.comment_list .comment_content", "the comment texts");
 

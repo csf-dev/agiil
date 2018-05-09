@@ -17,6 +17,8 @@ namespace Agiil.BDD.Pages
 
     public static ILocatorBasedTarget DescriptionInputBox => new ElementId("Description", "the ticket description");
 
+    public static ILocatorBasedTarget TicketLabelsInputBox => new ElementId("Labels", "the ticket labels");
+
     public static ILocatorBasedTarget SubmitButton => new ElementId("SubmitButton", "the submit button");
 
     public static ILocatorBasedTarget SubmissionFailedErrorMessage

@@ -9,6 +9,8 @@ namespace Agiil.BDD.Tasks.Tickets
 
     public static IPerformable DescriptionTo(string description) => new ChangeTheTicketDescription(description);
 
+    public static IPerformable LabelsTo(string newLabels) => new ChangeTheTicketLabels(newLabels);
+
     public static IPerformable SprintTo(string sprintTitle) => new ChangeTheTicketSprint(sprintTitle);
 
     public static IPerformable TypeTo(string type) => new ChangeTheTicketType(type);

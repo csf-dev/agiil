@@ -60,6 +60,14 @@ namespace Agiil.BDD.Bindings.Tickets
       When(theActor).AttemptsTo<SubmitTheEditedTicket>();
     }
 
+    [When(@"(?:he|she|they) changes? the ticket labels to read '([^']+)' and clicks? submit")]
+    public void WhenTheyChangeTheLabelsAndSubmit(string labels)
+    {
+      var theActor = stage.GetTheActorInTheSpotlight();
+      When(theActor).AttemptsTo(ChangeTheTicket.LabelsTo(labels));
+      When(theActor).AttemptsTo<SubmitTheEditedTicket>();
+    }
+
     public TicketEditingSteps(ICast cast, IStage stage)
     {
       if(stage == null)

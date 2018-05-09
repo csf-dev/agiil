@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using CSF.Reflection;
 
-namespace Agiil.Data
+namespace Agiil.Data.MappingProviders
 {
   public class LowercaseWithUnderscoreDbNameFormatter : IDbNameFormatter
   {
@@ -13,7 +15,9 @@ namespace Agiil.Data
       IdentitySuffix = "Id",
       ConstraintPrefix = "Fk",
       ConstraintJoiner = "Has",
-      IndexPrefix = "Idx";
+      IndexPrefix = "Idx",
+      UniqueJoiner = "Unique",
+      ManyToManyJoiner = "To";
 
     static readonly Regex
       FirstUppercaseLetterMatcher = new Regex(FirstUppercaseLetterPattern, RegexOptions.Compiled),
@@ -22,6 +26,11 @@ namespace Agiil.Data
     public string GetTableName(Type entityType)
     {
       return GetDatabaseName(entityType?.Name);
+    }
+
+    public string GetManyToManyTableName(Type primaryEntityType, Type secondaryEntityType)
+    {
+      return GetDatabaseName(String.Concat(primaryEntityType?.Name, ManyToManyJoiner, secondaryEntityType?.Name));
     }
 
     public string GetIdentityColumnName(Type entityType)
@@ -43,6 +52,14 @@ namespace Agiil.Data
     {
       return GetDatabaseName(String.Concat(IndexPrefix, entityType?.Name, referencedType?.Name, IdentitySuffix));
     }
+
+    public string GetUniqueIndexName(Type entityType, MemberInfo member)
+    {
+      return GetDatabaseName(String.Concat(IndexPrefix, UniqueJoiner, entityType?.Name, member?.Name));
+    }
+
+    public string GetUniqueIndexName<TEntity>(Expression<Func<TEntity,object>> memberExpression)
+      => GetUniqueIndexName(typeof(TEntity), Reflect.Member(memberExpression));
 
     public string GetForeignKeyConstraintName(Type parent, Type child)
     {
