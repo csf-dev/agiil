@@ -145,6 +145,7 @@
     <Compile Include="Data\IRestoresDatabaseBackup.cs" />
     <Compile Include="Labels\Label.cs" />
     <Compile Include="ManyToManyAttribute.cs" />
+    <Compile Include="Labels\IParsesLabelNames.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

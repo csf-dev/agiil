@@ -96,6 +96,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprints\SprintListerTests.cs" />
     <Compile Include="Data\DatabaseBackupFilenameFormatterTests.cs" />
+    <Compile Include="Labels\LabelNameParserTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
@@ -120,6 +121,7 @@
     <Folder Include="Tickets\" />
     <Folder Include="Sprints\" />
     <Folder Include="Data\" />
+    <Folder Include="Labels\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

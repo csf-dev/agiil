@@ -131,6 +131,8 @@
     <Compile Include="Data\DataDirectoryConfigurationSection.cs" />
     <Compile Include="Data\DatabaseBackupFilenameFormatter.cs" />
     <Compile Include="Data\DatabaseBackupFinder.cs" />
+    <Compile Include="Labels\LabelNameParser.cs" />
+    <Compile Include="WhitespaceNormaliser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
@@ -150,6 +152,7 @@
     <Folder Include="Validation\" />
     <Folder Include="Projects\" />
     <Folder Include="Sprints\" />
+    <Folder Include="Labels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
