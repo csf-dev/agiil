@@ -9,7 +9,11 @@
       content="Fake meta element which will be replaced with a version-info comment"
       tal:define="versionComment here/ApplicationVersion/ComponentVersionHtmlComment | nothing"
       tal:replace="structure versionComment">
-<base href="../../" tal:attributes="href string:/" />
+<base href="../../"
+      tal:define="appUri here/BaseUri/Uri | nothing;
+                  fallbackUri string:/;
+                  uri appUri | fallbackUri"
+      tal:attributes="href uri" />
 <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
 <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i%7CSource+Code+Pro:400,700" rel="stylesheet" />
 <style metal:define-slot="standard_styles">

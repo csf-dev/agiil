@@ -4,7 +4,11 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <title>Agiil</title>
-<base href="/" />
+<base href="../../"
+      tal:define="appUri here/BaseUri/Uri | nothing;
+                  fallbackUri string:/;
+                  uri appUri | fallbackUri"
+      tal:attributes="href uri" />
 </head>
 <body metal:define-slot="body_element">
 Page content here
