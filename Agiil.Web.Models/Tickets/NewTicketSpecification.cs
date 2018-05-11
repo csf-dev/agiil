@@ -11,6 +11,8 @@ namespace Agiil.Web.Models.Tickets
 
     public string Description { get; set; }
 
+    public string CommaSeparatedLabelNames { get; set; }
+
     public IIdentity<Sprint> SprintIdentity { get; set; }
 
     public IIdentity<TicketType> TicketTypeIdentity { get; set; }
