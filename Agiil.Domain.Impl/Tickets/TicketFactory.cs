@@ -2,9 +2,12 @@
 using System.Linq;
 using Agiil.Domain;
 using Agiil.Domain.Auth;
+using Agiil.Domain.Labels;
 using Agiil.Domain.Projects;
+using Agiil.Domain.Sprints;
 using Agiil.Domain.Tickets;
 using CSF.Data.Entities;
+using CSF.Entities;
 
 namespace Agiil.Domain.Tickets
 {
@@ -14,6 +17,7 @@ namespace Agiil.Domain.Tickets
     readonly IEnvironment environment;
     readonly ICurrentProjectGetter projectGetter;
     readonly ICurrentUserReader userReader;
+    readonly IGetsLabels labelProvider;
 
     [Obsolete("Instead, use an overload which takes a CreateTicketRequest")]
     public Ticket CreateTicketForCurrentUser(string title, string description, TicketType type)
@@ -38,31 +42,47 @@ namespace Agiil.Domain.Tickets
     public Ticket CreateTicket(CreateTicketRequest request, User creator)
     {
       var project = projectGetter.GetCurrentProject();
-
-      var type = data.Theorise(request.TicketTypeIdentity);
+      var ticketType = data.Theorise(request.TicketTypeIdentity);
+      var timestamp = environment.GetCurrentUtcTimestamp();
+      var ticketNumber = (project != null)? project.NextAvailableTicketNumber++ : default(long);
 
       var ticket = new Ticket
       {
         Title = request.Title,
         Description = request.Description,
         User = creator,
-        CreationTimestamp = environment.GetCurrentUtcTimestamp(),
+        CreationTimestamp = timestamp,
         Project = project,
-        TicketNumber = (project != null)? project.NextAvailableTicketNumber++ : default(long),
-        Type = type,
+        TicketNumber = ticketNumber,
+        Type = ticketType,
       };
 
-      if(request.SprintIdentity != null)
-        ticket.Sprint = data.Theorise(request.SprintIdentity);
+      PopulateSprint(ticket, request.SprintIdentity);
+      PopulateLabels(ticket, request.CommaSeparatedLabelNames);
 
       return ticket;
+    }
+
+    void PopulateSprint(Ticket ticket, IIdentity<Sprint> sprintIdentity)
+    {
+      if(sprintIdentity != null)
+        ticket.Sprint = data.Theorise(sprintIdentity);
+    }
+
+    void PopulateLabels(Ticket ticket, string commaSeparatedLabelNames)
+    {
+      var labels = labelProvider.GetLabels(commaSeparatedLabelNames);
+      ticket.Labels.UnionWith(labels);
     }
 
     public TicketFactory(IEnvironment environment,
                          ICurrentProjectGetter projectGetter,
                          ICurrentUserReader userReader,
-                         IEntityData data)
+                         IEntityData data,
+                         IGetsLabels labelProvider)
     {
+      if(labelProvider == null)
+        throw new ArgumentNullException(nameof(labelProvider));
       if(data == null)
         throw new ArgumentNullException(nameof(data));
       if(userReader == null)
@@ -76,6 +96,7 @@ namespace Agiil.Domain.Tickets
       this.userReader = userReader;
       this.environment = environment;
       this.projectGetter = projectGetter;
+      this.labelProvider = labelProvider;
     }
   }
 }

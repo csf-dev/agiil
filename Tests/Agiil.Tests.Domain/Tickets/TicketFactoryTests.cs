@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Agiil.Domain;
 using Agiil.Domain.Auth;
+using Agiil.Domain.Labels;
 using Agiil.Domain.Tickets;
 using Agiil.Tests.Attributes;
 using Moq;
@@ -73,6 +76,24 @@ namespace Agiil.Tests.Tickets
 
       // Assert
       Assert.AreEqual(now, result.CreationTimestamp);
+    }
+
+    [Test,AutoMoqData]
+    public void CreateTicket_adds_labels_to_ticket([Frozen] IGetsLabels labelProvider,
+                                                   TicketFactory sut,
+                                                   CreateTicketRequest request,
+                                                   IEnumerable<Label> labels)
+    {
+      // Arrange
+      Mock.Get(labelProvider)
+          .Setup(x => x.GetLabels(request.CommaSeparatedLabelNames))
+          .Returns(labels.ToArray());
+
+      // Act
+      var result = sut.CreateTicketForCurrentUser(request);
+
+      // Assert
+      Assert.That(result.Labels, Is.EquivalentTo(labels));
     }
   }
 }
