@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Linq;
-using Agiil.Domain;
 using Agiil.Domain.Auth;
 using Agiil.Domain.Labels;
 using Agiil.Domain.Projects;
 using Agiil.Domain.Sprints;
-using Agiil.Domain.Tickets;
 using CSF.Data.Entities;
 using CSF.Entities;
 
@@ -18,23 +15,6 @@ namespace Agiil.Domain.Tickets
     readonly ICurrentProjectGetter projectGetter;
     readonly ICurrentUserReader userReader;
     readonly IGetsLabels labelProvider;
-
-    [Obsolete("Instead, use an overload which takes a CreateTicketRequest")]
-    public Ticket CreateTicketForCurrentUser(string title, string description, TicketType type)
-      => CreateTicket(title, description, userReader.RequireCurrentUser(), type);
-
-    [Obsolete("Instead, use an overload which takes a CreateTicketRequest")]
-    public Ticket CreateTicket(string title, string description, User creator, TicketType type)
-    {
-      var request = new CreateTicketRequest {
-        Title = title,
-        Description = description,
-      };
-
-      var ticket = CreateTicket(request, creator);
-      ticket.Type = type;
-      return ticket;
-    }
 
     public Ticket CreateTicketForCurrentUser(CreateTicketRequest request)
       => CreateTicket(request, userReader.RequireCurrentUser());
