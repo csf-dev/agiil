@@ -26,7 +26,7 @@ namespace Agiil.Tests.Tickets
     {
       // Arrange
       Mock.Get(ticketFactory)
-          .Setup(x => x.CreateTicketForCurrentUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TicketType>()))
+          .Setup(x => x.CreateTicketForCurrentUser(request))
           .Returns(ticket);
       Mock.Get(repo).Setup(x => x.Add(ticket));
 
@@ -46,7 +46,7 @@ namespace Agiil.Tests.Tickets
     {
       // Arrange
       Mock.Get(ticketFactory)
-          .Setup(x => x.CreateTicketForCurrentUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TicketType>()))
+          .Setup(x => x.CreateTicketForCurrentUser(request))
           .Returns(ticket);
 
       // Act
@@ -54,7 +54,7 @@ namespace Agiil.Tests.Tickets
 
       // Assert
       Mock.Get(ticketFactory)
-          .Verify(x => x.CreateTicketForCurrentUser(request.Title, request.Description, It.IsAny<TicketType>()), Times.Once());
+          .Verify(x => x.CreateTicketForCurrentUser(request), Times.Once());
     }
 
     [Test, AutoMoqData]
@@ -67,7 +67,7 @@ namespace Agiil.Tests.Tickets
     {
       // Arrange
       Mock.Get(ticketFactory)
-          .Setup(x => x.CreateTicketForCurrentUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TicketType>()))
+          .Setup(x => x.CreateTicketForCurrentUser(request))
           .Returns(ticket);
       Mock.Get(responseFactory)
           .Setup(x => x.GetResponse(It.IsAny<IValidationResult>()))
