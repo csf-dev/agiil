@@ -382,6 +382,7 @@
     <Compile Include="ModelBinders\IdentityJsonConverter.cs" />
     <Compile Include="Services\Auth\RedirectUriParser.cs" />
     <Compile Include="Controllers\DatabaseBackupController.cs" />
+    <Compile Include="Services\BaseUriModelPopulator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
