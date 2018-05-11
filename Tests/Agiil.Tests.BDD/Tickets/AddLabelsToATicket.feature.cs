@@ -79,16 +79,16 @@ namespace Agiil.Tests.Tickets
         public virtual void YoussefCanAddTwoNewLabelsToATicket()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can add two new labels to a ticket", ((string[])(null)));
-#line 9
+#line 8
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
-#line 10
+#line 9
   testRunner.Given("Youssef has navigated to the ticket with the title \'Sample ticket 1\' and opened i" +
                     "t for editing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 11
+#line 10
    testRunner.When("he changes the ticket labels to read \'Label one, label two\' and clicks submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 12
+#line 11
    testRunner.Then("he navigates to the ticket with the title \'Sample ticket 1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -97,7 +97,7 @@ this.FeatureBackground();
                         "label one"});
             table1.AddRow(new string[] {
                         "label two"});
-#line 13
+#line 12
     testRunner.And("he should see that the ticket has the labels", ((string)(null)), table1, "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -108,17 +108,17 @@ this.FeatureBackground();
         public virtual void YoussefCanAddANewLabelAndAnExistingLabelToATicket()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can add a new label and an existing label to a ticket", ((string[])(null)));
-#line 18
+#line 17
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
-#line 19
+#line 18
   testRunner.Given("Youssef has navigated to the ticket with the title \'Sample ticket 1\' and opened i" +
                     "t for editing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 20
+#line 19
    testRunner.When("he changes the ticket labels to read \'Existing Label,label two\' and clicks submit" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 21
+#line 20
    testRunner.Then("he navigates to the ticket with the title \'Sample ticket 1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -127,8 +127,44 @@ this.FeatureBackground();
                         "existing label"});
             table2.AddRow(new string[] {
                         "label two"});
-#line 22
+#line 21
     testRunner.And("he should see that the ticket has the labels", ((string)(null)), table2, "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Youssef can add labels to a ticket as it is being created")]
+        public virtual void YoussefCanAddLabelsToATicketAsItIsBeingCreated()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Youssef can add labels to a ticket as it is being created", ((string[])(null)));
+#line 26
+this.ScenarioSetup(scenarioInfo);
+#line 5
+this.FeatureBackground();
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Field",
+                        "Value"});
+            table3.AddRow(new string[] {
+                        "Title",
+                        "A new ticket with labels"});
+            table3.AddRow(new string[] {
+                        "Labels",
+                        "Label one , Second label"});
+#line 27
+   testRunner.When("Youssef creates the following ticket using the create ticket page", ((string)(null)), table3, "When ");
+#line 31
+    testRunner.And("he navigates to the ticket with the title \'A new ticket with labels\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Label name"});
+            table4.AddRow(new string[] {
+                        "label one"});
+            table4.AddRow(new string[] {
+                        "second label"});
+#line 32
+   testRunner.Then("he should see that the ticket has the labels", ((string)(null)), table4, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

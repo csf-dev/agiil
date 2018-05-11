@@ -9,6 +9,12 @@ namespace Agiil.BDD.Models.Tickets
 
     public string Description { get; set; }
 
+    /// <summary>
+    /// A comma-separated list of labels.
+    /// </summary>
+    /// <value>The labels.</value>
+    public string Labels { get; set; }
+
     public string Sprint { get; set; }
 
     public string Type { get; set; }
@@ -27,6 +33,9 @@ namespace Agiil.BDD.Models.Tickets
 
       if(!String.IsNullOrEmpty(Type))
         components.Add($"Type: {Type}");
+
+      if(!String.IsNullOrEmpty(Labels))
+        components.Add($"Labels: {Labels}");
 
       return $"[{String.Join(", ", components)}]";
     }

@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Agiil.Domain;
 using Agiil.Domain.Auth;
+using Agiil.Domain.Labels;
 using Agiil.Domain.Tickets;
 using Agiil.Tests.Attributes;
 using Moq;
@@ -14,54 +17,46 @@ namespace Agiil.Tests.Tickets
   {
     [Test,AutoMoqData]
     public void CreateTicket_creates_ticket_with_requested_title(TicketFactory sut,
-                                                                 string title,
-                                                                 string description,
-                                                                 User user,
-                                                                 TicketType type)
+                                                                 CreateTicketRequest request,
+                                                                 User user)
     {
       // Act
-      var result = sut.CreateTicket(title, description, user, type);
+      var result = sut.CreateTicket(request, user);
 
       // Assert
-      Assert.AreEqual(title, result.Title);
+      Assert.That(result.Title, Is.EqualTo(request.Title));
     }
 
     [Test,AutoMoqData]
     public void CreateTicket_creates_ticket_with_requested_description(TicketFactory sut,
-                                                                       string title,
-                                                                       string description,
-                                                                       User user,
-                                                                       TicketType type)
+                                                                       CreateTicketRequest request,
+                                                                       User user)
     {
       // Act
-      var result = sut.CreateTicket(title, description, user, type);
+      var result = sut.CreateTicket(request, user);
 
       // Assert
-      Assert.AreEqual(description, result.Description);
+      Assert.That(result.Description, Is.EqualTo(request.Description));
     }
 
     [Test,AutoMoqData]
     public void CreateTicket_creates_ticket_with_requested_user(TicketFactory sut,
-                                                                string title,
-                                                                string description,
-                                                                User user,
-                                                                TicketType type)
+                                                                CreateTicketRequest request,
+                                                                User user)
     {
       // Act
-      var result = sut.CreateTicket(title, description, user, type);
+      var result = sut.CreateTicket(request, user);
 
       // Assert
-      Assert.AreSame(user, result.User);
+      Assert.That(result.User, Is.SameAs(user));
     }
 
     [Test,AutoMoqData]
     public void CreateTicket_marks_ticket_with_current_utc_timestamp([Frozen] IEnvironment environment,
                                                                      DateTime now,
                                                                      TicketFactory sut,
-                                                                     string title,
-                                                                     string description,
-                                                                     User user,
-                                                                     TicketType type)
+                                                                     CreateTicketRequest request,
+                                                                     User user)
     {
       // Arrange
       Mock.Get(environment)
@@ -69,10 +64,29 @@ namespace Agiil.Tests.Tickets
           .Returns(now);
 
       // Act
-      var result = sut.CreateTicket(title, description, user, type);
+      var result = sut.CreateTicket(request, user);
 
       // Assert
-      Assert.AreEqual(now, result.CreationTimestamp);
+      Assert.That(result.CreationTimestamp, Is.EqualTo(now));
+    }
+
+    [Test,AutoMoqData]
+    public void CreateTicket_adds_labels_to_ticket([Frozen] IGetsLabels labelProvider,
+                                                   TicketFactory sut,
+                                                   CreateTicketRequest request,
+                                                   User user,
+                                                   IEnumerable<Label> labels)
+    {
+      // Arrange
+      Mock.Get(labelProvider)
+          .Setup(x => x.GetLabels(request.CommaSeparatedLabelNames))
+          .Returns(labels.ToArray());
+
+      // Act
+      var result = sut.CreateTicket(request, user);
+
+      // Assert
+      Assert.That(result.Labels, Is.EquivalentTo(labels));
     }
   }
 }

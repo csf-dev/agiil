@@ -23,6 +23,9 @@ namespace Agiil.BDD.Tasks.Tickets
       if(!String.IsNullOrEmpty(details.Description))
         actor.Perform(Enter.TheText(details.Description).Into(CreateNewTicket.TicketDescription));
 
+      if(!String.IsNullOrEmpty(details.Labels))
+        actor.Perform(Enter.TheText(details.Labels).Into(CreateNewTicket.TicketLabels));
+
       if(!String.IsNullOrEmpty(details.Sprint))
         actor.Perform(Select.Item(details.Sprint).From(CreateNewTicket.TicketSprint));
 
