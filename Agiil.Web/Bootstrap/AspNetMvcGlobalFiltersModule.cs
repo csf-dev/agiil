@@ -35,6 +35,11 @@ namespace Agiil.Web.Bootstrap
         .Register(c => new VersionInfoModelPopulator(c.Resolve<Domain.IProvidesVersionInformation>()))
         .AsActionFilterFor<Controller>()
         .InstancePerRequest();
+
+      builder
+        .Register(c => new BaseUriModelPopulator(c.Resolve<Domain.IProvidesApplicationBaseUri>()))
+        .AsActionFilterFor<Controller>()
+        .InstancePerRequest();
     }
   }
 }
