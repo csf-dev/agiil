@@ -1,17 +1,16 @@
 ﻿using System;
-using static CSF.Screenplay.StepComposer;
+using System.Collections.Generic;
+using System.Linq;
+using Agiil.BDD.Models.Sprints;
+using Agiil.BDD.Pages;
+using Agiil.BDD.Personas;
+using Agiil.BDD.Tasks.Sprints;
+using CSF.Screenplay;
+using CSF.Screenplay.Selenium.Builders;
+using FluentAssertions;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using CSF.Screenplay.Actors;
-using CSF.Screenplay.Selenium.Builders;
-using Agiil.BDD.Pages;
-using System.Linq;
-using FluentAssertions;
-using Agiil.BDD.Tasks.Sprints;
-using Agiil.BDD.Models.Sprints;
-using System.Collections.Generic;
-using Agiil.BDD.Personas;
-using CSF.Screenplay;
+using static CSF.Screenplay.StepComposer;
 
 namespace Agiil.BDD.Bindings.Sprints
 {
@@ -151,6 +150,13 @@ namespace Agiil.BDD.Bindings.Sprints
     
       var theActor = stage.GetTheActorInTheSpotlight();
       Then(theActor).Should(VerifyThatTheSprintDetailsMatch.TheExpectations(expectedDetails));
+    }
+
+    [Then(@"(?:he|she|they) should see that the sprint description contains the word ""([^""]+)"" in bold text")]
+    public void ThenTheyShouldSeeThatTheSprintDescriptionIncludesABoldWord(string expectedBoldText)
+    {
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).Should(AssertThatTheSprintDescriptionHasBoldText.WithTheText(expectedBoldText));
     }
 
     public SprintViewingSteps(ICast cast, IStage stage, ScenarioContext context)
