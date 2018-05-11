@@ -9,7 +9,7 @@ namespace Agiil.ObjectMaps.Sprints
 {
   public class SprintToSprintDetailDtoProfile : Profile
   {
-    public SprintToSprintDetailDtoProfile()
+    public SprintToSprintDetailDtoProfile(MarkdownToHtmlResolver markdownResolver)
     {
       CreateMap<Sprint,SprintDetailDto>()
         .ForMember(x => x.Id, opts => opts.ResolveUsing<IdentityValueResolver>())
@@ -17,6 +17,7 @@ namespace Agiil.ObjectMaps.Sprints
         .ForMember(x => x.ProjectCode, opts => opts.ResolveUsing(x => x.Project?.Code))
         .ForMember(x => x.OpenTickets, opts => opts.ResolveUsing(x => x.Tickets.Where(t => !t.Closed)))
         .ForMember(x => x.ClosedTickets, opts => opts.ResolveUsing(x => x.Tickets.Where(t => t.Closed)))
+        .ForMember(x => x.HtmlDescription, o => o.ResolveUsing(markdownResolver, m => m.Description))
         ;
     }
   }
