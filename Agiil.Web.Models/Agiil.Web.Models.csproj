@@ -95,6 +95,8 @@
     <Compile Include="Shared\IHasApplicationVersion.cs" />
     <Compile Include="Shared\ApplicationVersionInfo.cs" />
     <Compile Include="Labels\LabelDto.cs" />
+    <Compile Include="Shared\BaseUriModel.cs" />
+    <Compile Include="Shared\IHasBaseUri.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
