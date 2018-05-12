@@ -9,7 +9,7 @@ namespace Agiil.BDD.Pages
 
     public override IUriProvider GetUriProvider() => new AppUri("Labels");
 
-    public static ILocatorBasedTarget TheLabelList => new CssSelector("#LabelList", "the label list");
+    public static ILocatorBasedTarget TheLabelList => new ElementId("LabelList", "the label list");
 
     public static ILocatorBasedTarget LabelItems => new CssSelector("#LabelList li", "labels");
 
