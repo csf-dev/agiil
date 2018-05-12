@@ -29,7 +29,10 @@ start_webserver()
 run_the_tests()
 {
   echo "Running integration tests ..."
-  mono "$NUNIT_PATH" --labels=All "$WEB_TESTS_PATH"
+  mono "$NUNIT_PATH" \
+    --labels=All \
+    --result="Tests/Temp/TestResult.bdd-tests.xml" \
+    "$WEB_TESTS_PATH"
   test_outcome=$?
 }
 
