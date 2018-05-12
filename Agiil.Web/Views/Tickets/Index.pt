@@ -27,10 +27,10 @@
     </colgroup>
     <thead>
       <tr>
-        <th>#</th>
-        <th>Title</th>
-        <th>Created by</th>
-        <th>Date</th>
+        <th class="TicketReference">#</th>
+        <th class="TicketTitle">Title</th>
+        <th class="TicketCreator">Created by</th>
+        <th class="TicketTimestamp">Date</th>
       </tr>
     </thead>
     <tbody>
