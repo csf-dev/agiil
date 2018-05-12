@@ -95,6 +95,7 @@
     <Compile Include="Tickets\TicketTypeToTicketTypeDtoProfile.cs" />
     <Compile Include="Tickets\LabelToLabelDtoProfile.cs" />
     <Compile Include="Labels\ListedLabelToListedLabelDtoProfile.cs" />
+    <Compile Include="Labels\LabelToLabelDetailDtoProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

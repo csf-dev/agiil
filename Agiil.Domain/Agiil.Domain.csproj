@@ -150,6 +150,7 @@
     <Compile Include="Labels\ICreatesLabel.cs" />
     <Compile Include="Labels\IGetsListOfLabels.cs" />
     <Compile Include="Labels\ListedLabel.cs" />
+    <Compile Include="Labels\IGetsExistingLabel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

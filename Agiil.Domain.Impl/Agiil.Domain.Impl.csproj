@@ -143,6 +143,7 @@
     <Compile Include="Tickets\IsOpen.cs" />
     <Compile Include="Tickets\IsClosed.cs" />
     <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="Labels\ExistingLabelReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
