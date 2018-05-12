@@ -139,6 +139,10 @@
     <Compile Include="Labels\LabelProviderBase.cs" />
     <Compile Include="Labels\NewLabelProvider.cs" />
     <Compile Include="Labels\LabelNameInSpecification.cs" />
+    <Compile Include="Labels\LabelLister.cs" />
+    <Compile Include="Tickets\IsOpen.cs" />
+    <Compile Include="Tickets\IsClosed.cs" />
+    <Compile Include="EnumerableExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

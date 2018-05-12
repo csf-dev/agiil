@@ -148,6 +148,8 @@
     <Compile Include="Labels\IParsesLabelNames.cs" />
     <Compile Include="Labels\IGetsLabels.cs" />
     <Compile Include="Labels\ICreatesLabel.cs" />
+    <Compile Include="Labels\IGetsListOfLabels.cs" />
+    <Compile Include="Labels\ListedLabel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
