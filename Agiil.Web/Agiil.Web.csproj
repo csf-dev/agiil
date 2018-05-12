@@ -404,6 +404,7 @@
     <Content Include="Content\Scss\SprintList.scss" />
     <Content Include="Content\Scss\_RichDescriptions.scss" />
     <Content Include="Content\Scss\EditComment.scss" />
+    <Content Include="Content\Scss\_ScreenMediaQueries.scss" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Home\Index.pt" />

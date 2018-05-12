@@ -1,9 +1,17 @@
 ﻿@import '_AppWideVariables';
+@import '_ScreenMediaQueries';
 
 table.ticket_list {
   border: 1px solid $subtle-keyline-color;
   border-collapse: collapse;
-  
+  width: 100%;
+
+  th {
+    text-align: left;
+  }
+  th.TicketReference {
+    text-align: center;
+  }
   td, th {
     padding: 0.2em 0.4em;
     border-bottom: 1px solid $faint-keyline-color;
@@ -14,4 +22,25 @@ table.ticket_list {
   th {
     font-weight: bold;
   }
+  @media #{$desktop-media} {
+    col.reference {
+      width: 5em;
+    }
+    col.created_by, col.created_date {
+      width: 8em;
+    }
+  }
+  @media #{$tablet-or-smaller-media} {
+    td.TicketCreator, td.TicketTimestamp,
+    th.TicketCreator, th.TicketTimestamp {
+      display: none;
+    }
+    td.TicketReference {
+      font-size: 80%;
+    }
+    col.reference {
+      width: 3em;
+    }
+  }
 }
+
