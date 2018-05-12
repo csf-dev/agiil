@@ -1,0 +1,7 @@
+﻿$min-desktop-width: 768px;
+$min-tablet-width: 425px;
+
+$desktop-media: "screen and (min-width: #{$min-desktop-width + 1})";
+$tablet-media: "screen and (max-width: #{$min-desktop-width}) and (min-width: #{$min-tablet-width + 1})";
+$mobile-media: "screen and (max-width: #{$min-tablet-width})";
+$tablet-or-smaller-media: "#{$tablet-media}, #{$mobile-media}";
