@@ -46,7 +46,10 @@
     <h2 tal:condition="ticket/HasLabels">Labels</h2>
     <ul class="ticket_labels" tal:condition="ticket/HasLabels">
       <li tal:repeat="label ticket/Labels">
-        <span class="name" tal:content="label/Name">Label name</span>
+        <a href="Label/Index/label+name"
+           tal:define="encodedName label/UrlEncodedName;
+                       url string:Label/Index/$encodedName"
+           tal:attributes="href url"><span class="name" tal:content="label/Name">Label name</span></a>
       </li>
     </ul>
     <form class="open_close_ticket"
