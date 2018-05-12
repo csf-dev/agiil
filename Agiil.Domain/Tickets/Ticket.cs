@@ -62,8 +62,14 @@ namespace Agiil.Domain.Tickets
       comments.AfterRemove += (sender, e) => e.Item.Ticket = null;
 
       labels = new EventRaisingSetWrapper<Label>(new HashSet<Label>());
-      labels.AfterAdd += (sender, e) => e.Item.Tickets.Add(this);
-      labels.AfterRemove += (sender, e) => e.Item.Tickets.Remove(this);
+      labels.AfterAdd += (sender, e) => {
+        if(!e.Item.Tickets.Contains(this))
+          e.Item.Tickets.Add(this);
+      };
+      labels.AfterRemove += (sender, e) => {
+        if(e.Item.Tickets.Contains(this))
+          e.Item.Tickets.Remove(this);
+      };
     }
   }
 }
