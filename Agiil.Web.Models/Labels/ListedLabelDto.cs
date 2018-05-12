@@ -1,10 +1,8 @@
 ﻿using System;
 namespace Agiil.Web.Models.Labels
 {
-  public class ListedLabelDto
+  public class ListedLabelDto : LabelDto
   {
-    public string Name { get; set; }
-
     public int CountOfOpenTickets { get; set; }
 
     public int CountOfClosedTickets { get; set; }
