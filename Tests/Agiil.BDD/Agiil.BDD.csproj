@@ -235,6 +235,13 @@
     <Compile Include="Pages\AnyPage.cs" />
     <Compile Include="Tasks\Tickets\ChangeTheTicketLabels.cs" />
     <Compile Include="Tasks\Sprints\AssertThatTheSprintDescriptionHasBoldText.cs" />
+    <Compile Include="Bindings\Labels\ListingLabelsSteps.cs" />
+    <Compile Include="Pages\LabelList.cs" />
+    <Compile Include="Models\Labels\LabelNames.cs" />
+    <Compile Include="Bindings\TableExtensions.cs" />
+    <Compile Include="Models\Labels\LabelInfo.cs" />
+    <Compile Include="Tasks\Labels\TheTicketCount.cs" />
+    <Compile Include="Models\Labels\MissingLabelException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -264,6 +271,9 @@
     <Folder Include="Tasks\Markdown\" />
     <Folder Include="Bindings\Actors\" />
     <Folder Include="ServiceEndpoints\" />
+    <Folder Include="Bindings\Labels\" />
+    <Folder Include="Models\Labels\" />
+    <Folder Include="Tasks\Labels\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj">

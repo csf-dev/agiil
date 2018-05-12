@@ -36,7 +36,7 @@ table.ticket_list {
       display: none;
     }
     td.TicketReference {
-      font-size: 80%;
+      font-size: $smaller-text-size;
     }
     col.reference {
       width: 3em;

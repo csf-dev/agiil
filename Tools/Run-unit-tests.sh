@@ -7,6 +7,8 @@ WEB_TESTS="Agiil.Tests.BDD.dll"
 TEST_SUPPORT="Agiil.Tests.Common.dll"
 
 test_assemblies=$(find ./Tests/ -type f -path "*/bin/Debug/*" -name "$TEST_PATTERN" \! -name "$WEB_TESTS" \! -name "$TEST_SUPPORT" )
-mono "$NUNIT_PATH" $test_assemblies
+mono "$NUNIT_PATH" \
+  --result="Tests/Temp/TestResult.unit-tests.xml" \
+  $test_assemblies
 
 exit "$?"

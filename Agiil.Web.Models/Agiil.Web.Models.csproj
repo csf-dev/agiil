@@ -97,6 +97,8 @@
     <Compile Include="Labels\LabelDto.cs" />
     <Compile Include="Shared\BaseUriModel.cs" />
     <Compile Include="Shared\IHasBaseUri.cs" />
+    <Compile Include="Labels\ListedLabelDto.cs" />
+    <Compile Include="Labels\ListOfLabelsModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

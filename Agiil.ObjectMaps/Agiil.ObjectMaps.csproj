@@ -94,6 +94,7 @@
     <Compile Include="Resolvers\MarkdownToHtmlResolver.cs" />
     <Compile Include="Tickets\TicketTypeToTicketTypeDtoProfile.cs" />
     <Compile Include="Tickets\LabelToLabelDtoProfile.cs" />
+    <Compile Include="Labels\ListedLabelToListedLabelDtoProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -102,6 +103,7 @@
     <Folder Include="Tickets\" />
     <Folder Include="Sprints\" />
     <Folder Include="Resolvers\" />
+    <Folder Include="Labels\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

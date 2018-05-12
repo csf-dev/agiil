@@ -14,8 +14,15 @@ namespace Agiil.BDD.Bindings.Tickets
   [Binding]
   public class TicketEditingSteps
   {
-    readonly ICast cast;
     readonly IStage stage;
+
+    [Given(@"(?:he|she|they) (?:has|have) set the ticket labels to read '([^']+)' and submitted")]
+    public void GivenTheyHaveSetTheTicketLabelsAndSubmitted(string labelNames)
+    {
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Given(theActor).WasAbleTo(ChangeTheTicket.LabelsTo(labelNames));
+      Given(theActor).WasAbleTo<SubmitTheEditedTicket>();
+    }
 
     [When(@"(?:he|she|they) changes? the ticket title to '([^']*)' and clicks? submit")]
     public void WhenTheyChangeTheTicketTitleAndSubmits(string ticketTitle)
@@ -68,14 +75,11 @@ namespace Agiil.BDD.Bindings.Tickets
       When(theActor).AttemptsTo<SubmitTheEditedTicket>();
     }
 
-    public TicketEditingSteps(ICast cast, IStage stage)
+    public TicketEditingSteps(IStage stage)
     {
       if(stage == null)
         throw new ArgumentNullException(nameof(stage));
-      if(cast == null)
-        throw new ArgumentNullException(nameof(cast));
 
-      this.cast = cast;
       this.stage = stage;
     }
   }

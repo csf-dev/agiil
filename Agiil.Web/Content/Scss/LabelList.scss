@@ -1,0 +1,14 @@
+﻿@import '_AppWideVariables';
+
+#LabelList {
+  padding-left: 1.6em;
+  list-style: outside disc;
+  
+  .Name {
+    font-weight: bold;
+  }
+  
+  small {
+    @include subtle_text;
+  }
+}

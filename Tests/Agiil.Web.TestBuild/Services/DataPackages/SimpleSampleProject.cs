@@ -37,14 +37,14 @@ namespace Agiil.Web.Services.DataPackages
         var ticket1 = CreateTicketOne(sprint1, youssef, enhancement);
         var ticket2 = CreateTicketTwo(sprint1, youssef, enhancement);
         var ticket3 = CreateTicketThree(sprint1, youssef, enhancement);
-        var ticket4 = CreateTicketFour(sprint1, youssef, bug);
+        var ticket4 = CreateClosedTicketFour(sprint1, youssef, bug);
 
         var comment1 = CreateCommentOne(ticket1, youssef);
         var comment2 = CreateCommentTwo(ticket2, admin);
         var comment3 = CreateCommentThree(ticket2, admin);
         var comment4 = CreateCommentFour(ticket2, admin);
 
-        CreateExistingLabelOne();
+        CreateExistingLabelOne(ticket2, ticket3, ticket4);
 
         tran.Commit();
       }
@@ -173,7 +173,7 @@ namespace Agiil.Web.Services.DataPackages
       return ticket;
     }
 
-    Ticket CreateTicketFour(Sprint sprint, User user, TicketType type)
+    Ticket CreateClosedTicketFour(Sprint sprint, User user, TicketType type)
     {
       var ticket = new Ticket
       {
@@ -262,9 +262,10 @@ namespace Agiil.Web.Services.DataPackages
       return comment;
     }
 
-    Label CreateExistingLabelOne()
+    Label CreateExistingLabelOne(params Ticket[] tickets)
     {
       var label = new Label { Name = "existing label one" };
+      label.Tickets.UnionWith(tickets);
 
       repo.Add(label);
 

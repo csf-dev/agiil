@@ -321,6 +321,7 @@
     <Folder Include="Views\Sprint\" />
     <Folder Include="Services\Logging\" />
     <Folder Include="Views\DatabaseBackup\" />
+    <Folder Include="Views\Labels\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -383,6 +384,7 @@
     <Compile Include="Services\Auth\RedirectUriParser.cs" />
     <Compile Include="Controllers\DatabaseBackupController.cs" />
     <Compile Include="Services\BaseUriModelPopulator.cs" />
+    <Compile Include="Controllers\LabelsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -405,6 +407,7 @@
     <Content Include="Content\Scss\_RichDescriptions.scss" />
     <Content Include="Content\Scss\EditComment.scss" />
     <Content Include="Content\Scss\_ScreenMediaQueries.scss" />
+    <Content Include="Content\Scss\LabelList.scss" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Home\Index.pt" />
@@ -433,6 +436,7 @@
     <None Include="Views\Shared\Controls\TicketTypeChooser.pt" />
     <None Include="Views\Shared\StandardFooter.pt" />
     <None Include="Views\DatabaseBackup\Index.pt" />
+    <None Include="Views\Labels\Index.pt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.template.config">

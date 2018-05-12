@@ -71,10 +71,7 @@ namespace Agiil.BDD.Bindings.Tickets
     [Then(@"(?:he|she|they) should see that the ticket has the labels")]
     public void ThenTheyShouldSeeThatTheTicketHasTheLabels(Table expectedLabelsTable)
     {
-      var expectedLabelNames = expectedLabelsTable
-        .Rows
-        .Select(x => x.Values.Single())
-        .ToArray();
+      var expectedLabelNames = expectedLabelsTable.ToListOfStrings();
 
       var theActor = stage.GetTheActorInTheSpotlight();
       Then(theActor).ShouldSee(TheText.OfAll(TicketDetail.LabelNames))
