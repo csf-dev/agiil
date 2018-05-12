@@ -34,11 +34,10 @@ matrix:
       - WebDriver_Platform="Windows 7"
       - WebDriver_BrowserName="Internet Explorer"
       - WebDriver_BrowserVersion="9.0"
-# TODO: #AG66 - Reinstate testing in Edge once problems are fixed
-#     - env:
-#       - WebDriver_Platform="Windows 10"
-#       - WebDriver_BrowserName="MicrosoftEdge"
-#       - WebDriver_BrowserVersion="16.16299"
+    - env:
+      - WebDriver_Platform="Windows 10"
+      - WebDriver_BrowserName="MicrosoftEdge"
+      - WebDriver_BrowserVersion="16.16299"
     - env:
       - WebDriver_Platform="OS X 10.11"
       - WebDriver_BrowserName="Safari"
