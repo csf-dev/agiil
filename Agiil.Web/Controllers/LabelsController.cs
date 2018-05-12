@@ -14,6 +14,7 @@ namespace Agiil.Web.Controllers
     readonly IGetsListOfLabels labelLister;
     readonly IMapper mapper;
 
+    [HttpGet]
     public ActionResult Index()
     {
       var labels = labelLister.GetAllLabels();

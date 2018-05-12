@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<head>
+<title metal:fill-slot="title_element"
+       tal:define="label here/Label;
+                   name label/Name;
+                   title string:Label: $name"
+       tal:content="title">Label: my funky label</title>
+<base href="../../" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+</style>
+</head>
+<body>
+<section metal:fill-slot="page_content"
+         class="page_content label_detail"
+         tal:define="label here/Label">
+  <header>
+    <h1>
+      Label:
+      <span tal:content="label/Name" class="LabelName">my funky label<span>
+    </h1>
+  </header>
+  <section class="contained_tickets">
+    <h2>Tickets</h2>
+    <p><strong tal:content="label/Name">This label</strong> contains the following tickets</p>
+    <h3>Open tickets</h3>
+    <ul class="open_tickets">
+      <li tal:repeat="ticket label/OpenTickets">
+        <a href="Ticket/Index/0"
+           tal:define="url string:Ticket/Index/${ticket/Id}"
+           tal:attributes="href url"
+           class="ticket">
+          <span class="ticket_reference" tal:content="ticket/Reference">AB12</span>
+          -
+          <span tal:content="ticket/Title" class="title">Sample ticket title</span>
+        </a>
+      </li>
+    </ul>
+    <h3>Closed tickets</h3>
+    <ul class="closed_tickets">
+      <li tal:repeat="ticket label/ClosedTickets">
+        <a href="Ticket/Index/0"
+           tal:define="url string:Ticket/Index/${ticket/Id}"
+           tal:attributes="href url"
+           class="ticket">
+          <span class="ticket_reference" tal:content="ticket/Reference">AB12</span>
+          -
+          <span tal:content="ticket/Title" class="title">Sample ticket title</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+</section>
+</body>
+</html>

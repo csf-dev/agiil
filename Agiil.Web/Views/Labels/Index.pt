@@ -24,7 +24,10 @@
     </p>
     <ol id="LabelList" tal:define="labels here/Labels">
       <li tal:repeat="label labels">
-        <span class="Name" tal:content="label/Name">my label name</span>
+        <a href="Label/Index/label+name"
+           tal:define="encodedName label/UrlEncodedName;
+                       url string:Label/Index/$encodedName"
+           tal:attributes="href url"><span class="Name" tal:content="label/Name">my label name</span></a>
         <small class="ticket_counts">
           (<span class="OpenTickets" tal:content="label/CountOfOpenTickets">2</span> open tickets,
           <span class="ClosedTickets" tal:content="label/CountOfClosedTickets">5</span> closed tickets)

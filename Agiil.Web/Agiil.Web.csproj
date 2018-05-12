@@ -322,6 +322,7 @@
     <Folder Include="Services\Logging\" />
     <Folder Include="Views\DatabaseBackup\" />
     <Folder Include="Views\Labels\" />
+    <Folder Include="Views\Label\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -385,6 +386,7 @@
     <Compile Include="Controllers\DatabaseBackupController.cs" />
     <Compile Include="Services\BaseUriModelPopulator.cs" />
     <Compile Include="Controllers\LabelsController.cs" />
+    <Compile Include="Controllers\LabelController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -437,6 +439,7 @@
     <None Include="Views\Shared\StandardFooter.pt" />
     <None Include="Views\DatabaseBackup\Index.pt" />
     <None Include="Views\Labels\Index.pt" />
+    <None Include="Views\Label\Index.pt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.template.config">
