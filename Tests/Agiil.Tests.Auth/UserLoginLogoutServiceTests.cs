@@ -91,7 +91,7 @@ namespace Agiil.Tests.Auth
       sut.LogUserOut();
 
       // Assert
-      Mock.Get(authManager).Verify(x => x.SignOut(), Times.Once());
+      Mock.Get(authManager).Verify(x => x.SignOut("ApplicationCookie"), Times.Once());
     }
   }
 }
