@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using Agiil.Domain;
 using Agiil.Web.Models.Shared;
 
-namespace Agiil.Web.Services
+namespace Agiil.Web.ActionFilters
 {
   public class VersionInfoModelPopulator : IActionFilter
   {
