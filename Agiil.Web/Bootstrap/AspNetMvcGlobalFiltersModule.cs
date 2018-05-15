@@ -12,6 +12,7 @@ namespace Agiil.Web.Bootstrap
       typeof(LoginStateModelPopulator),
       typeof(VersionInfoModelPopulator),
       typeof(BaseUriModelPopulator),
+      typeof(AspNetSessionWorkaroundActivator),
     };
 
     protected override void Load(ContainerBuilder builder)
