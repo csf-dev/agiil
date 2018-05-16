@@ -23,7 +23,7 @@ namespace Agiil.Web
 
     static Global()
     {
-      logger = log4net.LogManager.GetLogger(typeof(Global));
+      logger = LogManager.GetLogger(typeof(Global));
     }
   }
 }
