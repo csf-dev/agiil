@@ -11,6 +11,7 @@ namespace Agiil.Web
 
     protected void Application_Start()
     {
+      logger.Info($"The Agiil {nameof(HttpApplication)} is starting up");
       AreaRegistration.RegisterAllAreas();
     }
 
