@@ -18,7 +18,7 @@ namespace Agiil.Web
     protected void Application_Error(Object sender, EventArgs e)
     {
       var ex = Server.GetLastError();
-      logger.Error("Unhandled exception in MVC action", ex);
+      logger.Error("Unhandled exception", ex);
     }
 
     static Global()
