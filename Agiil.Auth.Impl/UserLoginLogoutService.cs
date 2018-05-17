@@ -26,7 +26,7 @@ namespace Agiil.Auth
 
     public void LogUserOut()
     {
-      authenticationManager.SignOut();
+      authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
     }
 
     public UserLoginLogoutService(IAuthenticationManager authenticationManager,
