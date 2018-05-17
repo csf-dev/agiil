@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Web.Mvc;
 using Agiil.Web.Models.Shared;
-using Agiil.Web.Services;
+using Agiil.Web.Services.Auth;
 
-namespace Agiil.Web.Services
+namespace Agiil.Web.ActionFilters
 {
   public class LoginStateModelPopulator : IActionFilter
   {

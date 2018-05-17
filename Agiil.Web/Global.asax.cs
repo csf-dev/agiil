@@ -11,18 +11,19 @@ namespace Agiil.Web
 
     protected void Application_Start()
     {
+      logger.Info($"The Agiil {nameof(HttpApplication)} is starting up");
       AreaRegistration.RegisterAllAreas();
     }
 
     protected void Application_Error(Object sender, EventArgs e)
     {
       var ex = Server.GetLastError();
-      logger.Error("Unhandled exception in MVC action", ex);
+      logger.Error("Unhandled exception", ex);
     }
 
     static Global()
     {
-      logger = log4net.LogManager.GetLogger(typeof(Global));
+      logger = LogManager.GetLogger(typeof(Global));
     }
   }
 }

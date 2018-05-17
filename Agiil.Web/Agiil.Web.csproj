@@ -319,10 +319,11 @@
     <Folder Include="Views\NewSprint\" />
     <Folder Include="Views\Sprints\" />
     <Folder Include="Views\Sprint\" />
-    <Folder Include="Services\Logging\" />
     <Folder Include="Views\DatabaseBackup\" />
     <Folder Include="Views\Labels\" />
     <Folder Include="Views\Label\" />
+    <Folder Include="ActionFilters\" />
+    <Folder Include="ApiActionFilters\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -370,23 +371,23 @@
     <Compile Include="Bootstrap\AspNetWebApiModule.cs" />
     <Compile Include="Bootstrap\DataModule.cs" />
     <Compile Include="App_Start\ContainerFactoryProviderExtensions.cs" />
-    <Compile Include="Services\Logging\LogUnexpectedErrorsAttribute.cs" />
     <Compile Include="TempDataDictionaryExtensions.cs" />
     <Compile Include="ControllerExtensions.cs" />
-    <Compile Include="Services\LoginStateReader.cs" />
-    <Compile Include="Services\LoginStateModelPopulator.cs" />
     <Compile Include="Bootstrap\AspNetMvcGlobalFiltersModule.cs" />
     <Compile Include="Services\VersionInfoProvider.cs" />
-    <Compile Include="Services\VersionInfoModelPopulator.cs" />
     <Compile Include="Services\ApplicationBaseUriProvider.cs" />
     <Compile Include="Services\Auth\RedirectionUriValidator.cs" />
     <Compile Include="Services\Auth\IValidatesRedirectUrls.cs" />
     <Compile Include="ModelBinders\IdentityJsonConverter.cs" />
     <Compile Include="Services\Auth\RedirectUriParser.cs" />
     <Compile Include="Controllers\DatabaseBackupController.cs" />
-    <Compile Include="Services\BaseUriModelPopulator.cs" />
     <Compile Include="Controllers\LabelsController.cs" />
     <Compile Include="Controllers\LabelController.cs" />
+    <Compile Include="ActionFilters\BaseUriModelPopulator.cs" />
+    <Compile Include="ActionFilters\LoginStateModelPopulator.cs" />
+    <Compile Include="ActionFilters\VersionInfoModelPopulator.cs" />
+    <Compile Include="ApiActionFilters\LogUnexpectedErrorsAttribute.cs" />
+    <Compile Include="Services\Auth\LoginStateReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

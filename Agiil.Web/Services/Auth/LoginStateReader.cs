@@ -2,7 +2,7 @@
 using Agiil.Domain.Auth;
 using Agiil.Web.Models.Shared;
 
-namespace Agiil.Web.Services
+namespace Agiil.Web.Services.Auth
 {
   public class LoginStateReader
   {

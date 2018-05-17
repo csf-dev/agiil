@@ -39,8 +39,8 @@ namespace Agiil.BDD.Bindings.Tickets
       Then(theActor).Should(Wait.Until(EditTicket.SubmissionFailedErrorMessage).IsVisible());
 
       Then(theActor).ShouldSee(TheText.Of(EditTicket.SubmissionFailedErrorMessage))
-                   .Should()
-                   .Be("The ticket has not been edited.", because: "The error message should be visible");
+                    .Should()
+                    .Contain("The ticket has not been edited.", because: "The error message should be visible");
     }
 
     [When(@"(?:he|she|they) changes? the ticket description to '([^']*)' and clicks? submit")]

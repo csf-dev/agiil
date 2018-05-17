@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.Http;
-using Agiil.Web.Services.Logging;
+using Agiil.Web.ApiActionFilters;
 
 namespace Agiil.Web.App_Start
 {

@@ -2,7 +2,7 @@
 using System.Web.Http.Filters;
 using log4net;
 
-namespace Agiil.Web.Services.Logging
+namespace Agiil.Web.ApiActionFilters
 {
   public class LogUnexpectedErrorsAttribute : ExceptionFilterAttribute
   {
