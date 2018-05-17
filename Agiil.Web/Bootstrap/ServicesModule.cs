@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.Web.Services;
+using Agiil.Web.Services.Auth;
 using Autofac;
 
 namespace Agiil.Web.Bootstrap
