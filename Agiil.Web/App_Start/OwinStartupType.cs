@@ -120,8 +120,6 @@ namespace Agiil.Web.App_Start
       });
 
       builder.UseAesDataProtectorProvider();
-
-      builder.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
     }
 
     void ConfigureBearerTokenAuthentication(IAppBuilder builder, IContainer container)
