@@ -28,6 +28,9 @@ namespace Agiil.Web.App_Start
   {
     public void Configuration(IAppBuilder app)
     {
+      var logger = log4net.LogManager.GetLogger(typeof(OwinStartupType));
+      logger.Info($"The Agiil OWIN application is starting up");
+
       var config = new HttpConfiguration();
 
       var container = ConfigureDependencyInjection(app, config);
