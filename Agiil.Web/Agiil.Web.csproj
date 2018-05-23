@@ -325,6 +325,7 @@
     <Folder Include="ActionFilters\" />
     <Folder Include="ApiActionFilters\" />
     <Folder Include="Views\MissingDependencies\" />
+    <Folder Include="Services\Data\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -391,6 +392,8 @@
     <Compile Include="Services\Auth\LoginStateReader.cs" />
     <Compile Include="ActionFilters\TestApplicationDependencies.cs" />
     <Compile Include="Controllers\MissingDependenciesController.cs" />
+    <Compile Include="Services\Data\IGetsDatabaseMaintenanceSecurity.cs" />
+    <Compile Include="Services\Data\AppSettingsDatabaseMaintenanceSecurityProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
