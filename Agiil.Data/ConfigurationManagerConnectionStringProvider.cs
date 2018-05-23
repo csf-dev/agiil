@@ -8,14 +8,16 @@ namespace Agiil.Data
     readonly IDatabaseConfiguration dbConfig;
 
     public string GetConnectionString()
-    {
-      return GetConnectionString(dbConfig.GetConnectionStringName());
-    }
+      => GetConnectionString(dbConfig.GetConnectionStringName());
 
     public string GetConnectionString(string name)
-    {
-      return ConfigurationManager.ConnectionStrings[name]?.ConnectionString;
-    }
+      => GetConnectionStringSettings(name)?.ConnectionString;
+
+    public ConnectionStringSettings GetConnectionStringSettings()
+      => GetConnectionStringSettings(dbConfig.GetConnectionStringName());
+
+    public ConnectionStringSettings GetConnectionStringSettings(string name)
+      => ConfigurationManager.ConnectionStrings[name];
 
     public ConfigurationManagerConnectionStringProvider(IDatabaseConfiguration dbConfig)
     {
