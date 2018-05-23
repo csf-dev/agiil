@@ -389,6 +389,7 @@
     <Compile Include="ActionFilters\VersionInfoModelPopulator.cs" />
     <Compile Include="ApiActionFilters\LogUnexpectedErrorsAttribute.cs" />
     <Compile Include="Services\Auth\LoginStateReader.cs" />
+    <Compile Include="ActionFilters\TestApplicationDependencies.cs" />
     <Compile Include="Controllers\MissingDependenciesController.cs" />
   </ItemGroup>
   <ItemGroup>
