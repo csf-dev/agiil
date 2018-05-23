@@ -151,6 +151,8 @@
     <Compile Include="Labels\IGetsListOfLabels.cs" />
     <Compile Include="Labels\ListedLabel.cs" />
     <Compile Include="Labels\IGetsExistingLabel.cs" />
+    <Compile Include="Data\ITestsApplicationDependencies.cs" />
+    <Compile Include="Data\AppDependencyTestResult.cs" />
     <Compile Include="Data\ITestsThatDatabaseIsWorking.cs" />
   </ItemGroup>
   <ItemGroup>

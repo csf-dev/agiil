@@ -83,6 +83,9 @@
     <Reference Include="CSF.Validation">
       <HintPath>..\packages\CSF.Validation.1.0.2\lib\net45\CSF.Validation.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -144,6 +147,7 @@
     <Compile Include="Tickets\IsClosed.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="Labels\ExistingLabelReader.cs" />
+    <Compile Include="Data\ApplicationDependencyTester.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
