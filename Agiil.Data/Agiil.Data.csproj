@@ -95,6 +95,9 @@
     <Reference Include="CSF.Entities">
       <HintPath>..\packages\CSF.Entities.1.2.1\lib\net45\CSF.Entities.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Configuration.Data">
+      <HintPath>..\packages\CSF.Configuration.Data.1.0.1\lib\net45\CSF.Configuration.Data.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,6 +146,7 @@
     <Compile Include="MappingProviders\IDbNameFormatter.cs" />
     <Compile Include="MappingProviders\LowercaseWithUnderscoreDbNameFormatter.cs" />
     <Compile Include="ClassMappings\LabelMapping.cs" />
+    <Compile Include="Sqlite\SqliteDatabaseTester.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ConventionMappings\" />
