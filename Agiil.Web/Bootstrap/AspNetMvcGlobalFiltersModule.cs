@@ -9,6 +9,7 @@ namespace Agiil.Web.Bootstrap
   public class AspNetMvcGlobalFiltersModule : Module
   {
     static readonly Type[] GlobalActionFilterTypes = new [] {
+      typeof(TestApplicationDependencies),
       typeof(LoginStateModelPopulator),
       typeof(VersionInfoModelPopulator),
       typeof(BaseUriModelPopulator),
