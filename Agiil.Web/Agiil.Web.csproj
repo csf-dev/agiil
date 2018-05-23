@@ -324,6 +324,7 @@
     <Folder Include="Views\Label\" />
     <Folder Include="ActionFilters\" />
     <Folder Include="ApiActionFilters\" />
+    <Folder Include="Views\MissingDependencies\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -388,6 +389,7 @@
     <Compile Include="ActionFilters\VersionInfoModelPopulator.cs" />
     <Compile Include="ApiActionFilters\LogUnexpectedErrorsAttribute.cs" />
     <Compile Include="Services\Auth\LoginStateReader.cs" />
+    <Compile Include="Controllers\MissingDependenciesController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -441,6 +443,8 @@
     <None Include="Views\DatabaseBackup\Index.pt" />
     <None Include="Views\Labels\Index.pt" />
     <None Include="Views\Label\Index.pt" />
+    <None Include="Views\MissingDependencies\RequireMaintenance.pt" />
+    <None Include="Views\MissingDependencies\Unusable.pt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.template.config">
