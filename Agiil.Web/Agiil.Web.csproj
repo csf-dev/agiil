@@ -481,6 +481,12 @@
   <Target Name="MoveWebConfigToCorrectLocation" AfterTargets="ScApplyTransforms">
     <Copy SourceFiles="$(OutDir)\Web.config" DestinationFiles="Web.config" />
   </Target>
+  <Target Name="MarkGeneratedCssAsContent" BeforeTargets="DeployWebApp">
+    <ItemGroup>
+      <Content Include="Content\Css\*.css" />
+      <Content Include="Content\Css\*.css.map" />
+    </ItemGroup>
+  </Target>
   <Target Name="DeployWebApp" AfterTargets="MoveWebConfigToCorrectLocation">
     <CallTarget Targets="CopyWebAppToStagingDir" />
   </Target>
