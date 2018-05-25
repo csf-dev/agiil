@@ -478,6 +478,9 @@
   <Target Name="MoveWebConfigToCorrectLocation" AfterTargets="ScApplyTransforms">
     <Copy SourceFiles="$(OutDir)\Web.config" DestinationFiles="Web.config" />
   </Target>
+  <Target Name="DeployWebApp" AfterTargets="MoveWebConfigToCorrectLocation">
+    <CallTarget Targets="CopyWebAppToStagingDir" />
+  </Target>
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>

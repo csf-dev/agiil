@@ -12,6 +12,9 @@
     <TasksConfig Condition="'$(Configuration)' != 'Release'">Debug</TasksConfig>
     <TasksConfig Condition="'$(Configuration)' == 'Release'">Release</TasksConfig>
     <TasksAssemblyPath>bin\$(TasksConfig)\Agiil.Build.Tasks.dll</TasksAssemblyPath>
+    
+    <DeploymentRoot Condition="'$(DeploymentRoot)' == ''">$(MSBuildThisFileDirectory)\..\..\Output</DeploymentRoot>
+    <WebAppStagingDir>$(DeploymentRoot)\Web apps\$(MSBuildProjectName)</WebAppStagingDir>
   </PropertyGroup>
 	
   <Target Name="CopyWebApplicationTestingLogic">
@@ -19,6 +22,26 @@
       <WebAppTestingLogic Include="..\..\Tests\Agiil.Web.TestBuild\bin\Debug\*" />
     </ItemGroup>
     <Copy SourceFiles="@(WebAppTestingLogic)" DestinationFolder="..\..\Agiil.Web\bin" />
+  </Target>
+  
+  <Target Name="CopyWebAppToStagingDir">
+    <!-- The "bin" directory -->
+    <MakeDir Directories="$(WebAppStagingDir)\bin"/>
+    <Copy SourceFiles="@(IntermediateAssembly)"
+          DestinationFolder="$(WebAppStagingDir)\bin"
+          SkipUnchangedFiles="true"/>
+    
+    <!-- Satellite resource assemblies: "*.resources" -->
+    <Copy SourceFiles = "@(IntermediateSatelliteAssemblies)"
+          DestinationFiles = "@(IntermediateSatelliteAssemblies->'$(WebAppStagingDir)\bin\%(Culture)\$(AssemblyName).resources.dll')"
+          Condition = "'@(IntermediateSatelliteAssemblies)' != ''"
+          SkipUnchangedFiles="true" />
+
+    <!-- Referenced assemblies -->
+    <Copy SourceFiles="@(ReferenceCopyLocalPaths)" DestinationFolder="$(WebAppStagingDir)\bin" SkipUnchangedFiles="true" />
+
+    <!-- Any other files marked as "Content" -->
+    <Copy SourceFiles="@(Content)" DestinationFolder="$(WebAppStagingDir)\%(Content.RelativeDir)" />
   </Target>
 	
 </Project>
