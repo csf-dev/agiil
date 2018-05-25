@@ -401,6 +401,7 @@
       <Visible>False</Visible>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Temp/.placeholder" />
     <None Include="Content\Css\*.css" />
     <None Include="packages.config" />
     <None Include="Content\Scss\**\*.scss" />
