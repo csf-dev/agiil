@@ -521,7 +521,7 @@
     <Exec Command="node $(SassNodePath) $(SassInputDir) --output $(SassOutputDir) --source-map true" WorkingDirectory="$(MSBuildThisFileDirectory)" />
   </Target>
   <Target Name="MoveWebConfigToCorrectLocation" AfterTargets="ScApplyTransforms">
-    <Move SourceFiles="bin\Web.config" DestinationFiles="Web.config" />
+    <Copy SourceFiles="$(OutDir)\Web.config" DestinationFiles="Web.config" />
   </Target>
   <ProjectExtensions>
     <MonoDevelop>
