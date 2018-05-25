@@ -12,6 +12,8 @@
     <TasksConfig Condition="'$(Configuration)' != 'Release'">Debug</TasksConfig>
     <TasksConfig Condition="'$(Configuration)' == 'Release'">Release</TasksConfig>
     <TasksAssemblyPath>bin\$(TasksConfig)\Agiil.Build.Tasks.dll</TasksAssemblyPath>
+
+    <AgiilWebOutputDir>$(MSBuildThisFileDirectory)\..\..\Agiil.Web\bin</AgiilWebOutputDir>
     
     <DeploymentRoot Condition="'$(DeploymentRoot)' == ''">$(MSBuildThisFileDirectory)\..\..\Output</DeploymentRoot>
     <WebAppStagingDir>$(DeploymentRoot)\Web apps\$(MSBuildProjectName)</WebAppStagingDir>
@@ -19,9 +21,9 @@
 	
   <Target Name="CopyWebApplicationTestingLogic">
     <ItemGroup>
-      <WebAppTestingLogic Include="..\..\Tests\Agiil.Web.TestBuild\bin\Debug\*" />
+      <WebAppTestingLogic Include="$(OutputPath)\*" />
     </ItemGroup>
-    <Copy SourceFiles="@(WebAppTestingLogic)" DestinationFolder="..\..\Agiil.Web\bin" />
+    <Copy SourceFiles="@(WebAppTestingLogic)" DestinationFolder="$(AgiilWebOutputDir)" />
   </Target>
   
   <Target Name="CopyWebAppToStagingDir">
