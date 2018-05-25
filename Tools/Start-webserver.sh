@@ -27,7 +27,7 @@ start_webserver()
     --address "$SERVER_ADDR" \
     --port "$SERVER_PORT" \
     --applications "$SERVER_WEB_APP" \
-    --pidfile "../$SERVER_PID" \
+    --pidfile "${original_dir}/${SERVER_PID}" \
     &
   
   cd "$original_dir"
