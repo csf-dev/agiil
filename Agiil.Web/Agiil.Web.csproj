@@ -398,57 +398,12 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="Global.asax" />
-    <Content Include="packages.config" />
-    <Content Include="Content\Scss\_Reset.scss" />
-    <Content Include="Content\Scss\StandardPage.scss" />
-    <Content Include="Content\Scss\_PageHeader.scss" />
-    <Content Include="Content\Scss\_AppWideVariables.scss" />
-    <Content Include="Content\Scss\_ContentStyles.scss" />
-    <Content Include="Content\Scss\_Forms.scss" />
-    <Content Include="Content\Scss\CreateSprint.scss" />
-    <Content Include="Content\Scss\CreateTicket.scss" />
-    <Content Include="Content\Scss\EditSprint.scss" />
-    <Content Include="Content\Scss\EditTicket.scss" />
-    <Content Include="Content\Scss\SprintDetail.scss" />
-    <Content Include="Content\Scss\TicketDetail.scss" />
-    <Content Include="Content\Scss\TicketList.scss" />
-    <Content Include="Content\Scss\SprintList.scss" />
-    <Content Include="Content\Scss\_RichDescriptions.scss" />
-    <Content Include="Content\Scss\EditComment.scss" />
-    <Content Include="Content\Scss\_ScreenMediaQueries.scss" />
-    <Content Include="Content\Scss\LabelList.scss" />
+    <None Include="Content\Css\*.css" />
+    <None Include="packages.config" />
+    <None Include="Content\Scss\**\*.scss" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Views\Home\Index.pt" />
-    <None Include="Views\Shared\EmptyPage.pt" />
-    <None Include="Views\Login\Index.pt" />
-    <None Include="Views\Login\LoggedOut.pt" />
-    <None Include="Views\Database\Index.pt" />
-    <None Include="Views\NewTicket\Index.pt" />
-    <None Include="Views\Tickets\Index.pt" />
-    <None Include="Views\Ticket\Index.pt" />
-    <None Include="Views\Shared\StandardPage.pt" />
-    <None Include="Views\Shared\StandardHeader.pt" />
-    <None Include="Views\Shared\Controls\HeaderLoginLogout.pt" />
-    <None Include="Views\Shared\Controls\SiteNavigation.pt" />
-    <None Include="Views\Ticket\Edit.pt" />
-    <None Include="Views\Shared\Controls\Comments.pt" />
-    <None Include="Views\Comment\Edit.pt" />
-    <None Include="Views\ChangePassword\Index.pt" />
-    <None Include="Views\ChangePassword\Success.pt" />
-    <None Include="Views\NewSprint\Index.pt" />
-    <None Include="Views\NewSprint\Created.pt" />
-    <None Include="Views\Sprints\Index.pt" />
-    <None Include="Views\Sprint\Index.pt" />
-    <None Include="Views\Shared\Controls\SprintChooser.pt" />
-    <None Include="Views\Sprint\Edit.pt" />
-    <None Include="Views\Shared\Controls\TicketTypeChooser.pt" />
-    <None Include="Views\Shared\StandardFooter.pt" />
-    <None Include="Views\DatabaseBackup\Index.pt" />
-    <None Include="Views\Labels\Index.pt" />
-    <None Include="Views\Label\Index.pt" />
-    <None Include="Views\MissingDependencies\RequireMaintenance.pt" />
-    <None Include="Views\MissingDependencies\Unusable.pt" />
+    <Content Include="Views\**\*.pt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.template.config">
