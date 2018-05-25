@@ -490,6 +490,7 @@
   </Target>
   <Target Name="DeployWebApp" AfterTargets="MoveWebConfigToCorrectLocation">
     <CallTarget Targets="CopyWebAppToStagingDir" />
+    <CallTarget Targets="PackageWebAppAsZipfile" Condition="'$(Configuration)' == 'Release'" />
   </Target>
   <ProjectExtensions>
     <MonoDevelop>
