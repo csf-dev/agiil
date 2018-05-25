@@ -19,3 +19,4 @@ test-artifacts/
 missing_registry_workaround/
 .nuget/
 Agiil.Web/node_modules/*/*
+Output/
