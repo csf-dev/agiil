@@ -104,12 +104,19 @@
     <Reference Include="CSF.Entities">
       <HintPath>..\..\packages\CSF.Entities.1.2.1\lib\net45\CSF.Entities.dll</HintPath>
     </Reference>
+    <Reference Include="Markdig">
+      <HintPath>..\..\packages\Markdig.0.15.0\lib\net40\Markdig.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Services\" />
     <Folder Include="Services\Auth\" />
     <Folder Include="Rendering\" />
+    <Folder Include="Rendering\MarkdownExtensions\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Web\Agiil.Web.csproj">
@@ -157,6 +164,7 @@
     <Compile Include="Services\Auth\RedirectUriParserTests.cs" />
     <Compile Include="Rendering\MarkdownRendererTests.cs" />
     <Compile Include="CachingWebAppContainerFactory.cs" />
+    <Compile Include="Rendering\MarkdownExtensions\TicketReferenceParserTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
