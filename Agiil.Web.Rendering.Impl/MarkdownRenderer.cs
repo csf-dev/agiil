@@ -3,7 +3,7 @@ using CommonMark;
 
 namespace Agiil.Web.Rendering
 {
-  public class CommonMarkMarkdownConverter : IMarkdownConverter
+  public class MarkdownRenderer : IRendersMarkdownToHtml
   {
     public virtual string GetHtml(string markdown)
     {

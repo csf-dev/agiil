@@ -49,9 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IHtmlRenderer.cs" />
-    <Compile Include="IMarkupSanitizer.cs" />
-    <Compile Include="IMarkdownConverter.cs" />
+    <Compile Include="IRendersMarkdownToHtml.cs" />
+    <Compile Include="ISanitizesHtmlMarkup.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

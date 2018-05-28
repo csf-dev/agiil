@@ -3,7 +3,7 @@ using Ganss.XSS;
 
 namespace Agiil.Web.Rendering
 {
-  public class HtmlMarkupSanitizer : IMarkupSanitizer
+  public class HtmlMarkupSanitizer : ISanitizesHtmlMarkup
   {
     readonly IHtmlSanitizer sanitizer;
 

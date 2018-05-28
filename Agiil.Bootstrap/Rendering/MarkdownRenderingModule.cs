@@ -9,24 +9,44 @@ namespace Agiil.Bootstrap.Rendering
 {
   public class MarkdownRenderingModule : NamespaceModule
   {
-    protected override string Namespace => typeof(IHtmlRenderer).Namespace;
+    protected override string Namespace => typeof(IRendersMarkdownToHtml).Namespace;
 
     protected override IEnumerable<Assembly> GetSearchAssemblies()
     {
       return new [] {
-        typeof(IHtmlRenderer).Assembly,
-        typeof(HtmlRenderingService).Assembly,
+        typeof(IRendersMarkdownToHtml).Assembly,
+        typeof(SanitizingMarkdownRendererProxy).Assembly,
       };
     }
 
-    protected override void Load(ContainerBuilder builder)
+    protected override IEnumerable<Type> TypesNotToRegisterAutomatically => new [] {
+      typeof(SanitizingMarkdownRendererProxy),
+      typeof(MarkdownRenderer),
+    };
+
+		protected override void Load(ContainerBuilder builder)
     {
       base.Load(builder);
+
+      RegisterMarkdownRenderers(builder);
 
       builder
         .Register(CreateHtmlSanitizer)
         .AsSelf()
         .As<IHtmlSanitizer>();
+    }
+
+    void RegisterMarkdownRenderers(ContainerBuilder builder)
+    {
+      builder.RegisterType<MarkdownRenderer>();
+      builder.RegisterType<SanitizingMarkdownRendererProxy>();
+      builder.Register(CreateMarkdownRenderer);
+    }
+
+    IRendersMarkdownToHtml CreateMarkdownRenderer(IComponentContext ctx)
+    {
+      var factory = ctx.Resolve<MarkdownRendererFactory>();
+      return factory.GetRenderer();
     }
 
     HtmlSanitizer CreateHtmlSanitizer(IComponentContext ctx)

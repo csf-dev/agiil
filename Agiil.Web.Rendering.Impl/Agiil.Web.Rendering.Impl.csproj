@@ -58,10 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CommonMarkMarkdownConverter.cs" />
+    <Compile Include="MarkdownRenderer.cs" />
     <Compile Include="HtmlMarkupSanitizer.cs" />
-    <Compile Include="HtmlRenderingService.cs" />
+    <Compile Include="SanitizingMarkdownRendererProxy.cs" />
     <Compile Include="HtmlSanitizerFactory.cs" />
+    <Compile Include="MarkdownRendererFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Web.Rendering\Agiil.Web.Rendering.csproj">
