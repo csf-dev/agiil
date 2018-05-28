@@ -326,6 +326,7 @@
     <Folder Include="ApiActionFilters\" />
     <Folder Include="Views\MissingDependencies\" />
     <Folder Include="Services\Data\" />
+    <Folder Include="Services\Rendering\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -394,6 +395,7 @@
     <Compile Include="Controllers\MissingDependenciesController.cs" />
     <Compile Include="Services\Data\IGetsDatabaseMaintenanceSecurity.cs" />
     <Compile Include="Services\Data\AppSettingsDatabaseMaintenanceSecurityProvider.cs" />
+    <Compile Include="Services\Rendering\TicketUriProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -455,6 +457,10 @@
     <ProjectReference Include="..\Agiil.Web.Models\Agiil.Web.Models.csproj">
       <Project>{53F1B62F-1BEE-4732-A1F3-433822529906}</Project>
       <Name>Agiil.Web.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Web.Rendering\Agiil.Web.Rendering.csproj">
+      <Project>{8080A385-823C-44F0-B090-71F52337F04A}</Project>
+      <Name>Agiil.Web.Rendering</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">

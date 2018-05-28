@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using CSF.Data.Entities;
+using CSF.Data.Specifications;
 
 namespace Agiil.Domain.Tickets
 {
@@ -12,15 +13,18 @@ namespace Agiil.Domain.Tickets
     public Ticket GetTicketByReference(string reference)
     {
       var parsed = parser.ParseReferece(reference);
+      return GetTicketByReference(parsed);
+    }
 
-      if(parsed == null)
-        return null;
+    public Ticket GetTicketByReference(TicketReference reference)
+    {
+      if(reference == null) return null;
+
+      var spec = new TicketReferenceSpecification(reference);
 
       return repo
         .Query<Ticket>()
-        .Where(x => x.Project != null
-                    && x.Project.Code == parsed.ProjectCode
-                    && x.TicketNumber == parsed.TicketNumber)
+        .Where(spec)
         .SingleOrDefault();
     }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Projects;
+using Agiil.Domain.Tickets;
 using Agiil.Web.Rendering;
 using Agiil.Web.Rendering.Tickets;
 using Autofac;
@@ -71,8 +72,11 @@ namespace Agiil.Tests.Web.Rendering
     public void GetHtml_should_render_ticket_references_as_a_relative_ticket_link()
     {
       // Arrange
-      var urlprovider = Mock.Of<IGetsTicketUri>(x => x.GetRelativeUri("AB12") == new Uri("Ticket/Detail/11", UriKind.Relative));
-      using(var scope = container.BeginLifetimeScope(b => b.RegisterInstance(urlprovider)))
+      var urlprovider = new Mock<IGetsTicketUri>();
+      urlprovider
+        .Setup(x => x.GetRelativeUri(It.Is<TicketReference>(t => t.ProjectCode == "AB" && t.TicketNumber == 12)))
+        .Returns(() => new Uri("Ticket/Detail/11", UriKind.Relative));
+      using(var scope = container.BeginLifetimeScope(b => b.RegisterInstance(urlprovider.Object)))
       {
         var markdown = "This is some markdown which contains #AB12 a ticket reference.";
         var sut = scope.Resolve<IRendersMarkdownToHtml>();
@@ -81,7 +85,12 @@ namespace Agiil.Tests.Web.Rendering
         var result = sut.GetHtml(markdown).Trim();
 
         // Assert
-        Assert.That(result, Is.EqualTo("<p>This is some markdown which contains <a href=\"Ticket/Detail/11\" class=\"ticket_link\">#AB12</a> a ticket reference.</p>"));
+        Assert.That(result, Does.Contain("<a"), "Link open tag");
+        Assert.That(result, Does.Contain("</a>"), "Link close tag");
+        Assert.That(result, Does.Contain("href=\"Ticket/Detail/11\""), "Link href");
+        Assert.That(result, Does.Contain("title=\"Navigate to #AB12\""), "Link title");
+        Assert.That(result, Does.Contain("class=\"ticket_link\""), "Link class");
+        Assert.That(result, Does.Contain(">#AB12</a>"), "Link content");
       }
     }
 
@@ -91,9 +100,12 @@ namespace Agiil.Tests.Web.Rendering
       // Arrange
       var project = new Project { Code = "AB" };
       var projectGetter = Mock.Of<ICurrentProjectGetter>(x => x.GetCurrentProject() == project);
-      var urlprovider = Mock.Of<IGetsTicketUri>(x => x.GetRelativeUri("AB12") == new Uri("Ticket/Detail/11", UriKind.Relative));
+      var urlprovider = new Mock<IGetsTicketUri>();
+      urlprovider
+        .Setup(x => x.GetRelativeUri(It.Is<TicketReference>(t => t.ProjectCode == null && t.TicketNumber == 12)))
+        .Returns(() => new Uri("Ticket/Detail/11", UriKind.Relative));
       using(var scope = container.BeginLifetimeScope(b => {
-              b.RegisterInstance(urlprovider);
+            b.RegisterInstance(urlprovider.Object);
               b.RegisterInstance(projectGetter);
             }))
       {
@@ -104,7 +116,12 @@ namespace Agiil.Tests.Web.Rendering
         var result = sut.GetHtml(markdown).Trim();
 
         // Assert
-        Assert.That(result, Is.EqualTo("<p>This is some markdown which contains <a href=\"Ticket/Detail/11\" class=\"ticket_link\">#12</a> a naked ticket reference.</p>"));
+        Assert.That(result, Does.Contain("<a"), "Link open tag");
+        Assert.That(result, Does.Contain("</a>"), "Link close tag");
+        Assert.That(result, Does.Contain("href=\"Ticket/Detail/11\""), "Link href");
+        Assert.That(result, Does.Contain("title=\"Navigate to #12\""), "Link title");
+        Assert.That(result, Does.Contain("class=\"ticket_link\""), "Link class");
+        Assert.That(result, Does.Contain(">#12</a>"), "Link content");
       }
     }
   }

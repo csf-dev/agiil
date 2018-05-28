@@ -153,6 +153,7 @@
     <Compile Include="Labels\LabelsModule.cs" />
     <Compile Include="Data\ConventionMappingsModule.cs" />
     <Compile Include="Data\ClassMappingsModule.cs" />
+    <Compile Include="Rendering\MarkdownRenderingExtensionsModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

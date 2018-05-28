@@ -19,5 +19,10 @@ namespace Agiil.Web
     {
       return RouteConfiguration.GetControllerName<TOtherController>();
     }
+
+    internal static string AsControllerName(this Type controllerType)
+    {
+      return RouteConfiguration.GetControllerName(controllerType);
+    }
   }
 }

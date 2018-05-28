@@ -58,6 +58,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="mscorlib" />
     <Reference Include="System.Core" />
+    <Reference Include="CSF.Entities">
+      <HintPath>..\packages\CSF.Entities.1.2.1\lib\net45\CSF.Entities.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,7 +71,11 @@
     <Compile Include="MarkdownRendererFactory.cs" />
     <Compile Include="MarkdigPipelineFactory.cs" />
     <Compile Include="MarkdownExtensionsProvider.cs" />
+    <Compile Include="MarkdownExtensions\AutoTicketLinkExtension.cs" />
+    <Compile Include="MarkdownExtensions\AutoTicketLinkParser.cs" />
     <Compile Include="MarkdownExtensions\TicketReferenceParser.cs" />
+    <Compile Include="MarkdownExtensions\TicketLinkInline.cs" />
+    <Compile Include="MarkdownExtensions\NormalizeAutoTicketLinkRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Web.Rendering\Agiil.Web.Rendering.csproj">
