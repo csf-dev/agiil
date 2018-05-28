@@ -1,4 +1,7 @@
 ﻿using System;
+using Agiil.Domain.Tickets;
+using CSF.Entities;
+
 namespace Agiil.Web.Rendering.Tickets
 {
   /// <summary>
@@ -6,12 +9,12 @@ namespace Agiil.Web.Rendering.Tickets
   /// </summary>
   public interface IGetsTicketUri
   {
-    Uri GetRelativeUri(string ticketReference);
+    Uri GetRelativeUri(TicketReference ticketRef);
 
-    Uri GetRelativeUri(long ticketId);
+    Uri GetRelativeUri(IIdentity<Ticket> ticketIdentity);
 
-    Uri GetAbsoluteUri(string ticketReference);
+    Uri GetAbsoluteUri(TicketReference ticketRef);
 
-    Uri GetAbsoluteUri(long ticketId);
+    Uri GetAbsoluteUri(IIdentity<Ticket> ticketIdentity);
   }
 }
