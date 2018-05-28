@@ -67,6 +67,7 @@
     <Compile Include="HtmlSanitizerFactory.cs" />
     <Compile Include="MarkdownRendererFactory.cs" />
     <Compile Include="MarkdigPipelineFactory.cs" />
+    <Compile Include="MarkdownExtensionsProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Web.Rendering\Agiil.Web.Rendering.csproj">
