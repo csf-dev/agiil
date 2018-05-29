@@ -78,7 +78,7 @@ namespace Agiil.Web.Rendering.MarkdownExtensions
       var ticketReference = referenceParser.GetTicketReference(iterator, out charactersConsumedInReference);
       if(ticketReference == null) return null;
 
-      var ticketUri = ticketUriProvider.Value.GetRelativeUri(ticketReference);
+      var ticketUri = ticketUriProvider.Value.GetAbsoluteUri(ticketReference);
       return ticketUri;
     }
 

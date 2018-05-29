@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web.Mvc;
-using System.Web.Routing;
 using Agiil.Domain;
 using Agiil.Domain.Tickets;
 using Agiil.Web.Controllers;
@@ -28,25 +27,7 @@ namespace Agiil.Web.Services.Rendering
 
       builder.Path = urlHelper.Action(nameof(TicketController.Index),
                                       typeof(TicketController).AsControllerName(),
-                                      new { id = ticketIdentity });
-
-      return builder.Uri;
-    }
-
-    public Uri GetRelativeUri(TicketReference ticketRef)
-    {
-      var ticket = ticketReferenceQuery.GetTicketByReference(ticketRef);
-      return GetRelativeUri(ticket?.GetIdentity());
-    }
-
-    public Uri GetRelativeUri(IIdentity<Ticket> ticketIdentity)
-    {
-      if(ticketIdentity == null) return null;
-      var builder = new UriBuilder();
-
-      builder.Path = urlHelper.Action(nameof(TicketController.Index),
-                                      typeof(TicketController).AsControllerName(),
-                                      new { id = ticketIdentity });
+                                      new { id = ticketIdentity.Value });
 
       return builder.Uri;
     }

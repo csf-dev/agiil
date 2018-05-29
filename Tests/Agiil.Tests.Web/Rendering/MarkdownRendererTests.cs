@@ -74,7 +74,7 @@ namespace Agiil.Tests.Web.Rendering
       // Arrange
       var urlprovider = new Mock<IGetsTicketUri>();
       urlprovider
-        .Setup(x => x.GetRelativeUri(It.Is<TicketReference>(t => t.ProjectCode == "AB" && t.TicketNumber == 12)))
+        .Setup(x => x.GetAbsoluteUri(It.Is<TicketReference>(t => t.ProjectCode == "AB" && t.TicketNumber == 12)))
         .Returns(() => new Uri("Ticket/Detail/11", UriKind.Relative));
       using(var scope = container.BeginLifetimeScope(b => b.RegisterInstance(urlprovider.Object)))
       {
@@ -102,7 +102,7 @@ namespace Agiil.Tests.Web.Rendering
       var projectGetter = Mock.Of<ICurrentProjectGetter>(x => x.GetCurrentProject() == project);
       var urlprovider = new Mock<IGetsTicketUri>();
       urlprovider
-        .Setup(x => x.GetRelativeUri(It.Is<TicketReference>(t => t.ProjectCode == null && t.TicketNumber == 12)))
+        .Setup(x => x.GetAbsoluteUri(It.Is<TicketReference>(t => t.ProjectCode == null && t.TicketNumber == 12)))
         .Returns(() => new Uri("Ticket/Detail/11", UriKind.Relative));
       using(var scope = container.BeginLifetimeScope(b => {
             b.RegisterInstance(urlprovider.Object);
