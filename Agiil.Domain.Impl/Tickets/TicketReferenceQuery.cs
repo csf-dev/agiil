@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Agiil.Domain.Projects;
 using CSF.Data.Entities;
 using CSF.Data.Specifications;
 
@@ -9,6 +10,7 @@ namespace Agiil.Domain.Tickets
   {
     readonly ITicketReferenceParser parser;
     readonly IEntityData repo;
+    readonly ICurrentProjectGetter currentProjectProvider;
 
     public Ticket GetTicketByReference(string reference)
     {
@@ -20,7 +22,8 @@ namespace Agiil.Domain.Tickets
     {
       if(reference == null) return null;
 
-      var spec = new TicketReferenceSpecification(reference);
+      var refWithProjectCode = GetReferenceWithProjectCode(reference);
+      var spec = new TicketReferenceSpecification(refWithProjectCode);
 
       return repo
         .Query<Ticket>()
@@ -28,15 +31,26 @@ namespace Agiil.Domain.Tickets
         .SingleOrDefault();
     }
 
-    public TicketReferenceQuery(ITicketReferenceParser parser,
-                                IEntityData repo)
+    TicketReference GetReferenceWithProjectCode(TicketReference reference)
     {
+      if(!String.IsNullOrEmpty(reference.ProjectCode)) return reference;
+
+      return new TicketReference(currentProjectProvider.GetCurrentProject().Code, reference.TicketNumber);
+    }
+
+    public TicketReferenceQuery(ITicketReferenceParser parser,
+                                IEntityData repo,
+                                ICurrentProjectGetter currentProjectProvider)
+    {
+      if(currentProjectProvider == null)
+        throw new ArgumentNullException(nameof(currentProjectProvider));
       if(repo == null)
         throw new ArgumentNullException(nameof(repo));
       if(parser == null)
         throw new ArgumentNullException(nameof(parser));
 
       this.repo = repo;
+      this.currentProjectProvider = currentProjectProvider;
       this.parser = parser;
     }
   }
