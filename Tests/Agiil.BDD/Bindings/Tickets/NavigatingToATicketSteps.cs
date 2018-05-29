@@ -45,6 +45,13 @@ namespace Agiil.BDD.Bindings.Tickets
       When(theActor).AttemptsTo(OpenTheTicket.Titled(title));
     }
 
+    [When(@"(?:he|she|they) clicks? on the link in the ticket description which has the text '([^']+)'")]
+    public void WhenTheyClickOnTheLinkInTheTicketDescription(string linkText)
+    {
+      var theActor = stage.GetTheActorInTheSpotlight();
+      When(theActor).AttemptsTo(FollowALinkFromTheTicketDescription.WithTheText(linkText));
+    }
+
     [Then("(?:he|she|they) navigates? to the ticket with the title '([^']+)'")]
     public void ThenTheyNavigateToTheTicketWithTheTitle(string title)
     {

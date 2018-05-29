@@ -197,6 +197,9 @@
     <Compile Include="Labels\ViewingLabels.feature.cs">
       <DependentUpon>ViewingLabels.feature</DependentUpon>
     </Compile>
+    <Compile Include="Tickets\AutomaticTicketLinks.feature.cs">
+      <DependentUpon>AutomaticTicketLinks.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -262,6 +265,10 @@
     <None Include="Labels\ViewingLabels.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ViewingLabels.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Tickets\AutomaticTicketLinks.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AutomaticTicketLinks.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
