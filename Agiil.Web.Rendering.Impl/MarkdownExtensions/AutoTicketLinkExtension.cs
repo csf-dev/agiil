@@ -10,15 +10,12 @@ namespace Agiil.Web.Rendering.MarkdownExtensions
 {
   public class AutoTicketLinkExtension : IMarkdownExtension
   {
-    const string TicketLinkClass = "ticket_link";
-
     readonly Func<AutoTicketLinkParser> autoTicketLinkParserCreator;
     readonly Func<NormalizeAutoTicketLinkRenderer> normalizeAutoTicketLinkRendererCreator;
 
     public void Setup(MarkdownPipelineBuilder pipeline)
     {
       AddInlineParser(pipeline);
-      RegisterClassPostProcessor(pipeline);
     }
 
     void AddInlineParser(MarkdownPipelineBuilder pipeline)
@@ -27,29 +24,6 @@ namespace Agiil.Web.Rendering.MarkdownExtensions
 
       var parser = autoTicketLinkParserCreator();
       pipeline.InlineParsers.Insert(0, parser);
-    }
-
-    static void RegisterClassPostProcessor(MarkdownPipelineBuilder pipeline)
-    {
-      // Make sure we don't have a delegate twice
-      pipeline.DocumentProcessed -= PipelineOnDocumentProcessed;
-      pipeline.DocumentProcessed += PipelineOnDocumentProcessed;
-    }
-
-    static void PipelineOnDocumentProcessed(MarkdownDocument document)
-    {
-      var allNodes = document.Descendants();
-      foreach(var node in allNodes)
-        ProcessNode(node);
-    }
-
-    static void ProcessNode(MarkdownObject node)
-    {
-      if(node is TicketLinkInline)
-      {
-        var attribs = node.GetAttributes();
-        attribs.AddClass(TicketLinkClass);
-      }
     }
 
     public void Setup(MarkdownPipeline pipeline, IMarkdownRenderer renderer)

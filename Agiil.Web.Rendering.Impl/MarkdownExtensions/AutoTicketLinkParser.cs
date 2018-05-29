@@ -4,12 +4,15 @@ using Agiil.Domain.Tickets;
 using Agiil.Web.Rendering.Tickets;
 using Markdig.Helpers;
 using Markdig.Parsers;
+using Markdig.Renderers.Html;
 using Markdig.Syntax.Inlines;
 
 namespace Agiil.Web.Rendering.MarkdownExtensions
 {
   public class AutoTicketLinkParser : InlineParser
   {
+    const string TicketLinkClass = "ticket_link";
+
     readonly TicketReferenceParser referenceParser;
     readonly Lazy<IGetsTicketUri> ticketUriProvider;
 
@@ -58,6 +61,7 @@ namespace Agiil.Web.Rendering.MarkdownExtensions
 
       link.Span.End = endPosition;
       link.UrlSpan = link.Span;
+      link.GetAttributes().AddClass(TicketLinkClass);
 
       var linkContent = new LiteralInline
       {
