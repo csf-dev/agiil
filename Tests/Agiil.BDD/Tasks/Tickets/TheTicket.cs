@@ -7,6 +7,8 @@ namespace Agiil.BDD.Tasks.Tickets
   {
     public static IQuestion<string> Description() => new ReadTheTicketDescription();
 
+    public static IQuestion<string> Title() => new ReadTheTicketTitle();
+
     public static IQuestion<string> SprintTitle() => new ReadTheTicketSprintTitle();
   }
 }

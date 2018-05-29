@@ -242,6 +242,8 @@
     <Compile Include="Models\Labels\LabelInfo.cs" />
     <Compile Include="Tasks\Labels\TheTicketCount.cs" />
     <Compile Include="Models\Labels\MissingLabelException.cs" />
+    <Compile Include="Tasks\Tickets\ReadTheTicketTitle.cs" />
+    <Compile Include="Tasks\Tickets\FollowALinkFromTheTicketDescription.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -32,6 +32,15 @@ namespace Agiil.BDD.Bindings.Tickets
                    .Be(description);
     }
 
+    [Then("(?:he|she|they) should see that the ticket title reads '([^']*)'")]
+    public void ThenTheyShouldSeeThatTheTicketTitleIs(string title)
+    {
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).ShouldSee(TheTicket.Title())
+                    .Should()
+                    .Be(title);
+    }
+
     [Then("(?:he|she|they) should see that the ticket is part of the sprint '([^']+)'")]
     public void ThenTheyShouldSeeThatTheTicketIsAPartOfTheSprint(string sprint)
     {

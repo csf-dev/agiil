@@ -148,6 +148,7 @@
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="Labels\ExistingLabelReader.cs" />
     <Compile Include="Data\ApplicationDependencyTester.cs" />
+    <Compile Include="Tickets\TicketReferenceSpecification.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

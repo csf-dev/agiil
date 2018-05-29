@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using Agiil.Domain.Projects;
 using CSF.Data.Entities;
+using CSF.Data.Specifications;
 
 namespace Agiil.Domain.Tickets
 {
@@ -8,31 +10,47 @@ namespace Agiil.Domain.Tickets
   {
     readonly ITicketReferenceParser parser;
     readonly IEntityData repo;
+    readonly ICurrentProjectGetter currentProjectProvider;
 
     public Ticket GetTicketByReference(string reference)
     {
       var parsed = parser.ParseReferece(reference);
+      return GetTicketByReference(parsed);
+    }
 
-      if(parsed == null)
-        return null;
+    public Ticket GetTicketByReference(TicketReference reference)
+    {
+      if(reference == null) return null;
+
+      var refWithProjectCode = GetReferenceWithProjectCode(reference);
+      var spec = new TicketReferenceSpecification(refWithProjectCode);
 
       return repo
         .Query<Ticket>()
-        .Where(x => x.Project != null
-                    && x.Project.Code == parsed.ProjectCode
-                    && x.TicketNumber == parsed.TicketNumber)
+        .Where(spec)
         .SingleOrDefault();
     }
 
-    public TicketReferenceQuery(ITicketReferenceParser parser,
-                                IEntityData repo)
+    TicketReference GetReferenceWithProjectCode(TicketReference reference)
     {
+      if(!String.IsNullOrEmpty(reference.ProjectCode)) return reference;
+
+      return new TicketReference(currentProjectProvider.GetCurrentProject().Code, reference.TicketNumber);
+    }
+
+    public TicketReferenceQuery(ITicketReferenceParser parser,
+                                IEntityData repo,
+                                ICurrentProjectGetter currentProjectProvider)
+    {
+      if(currentProjectProvider == null)
+        throw new ArgumentNullException(nameof(currentProjectProvider));
       if(repo == null)
         throw new ArgumentNullException(nameof(repo));
       if(parser == null)
         throw new ArgumentNullException(nameof(parser));
 
       this.repo = repo;
+      this.currentProjectProvider = currentProjectProvider;
       this.parser = parser;
     }
   }
