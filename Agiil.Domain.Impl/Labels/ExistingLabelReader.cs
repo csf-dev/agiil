@@ -16,6 +16,7 @@ namespace Agiil.Domain.Labels
       return data.Query<Label>()
                  .Where(x => x.Name == name)
                  .FetchMany(x => x.Tickets)
+                 .AsEnumerable()
                  .FirstOrDefault();
     }
 
