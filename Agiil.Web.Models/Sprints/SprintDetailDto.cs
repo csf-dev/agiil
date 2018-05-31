@@ -7,6 +7,7 @@ namespace Agiil.Web.Models.Sprints
   public class SprintDetailDto : SprintDtoBase
   {
     public string Description { get; set; }
+    public string HtmlDescription { get; set; }
 
     public string ProjectName { get; set; }
 

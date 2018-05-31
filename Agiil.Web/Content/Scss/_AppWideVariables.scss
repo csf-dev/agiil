@@ -2,6 +2,8 @@ $proportional-font-stack: Lato, 'DejaVu Sans', Verdana, sans;
 $monospace-font-stack: 'Source Code Pro', 'DejaVu Sans Mono', 'Lucida Console', monospace;
 $subtle-keyline-color: hsla(0, 0%, 85%, 1);
 $faint-keyline-color: hsla(0, 0%, 95%, 1);
+$subtle-text-color: hsla(0, 0%, 50%, 1);
+$smaller-text-size: 80%;
 $paragraph-spacing: 0.4em;
 
 @mixin invisible {
@@ -11,6 +13,11 @@ $paragraph-spacing: 0.4em;
   margin: 0 -1px -1px 0;
   color: transparent;
   background: transparent none;
+}
+
+@mixin subtle_text {
+  color: $subtle-text-color;
+  font-size: $smaller-text-size;
 }
 
 %subtle_box {

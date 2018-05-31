@@ -32,6 +32,15 @@ namespace Agiil.BDD.Bindings.Tickets
                    .Be(description);
     }
 
+    [Then("(?:he|she|they) should see that the ticket title reads '([^']*)'")]
+    public void ThenTheyShouldSeeThatTheTicketTitleIs(string title)
+    {
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).ShouldSee(TheTicket.Title())
+                    .Should()
+                    .Be(title);
+    }
+
     [Then("(?:he|she|they) should see that the ticket is part of the sprint '([^']+)'")]
     public void ThenTheyShouldSeeThatTheTicketIsAPartOfTheSprint(string sprint)
     {
@@ -66,6 +75,17 @@ namespace Agiil.BDD.Bindings.Tickets
       Then(theActor).ShouldSee(TheText.Of(TicketDetail.TicketType))
                    .Should()
                    .Be(type, because: "the type should match");
+    }
+
+    [Then(@"(?:he|she|they) should see that the ticket has the labels")]
+    public void ThenTheyShouldSeeThatTheTicketHasTheLabels(Table expectedLabelsTable)
+    {
+      var expectedLabelNames = expectedLabelsTable.ToListOfStrings();
+
+      var theActor = stage.GetTheActorInTheSpotlight();
+      Then(theActor).ShouldSee(TheText.OfAll(TicketDetail.LabelNames))
+                    .Should()
+                    .Contain(expectedLabelNames);
     }
 
     public ReadATicketSteps(IStage stage)

@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Web.Models</RootNamespace>
     <AssemblyName>Agiil.Web.Models</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>v0.4.0-alpha</ReleaseVersion>
+    <ReleaseVersion>v0.5.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,8 +46,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="CSF.Entities">
-      <HintPath>..\packages\CSF.Entities.1.1.1\lib\net45\CSF.Entities.dll</HintPath>
+      <HintPath>..\packages\CSF.Entities.1.2.1\lib\net45\CSF.Entities.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,15 +95,20 @@
     <Compile Include="Shared\IHasLoginState.cs" />
     <Compile Include="Shared\IHasApplicationVersion.cs" />
     <Compile Include="Shared\ApplicationVersionInfo.cs" />
+    <Compile Include="Labels\LabelDto.cs" />
+    <Compile Include="Shared\BaseUriModel.cs" />
+    <Compile Include="Shared\IHasBaseUri.cs" />
+    <Compile Include="Labels\ListedLabelDto.cs" />
+    <Compile Include="Labels\ListOfLabelsModel.cs" />
+    <Compile Include="Labels\LabelDetailDto.cs" />
+    <Compile Include="Labels\LabelDetailModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
     <Folder Include="Shared\" />
     <Folder Include="Sprints\" />
     <Folder Include="Tickets\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Folder Include="Labels\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
@@ -113,6 +119,9 @@
       <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
       <Name>Agiil.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

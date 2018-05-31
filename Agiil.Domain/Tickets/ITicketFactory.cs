@@ -5,8 +5,8 @@ namespace Agiil.Domain.Tickets
 {
   public interface ITicketFactory
   {
-    Ticket CreateTicketForCurrentUser(string title, string description, TicketType type);
+    Ticket CreateTicketForCurrentUser(CreateTicketRequest request);
 
-    Ticket CreateTicket(string title, string description, User creator, TicketType type);
+    Ticket CreateTicket(CreateTicketRequest request, User creator);
   }
 }

@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Tests.Web</RootNamespace>
     <AssemblyName>Agiil.Tests.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>v0.4.0-alpha</ReleaseVersion>
+    <ReleaseVersion>v0.5.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -98,11 +98,25 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Autofac">
+      <HintPath>..\..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Entities">
+      <HintPath>..\..\packages\CSF.Entities.1.2.1\lib\net45\CSF.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Markdig">
+      <HintPath>..\..\packages\Markdig.0.15.0\lib\net40\Markdig.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Services\" />
     <Folder Include="Services\Auth\" />
+    <Folder Include="Rendering\" />
+    <Folder Include="Rendering\MarkdownExtensions\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Web\Agiil.Web.csproj">
@@ -125,6 +139,18 @@
       <Project>{53F1B62F-1BEE-4732-A1F3-433822529906}</Project>
       <Name>Agiil.Web.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Web.Rendering.Impl\Agiil.Web.Rendering.Impl.csproj">
+      <Project>{02F8FE6A-DB8D-44D0-903A-304E85333F32}</Project>
+      <Name>Agiil.Web.Rendering.Impl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Web.Rendering\Agiil.Web.Rendering.csproj">
+      <Project>{8080A385-823C-44F0-B090-71F52337F04A}</Project>
+      <Name>Agiil.Web.Rendering</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
+      <Project>{79827CF5-CC58-4F87-BBCA-162B5983C563}</Project>
+      <Name>Agiil.Bootstrap</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -136,6 +162,9 @@
     <Compile Include="Services\ApplicationBaseUriProviderTests.cs" />
     <Compile Include="Services\Auth\RedirectionUriValidatorTests.cs" />
     <Compile Include="Services\Auth\RedirectUriParserTests.cs" />
+    <Compile Include="Rendering\MarkdownRendererTests.cs" />
+    <Compile Include="CachingWebAppContainerFactory.cs" />
+    <Compile Include="Rendering\MarkdownExtensions\TicketReferenceParserTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

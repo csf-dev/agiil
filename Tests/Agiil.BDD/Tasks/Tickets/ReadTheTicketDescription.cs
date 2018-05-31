@@ -6,13 +6,13 @@ using CSF.Screenplay.Selenium.Builders;
 
 namespace Agiil.BDD.Tasks.Tickets
 {
-  public class ReadTheTicketDescription : Question<string>
+  public class ReadTheTicketTitle : Question<string>
   {
-    protected override string GetReport(INamed actor) => $"{actor.Name} reads the ticket description";
+    protected override string GetReport(INamed actor) => $"{actor.Name} reads the ticket title";
 
     protected override string PerformAs(IPerformer actor)
     {
-      return actor.Perform(TheText.Of(TicketDetail.DescriptionContent));
+      return actor.Perform(TheText.Of(TicketDetail.TitleContent));
     }
   }
 }

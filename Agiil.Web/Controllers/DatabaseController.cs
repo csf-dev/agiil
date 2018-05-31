@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using Agiil.Domain.Data;
 using Agiil.Web.Models;
+using Agiil.Web.Services.Data;
 
 namespace Agiil.Web.Controllers
 {
+  [AllowAnonymous]
   public class DatabaseController : Controller
   {
     const string TempModelKey = "Reset model";
 
+    readonly IGetsDatabaseMaintenanceSecurity securityProvider;
     readonly Lazy<IResetsDatabase> resetter;
     readonly Lazy<IPerformsDatabaseUpgrades> upgrader;
     readonly Lazy<IGetsDatabaseBackups> backupFinder;
@@ -17,6 +21,9 @@ namespace Agiil.Web.Controllers
     [HttpGet]
     public ActionResult Index()
     {
+      if(!securityProvider.IsDatabaseMaintenancePermitted())
+        return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+
       var model = TempData.TryGet<DatabaseResetModel>(TempModelKey);
       model = model?? GetModel();
       model.DatabaseUpgradesApplied = upgrader.Value.GetAppliedUpgrades().Select(x => x.GetName());
@@ -28,6 +35,9 @@ namespace Agiil.Web.Controllers
     [HttpPost]
     public ActionResult Reset()
     {
+      if(!securityProvider.IsDatabaseMaintenancePermitted())
+        return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+
       TempData.Clear();
       resetter.Value.ResetDatabase();
       var model = GetModel();
@@ -39,6 +49,9 @@ namespace Agiil.Web.Controllers
     [HttpPost]
     public ActionResult Upgrade()
     {
+      if(!securityProvider.IsDatabaseMaintenancePermitted())
+        return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+
       TempData.Clear();
       var result = upgrader.Value.ApplyAllUpgrades();
       var model = GetModel();
@@ -54,8 +67,11 @@ namespace Agiil.Web.Controllers
 
     public DatabaseController(Lazy<IResetsDatabase> resetter,
                               Lazy<IPerformsDatabaseUpgrades> upgrader,
-                              Lazy<IGetsDatabaseBackups> backupFinder)
+                              Lazy<IGetsDatabaseBackups> backupFinder,
+                              IGetsDatabaseMaintenanceSecurity securityProvider)
     {
+      if(securityProvider == null)
+        throw new ArgumentNullException(nameof(securityProvider));
       if(backupFinder == null)
         throw new ArgumentNullException(nameof(backupFinder));
       if(upgrader == null)
@@ -64,6 +80,7 @@ namespace Agiil.Web.Controllers
         throw new ArgumentNullException(nameof(resetter));
 
       this.backupFinder = backupFinder;
+      this.securityProvider = securityProvider;
       this.resetter = resetter;
       this.upgrader = upgrader;
     }

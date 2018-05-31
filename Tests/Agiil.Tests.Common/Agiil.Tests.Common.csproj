@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Tests</RootNamespace>
     <AssemblyName>Agiil.Tests.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>v0.4.0-alpha</ReleaseVersion>
+    <ReleaseVersion>v0.5.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -86,9 +86,6 @@
     <Reference Include="Microsoft.Owin.Security">
       <HintPath>..\..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Security">
-      <HintPath>..\..\packages\CSF.Security.2.0.0\lib\net45\CSF.Security.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -116,33 +113,36 @@
     <Reference Include="System.Web.Mvc">
       <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Entities">
-      <HintPath>..\..\packages\CSF.Entities.1.1.1\lib\net45\CSF.Entities.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Utils">
-      <HintPath>..\..\packages\CSF.Utils.6.0.0\lib\net45\CSF.Utils.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Data">
-      <HintPath>..\..\packages\CSF.Data.1.1.0\lib\net45\CSF.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System.Configuration" />
-    <Reference Include="CSF.Data.NHibernate">
-      <HintPath>..\..\packages\CSF.Data.NHibernate.6.1.1\lib\net45\CSF.Data.NHibernate.dll</HintPath>
-    </Reference>
     <Reference Include="AutoMapper">
       <HintPath>..\..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Data">
+      <HintPath>..\..\packages\CSF.Data.1.2.1\lib\net45\CSF.Data.dll</HintPath>
+    </Reference>
     <Reference Include="CSF.Data.Entities">
-      <HintPath>..\..\packages\CSF.Data.Entities.1.3.0\lib\net45\CSF.Data.Entities.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Data.Entities.1.3.2\lib\net45\CSF.Data.Entities.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Reflection">
-      <HintPath>..\..\packages\CSF.Reflection.1.0.1\lib\net45\CSF.Reflection.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Reflection.1.0.3\lib\net45\CSF.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Utils">
+      <HintPath>..\..\packages\CSF.Utils.6.1.1\lib\net45\CSF.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data.NHibernate">
+      <HintPath>..\..\packages\CSF.Data.NHibernate.6.1.3\lib\net45\CSF.Data.NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Entities">
+      <HintPath>..\..\packages\CSF.Entities.1.2.1\lib\net45\CSF.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Security">
+      <HintPath>..\..\packages\CSF.Security.2.0.2\lib\net45\CSF.Security.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Validation">
-      <HintPath>..\..\packages\CSF.Validation.1.0.0\lib\net45\CSF.Validation.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Validation.1.0.2\lib\net45\CSF.Validation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +166,8 @@
     <Compile Include="CachingDomainContainerFactory.cs" />
     <Compile Include="Attributes\AlwaysPassesAttribute.cs" />
     <Compile Include="Autofixture\AlwaysPassesValidationCustomization.cs" />
+    <Compile Include="Attributes\InMemoryAttribute.cs" />
+    <Compile Include="Autofixture\InMemoryEntityDataCustomization.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">

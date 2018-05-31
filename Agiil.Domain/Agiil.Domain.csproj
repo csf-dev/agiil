@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Domain</RootNamespace>
     <AssemblyName>Agiil.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>v0.4.0-alpha</ReleaseVersion>
+    <ReleaseVersion>v0.5.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,19 +47,19 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="CSF.Collections.EventRaising">
-      <HintPath>..\packages\CSF.Collections.EventRaising.1.0.1\lib\net45\CSF.Collections.EventRaising.dll</HintPath>
+      <HintPath>..\packages\CSF.Collections.EventRaising.1.0.3\lib\net45\CSF.Collections.EventRaising.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Entities">
-      <HintPath>..\packages\CSF.Entities.1.1.1\lib\net45\CSF.Entities.dll</HintPath>
+      <HintPath>..\packages\CSF.Entities.1.2.1\lib\net45\CSF.Entities.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Reflection">
-      <HintPath>..\packages\CSF.Reflection.1.0.1\lib\net45\CSF.Reflection.dll</HintPath>
+      <HintPath>..\packages\CSF.Reflection.1.0.3\lib\net45\CSF.Reflection.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Utils">
-      <HintPath>..\packages\CSF.Utils.6.0.0\lib\net45\CSF.Utils.dll</HintPath>
+      <HintPath>..\packages\CSF.Utils.6.1.1\lib\net45\CSF.Utils.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Validation">
-      <HintPath>..\packages\CSF.Validation.1.0.0\lib\net45\CSF.Validation.dll</HintPath>
+      <HintPath>..\packages\CSF.Validation.1.0.2\lib\net45\CSF.Validation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +143,17 @@
     <Compile Include="Data\IGetsDataDirectory.cs" />
     <Compile Include="Data\IFormatsDatabaseBackupFilenames.cs" />
     <Compile Include="Data\IRestoresDatabaseBackup.cs" />
+    <Compile Include="Labels\Label.cs" />
+    <Compile Include="ManyToManyAttribute.cs" />
+    <Compile Include="Labels\IParsesLabelNames.cs" />
+    <Compile Include="Labels\IGetsLabels.cs" />
+    <Compile Include="Labels\ICreatesLabel.cs" />
+    <Compile Include="Labels\IGetsListOfLabels.cs" />
+    <Compile Include="Labels\ListedLabel.cs" />
+    <Compile Include="Labels\IGetsExistingLabel.cs" />
+    <Compile Include="Data\ITestsApplicationDependencies.cs" />
+    <Compile Include="Data\AppDependencyTestResult.cs" />
+    <Compile Include="Data\ITestsThatDatabaseIsWorking.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
@@ -151,6 +162,7 @@
     <Folder Include="Validation\" />
     <Folder Include="Projects\" />
     <Folder Include="Sprints\" />
+    <Folder Include="Labels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

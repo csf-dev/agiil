@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
 <head>
 <title metal:fill-slot="title_element">Sprint created</title>

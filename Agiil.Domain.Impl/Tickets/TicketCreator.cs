@@ -24,7 +24,7 @@ namespace Agiil.Domain.Tickets
 
       using(var trans = transactionFactory.BeginTransaction())
       {
-        ticket = CreateTicket(request);
+        ticket = ticketFactory.CreateTicketForCurrentUser(request);
         data.Add(ticket);
         trans.Commit();
       }
@@ -36,19 +36,6 @@ namespace Agiil.Domain.Tickets
     {
       var validator = validatorFactory.GetValidator();
       return validator.Validate(request);
-    }
-
-    Ticket CreateTicket(CreateTicketRequest request)
-    {
-      var type = data.Theorise(request.TicketTypeIdentity);
-      var ticket = ticketFactory.CreateTicketForCurrentUser(request.Title,
-                                                            request.Description,
-                                                            type);
-      
-      if(request.SprintIdentity != null)
-        ticket.Sprint = data.Theorise(request.SprintIdentity);
-      
-      return ticket;
     }
 
     public TicketCreator(IEntityData data,

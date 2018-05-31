@@ -36,6 +36,11 @@
       <div class="form_element feedback warning" tal:condition="here/Response/DescriptionIsInvalid | nothing">
         <p>Please enter a valid ticket description.</p>
       </div>
+      <div class="form_element field">
+        <label for="Labels">Labels</label>
+        <input type="text" id="Labels" name="CommaSeparatedLabelNames"
+               tal:attributes="value here/Specification/CommaSeparatedLabelNames | ticket/CommaSeparatedLabelNames | nothing" />
+      </div>
       <div class="form_element field"
            tal:define="typeId nothing;
                        availableTypes here/AvailableTicketTypes">

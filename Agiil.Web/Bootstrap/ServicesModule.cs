@@ -1,5 +1,8 @@
 ﻿using System;
 using Agiil.Web.Services;
+using Agiil.Web.Services.Auth;
+using Agiil.Web.Services.Data;
+using Agiil.Web.Services.Rendering;
 using Autofac;
 
 namespace Agiil.Web.Bootstrap
@@ -10,9 +13,13 @@ namespace Agiil.Web.Bootstrap
     {
       builder.RegisterType<LoginStateReader>();
       builder.RegisterType<VersionInfoProvider>().AsSelf().AsImplementedInterfaces();
+      builder.RegisterType<TicketUriProvider>().AsSelf().AsImplementedInterfaces();
       builder
         .Register(c => ApplicationBaseUriProvider.CreateFromHttpContext())
         .AsSelf()
+        .AsImplementedInterfaces();
+      builder
+        .RegisterType<AppSettingsDatabaseMaintenanceSecurityProvider>()
         .AsImplementedInterfaces();
     }
   }

@@ -37,3 +37,12 @@ Scenario: Youssef cannot edit the start date of a sprint to be before its end da
   | StartDate   | 2001-06-05  |
   | EndDate     | 2001-04-05  |
    Then he should see a sprint-editing failure message
+
+Scenario: Youssef can use markdown in a sprint description
+  Given Youssef has opened the sprint listing page
+    And he begins editing the sprint titled 'Sprint three'
+   When he enters the following sprint details and clicks submit
+  | Field       | Value                                               |
+  | Description | This sprint is **important**, so it should be bold  |
+    And he views the sprint titled 'Sprint three'
+   Then he should see that the sprint description contains the word "important" in bold text

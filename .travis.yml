@@ -1,15 +1,20 @@
 sudo: false
 language: csharp
 solution: Agiil.sln
+mono:
+    - 5.10.1
   
 addons:
   sauce_connect: true
   apt:
     sources:
       - sourceline: 'ppa:ubuntu-toolchain-r/test'
+      - sourceline: 'deb https://deb.nodesource.com/node_10.x trusty main'
+        key_url: 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
     packages:
       - mono-xsp4
       - libstdc++6-4.7-dev
+      - nodejs
 
 matrix:
   include:
@@ -25,11 +30,10 @@ matrix:
       - WebDriver_Platform="Windows 7"
       - WebDriver_BrowserName="Internet Explorer"
       - WebDriver_BrowserVersion="11.0"
-# TODO: AG#98 - Build under IE9 is currently broken
-#     - env:
-#       - WebDriver_Platform="Windows 7"
-#       - WebDriver_BrowserName="Internet Explorer"
-#       - WebDriver_BrowserVersion="9.0"
+    - env:
+      - WebDriver_Platform="Windows 7"
+      - WebDriver_BrowserName="Internet Explorer"
+      - WebDriver_BrowserVersion="9.0"
 # TODO: #AG66 - Reinstate testing in Edge once problems are fixed
 #     - env:
 #       - WebDriver_Platform="Windows 10"

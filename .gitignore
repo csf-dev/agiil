@@ -18,3 +18,5 @@ test-artifacts/
 .xsp4.pid
 missing_registry_workaround/
 .nuget/
+Agiil.Web/node_modules/*/*
+Output/

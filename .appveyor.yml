@@ -1,25 +1,29 @@
-﻿version: '{branch}-{build}'
-init:
-- cmd: git config --global core.autocrlf true
-before_build:
-- cmd: >-
-    git submodule update --init --recursive
+﻿environment:
+  nodejs_version: "10.0"
 
-    nuget restore Agiil.sln
-# As of 2017-05-15 it appears AppVeyor use a 32-bit MSBuild.
-# This means that we must compile for 32-bit, because otherwise
-# the custom 'CompileScssFiles' target will fail on usage of the
-# 64-bit flavour of libsass.dll
-platform: x86
+version: '{branch}-{build}'
+
+init:
+  - cmd: git config --global core.autocrlf true
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - cmd: Tools\AppVeyor-install.bat
+  
+before_build:
+  - cmd: cd ..
+
 configuration: AppVeyorCI
+
 build:
   project: Agiil.sln
   verbosity: normal
+
 test:
   assemblies:
     except:
-    - '**\Agiil.Tests.Common.dll'
-    - '**\Agiil.BDD.dll'
-    - '**\Ploeh.AutoFixture.NUnit3.dll'
-    - '**\Agiil.Tests.BDD.dll'
+      - '**\Agiil.Tests.Common.dll'
+      - '**\Agiil.BDD.dll'
+      - '**\Ploeh.AutoFixture.NUnit3.dll'
+      - '**\Agiil.Tests.BDD.dll'
     

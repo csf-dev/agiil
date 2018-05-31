@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Tests</RootNamespace>
     <AssemblyName>Agiil.Tests.BDD</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>v0.4.0-alpha</ReleaseVersion>
+    <ReleaseVersion>v0.5.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,15 +58,6 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.3.7.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Configuration">
-      <HintPath>..\..\packages\CSF.Configuration.1.1.0\lib\net45\CSF.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Reflection">
-      <HintPath>..\..\packages\CSF.Reflection.1.0.1\lib\net45\CSF.Reflection.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Utils">
-      <HintPath>..\..\packages\CSF.Utils.6.0.0\lib\net45\CSF.Utils.dll</HintPath>
-    </Reference>
     <Reference Include="WebDriver">
       <HintPath>..\..\packages\Selenium.WebDriver.3.4.0\lib\net40\WebDriver.dll</HintPath>
     </Reference>
@@ -79,79 +70,88 @@
     <Reference Include="WebDriver.Support">
       <HintPath>..\..\packages\Selenium.Support.3.4.0\lib\net40\WebDriver.Support.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.FlexDi">
-      <HintPath>..\..\packages\CSF.FlexDi.1.0.0\lib\net45\CSF.FlexDi.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.WebDriverExtras">
-      <HintPath>..\..\packages\CSF.WebDriverExtras.1.0.0\lib\net45\CSF.WebDriverExtras.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Caches">
-      <HintPath>..\..\packages\CSF.Caches.1.0.0\lib\net45\CSF.Caches.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.Abstractions">
-      <HintPath>..\..\packages\CSF.Zpt.Abstractions.1.0.5\lib\net45\CSF.Zpt.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt">
-      <HintPath>..\..\packages\CSF.Zpt.1.0.5\lib\net45\CSF.Zpt.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.DocumentProviders.XmlLinq">
-      <HintPath>..\..\packages\CSF.Zpt.DocumentProviders.XmlLinq.1.0.5\lib\net45\CSF.Zpt.DocumentProviders.XmlLinq.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.ExpressionEvaluators.CSharpExpressions">
-      <HintPath>..\..\packages\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.1.0.5\lib\net45\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.ExpressionEvaluators.CSharpFramework">
-      <HintPath>..\..\packages\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.1.0.5\lib\net45\CSF.Zpt.ExpressionEvaluators.CSharpFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
     <Reference Include="System.Dynamic" />
-    <Reference Include="CSF.Zpt.ExpressionEvaluators.LoadExpressions">
-      <HintPath>..\..\packages\CSF.Zpt.ExpressionEvaluators.LoadExpressions.1.0.5\lib\net45\CSF.Zpt.ExpressionEvaluators.LoadExpressions.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.ExpressionEvaluators.NotExpressions">
-      <HintPath>..\..\packages\CSF.Zpt.ExpressionEvaluators.NotExpressions.1.0.5\lib\net45\CSF.Zpt.ExpressionEvaluators.NotExpressions.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.ExpressionEvaluators.PathExpressions">
-      <HintPath>..\..\packages\CSF.Zpt.ExpressionEvaluators.PathExpressions.1.0.5\lib\net45\CSF.Zpt.ExpressionEvaluators.PathExpressions.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.ExpressionEvaluators.StringExpressions">
-      <HintPath>..\..\packages\CSF.Zpt.ExpressionEvaluators.StringExpressions.1.0.5\lib\net45\CSF.Zpt.ExpressionEvaluators.StringExpressions.dll</HintPath>
-    </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\..\packages\HtmlAgilityPack.1.6.17\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Zpt.DocumentProviders.HtmlHAP">
-      <HintPath>..\..\packages\CSF.Zpt.DocumentProviders.HtmlHAP.1.0.5\lib\net45\CSF.Zpt.DocumentProviders.HtmlHAP.dll</HintPath>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="CSF.Caches">
+      <HintPath>..\..\packages\CSF.Caches.1.0.2\lib\net45\CSF.Caches.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Configuration">
+      <HintPath>..\..\packages\CSF.Configuration.1.1.2\lib\net45\CSF.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.FlexDi">
+      <HintPath>..\..\packages\CSF.FlexDi.1.0.2\lib\net45\CSF.FlexDi.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Reflection">
+      <HintPath>..\..\packages\CSF.Reflection.1.0.3\lib\net45\CSF.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Utils">
+      <HintPath>..\..\packages\CSF.Utils.6.1.1\lib\net45\CSF.Utils.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Screenplay">
-      <HintPath>..\..\packages\CSF.Screenplay.0.12.0-beta\lib\net45\CSF.Screenplay.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Screenplay.Selenium.BrowserFlags">
-      <HintPath>..\..\packages\CSF.Screenplay.Selenium.BrowserFlags.0.3.2-beta\lib\net45\CSF.Screenplay.Selenium.BrowserFlags.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Screenplay.Selenium">
-      <HintPath>..\..\packages\CSF.Screenplay.Selenium.0.3.2-beta\lib\net45\CSF.Screenplay.Selenium.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Screenplay.Selenium.JavaScriptWorkarounds">
-      <HintPath>..\..\packages\CSF.Screenplay.Selenium.0.3.2-beta\lib\net45\CSF.Screenplay.Selenium.JavaScriptWorkarounds.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Screenplay.0.13.0-beta\lib\net45\CSF.Screenplay.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Screenplay.Reporting">
-      <HintPath>..\..\packages\CSF.Screenplay.Reporting.0.12.0-beta\lib\net45\CSF.Screenplay.Reporting.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Screenplay.Reporting.0.13.0-beta\lib\net45\CSF.Screenplay.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.Abstractions">
+      <HintPath>..\..\packages\CSF.Zpt.Abstractions.1.0.6\lib\net45\CSF.Zpt.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt">
+      <HintPath>..\..\packages\CSF.Zpt.1.0.6\lib\net45\CSF.Zpt.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.DocumentProviders.XmlLinq">
+      <HintPath>..\..\packages\CSF.Zpt.DocumentProviders.XmlLinq.1.0.6\lib\net45\CSF.Zpt.DocumentProviders.XmlLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.CSharpExpressions">
+      <HintPath>..\..\packages\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.1.0.6\lib\net45\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.CSharpFramework">
+      <HintPath>..\..\packages\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.1.0.6\lib\net45\CSF.Zpt.ExpressionEvaluators.CSharpFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.LoadExpressions">
+      <HintPath>..\..\packages\CSF.Zpt.ExpressionEvaluators.LoadExpressions.1.0.6\lib\net45\CSF.Zpt.ExpressionEvaluators.LoadExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.NotExpressions">
+      <HintPath>..\..\packages\CSF.Zpt.ExpressionEvaluators.NotExpressions.1.0.6\lib\net45\CSF.Zpt.ExpressionEvaluators.NotExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.PathExpressions">
+      <HintPath>..\..\packages\CSF.Zpt.ExpressionEvaluators.PathExpressions.1.0.6\lib\net45\CSF.Zpt.ExpressionEvaluators.PathExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.StringExpressions">
+      <HintPath>..\..\packages\CSF.Zpt.ExpressionEvaluators.StringExpressions.1.0.6\lib\net45\CSF.Zpt.ExpressionEvaluators.StringExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.DocumentProviders.HtmlHAP">
+      <HintPath>..\..\packages\CSF.Zpt.DocumentProviders.HtmlHAP.1.0.6\lib\net45\CSF.Zpt.DocumentProviders.HtmlHAP.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Screenplay.Reporting.Html">
-      <HintPath>..\..\packages\CSF.Screenplay.Reporting.Html.0.12.0-beta\lib\net45\CSF.Screenplay.Reporting.Html.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Screenplay.Reporting.Html.0.13.0-beta\lib\net45\CSF.Screenplay.Reporting.Html.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.WebDriverExtras">
+      <HintPath>..\..\packages\CSF.WebDriverExtras.1.0.3\lib\net45\CSF.WebDriverExtras.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Screenplay.Selenium.BrowserFlags">
+      <HintPath>..\..\packages\CSF.Screenplay.Selenium.BrowserFlags.0.4.0-beta\lib\net45\CSF.Screenplay.Selenium.BrowserFlags.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Screenplay.Selenium">
+      <HintPath>..\..\packages\CSF.Screenplay.Selenium.0.4.0-beta\lib\net45\CSF.Screenplay.Selenium.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Screenplay.Selenium.JavaScriptWorkarounds">
+      <HintPath>..\..\packages\CSF.Screenplay.Selenium.0.4.0-beta\lib\net45\CSF.Screenplay.Selenium.JavaScriptWorkarounds.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Screenplay.SpecFlowPlugin">
-      <HintPath>..\..\packages\CSF.Screenplay.SpecFlow.0.12.0-beta\lib\net45\CSF.Screenplay.SpecFlowPlugin.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Screenplay.SpecFlow.0.13.0-beta\lib\net45\CSF.Screenplay.SpecFlowPlugin.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Screenplay.WebApis">
-      <HintPath>..\..\packages\CSF.Screenplay.WebApis.0.12.0-beta\lib\net45\CSF.Screenplay.WebApis.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Screenplay.WebApis.0.13.0-beta\lib\net45\CSF.Screenplay.WebApis.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auth\ChangePassword.feature.cs">
@@ -190,6 +190,15 @@
     </Compile>
     <Compile Include="App\SeeTheVersionNumber.feature.cs">
       <DependentUpon>SeeTheVersionNumber.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Tickets\AddLabelsToATicket.feature.cs">
+      <DependentUpon>AddLabelsToATicket.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Labels\ViewingLabels.feature.cs">
+      <DependentUpon>ViewingLabels.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Tickets\AutomaticTicketLinks.feature.cs">
+      <DependentUpon>AutomaticTicketLinks.feature</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -249,6 +258,18 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SeeTheVersionNumber.feature.cs</LastGenOutput>
     </None>
+    <None Include="Tickets\AddLabelsToATicket.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AddLabelsToATicket.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Labels\ViewingLabels.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ViewingLabels.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Tickets\AutomaticTicketLinks.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AutomaticTicketLinks.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.BDD\Agiil.BDD.csproj">
@@ -265,8 +286,9 @@
     <Folder Include="Tickets\" />
     <Folder Include="Sprints\" />
     <Folder Include="App\" />
+    <Folder Include="Labels\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\..\packages\Selenium.WebDriver.ChromeDriver.2.32.0\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\..\packages\Selenium.WebDriver.ChromeDriver.2.32.0\build\Selenium.WebDriver.ChromeDriver.targets')" />
   <Import Project="..\..\packages\Microsoft.VisualStudio.SlowCheetah.3.0.61\build\Microsoft.VisualStudio.SlowCheetah.targets" Condition="Exists('..\..\packages\Microsoft.VisualStudio.SlowCheetah.3.0.61\build\Microsoft.VisualStudio.SlowCheetah.targets')" />
+  <Import Project="..\..\packages\Selenium.WebDriver.ChromeDriver.2.38.0.1\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\..\packages\Selenium.WebDriver.ChromeDriver.2.38.0.1\build\Selenium.WebDriver.ChromeDriver.targets')" />
 </Project>

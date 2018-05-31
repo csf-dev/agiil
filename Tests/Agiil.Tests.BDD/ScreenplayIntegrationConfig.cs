@@ -46,8 +46,7 @@ namespace Agiil.Tests.BDD
     {
       var directory = TestFilesystem.GetTestTemporaryDirectory();
       WriteTextReport(formatter, report, directory);
-      // TODO: Reinstate HTML reports once https://github.com/csf-dev/CSF.Screenplay/issues/137 is resolved
-      // WriteHtmlReport(formatter, report, directory);
+      WriteHtmlReport(formatter, report, directory);
     }
 
     void WriteTextReport(IObjectFormattingService formatter, Report report, DirectoryInfo directory)

@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets" Condition="Exists('..\..\packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets')" />
+  
   <!-- PropertyGroup sets up a reference to the current project, so that the build is ordered correctly -->
   <ItemGroup>
     <ProjectReference Include="$(MSBuildThisFileDirectory)\Agiil.Build.Tasks.csproj">
@@ -12,15 +14,48 @@
     <TasksConfig Condition="'$(Configuration)' != 'Release'">Debug</TasksConfig>
     <TasksConfig Condition="'$(Configuration)' == 'Release'">Release</TasksConfig>
     <TasksAssemblyPath>bin\$(TasksConfig)\Agiil.Build.Tasks.dll</TasksAssemblyPath>
+
+    <AgiilWebOutputDir>$(MSBuildThisFileDirectory)\..\..\Agiil.Web\bin</AgiilWebOutputDir>
+    
+    <DeploymentRoot Condition="'$(DeploymentRoot)' == ''">$(MSBuildThisFileDirectory)\..\..\Output</DeploymentRoot>
+    <WebAppStagingDir>$(DeploymentRoot)\Web apps\$(MSBuildProjectName)</WebAppStagingDir>
   </PropertyGroup>
 	
-  <UsingTask TaskName="CompileScssFiles" AssemblyFile="$(TasksAssemblyPath)" />
-  
   <Target Name="CopyWebApplicationTestingLogic">
     <ItemGroup>
-      <WebAppTestingLogic Include="..\..\Tests\Agiil.Web.TestBuild\bin\Debug\*" />
+      <WebAppTestingLogic Include="$(OutputPath)\*" />
     </ItemGroup>
-    <Copy SourceFiles="@(WebAppTestingLogic)" DestinationFolder="..\..\Agiil.Web\bin" />
+    <Copy SourceFiles="@(WebAppTestingLogic)" DestinationFolder="$(AgiilWebOutputDir)" />
+  </Target>
+  
+  <Target Name="CopyWebAppToStagingDir">
+    <!-- The "bin" directory -->
+    <MakeDir Directories="$(WebAppStagingDir)\bin"/>
+    <Copy SourceFiles="@(IntermediateAssembly)"
+          DestinationFolder="$(WebAppStagingDir)\bin"
+          SkipUnchangedFiles="true"/>
+    
+    <!-- Satellite resource assemblies: "*.resources" -->
+    <Copy SourceFiles = "@(IntermediateSatelliteAssemblies)"
+          DestinationFiles = "@(IntermediateSatelliteAssemblies->'$(WebAppStagingDir)\bin\%(Culture)\$(AssemblyName).resources.dll')"
+          Condition = "'@(IntermediateSatelliteAssemblies)' != ''"
+          SkipUnchangedFiles="true" />
+
+    <!-- Referenced assemblies -->
+    <Copy SourceFiles="@(ReferenceCopyLocalPaths)" DestinationFolder="$(WebAppStagingDir)\bin" SkipUnchangedFiles="true" />
+
+    <!-- Any other files marked as "Content" -->
+    <Copy SourceFiles="@(Content)" DestinationFolder="$(WebAppStagingDir)\%(Content.RelativeDir)" />
+  </Target>
+
+  <Target Name="PackageWebAppAsZipfile">
+    <ItemGroup>
+      <ZipContents Include="$(WebAppStagingDir)\**\*.*" />
+    </ItemGroup>
+    <Zip Files="@(ZipContents)"
+         WorkingDirectory="$(WebAppStagingDir)"
+         ZipFileName="$(DeploymentRoot)\$(MSBuildProjectName).zip"
+         ZipLevel="9" />
   </Target>
 	
 </Project>

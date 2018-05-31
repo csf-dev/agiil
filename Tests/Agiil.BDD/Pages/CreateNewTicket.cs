@@ -13,6 +13,8 @@ namespace Agiil.BDD.Pages
 
     public static ILocatorBasedTarget TicketDescription = new ElementId("Description", "the ticket description");
 
+    public static ILocatorBasedTarget TicketLabels = new ElementId("Labels", "the ticket labels");
+
     public static ILocatorBasedTarget TicketSprint = new ElementId("SprintIdentity", "the ticket sprint");
 
     public static ILocatorBasedTarget TicketType = new ElementId("TicketTypeIdentity", "the ticket type");

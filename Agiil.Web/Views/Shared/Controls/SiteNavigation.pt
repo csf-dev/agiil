@@ -24,6 +24,7 @@
       <li><a href="NewTicket">Create ticket</a></li>
       <li><a href="NewSprint">Create sprint</a></li>
       <li><a href="Sprints">Sprint list</a></li>
+      <li><a href="Labels">Labels</a></li>
     </ul>
   </nav>
   </div>

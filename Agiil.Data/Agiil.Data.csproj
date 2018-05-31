@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Data</RootNamespace>
     <AssemblyName>Agiil.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>v0.4.0-alpha</ReleaseVersion>
+    <ReleaseVersion>v0.5.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,9 +46,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="CSF.Utils">
-      <HintPath>..\packages\CSF.Utils.6.0.0\lib\net45\CSF.Utils.dll</HintPath>
-    </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
@@ -56,25 +53,13 @@
       <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="CSF.Reflection">
-      <HintPath>..\packages\CSF.Reflection.1.0.1\lib\net45\CSF.Reflection.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Entities">
-      <HintPath>..\packages\CSF.Entities.1.1.1\lib\net45\CSF.Entities.dll</HintPath>
-    </Reference>
     <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Data">
-      <HintPath>..\packages\CSF.Data.1.1.0\lib\net45\CSF.Data.dll</HintPath>
     </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data.SQLite, Version=1.0.105.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.105.0\lib\net45\System.Data.SQLite.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="CSF.Data.NHibernate">
-      <HintPath>..\packages\CSF.Data.NHibernate.6.1.1\lib\net45\CSF.Data.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="DbUp">
       <HintPath>..\packages\dbup.3.3.5\lib\net35\DbUp.dll</HintPath>
@@ -95,6 +80,24 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Data">
+      <HintPath>..\packages\CSF.Data.1.2.1\lib\net45\CSF.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Reflection">
+      <HintPath>..\packages\CSF.Reflection.1.0.3\lib\net45\CSF.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Utils">
+      <HintPath>..\packages\CSF.Utils.6.1.1\lib\net45\CSF.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data.NHibernate">
+      <HintPath>..\packages\CSF.Data.NHibernate.6.1.3\lib\net45\CSF.Data.NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Entities">
+      <HintPath>..\packages\CSF.Entities.1.2.1\lib\net45\CSF.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Configuration.Data">
+      <HintPath>..\packages\CSF.Configuration.Data.1.0.1\lib\net45\CSF.Configuration.Data.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,22 +105,17 @@
     <Compile Include="ICreatesDatabaseSchema.cs" />
     <Compile Include="ISessionFactoryFactory.cs" />
     <Compile Include="NHibernateSchemaExportingDatabaseCreator.cs" />
-    <Compile Include="IMapping.cs" />
-    <Compile Include="IMappingProvider.cs" />
-    <Compile Include="MappingProvider.cs" />
-    <Compile Include="Mappings\EntityBaseTypeMapping.cs" />
-    <Compile Include="Mappings\EntityTypeMapping.cs" />
-    <Compile Include="Mappings\IdentityMapping.cs" />
-    <Compile Include="Mappings\PropertyMapping.cs" />
+    <Compile Include="ConventionMappings\EntityBaseTypeMapping.cs" />
+    <Compile Include="ConventionMappings\EntityTypeMapping.cs" />
+    <Compile Include="ConventionMappings\IdentityMapping.cs" />
+    <Compile Include="ConventionMappings\PropertyMapping.cs" />
     <Compile Include="IConnectionStringProvider.cs" />
     <Compile Include="ConfigurationManagerConnectionStringProvider.cs" />
     <Compile Include="IDataAssemblyMarker.cs" />
-    <Compile Include="LowercaseWithUnderscoreDbNameFormatter.cs" />
-    <Compile Include="IDbNameFormatter.cs" />
-    <Compile Include="Mappings\ManyToOneMapping.cs" />
-    <Compile Include="Mappings\OneToManyMapping.cs" />
-    <Compile Include="Mappings\BooleanMapping.cs" />
-    <Compile Include="Mappings\SourceCollectionAccessor.cs" />
+    <Compile Include="ConventionMappings\ManyToOneMapping.cs" />
+    <Compile Include="ConventionMappings\OneToManyMapping.cs" />
+    <Compile Include="ConventionMappings\BooleanMapping.cs" />
+    <Compile Include="ConventionMappings\SourceCollectionAccessor.cs" />
     <Compile Include="IDatabaseConfiguration.cs" />
     <Compile Include="HardcodedDatabaseConfiguration.cs" />
     <Compile Include="DbUpDatabaseUpgrader.cs" />
@@ -141,11 +139,21 @@
     <Compile Include="Sqlite\IProvidesBackupFileInfo.cs" />
     <Compile Include="BackupTakingUpgrader.cs" />
     <Compile Include="Sqlite\SqliteBackupRestorer.cs" />
+    <Compile Include="ConventionMappings\ManyToManyMapping.cs" />
+    <Compile Include="MappingProviders\AgiilMappingProvider.cs" />
+    <Compile Include="MappingProviders\IConventionMapping.cs" />
+    <Compile Include="MappingProviders\IGetsHbmMapping.cs" />
+    <Compile Include="MappingProviders\IDbNameFormatter.cs" />
+    <Compile Include="MappingProviders\LowercaseWithUnderscoreDbNameFormatter.cs" />
+    <Compile Include="ClassMappings\LabelMapping.cs" />
+    <Compile Include="Sqlite\SqliteDatabaseTester.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Mappings\" />
+    <Folder Include="ConventionMappings\" />
     <Folder Include="Sqlite\" />
     <Folder Include="UpgradeScripts\" />
+    <Folder Include="ClassMappings\" />
+    <Folder Include="MappingProviders\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -165,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UpgradeScripts\Sqlite\2017-10-04-v0.3.0-Ticket-type.sqlite.sql">
       <LogicalName>2017-10-04-v0.3.0-Ticket-type.sqlite.sql</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpgradeScripts\Sqlite\2018-05-07-v0.5.0-Ticket-to-label.sqlite.sql">
+      <LogicalName>2018-05-07-v0.5.0-Ticket-to-label.sqlite.sql</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

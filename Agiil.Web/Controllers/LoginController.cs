@@ -40,7 +40,7 @@ namespace Agiil.Web.Controllers
     [HttpGet]
     public ActionResult LoggedOut()
     {
-      return View();
+      return View(new Models.PageModel());
     }
 
     [HttpPost]

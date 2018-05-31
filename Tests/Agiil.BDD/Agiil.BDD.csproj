@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.BDD</RootNamespace>
     <AssemblyName>Agiil.BDD</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>v0.4.0-alpha</ReleaseVersion>
+    <ReleaseVersion>v0.5.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -62,9 +62,6 @@
     <Reference Include="NHibernate">
       <HintPath>..\..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Entities">
-      <HintPath>..\..\packages\CSF.Entities.1.1.1\lib\net45\CSF.Entities.dll</HintPath>
-    </Reference>
     <Reference Include="Ploeh.AutoFixture">
       <HintPath>..\..\packages\AutoFixture.3.50.2\lib\net40\Ploeh.AutoFixture.dll</HintPath>
     </Reference>
@@ -78,17 +75,8 @@
     <Reference Include="System.Web.Http">
       <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Utils">
-      <HintPath>..\..\packages\CSF.Utils.6.0.0\lib\net45\CSF.Utils.dll</HintPath>
-    </Reference>
     <Reference Include="WebDriver.Support">
       <HintPath>..\..\packages\Selenium.Support.3.4.0\lib\net40\WebDriver.Support.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Configuration">
-      <HintPath>..\..\packages\CSF.Configuration.1.1.0\lib\net45\CSF.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Reflection">
-      <HintPath>..\..\packages\CSF.Reflection.1.0.1\lib\net45\CSF.Reflection.dll</HintPath>
     </Reference>
     <Reference Include="FluentAssertions.Core">
       <HintPath>..\..\packages\FluentAssertions.4.19.3\lib\net45\FluentAssertions.Core.dll</HintPath>
@@ -101,35 +89,47 @@
     <Reference Include="TechTalk.SpecFlow">
       <HintPath>..\..\packages\SpecFlow.2.2.0\lib\net45\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.FlexDi">
-      <HintPath>..\..\packages\CSF.FlexDi.1.0.0\lib\net45\CSF.FlexDi.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.WebDriverExtras">
-      <HintPath>..\..\packages\CSF.WebDriverExtras.1.0.0\lib\net45\CSF.WebDriverExtras.dll</HintPath>
+    <Reference Include="CSF.Configuration">
+      <HintPath>..\..\packages\CSF.Configuration.1.1.2\lib\net45\CSF.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.FlexDi">
+      <HintPath>..\..\packages\CSF.FlexDi.1.0.2\lib\net45\CSF.FlexDi.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Utils">
+      <HintPath>..\..\packages\CSF.Utils.6.1.1\lib\net45\CSF.Utils.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Screenplay">
-      <HintPath>..\..\packages\CSF.Screenplay.0.12.0-beta\lib\net45\CSF.Screenplay.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Screenplay.0.13.0-beta\lib\net45\CSF.Screenplay.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.WebDriverExtras">
+      <HintPath>..\..\packages\CSF.WebDriverExtras.1.0.3\lib\net45\CSF.WebDriverExtras.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Screenplay.Selenium.BrowserFlags">
-      <HintPath>..\..\packages\CSF.Screenplay.Selenium.BrowserFlags.0.3.2-beta\lib\net45\CSF.Screenplay.Selenium.BrowserFlags.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Screenplay.Selenium.BrowserFlags.0.4.0-beta\lib\net45\CSF.Screenplay.Selenium.BrowserFlags.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Screenplay.Selenium">
-      <HintPath>..\..\packages\CSF.Screenplay.Selenium.0.3.2-beta\lib\net45\CSF.Screenplay.Selenium.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Screenplay.Selenium.0.4.0-beta\lib\net45\CSF.Screenplay.Selenium.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Screenplay.Selenium.JavaScriptWorkarounds">
-      <HintPath>..\..\packages\CSF.Screenplay.Selenium.0.3.2-beta\lib\net45\CSF.Screenplay.Selenium.JavaScriptWorkarounds.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Screenplay.Selenium.0.4.0-beta\lib\net45\CSF.Screenplay.Selenium.JavaScriptWorkarounds.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Screenplay.Reporting">
-      <HintPath>..\..\packages\CSF.Screenplay.Reporting.0.12.0-beta\lib\net45\CSF.Screenplay.Reporting.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Screenplay.Reporting.0.13.0-beta\lib\net45\CSF.Screenplay.Reporting.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Screenplay.SpecFlowPlugin">
-      <HintPath>..\..\packages\CSF.Screenplay.SpecFlow.0.12.0-beta\lib\net45\CSF.Screenplay.SpecFlowPlugin.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Screenplay.SpecFlow.0.13.0-beta\lib\net45\CSF.Screenplay.SpecFlowPlugin.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Screenplay.WebApis">
-      <HintPath>..\..\packages\CSF.Screenplay.WebApis.0.12.0-beta\lib\net45\CSF.Screenplay.WebApis.dll</HintPath>
+      <HintPath>..\..\packages\CSF.Screenplay.WebApis.0.13.0-beta\lib\net45\CSF.Screenplay.WebApis.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Entities">
+      <HintPath>..\..\packages\CSF.Entities.1.2.1\lib\net45\CSF.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Reflection">
+      <HintPath>..\..\packages\CSF.Reflection.1.0.3\lib\net45\CSF.Reflection.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -233,6 +233,17 @@
     <Compile Include="Bindings\App\VersionNumberSteps.cs" />
     <Compile Include="Tasks\App\OverrideTheApplicationVersion.cs" />
     <Compile Include="Pages\AnyPage.cs" />
+    <Compile Include="Tasks\Tickets\ChangeTheTicketLabels.cs" />
+    <Compile Include="Tasks\Sprints\AssertThatTheSprintDescriptionHasBoldText.cs" />
+    <Compile Include="Bindings\Labels\ListingLabelsSteps.cs" />
+    <Compile Include="Pages\LabelList.cs" />
+    <Compile Include="Models\Labels\LabelNames.cs" />
+    <Compile Include="Bindings\TableExtensions.cs" />
+    <Compile Include="Models\Labels\LabelInfo.cs" />
+    <Compile Include="Tasks\Labels\TheTicketCount.cs" />
+    <Compile Include="Models\Labels\MissingLabelException.cs" />
+    <Compile Include="Tasks\Tickets\ReadTheTicketTitle.cs" />
+    <Compile Include="Tasks\Tickets\FollowALinkFromTheTicketDescription.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -262,6 +273,9 @@
     <Folder Include="Tasks\Markdown\" />
     <Folder Include="Bindings\Actors\" />
     <Folder Include="ServiceEndpoints\" />
+    <Folder Include="Bindings\Labels\" />
+    <Folder Include="Models\Labels\" />
+    <Folder Include="Tasks\Labels\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj">

@@ -21,7 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <ReleaseVersion>v0.4.0-alpha</ReleaseVersion>
+    <ReleaseVersion>v0.5.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -173,18 +173,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Caches">
-      <HintPath>..\packages\CSF.Caches.1.0.0\lib\net45\CSF.Caches.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Configuration">
-      <HintPath>..\packages\CSF.Configuration.1.1.0\lib\net45\CSF.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Reflection">
-      <HintPath>..\packages\CSF.Reflection.1.0.1\lib\net45\CSF.Reflection.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Utils">
-      <HintPath>..\packages\CSF.Utils.6.0.0\lib\net45\CSF.Utils.dll</HintPath>
-    </Reference>
     <Reference Include="System.Dynamic" />
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -222,9 +210,6 @@
     <Reference Include="Microsoft.AspNet.Identity.Owin">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Security">
-      <HintPath>..\packages\CSF.Security.2.0.0\lib\net45\CSF.Security.dll</HintPath>
-    </Reference>
     <Reference Include="Autofac.Integration.Owin">
       <HintPath>..\packages\Autofac.Owin.4.0.0\lib\net45\Autofac.Integration.Owin.dll</HintPath>
     </Reference>
@@ -237,39 +222,6 @@
     <Reference Include="System.Web.Cors">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Zpt.Abstractions">
-      <HintPath>..\packages\CSF.Zpt.Abstractions.1.0.0\lib\net45\CSF.Zpt.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt">
-      <HintPath>..\packages\CSF.Zpt.1.0.0\lib\net45\CSF.Zpt.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.DocumentProviders.XmlLinq">
-      <HintPath>..\packages\CSF.Zpt.DocumentProviders.XmlLinq.1.0.0\lib\net45\CSF.Zpt.DocumentProviders.XmlLinq.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.ExpressionEvaluators.CSharpExpressions">
-      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.1.0.0\lib\net45\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.ExpressionEvaluators.CSharpFramework">
-      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.1.0.0\lib\net45\CSF.Zpt.ExpressionEvaluators.CSharpFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.ExpressionEvaluators.NotExpressions">
-      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.NotExpressions.1.0.0\lib\net45\CSF.Zpt.ExpressionEvaluators.NotExpressions.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.ExpressionEvaluators.PathExpressions">
-      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.PathExpressions.1.0.0\lib\net45\CSF.Zpt.ExpressionEvaluators.PathExpressions.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.ExpressionEvaluators.StringExpressions">
-      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.StringExpressions.1.0.0\lib\net45\CSF.Zpt.ExpressionEvaluators.StringExpressions.dll</HintPath>
-    </Reference>
-    <Reference Include="HtmlAgilityPack">
-      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.DocumentProviders.HtmlHAP">
-      <HintPath>..\packages\CSF.Zpt.DocumentProviders.HtmlHAP.1.0.0\lib\net45\CSF.Zpt.DocumentProviders.HtmlHAP.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Zpt.MVC5">
-      <HintPath>..\packages\CSF.Zpt.MVC5.1.0.0\lib\net45\CSF.Zpt.MVC5.dll</HintPath>
-    </Reference>
     <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
     </Reference>
@@ -277,12 +229,6 @@
       <HintPath>..\packages\Autofac.Mvc5.3.3.4\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Configuration" />
-    <Reference Include="CSF.Data">
-      <HintPath>..\packages\CSF.Data.1.1.0\lib\net45\CSF.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Entities">
-      <HintPath>..\packages\CSF.Entities.1.1.1\lib\net45\CSF.Entities.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -301,14 +247,68 @@
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Data.NHibernate">
-      <HintPath>..\packages\CSF.Data.NHibernate.6.1.1\lib\net45\CSF.Data.NHibernate.dll</HintPath>
-    </Reference>
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Caches">
+      <HintPath>..\packages\CSF.Caches.1.0.2\lib\net45\CSF.Caches.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Configuration">
+      <HintPath>..\packages\CSF.Configuration.1.1.2\lib\net45\CSF.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Reflection">
+      <HintPath>..\packages\CSF.Reflection.1.0.3\lib\net45\CSF.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Utils">
+      <HintPath>..\packages\CSF.Utils.6.1.1\lib\net45\CSF.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.Abstractions">
+      <HintPath>..\packages\CSF.Zpt.Abstractions.1.0.6\lib\net45\CSF.Zpt.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt">
+      <HintPath>..\packages\CSF.Zpt.1.0.6\lib\net45\CSF.Zpt.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.DocumentProviders.XmlLinq">
+      <HintPath>..\packages\CSF.Zpt.DocumentProviders.XmlLinq.1.0.6\lib\net45\CSF.Zpt.DocumentProviders.XmlLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.CSharpExpressions">
+      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.1.0.6\lib\net45\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.CSharpFramework">
+      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.CSharpExpressions.1.0.6\lib\net45\CSF.Zpt.ExpressionEvaluators.CSharpFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.NotExpressions">
+      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.NotExpressions.1.0.6\lib\net45\CSF.Zpt.ExpressionEvaluators.NotExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.PathExpressions">
+      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.PathExpressions.1.0.6\lib\net45\CSF.Zpt.ExpressionEvaluators.PathExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.ExpressionEvaluators.StringExpressions">
+      <HintPath>..\packages\CSF.Zpt.ExpressionEvaluators.StringExpressions.1.0.6\lib\net45\CSF.Zpt.ExpressionEvaluators.StringExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.6.17\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.DocumentProviders.HtmlHAP">
+      <HintPath>..\packages\CSF.Zpt.DocumentProviders.HtmlHAP.1.0.6\lib\net45\CSF.Zpt.DocumentProviders.HtmlHAP.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Zpt.MVC5">
+      <HintPath>..\packages\CSF.Zpt.MVC5.1.0.6\lib\net45\CSF.Zpt.MVC5.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data">
+      <HintPath>..\packages\CSF.Data.1.2.1\lib\net45\CSF.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data.NHibernate">
+      <HintPath>..\packages\CSF.Data.NHibernate.6.1.3\lib\net45\CSF.Data.NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Entities">
+      <HintPath>..\packages\CSF.Entities.1.2.1\lib\net45\CSF.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Security">
+      <HintPath>..\packages\CSF.Security.2.0.2\lib\net45\CSF.Security.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -319,8 +319,14 @@
     <Folder Include="Views\NewSprint\" />
     <Folder Include="Views\Sprints\" />
     <Folder Include="Views\Sprint\" />
-    <Folder Include="Services\Logging\" />
     <Folder Include="Views\DatabaseBackup\" />
+    <Folder Include="Views\Labels\" />
+    <Folder Include="Views\Label\" />
+    <Folder Include="ActionFilters\" />
+    <Folder Include="ApiActionFilters\" />
+    <Folder Include="Views\MissingDependencies\" />
+    <Folder Include="Services\Data\" />
+    <Folder Include="Services\Rendering\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -368,69 +374,42 @@
     <Compile Include="Bootstrap\AspNetWebApiModule.cs" />
     <Compile Include="Bootstrap\DataModule.cs" />
     <Compile Include="App_Start\ContainerFactoryProviderExtensions.cs" />
-    <Compile Include="Services\Logging\LogUnexpectedErrorsAttribute.cs" />
     <Compile Include="TempDataDictionaryExtensions.cs" />
     <Compile Include="ControllerExtensions.cs" />
-    <Compile Include="Services\LoginStateReader.cs" />
-    <Compile Include="Services\LoginStateModelPopulator.cs" />
     <Compile Include="Bootstrap\AspNetMvcGlobalFiltersModule.cs" />
     <Compile Include="Services\VersionInfoProvider.cs" />
-    <Compile Include="Services\VersionInfoModelPopulator.cs" />
     <Compile Include="Services\ApplicationBaseUriProvider.cs" />
     <Compile Include="Services\Auth\RedirectionUriValidator.cs" />
     <Compile Include="Services\Auth\IValidatesRedirectUrls.cs" />
     <Compile Include="ModelBinders\IdentityJsonConverter.cs" />
     <Compile Include="Services\Auth\RedirectUriParser.cs" />
     <Compile Include="Controllers\DatabaseBackupController.cs" />
+    <Compile Include="Controllers\LabelsController.cs" />
+    <Compile Include="Controllers\LabelController.cs" />
+    <Compile Include="ActionFilters\BaseUriModelPopulator.cs" />
+    <Compile Include="ActionFilters\LoginStateModelPopulator.cs" />
+    <Compile Include="ActionFilters\VersionInfoModelPopulator.cs" />
+    <Compile Include="ApiActionFilters\LogUnexpectedErrorsAttribute.cs" />
+    <Compile Include="Services\Auth\LoginStateReader.cs" />
+    <Compile Include="ActionFilters\TestApplicationDependencies.cs" />
+    <Compile Include="Controllers\MissingDependenciesController.cs" />
+    <Compile Include="Services\Data\IGetsDatabaseMaintenanceSecurity.cs" />
+    <Compile Include="Services\Data\AppSettingsDatabaseMaintenanceSecurityProvider.cs" />
+    <Compile Include="Services\Rendering\TicketUriProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <Content Include="Web.config">
+      <Visible>False</Visible>
+    </Content>
     <Content Include="Global.asax" />
-    <Content Include="packages.config" />
-    <Content Include="Content\Scss\_Reset.scss" />
-    <Content Include="Content\Scss\StandardPage.scss" />
-    <Content Include="Content\Scss\_PageHeader.scss" />
-    <Content Include="Content\Scss\_AppWideVariables.scss" />
-    <Content Include="Content\Scss\_ContentStyles.scss" />
-    <Content Include="Content\Scss\_Forms.scss" />
-    <Content Include="Content\Scss\CreateSprint.scss" />
-    <Content Include="Content\Scss\CreateTicket.scss" />
-    <Content Include="Content\Scss\EditSprint.scss" />
-    <Content Include="Content\Scss\EditTicket.scss" />
-    <Content Include="Content\Scss\SprintDetail.scss" />
-    <Content Include="Content\Scss\TicketDetail.scss" />
-    <Content Include="Content\Scss\TicketList.scss" />
-    <Content Include="Content\Scss\SprintList.scss" />
-    <Content Include="Content\Scss\_RichDescriptions.scss" />
-    <Content Include="Content\Scss\EditComment.scss" />
+    <Content Include="Temp/.placeholder" />
+    <None Include="Content\Css\*.css" />
+    <None Include="packages.config" />
+    <None Include="Content\Scss\**\*.scss" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Views\Home\Index.pt" />
-    <None Include="Views\Shared\EmptyPage.pt" />
-    <None Include="Views\Login\Index.pt" />
-    <None Include="Views\Login\LoggedOut.pt" />
-    <None Include="Views\Database\Index.pt" />
-    <None Include="Views\NewTicket\Index.pt" />
-    <None Include="Views\Tickets\Index.pt" />
-    <None Include="Views\Ticket\Index.pt" />
-    <None Include="Views\Shared\StandardPage.pt" />
-    <None Include="Views\Shared\StandardHeader.pt" />
-    <None Include="Views\Shared\Controls\HeaderLoginLogout.pt" />
-    <None Include="Views\Shared\Controls\SiteNavigation.pt" />
-    <None Include="Views\Ticket\Edit.pt" />
-    <None Include="Views\Shared\Controls\Comments.pt" />
-    <None Include="Views\Comment\Edit.pt" />
-    <None Include="Views\ChangePassword\Index.pt" />
-    <None Include="Views\ChangePassword\Success.pt" />
-    <None Include="Views\NewSprint\Index.pt" />
-    <None Include="Views\NewSprint\Created.pt" />
-    <None Include="Views\Sprints\Index.pt" />
-    <None Include="Views\Sprint\Index.pt" />
-    <None Include="Views\Shared\Controls\SprintChooser.pt" />
-    <None Include="Views\Sprint\Edit.pt" />
-    <None Include="Views\Shared\Controls\TicketTypeChooser.pt" />
-    <None Include="Views\Shared\StandardFooter.pt" />
-    <None Include="Views\DatabaseBackup\Index.pt" />
+    <Content Include="Views\**\*.pt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.template.config">
@@ -479,6 +458,10 @@
       <Project>{53F1B62F-1BEE-4732-A1F3-433822529906}</Project>
       <Name>Agiil.Web.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Agiil.Web.Rendering\Agiil.Web.Rendering.csproj">
+      <Project>{8080A385-823C-44F0-B090-71F52337F04A}</Project>
+      <Name>Agiil.Web.Rendering</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <Optimize>false</Optimize>
@@ -494,12 +477,26 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildThisFileDirectory)..\Tools\Agiil.Build.Tasks\Agiil.Build.Tasks.targets" />
-  <Import Project="$(MSBuildThisFileDirectory)..\Tools\Agiil.Web.Sass\Agiil.Web.Sass.targets" />
-  <Target Name="AfterBuild">
-    <CompileScssFiles SourcePath="Content\Scss" DestinationPath="Content\Css" />
+  <Target Name="CompileScssFiles" BeforeTargets="AfterBuild">
+    <PropertyGroup>
+      <SassInputDir>$(MSBuildThisFileDirectory)Content\Scss</SassInputDir>
+      <SassOutputDir>$(MSBuildThisFileDirectory)Content\Css</SassOutputDir>
+      <SassNodePath>$(MSBuildThisFileDirectory)node_modules\node-sass\bin\node-sass</SassNodePath>
+    </PropertyGroup>
+    <Exec Command="node $(SassNodePath) $(SassInputDir) --output $(SassOutputDir) --source-map true" WorkingDirectory="$(MSBuildThisFileDirectory)" />
   </Target>
   <Target Name="MoveWebConfigToCorrectLocation" AfterTargets="ScApplyTransforms">
-    <Move SourceFiles="bin\Web.config" DestinationFiles="Web.config" />
+    <Copy SourceFiles="$(OutDir)\Web.config" DestinationFiles="Web.config" />
+  </Target>
+  <Target Name="MarkGeneratedCssAsContent" BeforeTargets="DeployWebApp">
+    <ItemGroup>
+      <Content Include="Content\Css\*.css" />
+      <Content Include="Content\Css\*.css.map" />
+    </ItemGroup>
+  </Target>
+  <Target Name="DeployWebApp" AfterTargets="MoveWebConfigToCorrectLocation">
+    <CallTarget Targets="CopyWebAppToStagingDir" />
+    <CallTarget Targets="PackageWebAppAsZipfile" Condition="'$(Configuration)' == 'Release'" />
   </Target>
   <ProjectExtensions>
     <MonoDevelop>
