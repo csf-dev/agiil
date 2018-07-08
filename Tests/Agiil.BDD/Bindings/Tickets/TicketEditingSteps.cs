@@ -16,7 +16,7 @@ namespace Agiil.BDD.Bindings.Tickets
   {
     readonly IStage stage;
 
-    [Given(@"(?:he|she|they) (?:has|have) set the ticket labels to read '([^']+)' and submitted")]
+    [Given(@"(?:he|she|they) (?:has|have) set the ticket labels to read '([^']*)' and submitted")]
     public void GivenTheyHaveSetTheTicketLabelsAndSubmitted(string labelNames)
     {
       var theActor = stage.GetTheActorInTheSpotlight();

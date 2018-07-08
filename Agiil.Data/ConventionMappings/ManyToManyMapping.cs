@@ -26,10 +26,20 @@ namespace Agiil.Data.ConventionMappings
 
       mapper.BeforeMapSet += (modelInspector, propertyPath, propertyCustomizer) => {
         var manyToManyAttrib = propertyPath.LocalMember.GetCustomAttribute<ManyToManyAttribute>();
-
         if(manyToManyAttrib == null) return;
 
-        propertyCustomizer.Inverse(!manyToManyAttrib.IsActiveSide);
+        if(manyToManyAttrib.IsActiveSide)
+        {
+          propertyCustomizer.Cascade(Cascade.Persist);
+          propertyCustomizer.Inverse(false);
+        }
+        else
+        {
+          propertyCustomizer.Cascade(Cascade.None);
+          propertyCustomizer.Inverse(true);
+        }
+
+        propertyCustomizer.Access(typeof(SourceCollectionAccessor));
 
         var activeEntityType = GetActiveType(propertyPath.LocalMember, manyToManyAttrib.IsActiveSide);
         var inactiveEntityType = GetInactiveType(propertyPath.LocalMember, manyToManyAttrib.IsActiveSide);
@@ -55,12 +65,6 @@ namespace Agiil.Data.ConventionMappings
         collectionRelationManyToManyCustomizer.Column(formatter.GetIdentityColumnName(oppositeType));
         collectionRelationManyToManyCustomizer.ForeignKey(formatter.GetForeignKeyConstraintName(oppositeType, myType));
       };
-
-      /*
-      mapper.BeforeMapMapKeyManyToMany += (modelInspector, member, mapKeyManyToManyCustomizer) => {
-        
-      };
-      */
     }
 
     Type GetActiveType(MemberInfo member, bool isActiveSide)
