@@ -200,9 +200,6 @@
     <Compile Include="Tickets\AutomaticTicketLinks.feature.cs">
       <DependentUpon>AutomaticTicketLinks.feature</DependentUpon>
     </Compile>
-    <Compile Include="Tickets\RemoveLabelsFromATicket.feature.cs">
-      <DependentUpon>RemoveLabelsFromATicket.feature</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -272,10 +269,6 @@
     <None Include="Tickets\AutomaticTicketLinks.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AutomaticTicketLinks.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Tickets\RemoveLabelsFromATicket.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>RemoveLabelsFromATicket.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

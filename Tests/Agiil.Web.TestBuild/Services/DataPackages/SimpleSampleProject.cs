@@ -45,7 +45,6 @@ namespace Agiil.Web.Services.DataPackages
         var comment4 = CreateCommentFour(ticket2, admin);
 
         CreateExistingLabelOne(ticket2, ticket3, ticket4);
-        CreateExistingLabelTwo(ticket2, ticket3, ticket4);
 
         tran.Commit();
       }
@@ -266,16 +265,6 @@ namespace Agiil.Web.Services.DataPackages
     Label CreateExistingLabelOne(params Ticket[] tickets)
     {
       var label = new Label { Name = "existing label one" };
-      label.Tickets.UnionWith(tickets);
-
-      repo.Add(label);
-
-      return label;
-    }
-
-    Label CreateExistingLabelTwo(params Ticket[] tickets)
-    {
-      var label = new Label { Name = "existing label two" };
       label.Tickets.UnionWith(tickets);
 
       repo.Add(label);

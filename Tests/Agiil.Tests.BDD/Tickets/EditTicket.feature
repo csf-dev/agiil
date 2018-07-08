@@ -33,12 +33,6 @@ Scenario: Youssef can move a ticket to a different sprint
    Then he navigates to the ticket with the title 'Sample ticket 1'
     And he should see that the ticket is part of the sprint 'Sprint three'
 
-Scenario: Removing a ticket from all sprints should not cause it to be deleted
-  Given Youssef has navigated to the ticket with the title 'Sample ticket 1' and opened it for editing
-   When he changes the ticket sprint to 'None' and clicks submit
-    And he looks at the list of tickets
-   Then he should be able to find a ticket with the title 'Sample ticket 1'
-
 Scenario: Youssef can change an enhancement ticket to a bug ticket
   Given Youssef has navigated to the ticket with the title 'Sample ticket 1' and opened it for editing
    When he changes the ticket type to 'Bug' and clicks submit
