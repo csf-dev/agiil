@@ -53,12 +53,11 @@ namespace Agiil.Data.ConventionMappings
       });
 
       mapper.BeforeMapSet += (modelInspector, propertyPath, propertyCustomizer) => {
-        propertyCustomizer.Cascade(Cascade.All | Cascade.DeleteOrphans);
-
-        propertyCustomizer.Access(typeof(SourceCollectionAccessor));
-
         if(propertyPath.LocalMember.GetCustomAttribute<ManyToManyAttribute>() != null)
           return;
+        
+        propertyCustomizer.Cascade(Cascade.All | Cascade.DeleteOrphans);
+        propertyCustomizer.Access(typeof(SourceCollectionAccessor));
 
         propertyCustomizer.Key(keyMap => {
           var parentType = propertyPath.LocalMember.DeclaringType;
