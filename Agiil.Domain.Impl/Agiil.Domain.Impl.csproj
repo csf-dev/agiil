@@ -145,7 +145,6 @@
     <Compile Include="Labels\LabelLister.cs" />
     <Compile Include="Tickets\IsOpen.cs" />
     <Compile Include="Tickets\IsClosed.cs" />
-    <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="Labels\ExistingLabelReader.cs" />
     <Compile Include="Data\ApplicationDependencyTester.cs" />
     <Compile Include="Tickets\TicketReferenceSpecification.cs" />
