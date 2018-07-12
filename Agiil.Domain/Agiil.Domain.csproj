@@ -154,6 +154,13 @@
     <Compile Include="Data\ITestsApplicationDependencies.cs" />
     <Compile Include="Data\AppDependencyTestResult.cs" />
     <Compile Include="Data\ITestsThatDatabaseIsWorking.cs" />
+    <Compile Include="TicketSearch\SearchModel.cs" />
+    <Compile Include="TicketSearch\SearchNode.cs" />
+    <Compile Include="TicketSearch\ChildNodeProvider.cs" />
+    <Compile Include="TicketSearch\ISearchNode.cs" />
+    <Compile Include="TicketSearch\IHasChildNodes.cs" />
+    <Compile Include="TicketSearch\IHasReplacableParent.cs" />
+    <Compile Include="TicketSearch\NodeDecorator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
@@ -163,6 +170,7 @@
     <Folder Include="Projects\" />
     <Folder Include="Sprints\" />
     <Folder Include="Labels\" />
+    <Folder Include="TicketSearch\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
