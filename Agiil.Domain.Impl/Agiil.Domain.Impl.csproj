@@ -148,13 +148,12 @@
     <Compile Include="Labels\ExistingLabelReader.cs" />
     <Compile Include="Data\ApplicationDependencyTester.cs" />
     <Compile Include="Tickets\TicketReferenceSpecification.cs" />
-    <Compile Include="TicketSearch\NotNodeDecorator.cs" />
+    <Compile Include="TicketSearch\LogicalNotNodeDecorator.cs" />
     <Compile Include="TicketSearch\HasLabelNode.cs" />
     <Compile Include="TicketSearch\AllLabelsNode.cs" />
     <Compile Include="TicketSearch\HasNoLabelsNode.cs" />
     <Compile Include="TicketSearch\HasSprintNode.cs" />
     <Compile Include="TicketSearch\HasNoSprintNode.cs" />
-    <Compile Include="TicketSearch\OpenClosedNode.cs" />
     <Compile Include="TicketSearch\IsTicketTypeNode.cs" />
     <Compile Include="TicketSearch\TitleTextContainsNode.cs" />
     <Compile Include="TicketSearch\DescriptionTextContainsNode.cs" />
@@ -166,6 +165,9 @@
     <Compile Include="TicketSearch\FulltextSimilarNode.cs" />
     <Compile Include="TicketSearch\LogicalAndNode.cs" />
     <Compile Include="TicketSearch\LogicalOrNode.cs" />
+    <Compile Include="TicketSearch\IGetsTicketSpecification.cs" />
+    <Compile Include="TicketSearch\IsOpenNode.cs" />
+    <Compile Include="TicketSearch\IsClosedNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
