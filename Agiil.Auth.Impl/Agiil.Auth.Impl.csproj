@@ -76,9 +76,6 @@
     <Reference Include="BrakePedal">
       <HintPath>..\packages\BrakePedal.1.0.3\lib\net45\BrakePedal.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Data">
-      <HintPath>..\packages\CSF.Data.1.2.1\lib\net45\CSF.Data.dll</HintPath>
-    </Reference>
     <Reference Include="CSF.Data.Entities">
       <HintPath>..\packages\CSF.Data.Entities.1.3.2\lib\net45\CSF.Data.Entities.dll</HintPath>
     </Reference>
@@ -93,6 +90,9 @@
     </Reference>
     <Reference Include="CSF.Utils">
       <HintPath>..\packages\CSF.Utils.6.1.1\lib\net45\CSF.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data">
+      <HintPath>..\packages\CSF.Data.1.3.0\lib\net45\CSF.Data.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
