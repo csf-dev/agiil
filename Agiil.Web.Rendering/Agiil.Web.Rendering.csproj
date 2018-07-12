@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Web.Rendering</RootNamespace>
     <AssemblyName>Agiil.Web.Rendering</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>v0.5.1-alpha</ReleaseVersion>
+    <ReleaseVersion>v0.5.2-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

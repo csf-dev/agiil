@@ -41,6 +41,12 @@
           Condition = "'@(IntermediateSatelliteAssemblies)' != ''"
           SkipUnchangedFiles="true" />
 
+    <!-- SQLite interop assemblies -->
+    <Copy SourceFiles = "@(SQLiteInteropFiles)"
+          DestinationFiles = "@(SQLiteInteropFiles->'$(WebAppStagingDir)\bin\%(RecursiveDir)%(Filename)%(Extension)')"
+          Condition = "'@(SQLiteInteropFiles)' != ''"
+          SkipUnchangedFiles="true" />
+
     <!-- Referenced assemblies -->
     <Copy SourceFiles="@(ReferenceCopyLocalPaths)" DestinationFolder="$(WebAppStagingDir)\bin" SkipUnchangedFiles="true" />
 
