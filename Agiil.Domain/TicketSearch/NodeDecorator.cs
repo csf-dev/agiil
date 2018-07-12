@@ -7,6 +7,8 @@ namespace Agiil.Domain.TicketSearch
   {
     readonly IHasReplacableParent decoratedNode;
 
+    public virtual ISearchNode DecoratedNode => decoratedNode;
+
     public virtual IHasChildNodes Parent => decoratedNode.Parent;
 
     public virtual IList<ISearchNode> Children
