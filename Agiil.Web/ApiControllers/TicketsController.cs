@@ -10,7 +10,7 @@ namespace Agiil.Web.ApiControllers
 {
   public class TicketsController : ApiController
   {
-    readonly ITicketLister lister;
+    readonly IGetsListOfTickets lister;
     readonly Lazy<IMapper> mapper;
 
     public IList<TicketSummaryDto> Get(AdHocTicketListSpecification spec)
@@ -33,7 +33,7 @@ namespace Agiil.Web.ApiControllers
       };
     }
 
-    public TicketsController(ITicketLister lister,
+    public TicketsController(IGetsListOfTickets lister,
                              Lazy<IMapper> mapper)
     {
       if(lister == null)

@@ -79,7 +79,7 @@
     <Compile Include="ComponentScope.cs" />
     <Compile Include="Tickets\CreateTicketResponse.cs" />
     <Compile Include="Data\IInitialDataCreator.cs" />
-    <Compile Include="Tickets\ITicketLister.cs" />
+    <Compile Include="Tickets\IGetsListOfTickets.cs" />
     <Compile Include="Tickets\ITicketDetailService.cs" />
     <Compile Include="Tickets\EditTicketRequest.cs" />
     <Compile Include="Tickets\ITicketEditor.cs" />

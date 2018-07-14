@@ -10,7 +10,7 @@ namespace Agiil.Web.Controllers
 {
   public class TicketsController : Controller
   {
-    readonly ITicketLister lister;
+    readonly IGetsListOfTickets lister;
     readonly IMapper mapper;
 
     public ActionResult Index(AdHocTicketListSpecification spec)
@@ -21,7 +21,7 @@ namespace Agiil.Web.Controllers
       return View (model);
     }
 
-    TicketListModel GetModel(IList<Ticket> tickets = null,
+    TicketListModel GetModel(IReadOnlyList<Ticket> tickets = null,
                              bool showingClosedTickets = false)
     {
       var model = new TicketListModel();
@@ -46,7 +46,7 @@ namespace Agiil.Web.Controllers
       };
     }
 
-    public TicketsController(ITicketLister lister, IMapper mapper)
+    public TicketsController(IGetsListOfTickets lister, IMapper mapper)
     {
       if(mapper == null)
         throw new ArgumentNullException(nameof(mapper));
