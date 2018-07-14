@@ -1,59 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CSF.Data.Entities;
 using CSF.Data.NHibernate;
+using CSF.Data.Specifications;
 
 namespace Agiil.Domain.Tickets
 {
-  public class TicketLister : ITicketLister
+  public class TicketLister : IGetsListOfTickets
   {
-    readonly IEntityData ticketRepo;
+    readonly Func<ISpecificationExpression<Ticket>,IGetsQueryForTickets> queryProviderFactory;
+    readonly IGetsTicketSpecificationProvider specificationProviderFactory;
 
-    public IList<Ticket> GetTickets()
+    public IReadOnlyList<Ticket> GetTickets(TicketListRequest request)
     {
-      return GetTickets(TicketListRequest.CreateDefault());
+      var specificationProvider = specificationProviderFactory.GetFromListRequest(request);
+      return GetTickets(specificationProvider);
     }
 
-    public IList<Ticket> GetTickets(TicketListRequest request)
+    IReadOnlyList<Ticket> GetTickets(IGetsTicketSpecification specificationProvider)
     {
-      var query = GetQuery();
-      query = ConfigureQuery(query, request);
+      var spec = specificationProvider.GetSpecification();
+      var queryProvider = queryProviderFactory(spec);
 
+      var query = queryProvider.GetQuery();
+      query = query.OrderByDescending(x => x.CreationTimestamp);
       return query
         .Fetch(x => x.User)
         .Fetch(x => x.Type)
         .ToList();
     }
 
-    IQueryable<Ticket> GetQuery()
+    public TicketLister(Func<ISpecificationExpression<Ticket>,IGetsQueryForTickets> queryProviderFactory,
+                        IGetsTicketSpecificationProvider specificationProviderFactory)
     {
-      return ticketRepo.Query<Ticket>();
-    }
-
-    IQueryable<Ticket> ConfigureQuery(IQueryable<Ticket> query, TicketListRequest request)
-    {
-      if(!request.ShowClosedTickets)
-      {
-        query = query.Where(x => !x.Closed);
-      }
-
-      if(!request.ShowOpenTickets)
-      {
-        query = query.Where(x => x.Closed);
-      }
-
-      query = query.OrderByDescending(x => x.CreationTimestamp);
-
-      return query;
-    }
-
-    public TicketLister(IEntityData ticketRepo)
-    {
-      if(ticketRepo == null)
-        throw new ArgumentNullException(nameof(ticketRepo));
+      if(specificationProviderFactory == null)
+        throw new ArgumentNullException(nameof(specificationProviderFactory));
+      if(queryProviderFactory == null)
+        throw new ArgumentNullException(nameof(queryProviderFactory));
       
-      this.ticketRepo = ticketRepo;
+      this.queryProviderFactory = queryProviderFactory;
+      this.specificationProviderFactory = specificationProviderFactory;
     }
   }
 }
