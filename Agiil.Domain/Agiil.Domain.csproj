@@ -158,7 +158,7 @@
     <Compile Include="Data\AppDependencyTestResult.cs" />
     <Compile Include="Data\ITestsThatDatabaseIsWorking.cs" />
     <Compile Include="TicketSearch\SearchModel.cs" />
-    <Compile Include="TicketSearch\SearchNode.cs" />
+    <Compile Include="TicketSearch\SearchLeaf.cs" />
     <Compile Include="TicketSearch\ChildNodeProvider.cs" />
     <Compile Include="TicketSearch\ISearchNode.cs" />
     <Compile Include="TicketSearch\IHasChildNodes.cs" />
@@ -168,6 +168,8 @@
     <Compile Include="Tickets\IGetsTicketSpecification.cs" />
     <Compile Include="Tickets\IGetsTicketSpecificationProvider.cs" />
     <Compile Include="TicketSearch\IGetsTicketSpecification.cs" />
+    <Compile Include="Tickets\IGetsTicketListRequest.cs" />
+    <Compile Include="TicketSearch\SearchBranch.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

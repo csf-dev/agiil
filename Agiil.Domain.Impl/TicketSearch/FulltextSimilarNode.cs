@@ -9,7 +9,7 @@ namespace Agiil.Domain.TicketSearch
   /// must be similar to the given text, using natural text relevance matching.
   /// </summary>
   [NaturalTextOrdering]
-  public class FulltextSimilarNode : SearchNode
+  public class FulltextSimilarNode : SearchLeaf
   {
     public string Text { get; set; }
 

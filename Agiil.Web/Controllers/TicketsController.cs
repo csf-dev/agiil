@@ -15,35 +15,20 @@ namespace Agiil.Web.Controllers
 
     public ActionResult Index(AdHocTicketListSpecification spec)
     {
-      var request = GetRequest(spec);
-      var tickets = lister.GetTickets(request);
-      var model = GetModel(tickets, request.ShowClosedTickets);
+      var request = mapper.Map<TicketListRequest>(spec);
+      var model = GetModel(request);
       return View (model);
     }
 
-    TicketListModel GetModel(IReadOnlyList<Ticket> tickets = null,
-                             bool showingClosedTickets = false)
+    TicketListModel GetModel(TicketListRequest listRequest)
     {
-      var model = new TicketListModel();
+      var model = mapper.Map<TicketListModel>(listRequest);
 
-      model.ShowingClosedTickets = showingClosedTickets;
+      var tickets = lister.GetTickets(listRequest);
       if(tickets != null)
         model.Tickets = tickets.Select(x => mapper.Map<TicketSummaryDto>(x)).ToList();
 
       return model;
-    }
-
-    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
-    TicketListRequest GetRequest(AdHocTicketListSpecification spec)
-    {
-      if(ReferenceEquals(spec, null))
-        return TicketListRequest.CreateDefault();
-
-      return new TicketListRequest
-      {
-        ShowClosedTickets = spec.ShowClosedTickets,
-        ShowOpenTickets = !spec.ShowClosedTickets,
-      };
     }
 
     public TicketsController(IGetsListOfTickets lister, IMapper mapper)

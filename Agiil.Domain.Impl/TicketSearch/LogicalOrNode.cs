@@ -8,7 +8,7 @@ namespace Agiil.Domain.TicketSearch
   /// Indicates that ANY of the <see cref="IHasChildNodes.Children"/> of the current node must be true in order to
   /// consider this criterion satisfied.
   /// </summary>
-  public class LogicalOrNode : SearchNode
+  public class LogicalOrNode : SearchBranch
   {
     public override ISpecificationExpression<Ticket> GetSpecification()
     {

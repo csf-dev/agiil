@@ -13,12 +13,6 @@ namespace Agiil.Domain.TicketSearch
 
     public virtual IHasChildNodes Parent => decoratedNode.Parent;
 
-    public virtual IList<ISearchNode> Children
-    {
-      get { return decoratedNode.Children; }
-      set { decoratedNode.Children = value; }
-    }
-
     public virtual ISpecificationExpression<Ticket> GetSpecification() => decoratedNode.GetSpecification();
 
     protected virtual void ReplaceParent(IHasChildNodes replacement) => decoratedNode.ReplaceParent(replacement);

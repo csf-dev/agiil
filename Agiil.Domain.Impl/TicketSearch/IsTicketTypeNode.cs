@@ -9,7 +9,7 @@ namespace Agiil.Domain.TicketSearch
   /// <summary>
   /// A search node indicating that the ticket's type must be one of the named types.
   /// </summary>
-  public class IsTicketTypeNode : SearchNode
+  public class IsTicketTypeNode : SearchLeaf
   {
     ICollection<string> typeNames;
 

@@ -180,6 +180,7 @@
     <Compile Include="Tickets\SpecificationQueryProviderDecorator.cs" />
     <Compile Include="Tickets\TicketListSpecificationFromRequestAdapter.cs" />
     <Compile Include="Tickets\TicketSpecificationProviderFactory.cs" />
+    <Compile Include="Tickets\AllOpenTicketsListRequestProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

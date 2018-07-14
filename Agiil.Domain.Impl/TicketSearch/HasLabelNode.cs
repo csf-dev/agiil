@@ -9,7 +9,7 @@ namespace Agiil.Domain.TicketSearch
   /// <summary>
   /// A search node indicating that the ticket must be associated with any of the named labels.
   /// </summary>
-  public class HasLabelNode : SearchNode
+  public class HasLabelNode : SearchLeaf
   {
     ICollection<string> labelNames;
 

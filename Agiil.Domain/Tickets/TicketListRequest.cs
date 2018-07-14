@@ -20,10 +20,5 @@ namespace Agiil.Domain.Tickets
       ShowOpenTickets = true;
 #pragma warning restore CS0618 // Type or member is obsolete
     }
-
-    public static TicketListRequest CreateDefault()
-    {
-      return new TicketListRequest();
-    }
   }
 }

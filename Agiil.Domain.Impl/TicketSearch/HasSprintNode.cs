@@ -9,7 +9,7 @@ namespace Agiil.Domain.TicketSearch
   /// <summary>
   /// A search node indicating that the ticket must be associated with any of the named sprints.
   /// </summary>
-  public class HasSprintNode : SearchNode
+  public class HasSprintNode : SearchLeaf
   {
     ICollection<string> sprintNames;
 

@@ -96,6 +96,8 @@
     <Compile Include="Tickets\LabelToLabelDtoProfile.cs" />
     <Compile Include="Labels\ListedLabelToListedLabelDtoProfile.cs" />
     <Compile Include="Labels\LabelToLabelDetailDtoProfile.cs" />
+    <Compile Include="Tickets\AdHocTicketListSpecificationToTicketListRequestProfile.cs" />
+    <Compile Include="Tickets\TicketListRequestToAdHocTicketListSpecificationProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -122,6 +124,10 @@
     <ProjectReference Include="..\Agiil.Web.Rendering\Agiil.Web.Rendering.csproj">
       <Project>{8080A385-823C-44F0-B090-71F52337F04A}</Project>
       <Name>Agiil.Web.Rendering</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Domain.Impl\Agiil.Domain.Impl.csproj">
+      <Project>{FF544749-0A04-417F-AD83-E284BBF498E7}</Project>
+      <Name>Agiil.Domain.Impl</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

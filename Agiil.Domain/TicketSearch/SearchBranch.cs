@@ -4,7 +4,7 @@ using CSF.Data.Specifications;
 
 namespace Agiil.Domain.TicketSearch
 {
-  public abstract class SearchNode : ChildNodeProvider, ISearchNode, IHasReplacableParent
+  public abstract class SearchBranch : ChildNodeProvider, ISearchNode, IHasReplacableParent
   {
     IHasChildNodes parent;
 

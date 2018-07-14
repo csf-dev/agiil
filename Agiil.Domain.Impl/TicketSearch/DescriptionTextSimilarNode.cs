@@ -9,7 +9,7 @@ namespace Agiil.Domain.TicketSearch
   /// natural text relevance matching.
   /// </summary>
   [NaturalTextOrdering]
-  public class DescriptionTextSimilarNode : SearchNode
+  public class DescriptionTextSimilarNode : SearchLeaf
   {
     public string Text { get; set; }
 
