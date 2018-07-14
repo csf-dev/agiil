@@ -161,6 +161,7 @@
     <Compile Include="TicketSearch\IHasChildNodes.cs" />
     <Compile Include="TicketSearch\IHasReplacableParent.cs" />
     <Compile Include="TicketSearch\NodeDecorator.cs" />
+    <Compile Include="Tickets\IGetsQueryForTickets.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

@@ -177,6 +177,8 @@
     <Compile Include="Tickets\Specs\DescriptionContainsText.cs" />
     <Compile Include="Tickets\Specs\TitleContainsText.cs" />
     <Compile Include="Tickets\Specs\AnyCommentContainsText.cs" />
+    <Compile Include="Tickets\TicketQueryProvider.cs" />
+    <Compile Include="Tickets\SpecificationQueryProviderDecorator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
