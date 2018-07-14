@@ -141,13 +141,9 @@
     <Compile Include="Labels\ExistingLabelProvider.cs" />
     <Compile Include="Labels\LabelProviderBase.cs" />
     <Compile Include="Labels\NewLabelProvider.cs" />
-    <Compile Include="Labels\LabelNameInSpecification.cs" />
     <Compile Include="Labels\LabelLister.cs" />
-    <Compile Include="Tickets\IsOpen.cs" />
-    <Compile Include="Tickets\IsClosed.cs" />
     <Compile Include="Labels\ExistingLabelReader.cs" />
     <Compile Include="Data\ApplicationDependencyTester.cs" />
-    <Compile Include="Tickets\TicketReferenceSpecification.cs" />
     <Compile Include="TicketSearch\LogicalNotNodeDecorator.cs" />
     <Compile Include="TicketSearch\HasLabelNode.cs" />
     <Compile Include="TicketSearch\AllLabelsNode.cs" />
@@ -168,6 +164,19 @@
     <Compile Include="TicketSearch\IGetsTicketSpecification.cs" />
     <Compile Include="TicketSearch\IsOpenNode.cs" />
     <Compile Include="TicketSearch\IsClosedNode.cs" />
+    <Compile Include="Tickets\Specs\IsClosed.cs" />
+    <Compile Include="Tickets\Specs\IsOpen.cs" />
+    <Compile Include="Labels\Specs\LabelNameIn.cs" />
+    <Compile Include="Tickets\Specs\TicketReferenceEquals.cs" />
+    <Compile Include="Tickets\Specs\HasLabel.cs" />
+    <Compile Include="Tickets\Specs\HasNoLabels.cs" />
+    <Compile Include="Tickets\Specs\HasAllLabels.cs" />
+    <Compile Include="Tickets\Specs\HasNoSprint.cs" />
+    <Compile Include="Tickets\Specs\HasSprint.cs" />
+    <Compile Include="Tickets\Specs\IsTicketType.cs" />
+    <Compile Include="Tickets\Specs\DescriptionContainsText.cs" />
+    <Compile Include="Tickets\Specs\TitleContainsText.cs" />
+    <Compile Include="Tickets\Specs\AnyCommentContainsText.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
@@ -189,6 +198,8 @@
     <Folder Include="Sprints\" />
     <Folder Include="Labels\" />
     <Folder Include="TicketSearch\" />
+    <Folder Include="Tickets\Specs\" />
+    <Folder Include="Labels\Specs\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

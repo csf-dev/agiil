@@ -4,16 +4,16 @@ using System.Linq;
 using System.Linq.Expressions;
 using CSF.Data.Specifications;
 
-namespace Agiil.Domain.Labels
+namespace Agiil.Domain.Labels.Specs
 {
-  public class LabelNameInSpecification : SpecificationExpression<Label>
+  public class LabelNameIn : SpecificationExpression<Label>
   {
-    readonly IReadOnlyCollection<string> names;
+    readonly IEnumerable<string> names;
 
     public override Expression<Func<Label, bool>> GetExpression()
       => label => names.Contains(label.Name);
 
-    public LabelNameInSpecification(IReadOnlyCollection<string> names)
+    public LabelNameIn(IEnumerable<string> names)
     {
       if(names == null)
         throw new ArgumentNullException(nameof(names));

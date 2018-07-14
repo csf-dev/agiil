@@ -2,9 +2,9 @@
 using System.Linq.Expressions;
 using CSF.Data.Specifications;
 
-namespace Agiil.Domain.Tickets
+namespace Agiil.Domain.Tickets.Specs
 {
-  public class TicketReferenceSpecification : SpecificationExpression<Ticket>
+  public class TicketReferenceEquals : SpecificationExpression<Ticket>
   {
     readonly TicketReference reference;
 
@@ -15,7 +15,7 @@ namespace Agiil.Domain.Tickets
                        && ticket.TicketNumber == reference.TicketNumber;
     }
 
-    public TicketReferenceSpecification(TicketReference reference)
+    public TicketReferenceEquals(TicketReference reference)
     {
       if(reference == null)
         throw new ArgumentNullException(nameof(reference));

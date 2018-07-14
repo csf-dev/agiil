@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Agiil.Domain.Tickets;
+using Agiil.Domain.Tickets.Specs;
 using CSF.Data.Entities;
 using CSF.Data.Specifications;
 

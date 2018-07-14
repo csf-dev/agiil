@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Tickets;
+using Agiil.Domain.Tickets.Specs;
 using CSF.Data.Specifications;
 
 namespace Agiil.Domain.TicketSearch
