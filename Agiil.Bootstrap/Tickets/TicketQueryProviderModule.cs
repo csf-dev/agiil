@@ -21,24 +21,23 @@ namespace Agiil.Bootstrap.Tickets
     IGetsQueryForTickets GetTicketQuery(IComponentContext context, IEnumerable<Parameter> autofacParams)
     {
       var baseProvider = context.Resolve<TicketQueryProvider>();
-      var specification = GetSpecification(autofacParams);
+      var specificationParameter = GetSpecificationParameter(autofacParams);
       
-      if(specification == null)
+      if(specificationParameter == null)
         return baseProvider;
         
       var decoratedParam = new TypedParameter(typeof(IGetsQueryForTickets), baseProvider);
 
-      return context.Resolve<SpecificationQueryProviderDecorator>(decoratedParam);
+      return context.Resolve<SpecificationQueryProviderDecorator>(decoratedParam, specificationParameter);
     }
 
-    ISpecificationExpression<Ticket> GetSpecification(IEnumerable<Parameter> autofacParams)
+    Parameter GetSpecificationParameter(IEnumerable<Parameter> autofacParams)
     {
       return autofacParams
         .OfType<ConstantParameter>()
         .Where(param => param != null
                         && param.Value != null
                         && typeof(ISpecificationExpression<Ticket>).IsAssignableFrom(param.Value.GetType()))
-        .Select(param => (ISpecificationExpression<Ticket>) param.Value)
         .FirstOrDefault();
     }
 	}

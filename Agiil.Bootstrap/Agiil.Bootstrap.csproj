@@ -155,6 +155,8 @@
     <Compile Include="Data\ClassMappingsModule.cs" />
     <Compile Include="Rendering\MarkdownRenderingExtensionsModule.cs" />
     <Compile Include="Tickets\TicketQueryProviderModule.cs" />
+    <Compile Include="Tickets\TicketSpecsModule.cs" />
+    <Compile Include="Labels\LabelSpecsModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
