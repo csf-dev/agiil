@@ -9,29 +9,7 @@ namespace Agiil.Domain.Tickets
     readonly TicketListRequest request;
 
     public ISpecificationExpression<Ticket> GetSpecification()
-    {
-      if(request.CriteriaModel != null)
-        return request.CriteriaModel.GetSpecification();
-
-#pragma warning disable CS0618 // Type or member is obsolete
-      if(request.ShowOpenTickets && !request.ShowClosedTickets)
-        return new IsOpen();
-
-      if(!request.ShowOpenTickets && request.ShowClosedTickets)
-        return new IsClosed();
-
-      if(request.ShowOpenTickets && request.ShowClosedTickets)
-        return GetTrueSpecification();
-#pragma warning restore CS0618 // Type or member is obsolete
-
-      return GetFalseSpecification();
-    }
-
-    ISpecificationExpression<Ticket> GetFalseSpecification()
-      => new DynamicSpecificationExpression<Ticket>(t => false);
-
-    ISpecificationExpression<Ticket> GetTrueSpecification()
-      => new DynamicSpecificationExpression<Ticket>(t => true);
+      => request.CriteriaModel.GetSpecification();
 
     public TicketListSpecificationFromRequestAdapter(TicketListRequest request)
     {

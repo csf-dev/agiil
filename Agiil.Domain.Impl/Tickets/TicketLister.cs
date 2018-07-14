@@ -9,16 +9,16 @@ namespace Agiil.Domain.Tickets
   public class TicketLister : IGetsListOfTickets
   {
     readonly Func<ISpecificationExpression<Ticket>,IGetsQueryForTickets> queryProviderFactory;
-    readonly IGetsTicketSpecificationProvider specificationProviderFactory;
 
     public IReadOnlyList<Ticket> GetTickets(TicketListRequest request)
     {
-      var specificationProvider = specificationProviderFactory.GetFromListRequest(request);
-      return GetTickets(specificationProvider);
+      return GetTickets(request?.CriteriaModel);
     }
 
     IReadOnlyList<Ticket> GetTickets(IGetsTicketSpecification specificationProvider)
     {
+      if(specificationProvider == null) return new Ticket[0];
+
       var spec = specificationProvider.GetSpecification();
       var queryProvider = queryProviderFactory(spec);
 
@@ -30,16 +30,12 @@ namespace Agiil.Domain.Tickets
         .ToList();
     }
 
-    public TicketLister(Func<ISpecificationExpression<Ticket>,IGetsQueryForTickets> queryProviderFactory,
-                        IGetsTicketSpecificationProvider specificationProviderFactory)
+    public TicketLister(Func<ISpecificationExpression<Ticket>,IGetsQueryForTickets> queryProviderFactory)
     {
-      if(specificationProviderFactory == null)
-        throw new ArgumentNullException(nameof(specificationProviderFactory));
       if(queryProviderFactory == null)
         throw new ArgumentNullException(nameof(queryProviderFactory));
       
       this.queryProviderFactory = queryProviderFactory;
-      this.specificationProviderFactory = specificationProviderFactory;
     }
   }
 }

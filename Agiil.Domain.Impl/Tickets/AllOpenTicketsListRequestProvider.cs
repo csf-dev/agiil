@@ -7,7 +7,7 @@ namespace Agiil.Domain.Tickets
   {
     public TicketListRequest GetRequest()
     {
-      var list = new TicketListRequest { CriteriaModel = new SearchModel(), };
+      var list = new TicketListRequest();
       list.CriteriaModel.Children.Add(new IsOpenNode());
       return list;
     }

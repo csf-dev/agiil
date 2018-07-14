@@ -179,7 +179,6 @@
     <Compile Include="Tickets\TicketQueryProvider.cs" />
     <Compile Include="Tickets\SpecificationQueryProviderDecorator.cs" />
     <Compile Include="Tickets\TicketListSpecificationFromRequestAdapter.cs" />
-    <Compile Include="Tickets\TicketSpecificationProviderFactory.cs" />
     <Compile Include="Tickets\AllOpenTicketsListRequestProvider.cs" />
   </ItemGroup>
   <ItemGroup>

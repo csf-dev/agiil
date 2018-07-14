@@ -25,7 +25,7 @@ namespace Agiil.Domain.TicketSearch
 
     protected ChildNodeProvider()
     {
-      children = new EventRaisingListWrapper<ISearchNode>();
+      children = new EventRaisingListWrapper<ISearchNode>(new List<ISearchNode>());
 
       children.AfterAdd += (sender, args) => {
         TryReplaceParent(args.Item, this);

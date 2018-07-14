@@ -18,7 +18,7 @@ namespace Agiil.Domain.TicketSearch
         output = (output == null)? spec : output.And(spec);
       }
 
-      return output;
+      return output ?? new DynamicSpecificationExpression<Ticket>(x => true);
     }
   }
 }

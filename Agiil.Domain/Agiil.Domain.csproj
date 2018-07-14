@@ -167,7 +167,6 @@
     <Compile Include="Tickets\IGetsQueryForTickets.cs" />
     <Compile Include="Tickets\IGetsTicketSpecification.cs" />
     <Compile Include="Tickets\IGetsTicketSpecificationProvider.cs" />
-    <Compile Include="TicketSearch\IGetsTicketSpecification.cs" />
     <Compile Include="Tickets\IGetsTicketListRequest.cs" />
     <Compile Include="TicketSearch\SearchBranch.cs" />
   </ItemGroup>
