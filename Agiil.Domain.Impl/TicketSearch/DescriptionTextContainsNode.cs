@@ -8,10 +8,10 @@ namespace Agiil.Domain.TicketSearch
   /// <summary>
   /// A search node indicating that the ticket's description must contain the given text, verbatim.
   /// </summary>
-  public class DescriptionTextContainsNode : SearchNode, IGetsTicketSpecification
+  public class DescriptionTextContainsNode : SearchNode
   {
     public string Text { get; set; }
 
-    public ISpecificationExpression<Ticket> GetSpecification() => new DescriptionContainsText(Text);
+    public override ISpecificationExpression<Ticket> GetSpecification() => new DescriptionContainsText(Text);
   }
 }

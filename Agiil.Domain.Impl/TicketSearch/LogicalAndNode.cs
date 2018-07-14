@@ -8,16 +8,15 @@ namespace Agiil.Domain.TicketSearch
   /// Indicates that ALL of the <see cref="IHasChildNodes.Children"/> of the current node must be true in order to
   /// consider this criterion satisfied.
   /// </summary>
-  public class LogicalAndNode : SearchNode, IGetsTicketSpecification
+  public class LogicalAndNode : SearchNode
   {
-    public ISpecificationExpression<Ticket> GetSpecification()
+    public override ISpecificationExpression<Ticket> GetSpecification()
     {
       ISpecificationExpression<Ticket> output = null;
 
       foreach(var child in Children)
       {
-        var specProvider = child as IGetsTicketSpecification;
-        var spec = specProvider?.GetSpecification();
+        var spec = child?.GetSpecification();
         if(spec == null) continue;
 
         output = (output == null)? spec : output.And(spec);

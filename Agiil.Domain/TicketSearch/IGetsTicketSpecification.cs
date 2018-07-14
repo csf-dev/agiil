@@ -4,7 +4,7 @@ using CSF.Data.Specifications;
 
 namespace Agiil.Domain.TicketSearch
 {
-  public interface IGetsTicketSpecification : ISearchNode
+  public interface IGetsTicketSpecification
   {
     ISpecificationExpression<Ticket> GetSpecification();
   }

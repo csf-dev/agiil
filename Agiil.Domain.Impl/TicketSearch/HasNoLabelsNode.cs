@@ -8,8 +8,8 @@ namespace Agiil.Domain.TicketSearch
   /// <summary>
   /// A search node indicating that the ticket must have no labels at all.
   /// </summary>
-  public class HasNoLabelsNode : SearchNode, IGetsTicketSpecification
+  public class HasNoLabelsNode : SearchNode
   {
-    public ISpecificationExpression<Ticket> GetSpecification() => new HasNoLabels();
+    public override ISpecificationExpression<Ticket> GetSpecification() => new HasNoLabels();
   }
 }

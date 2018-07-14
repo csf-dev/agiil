@@ -1,4 +1,7 @@
 ﻿using System;
+using Agiil.Domain.Tickets;
+using CSF.Data.Specifications;
+
 namespace Agiil.Domain.TicketSearch
 {
   /// <summary>
@@ -9,5 +12,11 @@ namespace Agiil.Domain.TicketSearch
   public class DescriptionTextSimilarNode : SearchNode
   {
     public string Text { get; set; }
+
+    public override ISpecificationExpression<Ticket> GetSpecification()
+    {
+      // TODO: Write this implementation
+      throw new NotImplementedException();
+    }
   }
 }

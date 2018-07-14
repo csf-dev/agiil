@@ -8,8 +8,8 @@ namespace Agiil.Domain.TicketSearch
   /// <summary>
   /// A search node indicating that the ticket must not be associated with any sprint.
   /// </summary>
-  public class HasNoSprintNode : SearchNode, IGetsTicketSpecification
+  public class HasNoSprintNode : SearchNode
   {
-    public ISpecificationExpression<Ticket> GetSpecification() => new HasNoSprint();
+    public override ISpecificationExpression<Ticket> GetSpecification() => new HasNoSprint();
   }
 }

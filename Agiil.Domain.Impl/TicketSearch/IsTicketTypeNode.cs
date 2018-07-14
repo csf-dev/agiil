@@ -9,7 +9,7 @@ namespace Agiil.Domain.TicketSearch
   /// <summary>
   /// A search node indicating that the ticket's type must be one of the named types.
   /// </summary>
-  public class IsTicketTypeNode : SearchNode, IGetsTicketSpecification
+  public class IsTicketTypeNode : SearchNode
   {
     ICollection<string> typeNames;
 
@@ -19,6 +19,6 @@ namespace Agiil.Domain.TicketSearch
       set { typeNames = value ?? new List<string>(); }
     }
 
-    public ISpecificationExpression<Ticket> GetSpecification() => new IsTicketType(typeNames);
+    public override ISpecificationExpression<Ticket> GetSpecification() => new IsTicketType(typeNames);
   }
 }

@@ -10,6 +10,10 @@ namespace Agiil.Domain.Tickets
 
     public ISpecificationExpression<Ticket> GetSpecification()
     {
+      if(request.CriteriaModel != null)
+        return request.CriteriaModel.GetSpecification();
+
+#pragma warning disable CS0618 // Type or member is obsolete
       if(request.ShowOpenTickets && !request.ShowClosedTickets)
         return new IsOpen();
 
@@ -18,6 +22,7 @@ namespace Agiil.Domain.Tickets
 
       if(request.ShowOpenTickets && request.ShowClosedTickets)
         return GetTrueSpecification();
+#pragma warning restore CS0618 // Type or member is obsolete
 
       return GetFalseSpecification();
     }

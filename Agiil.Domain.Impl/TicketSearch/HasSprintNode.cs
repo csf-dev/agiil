@@ -9,7 +9,7 @@ namespace Agiil.Domain.TicketSearch
   /// <summary>
   /// A search node indicating that the ticket must be associated with any of the named sprints.
   /// </summary>
-  public class HasSprintNode : SearchNode, IGetsTicketSpecification
+  public class HasSprintNode : SearchNode
   {
     ICollection<string> sprintNames;
 
@@ -19,6 +19,6 @@ namespace Agiil.Domain.TicketSearch
       set { sprintNames = value ?? new List<string>(); }
     }
 
-    public ISpecificationExpression<Ticket> GetSpecification() => new HasSprint(sprintNames);
+    public override ISpecificationExpression<Ticket> GetSpecification() => new HasSprint(sprintNames);
   }
 }

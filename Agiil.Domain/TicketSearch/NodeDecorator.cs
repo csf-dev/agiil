@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Agiil.Domain.Tickets;
+using CSF.Data.Specifications;
 
 namespace Agiil.Domain.TicketSearch
 {
@@ -16,6 +18,8 @@ namespace Agiil.Domain.TicketSearch
       get { return decoratedNode.Children; }
       set { decoratedNode.Children = value; }
     }
+
+    public virtual ISpecificationExpression<Ticket> GetSpecification() => decoratedNode.GetSpecification();
 
     protected virtual void ReplaceParent(IHasChildNodes replacement) => decoratedNode.ReplaceParent(replacement);
 

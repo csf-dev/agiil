@@ -7,9 +7,9 @@ namespace Agiil.Domain.TicketSearch
   /// <summary>
   /// Indicates that the decorated (inner) node's criterion should be be negated (a logical NOT).
   /// </summary>
-  public class LogicalNotNodeDecorator : NodeDecorator, IGetsTicketSpecification
+  public class LogicalNotNodeDecorator : NodeDecorator
   {
-    public ISpecificationExpression<Ticket> GetSpecification()
+    public override ISpecificationExpression<Ticket> GetSpecification()
     {
       var specProvider = DecoratedNode as IGetsTicketSpecification;
       return specProvider.GetSpecification()?.Negate();

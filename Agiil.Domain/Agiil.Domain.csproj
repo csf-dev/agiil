@@ -167,6 +167,7 @@
     <Compile Include="Tickets\IGetsQueryForTickets.cs" />
     <Compile Include="Tickets\IGetsTicketSpecification.cs" />
     <Compile Include="Tickets\IGetsTicketSpecificationProvider.cs" />
+    <Compile Include="TicketSearch\IGetsTicketSpecification.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

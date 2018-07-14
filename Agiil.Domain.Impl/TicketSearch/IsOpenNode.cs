@@ -8,8 +8,8 @@ namespace Agiil.Domain.TicketSearch
   /// <summary>
   /// A search node which indicates that the ticket must be open.
   /// </summary>
-  public class IsOpenNode : SearchNode, IGetsTicketSpecification
+  public class IsOpenNode : SearchNode
   {
-    public ISpecificationExpression<Ticket> GetSpecification() => new IsOpen();
+    public override ISpecificationExpression<Ticket> GetSpecification() => new IsOpen();
   }
 }

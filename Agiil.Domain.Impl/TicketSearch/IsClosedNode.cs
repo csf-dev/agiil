@@ -8,8 +8,8 @@ namespace Agiil.Domain.TicketSearch
   /// <summary>
   /// A search node which indicates that the ticket must be closed.
   /// </summary>
-  public class IsClosedNode : SearchNode, IGetsTicketSpecification
+  public class IsClosedNode : SearchNode
   {
-    public ISpecificationExpression<Ticket> GetSpecification() => new IsClosed();
+    public override ISpecificationExpression<Ticket> GetSpecification() => new IsClosed();
   }
 }

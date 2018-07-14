@@ -2,7 +2,7 @@
 
 namespace Agiil.Domain.TicketSearch
 {
-  public interface ISearchNode : IHasChildNodes
+  public interface ISearchNode : IHasChildNodes, IGetsTicketSpecification
   {
     IHasChildNodes Parent { get; }
   }

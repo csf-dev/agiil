@@ -9,7 +9,7 @@ namespace Agiil.Domain.TicketSearch
   /// <summary>
   /// A search node indicating that the ticket must be associated with all of the named labels.
   /// </summary>
-  public class AllLabelsNode : SearchNode, IGetsTicketSpecification
+  public class AllLabelsNode : SearchNode
   {
     ICollection<string> labelNames;
 
@@ -19,6 +19,6 @@ namespace Agiil.Domain.TicketSearch
       set { labelNames = value ?? new List<string>(); }
     }
 
-    public ISpecificationExpression<Ticket> GetSpecification() => new HasAllLabels(labelNames);
+    public override ISpecificationExpression<Ticket> GetSpecification() => new HasAllLabels(labelNames);
   }
 }
