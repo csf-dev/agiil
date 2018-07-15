@@ -3,30 +3,27 @@ grammar AgiilQuery;
 /*
  * Parser rules
  */
-criteria                  : (criterion (WHITESPACE+ (logicalcombination WHITESPACE+)? criterion)*)? EOF;
+criteria                  : (criterion (logicalcombination? criterion)*)? WHITESPACE* EOF;
 
-criterion                 : ((element WHITESPACE+ predicate WHITESPACE+ value)
-                             | (element WHITESPACE+ predicatefunction));
+criterion                 : element elementtest;
+
+elementtest               : ((predicate value) | (NOT? functioninvocation));
 
 logicalcombination        : (AND | OR);
 
 element                   : NAME;
 
-predicate                 : (NOT WHITESPACE+)? predicatename;
+predicate                 : NOT? predicatename;
 
 predicatename             : (EQUALS | NOTEQUALS | TILDE | NAME);
 
-value                     : (CONSTANTVALUE | quotedvalue | valuefunction);
+value                     : (constantvalue | functioninvocation);
 
-quotedvalue               : DOUBLEQUOTE QUOTEDCONSTANTVALUE DOUBLEQUOTE;
+constantvalue             : (NAME | (WORD | DIGITS)+ | QUOTEDVALUE);
 
-predicatefunction         : functioninvocation;
+functioninvocation        : NAME OPENPAREN functionparameters CLOSEPAREN;
 
-valuefunction             : functioninvocation;
-
-functioninvocation        : FUNCTIONSTART functionparameter* FUNCTIONEND;
-
-functionparameter         : value;
+functionparameters        : (value (COMMA value)*)?;
 
 /*
  * Lexer rules
@@ -46,20 +43,19 @@ fragment T                : ('t'|'T');
 fragment UPPERCASE        : [A-Z];
 fragment LOWERCASE        : [a-z];
 fragment DIGIT            : [0-9];
-fragment WORD             : (UPPERCASE | LOWERCASE | '_')+;
-fragment OPENPAREN        : '(';
-fragment CLOSEPAREN       : ')';
 
+OPENPAREN                 : '(';
+CLOSEPAREN                : ')';
 EQUALS                    : '=';
 NOTEQUALS                 : '!=';
 TILDE                     : '~';
-DOUBLEQUOTE               : '"';
-WHITESPACE                : (' '|'\t'|'\r\n'|'\n');
+COMMA                     : ',';
+WHITESPACE                : (' '|'\t'|'\r\n'|'\n') -> skip;
 NOT                       : N O T;
 AND                       : A N D;
 OR                        : O R;
-NAME                      : (UPPERCASE | LOWERCASE) (WORD | DIGIT)+;
-FUNCTIONSTART             : (UPPERCASE | LOWERCASE) (WORD | DIGIT)+ WHITESPACE* OPENPAREN;
-FUNCTIONEND               : WHITESPACE* CLOSEPAREN;
-CONSTANTVALUE             : (WORD | DIGIT)+;
-QUOTEDCONSTANTVALUE       : [^"]*;
+NAME                      : (UPPERCASE | LOWERCASE | '_') (UPPERCASE | LOWERCASE | '_' | DIGIT)+;
+WORD                      : (UPPERCASE | LOWERCASE | '_')+;
+DIGITS                    : DIGIT+;
+QUOTEDVALUE               : '"' (~[\\"] | '\\' [\\"])* '"';
+ANY                       : .;
