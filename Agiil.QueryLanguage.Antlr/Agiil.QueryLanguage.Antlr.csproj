@@ -4,11 +4,19 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{959D29AD-F632-4FC7-8B45-86CFC9BDA34C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Agiil.QueryLanguage</RootNamespace>
+    <AssemblyName>Agiil.QueryLanguage.Antlr</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release</OutputPath>
+    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="lib\" />
@@ -28,10 +36,14 @@
     <Content Include="AgiilQuery.g4" />
     <Content Include="README.md" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EmptyClass.cs" />
+  </ItemGroup>
   <Import Project="Tools\BuildAntlrGrammar.targets" />
-  <Target Name="Build">
+  <Target Name="GenerateCode" DependsOnTargets="Build">
     <CallTarget Targets="Compile_Java" Condition="'$(Configuration)' == 'Debug'" />
     <CallTarget Targets="Generate_CSharp" />
     <CallTarget Targets="Generate_JavaScript" />
   </Target>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
