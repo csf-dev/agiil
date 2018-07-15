@@ -3,10 +3,10 @@ grammar AgiilQuery;
 /*
  * Parser rules
  */
-criteria                  : criterion? WHITESPACE+ ((logicalcombination WHITESPACE+)? criterion)*;
+criteria                  : (criterion (WHITESPACE+ (logicalcombination WHITESPACE+)? criterion)*)? EOF;
 
-criterion                 : (element WHITESPACE+ predicate WHITESPACE+ value)
-                            | (element WHITESPACE+ predicatefunction);
+criterion                 : ((element WHITESPACE+ predicate WHITESPACE+ value)
+                             | (element WHITESPACE+ predicatefunction));
 
 logicalcombination        : (AND | OR);
 
@@ -54,7 +54,7 @@ TILDE                     : '~';
 OPENPAREN                 : '(';
 CLOSEPAREN                : ')';
 DOUBLEQUOTE               : '"';
-WHITESPACE                : (' '|'\t');
+WHITESPACE                : (' '|'\t'|'\r\n'|'\n');
 NOT                       : N O T;
 AND                       : A N D;
 OR                        : O R;

@@ -22,6 +22,7 @@
     <None Include="Tools\grun.sh" />
     <None Include="Tools\antlr4.bat" />
     <None Include="Tools\grun.bat" />
+    <None Include="Tools\compile-java.sh" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Grammar\AgiilQuery.g4" />
