@@ -12,12 +12,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="lib\" />
-    <Folder Include="Grammar\" />
     <Folder Include="Tools\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\antlr-4.7.1-complete.jar" />
-    <None Include="README.md" />
     <None Include="Tools\antlr4.sh" />
     <None Include="Tools\grun.sh" />
     <None Include="Tools\antlr4.bat" />
@@ -27,12 +25,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Tools\BuildAntlrGrammar.targets" />
-    <Content Include="Grammar\AgiilQuery.g4" />
+    <Content Include="AgiilQuery.g4" />
+    <Content Include="README.md" />
   </ItemGroup>
   <Import Project="Tools\BuildAntlrGrammar.targets" />
   <Target Name="Build">
-    <CallTarget Targets="Build_Java" Condition="'$(Configuration)' == 'Debug'" />
-    <CallTarget Targets="Build_CSharp" />
-    <CallTarget Targets="Build_JavaScript" />
+    <CallTarget Targets="Compile_Java" Condition="'$(Configuration)' == 'Debug'" />
+    <CallTarget Targets="Generate_CSharp" />
+    <CallTarget Targets="Generate_JavaScript" />
   </Target>
 </Project>

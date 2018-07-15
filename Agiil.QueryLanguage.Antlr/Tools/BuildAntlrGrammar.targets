@@ -1,56 +1,39 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <StagingRoot>obj\Staging</StagingRoot>
+    <StagingRoot>generated_code</StagingRoot>
     <JavaStagingDir>$(StagingRoot)\Java</JavaStagingDir>
     <CSharpStagingDir>$(StagingRoot)\CSharp</CSharpStagingDir>
     <JavaScriptStagingDir>$(StagingRoot)\JavaScript</JavaScriptStagingDir>
-    <GrammarSourcePath>Grammar</GrammarSourcePath>
+    <GrammarSourcePath>$(MSBuildThisFileDirectory)..\</GrammarSourcePath>
     <GrammarName>AgiilQuery</GrammarName>
+    <GrammarSourceFile>$(GrammarSourcePath)\$(GrammarName).g4</GrammarSourceFile>
   </PropertyGroup>
 
   <Target Name="BeforeBuild"  BeforeTargets="Build">
     <MakeDir Directories="$(StagingRoot)"/>
   </Target>
   
-  <Target Name="Build_Java">
+  <Target Name="Generate_Java">
     <MakeDir Directories="$(JavaStagingDir)" />
-    <PropertyGroup>
-      <GrammarSourceFile>$(GrammarSourcePath)\$(GrammarName).g4</GrammarSourceFile>
-      <GrammarStagingFile>$(JavaStagingDir)\$(GrammarName).g4</GrammarStagingFile>
-    </PropertyGroup>
-    <Copy SourceFiles="$(GrammarSourceFile)"
-          DestinationFolder="$(JavaStagingDir)"
-          SkipUnchangedFiles="true" />
-    <Exec Command="Tools\antlr4.sh $(GrammarStagingFile)" Condition="'$(OS)' != 'Windows_NT'" />
+    <Exec Command="Tools\antlr4.sh -o '$(JavaStagingDir)' $(GrammarSourceFile)" Condition="'$(OS)' != 'Windows_NT'" />
+    <Exec Command="Tools\antlr4.bat -o '$(JavaStagingDir)' $(GrammarSourceFile)" Condition="'$(OS)' == 'Windows_NT'" />
+  </Target>
+
+  <Target Name="Compile_Java" DependsOnTargets="Generate_Java">
     <Exec Command="Tools\compile-java.sh $(JavaStagingDir)" Condition="'$(OS)' != 'Windows_NT'" />
-    <Exec Command="Tools\antlr4.bat $(GrammarStagingFile)" Condition="'$(OS)' == 'Windows_NT'" />
     <Exec Command="Tools\compile-java.bat $(JavaStagingDir)" Condition="'$(OS)' == 'Windows_NT'" />
   </Target>
   
-  <Target Name="Build_CSharp">
+  <Target Name="Generate_CSharp">
     <MakeDir Directories="$(CSharpStagingDir)" />
-    <PropertyGroup>
-      <GrammarSourceFile>$(GrammarSourcePath)\$(GrammarName).g4</GrammarSourceFile>
-      <GrammarStagingFile>$(CSharpStagingDir)\$(GrammarName).g4</GrammarStagingFile>
-    </PropertyGroup>
-    <Copy SourceFiles="$(GrammarSourceFile)"
-          DestinationFolder="$(CSharpStagingDir)"
-          SkipUnchangedFiles="true" />
-    <Exec Command="Tools\antlr4.sh -Dlanguage=CSharp -package Agiil.QueryLanguage.Generated $(GrammarStagingFile)" Condition="'$(OS)' != 'Windows_NT'" />
-    <Exec Command="Tools\antlr4.bat -Dlanguage=CSharp -package Agiil.QueryLanguage.Generated $(GrammarStagingFile)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Exec Command="Tools\antlr4.sh -Dlanguage=CSharp -package Agiil.QueryLanguage.Generated -o '$(CSharpStagingDir)' $(GrammarSourceFile)" Condition="'$(OS)' != 'Windows_NT'" />
+    <Exec Command="Tools\antlr4.bat -Dlanguage=CSharp -package Agiil.QueryLanguage.Generated -o '$(CSharpStagingDir)' $(GrammarSourceFile)" Condition="'$(OS)' == 'Windows_NT'" />
   </Target>
   
-  <Target Name="Build_JavaScript">
+  <Target Name="Generate_JavaScript">
     <MakeDir Directories="$(JavaScriptStagingDir)" />
-    <PropertyGroup>
-      <GrammarSourceFile>$(GrammarSourcePath)\$(GrammarName).g4</GrammarSourceFile>
-      <GrammarStagingFile>$(JavaScriptStagingDir)\$(GrammarName).g4</GrammarStagingFile>
-    </PropertyGroup>
-    <Copy SourceFiles="$(GrammarSourceFile)"
-          DestinationFolder="$(JavaScriptStagingDir)"
-          SkipUnchangedFiles="true" />
-    <Exec Command="Tools\antlr4.sh -Dlanguage=JavaScript $(GrammarStagingFile)" Condition="'$(OS)' != 'Windows_NT'" />
-    <Exec Command="Tools\antlr4.bat -Dlanguage=JavaScript $(GrammarStagingFile)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Exec Command="Tools\antlr4.sh -Dlanguage=JavaScript -package Agiil.QueryLanguage.Generated  -o '$(JavaScriptStagingDir)' $(GrammarSourceFile)" Condition="'$(OS)' != 'Windows_NT'" />
+    <Exec Command="Tools\antlr4.bat -Dlanguage=JavaScript -package Agiil.QueryLanguage.Generated  -o '$(JavaScriptStagingDir)' $(GrammarSourceFile)" Condition="'$(OS)' == 'Windows_NT'" />
   </Target>
 </Project>
