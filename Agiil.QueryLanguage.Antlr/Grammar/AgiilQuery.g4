@@ -3,7 +3,13 @@ grammar AgiilQuery;
 /*
  * Parser rules
  */
-criteria                  : (criterion (logicalcombination? criterion)*)? WHITESPACE* EOF;
+criteria                  : logicalcriteriagroups? WHITESPACE* EOF;
+
+logicalcriteriagroups     : criterionorgroup (logicalcombination? criterionorgroup)*;
+
+criterionorgroup          : (criterion | criteriagroup);
+
+criteriagroup             : OPENPAREN logicalcriteriagroups CLOSEPAREN;
 
 criterion                 : element elementtest;
 
