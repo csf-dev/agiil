@@ -31,6 +31,8 @@
   </ItemGroup>
   <Import Project="Tools\BuildAntlrGrammar.targets" />
   <Target Name="Build">
-    <CallTarget Targets="Build_Java" />
+    <CallTarget Targets="Build_Java" Condition="'$(Configuration)' == 'Debug'" />
+    <CallTarget Targets="Build_CSharp" />
+    <CallTarget Targets="Build_JavaScript" />
   </Target>
 </Project>
