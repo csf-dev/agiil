@@ -24,7 +24,7 @@ predicatefunction         : functioninvocation;
 
 valuefunction             : functioninvocation;
 
-functioninvocation        : NAME WHITESPACE* OPENPAREN functionparameter* CLOSEPAREN;
+functioninvocation        : FUNCTIONSTART functionparameter* FUNCTIONEND;
 
 functionparameter         : value;
 
@@ -47,17 +47,19 @@ fragment UPPERCASE        : [A-Z];
 fragment LOWERCASE        : [a-z];
 fragment DIGIT            : [0-9];
 fragment WORD             : (UPPERCASE | LOWERCASE | '_')+;
+fragment OPENPAREN        : '(';
+fragment CLOSEPAREN       : ')';
 
 EQUALS                    : '=';
 NOTEQUALS                 : '!=';
 TILDE                     : '~';
-OPENPAREN                 : '(';
-CLOSEPAREN                : ')';
 DOUBLEQUOTE               : '"';
 WHITESPACE                : (' '|'\t'|'\r\n'|'\n');
 NOT                       : N O T;
 AND                       : A N D;
 OR                        : O R;
 NAME                      : (UPPERCASE | LOWERCASE) (WORD | DIGIT)+;
+FUNCTIONSTART             : (UPPERCASE | LOWERCASE) (WORD | DIGIT)+ WHITESPACE* OPENPAREN;
+FUNCTIONEND               : WHITESPACE* CLOSEPAREN;
 CONSTANTVALUE             : (WORD | DIGIT)+;
 QUOTEDCONSTANTVALUE       : [^"]*;
