@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{959D29AD-F632-4FC7-8B45-86CFC9BDA34C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="lib\" />
+    <Folder Include="Grammar\" />
+    <Folder Include="Tools\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lib\antlr-4.7.1-complete.jar" />
+    <None Include="README.md" />
+    <None Include="Tools\antlr4.sh" />
+    <None Include="Tools\grun.sh" />
+    <None Include="Tools\antlr4.bat" />
+    <None Include="Tools\grun.bat" />
+  </ItemGroup>
+  <Target Name="Build">
+    <!-- TODO: Currently build is a no-op, but this needs writing in a cross-platform manner -->
+  </Target>
+</Project>
