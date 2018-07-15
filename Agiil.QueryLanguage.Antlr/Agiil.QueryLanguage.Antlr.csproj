@@ -23,11 +23,14 @@
     <None Include="Tools\antlr4.bat" />
     <None Include="Tools\grun.bat" />
     <None Include="Tools\compile-java.sh" />
+    <None Include="Tools\compile-java.bat" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Tools\BuildAntlrGrammar.targets" />
     <Content Include="Grammar\AgiilQuery.g4" />
   </ItemGroup>
+  <Import Project="Tools\BuildAntlrGrammar.targets" />
   <Target Name="Build">
-    <!-- TODO: Currently build is a no-op, but this needs writing in a cross-platform manner -->
+    <CallTarget Targets="Build_Java" />
   </Target>
 </Project>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <StagingRoot>obj\Staging</StagingRoot>
+    <JavaStagingDir>$(StagingRoot)\Java</JavaStagingDir>
+    <CSharpStagingDir>$(StagingRoot)\CSharp</CSharpStagingDir>
+    <JavaScriptStagingDir>$(StagingRoot)\JavaScript</JavaScriptStagingDir>
+    <GrammarSourcePath>Grammar</GrammarSourcePath>
+    <GrammarName>AgiilQuery</GrammarName>
+  </PropertyGroup>
+
+  <Target Name="BeforeBuild"  BeforeTargets="Build">
+    <MakeDir Directories="$(StagingRoot)"/>
+  </Target>
+  
+  <Target Name="Build_Java">
+    <MakeDir Directories="$(JavaStagingDir)" />
+    <PropertyGroup>
+      <GrammarSourceFile>$(GrammarSourcePath)\$(GrammarName).g4</GrammarSourceFile>
+      <GrammarStagingFile>$(JavaStagingDir)\$(GrammarName).g4</GrammarStagingFile>
+    </PropertyGroup>
+    <Copy SourceFiles="$(GrammarSourceFile)"
+          DestinationFolder="$(JavaStagingDir)"
+          SkipUnchangedFiles="true" />
+    <Exec Command="Tools\antlr4.sh $(GrammarStagingFile)" Condition="'$(OS)' != 'Windows_NT'" />
+    <Exec Command="Tools\compile-java.sh $(JavaStagingDir)" Condition="'$(OS)' != 'Windows_NT'" />
+    <Exec Command="Tools\antlr4.bat $(GrammarStagingFile)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Exec Command="Tools\compile-java.bat $(JavaStagingDir)" Condition="'$(OS)' == 'Windows_NT'" />
+  </Target>
+</Project>
