@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A3C8F8E6-8312-44B6-947A-4D973FD9E22E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Agiil.QueryLanguage.Generated</RootNamespace>
+    <AssemblyName>Agiil.QueryLanguage.Generated</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Agiil.QueryLanguage.Antlr\Agiil.QueryLanguage.Antlr.csproj">
+      <Project>{959D29AD-F632-4FC7-8B45-86CFC9BDA34C}</Project>
+      <Name>Agiil.QueryLanguage.Antlr</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GeneratedCode\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target Name="GatherGeneratedCode" BeforeTargets="BeforeBuild">
+    <PropertyGroup>
+      <GeneratedCodeSourceDir>..\Agiil.QueryLanguage.Antlr\generated_code\CSharp</GeneratedCodeSourceDir>
+      <GeneratedCodeOutputDir>GeneratedCode</GeneratedCodeOutputDir>
+    </PropertyGroup>
+    <ItemGroup>
+      <GeneratedSourceFiles Include="$(GeneratedCodeSourceDir)\*.cs" />
+    </ItemGroup>
+    <Copy SourceFiles="@(GeneratedSourceFiles)" DestinationFolder="$(GeneratedCodeOutputDir)" />
+    <ItemGroup>
+      <Compile Include="$(GeneratedCodeOutputDir)\*.cs" />
+    </ItemGroup>
+  </Target>
+</Project>

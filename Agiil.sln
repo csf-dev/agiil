@@ -58,6 +58,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.Web.Rendering.Impl", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.QueryLanguage.Antlr", "Agiil.QueryLanguage.Antlr\Agiil.QueryLanguage.Antlr.csproj", "{959D29AD-F632-4FC7-8B45-86CFC9BDA34C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.QueryLanguage.Generated", "Agiil.QueryLanguage.Generated\Agiil.QueryLanguage.Generated.csproj", "{A3C8F8E6-8312-44B6-947A-4D973FD9E22E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -332,6 +334,18 @@ Global
 		{959D29AD-F632-4FC7-8B45-86CFC9BDA34C}.AppVeyorCI|Any CPU.Build.0 = Debug|Any CPU
 		{959D29AD-F632-4FC7-8B45-86CFC9BDA34C}.AppVeyorCI|x86.ActiveCfg = Debug|Any CPU
 		{959D29AD-F632-4FC7-8B45-86CFC9BDA34C}.AppVeyorCI|x86.Build.0 = Debug|Any CPU
+		{A3C8F8E6-8312-44B6-947A-4D973FD9E22E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3C8F8E6-8312-44B6-947A-4D973FD9E22E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3C8F8E6-8312-44B6-947A-4D973FD9E22E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3C8F8E6-8312-44B6-947A-4D973FD9E22E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3C8F8E6-8312-44B6-947A-4D973FD9E22E}.Testing|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3C8F8E6-8312-44B6-947A-4D973FD9E22E}.Testing|Any CPU.Build.0 = Debug|Any CPU
+		{A3C8F8E6-8312-44B6-947A-4D973FD9E22E}.TravisCI|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3C8F8E6-8312-44B6-947A-4D973FD9E22E}.TravisCI|Any CPU.Build.0 = Debug|Any CPU
+		{A3C8F8E6-8312-44B6-947A-4D973FD9E22E}.AppVeyorCI|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3C8F8E6-8312-44B6-947A-4D973FD9E22E}.AppVeyorCI|Any CPU.Build.0 = Debug|Any CPU
+		{A3C8F8E6-8312-44B6-947A-4D973FD9E22E}.AppVeyorCI|x86.ActiveCfg = Debug|Any CPU
+		{A3C8F8E6-8312-44B6-947A-4D973FD9E22E}.AppVeyorCI|x86.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
