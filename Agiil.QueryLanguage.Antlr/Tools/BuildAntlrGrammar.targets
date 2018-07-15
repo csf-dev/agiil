@@ -11,13 +11,14 @@
   </PropertyGroup>
 
   <Target Name="BeforeBuild"  BeforeTargets="Build">
+    <RemoveDir Directories="$(StagingRoot)" />
     <MakeDir Directories="$(StagingRoot)"/>
   </Target>
   
   <Target Name="Generate_Java">
     <MakeDir Directories="$(JavaStagingDir)" />
-    <Exec Command="Tools\antlr4.sh -o '$(JavaStagingDir)' $(GrammarSourceFile)" Condition="'$(OS)' != 'Windows_NT'" />
-    <Exec Command="Tools\antlr4.bat -o '$(JavaStagingDir)' $(GrammarSourceFile)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Exec Command="Tools\antlr4.sh -no-listener -visitor -o '$(JavaStagingDir)' $(GrammarSourceFile)" Condition="'$(OS)' != 'Windows_NT'" />
+    <Exec Command="Tools\antlr4.bat -no-listener -visitor -o '$(JavaStagingDir)' $(GrammarSourceFile)" Condition="'$(OS)' == 'Windows_NT'" />
   </Target>
 
   <Target Name="Compile_Java" DependsOnTargets="Generate_Java">
@@ -25,15 +26,26 @@
     <Exec Command="Tools\compile-java.bat $(JavaStagingDir)" Condition="'$(OS)' == 'Windows_NT'" />
   </Target>
   
-  <Target Name="Generate_CSharp">
+  <Target Name="Generate_CSharp_InStagingDir">
     <MakeDir Directories="$(CSharpStagingDir)" />
-    <Exec Command="Tools\antlr4.sh -Dlanguage=CSharp -package Agiil.QueryLanguage.Generated -o '$(CSharpStagingDir)' $(GrammarSourceFile)" Condition="'$(OS)' != 'Windows_NT'" />
-    <Exec Command="Tools\antlr4.bat -Dlanguage=CSharp -package Agiil.QueryLanguage.Generated -o '$(CSharpStagingDir)' $(GrammarSourceFile)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Exec Command="Tools\antlr4.sh -no-listener -visitor -Dlanguage=CSharp -package Agiil.QueryLanguage.Generated -o '$(CSharpStagingDir)' $(GrammarSourceFile)" Condition="'$(OS)' != 'Windows_NT'" />
+    <Exec Command="Tools\antlr4.bat -no-listener -visitor -Dlanguage=CSharp -package Agiil.QueryLanguage.Generated -o '$(CSharpStagingDir)' $(GrammarSourceFile)" Condition="'$(OS)' == 'Windows_NT'" />
   </Target>
   
   <Target Name="Generate_JavaScript">
     <MakeDir Directories="$(JavaScriptStagingDir)" />
-    <Exec Command="Tools\antlr4.sh -Dlanguage=JavaScript -package Agiil.QueryLanguage.Generated  -o '$(JavaScriptStagingDir)' $(GrammarSourceFile)" Condition="'$(OS)' != 'Windows_NT'" />
-    <Exec Command="Tools\antlr4.bat -Dlanguage=JavaScript -package Agiil.QueryLanguage.Generated  -o '$(JavaScriptStagingDir)' $(GrammarSourceFile)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Exec Command="Tools\antlr4.sh -no-listener -visitor -Dlanguage=JavaScript -package Agiil.QueryLanguage.Generated  -o '$(JavaScriptStagingDir)' $(GrammarSourceFile)" Condition="'$(OS)' != 'Windows_NT'" />
+    <Exec Command="Tools\antlr4.bat -no-listener -visitor -Dlanguage=JavaScript -package Agiil.QueryLanguage.Generated  -o '$(JavaScriptStagingDir)' $(GrammarSourceFile)" Condition="'$(OS)' == 'Windows_NT'" />
+  </Target>
+
+  <Target Name="Generate_CSharp" DependsOnTargets="Generate_CSharp_InStagingDir">
+    <PropertyGroup>
+      <CSharpDestination>$(MSBuildThisFileDirectory)..\..\Agiil.QueryLanguage.Generated\Generated</CSharpDestination>
+    </PropertyGroup>
+    <ItemGroup>
+      <CSharpGeneratedFiles Include="$(CSharpStagingDir)\*.cs" />
+    </ItemGroup>
+    <RemoveDir Directories="$(CSharpDestination)" />
+    <Copy SourceFiles="@(CSharpGeneratedFiles)" DestinationFolder="$(CSharpDestination)" />
   </Target>
 </Project>

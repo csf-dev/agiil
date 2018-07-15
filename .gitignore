@@ -21,4 +21,3 @@ missing_registry_workaround/
 Agiil.Web/node_modules/*/*
 Output/
 Agiil.QueryLanguage.Antlr/generated_code/*/*
-Agiil.QueryLanguage.Generated/GeneratedCode/*
