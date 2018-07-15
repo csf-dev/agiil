@@ -23,6 +23,9 @@
     <None Include="Tools\antlr4.bat" />
     <None Include="Tools\grun.bat" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Grammar\AgiilQuery.g4" />
+  </ItemGroup>
   <Target Name="Build">
     <!-- TODO: Currently build is a no-op, but this needs writing in a cross-platform manner -->
   </Target>
