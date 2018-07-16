@@ -43,7 +43,8 @@
     <None Include="Tools\compile-java.bat" />
     <None Include="Generated_Java\*" />
     <None Include="Generated_JavaScript\*" />
-    <None Include="Generated_CSharp\*" />
+    <None Include="Generated_CSharp\*.interp" />
+    <None Include="Generated_CSharp\*.tokens" />
     <None Include="packages.config" />
     <None Include="TestAgiilQuery.txt" />
   </ItemGroup>
@@ -54,16 +55,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Generated_CSharp\*.cs" />
   </ItemGroup>
   <Import Project="Tools\BuildAntlrGrammar.targets" />
   <Target Name="GenerateCode" BeforeTargets="BeforeBuild">
     <CallTarget Targets="Test_Grammar_Using_Java" />
     <CallTarget Targets="Generate_CSharp" />
     <CallTarget Targets="Generate_JavaScript" />
-    <!-- Now that code has been generated, add the output to the "Compile" item -->
-    <CreateItem Include="Generated_CSharp\*.cs">
-      <Output TaskParameter="Include" ItemName="Compile" />
-    </CreateItem>
   </Target>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
