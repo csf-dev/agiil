@@ -9,12 +9,8 @@
     <GrammarSourceFile>$(GrammarSourcePath)\$(GrammarName).g4</GrammarSourceFile>
   </PropertyGroup>
 
-  <Target Name="BeforeBuild"  BeforeTargets="Build">
-    <RemoveDir Directories="$(StagingRoot)" />
-    <MakeDir Directories="$(StagingRoot)"/>
-  </Target>
-  
   <Target Name="Generate_Java">
+    <RemoveDir Directories="$(JavaOutputDir)" />
     <MakeDir Directories="$(JavaOutputDir)" />
     <Exec Command="Tools\antlr4.sh -no-listener -visitor -o '$(JavaOutputDir)' $(GrammarSourceFile)" Condition="'$(OS)' != 'Windows_NT'" />
     <Exec Command="Tools\antlr4.bat -no-listener -visitor -o '$(JavaOutputDir)' $(GrammarSourceFile)" Condition="'$(OS)' == 'Windows_NT'" />
@@ -26,12 +22,14 @@
   </Target>
 
   <Target Name="Generate_JavaScript">
+    <RemoveDir Directories="$(JavaScriptOutputDir)" />
     <MakeDir Directories="$(JavaScriptOutputDir)" />
     <Exec Command="Tools\antlr4.sh -no-listener -visitor -Dlanguage=JavaScript -package Agiil.QueryLanguage.Generated  -o '$(JavaScriptOutputDir)' $(GrammarSourceFile)" Condition="'$(OS)' != 'Windows_NT'" />
     <Exec Command="Tools\antlr4.bat -no-listener -visitor -Dlanguage=JavaScript -package Agiil.QueryLanguage.Generated  -o '$(JavaScriptOutputDir)' $(GrammarSourceFile)" Condition="'$(OS)' == 'Windows_NT'" />
   </Target>
 
   <Target Name="Generate_CSharp">
+    <RemoveDir Directories="$(CSharpOutputDir)" />
     <MakeDir Directories="$(CSharpOutputDir)" />
     <Exec Command="Tools\antlr4.sh -no-listener -visitor -Dlanguage=CSharp -package Agiil.QueryLanguage.Generated -o '$(CSharpOutputDir)' $(GrammarSourceFile)" Condition="'$(OS)' != 'Windows_NT'" />
     <Exec Command="Tools\antlr4.bat -no-listener -visitor -Dlanguage=CSharp -package Agiil.QueryLanguage.Generated -o '$(CSharpOutputDir)' $(GrammarSourceFile)" Condition="'$(OS)' == 'Windows_NT'" />
