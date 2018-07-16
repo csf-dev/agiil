@@ -3,9 +3,9 @@ The Agiil project uses **[ANTLR]** to create a parser for its query syntax. ANTL
 uses [a Java tool] to read **grammar files**: `*.g4` and from those it generates
 code in other languages, such as C# or ECMAScript.
 
-*All code in the `Generated_XXX` directories is automatically generated*.  None of
-this is intended to be edited by developers and *any changes will be lost* when the
-code is re-generated during the build process.
+*All code in the **Generated_XXX** directories is automatically generated* by the
+ANTLR tool.  None of thair contents are intended to be edited by developers and
+*any changes will be lost* when the tool is run (during the build process).
 
 [Antlr]: http://www.antlr.org/
 [a Java tool]: https://github.com/antlr/antlr4/blob/master/doc/getting-started.md
@@ -19,6 +19,7 @@ code is re-generated during the build process.
     * **grun** - the ANTLR testing & diagnostics suite (for Java parsers)
     * **compile-java** - invokes the Java compiler to transform generated code to executable Java
 * An msbuild *targets file* integrating code generation into the build process: `Tools\BuildAntlrGrammar.targets`
+* Various directories named `Generated_XXX`.  These are the output directories for the ANTLR code generation.
 
 The msbuild targets file contains targets which generate parsers for:
 * C#
@@ -29,8 +30,3 @@ The Java generation target exists only for debugging purposes, using the **grun*
 tool, it is skipped in `RELEASE` builds.  You may find the generated Java helpful when
 developing the grammar, as the grun utility provides immediate feedback about how an
 input has been tokenized and parsed.
-
-## Generated code
-The directories `Generated_XXX` contain the output of the code generation.
-There is nothing developer-editable in here, it is all created automatically by the ANTLR
-tool and the grammar file.
