@@ -16,8 +16,9 @@ public class AgiilQueryParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		OPENPAREN=1, CLOSEPAREN=2, EQUALS=3, NOTEQUALS=4, TILDE=5, COMMA=6, WHITESPACE=7, 
-		NOT=8, AND=9, OR=10, NAME=11, WORD=12, DIGITS=13, QUOTEDVALUE=14, ANY=15;
+		BOM=1, OPENPAREN=2, CLOSEPAREN=3, EQUALS=4, NOTEQUALS=5, TILDE=6, COMMA=7, 
+		WHITESPACE=8, NOT=9, AND=10, OR=11, NAME=12, WORD=13, QUOTEDVALUE=14, 
+		ANY=15;
 	public static final int
 		RULE_criteria = 0, RULE_logicalcriteriagroups = 1, RULE_criterionorgroup = 2, 
 		RULE_criteriagroup = 3, RULE_criterion = 4, RULE_elementtest = 5, RULE_logicalcombination = 6, 
@@ -30,11 +31,11 @@ public class AgiilQueryParser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'('", "')'", "'='", "'!='", "'~'", "','"
+		null, "'\uFEFF'", "'('", "')'", "'='", "'!='", "'~'", "','"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, "OPENPAREN", "CLOSEPAREN", "EQUALS", "NOTEQUALS", "TILDE", "COMMA", 
-		"WHITESPACE", "NOT", "AND", "OR", "NAME", "WORD", "DIGITS", "QUOTEDVALUE", 
+		null, "BOM", "OPENPAREN", "CLOSEPAREN", "EQUALS", "NOTEQUALS", "TILDE", 
+		"COMMA", "WHITESPACE", "NOT", "AND", "OR", "NAME", "WORD", "QUOTEDVALUE", 
 		"ANY"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
@@ -88,12 +89,9 @@ public class AgiilQueryParser extends Parser {
 	}
 	public static class CriteriaContext extends ParserRuleContext {
 		public TerminalNode EOF() { return getToken(AgiilQueryParser.EOF, 0); }
+		public TerminalNode BOM() { return getToken(AgiilQueryParser.BOM, 0); }
 		public LogicalcriteriagroupsContext logicalcriteriagroups() {
 			return getRuleContext(LogicalcriteriagroupsContext.class,0);
-		}
-		public List<TerminalNode> WHITESPACE() { return getTokens(AgiilQueryParser.WHITESPACE); }
-		public TerminalNode WHITESPACE(int i) {
-			return getToken(AgiilQueryParser.WHITESPACE, i);
 		}
 		public CriteriaContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -116,28 +114,24 @@ public class AgiilQueryParser extends Parser {
 			setState(29);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==OPENPAREN || _la==NAME) {
+			if (_la==BOM) {
 				{
 				setState(28);
+				match(BOM);
+				}
+			}
+
+			setState(32);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if (_la==OPENPAREN || _la==NAME) {
+				{
+				setState(31);
 				logicalcriteriagroups();
 				}
 			}
 
 			setState(34);
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			while (_la==WHITESPACE) {
-				{
-				{
-				setState(31);
-				match(WHITESPACE);
-				}
-				}
-				setState(36);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-			}
-			setState(37);
 			match(EOF);
 			}
 		}
@@ -183,29 +177,29 @@ public class AgiilQueryParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(39);
+			setState(36);
 			criterionorgroup();
-			setState(46);
+			setState(43);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OPENPAREN) | (1L << AND) | (1L << OR) | (1L << NAME))) != 0)) {
 				{
 				{
-				setState(41);
+				setState(38);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==AND || _la==OR) {
 					{
-					setState(40);
+					setState(37);
 					logicalcombination();
 					}
 				}
 
-				setState(43);
+				setState(40);
 				criterionorgroup();
 				}
 				}
-				setState(48);
+				setState(45);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -246,18 +240,18 @@ public class AgiilQueryParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(51);
+			setState(48);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case NAME:
 				{
-				setState(49);
+				setState(46);
 				criterion();
 				}
 				break;
 			case OPENPAREN:
 				{
-				setState(50);
+				setState(47);
 				criteriagroup();
 				}
 				break;
@@ -300,11 +294,11 @@ public class AgiilQueryParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(53);
+			setState(50);
 			match(OPENPAREN);
-			setState(54);
+			setState(51);
 			logicalcriteriagroups();
-			setState(55);
+			setState(52);
 			match(CLOSEPAREN);
 			}
 		}
@@ -343,9 +337,9 @@ public class AgiilQueryParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(57);
+			setState(54);
 			element();
-			setState(58);
+			setState(55);
 			elementtest();
 			}
 		}
@@ -389,15 +383,15 @@ public class AgiilQueryParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(67);
+			setState(64);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
 			case 1:
 				{
 				{
-				setState(60);
+				setState(57);
 				predicate();
-				setState(61);
+				setState(58);
 				value();
 				}
 				}
@@ -405,17 +399,17 @@ public class AgiilQueryParser extends Parser {
 			case 2:
 				{
 				{
-				setState(64);
+				setState(61);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==NOT) {
 					{
-					setState(63);
+					setState(60);
 					match(NOT);
 					}
 				}
 
-				setState(66);
+				setState(63);
 				functioninvocation();
 				}
 				}
@@ -455,7 +449,7 @@ public class AgiilQueryParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(69);
+			setState(66);
 			_la = _input.LA(1);
 			if ( !(_la==AND || _la==OR) ) {
 			_errHandler.recoverInline(this);
@@ -497,7 +491,7 @@ public class AgiilQueryParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(71);
+			setState(68);
 			match(NAME);
 			}
 		}
@@ -535,17 +529,17 @@ public class AgiilQueryParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(74);
+			setState(71);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==NOT) {
 				{
-				setState(73);
+				setState(70);
 				match(NOT);
 				}
 			}
 
-			setState(76);
+			setState(73);
 			predicatename();
 			}
 		}
@@ -583,7 +577,7 @@ public class AgiilQueryParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(78);
+			setState(75);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << EQUALS) | (1L << NOTEQUALS) | (1L << TILDE) | (1L << NAME))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -630,18 +624,18 @@ public class AgiilQueryParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(82);
+			setState(79);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
 			case 1:
 				{
-				setState(80);
+				setState(77);
 				constantvalue();
 				}
 				break;
 			case 2:
 				{
-				setState(81);
+				setState(78);
 				functioninvocation();
 				}
 				break;
@@ -661,14 +655,13 @@ public class AgiilQueryParser extends Parser {
 
 	public static class ConstantvalueContext extends ParserRuleContext {
 		public TerminalNode NAME() { return getToken(AgiilQueryParser.NAME, 0); }
+		public TerminalNode NOT() { return getToken(AgiilQueryParser.NOT, 0); }
+		public TerminalNode AND() { return getToken(AgiilQueryParser.AND, 0); }
+		public TerminalNode OR() { return getToken(AgiilQueryParser.OR, 0); }
 		public TerminalNode QUOTEDVALUE() { return getToken(AgiilQueryParser.QUOTEDVALUE, 0); }
 		public List<TerminalNode> WORD() { return getTokens(AgiilQueryParser.WORD); }
 		public TerminalNode WORD(int i) {
 			return getToken(AgiilQueryParser.WORD, i);
-		}
-		public List<TerminalNode> DIGITS() { return getTokens(AgiilQueryParser.DIGITS); }
-		public TerminalNode DIGITS(int i) {
-			return getToken(AgiilQueryParser.DIGITS, i);
 		}
 		public ConstantvalueContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -693,12 +686,29 @@ public class AgiilQueryParser extends Parser {
 			switch (_input.LA(1)) {
 			case NAME:
 				{
-				setState(84);
+				setState(81);
 				match(NAME);
 				}
 				break;
+			case NOT:
+				{
+				setState(82);
+				match(NOT);
+				}
+				break;
+			case AND:
+				{
+				setState(83);
+				match(AND);
+				}
+				break;
+			case OR:
+				{
+				setState(84);
+				match(OR);
+				}
+				break;
 			case WORD:
-			case DIGITS:
 				{
 				setState(86); 
 				_errHandler.sync(this);
@@ -707,21 +717,13 @@ public class AgiilQueryParser extends Parser {
 					{
 					{
 					setState(85);
-					_la = _input.LA(1);
-					if ( !(_la==WORD || _la==DIGITS) ) {
-					_errHandler.recoverInline(this);
-					}
-					else {
-						if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-						_errHandler.reportMatch(this);
-						consume();
-					}
+					match(WORD);
 					}
 					}
 					setState(88); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
-				} while ( _la==WORD || _la==DIGITS );
+				} while ( _la==WORD );
 				}
 				break;
 			case QUOTEDVALUE:
@@ -823,7 +825,7 @@ public class AgiilQueryParser extends Parser {
 			setState(106);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << NAME) | (1L << WORD) | (1L << DIGITS) | (1L << QUOTEDVALUE))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << NOT) | (1L << AND) | (1L << OR) | (1L << NAME) | (1L << WORD) | (1L << QUOTEDVALUE))) != 0)) {
 				{
 				setState(98);
 				value();
@@ -862,31 +864,31 @@ public class AgiilQueryParser extends Parser {
 	public static final String _serializedATN =
 		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\21o\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4"+
-		"\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\3\2\5\2 \n\2\3\2\7\2#\n\2\f\2\16\2"+
-		"&\13\2\3\2\3\2\3\3\3\3\5\3,\n\3\3\3\7\3/\n\3\f\3\16\3\62\13\3\3\4\3\4"+
-		"\5\4\66\n\4\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3\7\3\7\3\7\3\7\5\7C\n\7\3\7\5"+
-		"\7F\n\7\3\b\3\b\3\t\3\t\3\n\5\nM\n\n\3\n\3\n\3\13\3\13\3\f\3\f\5\fU\n"+
-		"\f\3\r\3\r\6\rY\n\r\r\r\16\rZ\3\r\5\r^\n\r\3\16\3\16\3\16\3\16\3\16\3"+
-		"\17\3\17\3\17\7\17h\n\17\f\17\16\17k\13\17\5\17m\n\17\3\17\2\2\20\2\4"+
-		"\6\b\n\f\16\20\22\24\26\30\32\34\2\5\3\2\13\f\4\2\5\7\r\r\3\2\16\17\2"+
-		"n\2\37\3\2\2\2\4)\3\2\2\2\6\65\3\2\2\2\b\67\3\2\2\2\n;\3\2\2\2\fE\3\2"+
-		"\2\2\16G\3\2\2\2\20I\3\2\2\2\22L\3\2\2\2\24P\3\2\2\2\26T\3\2\2\2\30]\3"+
-		"\2\2\2\32_\3\2\2\2\34l\3\2\2\2\36 \5\4\3\2\37\36\3\2\2\2\37 \3\2\2\2 "+
-		"$\3\2\2\2!#\7\t\2\2\"!\3\2\2\2#&\3\2\2\2$\"\3\2\2\2$%\3\2\2\2%\'\3\2\2"+
-		"\2&$\3\2\2\2\'(\7\2\2\3(\3\3\2\2\2)\60\5\6\4\2*,\5\16\b\2+*\3\2\2\2+,"+
-		"\3\2\2\2,-\3\2\2\2-/\5\6\4\2.+\3\2\2\2/\62\3\2\2\2\60.\3\2\2\2\60\61\3"+
-		"\2\2\2\61\5\3\2\2\2\62\60\3\2\2\2\63\66\5\n\6\2\64\66\5\b\5\2\65\63\3"+
-		"\2\2\2\65\64\3\2\2\2\66\7\3\2\2\2\678\7\3\2\289\5\4\3\29:\7\4\2\2:\t\3"+
-		"\2\2\2;<\5\20\t\2<=\5\f\7\2=\13\3\2\2\2>?\5\22\n\2?@\5\26\f\2@F\3\2\2"+
-		"\2AC\7\n\2\2BA\3\2\2\2BC\3\2\2\2CD\3\2\2\2DF\5\32\16\2E>\3\2\2\2EB\3\2"+
-		"\2\2F\r\3\2\2\2GH\t\2\2\2H\17\3\2\2\2IJ\7\r\2\2J\21\3\2\2\2KM\7\n\2\2"+
-		"LK\3\2\2\2LM\3\2\2\2MN\3\2\2\2NO\5\24\13\2O\23\3\2\2\2PQ\t\3\2\2Q\25\3"+
-		"\2\2\2RU\5\30\r\2SU\5\32\16\2TR\3\2\2\2TS\3\2\2\2U\27\3\2\2\2V^\7\r\2"+
-		"\2WY\t\4\2\2XW\3\2\2\2YZ\3\2\2\2ZX\3\2\2\2Z[\3\2\2\2[^\3\2\2\2\\^\7\20"+
-		"\2\2]V\3\2\2\2]X\3\2\2\2]\\\3\2\2\2^\31\3\2\2\2_`\7\r\2\2`a\7\3\2\2ab"+
-		"\5\34\17\2bc\7\4\2\2c\33\3\2\2\2di\5\26\f\2ef\7\b\2\2fh\5\26\f\2ge\3\2"+
-		"\2\2hk\3\2\2\2ig\3\2\2\2ij\3\2\2\2jm\3\2\2\2ki\3\2\2\2ld\3\2\2\2lm\3\2"+
-		"\2\2m\35\3\2\2\2\17\37$+\60\65BELTZ]il";
+		"\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\3\2\5\2 \n\2\3\2\5\2#\n\2\3\2\3\2\3"+
+		"\3\3\3\5\3)\n\3\3\3\7\3,\n\3\f\3\16\3/\13\3\3\4\3\4\5\4\63\n\4\3\5\3\5"+
+		"\3\5\3\5\3\6\3\6\3\6\3\7\3\7\3\7\3\7\5\7@\n\7\3\7\5\7C\n\7\3\b\3\b\3\t"+
+		"\3\t\3\n\5\nJ\n\n\3\n\3\n\3\13\3\13\3\f\3\f\5\fR\n\f\3\r\3\r\3\r\3\r\3"+
+		"\r\6\rY\n\r\r\r\16\rZ\3\r\5\r^\n\r\3\16\3\16\3\16\3\16\3\16\3\17\3\17"+
+		"\3\17\7\17h\n\17\f\17\16\17k\13\17\5\17m\n\17\3\17\2\2\20\2\4\6\b\n\f"+
+		"\16\20\22\24\26\30\32\34\2\4\3\2\f\r\4\2\6\b\16\16\2q\2\37\3\2\2\2\4&"+
+		"\3\2\2\2\6\62\3\2\2\2\b\64\3\2\2\2\n8\3\2\2\2\fB\3\2\2\2\16D\3\2\2\2\20"+
+		"F\3\2\2\2\22I\3\2\2\2\24M\3\2\2\2\26Q\3\2\2\2\30]\3\2\2\2\32_\3\2\2\2"+
+		"\34l\3\2\2\2\36 \7\3\2\2\37\36\3\2\2\2\37 \3\2\2\2 \"\3\2\2\2!#\5\4\3"+
+		"\2\"!\3\2\2\2\"#\3\2\2\2#$\3\2\2\2$%\7\2\2\3%\3\3\2\2\2&-\5\6\4\2\')\5"+
+		"\16\b\2(\'\3\2\2\2()\3\2\2\2)*\3\2\2\2*,\5\6\4\2+(\3\2\2\2,/\3\2\2\2-"+
+		"+\3\2\2\2-.\3\2\2\2.\5\3\2\2\2/-\3\2\2\2\60\63\5\n\6\2\61\63\5\b\5\2\62"+
+		"\60\3\2\2\2\62\61\3\2\2\2\63\7\3\2\2\2\64\65\7\4\2\2\65\66\5\4\3\2\66"+
+		"\67\7\5\2\2\67\t\3\2\2\289\5\20\t\29:\5\f\7\2:\13\3\2\2\2;<\5\22\n\2<"+
+		"=\5\26\f\2=C\3\2\2\2>@\7\13\2\2?>\3\2\2\2?@\3\2\2\2@A\3\2\2\2AC\5\32\16"+
+		"\2B;\3\2\2\2B?\3\2\2\2C\r\3\2\2\2DE\t\2\2\2E\17\3\2\2\2FG\7\16\2\2G\21"+
+		"\3\2\2\2HJ\7\13\2\2IH\3\2\2\2IJ\3\2\2\2JK\3\2\2\2KL\5\24\13\2L\23\3\2"+
+		"\2\2MN\t\3\2\2N\25\3\2\2\2OR\5\30\r\2PR\5\32\16\2QO\3\2\2\2QP\3\2\2\2"+
+		"R\27\3\2\2\2S^\7\16\2\2T^\7\13\2\2U^\7\f\2\2V^\7\r\2\2WY\7\17\2\2XW\3"+
+		"\2\2\2YZ\3\2\2\2ZX\3\2\2\2Z[\3\2\2\2[^\3\2\2\2\\^\7\20\2\2]S\3\2\2\2]"+
+		"T\3\2\2\2]U\3\2\2\2]V\3\2\2\2]X\3\2\2\2]\\\3\2\2\2^\31\3\2\2\2_`\7\16"+
+		"\2\2`a\7\4\2\2ab\5\34\17\2bc\7\5\2\2c\33\3\2\2\2di\5\26\f\2ef\7\t\2\2"+
+		"fh\5\26\f\2ge\3\2\2\2hk\3\2\2\2ig\3\2\2\2ij\3\2\2\2jm\3\2\2\2ki\3\2\2"+
+		"\2ld\3\2\2\2lm\3\2\2\2m\35\3\2\2\2\17\37\"(-\62?BIQZ]il";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

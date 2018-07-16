@@ -1,0 +1,6 @@
+﻿simpleElement = simpleValue
+and (
+  anotherElement IN (value1, not, "a quoted value")
+  OR SOMETHING NOT has ("a property")
+)
+and anElement hasAFunction(withAnEmbeddedFunction(), and, a , "quoted value")

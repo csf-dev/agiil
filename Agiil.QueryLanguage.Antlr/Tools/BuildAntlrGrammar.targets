@@ -21,6 +21,18 @@
     <Exec Command="Tools\compile-java.bat $(JavaOutputDir)" Condition="'$(OS)' == 'Windows_NT'" />
   </Target>
 
+  <Target Name="Test_Grammar_Using_Java" DependsOnTargets="Compile_Java">
+    <PropertyGroup>
+      <TestSuitePath>$(MSBuildThisFileDirectory)..\TestAgiilQuery.txt</TestSuitePath>
+    </PropertyGroup>
+    <Exec Command="Tools\grun.sh AgiilQuery criteria $(TestSuitePath)"
+          Condition="'$(OS)' != 'Windows_NT'"
+          CustomErrorRegularExpression=".+" />
+    <Exec Command="Tools\grun.bat AgiilQuery criteria $(TestSuitePath)"
+          Condition="'$(OS)' == 'Windows_NT'"
+          CustomErrorRegularExpression=".+" />
+  </Target>
+
   <Target Name="Generate_JavaScript">
     <RemoveDir Directories="$(JavaScriptOutputDir)" />
     <MakeDir Directories="$(JavaScriptOutputDir)" />

@@ -3,7 +3,7 @@ grammar AgiilQuery;
 /*
  * Parser rules
  */
-criteria                  : logicalcriteriagroups? WHITESPACE* EOF;
+criteria                  : BOM? logicalcriteriagroups? EOF;
 
 logicalcriteriagroups     : criterionorgroup (logicalcombination? criterionorgroup)*;
 
@@ -25,7 +25,7 @@ predicatename             : (EQUALS | NOTEQUALS | TILDE | NAME);
 
 value                     : (constantvalue | functioninvocation);
 
-constantvalue             : (NAME | (WORD | DIGITS)+ | QUOTEDVALUE);
+constantvalue             : (NAME | NOT | AND | OR | WORD+ | QUOTEDVALUE);
 
 functioninvocation        : NAME OPENPAREN functionparameters CLOSEPAREN;
 
@@ -50,6 +50,8 @@ fragment UPPERCASE        : [A-Z];
 fragment LOWERCASE        : [a-z];
 fragment DIGIT            : [0-9];
 
+/* The byte order marker might appear at the beginning of a file */
+BOM                       : '\uFEFF';
 OPENPAREN                 : '(';
 CLOSEPAREN                : ')';
 EQUALS                    : '=';
@@ -61,7 +63,6 @@ NOT                       : N O T;
 AND                       : A N D;
 OR                        : O R;
 NAME                      : (UPPERCASE | LOWERCASE | '_') (UPPERCASE | LOWERCASE | '_' | DIGIT)+;
-WORD                      : (UPPERCASE | LOWERCASE | '_')+;
-DIGITS                    : DIGIT+;
+WORD                      : ~[()=!~, \t\r\n];
 QUOTEDVALUE               : '"' (~[\\"] | '\\' [\\"])* '"';
 ANY                       : .;

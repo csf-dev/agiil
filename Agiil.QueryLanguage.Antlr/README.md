@@ -20,13 +20,15 @@ ANTLR tool.  None of thair contents are intended to be edited by developers and
     * **compile-java** - invokes the Java compiler to transform generated code to executable Java
 * An msbuild *targets file* integrating code generation into the build process: `Tools\BuildAntlrGrammar.targets`
 * Various directories named `Generated_XXX`.  These are the output directories for the ANTLR code generation.
+* A very simplistic test suite to verify that the grammar may be parsed: `TestAgiilQuery.txt`
 
 The msbuild targets file contains targets which generate parsers for:
 * C#
 * JavaScript
 * Java
 
-The Java generation target exists only for debugging purposes, using the **grun**
-tool, it is skipped in `RELEASE` builds.  You may find the generated Java helpful when
-developing the grammar, as the grun utility provides immediate feedback about how an
-input has been tokenized and parsed.
+The Java generation target exists only for development & debug purposes. This allows
+us to execute the **grun** "test rig" during the build procedure in order to detect
+invalid changes to the grammar.  The file `TestAgiilQuery.txt` is tested as part of the
+build procedure in `DEBUG` builds.  If the tool finds any problems parsing this text
+then the build will fail with an error.

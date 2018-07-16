@@ -19,7 +19,7 @@
 // Ambiguous reference in cref attribute
 #pragma warning disable 419
 
-namespace Agiil.QueryLanguage.Generated {
+namespace Agiil.QueryLanguage.Antlr {
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using IToken = Antlr4.Runtime.IToken;
@@ -117,4 +117,4 @@ public interface IAgiilQueryVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitFunctionparameters([NotNull] AgiilQueryParser.FunctionparametersContext context);
 }
-} // namespace Agiil.QueryLanguage.Generated
+} // namespace Agiil.QueryLanguage.Antlr
