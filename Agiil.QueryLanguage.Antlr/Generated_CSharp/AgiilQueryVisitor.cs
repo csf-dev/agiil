@@ -33,6 +33,12 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IAgiilQueryVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="AgiilQueryParser.search"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSearch([NotNull] AgiilQueryParser.SearchContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="AgiilQueryParser.criteria"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -116,5 +122,17 @@ public interface IAgiilQueryVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitFunctionparameters([NotNull] AgiilQueryParser.FunctionparametersContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AgiilQueryParser.orders"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitOrders([NotNull] AgiilQueryParser.OrdersContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AgiilQueryParser.orderelement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitOrderelement([NotNull] AgiilQueryParser.OrderelementContext context);
 }
 } // namespace Agiil.QueryLanguage.Antlr

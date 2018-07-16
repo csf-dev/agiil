@@ -25,10 +25,10 @@
     <PropertyGroup>
       <TestSuitePath>$(MSBuildThisFileDirectory)..\TestAgiilQuery.txt</TestSuitePath>
     </PropertyGroup>
-    <Exec Command="Tools\grun.sh AgiilQuery criteria $(TestSuitePath)"
+    <Exec Command="Tools\grun.sh AgiilQuery search $(TestSuitePath)"
           Condition="'$(OS)' != 'Windows_NT'"
           CustomErrorRegularExpression=".+" />
-    <Exec Command="Tools\grun.bat AgiilQuery criteria $(TestSuitePath)"
+    <Exec Command="Tools\grun.bat AgiilQuery search $(TestSuitePath)"
           Condition="'$(OS)' == 'Windows_NT'"
           CustomErrorRegularExpression=".+" />
   </Target>

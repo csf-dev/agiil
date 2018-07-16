@@ -35,7 +35,7 @@ functionparameters        : (value (COMMA value)*)?;
 
 orders                    : ORDERBY orderelement (COMMA orderelement)*;
 
-orderelement              : (NAME | functioninvocation) (ASCENDING | DESCENDING);
+orderelement              : (NAME | functioninvocation) (ASCENDING | DESCENDING)?;
 
 /*
  * Lexer rules

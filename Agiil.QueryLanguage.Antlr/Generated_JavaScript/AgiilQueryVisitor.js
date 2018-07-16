@@ -12,6 +12,12 @@ function AgiilQueryVisitor() {
 AgiilQueryVisitor.prototype = Object.create(antlr4.tree.ParseTreeVisitor.prototype);
 AgiilQueryVisitor.prototype.constructor = AgiilQueryVisitor;
 
+// Visit a parse tree produced by AgiilQueryParser#search.
+AgiilQueryVisitor.prototype.visitSearch = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by AgiilQueryParser#criteria.
 AgiilQueryVisitor.prototype.visitCriteria = function(ctx) {
   return this.visitChildren(ctx);
@@ -92,6 +98,18 @@ AgiilQueryVisitor.prototype.visitFunctioninvocation = function(ctx) {
 
 // Visit a parse tree produced by AgiilQueryParser#functionparameters.
 AgiilQueryVisitor.prototype.visitFunctionparameters = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by AgiilQueryParser#orders.
+AgiilQueryVisitor.prototype.visitOrders = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by AgiilQueryParser#orderelement.
+AgiilQueryVisitor.prototype.visitOrderelement = function(ctx) {
   return this.visitChildren(ctx);
 };
 

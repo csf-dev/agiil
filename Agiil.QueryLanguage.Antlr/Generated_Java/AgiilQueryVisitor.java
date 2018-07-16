@@ -10,6 +10,12 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface AgiilQueryVisitor<T> extends ParseTreeVisitor<T> {
 	/**
+	 * Visit a parse tree produced by {@link AgiilQueryParser#search}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSearch(AgiilQueryParser.SearchContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link AgiilQueryParser#criteria}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -93,4 +99,16 @@ public interface AgiilQueryVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFunctionparameters(AgiilQueryParser.FunctionparametersContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link AgiilQueryParser#orders}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOrders(AgiilQueryParser.OrdersContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link AgiilQueryParser#orderelement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOrderelement(AgiilQueryParser.OrderelementContext ctx);
 }
