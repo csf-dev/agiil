@@ -8,6 +8,7 @@
     <RootNamespace>Agiil.QueryLanguage</RootNamespace>
     <AssemblyName>Agiil.QueryLanguage.Antlr</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <ReleaseVersion>v0.5.2-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug</OutputPath>
@@ -19,8 +20,18 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Antlr4.Runtime.Standard">
+      <HintPath>..\packages\Antlr4.Runtime.Standard.4.7.1.1\lib\net35\Antlr4.Runtime.Standard.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="lib\" />
     <Folder Include="Tools\" />
+    <Folder Include="Generated_CSharp\" />
+    <Folder Include="Generated_Java\" />
+    <Folder Include="Generated_JavaScript\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\antlr-4.7.1-complete.jar" />
@@ -30,6 +41,9 @@
     <None Include="Tools\grun.bat" />
     <None Include="Tools\compile-java.sh" />
     <None Include="Tools\compile-java.bat" />
+    <None Include="Generated_Java\*" />
+    <None Include="Generated_JavaScript\*" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Tools\BuildAntlrGrammar.targets" />
@@ -37,7 +51,8 @@
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmptyClass.cs" />
+    <Compile Include="Generated_CSharp\*.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="Tools\BuildAntlrGrammar.targets" />
   <Target Name="GenerateCode" DependsOnTargets="Build">
