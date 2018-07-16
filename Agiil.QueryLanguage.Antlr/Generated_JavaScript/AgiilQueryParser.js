@@ -83,7 +83,7 @@ var symbolicNames = [ null, "BOM", "OPENPAREN", "CLOSEPAREN", "EQUALS",
                       "AND", "OR", "NAME", "WORD", "QUOTEDVALUE", "ANY" ];
 
 var ruleNames =  [ "criteria", "logicalcriteriagroups", "criterionorgroup", 
-                   "criteriagroup", "criterion", "elementtest", "logicalcombination", 
+                   "criteriagroup", "criterion", "elementtest", "logicaloperator", 
                    "element", "predicate", "predicatename", "value", "constantvalue", 
                    "functioninvocation", "functionparameters" ];
 
@@ -128,7 +128,7 @@ AgiilQueryParser.RULE_criterionorgroup = 2;
 AgiilQueryParser.RULE_criteriagroup = 3;
 AgiilQueryParser.RULE_criterion = 4;
 AgiilQueryParser.RULE_elementtest = 5;
-AgiilQueryParser.RULE_logicalcombination = 6;
+AgiilQueryParser.RULE_logicaloperator = 6;
 AgiilQueryParser.RULE_element = 7;
 AgiilQueryParser.RULE_predicate = 8;
 AgiilQueryParser.RULE_predicatename = 9;
@@ -244,14 +244,14 @@ LogicalcriteriagroupsContext.prototype.criterionorgroup = function(i) {
     }
 };
 
-LogicalcriteriagroupsContext.prototype.logicalcombination = function(i) {
+LogicalcriteriagroupsContext.prototype.logicaloperator = function(i) {
     if(i===undefined) {
         i = null;
     }
     if(i===null) {
-        return this.getTypedRuleContexts(LogicalcombinationContext);
+        return this.getTypedRuleContexts(LogicaloperatorContext);
     } else {
-        return this.getTypedRuleContext(LogicalcombinationContext,i);
+        return this.getTypedRuleContext(LogicaloperatorContext,i);
     }
 };
 
@@ -286,7 +286,7 @@ AgiilQueryParser.prototype.logicalcriteriagroups = function() {
             _la = this._input.LA(1);
             if(_la===AgiilQueryParser.AND || _la===AgiilQueryParser.OR) {
                 this.state = 37;
-                this.logicalcombination();
+                this.logicaloperator();
             }
 
             this.state = 40;
@@ -599,7 +599,7 @@ AgiilQueryParser.prototype.elementtest = function() {
     return localctx;
 };
 
-function LogicalcombinationContext(parser, parent, invokingState) {
+function LogicaloperatorContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
 	}
@@ -608,24 +608,24 @@ function LogicalcombinationContext(parser, parent, invokingState) {
 	}
 	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
-    this.ruleIndex = AgiilQueryParser.RULE_logicalcombination;
+    this.ruleIndex = AgiilQueryParser.RULE_logicaloperator;
     return this;
 }
 
-LogicalcombinationContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
-LogicalcombinationContext.prototype.constructor = LogicalcombinationContext;
+LogicaloperatorContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
+LogicaloperatorContext.prototype.constructor = LogicaloperatorContext;
 
-LogicalcombinationContext.prototype.AND = function() {
+LogicaloperatorContext.prototype.AND = function() {
     return this.getToken(AgiilQueryParser.AND, 0);
 };
 
-LogicalcombinationContext.prototype.OR = function() {
+LogicaloperatorContext.prototype.OR = function() {
     return this.getToken(AgiilQueryParser.OR, 0);
 };
 
-LogicalcombinationContext.prototype.accept = function(visitor) {
+LogicaloperatorContext.prototype.accept = function(visitor) {
     if ( visitor instanceof AgiilQueryVisitor ) {
-        return visitor.visitLogicalcombination(this);
+        return visitor.visitLogicaloperator(this);
     } else {
         return visitor.visitChildren(this);
     }
@@ -634,12 +634,12 @@ LogicalcombinationContext.prototype.accept = function(visitor) {
 
 
 
-AgiilQueryParser.LogicalcombinationContext = LogicalcombinationContext;
+AgiilQueryParser.LogicaloperatorContext = LogicaloperatorContext;
 
-AgiilQueryParser.prototype.logicalcombination = function() {
+AgiilQueryParser.prototype.logicaloperator = function() {
 
-    var localctx = new LogicalcombinationContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 12, AgiilQueryParser.RULE_logicalcombination);
+    var localctx = new LogicaloperatorContext(this, this._ctx, this.state);
+    this.enterRule(localctx, 12, AgiilQueryParser.RULE_logicaloperator);
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);

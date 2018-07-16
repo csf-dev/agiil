@@ -58,7 +58,7 @@ public class AgiilQueryBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLogicalcombination(AgiilQueryParser.LogicalcombinationContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLogicaloperator(AgiilQueryParser.LogicaloperatorContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -4,3 +4,4 @@ and (
   OR SOMETHING NOT has ("a property")
 )
 and anElement hasAFunction(withAnEmbeddedFunction(), and, a , "quoted value")
+order by foo, bar desc, baz descending, wibble ascending

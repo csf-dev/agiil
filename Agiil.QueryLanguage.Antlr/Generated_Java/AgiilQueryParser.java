@@ -21,12 +21,12 @@ public class AgiilQueryParser extends Parser {
 		ANY=15;
 	public static final int
 		RULE_criteria = 0, RULE_logicalcriteriagroups = 1, RULE_criterionorgroup = 2, 
-		RULE_criteriagroup = 3, RULE_criterion = 4, RULE_elementtest = 5, RULE_logicalcombination = 6, 
+		RULE_criteriagroup = 3, RULE_criterion = 4, RULE_elementtest = 5, RULE_logicaloperator = 6, 
 		RULE_element = 7, RULE_predicate = 8, RULE_predicatename = 9, RULE_value = 10, 
 		RULE_constantvalue = 11, RULE_functioninvocation = 12, RULE_functionparameters = 13;
 	public static final String[] ruleNames = {
 		"criteria", "logicalcriteriagroups", "criterionorgroup", "criteriagroup", 
-		"criterion", "elementtest", "logicalcombination", "element", "predicate", 
+		"criterion", "elementtest", "logicaloperator", "element", "predicate", 
 		"predicatename", "value", "constantvalue", "functioninvocation", "functionparameters"
 	};
 
@@ -153,11 +153,11 @@ public class AgiilQueryParser extends Parser {
 		public CriterionorgroupContext criterionorgroup(int i) {
 			return getRuleContext(CriterionorgroupContext.class,i);
 		}
-		public List<LogicalcombinationContext> logicalcombination() {
-			return getRuleContexts(LogicalcombinationContext.class);
+		public List<LogicaloperatorContext> logicaloperator() {
+			return getRuleContexts(LogicaloperatorContext.class);
 		}
-		public LogicalcombinationContext logicalcombination(int i) {
-			return getRuleContext(LogicalcombinationContext.class,i);
+		public LogicaloperatorContext logicaloperator(int i) {
+			return getRuleContext(LogicaloperatorContext.class,i);
 		}
 		public LogicalcriteriagroupsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -191,7 +191,7 @@ public class AgiilQueryParser extends Parser {
 				if (_la==AND || _la==OR) {
 					{
 					setState(37);
-					logicalcombination();
+					logicaloperator();
 					}
 				}
 
@@ -428,23 +428,23 @@ public class AgiilQueryParser extends Parser {
 		return _localctx;
 	}
 
-	public static class LogicalcombinationContext extends ParserRuleContext {
+	public static class LogicaloperatorContext extends ParserRuleContext {
 		public TerminalNode AND() { return getToken(AgiilQueryParser.AND, 0); }
 		public TerminalNode OR() { return getToken(AgiilQueryParser.OR, 0); }
-		public LogicalcombinationContext(ParserRuleContext parent, int invokingState) {
+		public LogicaloperatorContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_logicalcombination; }
+		@Override public int getRuleIndex() { return RULE_logicaloperator; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof AgiilQueryVisitor ) return ((AgiilQueryVisitor<? extends T>)visitor).visitLogicalcombination(this);
+			if ( visitor instanceof AgiilQueryVisitor ) return ((AgiilQueryVisitor<? extends T>)visitor).visitLogicaloperator(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final LogicalcombinationContext logicalcombination() throws RecognitionException {
-		LogicalcombinationContext _localctx = new LogicalcombinationContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_logicalcombination);
+	public final LogicaloperatorContext logicaloperator() throws RecognitionException {
+		LogicaloperatorContext _localctx = new LogicaloperatorContext(_ctx, getState());
+		enterRule(_localctx, 12, RULE_logicaloperator);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);

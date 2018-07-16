@@ -69,11 +69,11 @@ public interface IAgiilQueryVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitElementtest([NotNull] AgiilQueryParser.ElementtestContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="AgiilQueryParser.logicalcombination"/>.
+	/// Visit a parse tree produced by <see cref="AgiilQueryParser.logicaloperator"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitLogicalcombination([NotNull] AgiilQueryParser.LogicalcombinationContext context);
+	Result VisitLogicaloperator([NotNull] AgiilQueryParser.LogicaloperatorContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="AgiilQueryParser.element"/>.
 	/// </summary>

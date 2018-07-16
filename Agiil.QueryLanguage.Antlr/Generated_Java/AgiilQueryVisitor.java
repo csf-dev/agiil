@@ -46,11 +46,11 @@ public interface AgiilQueryVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitElementtest(AgiilQueryParser.ElementtestContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link AgiilQueryParser#logicalcombination}.
+	 * Visit a parse tree produced by {@link AgiilQueryParser#logicaloperator}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitLogicalcombination(AgiilQueryParser.LogicalcombinationContext ctx);
+	T visitLogicaloperator(AgiilQueryParser.LogicaloperatorContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link AgiilQueryParser#element}.
 	 * @param ctx the parse tree

@@ -48,8 +48,8 @@ AgiilQueryVisitor.prototype.visitElementtest = function(ctx) {
 };
 
 
-// Visit a parse tree produced by AgiilQueryParser#logicalcombination.
-AgiilQueryVisitor.prototype.visitLogicalcombination = function(ctx) {
+// Visit a parse tree produced by AgiilQueryParser#logicaloperator.
+AgiilQueryVisitor.prototype.visitLogicaloperator = function(ctx) {
   return this.visitChildren(ctx);
 };
 

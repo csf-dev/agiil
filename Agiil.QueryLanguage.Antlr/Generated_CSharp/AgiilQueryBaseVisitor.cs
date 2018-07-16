@@ -95,7 +95,7 @@ public partial class AgiilQueryBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitElementtest([NotNull] AgiilQueryParser.ElementtestContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="AgiilQueryParser.logicalcombination"/>.
+	/// Visit a parse tree produced by <see cref="AgiilQueryParser.logicaloperator"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -103,7 +103,7 @@ public partial class AgiilQueryBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitLogicalcombination([NotNull] AgiilQueryParser.LogicalcombinationContext context) { return VisitChildren(context); }
+	public virtual Result VisitLogicaloperator([NotNull] AgiilQueryParser.LogicaloperatorContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="AgiilQueryParser.element"/>.
 	/// <para>
