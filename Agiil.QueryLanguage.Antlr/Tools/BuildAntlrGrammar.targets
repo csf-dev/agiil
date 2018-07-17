@@ -27,10 +27,10 @@
     </PropertyGroup>
     <Exec Command="Tools\grun.sh AgiilQuery search $(TestSuitePath)"
           Condition="'$(OS)' != 'Windows_NT'"
-          CustomErrorRegularExpression=".+" />
+          CustomErrorRegularExpression="^line +[0-9]+:.+" />
     <Exec Command="Tools\grun.bat AgiilQuery search $(TestSuitePath)"
           Condition="'$(OS)' == 'Windows_NT'"
-          CustomErrorRegularExpression=".+" />
+          CustomErrorRegularExpression="^line +[0-9]+:.+" />
   </Target>
 
   <Target Name="Generate_JavaScript">
