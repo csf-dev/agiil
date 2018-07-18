@@ -102,11 +102,6 @@ public class AgiilQueryParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_search; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof AgiilQueryVisitor ) return ((AgiilQueryVisitor<? extends T>)visitor).visitSearch(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final SearchContext search() throws RecognitionException {
@@ -169,11 +164,6 @@ public class AgiilQueryParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_criteria; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof AgiilQueryVisitor ) return ((AgiilQueryVisitor<? extends T>)visitor).visitCriteria(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final CriteriaContext criteria() throws RecognitionException {
@@ -214,11 +204,6 @@ public class AgiilQueryParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_logicalcriteriagroups; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof AgiilQueryVisitor ) return ((AgiilQueryVisitor<? extends T>)visitor).visitLogicalcriteriagroups(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final LogicalcriteriagroupsContext logicalcriteriagroups() throws RecognitionException {
@@ -278,11 +263,6 @@ public class AgiilQueryParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_criterionorgroup; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof AgiilQueryVisitor ) return ((AgiilQueryVisitor<? extends T>)visitor).visitCriterionorgroup(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final CriterionorgroupContext criterionorgroup() throws RecognitionException {
@@ -332,11 +312,6 @@ public class AgiilQueryParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_criteriagroup; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof AgiilQueryVisitor ) return ((AgiilQueryVisitor<? extends T>)visitor).visitCriteriagroup(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final CriteriagroupContext criteriagroup() throws RecognitionException {
@@ -375,11 +350,6 @@ public class AgiilQueryParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_criterion; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof AgiilQueryVisitor ) return ((AgiilQueryVisitor<? extends T>)visitor).visitCriterion(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final CriterionContext criterion() throws RecognitionException {
@@ -420,11 +390,6 @@ public class AgiilQueryParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_elementtest; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof AgiilQueryVisitor ) return ((AgiilQueryVisitor<? extends T>)visitor).visitElementtest(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ElementtestContext elementtest() throws RecognitionException {
@@ -486,11 +451,6 @@ public class AgiilQueryParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_logicaloperator; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof AgiilQueryVisitor ) return ((AgiilQueryVisitor<? extends T>)visitor).visitLogicaloperator(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final LogicaloperatorContext logicaloperator() throws RecognitionException {
@@ -529,11 +489,6 @@ public class AgiilQueryParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_element; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof AgiilQueryVisitor ) return ((AgiilQueryVisitor<? extends T>)visitor).visitElement(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ElementContext element() throws RecognitionException {
@@ -566,11 +521,6 @@ public class AgiilQueryParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_predicate; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof AgiilQueryVisitor ) return ((AgiilQueryVisitor<? extends T>)visitor).visitPredicate(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final PredicateContext predicate() throws RecognitionException {
@@ -614,11 +564,6 @@ public class AgiilQueryParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_predicatename; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof AgiilQueryVisitor ) return ((AgiilQueryVisitor<? extends T>)visitor).visitPredicatename(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final PredicatenameContext predicatename() throws RecognitionException {
@@ -662,11 +607,6 @@ public class AgiilQueryParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_value; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof AgiilQueryVisitor ) return ((AgiilQueryVisitor<? extends T>)visitor).visitValue(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ValueContext value() throws RecognitionException {
@@ -720,11 +660,6 @@ public class AgiilQueryParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_constantvalue; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof AgiilQueryVisitor ) return ((AgiilQueryVisitor<? extends T>)visitor).visitConstantvalue(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ConstantvalueContext constantvalue() throws RecognitionException {
@@ -824,11 +759,6 @@ public class AgiilQueryParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_functioninvocation; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof AgiilQueryVisitor ) return ((AgiilQueryVisitor<? extends T>)visitor).visitFunctioninvocation(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final FunctioninvocationContext functioninvocation() throws RecognitionException {
@@ -873,11 +803,6 @@ public class AgiilQueryParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_functionparameters; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof AgiilQueryVisitor ) return ((AgiilQueryVisitor<? extends T>)visitor).visitFunctionparameters(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final FunctionparametersContext functionparameters() throws RecognitionException {
@@ -942,11 +867,6 @@ public class AgiilQueryParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_orders; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof AgiilQueryVisitor ) return ((AgiilQueryVisitor<? extends T>)visitor).visitOrders(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final OrdersContext orders() throws RecognitionException {
@@ -1000,11 +920,6 @@ public class AgiilQueryParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_orderelement; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof AgiilQueryVisitor ) return ((AgiilQueryVisitor<? extends T>)visitor).visitOrderelement(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final OrderelementContext orderelement() throws RecognitionException {

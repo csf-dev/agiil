@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Agiil.QueryLanguage
 {
-  public class CriteriaGroup : LogicalCriterion, IHasLogicalCriteria
+  public class CriteriaRoot : IHasLogicalCriteria
   {
     IList<LogicalCriterion> criteriaGroups;
 
@@ -13,7 +13,7 @@ namespace Agiil.QueryLanguage
       set { criteriaGroups = value ?? new List<LogicalCriterion>(); }
     }
 
-    public CriteriaGroup()
+    public CriteriaRoot()
     {
       criteriaGroups = new List<LogicalCriterion>();
     }

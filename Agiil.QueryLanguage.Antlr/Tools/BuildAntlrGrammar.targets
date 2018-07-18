@@ -12,8 +12,8 @@
   <Target Name="Generate_Java">
     <RemoveDir Directories="$(JavaOutputDir)" />
     <MakeDir Directories="$(JavaOutputDir)" />
-    <Exec Command="Tools\antlr4.sh -no-listener -visitor -o '$(JavaOutputDir)' $(GrammarSourceFile)" Condition="'$(OS)' != 'Windows_NT'" />
-    <Exec Command="Tools\antlr4.bat -no-listener -visitor -o '$(JavaOutputDir)' $(GrammarSourceFile)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Exec Command="Tools\antlr4.sh -no-listener -o '$(JavaOutputDir)' $(GrammarSourceFile)" Condition="'$(OS)' != 'Windows_NT'" />
+    <Exec Command="Tools\antlr4.bat -no-listener -o '$(JavaOutputDir)' $(GrammarSourceFile)" Condition="'$(OS)' == 'Windows_NT'" />
   </Target>
 
   <Target Name="Compile_Java" DependsOnTargets="Generate_Java">
@@ -36,14 +36,14 @@
   <Target Name="Generate_JavaScript">
     <RemoveDir Directories="$(JavaScriptOutputDir)" />
     <MakeDir Directories="$(JavaScriptOutputDir)" />
-    <Exec Command="Tools\antlr4.sh -no-listener -visitor -Dlanguage=JavaScript -package Agiil.QueryLanguage.Antlr  -o '$(JavaScriptOutputDir)' $(GrammarSourceFile)" Condition="'$(OS)' != 'Windows_NT'" />
-    <Exec Command="Tools\antlr4.bat -no-listener -visitor -Dlanguage=JavaScript -package Agiil.QueryLanguage.Antlr  -o '$(JavaScriptOutputDir)' $(GrammarSourceFile)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Exec Command="Tools\antlr4.sh -no-listener -visitor -Dlanguage=JavaScript -package Agiil.QueryLanguage  -o '$(JavaScriptOutputDir)' $(GrammarSourceFile)" Condition="'$(OS)' != 'Windows_NT'" />
+    <Exec Command="Tools\antlr4.bat -no-listener -visitor -Dlanguage=JavaScript -package Agiil.QueryLanguage  -o '$(JavaScriptOutputDir)' $(GrammarSourceFile)" Condition="'$(OS)' == 'Windows_NT'" />
   </Target>
 
   <Target Name="Generate_CSharp">
     <RemoveDir Directories="$(CSharpOutputDir)" />
     <MakeDir Directories="$(CSharpOutputDir)" />
-    <Exec Command="Tools\antlr4.sh -no-listener -visitor -Dlanguage=CSharp -package Agiil.QueryLanguage.Antlr -o '$(CSharpOutputDir)' $(GrammarSourceFile)" Condition="'$(OS)' != 'Windows_NT'" />
-    <Exec Command="Tools\antlr4.bat -no-listener -visitor -Dlanguage=CSharp -package Agiil.QueryLanguage.Antlr -o '$(CSharpOutputDir)' $(GrammarSourceFile)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Exec Command="Tools\antlr4.sh -no-listener -visitor -Dlanguage=CSharp -package Agiil.QueryLanguage -o '$(CSharpOutputDir)' $(GrammarSourceFile)" Condition="'$(OS)' != 'Windows_NT'" />
+    <Exec Command="Tools\antlr4.bat -no-listener -visitor -Dlanguage=CSharp -package Agiil.QueryLanguage -o '$(CSharpOutputDir)' $(GrammarSourceFile)" Condition="'$(OS)' == 'Windows_NT'" />
   </Target>
 </Project>

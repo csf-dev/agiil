@@ -3,13 +3,13 @@ namespace Agiil.QueryLanguage
 {
   public class Search
   {
-    Criteria criteria;
+    CriteriaRoot criteria;
     Ordering ordering;
 
-    public Criteria Criteria
+    public CriteriaRoot Criteria
     {
       get { return criteria; }
-      set { criteria = value ?? new Criteria(); }
+      set { criteria = value ?? new CriteriaRoot(); }
     }
 
     public Ordering Ordering
@@ -20,7 +20,7 @@ namespace Agiil.QueryLanguage
 
     public Search()
     {
-      criteria = new Criteria();
+      criteria = new CriteriaRoot();
       ordering = new Ordering();
     }
   }

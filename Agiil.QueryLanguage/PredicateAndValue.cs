@@ -3,7 +3,7 @@ namespace Agiil.QueryLanguage
 {
   public class PredicateAndValue : IDescribesPredicate
   {
-    public bool Inverted { get; set; }
+    public bool Inverted => false;
 
     public string PredicateText { get; set; }
 

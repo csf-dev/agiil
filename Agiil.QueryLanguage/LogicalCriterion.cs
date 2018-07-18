@@ -2,7 +2,7 @@
 using CSF;
 namespace Agiil.QueryLanguage
 {
-  public class LogicalCriteriaGroup
+  public abstract class LogicalCriterion
   {
     LogicalOperator logicalOperator;
 

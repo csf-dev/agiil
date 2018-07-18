@@ -3,6 +3,6 @@ namespace Agiil.QueryLanguage
 {
   public interface IGetsSearch
   {
-    Search GetSearch(string text);
+    GetSearchResult GetSearch(string text);
   }
 }

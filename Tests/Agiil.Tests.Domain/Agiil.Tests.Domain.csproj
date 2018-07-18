@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Agiil.Tests</RootNamespace>
     <AssemblyName>Agiil.Tests.Services</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <ReleaseVersion>v0.5.2-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -84,6 +84,9 @@
     <Reference Include="CSF.Data">
       <HintPath>..\..\packages\CSF.Data.1.3.0\lib\net45\CSF.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Autofac">
+      <HintPath>..\..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -100,6 +103,7 @@
     <Compile Include="Labels\NewLabelProviderTests.cs" />
     <Compile Include="Labels\ExistingLabelProviderTests.cs" />
     <Compile Include="Labels\ExistingAndNewLabelProviderTests.cs" />
+    <Compile Include="QueryLanguage\GetSearchIntegrationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
@@ -118,6 +122,14 @@
       <Project>{63B32334-E2E3-4BC3-BEFE-96374AAD4093}</Project>
       <Name>Agiil.BDD</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
+      <Project>{79827CF5-CC58-4F87-BBCA-162B5983C563}</Project>
+      <Name>Agiil.Bootstrap</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.QueryLanguage\Agiil.QueryLanguage.csproj">
+      <Project>{A862E246-26D4-4B60-8919-973053814CBC}</Project>
+      <Name>Agiil.QueryLanguage</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
@@ -125,6 +137,7 @@
     <Folder Include="Sprints\" />
     <Folder Include="Data\" />
     <Folder Include="Labels\" />
+    <Folder Include="QueryLanguage\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
