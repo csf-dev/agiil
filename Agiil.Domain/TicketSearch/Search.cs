@@ -18,6 +18,8 @@ namespace Agiil.Domain.TicketSearch
       set { ordering = value ?? new Ordering(); }
     }
 
+    public void Accept(IVisitsTicketSearch visitor) { visitor?.Visit(this); }
+
     public Search()
     {
       criteria = new CriteriaRoot();

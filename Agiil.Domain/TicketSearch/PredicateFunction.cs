@@ -6,5 +6,7 @@ namespace Agiil.Domain.TicketSearch
     public bool Inverted { get; set; }
 
     string IDescribesPredicate.PredicateText => FunctionName;
+
+    public void Accept(IVisitsTicketSearch visitor) { visitor?.Visit(this); }
   }
 }

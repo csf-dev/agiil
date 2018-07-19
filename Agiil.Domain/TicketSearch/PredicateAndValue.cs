@@ -8,5 +8,7 @@ namespace Agiil.Domain.TicketSearch
     public string PredicateText { get; set; }
 
     public Value Value { get; set; }
+
+    public void Accept(IVisitsTicketSearch visitor) { visitor?.Visit(this); }
   }
 }

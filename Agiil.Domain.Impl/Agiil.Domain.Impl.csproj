@@ -160,6 +160,9 @@
     <Compile Include="Tickets\TicketQueryProvider.cs" />
     <Compile Include="Tickets\SpecificationQueryProviderDecorator.cs" />
     <Compile Include="Tickets\AllOpenTicketsListRequestProvider.cs" />
+    <Compile Include="TicketSearch\SpecificationBuildingSearchVisitor.cs" />
+    <Compile Include="TicketSearch\SearchVisitor.cs" />
+    <Compile Include="TicketSearch\VisitorBasedSpecificationProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

@@ -13,5 +13,7 @@ namespace Agiil.Domain.TicketSearch
         logicalOperator = logicalOperator.IsDefinedValue()? value : default(LogicalOperator);
       }
     }
+
+    public void Accept(IVisitsTicketSearch visitor) { visitor?.Visit(this); }
   }
 }

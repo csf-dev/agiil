@@ -179,6 +179,9 @@
     <Compile Include="TicketSearch\PredicateFunction.cs" />
     <Compile Include="TicketSearch\Search.cs" />
     <Compile Include="TicketSearch\Value.cs" />
+    <Compile Include="TicketSearch\IVisitsTicketSearch.cs" />
+    <Compile Include="TicketSearch\IConvertsCriterionToSpecification.cs" />
+    <Compile Include="TicketSearch\IStrategyForConvertingCriterionToSpecification.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

@@ -13,6 +13,8 @@ namespace Agiil.Domain.TicketSearch
       set { orders = value ?? new List<Order>(); }
     }
 
+    public void Accept(IVisitsTicketSearch visitor) { visitor?.Visit(this); }
+
     public Ordering()
     {
       orders = new List<Order>();
