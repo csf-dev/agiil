@@ -26,13 +26,16 @@ namespace Agiil.ObjectMaps.Tickets
 
     void ConfigureRequestForClosedTickets(TicketListRequest request)
     {
-      var searchNodes = request.CriteriaModel.Children;
+      // TODO: Write this implementation
+      throw new NotImplementedException();
 
-      var isOpenNodes = searchNodes.OfType<IsOpenNode>().ToList();
-      foreach(var node in isOpenNodes)
-        searchNodes.Remove(node);
+      //var searchNodes = request.CriteriaModel.Children;
 
-      searchNodes.Add(new IsClosedNode());
+      //var isOpenNodes = searchNodes.OfType<IsOpenNode>().ToList();
+      //foreach(var node in isOpenNodes)
+      //  searchNodes.Remove(node);
+
+      //searchNodes.Add(new IsClosedNode());
     }
   }
 }

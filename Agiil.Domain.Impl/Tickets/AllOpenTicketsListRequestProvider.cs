@@ -8,7 +8,14 @@ namespace Agiil.Domain.Tickets
     public TicketListRequest GetRequest()
     {
       var list = new TicketListRequest();
-      list.CriteriaModel.Children.Add(new IsOpenNode());
+      var ticketIsOpenCriterion = new Criterion {
+        ElementName = "state",
+        Test = new PredicateAndValue {
+          PredicateText = "=",
+          Value = new ConstantValue { Text = "open" },
+        },
+      };
+      list.SearchModel.CriteriaRoot.Criteria.Add(ticketIsOpenCriterion);
       return list;
     }
   }

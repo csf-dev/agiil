@@ -1,6 +1,7 @@
 ﻿using System;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
+using Agiil.Domain.TicketSearch;
 
 namespace Agiil.QueryLanguage.Visitors
 {
@@ -17,7 +18,7 @@ namespace Agiil.QueryLanguage.Visitors
       var output = new Search();
 
       if(criteriaContext != null)
-        output.Criteria = criteriaVisitor.Visit(criteriaContext);
+        output.CriteriaRoot = criteriaVisitor.Visit(criteriaContext);
 
       if(orderContext != null)
         output.Ordering = orderVisitor.Visit(orderContext);

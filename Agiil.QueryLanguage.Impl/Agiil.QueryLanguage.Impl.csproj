@@ -57,10 +57,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Agiil.QueryLanguage\Agiil.QueryLanguage.csproj">
-      <Project>{A862E246-26D4-4B60-8919-973053814CBC}</Project>
-      <Name>Agiil.QueryLanguage</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Agiil.QueryLanguage.Antlr\Agiil.QueryLanguage.Antlr.csproj">
       <Project>{959D29AD-F632-4FC7-8B45-86CFC9BDA34C}</Project>
       <Name>Agiil.QueryLanguage.Antlr</Name>
@@ -68,6 +64,10 @@
     <ProjectReference Include="..\Agiil.Utils\Agiil.Utils.csproj">
       <Project>{DBDD73A5-A79D-4CD8-8EAE-1C6B7D3759D9}</Project>
       <Name>Agiil.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
+      <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
+      <Name>Agiil.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

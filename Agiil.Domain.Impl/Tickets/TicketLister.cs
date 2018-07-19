@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Agiil.Domain.TicketSearch;
 using CSF.Data.NHibernate;
 using CSF.Data.Specifications;
 
@@ -9,10 +10,12 @@ namespace Agiil.Domain.Tickets
   public class TicketLister : IGetsListOfTickets
   {
     readonly Func<ISpecificationExpression<Ticket>,IGetsQueryForTickets> queryProviderFactory;
+    readonly Func<Search, IGetsTicketSpecification> specificationProviderFactory;
 
     public IReadOnlyList<Ticket> GetTickets(TicketListRequest request)
     {
-      return GetTickets(request?.CriteriaModel);
+      var specificationProvider = specificationProviderFactory(request?.SearchModel);
+      return GetTickets(specificationProvider);
     }
 
     IReadOnlyList<Ticket> GetTickets(IGetsTicketSpecification specificationProvider)
@@ -30,12 +33,16 @@ namespace Agiil.Domain.Tickets
         .ToList();
     }
 
-    public TicketLister(Func<ISpecificationExpression<Ticket>,IGetsQueryForTickets> queryProviderFactory)
+    public TicketLister(Func<ISpecificationExpression<Ticket>,IGetsQueryForTickets> queryProviderFactory,
+                        Func<Search,IGetsTicketSpecification> specificationProviderFactory)
     {
+      if(specificationProviderFactory == null)
+        throw new ArgumentNullException(nameof(specificationProviderFactory));
       if(queryProviderFactory == null)
         throw new ArgumentNullException(nameof(queryProviderFactory));
       
       this.queryProviderFactory = queryProviderFactory;
+      this.specificationProviderFactory = specificationProviderFactory;
     }
   }
 }

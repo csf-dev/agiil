@@ -1,4 +1,5 @@
 ﻿using System;
+using Agiil.Domain.TicketSearch;
 using Context = Agiil.QueryLanguage.AgiilQueryParser.SearchContext;
 
 namespace Agiil.QueryLanguage

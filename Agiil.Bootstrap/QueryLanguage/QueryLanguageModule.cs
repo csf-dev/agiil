@@ -10,11 +10,10 @@ namespace Agiil.Bootstrap.QueryLanguage
 		protected override IEnumerable<Assembly> GetSearchAssemblies()
 		{
       return new [] {
-        QueryLanguageAssemblyMarker.Instance.Assembly,
         QueryLanguageImplAssemblyMarker.Instance.Assembly,
       };
 		}
 
-    protected override string Namespace => typeof(QueryLanguageAssemblyMarker).Namespace;
+    protected override string Namespace => typeof(QueryLanguageImplAssemblyMarker).Namespace;
 	}
 }

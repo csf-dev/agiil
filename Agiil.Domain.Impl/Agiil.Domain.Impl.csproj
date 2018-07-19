@@ -144,25 +144,6 @@
     <Compile Include="Labels\LabelLister.cs" />
     <Compile Include="Labels\ExistingLabelReader.cs" />
     <Compile Include="Data\ApplicationDependencyTester.cs" />
-    <Compile Include="TicketSearch\LogicalNotNodeDecorator.cs" />
-    <Compile Include="TicketSearch\HasLabelNode.cs" />
-    <Compile Include="TicketSearch\AllLabelsNode.cs" />
-    <Compile Include="TicketSearch\HasNoLabelsNode.cs" />
-    <Compile Include="TicketSearch\HasSprintNode.cs" />
-    <Compile Include="TicketSearch\HasNoSprintNode.cs" />
-    <Compile Include="TicketSearch\IsTicketTypeNode.cs" />
-    <Compile Include="TicketSearch\TitleTextContainsNode.cs" />
-    <Compile Include="TicketSearch\DescriptionTextContainsNode.cs" />
-    <Compile Include="TicketSearch\CommentTextContainsNode.cs" />
-    <Compile Include="TicketSearch\TitleTextSimilarNode.cs" />
-    <Compile Include="TicketSearch\NaturalTextOrderingAttribute.cs" />
-    <Compile Include="TicketSearch\DescriptionTextSimilarNode.cs" />
-    <Compile Include="TicketSearch\CommentTextSimilarNode.cs" />
-    <Compile Include="TicketSearch\FulltextSimilarNode.cs" />
-    <Compile Include="TicketSearch\LogicalAndNode.cs" />
-    <Compile Include="TicketSearch\LogicalOrNode.cs" />
-    <Compile Include="TicketSearch\IsOpenNode.cs" />
-    <Compile Include="TicketSearch\IsClosedNode.cs" />
     <Compile Include="Tickets\Specs\IsClosed.cs" />
     <Compile Include="Tickets\Specs\IsOpen.cs" />
     <Compile Include="Labels\Specs\LabelNameIn.cs" />
@@ -178,7 +159,6 @@
     <Compile Include="Tickets\Specs\AnyCommentContainsText.cs" />
     <Compile Include="Tickets\TicketQueryProvider.cs" />
     <Compile Include="Tickets\SpecificationQueryProviderDecorator.cs" />
-    <Compile Include="Tickets\TicketListSpecificationFromRequestAdapter.cs" />
     <Compile Include="Tickets\AllOpenTicketsListRequestProvider.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -58,8 +58,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.Web.Rendering.Impl", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.QueryLanguage.Antlr", "Agiil.QueryLanguage.Antlr\Agiil.QueryLanguage.Antlr.csproj", "{959D29AD-F632-4FC7-8B45-86CFC9BDA34C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.QueryLanguage", "Agiil.QueryLanguage\Agiil.QueryLanguage.csproj", "{A862E246-26D4-4B60-8919-973053814CBC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.QueryLanguage.Impl", "Agiil.QueryLanguage.Impl\Agiil.QueryLanguage.Impl.csproj", "{5688F6B6-3F7F-4491-86A3-1065169678D5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agiil.Utils", "Agiil.Utils\Agiil.Utils.csproj", "{DBDD73A5-A79D-4CD8-8EAE-1C6B7D3759D9}"
@@ -338,18 +336,6 @@ Global
 		{959D29AD-F632-4FC7-8B45-86CFC9BDA34C}.AppVeyorCI|Any CPU.Build.0 = Debug|Any CPU
 		{959D29AD-F632-4FC7-8B45-86CFC9BDA34C}.AppVeyorCI|x86.ActiveCfg = Debug|Any CPU
 		{959D29AD-F632-4FC7-8B45-86CFC9BDA34C}.AppVeyorCI|x86.Build.0 = Debug|Any CPU
-		{A862E246-26D4-4B60-8919-973053814CBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A862E246-26D4-4B60-8919-973053814CBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A862E246-26D4-4B60-8919-973053814CBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A862E246-26D4-4B60-8919-973053814CBC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A862E246-26D4-4B60-8919-973053814CBC}.Testing|Any CPU.ActiveCfg = Debug|Any CPU
-		{A862E246-26D4-4B60-8919-973053814CBC}.Testing|Any CPU.Build.0 = Debug|Any CPU
-		{A862E246-26D4-4B60-8919-973053814CBC}.TravisCI|Any CPU.ActiveCfg = Debug|Any CPU
-		{A862E246-26D4-4B60-8919-973053814CBC}.TravisCI|Any CPU.Build.0 = Debug|Any CPU
-		{A862E246-26D4-4B60-8919-973053814CBC}.AppVeyorCI|Any CPU.ActiveCfg = Debug|Any CPU
-		{A862E246-26D4-4B60-8919-973053814CBC}.AppVeyorCI|Any CPU.Build.0 = Debug|Any CPU
-		{A862E246-26D4-4B60-8919-973053814CBC}.AppVeyorCI|x86.ActiveCfg = Debug|Any CPU
-		{A862E246-26D4-4B60-8919-973053814CBC}.AppVeyorCI|x86.Build.0 = Debug|Any CPU
 		{5688F6B6-3F7F-4491-86A3-1065169678D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5688F6B6-3F7F-4491-86A3-1065169678D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5688F6B6-3F7F-4491-86A3-1065169678D5}.Release|Any CPU.ActiveCfg = Release|Any CPU

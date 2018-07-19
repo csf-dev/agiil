@@ -157,19 +157,28 @@
     <Compile Include="Data\ITestsApplicationDependencies.cs" />
     <Compile Include="Data\AppDependencyTestResult.cs" />
     <Compile Include="Data\ITestsThatDatabaseIsWorking.cs" />
-    <Compile Include="TicketSearch\SearchModel.cs" />
-    <Compile Include="TicketSearch\SearchLeaf.cs" />
-    <Compile Include="TicketSearch\ChildNodeProvider.cs" />
-    <Compile Include="TicketSearch\ISearchNode.cs" />
-    <Compile Include="TicketSearch\IHasChildNodes.cs" />
-    <Compile Include="TicketSearch\IHasReplacableParent.cs" />
-    <Compile Include="TicketSearch\NodeDecorator.cs" />
     <Compile Include="Tickets\IGetsQueryForTickets.cs" />
     <Compile Include="Tickets\IGetsTicketSpecification.cs" />
     <Compile Include="Tickets\IGetsTicketSpecificationProvider.cs" />
     <Compile Include="Tickets\IGetsTicketListRequest.cs" />
-    <Compile Include="TicketSearch\SearchBranch.cs" />
     <Compile Include="DomainAssemblyMarker.cs" />
+    <Compile Include="TicketSearch\ConstantValue.cs" />
+    <Compile Include="TicketSearch\CriteriaGroup.cs" />
+    <Compile Include="TicketSearch\CriteriaRoot.cs" />
+    <Compile Include="TicketSearch\Criterion.cs" />
+    <Compile Include="TicketSearch\Function.cs" />
+    <Compile Include="TicketSearch\GetSearchResult.cs" />
+    <Compile Include="TicketSearch\IDescribesPredicate.cs" />
+    <Compile Include="TicketSearch\IGetsSearch.cs" />
+    <Compile Include="TicketSearch\IHasLogicalCriteria.cs" />
+    <Compile Include="TicketSearch\LogicalCriterion.cs" />
+    <Compile Include="TicketSearch\LogicalOperator.cs" />
+    <Compile Include="TicketSearch\Order.cs" />
+    <Compile Include="TicketSearch\Ordering.cs" />
+    <Compile Include="TicketSearch\PredicateAndValue.cs" />
+    <Compile Include="TicketSearch\PredicateFunction.cs" />
+    <Compile Include="TicketSearch\Search.cs" />
+    <Compile Include="TicketSearch\Value.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

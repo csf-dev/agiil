@@ -1,6 +1,6 @@
 ﻿using System;
-using Antlr4.Runtime.Tree;
 using Context = Agiil.QueryLanguage.AgiilQueryParser.SearchContext;
+using Agiil.Domain.TicketSearch;
 
 namespace Agiil.QueryLanguage
 {

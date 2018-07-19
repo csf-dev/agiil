@@ -197,10 +197,6 @@
       <Project>{02F8FE6A-DB8D-44D0-903A-304E85333F32}</Project>
       <Name>Agiil.Web.Rendering.Impl</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Agiil.QueryLanguage\Agiil.QueryLanguage.csproj">
-      <Project>{A862E246-26D4-4B60-8919-973053814CBC}</Project>
-      <Name>Agiil.QueryLanguage</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Agiil.QueryLanguage.Antlr\Agiil.QueryLanguage.Antlr.csproj">
       <Project>{959D29AD-F632-4FC7-8B45-86CFC9BDA34C}</Project>
       <Name>Agiil.QueryLanguage.Antlr</Name>

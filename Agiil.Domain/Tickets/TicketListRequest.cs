@@ -5,15 +5,17 @@ namespace Agiil.Domain.Tickets
 {
   public class TicketListRequest
   {
-    public SearchModel CriteriaModel { get; }
+    Search searchModel;
 
-    // In the future this will also have:
-    // * An ordering model
-    // * A model indicating which columns we wish to display in the output
+    public Search SearchModel
+    {
+      get { return searchModel; }
+      set { searchModel = value ?? new Search(); }
+    }
 
     public TicketListRequest()
     {
-      CriteriaModel = new SearchModel();
+      searchModel = new Search();
     }
   }
 }

@@ -18,10 +18,13 @@ namespace Agiil.ObjectMaps.Tickets
 
     bool GetShowClosedTickets(TicketListRequest request)
     {
-      if(request?.CriteriaModel == null)
-        return false;
+      // TODO: Write this implementation
+      throw new NotImplementedException();
 
-      return request.CriteriaModel.Children.OfType<IsClosedNode>().Any();
+      //if(request?.CriteriaModel == null)
+      //  return false;
+
+      //return request.CriteriaModel.Children.OfType<IsClosedNode>().Any();
     }
   }
 }
