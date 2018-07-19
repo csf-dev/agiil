@@ -31,9 +31,10 @@ namespace Agiil.Tests.QueryLanguage
       // Assert
       var criterion = result?.Search?.Criteria?.Criteria?.FirstOrDefault() as Criterion;
       var predicateAndValue = criterion?.Test as PredicateAndValue;
+      var constantValue = predicateAndValue?.Value as ConstantValue;
       Assert.That(criterion?.ElementName, Is.EqualTo("title"), nameof(Criterion.ElementName));
       Assert.That(predicateAndValue?.PredicateText, Is.EqualTo("like"), nameof(PredicateAndValue.PredicateText));
-      Assert.That(predicateAndValue?.Value, Is.EqualTo("foo"), nameof(PredicateAndValue.Value));
+      Assert.That(constantValue?.Text, Is.EqualTo("foo"), $"{nameof(ConstantValue)}.{nameof(ConstantValue.Text)}");
     }
   }
 }

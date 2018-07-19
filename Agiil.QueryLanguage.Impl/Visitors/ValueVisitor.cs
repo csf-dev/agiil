@@ -17,7 +17,10 @@ namespace Agiil.QueryLanguage.Visitors
 
 		Value GetFunction(AgiilQueryParser.ValueContext context)
     {
-      return functionVisitor.Value.Visit(context.functioninvocation());
+      var func = context.functioninvocation();
+      if(func == null) return null;
+
+      return functionVisitor.Value.Visit(func);
     }
 
     Value GetConstantValue(AgiilQueryParser.ValueContext context)

@@ -14,10 +14,15 @@ namespace Agiil.QueryLanguage.Visitors
       var criteriaContext = context.criteria();
       var orderContext = context.orders();
 
-      return new Search {
-        Criteria = criteriaVisitor.Visit(criteriaContext),
-        Ordering = orderVisitor.Visit(orderContext),
-      };
+      var output = new Search();
+
+      if(criteriaContext != null)
+        output.Criteria = criteriaVisitor.Visit(criteriaContext);
+
+      if(orderContext != null)
+        output.Ordering = orderVisitor.Visit(orderContext);
+
+      return output;
 		}
 
 		protected override bool ShouldVisitNextChild(IRuleNode node, Search currentResult) => false;

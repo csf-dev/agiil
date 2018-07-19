@@ -9,6 +9,11 @@ namespace Agiil.QueryLanguage.Visitors
     readonly IAgiilQueryVisitor<Function> functionVisitor;
     readonly IAgiilQueryVisitor<Value> valueVisitor;
 
+		public override Criterion VisitCriterionorgroup([NotNull] AgiilQueryParser.CriterionorgroupContext context)
+		{
+      return VisitCriterion(context.criterion());
+		}
+
 		public override Criterion VisitCriterion([NotNull] AgiilQueryParser.CriterionContext context)
 		{
       var name = context.element().GetText();

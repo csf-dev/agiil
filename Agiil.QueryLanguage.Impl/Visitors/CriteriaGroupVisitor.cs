@@ -9,6 +9,11 @@ namespace Agiil.QueryLanguage.Visitors
   {
     readonly Lazy<IAgiilQueryVisitor<IList<LogicalCriterion>>> logicalCriteriaVisitor;
 
+    public override CriteriaGroup VisitCriterionorgroup([NotNull] AgiilQueryParser.CriterionorgroupContext context)
+    {
+      return VisitCriteriagroup(context.criteriagroup());
+    }
+
 		public override CriteriaGroup VisitCriteriagroup([NotNull] AgiilQueryParser.CriteriagroupContext context)
 		{
       return new CriteriaGroup {

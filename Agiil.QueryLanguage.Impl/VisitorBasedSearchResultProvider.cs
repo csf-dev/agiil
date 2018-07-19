@@ -1,28 +1,31 @@
 ﻿using System;
 using Antlr4.Runtime.Tree;
+using Context = Agiil.QueryLanguage.AgiilQueryParser.SearchContext;
 
 namespace Agiil.QueryLanguage
 {
   public class VisitorBasedSearchResultProvider : IGetsGetSearchResult
   {
-    readonly IParseTree parseTree;
+    readonly Context context;
     readonly IAgiilQueryVisitor<Search> visitor;
 
     public GetSearchResult GetGetSearchResult()
     {
-      var search = visitor.Visit(parseTree);
+      if(context == null) return null;
+
+      var search = visitor.Visit(context);
       return new GetSearchResult(search);
     }
 
-    public VisitorBasedSearchResultProvider(IAgiilQueryVisitor<Search> visitor, IParseTree parseTree)
+    public VisitorBasedSearchResultProvider(IAgiilQueryVisitor<Search> visitor, Context context)
     {
       if(visitor == null)
         throw new ArgumentNullException(nameof(visitor));
-      if(parseTree == null)
-        throw new ArgumentNullException(nameof(parseTree));
+      if(context == null)
+        throw new ArgumentNullException(nameof(context));
       
       this.visitor = visitor;
-      this.parseTree = parseTree;
+      this.context = context;
     }
   }
 }
