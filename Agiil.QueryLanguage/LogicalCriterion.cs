@@ -10,7 +10,7 @@ namespace Agiil.QueryLanguage
     {
       get { return logicalOperator; }
       set {
-        logicalOperator = logicalOperator.IsDefinedValue()? value : LogicalOperator.And;
+        logicalOperator = logicalOperator.IsDefinedValue()? value : default(LogicalOperator);
       }
     }
   }
