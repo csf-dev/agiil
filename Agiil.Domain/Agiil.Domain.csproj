@@ -182,6 +182,12 @@
     <Compile Include="TicketSearch\IVisitsTicketSearch.cs" />
     <Compile Include="TicketSearch\IConvertsCriterionToSpecification.cs" />
     <Compile Include="TicketSearch\IStrategyForConvertingCriterionToSpecification.cs" />
+    <Compile Include="TicketSearch\CriterionToSpecificationConversionStrategyMetadata.cs" />
+    <Compile Include="TicketSearch\ElementName.cs" />
+    <Compile Include="TicketSearch\PredicateName.cs" />
+    <Compile Include="TicketSearch\PredicateFunctionNames.cs" />
+    <Compile Include="TicketSearch\IResolvesValue.cs" />
+    <Compile Include="TicketSearch\WellKnownValue.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

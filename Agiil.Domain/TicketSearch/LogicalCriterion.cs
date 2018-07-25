@@ -14,6 +14,6 @@ namespace Agiil.Domain.TicketSearch
       }
     }
 
-    public void Accept(IVisitsTicketSearch visitor) { visitor?.Visit(this); }
+    public virtual void Accept(IVisitsTicketSearch visitor) { visitor?.Visit(this); }
   }
 }

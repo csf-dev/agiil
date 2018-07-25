@@ -15,7 +15,7 @@ namespace Agiil.Domain.TicketSearch
       set { parameters = value ?? new List<Value>(); }
     }
 
-    public void Accept(IVisitsTicketSearch visitor) { visitor?.Visit(this); }
+    public override void Accept(IVisitsTicketSearch visitor) { visitor?.Visit(this); }
 
     public Function()
     {

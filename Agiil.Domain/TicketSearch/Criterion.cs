@@ -7,6 +7,6 @@ namespace Agiil.Domain.TicketSearch
 
     public IDescribesPredicate Test { get; set; }
 
-    public void Accept(IVisitsTicketSearch visitor) { visitor?.Visit(this); }
+    public override void Accept(IVisitsTicketSearch visitor) { visitor?.Visit(this); }
   }
 }

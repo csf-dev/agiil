@@ -13,7 +13,7 @@ namespace Agiil.Domain.TicketSearch
       set { criteriaGroups = value ?? new List<LogicalCriterion>(); }
     }
 
-    public void Accept(IVisitsTicketSearch visitor) { visitor?.Visit(this); }
+    public override void Accept(IVisitsTicketSearch visitor) { visitor?.Visit(this); }
 
     public CriteriaGroup()
     {

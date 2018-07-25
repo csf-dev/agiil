@@ -34,7 +34,7 @@ namespace Agiil.Domain.TicketSearch
       var spec = criterionConverter.ConvertToSpecification(node);
       if(spec == null) return;
 
-      AddSpecification(spec, (node?.LogicalOperator) ?? default(LogicalOperator));
+      specBeingBuilt = AddSpecification(spec, (node?.LogicalOperator) ?? default(LogicalOperator));
 		}
 
 		public override void Visit(CriteriaGroup node)
@@ -46,7 +46,7 @@ namespace Agiil.Domain.TicketSearch
       var spec = recursiveVisitor.GetSpecification();
 
       if(spec == null) return;
-      AddSpecification(spec, node.LogicalOperator);
+      specBeingBuilt = AddSpecification(spec, node.LogicalOperator);
 		}
 
 		public void VisitLogicalCriteriaProvider(IHasLogicalCriteria node)

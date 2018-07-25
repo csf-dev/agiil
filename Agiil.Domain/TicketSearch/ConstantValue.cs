@@ -5,6 +5,6 @@ namespace Agiil.Domain.TicketSearch
   {
     public string Text { get; set; }
 
-    public void Accept(IVisitsTicketSearch visitor) { visitor?.Visit(this); }
+    public override void Accept(IVisitsTicketSearch visitor) { visitor?.Visit(this); }
 	}
 }

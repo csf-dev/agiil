@@ -7,6 +7,6 @@ namespace Agiil.Domain.TicketSearch
 
     string IDescribesPredicate.PredicateText => FunctionName;
 
-    public void Accept(IVisitsTicketSearch visitor) { visitor?.Visit(this); }
+    public override void Accept(IVisitsTicketSearch visitor) { visitor?.Visit(this); }
   }
 }
