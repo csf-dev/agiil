@@ -18,24 +18,34 @@ namespace Agiil.ObjectMaps.Tickets
 
       map.AfterMap((spec, request) => {
           if(spec == null || !spec.ShowClosedTickets)
-            return;
-        
-          ConfigureRequestForClosedTickets(request);
+            ConfigureRequestForOpenTickets(request);
+          else
+            ConfigureRequestForClosedTickets(request);
         });
     }
 
     void ConfigureRequestForClosedTickets(TicketListRequest request)
     {
-      // TODO: Write this implementation
-      throw new NotImplementedException();
+      ConfigureRequestForOpenOrClosedTickets(request, WellKnownValue.Closed);
+    }
 
-      //var searchNodes = request.CriteriaModel.Children;
+    void ConfigureRequestForOpenTickets(TicketListRequest request)
+    {
+      ConfigureRequestForOpenOrClosedTickets(request, WellKnownValue.Open);
+    }
 
-      //var isOpenNodes = searchNodes.OfType<IsOpenNode>().ToList();
-      //foreach(var node in isOpenNodes)
-      //  searchNodes.Remove(node);
+    void ConfigureRequestForOpenOrClosedTickets(TicketListRequest request, string openOrClosed)
+    {
+      var criterion = new Criterion {
+        ElementName = ElementName.Ticket,
+        Test = new PredicateAndValue {
+          PredicateText = PredicateName.Is,
+          Value = new ConstantValue { Text = openOrClosed }
+        }
+      };
 
-      //searchNodes.Add(new IsClosedNode());
+      request.SearchModel.CriteriaRoot = new CriteriaRoot();
+      request.SearchModel.CriteriaRoot.Criteria.Add(criterion);
     }
   }
 }

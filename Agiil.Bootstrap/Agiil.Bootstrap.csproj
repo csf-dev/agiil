@@ -159,6 +159,8 @@
     <Compile Include="Labels\LabelSpecsModule.cs" />
     <Compile Include="QueryLanguage\QueryLanguageModule.cs" />
     <Compile Include="QueryLanguage\QueryLanguageVisitorModule.cs" />
+    <Compile Include="TicketSearch\TicketSearchModule.cs" />
+    <Compile Include="TicketCriterionConvertionStrategies\BuiltinCriterionConversionStrategyModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
@@ -227,6 +229,8 @@
     <Folder Include="Rendering\" />
     <Folder Include="Labels\" />
     <Folder Include="QueryLanguage\" />
+    <Folder Include="TicketSearch\" />
+    <Folder Include="TicketCriterionConvertionStrategies\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.0\build\net46\System.Data.SQLite.Core.targets')" />

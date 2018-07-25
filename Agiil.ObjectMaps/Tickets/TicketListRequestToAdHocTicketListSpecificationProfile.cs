@@ -18,13 +18,16 @@ namespace Agiil.ObjectMaps.Tickets
 
     bool GetShowClosedTickets(TicketListRequest request)
     {
-      // TODO: Write this implementation
-      throw new NotImplementedException();
+      var criteria = request.SearchModel
+                            .CriteriaRoot
+                            .Criteria
+                            .OfType<Criterion>()
+                            .Where(x => x.LogicalOperator == LogicalOperator.And)
+                            .Where(x => x.Test is PredicateAndValue);
 
-      //if(request?.CriteriaModel == null)
-      //  return false;
-
-      //return request.CriteriaModel.Children.OfType<IsClosedNode>().Any();
+      return criteria.Any(x => x.ElementName == ElementName.Ticket
+                               && ((PredicateAndValue) x.Test).PredicateText == PredicateName.Is
+                               && (((PredicateAndValue) x.Test).Value as ConstantValue)?.Text == WellKnownValue.Closed);
     }
   }
 }

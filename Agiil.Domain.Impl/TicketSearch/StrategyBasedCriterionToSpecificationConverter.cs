@@ -9,7 +9,7 @@ namespace Agiil.Domain.TicketSearch
 {
   public class StrategyBasedCriterionToSpecificationConverter : IConvertsCriterionToSpecification
   {
-    readonly IEnumerable<Lazy<IStrategyForConvertingCriterionToSpecification, CriterionToSpecificationConversionStrategyMetadata>> strategies;
+    readonly IEnumerable<IStrategyForConvertingCriterionToSpecification> strategies;
 
     public ISpecificationExpression<Ticket> ConvertToSpecification(Criterion criterion)
     {
@@ -21,10 +21,17 @@ namespace Agiil.Domain.TicketSearch
     IConvertsCriterionToSpecification ChooseStrategy(Criterion criterion)
     {
       if(criterion == null) return null;
-      return strategies.FirstOrDefault(x => x.Metadata.CanConvert(criterion))?.Value;
+
+      return (from strategy in strategies
+              let metadata = strategy.GetMetadata()
+              where
+                metadata != null
+                && metadata.CanConvert(criterion)
+              select strategy)
+        .FirstOrDefault();
     }
 
-    public StrategyBasedCriterionToSpecificationConverter(IEnumerable<Lazy<IStrategyForConvertingCriterionToSpecification,CriterionToSpecificationConversionStrategyMetadata>> strategies)
+    public StrategyBasedCriterionToSpecificationConverter(IEnumerable<IStrategyForConvertingCriterionToSpecification> strategies)
     {
       if(strategies == null)
         throw new ArgumentNullException(nameof(strategies));

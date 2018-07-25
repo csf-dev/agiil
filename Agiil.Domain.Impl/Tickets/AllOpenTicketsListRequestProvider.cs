@@ -9,10 +9,10 @@ namespace Agiil.Domain.Tickets
     {
       var list = new TicketListRequest();
       var ticketIsOpenCriterion = new Criterion {
-        ElementName = "state",
+        ElementName = ElementName.Ticket,
         Test = new PredicateAndValue {
-          PredicateText = "=",
-          Value = new ConstantValue { Text = "open" },
+          PredicateText = PredicateName.Is,
+          Value = new ConstantValue { Text = WellKnownValue.Open },
         },
       };
       list.SearchModel.CriteriaRoot.Criteria.Add(ticketIsOpenCriterion);
