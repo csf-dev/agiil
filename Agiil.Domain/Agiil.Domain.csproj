@@ -188,6 +188,7 @@
     <Compile Include="TicketSearch\PredicateFunctionNames.cs" />
     <Compile Include="TicketSearch\IResolvesValue.cs" />
     <Compile Include="TicketSearch\WellKnownValue.cs" />
+    <Compile Include="Tickets\IGetsListOfTicketsFromAgiilQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

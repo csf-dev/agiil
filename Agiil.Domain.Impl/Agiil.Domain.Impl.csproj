@@ -172,6 +172,7 @@
     <Compile Include="TicketCriterionConvertionStrategies\HasNoSprintConversionStrategy.cs" />
     <Compile Include="TicketCriterionConvertionStrategies\TicketIsOpenClosedConversionStrategy.cs" />
     <Compile Include="TicketSearch\StrategyBasedCriterionToSpecificationConverter.cs" />
+    <Compile Include="Tickets\TicketListerFromAgiilQueryAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

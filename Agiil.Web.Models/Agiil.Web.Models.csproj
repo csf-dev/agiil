@@ -61,7 +61,6 @@
     <Compile Include="Sprints\NewSprintSpecification.cs" />
     <Compile Include="Tickets\AddCommentResponse.cs" />
     <Compile Include="Tickets\AddCommentSpecification.cs" />
-    <Compile Include="Tickets\AdHocTicketListSpecification.cs" />
     <Compile Include="Tickets\CommentDto.cs" />
     <Compile Include="Tickets\EditCommentModel.cs" />
     <Compile Include="Tickets\EditCommentResponse.cs" />

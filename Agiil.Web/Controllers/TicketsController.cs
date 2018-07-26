@@ -10,28 +10,30 @@ namespace Agiil.Web.Controllers
 {
   public class TicketsController : Controller
   {
-    readonly IGetsListOfTickets lister;
+    readonly IGetsListOfTicketsFromAgiilQuery lister;
     readonly IMapper mapper;
 
-    public ActionResult Index(AdHocTicketListSpecification spec)
+    public ActionResult Index(string q)
     {
-      var request = mapper.Map<TicketListRequest>(spec);
-      var model = GetModel(request);
+      var model = GetModel(q);
       return View (model);
     }
 
-    TicketListModel GetModel(TicketListRequest listRequest)
+    TicketListModel GetModel(string agiilQuery)
     {
-      var model = mapper.Map<TicketListModel>(listRequest);
+      if(String.IsNullOrEmpty(agiilQuery))
+        agiilQuery = "ticket is open";
+      
+      var model = new TicketListModel { Query = agiilQuery };
 
-      var tickets = lister.GetTickets(listRequest);
+      var tickets = lister.GetTickets(agiilQuery);
       if(tickets != null)
         model.Tickets = tickets.Select(x => mapper.Map<TicketSummaryDto>(x)).ToList();
 
       return model;
     }
 
-    public TicketsController(IGetsListOfTickets lister, IMapper mapper)
+    public TicketsController(IGetsListOfTicketsFromAgiilQuery lister, IMapper mapper)
     {
       if(mapper == null)
         throw new ArgumentNullException(nameof(mapper));
