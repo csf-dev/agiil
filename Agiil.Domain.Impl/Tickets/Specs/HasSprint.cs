@@ -8,10 +8,10 @@ namespace Agiil.Domain.Tickets.Specs
 {
   public class HasSprint : SpecificationExpression<Ticket>
   {
-    readonly IEnumerable<string> sprintNames;
+    readonly string[] sprintNames;
 
     public override Expression<Func<Ticket, bool>> GetExpression()
-      => ticket => ticket.Sprint != null && sprintNames.Any(name => name == ticket.Sprint.Name);
+      => ticket => ticket.Sprint != null && sprintNames.Contains(ticket.Sprint.Name);
 
     public HasSprint(string sprintName) : this(new [] {sprintName}) {}
 
@@ -20,7 +20,7 @@ namespace Agiil.Domain.Tickets.Specs
       if(sprintName == null)
         throw new ArgumentNullException(nameof(sprintName));
 
-      this.sprintNames = sprintName;
+      this.sprintNames = sprintName.ToArray();
     }
   }
 }

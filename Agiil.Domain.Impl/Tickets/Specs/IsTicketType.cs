@@ -8,10 +8,10 @@ namespace Agiil.Domain.Tickets.Specs
 {
   public class IsTicketType : SpecificationExpression<Ticket>
   {
-    readonly IEnumerable<string> ticketTypeNames;
+    readonly string[] ticketTypeNames;
 
     public override Expression<Func<Ticket, bool>> GetExpression()
-    => ticket => ticket.Type != null && ticketTypeNames.Any(name => name == ticket.Type.Name);
+    => ticket => ticket.Type != null && ticketTypeNames.Contains(ticket.Type.Name);
 
     public IsTicketType(string ticketTypeNames) : this(new [] {ticketTypeNames}) {}
 
@@ -20,7 +20,7 @@ namespace Agiil.Domain.Tickets.Specs
       if(ticketTypeNames == null)
         throw new ArgumentNullException(nameof(ticketTypeNames));
 
-      this.ticketTypeNames = ticketTypeNames;
+      this.ticketTypeNames = ticketTypeNames.ToArray();
     }
   }
 }

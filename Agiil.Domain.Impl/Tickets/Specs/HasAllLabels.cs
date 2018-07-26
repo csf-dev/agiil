@@ -8,10 +8,20 @@ namespace Agiil.Domain.Tickets.Specs
 {
   public class HasAllLabels : SpecificationExpression<Ticket>
   {
-    readonly IEnumerable<string> labelNames;
+    readonly string[] labelNames;
 
     public override Expression<Func<Ticket, bool>> GetExpression()
-      => ticket => labelNames.All(name => ticket.Labels.Any(label => label.Name == name));
+    {
+      ISpecificationExpression<Ticket> output = new DynamicSpecificationExpression<Ticket>(x => true);
+
+      foreach(var labelName in labelNames)
+      {
+        var nameExpression = new DynamicSpecificationExpression<Ticket>(x => x.Labels.Any(l => l.Name == labelName));
+        output = output.And(nameExpression);
+      }
+
+      return output.GetExpression();
+    }
 
     public HasAllLabels(string labelName) : this(new [] {labelName}) {}
 
@@ -20,7 +30,7 @@ namespace Agiil.Domain.Tickets.Specs
       if(labelNames == null)
         throw new ArgumentNullException(nameof(labelNames));
 
-      this.labelNames = labelNames;
+      this.labelNames = labelNames.ToArray();
     }
   }
 }
