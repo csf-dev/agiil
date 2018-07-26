@@ -9,16 +9,13 @@ namespace Agiil.Bootstrap.TicketCriterionConvertionStrategies
 {
   public class BuiltinCriterionConversionStrategyModule : Module
   {
-    const string MetadataMethodName = "GetMetadata";
-
 		protected override void Load(ContainerBuilder builder)
 		{
-      
       var strategyTypes = GetCandidateTypes()
         .Where(IsStrategyClass)
         .ToArray();
 
-      builder.RegisterTypes(strategyTypes).AsImplementedInterfaces();
+      builder.RegisterTypes(strategyTypes).As<IStrategyForConvertingCriterionToSpecification>();
 		}
 
     bool IsStrategyClass(Type type)
