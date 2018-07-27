@@ -3,4 +3,6 @@ SET ANTLR_JAR_PATH=%SCRIPT_PATH%..\lib\*.jar
 
 SET CLASSPATH=.;%ANTLR_JAR_PATH%;%CLASSPATH%
 
+echo %CLASSPATH%
+
 java org.antlr.v4.Tool %*
