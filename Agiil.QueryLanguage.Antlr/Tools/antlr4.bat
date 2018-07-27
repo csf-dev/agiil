@@ -1,8 +1,5 @@
-SET SCRIPT_PATH=%~dp0
-SET ANTLR_JAR_PATH=%SCRIPT_PATH%..\lib\*.jar
+SET ANTLR_JAR_PATH=..\lib\*.jar
 
-SET CLASSPATH=.;%ANTLR_JAR_PATH%;%CLASSPATH%
+SET CUSTOM_CLASSPATH=.;%ANTLR_JAR_PATH%
 
-echo %CLASSPATH%
-
-java org.antlr.v4.Tool %*
+java -cp %CUSTOM_CLASSPATH% org.antlr.v4.Tool %*
