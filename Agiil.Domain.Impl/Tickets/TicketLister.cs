@@ -26,6 +26,8 @@ namespace Agiil.Domain.Tickets
       var queryProvider = queryProviderFactory(spec);
 
       var query = queryProvider.GetQuery();
+      if(query == null) return new Ticket[0];
+
       query = query.OrderByDescending(x => x.CreationTimestamp);
       return query
         .Fetch(x => x.User)

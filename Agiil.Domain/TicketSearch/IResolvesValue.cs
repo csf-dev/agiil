@@ -10,5 +10,7 @@ namespace Agiil.Domain.TicketSearch
     IReadOnlyList<TResolvedValue> ResolveAll<TResolvedValue>(IReadOnlyList<Value> values);
 
     IReadOnlyList<TResolvedValue> ResolveAll<TResolvedValue>(IList<Value> values);
+
+    IReadOnlyList<TResolvedValue> ResolveAll<TResolvedValue>(List<Value> values);
   }
 }

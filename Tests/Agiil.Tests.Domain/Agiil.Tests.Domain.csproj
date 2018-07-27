@@ -104,6 +104,15 @@
     <Compile Include="Labels\ExistingLabelProviderTests.cs" />
     <Compile Include="Labels\ExistingAndNewLabelProviderTests.cs" />
     <Compile Include="TicketSearch\GetSearchIntegrationTests.cs" />
+    <Compile Include="Labels\Specs\LabelNameInTests.cs" />
+    <Compile Include="TicketCriterionConvertionStrategies\HasAllLabelsConversionStrategyTests.cs" />
+    <Compile Include="TicketCriterionConvertionStrategies\HasLabelConversionStrategyTests.cs" />
+    <Compile Include="TicketCriterionConvertionStrategies\HasNoLabelsConversionStrategyTests.cs" />
+    <Compile Include="TicketCriterionConvertionStrategies\HasNoSprintConversionStrategyTests.cs" />
+    <Compile Include="TicketCriterionConvertionStrategies\IsInSprintConversionStrategyTests.cs" />
+    <Compile Include="TicketCriterionConvertionStrategies\TicketIsOpenClosedConversionStrategyTests.cs" />
+    <Compile Include="TicketSearch\StrategyBasedCriterionToSpecificationConverterTests.cs" />
+    <Compile Include="Tickets\TicketListerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
@@ -134,6 +143,8 @@
     <Folder Include="Data\" />
     <Folder Include="Labels\" />
     <Folder Include="TicketSearch\" />
+    <Folder Include="Labels\Specs\" />
+    <Folder Include="TicketCriterionConvertionStrategies\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

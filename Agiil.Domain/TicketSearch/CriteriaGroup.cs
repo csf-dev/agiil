@@ -19,5 +19,10 @@ namespace Agiil.Domain.TicketSearch
     {
       criteriaGroups = new List<LogicalCriterion>();
     }
+
+    public static CriteriaGroup FromLogicalCriteria(params LogicalCriterion[] criteria)
+    {
+      return new CriteriaGroup() { Criteria = criteria };
+    }
   }
 }

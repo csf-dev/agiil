@@ -168,6 +168,7 @@
     <Compile Include="Autofixture\AlwaysPassesValidationCustomization.cs" />
     <Compile Include="Attributes\InMemoryAttribute.cs" />
     <Compile Include="Autofixture\InMemoryEntityDataCustomization.cs" />
+    <Compile Include="Attributes\MockedMetadataAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">

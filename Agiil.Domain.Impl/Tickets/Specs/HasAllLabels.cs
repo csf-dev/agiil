@@ -10,6 +10,8 @@ namespace Agiil.Domain.Tickets.Specs
   {
     readonly string[] labelNames;
 
+    public IReadOnlyList<string> LabelNames => labelNames;
+
     public override Expression<Func<Ticket, bool>> GetExpression()
     {
       ISpecificationExpression<Ticket> output = new DynamicSpecificationExpression<Ticket>(x => true);

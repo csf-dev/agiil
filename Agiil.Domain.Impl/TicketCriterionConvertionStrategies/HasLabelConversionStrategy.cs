@@ -39,7 +39,7 @@ namespace Agiil.Domain.TicketCriterionConvertionStrategies
     ISpecificationExpression<Ticket> GetFromPredicateFunction(Criterion criterion)
     {
       var predicateFunction = criterion?.Test as PredicateFunction;
-      var labelNames = predicateFunction.Parameters.Select(x => valueResolver.Resolve<string>(x)).ToList();
+      var labelNames = valueResolver.ResolveAll<string>(predicateFunction.Parameters);
       var spec = new HasLabel(labelNames);
 
       if(predicateFunction.Inverted)

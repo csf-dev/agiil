@@ -10,6 +10,8 @@ namespace Agiil.Domain.Tickets.Specs
   {
     readonly string[] sprintNames;
 
+    public IReadOnlyList<string> SprintNames => sprintNames;
+
     public override Expression<Func<Ticket, bool>> GetExpression()
       => ticket => ticket.Sprint != null && sprintNames.Contains(ticket.Sprint.Name);
 

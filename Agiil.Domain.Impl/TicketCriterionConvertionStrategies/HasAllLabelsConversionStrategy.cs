@@ -14,7 +14,7 @@ namespace Agiil.Domain.TicketCriterionConvertionStrategies
     public ISpecificationExpression<Ticket> ConvertToSpecification(Criterion criterion)
     {
       var predicateFunction = criterion?.Test as PredicateFunction;
-      var labelNames = predicateFunction.Parameters.Select(x => valueResolver.Resolve<string>(x)).ToList();
+      var labelNames = valueResolver.ResolveAll<string>(predicateFunction.Parameters);
       var spec = new HasAllLabels(labelNames);
 
       if(predicateFunction.Inverted)

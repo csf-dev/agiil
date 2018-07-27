@@ -28,6 +28,9 @@ namespace Agiil.Domain.TicketSearch
     public IReadOnlyList<TResolvedValue> ResolveAll<TResolvedValue>(IList<Value> values)
       => ResolveAllValues<TResolvedValue>(values);
 
+    public IReadOnlyList<TResolvedValue> ResolveAll<TResolvedValue>(List<Value> values)
+      => ResolveAllValues<TResolvedValue>(values);
+
     IReadOnlyList<TResolvedValue> ResolveAllValues<TResolvedValue>(IEnumerable<Value> values)
       => values?.Select(x => Resolve<TResolvedValue>(x))?.ToArray() ?? new TResolvedValue[0];
   }
