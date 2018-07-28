@@ -244,6 +244,7 @@
     <Compile Include="Models\Labels\MissingLabelException.cs" />
     <Compile Include="Tasks\Tickets\ReadTheTicketTitle.cs" />
     <Compile Include="Tasks\Tickets\FollowALinkFromTheTicketDescription.cs" />
+    <Compile Include="Tasks\Tickets\PerformAnAgiilQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

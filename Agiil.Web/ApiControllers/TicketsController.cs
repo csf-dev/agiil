@@ -10,30 +10,19 @@ namespace Agiil.Web.ApiControllers
 {
   public class TicketsController : ApiController
   {
-    readonly ITicketLister lister;
+    readonly IGetsListOfTicketsFromAgiilQuery lister;
     readonly Lazy<IMapper> mapper;
 
-    public IList<TicketSummaryDto> Get(AdHocTicketListSpecification spec)
+    public IList<TicketSummaryDto> Get([FromUri] string q)
     {
-      var request = GetRequest(spec);
-      var tickets = lister.GetTickets(request);
+      if(String.IsNullOrEmpty(q))
+        q = "ticket is open";
+
+      var tickets = lister.GetTickets(q);
       return tickets.Select(x => mapper.Value.Map<TicketSummaryDto>(x)).ToList();
     }
 
-    TicketListRequest GetRequest(AdHocTicketListSpecification spec)
-    {
-      if(ReferenceEquals(spec, null))
-        return TicketListRequest.CreateDefault();
-
-      // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
-      return new TicketListRequest
-      {
-        ShowClosedTickets = spec.ShowClosedTickets,
-        ShowOpenTickets = !spec.ShowClosedTickets,
-      };
-    }
-
-    public TicketsController(ITicketLister lister,
+    public TicketsController(IGetsListOfTicketsFromAgiilQuery lister,
                              Lazy<IMapper> mapper)
     {
       if(lister == null)

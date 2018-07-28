@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Agiil.Domain</RootNamespace>
     <AssemblyName>Agiil.Domain.Impl</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <ReleaseVersion>v0.5.2-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -86,6 +86,7 @@
     <Reference Include="CSF.Data">
       <HintPath>..\packages\CSF.Data.1.3.0\lib\net45\CSF.Data.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -141,13 +142,37 @@
     <Compile Include="Labels\ExistingLabelProvider.cs" />
     <Compile Include="Labels\LabelProviderBase.cs" />
     <Compile Include="Labels\NewLabelProvider.cs" />
-    <Compile Include="Labels\LabelNameInSpecification.cs" />
     <Compile Include="Labels\LabelLister.cs" />
-    <Compile Include="Tickets\IsOpen.cs" />
-    <Compile Include="Tickets\IsClosed.cs" />
     <Compile Include="Labels\ExistingLabelReader.cs" />
     <Compile Include="Data\ApplicationDependencyTester.cs" />
-    <Compile Include="Tickets\TicketReferenceSpecification.cs" />
+    <Compile Include="Tickets\Specs\IsClosed.cs" />
+    <Compile Include="Tickets\Specs\IsOpen.cs" />
+    <Compile Include="Labels\Specs\LabelNameIn.cs" />
+    <Compile Include="Tickets\Specs\TicketReferenceEquals.cs" />
+    <Compile Include="Tickets\Specs\HasLabel.cs" />
+    <Compile Include="Tickets\Specs\HasNoLabels.cs" />
+    <Compile Include="Tickets\Specs\HasAllLabels.cs" />
+    <Compile Include="Tickets\Specs\HasNoSprint.cs" />
+    <Compile Include="Tickets\Specs\HasSprint.cs" />
+    <Compile Include="Tickets\Specs\IsTicketType.cs" />
+    <Compile Include="Tickets\Specs\DescriptionContainsText.cs" />
+    <Compile Include="Tickets\Specs\TitleContainsText.cs" />
+    <Compile Include="Tickets\Specs\AnyCommentContainsText.cs" />
+    <Compile Include="Tickets\TicketQueryProvider.cs" />
+    <Compile Include="Tickets\SpecificationQueryProviderDecorator.cs" />
+    <Compile Include="Tickets\AllOpenTicketsListRequestProvider.cs" />
+    <Compile Include="TicketSearch\SpecificationBuildingSearchVisitor.cs" />
+    <Compile Include="TicketSearch\SearchVisitor.cs" />
+    <Compile Include="TicketSearch\VisitorBasedSpecificationProvider.cs" />
+    <Compile Include="TicketCriterionConvertionStrategies\HasLabelConversionStrategy.cs" />
+    <Compile Include="TicketSearch\ConstantValueResolver.cs" />
+    <Compile Include="TicketCriterionConvertionStrategies\HasAllLabelsConversionStrategy.cs" />
+    <Compile Include="TicketCriterionConvertionStrategies\HasNoLabelsConversionStrategy.cs" />
+    <Compile Include="TicketCriterionConvertionStrategies\IsInSprintConversionStrategy.cs" />
+    <Compile Include="TicketCriterionConvertionStrategies\HasNoSprintConversionStrategy.cs" />
+    <Compile Include="TicketCriterionConvertionStrategies\TicketIsOpenClosedConversionStrategy.cs" />
+    <Compile Include="TicketSearch\StrategyBasedCriterionToSpecificationConverter.cs" />
+    <Compile Include="Tickets\TicketListerFromAgiilQueryAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
@@ -168,6 +193,10 @@
     <Folder Include="Projects\" />
     <Folder Include="Sprints\" />
     <Folder Include="Labels\" />
+    <Folder Include="TicketSearch\" />
+    <Folder Include="Tickets\Specs\" />
+    <Folder Include="Labels\Specs\" />
+    <Folder Include="TicketCriterionConvertionStrategies\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

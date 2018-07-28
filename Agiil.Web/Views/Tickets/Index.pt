@@ -10,14 +10,13 @@
 <div metal:fill-slot="page_content" class="page_content">
   <h1>Tickets</h1>
   <p>This is a list of the tickets which exist in the application.</p>
-  <p tal:condition="here/ShowingClosedTickets">
-    Displaying tickets marked as <strong>closed</strong>.
-    You may instead show <a href="Tickets">open tickets</a>.
-  </p>
-  <p tal:condition="not:here/ShowingClosedTickets">
-    Displaying tickets marked as <strong>open</strong>.
-    You may instead show <a href="Tickets?ShowClosedTickets=True">closed tickets</a>.
-  </p>
+  <form action="Tickets/Index" method="get" class="agiil_query">
+    <fieldset>
+      <label for="query_text">Query</label>
+      <input type="text" tal:attributes="value here/Query" value="ticket is open" name="q" id="query_text" />
+      <input type="submit" value="Search" class="perform_search">
+    </fieldset>
+  </form>
   <table tal:define="tickets here/Tickets" class="ticket_list">
     <colgroup>
       <col class="reference" />

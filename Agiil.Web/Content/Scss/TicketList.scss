@@ -1,6 +1,27 @@
 ﻿@import '_AppWideVariables';
 @import '_ScreenMediaQueries';
 
+.agiil_query label[for="query_text"] {
+  display: none;
+}
+.agiil_query #query_text {
+  display: inline-block;
+  width: calc(100% - 100px);
+  font-size: 105%;
+  box-sizing: border-box;
+  padding: 0.1em;
+}
+.agiil_query .perform_search {
+  width: 100px;
+  font-size: 105%;
+  padding: 0.1em;
+  float: right;
+}
+.agiil_query {
+  overflow: auto;
+  margin-bottom: 0.2em;
+}
+
 table.ticket_list {
   border: 1px solid $subtle-keyline-color;
   border-collapse: collapse;

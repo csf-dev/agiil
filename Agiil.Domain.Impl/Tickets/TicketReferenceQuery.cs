@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Agiil.Domain.Projects;
+using Agiil.Domain.Tickets.Specs;
 using CSF.Data.Entities;
 using CSF.Data.Specifications;
 
@@ -23,7 +24,7 @@ namespace Agiil.Domain.Tickets
       if(reference == null) return null;
 
       var refWithProjectCode = GetReferenceWithProjectCode(reference);
-      var spec = new TicketReferenceSpecification(refWithProjectCode);
+      var spec = new TicketReferenceEquals(refWithProjectCode);
 
       return repo
         .Query<Ticket>()

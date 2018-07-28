@@ -1,21 +1,21 @@
 ﻿using System;
+using Agiil.Domain.TicketSearch;
+
 namespace Agiil.Domain.Tickets
 {
   public class TicketListRequest
   {
-    public bool ShowClosedTickets { get; set; }
+    Search searchModel;
 
-    public bool ShowOpenTickets { get; set; }
+    public Search SearchModel
+    {
+      get { return searchModel; }
+      set { searchModel = value ?? new Search(); }
+    }
 
     public TicketListRequest()
     {
-      ShowClosedTickets = false;
-      ShowOpenTickets = true;
-    }
-
-    public static TicketListRequest CreateDefault()
-    {
-      return new TicketListRequest();
+      searchModel = new Search();
     }
   }
 }

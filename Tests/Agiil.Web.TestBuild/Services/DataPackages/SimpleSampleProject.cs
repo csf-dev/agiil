@@ -38,6 +38,8 @@ namespace Agiil.Web.Services.DataPackages
         var ticket2 = CreateTicketTwo(sprint1, youssef, enhancement);
         var ticket3 = CreateTicketThree(sprint1, youssef, enhancement);
         var ticket4 = CreateClosedTicketFour(sprint1, youssef, bug);
+        var ticket5 = CreateTicketFive(sprint2, youssef, bug);
+        var ticket6 = CreateTicketSix(sprint2, youssef, bug);
 
         var comment1 = CreateCommentOne(ticket1, youssef);
         var comment2 = CreateCommentTwo(ticket2, admin);
@@ -45,6 +47,7 @@ namespace Agiil.Web.Services.DataPackages
         var comment4 = CreateCommentFour(ticket2, admin);
 
         CreateExistingLabelOne(ticket2, ticket3, ticket4);
+        CreateExistingLabelTwo(ticket6);
 
         tran.Commit();
       }
@@ -194,6 +197,46 @@ namespace Agiil.Web.Services.DataPackages
       return ticket;
     }
 
+    Ticket CreateTicketFive(Sprint sprint, User user, TicketType type)
+    {
+      var ticket = new Ticket
+      {
+        Title = "Sample ticket 5",
+        TicketNumber = 5,
+        Description = "This ticket has a description",
+        CreationTimestamp = new DateTime(2011, 1, 6),
+        Project = sprint.Project,
+        User = user,
+        Type = type,
+      };
+
+      sprint.Tickets.Add(ticket);
+
+      repo.Add(ticket);
+
+      return ticket;
+    }
+
+    Ticket CreateTicketSix(Sprint sprint, User user, TicketType type)
+    {
+      var ticket = new Ticket
+      {
+        Title = "Sample ticket 6",
+        TicketNumber = 6,
+        Description = "This ticket has a description",
+        CreationTimestamp = new DateTime(2011, 1, 6),
+        Project = sprint.Project,
+        User = user,
+        Type = type,
+      };
+
+      sprint.Tickets.Add(ticket);
+
+      repo.Add(ticket);
+
+      return ticket;
+    }
+
     Comment CreateCommentOne(Ticket ticket, User user)
     {
       var comment = new Comment
@@ -265,6 +308,16 @@ namespace Agiil.Web.Services.DataPackages
     Label CreateExistingLabelOne(params Ticket[] tickets)
     {
       var label = new Label { Name = "existing label one" };
+      label.Tickets.UnionWith(tickets);
+
+      repo.Add(label);
+
+      return label;
+    }
+
+    Label CreateExistingLabelTwo(params Ticket[] tickets)
+    {
+      var label = new Label { Name = "existing label two" };
       label.Tickets.UnionWith(tickets);
 
       repo.Add(label);
