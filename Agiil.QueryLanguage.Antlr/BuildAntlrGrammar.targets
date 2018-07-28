@@ -13,7 +13,7 @@
   <Target Name="Generate_Java">
     <RemoveDir Directories="$(JavaOutputDir)" />
     <MakeDir Directories="$(JavaOutputDir)" />
-    <Exec Command="java -cp $(AntlrToolPath) org.antlr.v4.Tool -no-listener -o '$(JavaOutputDir)' $(GrammarSourceFile)" />
+    <Exec Command="java -cp $(AntlrToolPath) org.antlr.v4.Tool -no-listener -o $(JavaOutputDir) $(GrammarSourceFile)" />
   </Target>
 
   <Target Name="Compile_Java" DependsOnTargets="Generate_Java">
@@ -34,12 +34,12 @@
   <Target Name="Generate_JavaScript">
     <RemoveDir Directories="$(JavaScriptOutputDir)" />
     <MakeDir Directories="$(JavaScriptOutputDir)" />
-    <Exec Command="java -cp $(AntlrToolPath) org.antlr.v4.Tool -no-listener -visitor -Dlanguage=JavaScript -package Agiil.QueryLanguage  -o '$(JavaScriptOutputDir)' $(GrammarSourceFile)" />
+    <Exec Command="java -cp $(AntlrToolPath) org.antlr.v4.Tool -no-listener -visitor -Dlanguage=JavaScript -package Agiil.QueryLanguage  -o $(JavaScriptOutputDir) $(GrammarSourceFile)" />
   </Target>
 
   <Target Name="Generate_CSharp">
     <RemoveDir Directories="$(CSharpOutputDir)" />
     <MakeDir Directories="$(CSharpOutputDir)" />
-    <Exec Command="java -cp $(AntlrToolPath) org.antlr.v4.Tool -no-listener -visitor -Dlanguage=CSharp -package Agiil.QueryLanguage  -o '$(CSharpOutputDir)' $(GrammarSourceFile)" />
+    <Exec Command="java -cp $(AntlrToolPath) org.antlr.v4.Tool -no-listener -visitor -Dlanguage=CSharp -package Agiil.QueryLanguage  -o $(CSharpOutputDir) $(GrammarSourceFile)" />
   </Target>
 </Project>
