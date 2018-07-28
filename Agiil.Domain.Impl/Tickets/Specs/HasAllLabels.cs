@@ -27,6 +27,8 @@ namespace Agiil.Domain.Tickets.Specs
 
     public HasAllLabels(string labelName) : this(new [] {labelName}) {}
 
+    public HasAllLabels(params string[] labelNames) : this((IEnumerable<string>) labelNames) {}
+
     public HasAllLabels(IEnumerable<string> labelNames)
     {
       if(labelNames == null)

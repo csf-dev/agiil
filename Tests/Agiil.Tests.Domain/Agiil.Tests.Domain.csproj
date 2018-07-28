@@ -113,6 +113,13 @@
     <Compile Include="TicketCriterionConvertionStrategies\TicketIsOpenClosedConversionStrategyTests.cs" />
     <Compile Include="TicketSearch\StrategyBasedCriterionToSpecificationConverterTests.cs" />
     <Compile Include="Tickets\TicketListerTests.cs" />
+    <Compile Include="Tickets\Specs\HasAllLabelsTests.cs" />
+    <Compile Include="Tickets\Specs\HasLabelTests.cs" />
+    <Compile Include="Tickets\Specs\HasNoLabelsTests.cs" />
+    <Compile Include="Tickets\Specs\HasNoSprintTests.cs" />
+    <Compile Include="Tickets\Specs\HasSprintTests.cs" />
+    <Compile Include="Tickets\Specs\IsClosedTests.cs" />
+    <Compile Include="Tickets\Specs\IsOpenTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
@@ -145,6 +152,7 @@
     <Folder Include="TicketSearch\" />
     <Folder Include="Labels\Specs\" />
     <Folder Include="TicketCriterionConvertionStrategies\" />
+    <Folder Include="Tickets\Specs\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

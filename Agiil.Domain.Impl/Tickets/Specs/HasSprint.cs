@@ -17,6 +17,8 @@ namespace Agiil.Domain.Tickets.Specs
 
     public HasSprint(string sprintName) : this(new [] {sprintName}) {}
 
+    public HasSprint(params string[] sprintNames) : this((IEnumerable<string>) sprintNames) {}
+
     public HasSprint(IEnumerable<string> sprintName)
     {
       if(sprintName == null)
