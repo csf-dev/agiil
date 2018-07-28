@@ -26,9 +26,11 @@
   <Target Name="Test_Grammar_Using_Java" DependsOnTargets="Compile_Java">
     <PropertyGroup>
       <TestSuitePath>$(MSBuildProjectDirectory)\TestAgiilQuery.txt</TestSuitePath>
+      <GrunClassPath Condition="'$(OS)' != 'Windows_NT'">$(AntlrToolPath):$(JavaOutputDir)</GrunClassPath>
+      <GrunClassPath Condition="'$(OS)' == 'Windows_NT'">$(AntlrToolPath);$(JavaOutputDir)</GrunClassPath>
     </PropertyGroup>
-    <Exec Command="java -cp $(AntlrToolPath) org.antlr.v4.gui.TestRig AgiilQuery search $(TestSuitePath)"
-          CustomErrorRegularExpression="^line +[0-9]+:.+" />
+    <Exec Command="java -cp $(GrunClassPath) org.antlr.v4.gui.TestRig AgiilQuery search $(TestSuitePath)"
+          CustomErrorRegularExpression="^(line +[0-9]+:.+|Can't load)" />
   </Target>
 
   <Target Name="Generate_JavaScript">
