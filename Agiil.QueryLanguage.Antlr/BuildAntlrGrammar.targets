@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <JavaOutputDir>$(MSBuildProjectDirectory)\Generated_Java</JavaOutputDir>
+    <CSharpOutputDir>$(MSBuildProjectDirectory)\Generated_CSharp</CSharpOutputDir>
+    <JavaScriptOutputDir>$(MSBuildProjectDirectory)\Generated_JavaScript</JavaScriptOutputDir>
+    <AntlrToolPath>$(MSBuildProjectDirectory)\lib\antlr-4.7.1-complete.jar</AntlrToolPath>
+    <GrammarSourcePath>$(MSBuildProjectDirectory)</GrammarSourcePath>
+    <GrammarName>AgiilQuery</GrammarName>
+    <GrammarSourceFile>$(GrammarSourcePath)\$(GrammarName).g4</GrammarSourceFile>
+  </PropertyGroup>
+
+  <Target Name="Generate_Java">
+    <RemoveDir Directories="$(JavaOutputDir)" />
+    <MakeDir Directories="$(JavaOutputDir)" />
+    <Exec Command="java -cp $(AntlrToolPath) org.antlr.v4.Tool -no-listener -o $(JavaOutputDir) $(GrammarSourceFile)" />
+  </Target>
+
+  <Target Name="Compile_Java" DependsOnTargets="Generate_Java">
+    <ItemGroup>
+      <JavaSource Include="$(JavaOutputDir)\*.java" />
+    </ItemGroup>
+    <Exec Command="javac -cp $(AntlrToolPath) @(JavaSource, ' ')" />
+  </Target>
+
+  <Target Name="Test_Grammar_Using_Java" DependsOnTargets="Compile_Java">
+    <PropertyGroup>
+      <TestSuitePath>$(MSBuildProjectDirectory)\TestAgiilQuery.txt</TestSuitePath>
+      <GrunClassPath Condition="'$(OS)' != 'Windows_NT'">$(AntlrToolPath):$(JavaOutputDir)</GrunClassPath>
+      <GrunClassPath Condition="'$(OS)' == 'Windows_NT'">$(AntlrToolPath);$(JavaOutputDir)</GrunClassPath>
+    </PropertyGroup>
+    <Exec Command="java -cp $(GrunClassPath) org.antlr.v4.gui.TestRig AgiilQuery search -encoding UTF-8 $(TestSuitePath)"
+          CustomErrorRegularExpression="^(line +[0-9]+:.+|Can't load)" />
+  </Target>
+
+  <Target Name="Generate_JavaScript">
+    <RemoveDir Directories="$(JavaScriptOutputDir)" />
+    <MakeDir Directories="$(JavaScriptOutputDir)" />
+    <Exec Command="java -cp $(AntlrToolPath) org.antlr.v4.Tool -no-listener -visitor -Dlanguage=JavaScript -package Agiil.QueryLanguage  -o $(JavaScriptOutputDir) $(GrammarSourceFile)" />
+  </Target>
+
+  <Target Name="Generate_CSharp">
+    <RemoveDir Directories="$(CSharpOutputDir)" />
+    <MakeDir Directories="$(CSharpOutputDir)" />
+    <Exec Command="java -cp $(AntlrToolPath) org.antlr.v4.Tool -no-listener -visitor -Dlanguage=CSharp -package Agiil.QueryLanguage  -o $(CSharpOutputDir) $(GrammarSourceFile)" />
+  </Target>
+</Project>

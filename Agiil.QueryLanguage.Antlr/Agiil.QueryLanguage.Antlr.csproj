@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Agiil.QueryLanguage.Antlr</RootNamespace>
     <AssemblyName>Agiil.QueryLanguage.Antlr</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <ReleaseVersion>v0.5.2-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -27,7 +27,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\" />
-    <Folder Include="Tools\" />
     <Folder Include="Generated_CSharp\" />
     <Folder Include="Generated_Java\" />
     <Folder Include="Generated_JavaScript\" />
@@ -35,12 +34,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\antlr-4.7.1-complete.jar" />
-    <None Include="Tools\antlr4.sh" />
-    <None Include="Tools\grun.sh" />
-    <None Include="Tools\antlr4.bat" />
-    <None Include="Tools\grun.bat" />
-    <None Include="Tools\compile-java.sh" />
-    <None Include="Tools\compile-java.bat" />
     <None Include="Generated_Java\*" />
     <None Include="Generated_JavaScript\*" />
     <None Include="Generated_CSharp\*.interp" />
@@ -49,9 +42,9 @@
     <None Include="TestAgiilQuery.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Tools\BuildAntlrGrammar.targets" />
     <Content Include="AgiilQuery.g4" />
     <Content Include="README.md" />
+    <Content Include="BuildAntlrGrammar.targets" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,7 +59,7 @@
       <Name>Agiil.Utils</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="Tools\BuildAntlrGrammar.targets" />
+  <Import Project="BuildAntlrGrammar.targets" />
   <Target Name="GenerateCode" BeforeTargets="BeforeBuild">
     <CallTarget Targets="Test_Grammar_Using_Java" />
     <CallTarget Targets="Generate_CSharp" />
