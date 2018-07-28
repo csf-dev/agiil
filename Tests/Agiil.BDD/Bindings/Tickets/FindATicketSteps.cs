@@ -17,6 +17,14 @@ namespace Agiil.BDD.Bindings.Tickets
     readonly ICast cast;
     readonly IStage stage;
 
+    [Given("Youssef is looking at the list of tickets")]
+    public void GivenYoussefLooksAtTheListOfTickets()
+    {
+      var youssef = cast.Get<Youssef>();
+      stage.ShineTheSpotlightOn(youssef);
+      Given(youssef).WasAbleTo(OpenTheirBrowserOn.ThePage<TicketList>());
+    }
+
     [When("Youssef looks at the list of tickets")]
     public void WhenYoussefLooksAtTheListOfTickets()
     {
@@ -30,6 +38,13 @@ namespace Agiil.BDD.Bindings.Tickets
     {
       var theActor = stage.GetTheActorInTheSpotlight();
       When(theActor).AttemptsTo(OpenTheirBrowserOn.ThePage<TicketList>());
+    }
+
+    [When(@"(?:he|she|they) performs? an Agiil Query of (.+)")]
+    public void WhenTheyPerformAnAgiilQuery(string query)
+    {
+      var theActor = stage.GetTheActorInTheSpotlight();
+      When(theActor).AttemptsTo(PerformAnAgiilQuery.WithTheText(query));
     }
 
     [Then("(?:he|she|they) looks at the list of tickets")]

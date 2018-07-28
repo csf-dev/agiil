@@ -10,10 +10,11 @@
 <div metal:fill-slot="page_content" class="page_content">
   <h1>Tickets</h1>
   <p>This is a list of the tickets which exist in the application.</p>
-  <form action="Tickets/Index" method="get">
+  <form action="Tickets/Index" method="get" class="agiil_query">
     <fieldset>
-      <label for="search_query">Query</label>
-      <input type="text" tal:attributes="value here/Query" value="ticket is open" name="q" id="search_query" />
+      <label for="query_text">Query</label>
+      <input type="text" tal:attributes="value here/Query" value="ticket is open" name="q" id="query_text" />
+      <input type="submit" value="Search" class="perform_search">
     </fieldset>
   </form>
   <table tal:define="tickets here/Tickets" class="ticket_list">
