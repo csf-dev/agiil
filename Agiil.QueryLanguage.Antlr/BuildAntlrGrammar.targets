@@ -29,7 +29,7 @@
       <GrunClassPath Condition="'$(OS)' != 'Windows_NT'">$(AntlrToolPath):$(JavaOutputDir)</GrunClassPath>
       <GrunClassPath Condition="'$(OS)' == 'Windows_NT'">$(AntlrToolPath);$(JavaOutputDir)</GrunClassPath>
     </PropertyGroup>
-    <Exec Command="java -cp $(GrunClassPath) org.antlr.v4.gui.TestRig AgiilQuery search $(TestSuitePath)"
+    <Exec Command="java -cp $(GrunClassPath) org.antlr.v4.gui.TestRig AgiilQuery search -encoding UTF-8 $(TestSuitePath)"
           CustomErrorRegularExpression="^(line +[0-9]+:.+|Can't load)" />
   </Target>
 
