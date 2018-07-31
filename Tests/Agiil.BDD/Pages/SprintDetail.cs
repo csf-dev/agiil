@@ -30,10 +30,10 @@ namespace Agiil.BDD.Pages
     public static ILocatorBasedTarget EditLink => new ElementId("EditSprintLink", $"the edit sprint link");
 
     public static ILocatorBasedTarget OpenTicketTitles
-      => new CssSelector(".contained_tickets .open_tickets .ticket .title", "the titles of the open tickets in this sprint");
+      => new CssSelector(".contained_tickets .open_tickets tbody .TicketTitle .TicketLink", "the titles of the open tickets in this sprint");
 
     public static ILocatorBasedTarget ClosedTicketTitles
-    => new CssSelector(".contained_tickets .closed_tickets .ticket .title", "the titles of the closed tickets in this sprint");
+    => new CssSelector(".contained_tickets .closed_tickets tbody .TicketTitle .TicketLink", "the titles of the closed tickets in this sprint");
 
   }
 }
