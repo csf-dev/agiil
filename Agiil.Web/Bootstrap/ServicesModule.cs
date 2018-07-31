@@ -2,6 +2,7 @@
 using Agiil.Web.Services;
 using Agiil.Web.Services.Auth;
 using Agiil.Web.Services.Data;
+using Agiil.Web.Services.Labels;
 using Agiil.Web.Services.Rendering;
 using Autofac;
 
@@ -21,6 +22,7 @@ namespace Agiil.Web.Bootstrap
       builder
         .RegisterType<AppSettingsDatabaseMaintenanceSecurityProvider>()
         .AsImplementedInterfaces();
+      builder.RegisterType<LabelDetailProvider>().AsSelf().AsImplementedInterfaces();
     }
   }
 }

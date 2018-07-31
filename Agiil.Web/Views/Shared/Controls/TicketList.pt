@@ -13,7 +13,7 @@
 </head>
 <body>
 <section class="page_content">
-  <table metal:define-macro="ticket_list_table" tal:define="tickets here/Tickets" class="ticket_list">
+  <table metal:define-macro="ticket_list_table" class="ticket_list">
     <colgroup>
       <col class="TicketType" />
       <col class="TicketReference" />

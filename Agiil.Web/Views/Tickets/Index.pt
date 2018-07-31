@@ -7,7 +7,7 @@
 </style>
 </head>
 <body>
-<div metal:fill-slot="page_content" class="page_content">
+<div metal:fill-slot="page_content" class="page_content" tal:define="tickets here/Tickets">
   <h1>Tickets</h1>
   <p>This is a list of the tickets which exist in the application.</p>
   <form action="Tickets/Index" method="get" class="agiil_query">

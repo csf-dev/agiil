@@ -1,39 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Agiil.Domain.Labels;
 using Agiil.Web.Models.Labels;
-using AutoMapper;
+using Agiil.Web.Services.Labels;
 
 namespace Agiil.Web.Controllers
 {
   public class LabelController : Controller
   {
-    readonly IGetsExistingLabel labelReader;
-    readonly IMapper mapper;
+    readonly IGetsLabelDetail labelProvider;
 
     [HttpGet]
     public ActionResult Index(string id)
     {
-      var label = labelReader.GetLabel(id);
+      var label = labelProvider.GetLabelDetail(id);
       if(label == null) return HttpNotFound();
 
-      var labelDto = mapper.Map<LabelDetailDto>(label);
-      var model = new LabelDetailModel { Label = labelDto };
-
+      var model = new LabelDetailModel { Label = label };
       return View(model);
     }
 
-    public LabelController(IGetsExistingLabel labelReader, IMapper mapper)
+    public LabelController(IGetsLabelDetail labelProvider)
     {
-      if(mapper == null)
-        throw new ArgumentNullException(nameof(mapper));
-      if(labelReader == null)
-        throw new ArgumentNullException(nameof(labelReader));
-      this.labelReader = labelReader;
-      this.mapper = mapper;
+      if(labelProvider == null)
+        throw new ArgumentNullException(nameof(labelProvider));
+      this.labelProvider = labelProvider;
     }
   }
 }
