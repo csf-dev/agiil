@@ -190,6 +190,7 @@
     <Compile Include="TicketSearch\WellKnownValue.cs" />
     <Compile Include="Tickets\IGetsListOfTicketsFromAgiilQuery.cs" />
     <Compile Include="Labels\IGetsTicketsWithLabel.cs" />
+    <Compile Include="Sprints\IGetsTicketsInSprint.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
