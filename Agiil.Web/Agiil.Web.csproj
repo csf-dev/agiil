@@ -406,6 +406,7 @@
     <None Include="Content\Css\*.css" />
     <None Include="packages.config" />
     <None Include="Content\Scss\**\*.scss" />
+    <Content Include="Views\Shared\Controls\TicketList.pt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\**\*.pt" />

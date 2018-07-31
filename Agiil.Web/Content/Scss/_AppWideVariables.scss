@@ -5,6 +5,7 @@ $faint-keyline-color: hsla(0, 0%, 95%, 1);
 $subtle-text-color: hsla(0, 0%, 50%, 1);
 $smaller-text-size: 80%;
 $paragraph-spacing: 0.4em;
+$link-underline-color: #CCE;
 
 @mixin invisible {
   width: 1px;
@@ -18,6 +19,12 @@ $paragraph-spacing: 0.4em;
 @mixin subtle_text {
   color: $subtle-text-color;
   font-size: $smaller-text-size;
+}
+
+@mixin hyperlink {
+  text-decoration: none;
+  border-bottom: 1px solid $link-underline-color;
+  padding-bottom: 1px;
 }
 
 %subtle_box {

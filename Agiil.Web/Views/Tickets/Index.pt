@@ -17,7 +17,7 @@
       <input type="submit" value="Search" class="perform_search">
     </fieldset>
   </form>
-  <table tal:define="tickets here/Tickets" class="ticket_list">
+  <table metal:use-macro="Views/Shared/Controls/TicketList/macros/ticket_list_table" class="ticket_list">
     <colgroup>
       <col class="reference" />
       <col class="title" />
@@ -33,29 +33,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr tal:repeat="ticket tickets" tal:attributes="class ticket/GetHtmlClasses">
-        <td tal:content="ticket/Reference"
-            class="TicketReference">AB123</td>
-        <td tal:define="url string:Ticket/Index/${ticket/Id}"
-            class="TicketTitle">
-          <a href="Ticket/Index/0"
-             tal:attributes="href url"
-             tal:content="ticket/Title"
-             class="TicketLink">Ticket title here</a>
+      <tr>
+        <td class="TicketReference">AB123</td>
+        <td class="TicketTitle">
+          <a href="Ticket/Index/0" class="TicketLink">Ticket title here</a>
         </td>
-        <td tal:content="ticket/Creator"
-            class="TicketCreator">username</td>
+        <td class="TicketCreator">username</td>
         <td class="TicketTimestamp">
-          <span tal:attributes="title ticket/CreationTimestamp"
-                tal:content="ticket/ShortTimestamp"
-                title="2011-01-01 12:13:43">4th May 2001</span>
+          <span title="2011-01-01 12:13:43">4th May 2001</span>
         </td>
       </tr>
     </tbody>
   </table>
-  <p>
-    You can also <a href="NewTicket">create a new ticket</a>.
-  </p>
 </div>
 </body>
 </html>
