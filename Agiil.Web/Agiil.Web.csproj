@@ -326,6 +326,7 @@
     <Folder Include="Views\MissingDependencies\" />
     <Folder Include="Services\Data\" />
     <Folder Include="Services\Rendering\" />
+    <Folder Include="Services\Labels\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -395,6 +396,8 @@
     <Compile Include="Services\Data\IGetsDatabaseMaintenanceSecurity.cs" />
     <Compile Include="Services\Data\AppSettingsDatabaseMaintenanceSecurityProvider.cs" />
     <Compile Include="Services\Rendering\TicketUriProvider.cs" />
+    <Compile Include="Services\Labels\LabelDetailProvider.cs" />
+    <Compile Include="Services\Labels\IGetsLabelDetail.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -406,6 +409,7 @@
     <None Include="Content\Css\*.css" />
     <None Include="packages.config" />
     <None Include="Content\Scss\**\*.scss" />
+    <Content Include="Views\Shared\Controls\TicketList.pt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\**\*.pt" />

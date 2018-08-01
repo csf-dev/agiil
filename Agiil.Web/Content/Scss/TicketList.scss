@@ -43,24 +43,28 @@ table.ticket_list {
   th {
     font-weight: bold;
   }
+  a {
+    @include hyperlink;
+  }
   @media #{$desktop-media} {
-    col.reference {
+    col.TicketReference {
       width: 5em;
     }
-    col.created_by, col.created_date {
+    col.TicketCreator, col.TicketTimestamp {
       width: 8em;
     }
   }
   @media #{$tablet-or-smaller-media} {
-    td.TicketCreator, td.TicketTimestamp,
-    th.TicketCreator, th.TicketTimestamp {
+    col.TicketCreator, col.TicketTimestamp, col.TicketType,
+    td.TicketCreator, td.TicketTimestamp, td.TicketType,
+    th.TicketCreator, th.TicketTimestamp, th.TicketType {
       display: none;
     }
     td.TicketReference {
       font-size: $smaller-text-size;
     }
-    col.reference {
-      width: 3em;
+    col.TicketReference {
+      width: 4em;
     }
   }
 }

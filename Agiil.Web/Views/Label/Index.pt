@@ -12,6 +12,9 @@
 @import url('Content/Css/Reset.css');
 @import url('Content/Css/StandardPage.css');
 </style>
+<style metal:fill-slot="extra_styles">
+@import url('Content/Css/TicketList.css');
+</style>
 </head>
 <body>
 <section metal:fill-slot="page_content"
@@ -27,31 +30,67 @@
     <h2>Tickets</h2>
     <p><strong tal:content="label/Name">This label</strong> contains the following tickets</p>
     <h3>Open tickets</h3>
-    <ul class="open_tickets">
-      <li tal:repeat="ticket label/OpenTickets">
-        <a href="Ticket/Index/0"
-           tal:define="url string:Ticket/Index/${ticket/Id}"
-           tal:attributes="href url"
-           class="ticket">
-          <span class="ticket_reference" tal:content="ticket/Reference">AB12</span>
-          -
-          <span tal:content="ticket/Title" class="title">Sample ticket title</span>
-        </a>
-      </li>
-    </ul>
+    <div class="open_tickets" tal:define="tickets label/OpenTickets">
+      <table metal:use-macro="Views/Shared/Controls/TicketList/macros/ticket_list_table" class="ticket_list">
+        <colgroup>
+          <col class="reference" />
+          <col class="title" />
+          <col class="created_by" />
+          <col class="created_date" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th class="TicketReference">#</th>
+            <th class="TicketTitle">Title</th>
+            <th class="TicketCreator">Created by</th>
+            <th class="TicketTimestamp">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="TicketReference">AB123</td>
+            <td class="TicketTitle">
+              <a href="Ticket/Index/0" class="TicketLink">Ticket title here</a>
+            </td>
+            <td class="TicketCreator">username</td>
+            <td class="TicketTimestamp">
+              <span title="2011-01-01 12:13:43">4th May 2001</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <h3>Closed tickets</h3>
-    <ul class="closed_tickets">
-      <li tal:repeat="ticket label/ClosedTickets">
-        <a href="Ticket/Index/0"
-           tal:define="url string:Ticket/Index/${ticket/Id}"
-           tal:attributes="href url"
-           class="ticket">
-          <span class="ticket_reference" tal:content="ticket/Reference">AB12</span>
-          -
-          <span tal:content="ticket/Title" class="title">Sample ticket title</span>
-        </a>
-      </li>
-    </ul>
+    <div class="closed_tickets" tal:define="tickets label/ClosedTickets">
+      <table metal:use-macro="Views/Shared/Controls/TicketList/macros/ticket_list_table" class="ticket_list">
+        <colgroup>
+          <col class="reference" />
+          <col class="title" />
+          <col class="created_by" />
+          <col class="created_date" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th class="TicketReference">#</th>
+            <th class="TicketTitle">Title</th>
+            <th class="TicketCreator">Created by</th>
+            <th class="TicketTimestamp">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="TicketReference">AB123</td>
+            <td class="TicketTitle">
+              <a href="Ticket/Index/0" class="TicketLink">Ticket title here</a>
+            </td>
+            <td class="TicketCreator">username</td>
+            <td class="TicketTimestamp">
+              <span title="2011-01-01 12:13:43">4th May 2001</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 </section>
 </body>

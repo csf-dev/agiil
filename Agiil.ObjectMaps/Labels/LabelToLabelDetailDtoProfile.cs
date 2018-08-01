@@ -7,9 +7,12 @@ namespace Agiil.ObjectMaps.Labels
 {
   public class LabelToLabelDetailDtoProfile : Profile
   {
-    public LabelToLabelDetailDtoProfile()
+    public LabelToLabelDetailDtoProfile(IGetsTicketsWithLabel ticketProvider)
     {
-      CreateMap<Label,LabelDetailDto>();
+      CreateMap<Label,LabelDetailDto>()
+        .ForMember(x => x.OpenTickets, opts => opts.ResolveUsing(label => ticketProvider.GetAllOpenTickets(label)))
+        .ForMember(x => x.ClosedTickets, opts => opts.ResolveUsing(label => ticketProvider.GetAllClosedTickets(label)))
+        ;
     }
   }
 }

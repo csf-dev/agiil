@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Ticket list table</title>
+<base href="../../../" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+@import url('Content/Css/TicketList.css');
+</style>
+</head>
+<body>
+<section class="page_content">
+  <table metal:define-macro="ticket_list_table" class="ticket_list">
+    <colgroup>
+      <col class="TicketType" />
+      <col class="TicketReference" />
+      <col class="TicketTitle" />
+      <col class="TicketCreator" />
+      <col class="TicketTimestamp" />
+    </colgroup>
+    <thead>
+      <tr>
+        <th class="TicketType">Type</th>
+        <th class="TicketReference">#</th>
+        <th class="TicketTitle">Title</th>
+        <th class="TicketCreator">Created by</th>
+        <th class="TicketTimestamp">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr tal:repeat="ticket tickets" tal:attributes="class ticket/GetHtmlClasses">
+        <td tal:content="ticket/TypeName"
+            class="TicketType">Bug</td>
+        <td tal:content="ticket/Reference"
+            class="TicketReference">AB123</td>
+        <td tal:define="url string:Ticket/Index/${ticket/Id}"
+            class="TicketTitle">
+          <a href="Ticket/Index/0"
+             tal:attributes="href url"
+             tal:content="ticket/Title"
+             class="TicketLink">Ticket title here</a>
+        </td>
+        <td tal:content="ticket/Creator"
+            class="TicketCreator">username</td>
+        <td class="TicketTimestamp">
+          <span tal:attributes="title ticket/CreationTimestamp"
+                tal:content="ticket/ShortTimestamp"
+                title="2011-01-01 12:13:43">4th May 2001</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </section>
+</section>
+</body>
+</html>

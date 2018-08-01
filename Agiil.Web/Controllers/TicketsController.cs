@@ -28,7 +28,7 @@ namespace Agiil.Web.Controllers
 
       var tickets = lister.GetTickets(agiilQuery);
       if(tickets != null)
-        model.Tickets = tickets.Select(x => mapper.Map<TicketSummaryDto>(x)).ToList();
+        model.Tickets = tickets.Select(mapper.Map<TicketSummaryDto>).ToList();
 
       return model;
     }
