@@ -4,7 +4,6 @@ using TechTalk.SpecFlow;
 using Agiil.BDD.Tasks.Tickets;
 using Agiil.BDD.Pages;
 using FluentAssertions;
-using CSF.Screenplay.Actors;
 using CSF.Screenplay.Selenium.Builders;
 using CSF.Screenplay;
 
@@ -13,7 +12,6 @@ namespace Agiil.BDD.Bindings.Tickets
   [Binding]
   public class CommentingOnATicketSteps
   {
-    readonly ICast cast;
     readonly IStage stage;
 
     [When(@"(?:he|she|they) adds? a comment with the text '([^']*)'")]
@@ -28,13 +26,6 @@ namespace Agiil.BDD.Bindings.Tickets
     {
       var theActor = stage.GetTheActorInTheSpotlight();
       When(theActor).AttemptsTo<BeginEditingTheFirstEditableComment>();
-    }
-
-    [When(@"(?:he|she|they) deletes? the first editable comment")]
-    public void WhenTheyDeleteTheMostRecentComment()
-    {
-      var theActor = stage.GetTheActorInTheSpotlight();
-      When(theActor).AttemptsTo<DeleteTheFirstDeletableComment>();
     }
 
     [When(@"(?:he|she|they) changes? the comment text to '([^']*)'")]
@@ -86,14 +77,11 @@ namespace Agiil.BDD.Bindings.Tickets
                    .BeTrue(because: "The failure message should be shown");
     }
 
-    public CommentingOnATicketSteps(ICast cast, IStage stage)
+    public CommentingOnATicketSteps(IStage stage)
     {
       if(stage == null)
         throw new ArgumentNullException(nameof(stage));
-      if(cast == null)
-        throw new ArgumentNullException(nameof(cast));
 
-      this.cast = cast;
       this.stage = stage;
     }
   }

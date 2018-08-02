@@ -245,6 +245,9 @@
     <Compile Include="Tasks\Tickets\ReadTheTicketTitle.cs" />
     <Compile Include="Tasks\Tickets\FollowALinkFromTheTicketDescription.cs" />
     <Compile Include="Tasks\Tickets\PerformAnAgiilQuery.cs" />
+    <Compile Include="Bindings\Tickets\DeletingACommentSteps.cs" />
+    <Compile Include="Tasks\Tickets\DeleteTheFirstDeletableCommentWithoutConfirming.cs" />
+    <Compile Include="Pages\DeleteComment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
