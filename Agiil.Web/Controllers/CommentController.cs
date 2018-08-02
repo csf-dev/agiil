@@ -38,6 +38,20 @@ namespace Agiil.Web.Controllers
     }
 
     [HttpPost]
+    public ActionResult ConfirmDelete(IIdentity<Comment> id)
+    {
+      var comment = commentReader.Value.Read(id);
+
+      if(ReferenceEquals(comment, null))
+        return HttpNotFound();
+      
+      var model = new DeleteCommentModel();
+      model.Comment = mapper.Map<CommentDto>(comment);
+
+      return View(model);
+    }
+
+    [HttpPost]
     public ActionResult Delete(IIdentity<Comment> id)
     {
       var comment = commentReader.Value.Read(id);

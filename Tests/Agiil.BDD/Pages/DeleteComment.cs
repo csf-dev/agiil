@@ -9,7 +9,7 @@ namespace Agiil.BDD.Pages
 
     public override string GetName() => $"the delete-comment page for comment ID {commentId}";
 
-    public override IUriProvider GetUriProvider() => new AppUri($"Ticket/DeleteComment/{commentId}");
+    public override IUriProvider GetUriProvider() => new AppUri($"Comment/ConfirmDelete/{commentId}");
 
     public static ILocatorBasedTarget ConfirmButton
       => new ElementId("confirm_button", "the confirm delete button");

@@ -4,6 +4,7 @@ namespace Agiil.Web.Models.Tickets
   public class CommentDto
   {
     public long Id { get; set; }
+    public long TicketId { get; set; }
     public string Author { get; set; }
     public DateTime Timestamp { get; set; }
     public DateTime LastEditTimestamp { get; set; }

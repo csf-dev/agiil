@@ -101,6 +101,7 @@
     <Compile Include="Labels\ListOfLabelsModel.cs" />
     <Compile Include="Labels\LabelDetailDto.cs" />
     <Compile Include="Labels\LabelDetailModel.cs" />
+    <Compile Include="Tickets\DeleteCommentModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
