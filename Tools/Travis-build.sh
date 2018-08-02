@@ -10,7 +10,6 @@ WEBSERVER_PID=".xsp4.pid"
 TEST_HOME="./Tests"
 WEB_TESTS_PATH="${TEST_HOME}/Agiil.Tests.BDD/bin/Debug/Agiil.Tests.BDD.dll"
 TEST_TEMP_DIR="${TEST_HOME}/Temp"
-BDD_REPORT_PATH="${TEST_TEMP_DIR}/Agiil.Tests.BDD.report.txt"
 WEB_APP_HOME="Agiil.Web"
 WEB_APP_BIN="${WEB_APP_HOME}/bin"
 TESTING_BIN="Tests/Agiil.Web.TestBuild/bin/Debug"
@@ -57,15 +56,9 @@ run_integration_tests()
   test_outcome=$?
 }
 
-echo_integration_test_results_to_console()
-{
-  cat "$BDD_REPORT_PATH"
-}
-
 build_solution
 run_unit_tests
 prepare_screenplay_env_variables
 run_integration_tests
-echo_integration_test_results_to_console
 
 exit $test_outcome
