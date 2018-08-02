@@ -59,6 +59,14 @@ Scenario: Youssef may delete his own comment on a ticket
     And he navigates to the ticket with the title 'Sample ticket 1'
    Then he should see that the ticket has no comments
 
+Scenario: Youssef must confirm the deletion of a comment
+  Given Youssef has navigated to the ticket with the title 'Sample ticket 1'
+   When he deletes the first editable comment without confirming
+    And he navigates to the ticket with the title 'Sample ticket 1'
+   Then he should see comments with the following text, in order
+  | Comment text                |
+  | Comment number one          |
+
 Scenario: Youssef may not delete comments which he did not write
   Given Youssef has navigated to the ticket with the title 'Sample ticket 2'
    Then he should not see any comments which may be deleted

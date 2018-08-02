@@ -7,9 +7,10 @@ using CSF.Screenplay.Selenium.Builders;
 
 namespace Agiil.BDD.Tasks.Tickets
 {
-  public class DeleteTheFirstDeletableComment : Performable
+  public class DeleteTheFirstDeletableCommentWithoutConfirming : Performable
   {
-    protected override string GetReport(INamed actor) => $"{actor.Name} deletes the first comment which is available for deletion";
+    protected override string GetReport(INamed actor)
+      => $"{actor.Name} tries to delete the first comment which is available for deletion, but does not confirm the action";
 
     protected override void PerformAs(IPerformer actor)
     {
@@ -18,8 +19,6 @@ namespace Agiil.BDD.Tasks.Tickets
                                 .Called("the delete comment buttons"));
       actor.Perform(Navigate.ToAnotherPageByClicking(links.Elements.First()));
       actor.Perform(Wait.Until(DeleteComment.ConfirmButton).IsVisible());
-      actor.Perform(Navigate.ToAnotherPageByClicking(DeleteComment.ConfirmButton));
-      actor.Perform(Wait.Until(TicketDetail.TitleContent).IsVisible());
     }
   }
 }

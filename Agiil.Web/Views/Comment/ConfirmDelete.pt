@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<head>
+<title metal:fill-slot="title_element">Delete comment</title>
+<base href="../../" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+</style>
+</head>
+<body>
+<div metal:fill-slot="page_content" class="page_content">
+  <h1>Delete comment</h1>
+  <form action="Comment/Delete" method="post" id="DeleteComment">
+    <p>
+      Are you sure you wish to delete this comment by
+      <strong tal:content="here/Comment/Author">username</strong>?
+    </p>
+    <fieldset>
+      <input type="hidden" name="id" value="/"
+             tal:attributes="value here/Comment/Id | nothing" />
+      <div class="form_element button">
+        <button id="confirm_button">Delete</button>
+        <a href="Ticket/0" id="cancel_button"
+           tal:define="ticketId here/Comment/TicketId | nothing"
+           tal:attributes="href string:Ticket/Index/$ticketId">Cancel</a>
+      </div>
+    </fieldset>
+  </form>
+</div>
+</body>
+</html>
