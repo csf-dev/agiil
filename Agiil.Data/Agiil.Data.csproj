@@ -148,6 +148,7 @@
     <Compile Include="Sqlite\SqliteDatabaseTester.cs" />
     <Compile Include="ClassMappings\RelationshipMapping.cs" />
     <Compile Include="ConventionMappings\EnumerationPropertyMapping.cs" />
+    <Compile Include="ClassMappings\TicketRelationshipMapping.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ConventionMappings\" />
