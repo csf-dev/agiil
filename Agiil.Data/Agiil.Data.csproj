@@ -146,6 +146,7 @@
     <Compile Include="MappingProviders\LowercaseWithUnderscoreDbNameFormatter.cs" />
     <Compile Include="ClassMappings\LabelMapping.cs" />
     <Compile Include="Sqlite\SqliteDatabaseTester.cs" />
+    <Compile Include="ClassMappings\RelationshipMapping.cs" />
     <Compile Include="ConventionMappings\EnumerationPropertyMapping.cs" />
   </ItemGroup>
   <ItemGroup>
