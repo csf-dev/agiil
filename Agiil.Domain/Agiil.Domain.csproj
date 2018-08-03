@@ -191,6 +191,12 @@
     <Compile Include="Tickets\IGetsListOfTicketsFromAgiilQuery.cs" />
     <Compile Include="Labels\IGetsTicketsWithLabel.cs" />
     <Compile Include="Sprints\IGetsTicketsInSprint.cs" />
+    <Compile Include="Tickets\Relationship.cs" />
+    <Compile Include="Tickets\RelationshipType.cs" />
+    <Compile Include="Tickets\RelationshipParticipant.cs" />
+    <Compile Include="Tickets\DirectionalRelationship.cs" />
+    <Compile Include="Tickets\NonDirectionalRelationship.cs" />
+    <Compile Include="Tickets\TicketRelationship.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
