@@ -9,18 +9,14 @@ namespace Agiil.Data.ConventionMappings
   {
     public void ApplyMapping(ConventionModelMapper mapper)
     {
-      mapper.IsRootEntity((type, declared) => type.BaseType == null
-                          || IsEntityBaseType(type.BaseType));
+      mapper.IsRootEntity(IsRootEntity);
     }
 
-    bool IsEntityBaseType(Type type)
+    bool IsRootEntity(Type type, bool isDeclaredAsRootAlready)
     {
-      var result = ((type.IsGenericType
-                     && type.GetGenericTypeDefinition() == typeof(Entity<>))
-                    || (type.IsGenericTypeDefinition
-                        && type == typeof(Entity<>)));
-
-      return result;
+      if(type.IsInterface) return false;
+      if(type == typeof(object)) return false;
+      return AgiilMappingProvider.IsEntityBaseType(type.BaseType);
     }
   }
 }
