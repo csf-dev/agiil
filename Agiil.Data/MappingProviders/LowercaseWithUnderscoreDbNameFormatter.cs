@@ -43,6 +43,11 @@ namespace Agiil.Data.MappingProviders
       return GetDatabaseName(member?.Name);
     }
 
+    public string GetForeignKeyColumnName(MemberInfo member)
+    {
+      return GetDatabaseName(String.Concat(member?.Name, "Id"));
+    }
+
     public string GetIndexName(Type entityType, MemberInfo member)
     {
       return GetDatabaseName(String.Concat(IndexPrefix, entityType?.Name, member?.Name));
@@ -64,6 +69,11 @@ namespace Agiil.Data.MappingProviders
     public string GetForeignKeyConstraintName(Type parent, Type child)
     {
       return GetDatabaseName(String.Concat(ConstraintPrefix, child?.Name, ConstraintJoiner, parent?.Name));
+    }
+
+    public string GetForeignKeyConstraintName(MemberInfo parentMember, Type child)
+    {
+      return GetDatabaseName(String.Concat(ConstraintPrefix, child?.Name, ConstraintJoiner, parentMember?.Name));
     }
 
     string GetDatabaseName(string clrName)
