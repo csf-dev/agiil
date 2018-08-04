@@ -3,7 +3,7 @@ using Agiil.Domain.Tickets;
 
 namespace Agiil.Domain.Tickets
 {
-  public interface ITicketCreator
+  public interface IHandlesCreateTicketRequest
   {
     CreateTicketResponse Create(CreateTicketRequest request);
   }

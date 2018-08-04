@@ -74,9 +74,9 @@
     <Compile Include="IEnvironment.cs" />
     <Compile Include="CurrentEnvironment.cs" />
     <Compile Include="Auth\ICurrentUserReader.cs" />
-    <Compile Include="Tickets\ITicketFactory.cs" />
+    <Compile Include="Tickets\ICreatesTicket.cs" />
     <Compile Include="Tickets\CreateTicketRequest.cs" />
-    <Compile Include="Tickets\ITicketCreator.cs" />
+    <Compile Include="Tickets\IHandlesCreateTicketRequest.cs" />
     <Compile Include="Auth\ICurrentUserInfo.cs" />
     <Compile Include="Auth\IIdentityReader.cs" />
     <Compile Include="ComponentScope.cs" />

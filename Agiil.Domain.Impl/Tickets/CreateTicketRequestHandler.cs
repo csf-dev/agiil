@@ -1,16 +1,12 @@
 ﻿using System;
 using Agiil.Domain.Validation;
-using CSF.Data;
-using CSF.Data.Entities;
 using CSF.Validation;
 
 namespace Agiil.Domain.Tickets
 {
-  public class TicketCreator : ITicketCreator
+  public class CreateTicketRequestHandler : IHandlesCreateTicketRequest
   {
-    readonly IEntityData data;
-    readonly ITicketFactory ticketFactory;
-    readonly ITransactionCreator transactionFactory;
+    readonly ICreatesTicket ticketFactory;
     readonly ICreatesValidators<CreateTicketRequest> validatorFactory;
     readonly ICreatesCreateTicketResponse responseCreator;
 
@@ -20,14 +16,7 @@ namespace Agiil.Domain.Tickets
       if(!validationResult.IsSuccess)
         return responseCreator.GetResponse(validationResult);
 
-      Ticket ticket;
-
-      using(var trans = transactionFactory.BeginTransaction())
-      {
-        ticket = ticketFactory.CreateTicketForCurrentUser(request);
-        data.Add(ticket);
-        trans.Commit();
-      }
+      var ticket = ticketFactory.CreateTicket(request);
 
       return responseCreator.GetResponse(validationResult, ticket);
     }
@@ -38,26 +27,18 @@ namespace Agiil.Domain.Tickets
       return validator.Validate(request);
     }
 
-    public TicketCreator(IEntityData data,
-                         ITicketFactory ticketFactory,
-                         ITransactionCreator transactionFactory,
-                         ICreatesValidators<CreateTicketRequest> validatorFactory,
-                         ICreatesCreateTicketResponse responseCreator)
+    public CreateTicketRequestHandler(ICreatesTicket ticketFactory,
+                                      ICreatesValidators<CreateTicketRequest> validatorFactory,
+                                      ICreatesCreateTicketResponse responseCreator)
     {
       if(responseCreator == null)
         throw new ArgumentNullException(nameof(responseCreator));
       if(validatorFactory == null)
         throw new ArgumentNullException(nameof(validatorFactory));
-      if(transactionFactory == null)
-        throw new ArgumentNullException(nameof(transactionFactory));
       if(ticketFactory == null)
         throw new ArgumentNullException(nameof(ticketFactory));
-      if(data == null)
-        throw new ArgumentNullException(nameof(data));
 
       this.ticketFactory = ticketFactory;
-      this.data = data;
-      this.transactionFactory = transactionFactory;
       this.validatorFactory = validatorFactory;
       this.responseCreator = responseCreator;
     }

@@ -169,6 +169,8 @@
     <Compile Include="Attributes\InMemoryAttribute.cs" />
     <Compile Include="Autofixture\InMemoryEntityDataCustomization.cs" />
     <Compile Include="Attributes\MockedMetadataAttribute.cs" />
+    <Compile Include="Attributes\CreatesATicketAttribute.cs" />
+    <Compile Include="Autofixture\CreatesATicketCustomization.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">

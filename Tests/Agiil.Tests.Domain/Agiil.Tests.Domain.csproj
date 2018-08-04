@@ -93,9 +93,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tickets\TicketCreatorTests.cs" />
+    <Compile Include="Tickets\CreateTicketRequestHandlerTests.cs" />
     <Compile Include="Auth\CurrentUserReaderTests.cs" />
-    <Compile Include="Tickets\TicketFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprints\SprintListerTests.cs" />
     <Compile Include="Data\DatabaseBackupFilenameFormatterTests.cs" />
@@ -120,6 +119,10 @@
     <Compile Include="Tickets\Specs\HasSprintTests.cs" />
     <Compile Include="Tickets\Specs\IsClosedTests.cs" />
     <Compile Include="Tickets\Specs\IsOpenTests.cs" />
+    <Compile Include="Tickets\Creation\TicketFactoryTests.cs" />
+    <Compile Include="Tickets\Creation\PersistingTicketFactoryDecoratorTests.cs" />
+    <Compile Include="Tickets\Creation\CurrentUserSettingTicketFactoryDecoratorTests.cs" />
+    <Compile Include="Tickets\Creation\LabelPopulatingTicketFactoryDecoratorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
@@ -153,6 +156,7 @@
     <Folder Include="Labels\Specs\" />
     <Folder Include="TicketCriterionConvertionStrategies\" />
     <Folder Include="Tickets\Specs\" />
+    <Folder Include="Tickets\Creation\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

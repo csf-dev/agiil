@@ -14,7 +14,7 @@ namespace Agiil.Web.Controllers
   {
     public static readonly string NewModelKey = "NewModel";
 
-    readonly ITicketCreator ticketCreator;
+    readonly IHandlesCreateTicketRequest ticketCreator;
     readonly Lazy<ISprintLister> sprintLister;
     readonly Lazy<ITicketTypeProvider> ticketTypeProvider;
     readonly IMapper mapper;
@@ -54,7 +54,7 @@ namespace Agiil.Web.Controllers
       return model;
     }
 
-    public NewTicketController(ITicketCreator ticketCreator,
+    public NewTicketController(IHandlesCreateTicketRequest ticketCreator,
                                Lazy<ISprintLister> sprintLister,
                                Lazy<ITicketTypeProvider> ticketTypeProvider,
                               IMapper mapper)
