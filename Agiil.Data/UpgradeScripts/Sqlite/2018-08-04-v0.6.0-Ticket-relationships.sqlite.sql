@@ -20,3 +20,16 @@ create index IF NOT EXISTS idx_ticket_relationship_relationship_id on ticket_rel
 create index IF NOT EXISTS idx_ticket_relationship_primary_ticket on ticket_relationship (primary_ticket_id);
 
 create index IF NOT EXISTS idx_ticket_relationship_secondary_ticket on ticket_relationship (secondary_ticket_id);
+
+INSERT INTO relationship (relationship_id, type, primary_summary, secondary_summary)
+VALUES (
+  1,
+  'NonDirectional',
+  'Relates to',
+  NULL
+),(
+  2,
+  'Directional',
+  'Blocks',
+  'Is blocked by'
+);
