@@ -183,6 +183,8 @@
     <Compile Include="Tickets\Creation\TicketFactory.cs" />
     <Compile Include="Tickets\Creation\TicketFactoryProvider.cs" />
     <Compile Include="Tickets\Creation\IGetsTicketCreator.cs" />
+    <Compile Include="Tickets\Creation\RelationshipPopulatingTicketFactoryDecorator.cs" />
+    <Compile Include="Tickets\TicketRelationshipFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

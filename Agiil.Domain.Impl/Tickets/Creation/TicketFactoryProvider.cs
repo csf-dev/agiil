@@ -28,7 +28,8 @@ namespace Agiil.Domain.Tickets.Creation
                                  Func<ICreatesTicket, LabelPopulatingTicketFactoryDecorator> labelFactory,
                                  Func<ICreatesTicket, PersistingTicketFactoryDecorator> persistingFactory,
                                  Func<ICreatesTicket, SprintPopulatingTicketFactoryDecorator> sprintFactory,
-                                 Func<ICreatesTicket, TicketTypePopulatingTicketFactoryDecorator> typeFactory)
+                                 Func<ICreatesTicket, TicketTypePopulatingTicketFactoryDecorator> typeFactory,
+                                 Func<ICreatesTicket, RelationshipPopulatingTicketFactoryDecorator> relationshipFactory)
     {
       if(baseFactory == null)
         throw new ArgumentNullException(nameof(baseFactory));
@@ -40,6 +41,10 @@ namespace Agiil.Domain.Tickets.Creation
       decoratorFactories.Push(userFactory);
       decoratorFactories.Push(labelFactory);
       decoratorFactories.Push(sprintFactory);
+      decoratorFactories.Push(relationshipFactory);
+
+      // The persisting decorator is intentionally at the top of the stack,
+      // so that everything else happens inside the transaction
       decoratorFactories.Push(persistingFactory);
     }
   }

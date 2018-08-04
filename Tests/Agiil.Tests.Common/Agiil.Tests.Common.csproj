@@ -171,6 +171,8 @@
     <Compile Include="Attributes\MockedMetadataAttribute.cs" />
     <Compile Include="Attributes\CreatesATicketAttribute.cs" />
     <Compile Include="Autofixture\CreatesATicketCustomization.cs" />
+    <Compile Include="Attributes\CreatesTransactionAttribute.cs" />
+    <Compile Include="Autofixture\CreatesTransactionCustomization.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">

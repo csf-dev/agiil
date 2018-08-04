@@ -37,18 +37,14 @@ namespace Agiil.Tests.Tickets.Creation
     public void CreateTicket_uses_transaction(CreateTicketRequest request,
                                               [Frozen] ICreatesTicket ticketFactory,
                                               Ticket ticket,
-                                              [Frozen] ITransactionCreator transFactory,
-                                              ITransaction trans,
+                                              [Frozen] ITransaction trans,
+                                              [Frozen,CreatesTransaction] ITransactionCreator transFactory,
                                               PersistingTicketFactoryDecorator sut)
     {
       // Arrange
       Mock.Get(ticketFactory)
           .Setup(x => x.CreateTicket(It.IsAny<CreateTicketRequest>()))
           .Returns(ticket);
-      Mock.Get(transFactory)
-          .Setup(x => x.BeginTransaction())
-          .Returns(trans);
-      Mock.Get(trans).Setup(x => x.Commit());
 
       // Act
       sut.CreateTicket(request);

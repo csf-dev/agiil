@@ -199,6 +199,7 @@
     <Compile Include="Tickets\TicketRelationship.cs" />
     <Compile Include="Tickets\AddRelationshipRequest.cs" />
     <Compile Include="Tickets\DeleteRelationshipRequest.cs" />
+    <Compile Include="Tickets\ICreatesTicketRelationship.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

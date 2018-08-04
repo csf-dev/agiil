@@ -123,6 +123,9 @@
     <Compile Include="Tickets\Creation\PersistingTicketFactoryDecoratorTests.cs" />
     <Compile Include="Tickets\Creation\CurrentUserSettingTicketFactoryDecoratorTests.cs" />
     <Compile Include="Tickets\Creation\LabelPopulatingTicketFactoryDecoratorTests.cs" />
+    <Compile Include="Tickets\Creation\CurrentProjectSettingTicketFactoryDecoratorTests.cs" />
+    <Compile Include="Tickets\TicketRelationshipFactoryTests.cs" />
+    <Compile Include="Tickets\Creation\RelationshipPopulatingTicketFactoryDecoratorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">

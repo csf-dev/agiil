@@ -7,7 +7,7 @@ namespace Agiil.Domain.Tickets
   {
     public IIdentity<Relationship> RelationshipId { get; set; }
 
-    public IIdentity<Ticket> RelatedTicketId { get; set; }
+    public TicketReference RelatedTicketReference { get; set; }
 
     public RelationshipParticipant ParticipationType { get; set; }
   }
