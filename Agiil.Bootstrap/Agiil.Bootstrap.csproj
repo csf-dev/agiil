@@ -162,6 +162,7 @@
     <Compile Include="TicketSearch\TicketSearchModule.cs" />
     <Compile Include="TicketCriterionConvertionStrategies\BuiltinCriterionConversionStrategyModule.cs" />
     <Compile Include="Tickets\TicketFactoryModule.cs" />
+    <Compile Include="Tickets\TicketEditorModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

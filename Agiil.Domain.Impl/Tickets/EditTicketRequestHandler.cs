@@ -20,17 +20,16 @@ namespace Agiil.Domain.Tickets
       if(!validationResult.IsSuccess)
         return responseCreator.GetResponse(validationResult, null);
 
-      Ticket ticket;
-
       using(var trans = transactionFactory.BeginTransaction())
       {
-        ticket = ticketRepo.Get(request.Identity);
+        var ticket = ticketRepo.Get(request.Identity);
+
         editor.Edit(ticket, request);
         ticketRepo.Update(ticket);
         trans.Commit();
-      }
 
-      return responseCreator.GetResponse(validationResult, ticket);
+        return responseCreator.GetResponse(validationResult, ticket);
+      }
     }
 
     IValidationResult ValidateRequest(EditTicketRequest request)
