@@ -1,6 +1,5 @@
 ﻿using System;
 using Agiil.Domain.Validation;
-using AutoMapper;
 using CSF.Data;
 using CSF.Data.Entities;
 using CSF.Validation;
@@ -13,7 +12,7 @@ namespace Agiil.Domain.Tickets
     readonly ITransactionCreator transactionFactory;
     readonly ICreatesValidators<EditTicketRequest> validatorFactory;
     readonly ICreatesEditTicketResponse responseCreator;
-    readonly IMapper mapper;
+    readonly IEditsTicket editor;
 
     public EditTicketResponse Edit(EditTicketRequest request)
     {
@@ -26,7 +25,7 @@ namespace Agiil.Domain.Tickets
       using(var trans = transactionFactory.BeginTransaction())
       {
         ticket = ticketRepo.Get(request.Identity);
-        mapper.Map(request, ticket);
+        editor.Edit(ticket, request);
         ticketRepo.Update(ticket);
         trans.Commit();
       }
@@ -44,10 +43,10 @@ namespace Agiil.Domain.Tickets
                                     ITransactionCreator transactionFactory,
                                     ICreatesValidators<EditTicketRequest> validatorFactory,
                                     ICreatesEditTicketResponse responseCreator,
-                                    IMapper mapper)
+                                    IEditsTicket editor)
     {
-      if(mapper == null)
-        throw new ArgumentNullException(nameof(mapper));
+      if(editor == null)
+        throw new ArgumentNullException(nameof(editor));
       if(responseCreator == null)
         throw new ArgumentNullException(nameof(responseCreator));
       if(validatorFactory == null)
@@ -61,7 +60,7 @@ namespace Agiil.Domain.Tickets
       this.transactionFactory = transactionFactory;
       this.validatorFactory = validatorFactory;
       this.responseCreator = responseCreator;
-      this.mapper = mapper;
+      this.editor = editor;
     }
   }
 }

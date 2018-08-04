@@ -187,6 +187,14 @@
     <Compile Include="Tickets\TicketRelationshipFactory.cs" />
     <Compile Include="Tickets\ICreatesEditTicketResponse.cs" />
     <Compile Include="Tickets\EditTicketResponseFactory.cs" />
+    <Compile Include="Tickets\Editing\AutomapperBasedTicketEditor.cs" />
+    <Compile Include="Tickets\Editing\LabelResolvingTicketEditorDecorator.cs" />
+    <Compile Include="Tickets\Editing\IGetsTicketEditor.cs" />
+    <Compile Include="Tickets\Editing\TicketEditorFactory.cs" />
+    <Compile Include="Tickets\Editing\RelationshipAddingTicketEditorDecorator.cs" />
+    <Compile Include="Tickets\IConvertsAddRelationshipRequestsToTicketRelationships.cs" />
+    <Compile Include="Tickets\AddRelationshipRequestToTicketRelationshipConverter.cs" />
+    <Compile Include="Tickets\Editing\RelationshipRemovingTicketEditorDecorator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
@@ -212,6 +220,7 @@
     <Folder Include="Labels\Specs\" />
     <Folder Include="TicketCriterionConvertionStrategies\" />
     <Folder Include="Tickets\Creation\" />
+    <Folder Include="Tickets\Editing\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

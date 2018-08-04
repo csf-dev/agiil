@@ -1,26 +1,24 @@
 ﻿using System;
 using System.Linq;
 
-namespace Agiil.Domain.Tickets.Creation
+namespace Agiil.Domain.Tickets.Editing
 {
-  public class RelationshipPopulatingTicketFactoryDecorator : ICreatesTicket
+  public class RelationshipAddingTicketEditorDecorator : IEditsTicket
   {
-    readonly ICreatesTicket wrappedInstance;
+    readonly IEditsTicket wrappedInstance;
     readonly IConvertsAddRelationshipRequestsToTicketRelationships relationshipFactory;
 
-    public Ticket CreateTicket(CreateTicketRequest request)
+    public void Edit(Ticket ticket, EditTicketRequest request)
     {
-      var ticket = wrappedInstance.CreateTicket(request);
+      wrappedInstance.Edit(ticket, request);
 
       var relationships = relationshipFactory.Convert(request.RelationshipsToAdd);
       ticket.PrimaryRelationships.UnionWith(relationships.Where(x => x.PrimaryTicket == null));
       ticket.SecondaryRelationships.UnionWith(relationships.Where(x => x.SecondaryTicket == null));
-
-      return ticket;
     }
 
-    public RelationshipPopulatingTicketFactoryDecorator(ICreatesTicket wrappedInstance,
-                                                        IConvertsAddRelationshipRequestsToTicketRelationships relationshipFactory)
+    public RelationshipAddingTicketEditorDecorator(IEditsTicket wrappedInstance,
+                                                   IConvertsAddRelationshipRequestsToTicketRelationships relationshipFactory)
     {
       if(relationshipFactory == null)
         throw new ArgumentNullException(nameof(relationshipFactory));

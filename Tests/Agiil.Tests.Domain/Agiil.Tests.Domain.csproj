@@ -130,6 +130,7 @@
     <Compile Include="Tickets\TicketRelationshipFactoryTests.cs" />
     <Compile Include="Tickets\Creation\RelationshipPopulatingTicketFactoryDecoratorTests.cs" />
     <Compile Include="Tickets\EditTicketRequestHandlerTests.cs" />
+    <Compile Include="Tickets\Editing\RelationshipRemovingTicketEditorDecoratorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
@@ -164,6 +165,7 @@
     <Folder Include="TicketCriterionConvertionStrategies\" />
     <Folder Include="Tickets\Specs\" />
     <Folder Include="Tickets\Creation\" />
+    <Folder Include="Tickets\Editing\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

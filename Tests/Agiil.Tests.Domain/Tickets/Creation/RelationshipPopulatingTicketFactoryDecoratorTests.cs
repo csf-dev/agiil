@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Agiil.Domain.Tickets;
 using Agiil.Domain.Tickets.Creation;
 using Agiil.Tests.Attributes;
@@ -14,7 +15,7 @@ namespace Agiil.Tests.Tickets.Creation
   {
     [Test,AutoMoqData]
     public void CreateTicket_adds_relationships_with_null_primary_ticket_as_primary_relationships([Frozen,CreatesATicket] ICreatesTicket wrappedInstance,
-                                                                                                  [Frozen] ICreatesTicketRelationship relationshipFactory,
+                                                                                                  [Frozen] IConvertsAddRelationshipRequestsToTicketRelationships relationshipFactory,
                                                                                                   TicketRelationship relationship,
                                                                                                   Ticket relatedTicket,
                                                                                                   CreateTicketRequest request,
@@ -24,10 +25,8 @@ namespace Agiil.Tests.Tickets.Creation
       // Arrange
       request.RelationshipsToAdd.Add(relationshipRequest);
       Mock.Get(relationshipFactory)
-          .Setup(x => x.CreateTicketRelationship(It.IsAny<IIdentity<Relationship>>(),
-                                                 It.IsAny<TicketReference>(),
-                                                 It.IsAny<RelationshipParticipant>()))
-          .Returns(relationship);
+          .Setup(x => x.Convert(It.IsAny<IEnumerable<AddRelationshipRequest>>()))
+          .Returns(new [] { relationship });
       relationship.PrimaryTicket = null;
       relationship.SecondaryTicket = relatedTicket;
 
@@ -41,7 +40,7 @@ namespace Agiil.Tests.Tickets.Creation
 
     [Test,AutoMoqData]
     public void CreateTicket_adds_relationships_with_null_secondary_ticket_as_secondary_relationships([Frozen,CreatesATicket] ICreatesTicket wrappedInstance,
-                                                                                                      [Frozen] ICreatesTicketRelationship relationshipFactory,
+                                                                                                      [Frozen] IConvertsAddRelationshipRequestsToTicketRelationships relationshipFactory,
                                                                                                       TicketRelationship relationship,
                                                                                                       Ticket relatedTicket,
                                                                                                       CreateTicketRequest request,
@@ -51,10 +50,8 @@ namespace Agiil.Tests.Tickets.Creation
       // Arrange
       request.RelationshipsToAdd.Add(relationshipRequest);
       Mock.Get(relationshipFactory)
-          .Setup(x => x.CreateTicketRelationship(It.IsAny<IIdentity<Relationship>>(),
-                                                 It.IsAny<TicketReference>(),
-                                                 It.IsAny<RelationshipParticipant>()))
-          .Returns(relationship);
+          .Setup(x => x.Convert(It.IsAny<IEnumerable<AddRelationshipRequest>>()))
+          .Returns(new [] { relationship });
       relationship.PrimaryTicket = relatedTicket;
       relationship.SecondaryTicket = null;
 

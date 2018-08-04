@@ -99,12 +99,12 @@ namespace Agiil.Tests.Tickets
     }
 
     [Test, AutoMoqData]
-    public void Edit_passes_correct_ticket_to_mapping_service(EditTicketRequest request,
+    public void Edit_passes_correct_ticket_to_editing_service(EditTicketRequest request,
                                                               [Frozen,AlwaysPasses] ICreatesValidators<EditTicketRequest> validatorFactory,
                                                               [Frozen,CreatesTransaction] ITransactionCreator transactionCreator,
                                                               [InMemory,Frozen] IEntityData data,
                                                               Ticket ticket,
-                                                              [Frozen] IMapper mapper,
+                                                              [Frozen] IEditsTicket editor,
                                                               EditTicketRequestHandler sut)
     {
       // Arrange
@@ -115,7 +115,7 @@ namespace Agiil.Tests.Tickets
       sut.Edit(request);
 
       // Assert
-      Mock.Get(mapper).Verify(x => x.Map(request, ticket), Times.Once);
+      Mock.Get(editor).Verify(x => x.Edit(ticket, request), Times.Once);
     }
 
     [Test, AutoMoqData]

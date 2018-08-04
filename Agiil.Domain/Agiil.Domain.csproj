@@ -200,6 +200,7 @@
     <Compile Include="Tickets\AddRelationshipRequest.cs" />
     <Compile Include="Tickets\DeleteRelationshipRequest.cs" />
     <Compile Include="Tickets\ICreatesTicketRelationship.cs" />
+    <Compile Include="Tickets\IEditsTicket.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
