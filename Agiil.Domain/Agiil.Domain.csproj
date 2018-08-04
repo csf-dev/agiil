@@ -197,6 +197,8 @@
     <Compile Include="Tickets\DirectionalRelationship.cs" />
     <Compile Include="Tickets\NonDirectionalRelationship.cs" />
     <Compile Include="Tickets\TicketRelationship.cs" />
+    <Compile Include="Tickets\AddRelationshipRequest.cs" />
+    <Compile Include="Tickets\DeleteRelationshipRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

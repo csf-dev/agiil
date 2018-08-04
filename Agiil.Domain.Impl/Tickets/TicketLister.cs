@@ -32,6 +32,8 @@ namespace Agiil.Domain.Tickets
       return query
         .Fetch(x => x.User)
         .Fetch(x => x.Type)
+        .FetchMany(x => x.PrimaryRelationships)
+        .FetchMany(x => x.SecondaryRelationships)
         .ToList();
     }
 
