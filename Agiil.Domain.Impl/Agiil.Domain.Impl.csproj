@@ -101,7 +101,7 @@
     <Compile Include="Tickets\TicketDetailService.cs" />
     <Compile Include="Tickets\EditTicketValidatorFactory.cs" />
     <Compile Include="IDomainImplementationAssemblyMarker.cs" />
-    <Compile Include="Tickets\TicketEditor.cs" />
+    <Compile Include="Tickets\EditTicketRequestHandler.cs" />
     <Compile Include="ValidationResultInterpreter.cs" />
     <Compile Include="Validation\EntityMustExistRule.cs" />
     <Compile Include="Validation\ValidatorFactoryBase.cs" />
@@ -185,6 +185,8 @@
     <Compile Include="Tickets\Creation\IGetsTicketCreator.cs" />
     <Compile Include="Tickets\Creation\RelationshipPopulatingTicketFactoryDecorator.cs" />
     <Compile Include="Tickets\TicketRelationshipFactory.cs" />
+    <Compile Include="Tickets\ICreatesEditTicketResponse.cs" />
+    <Compile Include="Tickets\EditTicketResponseFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

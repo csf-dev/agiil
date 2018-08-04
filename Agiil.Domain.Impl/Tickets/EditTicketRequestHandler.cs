@@ -7,19 +7,19 @@ using CSF.Validation;
 
 namespace Agiil.Domain.Tickets
 {
-  public class TicketEditor : ITicketEditor
+  public class EditTicketRequestHandler : IHandlesEditTicketRequest
   {
     readonly IEntityData ticketRepo;
     readonly ITransactionCreator transactionFactory;
     readonly ICreatesValidators<EditTicketRequest> validatorFactory;
-    readonly Func<IValidationResult, Ticket, EditTicketResponse> responseCreator;
+    readonly ICreatesEditTicketResponse responseCreator;
     readonly IMapper mapper;
 
     public EditTicketResponse Edit(EditTicketRequest request)
     {
       var validationResult = ValidateRequest(request);
       if(!validationResult.IsSuccess)
-        return responseCreator(validationResult, null);
+        return responseCreator.GetResponse(validationResult, null);
 
       Ticket ticket;
 
@@ -31,7 +31,7 @@ namespace Agiil.Domain.Tickets
         trans.Commit();
       }
 
-      return responseCreator(validationResult, ticket);
+      return responseCreator.GetResponse(validationResult, ticket);
     }
 
     IValidationResult ValidateRequest(EditTicketRequest request)
@@ -40,11 +40,11 @@ namespace Agiil.Domain.Tickets
       return validator.Validate(request);
     }
 
-    public TicketEditor(IEntityData ticketRepo,
-                        ITransactionCreator transactionFactory,
-                        ICreatesValidators<EditTicketRequest> validatorFactory,
-                        Func<IValidationResult, Ticket, EditTicketResponse> responseCreator,
-                        IMapper mapper)
+    public EditTicketRequestHandler(IEntityData ticketRepo,
+                                    ITransactionCreator transactionFactory,
+                                    ICreatesValidators<EditTicketRequest> validatorFactory,
+                                    ICreatesEditTicketResponse responseCreator,
+                                    IMapper mapper)
     {
       if(mapper == null)
         throw new ArgumentNullException(nameof(mapper));

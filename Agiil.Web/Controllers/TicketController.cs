@@ -18,7 +18,7 @@ namespace Agiil.Web.Controllers
       SuccessfulEditKey = "Successful edit";
 
     readonly ITicketDetailService ticketDetailService;
-    readonly Lazy<ITicketEditor> editor;
+    readonly Lazy<IHandlesEditTicketRequest> editor;
     readonly Lazy<ISprintLister> sprintLister;
     readonly Lazy<ITicketTypeProvider> typeProvider;
     readonly IMapper mapper;
@@ -111,7 +111,7 @@ namespace Agiil.Web.Controllers
     }
 
     public TicketController(ITicketDetailService ticketDetailService,
-                            Lazy<ITicketEditor> editor,
+                            Lazy<IHandlesEditTicketRequest> editor,
                             Lazy<ISprintLister> sprintLister,
                             Lazy<ITicketTypeProvider> typeProvider,
                            IMapper mapper)

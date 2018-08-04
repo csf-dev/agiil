@@ -85,7 +85,7 @@
     <Compile Include="Tickets\IGetsListOfTickets.cs" />
     <Compile Include="Tickets\ITicketDetailService.cs" />
     <Compile Include="Tickets\EditTicketRequest.cs" />
-    <Compile Include="Tickets\ITicketEditor.cs" />
+    <Compile Include="Tickets\IHandlesEditTicketRequest.cs" />
     <Compile Include="Tickets\EditTicketResponse.cs" />
     <Compile Include="IValidationResultInterpreter.cs" />
     <Compile Include="Tickets\Comment.cs" />

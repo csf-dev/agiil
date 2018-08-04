@@ -11,7 +11,7 @@ namespace Agiil.Web.ApiControllers
   public class TicketController : ApiController
   {
     readonly Lazy<IHandlesCreateTicketRequest> ticketCreator;
-    readonly Lazy<ITicketEditor> ticketEditor;
+    readonly Lazy<IHandlesEditTicketRequest> ticketEditor;
     readonly Lazy<ITicketDetailService> ticketDetailService;
     readonly Lazy<IMapper> mapper;
 
@@ -53,7 +53,7 @@ namespace Agiil.Web.ApiControllers
 
     public TicketController(Lazy<IHandlesCreateTicketRequest> ticketCreator,
                             Lazy<ITicketDetailService> ticketDetailService,
-                            Lazy<ITicketEditor> ticketEditor,
+                            Lazy<IHandlesEditTicketRequest> ticketEditor,
                             Lazy<IMapper> mapper)
     {
       if(ticketCreator == null)

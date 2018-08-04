@@ -87,6 +87,9 @@
     <Reference Include="Autofac">
       <HintPath>..\..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -126,6 +129,7 @@
     <Compile Include="Tickets\Creation\CurrentProjectSettingTicketFactoryDecoratorTests.cs" />
     <Compile Include="Tickets\TicketRelationshipFactoryTests.cs" />
     <Compile Include="Tickets\Creation\RelationshipPopulatingTicketFactoryDecoratorTests.cs" />
+    <Compile Include="Tickets\EditTicketRequestHandlerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
