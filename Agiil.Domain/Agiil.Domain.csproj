@@ -201,6 +201,8 @@
     <Compile Include="Tickets\DeleteRelationshipRequest.cs" />
     <Compile Include="Tickets\ICreatesTicketRelationship.cs" />
     <Compile Include="Tickets\IEditsTicket.cs" />
+    <Compile Include="Validation\IGenericValidator.cs" />
+    <Compile Include="Validation\MissingValidatorFactoryException.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

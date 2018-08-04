@@ -163,6 +163,7 @@
     <Compile Include="TicketCriterionConvertionStrategies\BuiltinCriterionConversionStrategyModule.cs" />
     <Compile Include="Tickets\TicketFactoryModule.cs" />
     <Compile Include="Tickets\TicketEditorModule.cs" />
+    <Compile Include="Validation\AutofacGenericValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
