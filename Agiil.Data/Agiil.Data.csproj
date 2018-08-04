@@ -149,6 +149,7 @@
     <Compile Include="ClassMappings\RelationshipMapping.cs" />
     <Compile Include="ConventionMappings\EnumerationPropertyMapping.cs" />
     <Compile Include="ClassMappings\TicketRelationshipMapping.cs" />
+    <Compile Include="ClassMappings\TicketMapping.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ConventionMappings\" />

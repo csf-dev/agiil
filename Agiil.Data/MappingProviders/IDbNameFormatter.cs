@@ -16,6 +16,8 @@ namespace Agiil.Data.MappingProviders
 
     string GetForeignKeyColumnName(MemberInfo member);
 
+    string GetForeignKeyColumnName(params string[] parts);
+
     string GetIndexName(Type entityType, MemberInfo member);
 
     string GetIndexName(Type entityType, Type referencedType);
