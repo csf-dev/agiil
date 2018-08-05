@@ -6,7 +6,7 @@ namespace Agiil.Domain.Tickets.Creation
   public class TicketFactoryProvider : IGetsTicketCreator
   {
     readonly Lazy<TicketFactory> baseFactory;
-    readonly Stack<Func<ICreatesTicket, ICreatesTicket>> decoratorFactories;
+    readonly Queue<Func<ICreatesTicket, ICreatesTicket>> decoratorFactories;
 
     public IEnumerable<Func<ICreatesTicket, ICreatesTicket>> DecoratorFactories => decoratorFactories;
 
@@ -35,17 +35,18 @@ namespace Agiil.Domain.Tickets.Creation
         throw new ArgumentNullException(nameof(baseFactory));
       this.baseFactory = baseFactory;
 
-      decoratorFactories = new Stack<Func<ICreatesTicket, ICreatesTicket>>();
-      decoratorFactories.Push(typeFactory);
-      decoratorFactories.Push(projectFactory);
-      decoratorFactories.Push(userFactory);
-      decoratorFactories.Push(labelFactory);
-      decoratorFactories.Push(sprintFactory);
-      decoratorFactories.Push(relationshipFactory);
+      decoratorFactories = new Queue<Func<ICreatesTicket, ICreatesTicket>>();
+      decoratorFactories.Enqueue(typeFactory);
+      decoratorFactories.Enqueue(projectFactory);
+      decoratorFactories.Enqueue(userFactory);
+      decoratorFactories.Enqueue(labelFactory);
+      decoratorFactories.Enqueue(sprintFactory);
+      decoratorFactories.Enqueue(relationshipFactory);
 
-      // The persisting decorator is intentionally at the top of the stack,
-      // so that everything else happens inside the transaction
-      decoratorFactories.Push(persistingFactory);
+      // The persisting decorator is intentionally at the end of the queue,
+      // so that it is the 'outermost' decorator, thus everything else happens
+      // inside the transaction
+      decoratorFactories.Enqueue(persistingFactory);
     }
   }
 }

@@ -6,7 +6,7 @@ namespace Agiil.Domain.Tickets.Editing
   public class TicketEditorFactory : IGetsTicketEditor
   {
     readonly Lazy<AutomapperBasedTicketEditor> baseFactory;
-    readonly Stack<Func<IEditsTicket, IEditsTicket>> decoratorFactories;
+    readonly Queue<Func<IEditsTicket, IEditsTicket>> decoratorFactories;
 
     public IEnumerable<Func<IEditsTicket, IEditsTicket>> DecoratorFactories => decoratorFactories;
 
@@ -31,10 +31,10 @@ namespace Agiil.Domain.Tickets.Editing
         throw new ArgumentNullException(nameof(baseFactory));
       this.baseFactory = baseFactory;
 
-      decoratorFactories = new Stack<Func<IEditsTicket, IEditsTicket>>();
-      decoratorFactories.Push(labelDecorator);
-      decoratorFactories.Push(relationshipAddingDecorator);
-      decoratorFactories.Push(relationshipRemovingDecorator);
+      decoratorFactories = new Queue<Func<IEditsTicket, IEditsTicket>>();
+      decoratorFactories.Enqueue(labelDecorator);
+      decoratorFactories.Enqueue(relationshipAddingDecorator);
+      decoratorFactories.Enqueue(relationshipRemovingDecorator);
     }
   }
 }
