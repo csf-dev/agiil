@@ -330,6 +330,7 @@
     <Folder Include="Services\Data\" />
     <Folder Include="Services\Rendering\" />
     <Folder Include="Services\Labels\" />
+    <Folder Include="Services\Tickets\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -401,9 +402,18 @@
     <Compile Include="Services\Rendering\TicketUriProvider.cs" />
     <Compile Include="Services\Labels\LabelDetailProvider.cs" />
     <Compile Include="Services\Labels\IGetsLabelDetail.cs" />
+    <Compile Include="Services\Tickets\IGetsEditTicketModel.cs" />
+    <Compile Include="Services\Tickets\MappingEditTicketModelFactory.cs" />
     <Compile Include="Services\IGetsTempData.cs" />
+    <Compile Include="Services\Tickets\TempDataRestoringEditTicketModelFactoryDecorator.cs" />
     <Compile Include="Services\MvcTempDataProvider.cs" />
+    <Compile Include="Services\Tickets\AvailableSprintsEditTicketModelFactoryDecorator.cs" />
+    <Compile Include="Services\Tickets\AvailableTicketTypesEditTicketModelFactoryDecorator.cs" />
+    <Compile Include="Services\Tickets\AvailableRelationshipsEditTicketModelFactoryDecorator.cs" />
+    <Compile Include="Services\Tickets\EditTicketModelFactoryFactory.cs" />
     <Compile Include="ModelBinders\TicketReferenceMvcModelBinder.cs" />
+    <Compile Include="Bootstrap\TicketServicesModule.cs" />
+    <Compile Include="Services\Tickets\IGetsEditTicketModelFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
