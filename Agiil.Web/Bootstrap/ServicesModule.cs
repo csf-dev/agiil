@@ -23,6 +23,7 @@ namespace Agiil.Web.Bootstrap
         .RegisterType<AppSettingsDatabaseMaintenanceSecurityProvider>()
         .AsImplementedInterfaces();
       builder.RegisterType<LabelDetailProvider>().AsSelf().AsImplementedInterfaces();
+      builder.RegisterType<MvcTempDataProvider>().AsSelf().AsImplementedInterfaces();
     }
   }
 }
