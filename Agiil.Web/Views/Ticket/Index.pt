@@ -77,6 +77,32 @@
       Ticket description here.
     </div>
   </section>
+  <section class="relationships" tal:condition="ticket/Relationships">
+    <h2>Relationships</h2>
+    <table class="relationship_table">
+      <colgroup>
+        <col class="summary">
+        <col class="ticket_title">
+        <col class="ticket_ref">
+      </colgroup>
+      <thead>
+        <th>Relationship</th>
+        <th>Title</th>
+        <th>#</th>
+      </thead>
+      <tbody>
+        <tr tal:repeat="relationship ticket/Relationships">
+          <td tal:content="relationship/Summary">Relates to</td>
+          <td tal:content="relationship/RelatedTicket/Title">This is a ticket title</td>
+          <td tal:define="relatedTicket relationship/RelatedTicket">
+            <a href="Ticket/1"
+               tal:attributes="href string:Ticket/${relatedTicket/Id}"
+               tal:content="relatedTicket/Reference">AB123</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
   <a href="Ticket/Edit/0"
      tal:define="editUrl string:Ticket/Edit/${ticket/Id}"
      tal:attributes="href editUrl"
