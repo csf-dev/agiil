@@ -197,6 +197,7 @@
     <Compile Include="Tickets\Editing\RelationshipRemovingTicketEditorDecorator.cs" />
     <Compile Include="Tickets\SummaryProvidingRelationshipVisitor.cs" />
     <Compile Include="Tickets\VisitorBasedRelationshipSummaryProvider.cs" />
+    <Compile Include="Tickets\AvailableRelationshipProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
