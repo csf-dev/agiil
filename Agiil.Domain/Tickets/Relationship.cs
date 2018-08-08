@@ -16,6 +16,8 @@ namespace Agiil.Domain.Tickets
     /// <value>The type.</value>
     public virtual RelationshipType Type => type;
 
+    public abstract void Accept(IVisitsRelationship visitor);
+
     [Obsolete("Do not use this constructor, it exists only so that NHibernate may proxy this entity")]
     protected Relationship() {}
 

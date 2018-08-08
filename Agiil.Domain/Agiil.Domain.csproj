@@ -203,6 +203,10 @@
     <Compile Include="Tickets\IEditsTicket.cs" />
     <Compile Include="Validation\IGenericValidator.cs" />
     <Compile Include="Validation\MissingValidatorFactoryException.cs" />
+    <Compile Include="Tickets\IVisitsRelationship.cs" />
+    <Compile Include="Tickets\IGetsRelationshipSummary.cs" />
+    <Compile Include="Tickets\IGetsAvailableRelationships.cs" />
+    <Compile Include="Tickets\AvailableRelationship.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

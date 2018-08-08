@@ -8,6 +8,8 @@ namespace Agiil.Domain.Tickets
   {
     public virtual string SecondarySummary { get; set; }
 
+    public override void Accept(IVisitsRelationship visitor) => visitor?.Visit(this);
+
     public DirectionalRelationship() : base(RelationshipType.Directional) {}
   }
 }
