@@ -195,6 +195,8 @@
     <Compile Include="Tickets\IConvertsAddRelationshipRequestsToTicketRelationships.cs" />
     <Compile Include="Tickets\AddRelationshipRequestToTicketRelationshipConverter.cs" />
     <Compile Include="Tickets\Editing\RelationshipRemovingTicketEditorDecorator.cs" />
+    <Compile Include="Tickets\SummaryProvidingRelationshipVisitor.cs" />
+    <Compile Include="Tickets\VisitorBasedRelationshipSummaryProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
