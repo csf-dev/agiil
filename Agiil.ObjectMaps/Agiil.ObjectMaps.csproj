@@ -96,6 +96,8 @@
     <Compile Include="Tickets\LabelToLabelDtoProfile.cs" />
     <Compile Include="Labels\ListedLabelToListedLabelDtoProfile.cs" />
     <Compile Include="Labels\LabelToLabelDetailDtoProfile.cs" />
+    <Compile Include="Tickets\AddRelationshipModelToAddRelationshipRequestProfile.cs" />
+    <Compile Include="Tickets\AvailableRelationshipToAvailableRelationshipDtoProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
