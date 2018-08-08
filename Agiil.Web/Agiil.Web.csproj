@@ -403,6 +403,7 @@
     <Compile Include="Services\Labels\IGetsLabelDetail.cs" />
     <Compile Include="Services\IGetsTempData.cs" />
     <Compile Include="Services\MvcTempDataProvider.cs" />
+    <Compile Include="ModelBinders\TicketReferenceMvcModelBinder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
