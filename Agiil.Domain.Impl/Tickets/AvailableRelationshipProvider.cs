@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CSF.Data.Entities;
+using CSF.Data.NHibernate;
 using CSF.Entities;
 
 namespace Agiil.Domain.Tickets
@@ -12,22 +13,13 @@ namespace Agiil.Domain.Tickets
 
     public IReadOnlyList<AvailableRelationship> GetAvailableRelationships()
     {
-      return data.Query<Relationship>()
-                 .SelectMany(GetAvailableRelationships)
-                 .ToArray();
-    }
+      var nonDirectional = data.Query<NonDirectionalRelationship>().ToFuture();
+      var directional = data.Query<DirectionalRelationship>().ToFuture();
 
-    IEnumerable<AvailableRelationship> GetAvailableRelationships(Relationship relationship)
-    {
-      if(relationship == null) return Enumerable.Empty<AvailableRelationship>();
-
-      if(relationship.Type == RelationshipType.NonDirectional)
-        return GetAvailableRelationships((NonDirectionalRelationship) relationship);
-
-      if(relationship.Type == RelationshipType.Directional)
-        return GetAvailableRelationships((DirectionalRelationship) relationship);
-
-      return Enumerable.Empty<AvailableRelationship>();
+      return directional
+        .SelectMany(GetAvailableRelationships)
+        .Union(nonDirectional.SelectMany(GetAvailableRelationships))
+        .ToArray();
     }
 
     IEnumerable<AvailableRelationship> GetAvailableRelationships(NonDirectionalRelationship relationship)
