@@ -1,0 +1,36 @@
+﻿@import '_AppWideVariables';
+
+.relationship_table {
+  @extend %subtle_table;
+  width: 100%;
+  
+  th.ticket_ref, td.remove {
+    text-align: center;
+  }
+  
+  td.not_applicable {
+    text-align: center;
+    font-size: $smaller-text-size;
+    color: $subtle-text-color;
+    
+    abbr {
+      text-decoration: none;
+      cursor: default;
+    }
+  }
+  
+  col.ticket_ref {
+    width: 5.2em;
+  }
+  .existing_relationship td.ticket_ref {
+    text-align: right;
+  }
+  td.ticket_ref>input {
+    width: 5em;
+    text-align: right;
+  }
+}
+.relationship_table.new_relationships_only {
+  width: auto;
+  min-width: 30%;
+}

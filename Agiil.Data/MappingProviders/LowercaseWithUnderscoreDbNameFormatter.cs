@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -43,6 +44,17 @@ namespace Agiil.Data.MappingProviders
       return GetDatabaseName(member?.Name);
     }
 
+    public string GetForeignKeyColumnName(MemberInfo member)
+    {
+      return GetDatabaseName(String.Concat(member?.Name, "Id"));
+    }
+
+    public string GetForeignKeyColumnName(params string[] parts)
+    {
+      var allParts = (parts ?? new string[0]).Union(new [] { "Id" });
+      return GetDatabaseName(String.Concat(allParts));
+    }
+
     public string GetIndexName(Type entityType, MemberInfo member)
     {
       return GetDatabaseName(String.Concat(IndexPrefix, entityType?.Name, member?.Name));
@@ -64,6 +76,11 @@ namespace Agiil.Data.MappingProviders
     public string GetForeignKeyConstraintName(Type parent, Type child)
     {
       return GetDatabaseName(String.Concat(ConstraintPrefix, child?.Name, ConstraintJoiner, parent?.Name));
+    }
+
+    public string GetForeignKeyConstraintName(MemberInfo parentMember, Type child)
+    {
+      return GetDatabaseName(String.Concat(ConstraintPrefix, child?.Name, ConstraintJoiner, parentMember?.Name));
     }
 
     string GetDatabaseName(string clrName)

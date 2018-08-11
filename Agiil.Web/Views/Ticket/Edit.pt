@@ -51,9 +51,6 @@
         <input type="text" id="Labels" name="CommaSeparatedLabelNames"
               tal:attributes="value here/Specification/CommaSeparatedLabelNames | ticket/CommaSeparatedLabelNames | nothing" />
       </div>
-      <div class="form_element feedback warning" tal:condition="here/Response/TitleIsInvalid | nothing">
-        <p>Please enter a ticket title.</p>
-      </div>
       <div class="form_element field"
            tal:define="typeId ticket/Type/Id | nothing;
                        availableTypes here/AvailableTicketTypes">
@@ -82,6 +79,76 @@
           Please choose either a sprint from the list, or <em>None</em> to indicate that the ticket
           is not part of any sprint.
         </p>
+      </div>
+      <div class="form_element field form_table">
+        <table class="relationship_table editable">
+          <colgroup>
+            <col class="summary">
+            <col class="ticket_title">
+            <col class="ticket_ref">
+            <col class="remove">
+          </colgroup>
+          <thead>
+            <th class="summary">Relationship</th>
+            <th class="ticket_title">Title</th>
+            <th class="ticket_ref">#</th>
+            <th class="remove">Remove</th>
+          </thead>
+          <tbody>
+            <tr tal:repeat="relationship ticket/Relationships" class="existing_relationship">
+              <td class="summary" tal:content="relationship/Summary">Relates to</td>
+              <td class="ticket_title" tal:content="relationship/RelatedTicket/Title">This is a ticket title</td>
+              <td class="ticket_ref" tal:define="relatedTicket relationship/RelatedTicket">
+                <a href="Ticket/1"
+                   tal:attributes="href string:Ticket/Index/${relatedTicket/Id}"
+                   tal:content="relatedTicket/Reference">AB123</a>
+              </td>
+              <td tal:define="relationshipIdx repeat/relationship/index;
+                              inputName string:RelationshipsToRemove[${relationshipIdx}];
+                              model here;"
+                  class="remove">
+                <input tal:define="checkedValue csharp:model.IsRelationshipSelectedForRemoval(relationship.Id) ? &quot;&quot; : null;"
+                       name="RelationshipsToRemove[0]"
+                       tal:attributes="name inputName;
+                                       value relationship/Id/Value;
+                                       checked checkedValue"
+                       type="checkbox"
+                       title="Remove this relationship">
+                <input name="RelationshipsToRemove[0]" tal:attributes="name inputName;" type="hidden" value="">
+              </td>
+            </tr>
+            <tr tal:repeat="slot here/AddRelationshipModels" class="new_relationship">
+              <td tal:define="slotRelationshipId slot/RelationshipIdAndParticipation | nothing;
+                              slotTicketRef slot/RelatedTicketReference | nothing;
+                              slotIdx repeat/slot/index"
+                  class="summary">
+                <select tal:define="availableRelationships here/AvailableRelationships;
+                                    selectName string:RelationshipsToAdd[${slotIdx}].RelationshipIdAndParticipation"
+                        name="RelationshipsToAdd[0].RelationshipIdAndParticipation"
+                        tal:attributes="name selectName">
+                  <option value=""></option>
+                  <tal:wrapper repeat="availableRelationship availableRelationships"><option tal:define="relationshipId availableRelationship/RelationshipIdentity/Value;
+                                      participation availableRelationship/Participant;
+                                      summary availableRelationship/Summary;
+                                      optionValue string:${relationshipId}-${participation};
+                                      isSelected csharp:Equals(slotRelationshipId, optionValue);
+                                      selectedVal string:selected;"
+                          tal:attributes="value optionValue; selected csharp:(isSelected == true)? selectedVal : null"
+                          tal:content="summary"
+                          value="1-Primary">Relates to</option></tal:wrapper>
+                </select>
+              </td>
+              <td class="ticket_title not_applicable"><abbr title="Not applicable">N/A</abbr></td>
+              <td class="ticket_ref" tal:define="slotIdx repeat/slot/index | nothing">
+                <input tal:define="inputName string:RelationshipsToAdd[${slotIdx}].RelatedTicketReference"
+                       tal:attributes="value slotTicketRef | nothing;
+                                       name inputName"
+                       name="RelationshipsToAdd[0].RelatedTicketReference" value="AB12" />
+              </td>
+              <td class="remove not_applicable"><abbr title="Not applicable">N/A</abbr></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <p id="SubmissionFailedMessage"
          class="feedback warning"

@@ -13,7 +13,23 @@ namespace Agiil.Data.MappingProviders
   {
     const string MappingName = "AgiilMappingsByCode";
 
+    internal static readonly Type OpenGenericEntityBase = typeof(Entity<>);
     internal static readonly Type BaseEntityType = typeof(IEntity);
+
+    internal static bool IsEntityBaseType(Type type)
+    {
+      if(type.IsGenericType)
+      {
+        var openGenericType = type.GetGenericTypeDefinition();
+        if(openGenericType == OpenGenericEntityBase) return true;
+      }
+      else if(type.IsGenericTypeDefinition)
+      {
+        if(type == OpenGenericEntityBase) return true;
+      }
+
+      return false;
+    }
 
     readonly IEnumerable<Func<IConventionMapping>> allMappings;
 

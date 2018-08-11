@@ -90,19 +90,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tickets\TicketCreator.cs" />
+    <Compile Include="Tickets\CreateTicketRequestHandler.cs" />
     <Compile Include="Auth\CurrentUserReader.cs" />
     <Compile Include="Resources\ExceptionMessages.Designer.cs">
       <DependentUpon>ExceptionMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="Tickets\TicketFactory.cs" />
     <Compile Include="Tickets\CreateTicketValidatorFactory.cs" />
     <Compile Include="Data\DevelopmentInitialDataCreator.cs" />
     <Compile Include="Tickets\TicketLister.cs" />
     <Compile Include="Tickets\TicketDetailService.cs" />
     <Compile Include="Tickets\EditTicketValidatorFactory.cs" />
     <Compile Include="IDomainImplementationAssemblyMarker.cs" />
-    <Compile Include="Tickets\TicketEditor.cs" />
+    <Compile Include="Tickets\EditTicketRequestHandler.cs" />
     <Compile Include="ValidationResultInterpreter.cs" />
     <Compile Include="Validation\EntityMustExistRule.cs" />
     <Compile Include="Validation\ValidatorFactoryBase.cs" />
@@ -175,6 +174,30 @@
     <Compile Include="Tickets\TicketListerFromAgiilQueryAdapter.cs" />
     <Compile Include="Labels\LabelTicketProvider.cs" />
     <Compile Include="Sprints\SprintTicketProvider.cs" />
+    <Compile Include="Tickets\Creation\CurrentProjectSettingTicketFactoryDecorator.cs" />
+    <Compile Include="Tickets\Creation\CurrentUserSettingTicketFactoryDecorator.cs" />
+    <Compile Include="Tickets\Creation\LabelPopulatingTicketFactoryDecorator.cs" />
+    <Compile Include="Tickets\Creation\SprintPopulatingTicketFactoryDecorator.cs" />
+    <Compile Include="Tickets\Creation\TicketTypePopulatingTicketFactoryDecorator.cs" />
+    <Compile Include="Tickets\Creation\PersistingTicketFactoryDecorator.cs" />
+    <Compile Include="Tickets\Creation\TicketFactory.cs" />
+    <Compile Include="Tickets\Creation\TicketFactoryProvider.cs" />
+    <Compile Include="Tickets\Creation\IGetsTicketCreator.cs" />
+    <Compile Include="Tickets\Creation\RelationshipPopulatingTicketFactoryDecorator.cs" />
+    <Compile Include="Tickets\TicketRelationshipFactory.cs" />
+    <Compile Include="Tickets\ICreatesEditTicketResponse.cs" />
+    <Compile Include="Tickets\EditTicketResponseFactory.cs" />
+    <Compile Include="Tickets\Editing\AutomapperBasedTicketEditor.cs" />
+    <Compile Include="Tickets\Editing\LabelResolvingTicketEditorDecorator.cs" />
+    <Compile Include="Tickets\Editing\IGetsTicketEditor.cs" />
+    <Compile Include="Tickets\Editing\TicketEditorFactory.cs" />
+    <Compile Include="Tickets\Editing\RelationshipAddingTicketEditorDecorator.cs" />
+    <Compile Include="Tickets\IConvertsAddRelationshipRequestsToTicketRelationships.cs" />
+    <Compile Include="Tickets\AddRelationshipRequestToTicketRelationshipConverter.cs" />
+    <Compile Include="Tickets\Editing\RelationshipRemovingTicketEditorDecorator.cs" />
+    <Compile Include="Tickets\SummaryProvidingRelationshipVisitor.cs" />
+    <Compile Include="Tickets\VisitorBasedRelationshipSummaryProvider.cs" />
+    <Compile Include="Tickets\AvailableRelationshipProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
@@ -199,6 +222,8 @@
     <Folder Include="Tickets\Specs\" />
     <Folder Include="Labels\Specs\" />
     <Folder Include="TicketCriterionConvertionStrategies\" />
+    <Folder Include="Tickets\Creation\" />
+    <Folder Include="Tickets\Editing\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -146,6 +146,10 @@
     <Compile Include="MappingProviders\LowercaseWithUnderscoreDbNameFormatter.cs" />
     <Compile Include="ClassMappings\LabelMapping.cs" />
     <Compile Include="Sqlite\SqliteDatabaseTester.cs" />
+    <Compile Include="ClassMappings\RelationshipMapping.cs" />
+    <Compile Include="ConventionMappings\EnumerationPropertyMapping.cs" />
+    <Compile Include="ClassMappings\TicketRelationshipMapping.cs" />
+    <Compile Include="ClassMappings\TicketMapping.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ConventionMappings\" />
@@ -175,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UpgradeScripts\Sqlite\2018-05-07-v0.5.0-Ticket-to-label.sqlite.sql">
       <LogicalName>2018-05-07-v0.5.0-Ticket-to-label.sqlite.sql</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpgradeScripts\Sqlite\2018-08-04-v0.6.0-Ticket-relationships.sqlite.sql">
+      <LogicalName>2018-08-04-v0.6.0-Ticket-relationships.sqlite.sql</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

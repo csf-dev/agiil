@@ -1,5 +1,6 @@
 ﻿@import '_AppWideVariables';
 @import '_ScreenMediaQueries';
+@import '_TicketListTable';
 
 .agiil_query label[for="query_text"] {
   display: none;
@@ -22,50 +23,4 @@
   margin-bottom: 0.2em;
 }
 
-table.ticket_list {
-  border: 1px solid $subtle-keyline-color;
-  border-collapse: collapse;
-  width: 100%;
-
-  th {
-    text-align: left;
-  }
-  th.TicketReference {
-    text-align: center;
-  }
-  td, th {
-    padding: 0.2em 0.4em;
-    border-bottom: 1px solid $faint-keyline-color;
-  }
-  tr:last-child td, th {
-    border-color: $subtle-keyline-color;
-  }
-  th {
-    font-weight: bold;
-  }
-  a {
-    @include hyperlink;
-  }
-  @media #{$desktop-media} {
-    col.TicketReference {
-      width: 5em;
-    }
-    col.TicketCreator, col.TicketTimestamp {
-      width: 8em;
-    }
-  }
-  @media #{$tablet-or-smaller-media} {
-    col.TicketCreator, col.TicketTimestamp, col.TicketType,
-    td.TicketCreator, td.TicketTimestamp, td.TicketType,
-    th.TicketCreator, th.TicketTimestamp, th.TicketType {
-      display: none;
-    }
-    td.TicketReference {
-      font-size: $smaller-text-size;
-    }
-    col.TicketReference {
-      width: 4em;
-    }
-  }
-}
 

@@ -39,6 +39,8 @@ namespace Agiil.Domain.Tickets
 
     public bool IsSuccess => validationResult.IsSuccess;
 
+    protected EditTicketResponse() {}
+
     public EditTicketResponse(IValidationResult result,
                                                  IValidationResultInterpreter resultInterpreter,
                                                  Ticket createdTicket = null)

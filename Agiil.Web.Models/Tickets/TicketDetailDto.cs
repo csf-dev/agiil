@@ -24,10 +24,15 @@ namespace Agiil.Web.Models.Tickets
 
     public IEnumerable<CommentDto> Comments { get; set; }
 
+    public IEnumerable<TicketRelationshipDto> Relationships { get; set; }
+
+    public bool HasRelationships => (Relationships?.Any()).GetValueOrDefault();
+
     public TicketDetailDto()
     {
       Comments = Enumerable.Empty<CommentDto>().ToArray();
       Labels = Enumerable.Empty<LabelDto>().ToArray();
+      Relationships = Enumerable.Empty<TicketRelationshipDto>().ToArray();
     }
   }
 }

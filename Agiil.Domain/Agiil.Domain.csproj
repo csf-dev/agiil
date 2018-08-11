@@ -74,9 +74,9 @@
     <Compile Include="IEnvironment.cs" />
     <Compile Include="CurrentEnvironment.cs" />
     <Compile Include="Auth\ICurrentUserReader.cs" />
-    <Compile Include="Tickets\ITicketFactory.cs" />
+    <Compile Include="Tickets\ICreatesTicket.cs" />
     <Compile Include="Tickets\CreateTicketRequest.cs" />
-    <Compile Include="Tickets\ITicketCreator.cs" />
+    <Compile Include="Tickets\IHandlesCreateTicketRequest.cs" />
     <Compile Include="Auth\ICurrentUserInfo.cs" />
     <Compile Include="Auth\IIdentityReader.cs" />
     <Compile Include="ComponentScope.cs" />
@@ -85,7 +85,7 @@
     <Compile Include="Tickets\IGetsListOfTickets.cs" />
     <Compile Include="Tickets\ITicketDetailService.cs" />
     <Compile Include="Tickets\EditTicketRequest.cs" />
-    <Compile Include="Tickets\ITicketEditor.cs" />
+    <Compile Include="Tickets\IHandlesEditTicketRequest.cs" />
     <Compile Include="Tickets\EditTicketResponse.cs" />
     <Compile Include="IValidationResultInterpreter.cs" />
     <Compile Include="Tickets\Comment.cs" />
@@ -191,6 +191,22 @@
     <Compile Include="Tickets\IGetsListOfTicketsFromAgiilQuery.cs" />
     <Compile Include="Labels\IGetsTicketsWithLabel.cs" />
     <Compile Include="Sprints\IGetsTicketsInSprint.cs" />
+    <Compile Include="Tickets\Relationship.cs" />
+    <Compile Include="Tickets\RelationshipType.cs" />
+    <Compile Include="Tickets\RelationshipParticipant.cs" />
+    <Compile Include="Tickets\DirectionalRelationship.cs" />
+    <Compile Include="Tickets\NonDirectionalRelationship.cs" />
+    <Compile Include="Tickets\TicketRelationship.cs" />
+    <Compile Include="Tickets\AddRelationshipRequest.cs" />
+    <Compile Include="Tickets\DeleteRelationshipRequest.cs" />
+    <Compile Include="Tickets\ICreatesTicketRelationship.cs" />
+    <Compile Include="Tickets\IEditsTicket.cs" />
+    <Compile Include="Validation\IGenericValidator.cs" />
+    <Compile Include="Validation\MissingValidatorFactoryException.cs" />
+    <Compile Include="Tickets\IVisitsRelationship.cs" />
+    <Compile Include="Tickets\IGetsRelationshipSummary.cs" />
+    <Compile Include="Tickets\IGetsAvailableRelationships.cs" />
+    <Compile Include="Tickets\AvailableRelationship.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

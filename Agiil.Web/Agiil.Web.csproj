@@ -309,6 +309,9 @@
     <Reference Include="System.Data.SQLite">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.105.0\lib\net46\System.Data.SQLite.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Zpt.Log4net">
+      <HintPath>..\packages\CSF.Zpt.Log4net.1.1.0\lib\net45\CSF.Zpt.Log4net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Css\" />
@@ -327,6 +330,7 @@
     <Folder Include="Services\Data\" />
     <Folder Include="Services\Rendering\" />
     <Folder Include="Services\Labels\" />
+    <Folder Include="Services\Tickets\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -398,6 +402,28 @@
     <Compile Include="Services\Rendering\TicketUriProvider.cs" />
     <Compile Include="Services\Labels\LabelDetailProvider.cs" />
     <Compile Include="Services\Labels\IGetsLabelDetail.cs" />
+    <Compile Include="Services\Tickets\IGetsEditTicketModel.cs" />
+    <Compile Include="Services\Tickets\MappingEditTicketModelFactory.cs" />
+    <Compile Include="Services\IGetsTempData.cs" />
+    <Compile Include="Services\Tickets\TempDataRestoringEditTicketModelFactoryDecorator.cs" />
+    <Compile Include="Services\MvcTempDataProvider.cs" />
+    <Compile Include="Services\Tickets\AvailableSprintsTicketModelFactoryDecorator.cs" />
+    <Compile Include="Services\Tickets\AvailableTicketTypesTicketModelFactoryDecorator.cs" />
+    <Compile Include="Services\Tickets\AvailableRelationshipsTicketModelFactoryDecorator.cs" />
+    <Compile Include="Services\Tickets\EditTicketModelFactoryFactory.cs" />
+    <Compile Include="ModelBinders\TicketReferenceMvcModelBinder.cs" />
+    <Compile Include="Bootstrap\TicketServicesModule.cs" />
+    <Compile Include="Services\Tickets\IGetsEditTicketModelFactory.cs" />
+    <Compile Include="Services\Tickets\IGetsNewTicketModel.cs" />
+    <Compile Include="Services\Tickets\SpecificationBasedNewTicketModelFactory.cs" />
+    <Compile Include="Services\Tickets\IGetsNewTicketModelFactory.cs" />
+    <Compile Include="Services\Tickets\NewTicketModelFactoryFactory.cs" />
+    <Compile Include="Services\EmptyTempDataProvider.cs" />
+    <Compile Include="Services\Tickets\AvailableRelationshipsNewTicketModelFactoryDecorator.cs" />
+    <Compile Include="Services\Tickets\AvailableSprintsNewTicketModelFactoryDecorator.cs" />
+    <Compile Include="Services\Tickets\AvailableTicketTypesNewTicketModelFactoryDecorator.cs" />
+    <Compile Include="Bootstrap\TempDataModule.cs" />
+    <Compile Include="Services\TempDataContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -409,8 +435,6 @@
     <None Include="Content\Css\*.css" />
     <None Include="packages.config" />
     <None Include="Content\Scss\**\*.scss" />
-    <Content Include="Views\Shared\Controls\TicketList.pt" />
-    <None Include="Views\Comment\ConfirmDelete.pt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\**\*.pt" />

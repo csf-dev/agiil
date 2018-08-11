@@ -14,6 +14,10 @@ namespace Agiil.Data.MappingProviders
 
     string GetColumnName(MemberInfo member);
 
+    string GetForeignKeyColumnName(MemberInfo member);
+
+    string GetForeignKeyColumnName(params string[] parts);
+
     string GetIndexName(Type entityType, MemberInfo member);
 
     string GetIndexName(Type entityType, Type referencedType);
@@ -23,5 +27,7 @@ namespace Agiil.Data.MappingProviders
     string GetUniqueIndexName<TEntity>(Expression<Func<TEntity,object>> memberExpression);
 
     string GetForeignKeyConstraintName(Type parent, Type child);
+
+    string GetForeignKeyConstraintName(MemberInfo parentMember, Type child);
   }
 }

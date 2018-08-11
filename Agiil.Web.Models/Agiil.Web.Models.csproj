@@ -102,6 +102,12 @@
     <Compile Include="Labels\LabelDetailDto.cs" />
     <Compile Include="Labels\LabelDetailModel.cs" />
     <Compile Include="Tickets\DeleteCommentModel.cs" />
+    <Compile Include="Tickets\TicketRelationshipDto.cs" />
+    <Compile Include="Tickets\AvailableRelationshipDto.cs" />
+    <Compile Include="Tickets\AddRelationshipModel.cs" />
+    <Compile Include="Tickets\IHasAvailableSprints.cs" />
+    <Compile Include="Tickets\IHasAvailableTicketTypes.cs" />
+    <Compile Include="Tickets\IHasAvailableRelationships.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
