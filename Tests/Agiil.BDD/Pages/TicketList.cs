@@ -15,5 +15,11 @@ namespace Agiil.BDD.Pages
 
     public static ILocatorBasedTarget TicketLink
       => new CssSelector("a.TicketLink", "the open-ticket link");
+
+    public static ILocatorBasedTarget AgiilQueryText
+      => new ElementId("query_text", "the Agiil Query text");
+
+    public static ILocatorBasedTarget PerformAgiilQueryButton
+      => new CssSelector(".agiil_query .perform_search", "the perform search button");
   }
 }

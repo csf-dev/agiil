@@ -16,6 +16,10 @@ namespace Agiil.ObjectMaps.Tickets
         .ForMember(x => x.Timestamp, o => o.ResolveUsing(c => c.CreationTimestamp))
         .ForMember(x => x.Author, o => o.ResolveUsing(c => c.User.Username))
         .ForMember(x => x.HtmlBody, o => o.ResolveUsing(markdownResolver, m => m.Body))
+        .ForMember(x => x.TicketId, o => o.ResolveUsing(x => {
+          var resolver = new IdentityValueResolver();
+          return resolver.Resolve(x.Ticket);
+        }))
         ;
     }
   }

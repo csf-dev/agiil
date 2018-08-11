@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using Agiil.Web.Services;
 using Agiil.Web.Services.Auth;
 using Agiil.Web.Services.Data;
+using Agiil.Web.Services.Labels;
 using Agiil.Web.Services.Rendering;
 using Autofac;
+using Autofac.Core;
 
 namespace Agiil.Web.Bootstrap
 {
@@ -21,6 +24,7 @@ namespace Agiil.Web.Bootstrap
       builder
         .RegisterType<AppSettingsDatabaseMaintenanceSecurityProvider>()
         .AsImplementedInterfaces();
+      builder.RegisterType<LabelDetailProvider>().AsSelf().AsImplementedInterfaces();
     }
   }
 }

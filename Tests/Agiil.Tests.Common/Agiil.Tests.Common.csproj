@@ -7,8 +7,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Agiil.Tests</RootNamespace>
     <AssemblyName>Agiil.Tests.Common</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>v0.5.2-alpha</ReleaseVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <ReleaseVersion>v0.6.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -120,9 +120,6 @@
     <Reference Include="AutoMapper">
       <HintPath>..\..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Data">
-      <HintPath>..\..\packages\CSF.Data.1.2.1\lib\net45\CSF.Data.dll</HintPath>
-    </Reference>
     <Reference Include="CSF.Data.Entities">
       <HintPath>..\..\packages\CSF.Data.Entities.1.3.2\lib\net45\CSF.Data.Entities.dll</HintPath>
     </Reference>
@@ -143,6 +140,9 @@
     </Reference>
     <Reference Include="CSF.Validation">
       <HintPath>..\..\packages\CSF.Validation.1.0.2\lib\net45\CSF.Validation.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data">
+      <HintPath>..\..\packages\CSF.Data.1.3.0\lib\net45\CSF.Data.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +168,11 @@
     <Compile Include="Autofixture\AlwaysPassesValidationCustomization.cs" />
     <Compile Include="Attributes\InMemoryAttribute.cs" />
     <Compile Include="Autofixture\InMemoryEntityDataCustomization.cs" />
+    <Compile Include="Attributes\MockedMetadataAttribute.cs" />
+    <Compile Include="Attributes\CreatesATicketAttribute.cs" />
+    <Compile Include="Autofixture\CreatesATicketCustomization.cs" />
+    <Compile Include="Attributes\CreatesTransactionAttribute.cs" />
+    <Compile Include="Autofixture\CreatesTransactionCustomization.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">

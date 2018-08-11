@@ -17,6 +17,8 @@ namespace Agiil.BDD.Tasks.Tickets
                                 .ThatAre(TicketDetail.Comments.DeleteCommentButton)
                                 .Called("the delete comment buttons"));
       actor.Perform(Navigate.ToAnotherPageByClicking(links.Elements.First()));
+      actor.Perform(Wait.Until(DeleteComment.ConfirmButton).IsVisible());
+      actor.Perform(Navigate.ToAnotherPageByClicking(DeleteComment.ConfirmButton));
       actor.Perform(Wait.Until(TicketDetail.TitleContent).IsVisible());
     }
   }

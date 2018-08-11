@@ -7,8 +7,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Agiil.Web.Models</RootNamespace>
     <AssemblyName>Agiil.Web.Models</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>v0.5.2-alpha</ReleaseVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <ReleaseVersion>v0.6.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,7 +61,6 @@
     <Compile Include="Sprints\NewSprintSpecification.cs" />
     <Compile Include="Tickets\AddCommentResponse.cs" />
     <Compile Include="Tickets\AddCommentSpecification.cs" />
-    <Compile Include="Tickets\AdHocTicketListSpecification.cs" />
     <Compile Include="Tickets\CommentDto.cs" />
     <Compile Include="Tickets\EditCommentModel.cs" />
     <Compile Include="Tickets\EditCommentResponse.cs" />
@@ -102,6 +101,13 @@
     <Compile Include="Labels\ListOfLabelsModel.cs" />
     <Compile Include="Labels\LabelDetailDto.cs" />
     <Compile Include="Labels\LabelDetailModel.cs" />
+    <Compile Include="Tickets\DeleteCommentModel.cs" />
+    <Compile Include="Tickets\TicketRelationshipDto.cs" />
+    <Compile Include="Tickets\AvailableRelationshipDto.cs" />
+    <Compile Include="Tickets\AddRelationshipModel.cs" />
+    <Compile Include="Tickets\IHasAvailableSprints.cs" />
+    <Compile Include="Tickets\IHasAvailableTicketTypes.cs" />
+    <Compile Include="Tickets\IHasAvailableRelationships.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

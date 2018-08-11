@@ -27,6 +27,10 @@ namespace Agiil.Bootstrap.Validation
       builder
         .RegisterGeneric(typeof(ResponseFactory<>))
         .As(typeof(IResponseFactory<>));
+
+      builder
+        .RegisterType<AutofacGenericValidator>()
+        .AsImplementedInterfaces();
     }
 
     ValidatorFactory CreateValidatorFactory(IComponentContext ctx, IEnumerable<Parameter> afParams)

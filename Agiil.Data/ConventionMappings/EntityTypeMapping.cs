@@ -10,12 +10,19 @@ namespace Agiil.Data.ConventionMappings
 
     public void ApplyMapping(ConventionModelMapper mapper)
     {
-      mapper.IsEntity((type, declared) => AgiilMappingProvider.BaseEntityType.IsAssignableFrom(type)
-                      && type.IsClass);
+      mapper.IsEntity(IsEntity);
 
       mapper.BeforeMapClass += (modelInspector, type, classCustomizer) => {
         classCustomizer.Table(formatter.GetTableName(type));
       };
+    }
+
+    bool IsEntity(Type type, bool isDeclaredAsEntity)
+    {
+      if(!type.IsClass) return false;
+      if(!AgiilMappingProvider.BaseEntityType.IsAssignableFrom(type)) return false;
+      if(AgiilMappingProvider.IsEntityBaseType(type)) return false;
+      return true;
     }
 
     public EntityTypeMapping(IDbNameFormatter formatter)

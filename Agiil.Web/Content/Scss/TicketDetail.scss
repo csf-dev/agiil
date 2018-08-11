@@ -1,5 +1,6 @@
 @import '_Forms';
 @import '_RichDescriptions';
+@import '_RelationshipTables';
 
 form.add_a_comment {
   @include full_page_form;

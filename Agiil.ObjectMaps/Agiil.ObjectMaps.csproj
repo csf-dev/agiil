@@ -7,8 +7,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Agiil.ObjectMaps</RootNamespace>
     <AssemblyName>Agiil.ObjectMaps</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>v0.5.2-alpha</ReleaseVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <ReleaseVersion>v0.6.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,9 +49,6 @@
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Data">
-      <HintPath>..\packages\CSF.Data.1.2.1\lib\net45\CSF.Data.dll</HintPath>
-    </Reference>
     <Reference Include="CSF.Data.Entities">
       <HintPath>..\packages\CSF.Data.Entities.1.3.2\lib\net45\CSF.Data.Entities.dll</HintPath>
     </Reference>
@@ -60,6 +57,9 @@
     </Reference>
     <Reference Include="CSF.Utils">
       <HintPath>..\packages\CSF.Utils.6.1.1\lib\net45\CSF.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Data">
+      <HintPath>..\packages\CSF.Data.1.3.0\lib\net45\CSF.Data.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +96,10 @@
     <Compile Include="Tickets\LabelToLabelDtoProfile.cs" />
     <Compile Include="Labels\ListedLabelToListedLabelDtoProfile.cs" />
     <Compile Include="Labels\LabelToLabelDetailDtoProfile.cs" />
+    <Compile Include="Tickets\AddRelationshipModelToAddRelationshipRequestProfile.cs" />
+    <Compile Include="Tickets\AvailableRelationshipToAvailableRelationshipDtoProfile.cs" />
+    <Compile Include="Tickets\TicketRelationshipIdentityToDeleteRelationshipRequestProfile.cs" />
+    <Compile Include="Tickets\DeleteRelationshipRequestToTicketRelationshipIdentityProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -122,6 +126,10 @@
     <ProjectReference Include="..\Agiil.Web.Rendering\Agiil.Web.Rendering.csproj">
       <Project>{8080A385-823C-44F0-B090-71F52337F04A}</Project>
       <Name>Agiil.Web.Rendering</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Domain.Impl\Agiil.Domain.Impl.csproj">
+      <Project>{FF544749-0A04-417F-AD83-E284BBF498E7}</Project>
+      <Name>Agiil.Domain.Impl</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -6,7 +6,7 @@ namespace Agiil.Web.Models.Tickets
 {
   public class TicketListModel : PageModel
   {
-    public bool ShowingClosedTickets { get; set; }
+    public string Query { get; set; }
 
     public IList<TicketSummaryDto> Tickets { get; set; }
   }
