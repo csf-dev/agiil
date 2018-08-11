@@ -418,6 +418,7 @@
     <Compile Include="Services\Tickets\SpecificationBasedNewTicketModelFactory.cs" />
     <Compile Include="Services\Tickets\IGetsNewTicketModelFactory.cs" />
     <Compile Include="Services\Tickets\NewTicketModelFactoryFactory.cs" />
+    <Compile Include="Services\EmptyTempDataProvider.cs" />
     <Compile Include="Services\Tickets\AvailableRelationshipsNewTicketModelFactoryDecorator.cs" />
     <Compile Include="Services\Tickets\AvailableSprintsNewTicketModelFactoryDecorator.cs" />
     <Compile Include="Services\Tickets\AvailableTicketTypesNewTicketModelFactoryDecorator.cs" />

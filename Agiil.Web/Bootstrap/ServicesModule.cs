@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using Agiil.Web.Services;
 using Agiil.Web.Services.Auth;
 using Agiil.Web.Services.Data;
 using Agiil.Web.Services.Labels;
 using Agiil.Web.Services.Rendering;
 using Autofac;
+using Autofac.Core;
 
 namespace Agiil.Web.Bootstrap
 {
@@ -23,7 +25,15 @@ namespace Agiil.Web.Bootstrap
         .RegisterType<AppSettingsDatabaseMaintenanceSecurityProvider>()
         .AsImplementedInterfaces();
       builder.RegisterType<LabelDetailProvider>().AsSelf().AsImplementedInterfaces();
-      builder.RegisterType<MvcTempDataProvider>().AsSelf().AsImplementedInterfaces();
+      builder.RegisterType<MvcTempDataProvider>();
+      builder.RegisterType<EmptyTempDataProvider>();
+      builder.Register(GetTempDataProvider);
+    }
+
+    IGetsTempData GetTempDataProvider(IComponentContext ctx, IEnumerable<Parameter> afParams)
+    {
+      try { return ctx.Resolve<MvcTempDataProvider>(afParams); }
+      catch(DependencyResolutionException) { return ctx.Resolve<EmptyTempDataProvider>(); }
     }
   }
 }
