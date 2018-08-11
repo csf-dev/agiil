@@ -53,11 +53,13 @@
             <col class="summary">
             <col class="ticket_title">
             <col class="ticket_ref">
+            <col class="remove">
           </colgroup>
           <thead>
             <th>Relationship</th>
             <th>Title</th>
             <th>#</th>
+            <th>Remove</th>
           </thead>
           <tbody>
             <tr tal:repeat="relationship ticket/Relationships" class="existing_relationship">
@@ -67,6 +69,18 @@
                 <a href="Ticket/1"
                    tal:attributes="href string:Ticket/Index/${relatedTicket/Id}"
                    tal:content="relatedTicket/Reference">AB123</a>
+              </td>
+              <td tal:define="relationshipIdx repeat/relationship/index;
+                              inputName string:RelationshipsToRemove[${relationshipIdx}];
+                              model here;">
+                <input tal:define="checkedValue csharp:model.IsRelationshipSelectedForRemoval(relationship.Id) ? &quot;&quot; : null;"
+                       name="RelationshipsToRemove[0]"
+                       tal:attributes="name inputName;
+                                       value relationship/Id/Value;
+                                       checked checkedValue"
+                       type="checkbox"
+                       title="Remove this relationship">
+                <input name="RelationshipsToRemove[0]" tal:attributes="name inputName;" type="hidden" value="">
               </td>
             </tr>
             <tr tal:repeat="slot here/AddRelationshipModels" class="new_relationship">
@@ -96,6 +110,7 @@
                                        name inputName"
                        name="RelationshipsToAdd[0].RelatedTicketReference" value="AB12" />
               </td>
+              <td><abbr title="Not applicable">N/A</abbr></td>
             </tr>
           </tbody>
         </table>

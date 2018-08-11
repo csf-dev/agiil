@@ -14,10 +14,10 @@ namespace Agiil.Domain.Tickets.Editing
       wrappedInstance.Edit(ticket, request);
 
       RemoveRelationships(ticket.PrimaryRelationships,
-                          request.RelationshipsToDelete.Select(x => x.TicketRelationshipId));
+                          request.RelationshipsToRemove.Select(x => x.TicketRelationshipId));
       
       RemoveRelationships(ticket.SecondaryRelationships,
-                          request.RelationshipsToDelete.Select(x => x.TicketRelationshipId));
+                          request.RelationshipsToRemove.Select(x => x.TicketRelationshipId));
     }
 
     void RemoveRelationships(ISet<TicketRelationship> relationships,

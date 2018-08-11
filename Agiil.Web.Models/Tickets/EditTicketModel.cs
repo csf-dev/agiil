@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Agiil.Domain.Tickets;
 using Agiil.Web.Models.Sprints;
+using CSF.Entities;
 
 namespace Agiil.Web.Models.Tickets
 {
@@ -30,6 +33,14 @@ namespace Agiil.Web.Models.Tickets
 
         return output;
       }
+    }
+
+    public bool IsRelationshipSelectedForRemoval(IIdentity<TicketRelationship> relationship)
+    {
+      if(relationship == null) return false;
+      if(Specification?.RelationshipsToRemove == null) return false;
+
+      return Specification.RelationshipsToRemove.Contains(relationship);
     }
 
     public EditTicketModel()

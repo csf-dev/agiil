@@ -24,9 +24,9 @@ namespace Agiil.Tests.Tickets.Editing
       ticket.PrimaryRelationships.Add(secondRelationship);
       ticket.PrimaryRelationships.Add(thirdRelationship);
 
-      request.RelationshipsToDelete.Clear();
-      request.RelationshipsToDelete.Add(new DeleteRelationshipRequest { TicketRelationshipId = firstRelationship.GetIdentity() });
-      request.RelationshipsToDelete.Add(new DeleteRelationshipRequest { TicketRelationshipId = secondRelationship.GetIdentity() });
+      request.RelationshipsToRemove.Clear();
+      request.RelationshipsToRemove.Add(new DeleteRelationshipRequest { TicketRelationshipId = firstRelationship.GetIdentity() });
+      request.RelationshipsToRemove.Add(new DeleteRelationshipRequest { TicketRelationshipId = secondRelationship.GetIdentity() });
 
       // Act
       sut.Edit(ticket, request);
@@ -49,9 +49,9 @@ namespace Agiil.Tests.Tickets.Editing
       ticket.SecondaryRelationships.Add(secondRelationship);
       ticket.SecondaryRelationships.Add(thirdRelationship);
 
-      request.RelationshipsToDelete.Clear();
-      request.RelationshipsToDelete.Add(new DeleteRelationshipRequest { TicketRelationshipId = firstRelationship.GetIdentity() });
-      request.RelationshipsToDelete.Add(new DeleteRelationshipRequest { TicketRelationshipId = secondRelationship.GetIdentity() });
+      request.RelationshipsToRemove.Clear();
+      request.RelationshipsToRemove.Add(new DeleteRelationshipRequest { TicketRelationshipId = firstRelationship.GetIdentity() });
+      request.RelationshipsToRemove.Add(new DeleteRelationshipRequest { TicketRelationshipId = secondRelationship.GetIdentity() });
 
       // Act
       sut.Edit(ticket, request);

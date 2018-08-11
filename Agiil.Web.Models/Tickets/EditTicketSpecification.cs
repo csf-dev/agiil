@@ -9,6 +9,7 @@ namespace Agiil.Web.Models.Tickets
   public class EditTicketSpecification
   {
     List<AddRelationshipModel> relationshipsToAdd;
+    List<IIdentity<TicketRelationship>> relationshipsToRemove;
 
     public IIdentity<Ticket> Identity { get; set; }
 
@@ -28,9 +29,16 @@ namespace Agiil.Web.Models.Tickets
       set { relationshipsToAdd = value ?? new List<AddRelationshipModel>(); }
     }
 
+    public List<IIdentity<TicketRelationship>> RelationshipsToRemove
+    {
+      get { return relationshipsToRemove; }
+      set { relationshipsToRemove = value ?? new List<IIdentity<TicketRelationship>>(); }
+    }
+
     public EditTicketSpecification()
     {
       relationshipsToAdd = new List<AddRelationshipModel>();
+      relationshipsToRemove = new List<IIdentity<TicketRelationship>>();
     }
   }
 }

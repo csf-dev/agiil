@@ -77,7 +77,7 @@
       Ticket description here.
     </div>
   </section>
-  <section class="relationships" tal:condition="ticket/Relationships">
+  <section class="relationships" tal:condition="ticket/HasRelationships">
     <h2>Relationships</h2>
     <table class="relationship_table">
       <colgroup>

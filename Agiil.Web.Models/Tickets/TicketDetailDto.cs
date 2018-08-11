@@ -26,6 +26,8 @@ namespace Agiil.Web.Models.Tickets
 
     public IEnumerable<TicketRelationshipDto> Relationships { get; set; }
 
+    public bool HasRelationships => (Relationships?.Any()).GetValueOrDefault();
+
     public TicketDetailDto()
     {
       Comments = Enumerable.Empty<CommentDto>().ToArray();

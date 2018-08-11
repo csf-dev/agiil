@@ -8,7 +8,7 @@ namespace Agiil.Domain.Tickets
   public class EditTicketRequest
   {
     ICollection<AddRelationshipRequest> relationshipsToAdd;
-    ICollection<DeleteRelationshipRequest> relationshipsToDelete;
+    ICollection<DeleteRelationshipRequest> relationshipsToRemove;
 
     public IIdentity<Ticket> Identity { get; set; }
 
@@ -28,16 +28,16 @@ namespace Agiil.Domain.Tickets
       set { relationshipsToAdd = value ?? new List<AddRelationshipRequest>(); }
     }
 
-    public ICollection<DeleteRelationshipRequest> RelationshipsToDelete
+    public ICollection<DeleteRelationshipRequest> RelationshipsToRemove
     {
-      get { return relationshipsToDelete; }
-      set { relationshipsToDelete = value ?? new List<DeleteRelationshipRequest>(); }
+      get { return relationshipsToRemove; }
+      set { relationshipsToRemove = value ?? new List<DeleteRelationshipRequest>(); }
     }
 
     public EditTicketRequest()
     {
       relationshipsToAdd = new List<AddRelationshipRequest>();
-      relationshipsToDelete = new List<DeleteRelationshipRequest>();
+      relationshipsToRemove = new List<DeleteRelationshipRequest>();
     }
   }
 }
