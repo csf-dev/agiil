@@ -36,51 +36,7 @@
       <div class="form_element feedback warning" tal:condition="here/Response/DescriptionIsInvalid | nothing">
         <p>Please enter a valid ticket description.</p>
       </div>
-      <div class="form_element field form_table">
-        <h2>Relationships</h2>
-        <table class="relationship_table">
-          <colgroup>
-            <col class="summary">
-            <col class="ticket_title">
-            <col class="ticket_ref">
-          </colgroup>
-          <thead>
-            <th>Relationship</th>
-            <th>Title</th>
-            <th>#</th>
-          </thead>
-          <tbody>
-            <tr tal:repeat="slot here/AddRelationshipModels" class="new_relationship">
-              <td tal:define="slotRelationshipId slot/RelationshipIdAndParticipation | nothing;
-                              slotTicketRef slot/RelatedTicketReference | nothing;
-                              slotIdx repeat/slot/index">
-                <select tal:define="availableRelationships here/AvailableRelationships;
-                                    selectName string:RelationshipsToAdd[${slotIdx}].RelationshipIdAndParticipation"
-                        name="RelationshipsToAdd[0].RelationshipIdAndParticipation"
-                        tal:attributes="name selectName">
-                  <option value=""></option>
-                  <tal:wrapper repeat="availableRelationship availableRelationships"><option tal:define="relationshipId availableRelationship/RelationshipIdentity/Value;
-                                      participation availableRelationship/Participant;
-                                      summary availableRelationship/Summary;
-                                      optionValue string:${relationshipId}-${participation};
-                                      isSelected csharp:Equals(slotRelationshipId, optionValue);
-                                      selectedVal string:selected;"
-                          tal:attributes="value optionValue; selected csharp:(isSelected == true)? selectedVal : null"
-                          tal:content="summary"
-                          value="1-Primary">Relates to</option></tal:wrapper>
-                </select>
-              </td>
-              <td><abbr title="Not applicable">N/A</abbr></td>
-              <td tal:define="slotIdx repeat/slot/index | nothing">
-                <input tal:define="inputName string:RelationshipsToAdd[${slotIdx}].RelatedTicketReference"
-                       tal:attributes="value slotTicketRef | nothing;
-                                       name inputName"
-                       name="RelationshipsToAdd[0].RelatedTicketReference" value="AB12" />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>      <div class="form_element field">
+      <div class="form_element field">
         <label for="Labels">Labels</label>
         <input type="text" id="Labels" name="CommaSeparatedLabelNames"
                tal:attributes="value here/Specification/CommaSeparatedLabelNames | ticket/CommaSeparatedLabelNames | nothing" />
@@ -113,6 +69,48 @@
           Please choose either a sprint from the list, or <em>None</em> to indicate that the ticket
           is not part of any sprint.
         </p>
+      </div>
+      <div class="form_element field form_table">
+        <table class="relationship_table editable new_relationships_only">
+          <colgroup>
+            <col class="summary">
+            <col class="ticket_ref">
+          </colgroup>
+          <thead>
+            <th class="summary">Relationship</th>
+            <th class="ticket_ref">#</th>
+          </thead>
+          <tbody>
+            <tr tal:repeat="slot here/AddRelationshipModels" class="new_relationship">
+              <td tal:define="slotRelationshipId slot/RelationshipIdAndParticipation | nothing;
+                              slotTicketRef slot/RelatedTicketReference | nothing;
+                              slotIdx repeat/slot/index"
+                  class="summary">
+                <select tal:define="availableRelationships here/AvailableRelationships;
+                                    selectName string:RelationshipsToAdd[${slotIdx}].RelationshipIdAndParticipation"
+                        name="RelationshipsToAdd[0].RelationshipIdAndParticipation"
+                        tal:attributes="name selectName">
+                  <option value=""></option>
+                  <tal:wrapper repeat="availableRelationship availableRelationships"><option tal:define="relationshipId availableRelationship/RelationshipIdentity/Value;
+                                      participation availableRelationship/Participant;
+                                      summary availableRelationship/Summary;
+                                      optionValue string:${relationshipId}-${participation};
+                                      isSelected csharp:Equals(slotRelationshipId, optionValue);
+                                      selectedVal string:selected;"
+                          tal:attributes="value optionValue; selected csharp:(isSelected == true)? selectedVal : null"
+                          tal:content="summary"
+                          value="1-Primary">Relates to</option></tal:wrapper>
+                </select>
+              </td>
+              <td class="ticket_ref" tal:define="slotIdx repeat/slot/index | nothing">
+                <input tal:define="inputName string:RelationshipsToAdd[${slotIdx}].RelatedTicketReference"
+                       tal:attributes="value slotTicketRef | nothing;
+                                       name inputName"
+                       name="RelationshipsToAdd[0].RelatedTicketReference" value="AB12" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <p class="feedback warning"
          id="ticket_creation_failure_feedback"
