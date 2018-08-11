@@ -98,6 +98,8 @@
     <Compile Include="Labels\LabelToLabelDetailDtoProfile.cs" />
     <Compile Include="Tickets\AddRelationshipModelToAddRelationshipRequestProfile.cs" />
     <Compile Include="Tickets\AvailableRelationshipToAvailableRelationshipDtoProfile.cs" />
+    <Compile Include="Tickets\TicketRelationshipIdentityToDeleteRelationshipRequestProfile.cs" />
+    <Compile Include="Tickets\DeleteRelationshipRequestToTicketRelationshipIdentityProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

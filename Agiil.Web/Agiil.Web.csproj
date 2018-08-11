@@ -422,6 +422,8 @@
     <Compile Include="Services\Tickets\AvailableRelationshipsNewTicketModelFactoryDecorator.cs" />
     <Compile Include="Services\Tickets\AvailableSprintsNewTicketModelFactoryDecorator.cs" />
     <Compile Include="Services\Tickets\AvailableTicketTypesNewTicketModelFactoryDecorator.cs" />
+    <Compile Include="Bootstrap\TempDataModule.cs" />
+    <Compile Include="Services\TempDataContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

@@ -25,15 +25,6 @@ namespace Agiil.Web.Bootstrap
         .RegisterType<AppSettingsDatabaseMaintenanceSecurityProvider>()
         .AsImplementedInterfaces();
       builder.RegisterType<LabelDetailProvider>().AsSelf().AsImplementedInterfaces();
-      builder.RegisterType<MvcTempDataProvider>();
-      builder.RegisterType<EmptyTempDataProvider>();
-      builder.Register(GetTempDataProvider);
-    }
-
-    IGetsTempData GetTempDataProvider(IComponentContext ctx, IEnumerable<Parameter> afParams)
-    {
-      try { return ctx.Resolve<MvcTempDataProvider>(afParams); }
-      catch(DependencyResolutionException) { return ctx.Resolve<EmptyTempDataProvider>(); }
     }
   }
 }

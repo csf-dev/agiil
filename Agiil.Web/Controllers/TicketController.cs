@@ -20,7 +20,7 @@ namespace Agiil.Web.Controllers
 
     readonly ITicketDetailService ticketDetailService;
     readonly Lazy<IHandlesEditTicketRequest> editor;
-    readonly Func<TempDataDictionary,IGetsEditTicketModel> editTicketModelFactory;
+    readonly Lazy<IGetsEditTicketModel> editTicketModelFactory;
     readonly IMapper mapper;
 
     public ActionResult Index(IIdentity<Ticket> id)
@@ -43,7 +43,7 @@ namespace Agiil.Web.Controllers
       if(ReferenceEquals(ticket, null))
         return HttpNotFound();
 
-      var editModelFactory = editTicketModelFactory(TempData);
+      var editModelFactory = editTicketModelFactory.Value;
       var model = editModelFactory.GetEditTicketModel(ticket);
 
       return View (model);
@@ -84,7 +84,7 @@ namespace Agiil.Web.Controllers
 
     public TicketController(ITicketDetailService ticketDetailService,
                             Lazy<IHandlesEditTicketRequest> editor,
-                            Func<TempDataDictionary,IGetsEditTicketModel> editTicketModelFactory,
+                            Lazy<IGetsEditTicketModel> editTicketModelFactory,
                             IMapper mapper)
     {
       if(editTicketModelFactory == null)

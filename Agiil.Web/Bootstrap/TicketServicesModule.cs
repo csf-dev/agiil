@@ -27,16 +27,10 @@ namespace Agiil.Web.Bootstrap
       builder.Register(GetEditTicketModelFactory);
 		}
 
-    IGetsNewTicketModel GetNewTicketModelFactory(IComponentContext ctx, IEnumerable<Parameter> afParams)
-    {
-      var factoryFactory = ctx.Resolve<IGetsNewTicketModelFactory>(afParams);
-      return factoryFactory.GetNewTicketModelFactory();
-    }
+    IGetsNewTicketModel GetNewTicketModelFactory(IComponentContext ctx)
+      => ctx.Resolve<IGetsNewTicketModelFactory>().GetNewTicketModelFactory();
 
-    IGetsEditTicketModel GetEditTicketModelFactory(IComponentContext ctx, IEnumerable<Parameter> afParams)
-    {
-      var factoryFactory = ctx.Resolve<IGetsEditTicketModelFactory>(afParams);
-      return factoryFactory.GetEditTicketModelFactory();
-    }
+    IGetsEditTicketModel GetEditTicketModelFactory(IComponentContext ctx)
+      => ctx.Resolve<IGetsEditTicketModelFactory>().GetEditTicketModelFactory();
 	}
 }

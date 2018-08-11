@@ -20,24 +20,17 @@ namespace Agiil.Web.Services.Tickets
       return output;
     }
 
-    Func<IGetsEditTicketModel,IGetsEditTicketModel> GetTempDataFactory(Func<IGetsEditTicketModel,IGetsTempData,TempDataRestoringEditTicketModelFactoryDecorator> originalFactory,
-                                                                       IGetsTempData tempDataProvider)
-    {
-      return wrapped => originalFactory(wrapped, tempDataProvider);
-    }
-
     public EditTicketModelFactoryFactory(Func<MappingEditTicketModelFactory> baseFactory,
-                                         Func<IGetsEditTicketModel,IGetsTempData,TempDataRestoringEditTicketModelFactoryDecorator> tempDataFactory,
+                                         Func<IGetsEditTicketModel,TempDataRestoringEditTicketModelFactoryDecorator> tempDataFactory,
                                          Func<IGetsEditTicketModel,AvailableRelationshipsTicketModelFactoryDecorator> relationshipFactory,
                                          Func<IGetsEditTicketModel,AvailableSprintsTicketModelFactoryDecorator> sprintFactory,
-                                         Func<IGetsEditTicketModel,AvailableTicketTypesTicketModelFactoryDecorator> ticketTypeFactory,
-                                         IGetsTempData tempDataProvider)
+                                         Func<IGetsEditTicketModel,AvailableTicketTypesTicketModelFactoryDecorator> ticketTypeFactory)
     {
       this.baseFactory = baseFactory;
 
       decoratorFactories = new Queue<Func<IGetsEditTicketModel, IGetsEditTicketModel>>();
 
-      decoratorFactories.Enqueue(GetTempDataFactory(tempDataFactory, tempDataProvider));
+      decoratorFactories.Enqueue(tempDataFactory);
       decoratorFactories.Enqueue(relationshipFactory);
       decoratorFactories.Enqueue(sprintFactory);
       decoratorFactories.Enqueue(ticketTypeFactory);
