@@ -435,8 +435,6 @@
     <None Include="Content\Css\*.css" />
     <None Include="packages.config" />
     <None Include="Content\Scss\**\*.scss" />
-    <Content Include="Views\Shared\Controls\TicketList.pt" />
-    <None Include="Views\Comment\ConfirmDelete.pt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\**\*.pt" />
