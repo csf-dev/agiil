@@ -96,7 +96,7 @@
           <td tal:content="relationship/RelatedTicket/Title">This is a ticket title</td>
           <td tal:define="relatedTicket relationship/RelatedTicket">
             <a href="Ticket/1"
-               tal:attributes="href string:Ticket/${relatedTicket/Id}"
+               tal:attributes="href string:Ticket/Index/${relatedTicket/Id}"
                tal:content="relatedTicket/Reference">AB123</a>
           </td>
         </tr>
