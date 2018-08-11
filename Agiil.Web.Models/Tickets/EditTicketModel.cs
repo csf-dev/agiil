@@ -4,7 +4,7 @@ using Agiil.Web.Models.Sprints;
 
 namespace Agiil.Web.Models.Tickets
 {
-  public class EditTicketModel : PageModel
+  public class EditTicketModel : PageModel, IHasAvailableSprints, IHasAvailableTicketTypes, IHasAvailableRelationships
   {
     public TicketDetailDto  Ticket { get; set; }
 

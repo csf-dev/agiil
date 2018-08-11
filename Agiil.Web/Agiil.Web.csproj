@@ -407,13 +407,20 @@
     <Compile Include="Services\IGetsTempData.cs" />
     <Compile Include="Services\Tickets\TempDataRestoringEditTicketModelFactoryDecorator.cs" />
     <Compile Include="Services\MvcTempDataProvider.cs" />
-    <Compile Include="Services\Tickets\AvailableSprintsEditTicketModelFactoryDecorator.cs" />
-    <Compile Include="Services\Tickets\AvailableTicketTypesEditTicketModelFactoryDecorator.cs" />
-    <Compile Include="Services\Tickets\AvailableRelationshipsEditTicketModelFactoryDecorator.cs" />
+    <Compile Include="Services\Tickets\AvailableSprintsTicketModelFactoryDecorator.cs" />
+    <Compile Include="Services\Tickets\AvailableTicketTypesTicketModelFactoryDecorator.cs" />
+    <Compile Include="Services\Tickets\AvailableRelationshipsTicketModelFactoryDecorator.cs" />
     <Compile Include="Services\Tickets\EditTicketModelFactoryFactory.cs" />
     <Compile Include="ModelBinders\TicketReferenceMvcModelBinder.cs" />
     <Compile Include="Bootstrap\TicketServicesModule.cs" />
     <Compile Include="Services\Tickets\IGetsEditTicketModelFactory.cs" />
+    <Compile Include="Services\Tickets\IGetsNewTicketModel.cs" />
+    <Compile Include="Services\Tickets\SpecificationBasedNewTicketModelFactory.cs" />
+    <Compile Include="Services\Tickets\IGetsNewTicketModelFactory.cs" />
+    <Compile Include="Services\Tickets\NewTicketModelFactoryFactory.cs" />
+    <Compile Include="Services\Tickets\AvailableRelationshipsNewTicketModelFactoryDecorator.cs" />
+    <Compile Include="Services\Tickets\AvailableSprintsNewTicketModelFactoryDecorator.cs" />
+    <Compile Include="Services\Tickets\AvailableTicketTypesNewTicketModelFactoryDecorator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

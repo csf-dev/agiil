@@ -28,9 +28,9 @@ namespace Agiil.Web.Services.Tickets
 
     public EditTicketModelFactoryFactory(Func<MappingEditTicketModelFactory> baseFactory,
                                          Func<IGetsEditTicketModel,IGetsTempData,TempDataRestoringEditTicketModelFactoryDecorator> tempDataFactory,
-                                         Func<IGetsEditTicketModel,AvailableRelationshipsEditTicketModelFactoryDecorator> relationshipFactory,
-                                         Func<IGetsEditTicketModel,AvailableSprintsEditTicketModelFactoryDecorator> sprintFactory,
-                                         Func<IGetsEditTicketModel,AvailableTicketTypesEditTicketModelFactoryDecorator> ticketTypeFactory,
+                                         Func<IGetsEditTicketModel,AvailableRelationshipsTicketModelFactoryDecorator> relationshipFactory,
+                                         Func<IGetsEditTicketModel,AvailableSprintsTicketModelFactoryDecorator> sprintFactory,
+                                         Func<IGetsEditTicketModel,AvailableTicketTypesTicketModelFactoryDecorator> ticketTypeFactory,
                                          IGetsTempData tempDataProvider)
     {
       this.baseFactory = baseFactory;

@@ -6,33 +6,37 @@ using AutoMapper;
 
 namespace Agiil.Web.Services.Tickets
 {
-  public class AvailableTicketTypesEditTicketModelFactoryDecorator : IGetsEditTicketModel
+  public class AvailableTicketTypesNewTicketModelFactoryDecorator : IGetsNewTicketModel
   {
-    readonly IGetsEditTicketModel wrapped;
+    readonly IGetsNewTicketModel wrapped;
     readonly ITicketTypeProvider ticketTypesProvider;
     readonly IMapper mapper;
 
-    public EditTicketModel GetEditTicketModel(Ticket ticket)
+    public NewTicketModel GetNewTicketModel(NewTicketSpecification spec)
     {
-      var model = wrapped.GetEditTicketModel(ticket);
-
-      model.AvailableTicketTypes = ticketTypesProvider.GetTicketTypes()
-        .Select(x => mapper.Map<TicketTypeDto>(x))
-        .ToList();
-
+      var model = wrapped.GetNewTicketModel(spec);
+      AddAvailableTicketTypes(model);
       return model;
     }
 
-    public AvailableTicketTypesEditTicketModelFactoryDecorator(IGetsEditTicketModel wrapped,
+
+    void AddAvailableTicketTypes(IHasAvailableTicketTypes model)
+    {
+      model.AvailableTicketTypes = ticketTypesProvider.GetTicketTypes()
+        .Select(mapper.Map<TicketTypeDto>)
+        .ToList();
+    }
+
+    public AvailableTicketTypesNewTicketModelFactoryDecorator( IGetsNewTicketModel wrapped,
                                                                ITicketTypeProvider ticketTypesProvider,
                                                                IMapper mapper)
     {
+      if(wrapped == null)
+        throw new ArgumentNullException(nameof(wrapped));
       if(mapper == null)
         throw new ArgumentNullException(nameof(mapper));
       if(ticketTypesProvider == null)
         throw new ArgumentNullException(nameof(ticketTypesProvider));
-      if(wrapped == null)
-        throw new ArgumentNullException(nameof(wrapped));
       this.wrapped = wrapped;
       this.ticketTypesProvider = ticketTypesProvider;
       this.mapper = mapper;

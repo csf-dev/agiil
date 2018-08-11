@@ -6,7 +6,7 @@ using AutoMapper;
 
 namespace Agiil.Web.Services.Tickets
 {
-  public class AvailableRelationshipsEditTicketModelFactoryDecorator : IGetsEditTicketModel
+  public class AvailableRelationshipsTicketModelFactoryDecorator : IGetsEditTicketModel
   {
     readonly IGetsEditTicketModel wrapped;
     readonly IGetsAvailableRelationships relationshipProvider;
@@ -15,14 +15,17 @@ namespace Agiil.Web.Services.Tickets
     public EditTicketModel GetEditTicketModel(Ticket ticket)
     {
       var model = wrapped.GetEditTicketModel(ticket);
-
-      var relationships = relationshipProvider.GetAvailableRelationships();
-      model.AvailableRelationships = mapper.Map<IList<AvailableRelationshipDto>>(relationships);
-
+      AddAvailableRelationships(model);
       return model;
     }
 
-    public AvailableRelationshipsEditTicketModelFactoryDecorator(IGetsEditTicketModel wrapped,
+    void AddAvailableRelationships(IHasAvailableRelationships model)
+    {
+      var relationships = relationshipProvider.GetAvailableRelationships();
+      model.AvailableRelationships = mapper.Map<IList<AvailableRelationshipDto>>(relationships);
+    }
+
+    public AvailableRelationshipsTicketModelFactoryDecorator(IGetsEditTicketModel wrapped,
                                                                  IGetsAvailableRelationships relationshipProvider,
                                                                  IMapper mapper)
     {
