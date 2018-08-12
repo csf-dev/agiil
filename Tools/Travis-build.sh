@@ -13,6 +13,8 @@ TEST_TEMP_DIR="${TEST_HOME}/Temp"
 WEB_APP_HOME="Agiil.Web"
 WEB_APP_BIN="${WEB_APP_HOME}/bin"
 TESTING_BIN="Tests/Agiil.Web.TestBuild/bin/Debug"
+SONARCUBE_DIR=".sonarcube"
+SONARCUBE_TOOL="${SONARCUBE_DIR}/SonarScanner.MSBuild.exe"
 
 test_outcome=1
 
@@ -50,6 +52,36 @@ prepare_screenplay_env_variables()
   export WebDriver_TunnelIdentifier
 }
 
+run_sonarcube_static_code_analysis()
+{
+  if [ "$Analyse_With_SonarCube" == "Yes" ]
+  then
+    echo "Beginning SonarCube static code analysis ..."
+    
+    version_number="Travis_job_$TRAVIS_JOB_NUMBER"
+    anlysis_properties_file="$(pwd)/.sonarqube-analysisproperties.xml"
+    
+    mono "$SONARCUBE_TOOL" begin \
+      /k:"Agiil" \
+      /v:"$version_number" \
+      /s:"$anlysis_properties_file" \
+      /d:sonar.organization="craigfowler-github" \
+      /d:sonar.host.url="https://sonarcloud.io" \
+      /d:sonar.login="$SONARCLOUD_SECRET_KEY"
+    
+    echo "Rebuilding for static code analysis ..."
+    
+    msbuild /t:Rebuild /nologo /verbosity:quiet
+    
+    echo "Completing SonarCube static code analysis ..."
+    
+    mono "$SONARCUBE_TOOL" end \
+      /d:sonar.login="$SONARCLOUD_SECRET_KEY"
+  else
+    echo "Skipping SonarCube static code analysis because environment variable 'Analyse_With_SonarCube' is not 'Yes'"
+  fi
+}
+
 run_integration_tests()
 {
   Tools/Run-integration-tests.sh
@@ -60,5 +92,6 @@ build_solution
 run_unit_tests
 prepare_screenplay_env_variables
 run_integration_tests
+run_sonarcube_static_code_analysis
 
 exit $test_outcome
