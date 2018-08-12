@@ -13,6 +13,8 @@ TEST_TEMP_DIR="${TEST_HOME}/Temp"
 WEB_APP_HOME="Agiil.Web"
 WEB_APP_BIN="${WEB_APP_HOME}/bin"
 TESTING_BIN="Tests/Agiil.Web.TestBuild/bin/Debug"
+SONARCUBE_DIR=".sonarcube"
+SONARCUBE_TOOL="${SONARCUBE_DIR}/SonarScanner.MSBuild.exe"
 
 test_outcome=1
 
@@ -50,6 +52,29 @@ prepare_screenplay_env_variables()
   export WebDriver_TunnelIdentifier
 }
 
+run_sonarcube_static_code_analysis()
+{
+  echo "Beginning SonarCube static code analysis ..."
+  
+  version_number="$(git tag | egrep "^v[0-9.]+" | sort -Vr | head -n 1)"
+  
+  mono "$SONARCUBE_TOOL" begin \
+    /k:"Agiil" \
+    /v:"$version_number" \
+    /d:sonar.organization="craigfowler-github" \
+    /d:sonar.host.url="https://sonarcloud.io" \
+    /d:sonar.login="$SONARCLOUD_SECRET_KEY"
+  
+  echo "Rebuilding for static code analysis ..."
+  
+  msbuild /t:Rebuild /nologo /verbosity:quiet
+  
+  echo "Completing SonarCube static code analysis ..."
+  
+  mono "$SONARCUBE_TOOL" end \
+    /d:sonar.login="$SONARCLOUD_SECRET_KEY"
+}
+
 run_integration_tests()
 {
   Tools/Run-integration-tests.sh
@@ -58,7 +83,8 @@ run_integration_tests()
 
 build_solution
 run_unit_tests
-prepare_screenplay_env_variables
-run_integration_tests
+# prepare_screenplay_env_variables
+# run_integration_tests
+run_sonarcube_static_code_analysis
 
 exit $test_outcome
