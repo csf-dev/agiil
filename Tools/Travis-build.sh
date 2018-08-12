@@ -63,6 +63,7 @@ run_sonarcube_static_code_analysis()
     mono "$SONARCUBE_TOOL" begin \
       /k:"Agiil" \
       /v:"$version_number" \
+      /s:".sonaryqube-analysisproperties.xml" \
       /d:sonar.organization="craigfowler-github" \
       /d:sonar.host.url="https://sonarcloud.io" \
       /d:sonar.login="$SONARCLOUD_SECRET_KEY"
