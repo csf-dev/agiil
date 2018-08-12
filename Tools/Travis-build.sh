@@ -54,7 +54,7 @@ prepare_screenplay_env_variables()
 
 run_sonarcube_static_code_analysis()
 {
-  if [ "$Analyse_With_SonarCube" -eq "Yes" ]
+  if [ "$Analyse_With_SonarCube" == "Yes" ]
   then
     echo "Beginning SonarCube static code analysis ..."
     
