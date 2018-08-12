@@ -90,8 +90,8 @@ run_integration_tests()
 
 build_solution
 run_unit_tests
-# prepare_screenplay_env_variables
-# run_integration_tests
+prepare_screenplay_env_variables
+run_integration_tests
 run_sonarcube_static_code_analysis
 
 exit $test_outcome
