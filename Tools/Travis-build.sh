@@ -54,25 +54,30 @@ prepare_screenplay_env_variables()
 
 run_sonarcube_static_code_analysis()
 {
-  echo "Beginning SonarCube static code analysis ..."
-  
-  version_number="$(git tag | egrep "^v[0-9.]+" | sort -Vr | head -n 1)"
-  
-  mono "$SONARCUBE_TOOL" begin \
-    /k:"Agiil" \
-    /v:"$version_number" \
-    /d:sonar.organization="craigfowler-github" \
-    /d:sonar.host.url="https://sonarcloud.io" \
-    /d:sonar.login="$SONARCLOUD_SECRET_KEY"
-  
-  echo "Rebuilding for static code analysis ..."
-  
-  msbuild /t:Rebuild /nologo /verbosity:quiet
-  
-  echo "Completing SonarCube static code analysis ..."
-  
-  mono "$SONARCUBE_TOOL" end \
-    /d:sonar.login="$SONARCLOUD_SECRET_KEY"
+  if [ "$Analyse_With_SonarCube" -eq "Yes" ]
+  then
+    echo "Beginning SonarCube static code analysis ..."
+    
+    version_number="Travis_job_$TRAVIS_JOB_NUMBER"
+    
+    mono "$SONARCUBE_TOOL" begin \
+      /k:"Agiil" \
+      /v:"$version_number" \
+      /d:sonar.organization="craigfowler-github" \
+      /d:sonar.host.url="https://sonarcloud.io" \
+      /d:sonar.login="$SONARCLOUD_SECRET_KEY"
+    
+    echo "Rebuilding for static code analysis ..."
+    
+    msbuild /t:Rebuild /nologo /verbosity:quiet
+    
+    echo "Completing SonarCube static code analysis ..."
+    
+    mono "$SONARCUBE_TOOL" end \
+      /d:sonar.login="$SONARCLOUD_SECRET_KEY"
+  else
+    echo "Skipping SonarCube static code analysis because environment variable 'Analyse_With_SonarCube' is not 'Yes'"
+  fi
 }
 
 run_integration_tests()

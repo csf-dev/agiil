@@ -32,12 +32,12 @@ install_sonarcube()
 {
   echo "Downloading the latest version of Sonar Scanner ..."
 
-  # Travis uses Xamarin's apt repo which has an ancient nuget version
   mkdir -p "$SONARCUBE_DIR"
   wget -O "$SONARCUBE_ZIP" "$SONARCUBE_DIST"
-  stop_if_failure $? "Download Sonar Scanner"
+  unzip "$SONARCUBE_ZIP" \
+    -d "${SONARCUBE_DIR}/"
   
-  unzip "$SONARCUBE_ZIP"
+  stop_if_failure $? "Download Sonar Scanner"
 }
 
 echo_nuget_version_to_console()
