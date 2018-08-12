@@ -59,11 +59,12 @@ run_sonarcube_static_code_analysis()
     echo "Beginning SonarCube static code analysis ..."
     
     version_number="Travis_job_$TRAVIS_JOB_NUMBER"
+    anlysis_properties_file="$(pwd)/.sonarqube-analysisproperties.xml"
     
     mono "$SONARCUBE_TOOL" begin \
       /k:"Agiil" \
       /v:"$version_number" \
-      /s:".sonaryqube-analysisproperties.xml" \
+      /s:"$anlysis_properties_file" \
       /d:sonar.organization="craigfowler-github" \
       /d:sonar.host.url="https://sonarcloud.io" \
       /d:sonar.login="$SONARCLOUD_SECRET_KEY"
