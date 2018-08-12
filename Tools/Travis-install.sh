@@ -34,7 +34,7 @@ install_sonarcube()
 
   # Travis uses Xamarin's apt repo which has an ancient nuget version
   mkdir -p "$SONARCUBE_DIR"
-  wget -O "$SONARCUBE_DIR" "$SONARCUBE_DIST"
+  wget -O "$SONARCUBE_ZIP" "$SONARCUBE_DIST"
   stop_if_failure $? "Download Sonar Scanner"
   
   unzip "$SONARCUBE_ZIP"
