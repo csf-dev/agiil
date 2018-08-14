@@ -1,38 +1,15 @@
-﻿using System;
-using System.Web;
+﻿using System.Web;
 using Autofac;
 using Agiil.Auth;
-using CSF.Security.Authentication;
 using Microsoft.Owin.Security;
-using System.Linq;
 using System.Collections.Generic;
-using System.Reflection;
 
 namespace Agiil.Bootstrap.Auth
 {
-  public class AuthModule : NamespaceModule
+  public class AuthModule : Module
   {
-    protected override IEnumerable<Type> TypesNotToRegisterAutomatically
-    {
-      get {
-        return new [] { typeof(LoginRequest), };
-      }
-    }
-
-    protected override string Namespace => typeof(AuthenticationService).Namespace;
-
-    protected override IEnumerable<Assembly> GetSearchAssemblies()
-    {
-      return new [] {
-        Assembly.GetAssembly(typeof(Agiil.Auth.IAuthenticationResult)),
-        Assembly.GetAssembly(typeof(Agiil.Auth.AuthenticationResult)),
-      };
-    }
-
     protected override void Load (ContainerBuilder builder)
     {
-      base.Load(builder);
-
       builder
         .Register(GetLoginRequest)
         .As<ILoginRequest>();

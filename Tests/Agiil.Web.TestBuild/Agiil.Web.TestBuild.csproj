@@ -122,6 +122,8 @@
     <Compile Include="Bootstrap\BrakePedalPolicyModule.cs" />
     <Compile Include="Services\OverridableVersionInfoProvider.cs" />
     <Compile Include="Controllers\OverrideVersionNumberController.cs" />
+    <Compile Include="Bootstrap\LoginReaderModule.cs" />
+    <Compile Include="Bootstrap\VersionInfoModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

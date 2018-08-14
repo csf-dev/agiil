@@ -5,7 +5,7 @@ namespace Agiil.Bootstrap.DiConfiguration
 {
   public class ContainerFactoryProvider
   {
-    public IAutofacContainerFactory GetContainerBuilderFactory()
+    public IGetsAutofacContainer GetContainerBuilderFactory()
     {
       var factoryType = GetFactoryType();
 
@@ -28,12 +28,12 @@ namespace Agiil.Bootstrap.DiConfiguration
       return reader.ReadSection<DiConfigurationSection>();
     }
 
-    IAutofacContainerFactory GetFactory(Type factoryType)
+    IGetsAutofacContainer GetFactory(Type factoryType)
     {
       if(factoryType == null)
         throw new ArgumentNullException(nameof(factoryType));
 
-      return (IAutofacContainerFactory) Activator.CreateInstance(factoryType);
+      return (IGetsAutofacContainer) Activator.CreateInstance(factoryType);
     }
   }
 }

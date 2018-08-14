@@ -30,8 +30,6 @@ namespace Agiil.Web.App_Start
     {
       var builder = base.GetContainerBuilder();
 
-      RegisterWebAppComponents(builder);
-
       RegisterAspNetWebApiComponents(builder);
 
       RegisterAspNetMvcComponents(builder);
@@ -49,47 +47,12 @@ namespace Agiil.Web.App_Start
       builder.RegisterModule(new AspNetWebApiModule(HttpConfig));
     }
 
-    protected virtual void RegisterWebAppComponents(ContainerBuilder builder)
-    {
-      var modulesToAutoRegister = GetAllAssemblyModules()
-        .Except(GetModuleTypesNotToRegisterAutomatically())
-        .ToArray();
+		protected override IEnumerable<Assembly> GetModuleAssemblies()
+		{
+      return base.GetModuleAssemblies().Union(new [] { Assembly.GetExecutingAssembly() });
+		}
 
-      foreach(var moduleType in modulesToAutoRegister)
-      {
-        builder.RegisterModule((IModule) Activator.CreateInstance(moduleType));
-      }
-    }
-
-    protected virtual IEnumerable<Type> GetModuleTypesNotToRegisterAutomatically()
-    {
-      return new [] {
-        typeof(AspNetMvcModule),
-        typeof(AspNetWebApiModule),
-      };
-    }
-
-    protected virtual IEnumerable<Assembly> GetAssembliesToAutoscan()
-    {
-      return new [] { Assembly.GetExecutingAssembly() };
-    }
-
-    protected virtual IEnumerable<Type> GetAllAssemblyModules()
-    {
-      var moduleType = typeof(Autofac.Module);
-      var assembliesToScan = GetAssembliesToAutoscan();
-
-      return (from assembly in assembliesToScan
-              from type in assembly.GetExportedTypes()
-              where
-                moduleType.IsAssignableFrom(type)
-                && type.IsClass
-                && !type.IsAbstract
-              select type)
-        .ToArray();
-    }
-
-    public virtual void SetHttpConfiguration(HttpConfiguration config)
+		public virtual void OverrideHttpConfiguration(HttpConfiguration config)
     {
       if(config == null)
         throw new ArgumentNullException(nameof(config));

@@ -9,24 +9,15 @@ namespace Agiil.Bootstrap.ObjectMaps
   {
     protected override void Load(ContainerBuilder builder)
     {
-      builder
-        .RegisterType<ProfileTypesProvider>()
-        .As<IProfileTypesProvider>();
+      builder.Register(GetMapperConfiguration);
 
-      builder
-        .RegisterType<MapperConfigurationFactory>()
-        .As<IMapperConfigurationFactory>();
-
-      builder
-        .Register(ctx => {
-          var factory = ctx.Resolve<IMapperConfigurationFactory>();
-          return factory.GetConfiguration();
-        });
-
-      builder.Register(ctx => {
-        var config = ctx.Resolve<MapperConfiguration>();
-        return config.CreateMapper();
-      });
+      builder.Register(GetMapper);
     }
+
+    MapperConfiguration GetMapperConfiguration(IComponentContext ctx)
+      => ctx.Resolve<IMapperConfigurationFactory>().GetConfiguration();
+
+    IMapper GetMapper(IComponentContext ctx)
+      => ctx.Resolve<MapperConfiguration>().CreateMapper();
   }
 }

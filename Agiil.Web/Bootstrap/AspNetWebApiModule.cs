@@ -7,6 +7,7 @@ using Autofac.Integration.WebApi;
 
 namespace Agiil.Web.Bootstrap
 {
+  [Agiil.Bootstrap.DoNotAutoRegister]
   public class AspNetWebApiModule : Module
   {
     readonly HttpConfiguration config;

@@ -10,7 +10,7 @@ namespace Agiil.Tests.TicketSearch
   [TestFixture,Category("Integration")]
   public class GetSearchIntegrationTests
   {
-    IAutofacContainerFactory containerProvider = CachingDomainContainerFactory.Default;
+    IGetsAutofacContainer containerProvider = CachingDomainContainerFactory.Default;
 
     [Test]
     public void GetSearch_can_get_a_search_model_with_an_element_predicate_and_value()

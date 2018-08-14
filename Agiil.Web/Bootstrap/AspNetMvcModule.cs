@@ -6,6 +6,7 @@ using Autofac.Integration.Mvc;
 
 namespace Agiil.Web.Bootstrap
 {
+  [Agiil.Bootstrap.DoNotAutoRegister]
   public class AspNetMvcModule : Module
   {
     protected override void Load(ContainerBuilder builder)
