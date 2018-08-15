@@ -126,8 +126,6 @@
     <Compile Include="Data\NHibernateModule.cs" />
     <Compile Include="IGetsAutofacContainer.cs" />
     <Compile Include="DomainContainerFactory.cs" />
-    <Compile Include="EnvironmentModule.cs" />
-    <Compile Include="DomainWideTypesModule.cs" />
     <Compile Include="Validation\ValidationModule.cs" />
     <Compile Include="Validation\AutofacValidationRuleResolver.cs" />
     <Compile Include="Auth\CSFSecurityModule.cs" />

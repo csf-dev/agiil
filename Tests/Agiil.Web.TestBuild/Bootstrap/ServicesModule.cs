@@ -1,5 +1,6 @@
 ﻿using Agiil.Bootstrap;
 using Agiil.Web.Services;
+using Agiil.Web.Services.DataPackages;
 using Autofac;
 
 namespace Agiil.Web.Bootstrap
@@ -9,7 +10,8 @@ namespace Agiil.Web.Bootstrap
   {
     protected override void Load(ContainerBuilder builder)
     {
-      BulkRegistrationHelper.Default.RegisterAll<IServicesNamespaceMarker>(builder);
+      BulkRegistrationHelper.Default.RegisterAllExcept<IServicesNamespaceMarker>(builder,
+                                                                                 typeof(SimpleSampleProject));
     }
   }
 }

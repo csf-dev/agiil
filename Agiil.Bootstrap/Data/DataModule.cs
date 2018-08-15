@@ -1,4 +1,5 @@
-﻿using Agiil.Data;
+﻿using System;
+using Agiil.Data;
 using Agiil.Domain.Data;
 using Autofac;
 
@@ -14,10 +15,7 @@ namespace Agiil.Bootstrap.Data
         .RegisterType<SnapshotStore>()
         .SingleInstance();
 
-      builder
-        .Register(GetBackupTakingUpgrader)
-        .AsSelf()
-        .As<IPerformsDatabaseUpgrades>();
+      builder.Register(GetBackupTakingUpgrader);
       
       builder
         .RegisterConfiguration<DataDirectoryConfigurationSection>()
@@ -25,11 +23,11 @@ namespace Agiil.Bootstrap.Data
         .As<IGetsDataDirectory>();
     }
 
-    BackupTakingUpgrader GetBackupTakingUpgrader(IComponentContext c)
+    IPerformsDatabaseUpgrades GetBackupTakingUpgrader(IComponentContext c)
     {
+      var factory = c.Resolve<Func<IPerformsDatabaseUpgrades,BackupTakingUpgrader>>();
       var innerUpgrader = c.Resolve<DbUpDatabaseUpgrader>();
-      var backupService = c.Resolve<ITakesDatabaseBackup>();
-      return new BackupTakingUpgrader(innerUpgrader, backupService);
+      return factory(innerUpgrader);
     }
   }
 }

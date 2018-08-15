@@ -1,6 +1,4 @@
 ﻿using System;
-using Agiil.Data;
-using Agiil.Domain.Data;
 using Autofac;
 using CSF.Data;
 using CSF.Data.Entities;
@@ -21,11 +19,6 @@ namespace Agiil.Bootstrap.Data
         .RegisterType<NHibernatePersister>()
         .AsSelf()
         .As<IPersister>();
-
-      builder
-        .RegisterType<DevelopmentInitialDataCreator>()
-        .AsSelf()
-        .As<IInitialDataCreator>();
 
       builder
         .RegisterType<EntityData>()
