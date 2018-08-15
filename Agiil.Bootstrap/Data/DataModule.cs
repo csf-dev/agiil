@@ -1,47 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Configuration;
 using Agiil.Data;
 using Agiil.Domain.Data;
 using Autofac;
-using Agiil.Domain;
 
 namespace Agiil.Bootstrap.Data
 {
-  public class DataModule : NamespaceModule
+  public class DataModule : Module
   {
-    static readonly Type NamespaceMarkerType = typeof(ISnapshotService);
-
-    protected override string Namespace => NamespaceMarkerType.Namespace;
-
-    protected override IEnumerable<Assembly> GetSearchAssemblies()
-    {
-      return new [] {
-        NamespaceMarkerType.Assembly,
-        typeof(IDomainImplementationAssemblyMarker).Assembly
-      };
-    }
-
-    protected override IEnumerable<Type> TypesNotToRegisterAutomatically
-    {
-      get {
-        return new [] {
-          typeof(SnapshotStore),
-          typeof(SnapshottingDatabaseResetter),
-          typeof(NHibernateSchemaExportingDatabaseCreator),
-          typeof(DbUpDatabaseUpgrader),
-        };
-      }
-    }
-
-    BackupTakingUpgrader GetBackupTakingUpgrader(IComponentContext c)
-    {
-      var innerUpgrader = c.Resolve<DbUpDatabaseUpgrader>();
-      var backupService = c.Resolve<ITakesDatabaseBackup>();
-      return new BackupTakingUpgrader(innerUpgrader, backupService);
-    }
-
     protected override void Load(ContainerBuilder builder)
     {
       base.Load(builder);
@@ -50,24 +15,19 @@ namespace Agiil.Bootstrap.Data
         .RegisterType<SnapshotStore>()
         .SingleInstance();
 
+      builder.Register(GetBackupTakingUpgrader);
+      
       builder
-        .RegisterType<SnapshottingDatabaseResetter>()
-        .AsSelf();
-
-      builder
-        .RegisterType<NHibernateSchemaExportingDatabaseCreator>()
+        .RegisterConfiguration<DataDirectoryConfigurationSection>()
         .AsSelf()
-        .As<IExportsDatabaseSchema>();
+        .As<IGetsDataDirectory>();
+    }
 
-      builder
-        .RegisterType<DbUpDatabaseUpgrader>()
-        .AsSelf()
-        .AsImplementedInterfaces();
-
-      builder
-        .Register(GetBackupTakingUpgrader)
-        .AsSelf()
-        .As<IPerformsDatabaseUpgrades>();
+    IPerformsDatabaseUpgrades GetBackupTakingUpgrader(IComponentContext c)
+    {
+      var factory = c.Resolve<Func<IPerformsDatabaseUpgrades,BackupTakingUpgrader>>();
+      var innerUpgrader = c.Resolve<DbUpDatabaseUpgrader>();
+      return factory(innerUpgrader);
     }
   }
 }

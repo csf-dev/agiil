@@ -79,6 +79,7 @@
     <Compile Include="ILoginThrottlingService.cs" />
     <Compile Include="LoginThrottlingResponse.cs" />
     <Compile Include="ILogsUserInOrOut.cs" />
+    <Compile Include="AuthenticationAssemblyMarker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

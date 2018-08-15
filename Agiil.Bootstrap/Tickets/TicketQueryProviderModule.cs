@@ -12,9 +12,6 @@ namespace Agiil.Bootstrap.Tickets
   {
 		protected override void Load(ContainerBuilder builder)
 		{
-      builder.RegisterType<TicketQueryProvider>();
-      builder.RegisterType<SpecificationQueryProviderDecorator>();
-
       builder.Register(GetTicketQuery);
 		}
 

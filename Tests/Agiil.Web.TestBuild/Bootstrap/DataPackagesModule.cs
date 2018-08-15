@@ -5,16 +5,15 @@ using System.Linq;
 using Agiil.Web.Services.DataPackages;
 using Autofac;
 using Agiil.Web.Services;
+using Agiil.Bootstrap;
+using Agiil.Bootstrap.Specifications;
+using CSF.Data.Specifications;
 
 namespace Agiil.Web.Bootstrap
 {
   public class DataPackagesModule : Autofac.Module
   {
-    static readonly Type
-      NamespaceMarker = typeof(IDataPackagesNamespaceMarker),
-      DataPackageInterface = typeof(IDataPackage);
-
-    string DataPackagesNamespace => NamespaceMarker.Namespace;
+    readonly IGetsTypes typeProvider;
 
     protected override void Load(ContainerBuilder builder)
     {
@@ -33,14 +32,19 @@ namespace Agiil.Web.Bootstrap
 
     IEnumerable<Type> GetDataPackageTypes()
     {
-      return (from type in Assembly.GetExecutingAssembly().GetExportedTypes()
-              where
-                type.IsClass
-                && !type.IsAbstract
-                && DataPackageInterface.IsAssignableFrom(type)
-                && type.Namespace == DataPackagesNamespace
-             select type)
-        .ToArray();
+      var isDataPackage = new IsConcreteSpecification()
+        .And(new ImplementsSpecification<IDataPackage>());
+      
+      return typeProvider.GetTypes<IDataPackagesNamespaceMarker>()
+                         .Where(isDataPackage)
+                         .ToArray();
+    }
+
+    public DataPackagesModule() : this(null) {}
+
+    public DataPackagesModule(IGetsTypes typeProvider)
+    {
+      this.typeProvider = typeProvider ?? new ConcreteTypesInAssemblyOfMarkerProvider();
     }
   }
 }

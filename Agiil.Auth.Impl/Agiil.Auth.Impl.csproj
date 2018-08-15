@@ -120,6 +120,7 @@
     <Compile Include="AuthenticationResult.cs" />
     <Compile Include="BrakePedalLoginThrottlingService.cs" />
     <Compile Include="BrakePedalThrottlePolicyProvider.cs" />
+    <Compile Include="AuthenticationImplementationAssemblyMarker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

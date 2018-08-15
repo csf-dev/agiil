@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Reflection;
 using Agiil.Bootstrap.ObjectMaps;
 using Agiil.ObjectMaps;
@@ -6,7 +6,7 @@ using Autofac;
 
 namespace Agiil.Bootstrap
 {
-  public class DomainContainerFactory : IAutofacContainerFactory
+  public class DomainContainerFactory : IGetsAutofacContainer
   {
     public virtual IContainer GetContainer()
     {
@@ -25,7 +25,11 @@ namespace Agiil.Bootstrap
 
     protected virtual void RegisterDomainComponents(ContainerBuilder builder)
     {
-      builder.RegisterAssemblyModules(Assembly.GetExecutingAssembly());
+      var scannedAssemblies = GetModuleAssemblies();
+
+      new OrderedModuleBulkRegistrationService(scannedAssemblies).RegisterModules(builder);
+      new UnorderedModuleBulkRegistrationService(scannedAssemblies).RegisterModules(builder);
+
       RegisterAllAutomapperProfiles(builder);
     }
 
@@ -34,6 +38,13 @@ namespace Agiil.Bootstrap
       var provider = GetProfileTypesProvider();
       var module = new AutomapperProfilesModule(provider);
       builder.RegisterModule(module);
+    }
+
+    protected virtual IEnumerable<Assembly> GetModuleAssemblies()
+    {
+      return new [] {
+        Assembly.GetExecutingAssembly(),
+      };
     }
 
     protected virtual IProfileTypesProvider GetProfileTypesProvider()

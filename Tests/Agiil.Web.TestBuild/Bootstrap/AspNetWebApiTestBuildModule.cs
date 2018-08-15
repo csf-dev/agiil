@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Web.Http;
-using Agiil.Web.Bootstrap;
 using Autofac.Integration.WebApi;
 
 namespace Agiil.Web.Bootstrap
 {
+  [Agiil.Bootstrap.DoNotAutoRegister]
   public class AspNetWebApiTestBuildModule : AspNetWebApiModule
   {
     protected override void RegisterControllers(Autofac.ContainerBuilder builder)

@@ -6,7 +6,7 @@ namespace Agiil.Tests
 {
   public class CachingDomainContainerFactory : DomainContainerFactory
   {
-    static readonly IAutofacContainerFactory defaultInstance;
+    static readonly IGetsAutofacContainer defaultInstance;
 
     readonly object syncRoot;
     IContainer container;
@@ -32,6 +32,6 @@ namespace Agiil.Tests
       defaultInstance = new CachingDomainContainerFactory();
     }
 
-    public static IAutofacContainerFactory Default => defaultInstance;
+    public static IGetsAutofacContainer Default => defaultInstance;
   }
 }

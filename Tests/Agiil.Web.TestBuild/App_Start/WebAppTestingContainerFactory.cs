@@ -9,19 +9,10 @@ namespace Agiil.Web.App_Start
 {
   public class WebAppTestingContainerFactory : WebAppContainerFactory
   {
-    protected override IEnumerable<Assembly> GetAssembliesToAutoscan()
-    {
-      return base.GetAssembliesToAutoscan()
-        .Union(new [] { Assembly.GetExecutingAssembly() })
-        .ToArray();
-    }
-
-    protected override IEnumerable<Type> GetModuleTypesNotToRegisterAutomatically()
-    {
-      return base.GetModuleTypesNotToRegisterAutomatically()
-        .Union(new [] { typeof(AspNetWebApiTestBuildModule) })
-        .ToArray();
-    }
+		protected override IEnumerable<Assembly> GetModuleAssemblies()
+		{
+      return base.GetModuleAssemblies().Union(new [] { Assembly.GetExecutingAssembly() });
+		}
 
     protected override void RegisterAspNetWebApiComponents(ContainerBuilder builder)
     {

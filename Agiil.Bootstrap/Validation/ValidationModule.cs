@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using Agiil.Domain.Validation;
+﻿using System.Collections.Generic;
 using Autofac;
 using Autofac.Core;
 using CSF.Validation;
 using CSF.Validation.Rules;
-using System.Linq;
-using CSF.Validation.StockRules;
 using Agiil.Domain;
 
 namespace Agiil.Bootstrap.Validation
 {
-  public class ValidationModule : Autofac.Module
+  public class ValidationModule : Module
   {
     protected override void Load(ContainerBuilder builder)
     {

@@ -14,18 +14,14 @@ namespace Agiil.Web.Bootstrap
         .RegisterType<TestingDatabaseConfiguration>()
         .As<IDatabaseConfiguration>();
 
-      builder
-        .Register(BuildSnapshotDatabaseResetter)
-        .As<IResetsDatabase>();
+      builder.Register(BuildSnapshotDatabaseResetter);
     }
 
-    SnapshottingDatabaseResetter BuildSnapshotDatabaseResetter(IComponentContext ctx)
+    IResetsDatabase BuildSnapshotDatabaseResetter(IComponentContext ctx)
     {
+      var factory = ctx.Resolve<Func<IResetsDatabase,SnapshottingDatabaseResetter>>();
       var baseResetter = ctx.Resolve<DevelopmentDatabaseResetter>();
-      var snapshotStore = ctx.Resolve<SnapshotStore>();
-      var snapshotService = ctx.Resolve<ISnapshotService>();
-
-      return new SnapshottingDatabaseResetter(baseResetter, snapshotStore, snapshotService);
+      return factory(baseResetter);
     }
   }
 }
