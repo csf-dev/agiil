@@ -1,4 +1,5 @@
-﻿using CSF.Screenplay;
+﻿using Agiil.BDD.Abilities;
+using CSF.Screenplay;
 using CSF.Screenplay.Integration;
 using CSF.Screenplay.ReportFormatting;
 using CSF.Screenplay.Reporting;
@@ -20,6 +21,18 @@ namespace Agiil.Tests.BDD
 
     public void Configure(IIntegrationConfigBuilder builder)
     {
+      builder.UseSharedUriTransformer(new RootUriPrependingTransformer(ApplicationBaseUri));
+      builder.UseWebDriverFromConfiguration();
+      builder.UseWebBrowser();
+      builder.UseBrowserFlags();
+      builder.UseWebApis(ApiBaseUri);
+      builder.UseAutofacContainer();
+
+      ConfigureReporting(builder);
+    }
+
+    void ConfigureReporting(IIntegrationConfigBuilder builder)
+    {
       builder.UseReporting(reporting => {
         reporting
           .SubscribeToActorsCreatedInCast()
@@ -28,11 +41,6 @@ namespace Agiil.Tests.BDD
           .WithFormattingStrategy<ElementCollectionFormatter>()
           .WithScenarioRenderer(JsonScenarioRenderer.CreateForFile("Agiil.Tests.BDD.report.json"));
       });
-      builder.UseSharedUriTransformer(new RootUriPrependingTransformer(ApplicationBaseUri));
-      builder.UseWebDriverFromConfiguration();
-      builder.UseWebBrowser();
-      builder.UseBrowserFlags();
-      builder.UseWebApis(ApiBaseUri);
     }
   }
 }
