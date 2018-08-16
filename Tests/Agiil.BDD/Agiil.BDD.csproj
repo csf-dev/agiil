@@ -131,6 +131,9 @@
     <Reference Include="CSF.Screenplay.WebApis">
       <HintPath>..\..\packages\CSF.Screenplay.WebApis.0.14.0-beta\lib\net45\CSF.Screenplay.WebApis.dll</HintPath>
     </Reference>
+    <Reference Include="Autofac">
+      <HintPath>..\..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bindings\Auth\UserAccountSteps.cs" />
@@ -248,6 +251,10 @@
     <Compile Include="Bindings\Tickets\DeletingACommentSteps.cs" />
     <Compile Include="Tasks\Tickets\DeleteTheFirstDeletableCommentWithoutConfirming.cs" />
     <Compile Include="Pages\DeleteComment.cs" />
+    <Compile Include="Abilities\ResolveComponentsFromAutofac.cs" />
+    <Compile Include="Abilities\AutofacIntegrationConfigBuilderExtensions.cs" />
+    <Compile Include="Personas\Ingrid.cs" />
+    <Compile Include="IntegrationTasks\Auth\OverrideTheCurrentUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -280,6 +287,8 @@
     <Folder Include="Bindings\Labels\" />
     <Folder Include="Models\Labels\" />
     <Folder Include="Tasks\Labels\" />
+    <Folder Include="IntegrationTasks\" />
+    <Folder Include="IntegrationTasks\Auth\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj">
