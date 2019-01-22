@@ -424,6 +424,7 @@
     <Compile Include="Services\Tickets\AvailableTicketTypesNewTicketModelFactoryDecorator.cs" />
     <Compile Include="Bootstrap\TempDataModule.cs" />
     <Compile Include="Services\TempDataContainer.cs" />
+    <Compile Include="ApiControllers\LabelsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

@@ -198,6 +198,9 @@
     <Compile Include="Tickets\SummaryProvidingRelationshipVisitor.cs" />
     <Compile Include="Tickets\VisitorBasedRelationshipSummaryProvider.cs" />
     <Compile Include="Tickets\AvailableRelationshipProvider.cs" />
+    <Compile Include="Labels\LabelSearcher.cs" />
+    <Compile Include="Labels\AllLabelsByPopularitySearcher.cs" />
+    <Compile Include="Labels\LabelsMatchingSearchByRelevanceSearcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

@@ -8,6 +8,9 @@ namespace Agiil.Bootstrap.Labels
 		protected override void Load(ContainerBuilder builder)
 		{
       builder.Register(GetLabelProvider);
+
+      // There are a few implementations but this one is registered for the interface
+      builder.RegisterType<LabelSearcher>().As<ISearchesForLabels>();
 		}
 
     IGetsLabels GetLabelProvider(IComponentContext ctx)

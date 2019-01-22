@@ -207,6 +207,7 @@
     <Compile Include="Tickets\IGetsRelationshipSummary.cs" />
     <Compile Include="Tickets\IGetsAvailableRelationships.cs" />
     <Compile Include="Tickets\AvailableRelationship.cs" />
+    <Compile Include="Labels\ISearchesForLabels.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
