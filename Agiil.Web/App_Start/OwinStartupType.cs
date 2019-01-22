@@ -55,9 +55,9 @@ namespace Agiil.Web.App_Start
     void ConfigureWebApi(IAppBuilder app, IContainer container, HttpConfiguration config)
     {
       app.MapWhen(IsWebApiUrl, inner => {
-        ConfigureBearerTokenAuthentication(inner, container);
+        ConfigureWebApiAuthentication(inner, container);
 
-        config.Filters.Add(new HostAuthenticationFilter(OAuthAuthorizationChecker.AuthenticationType));
+        config.Filters.Add(new HostAuthenticationFilter(DefaultAuthenticationTypes.ApplicationCookie));
 
         config.Routes.Clear();
         new RouteConfiguration().RegisterWebApiRoutes(config);
@@ -122,12 +122,13 @@ namespace Agiil.Web.App_Start
       builder.UseAesDataProtectorProvider();
     }
 
-    void ConfigureBearerTokenAuthentication(IAppBuilder builder, IContainer container)
+    void ConfigureWebApiAuthentication(IAppBuilder builder, IContainer container)
     {
-      var jwtOptions = container.Resolve<IJwtBearerAuthenticationOptionsFactory>();
-      builder.UseJwtBearerAuthentication(jwtOptions.GetOptions());
+      builder.UseCookieAuthentication(new CookieAuthenticationOptions {
+        AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie
+      });
 
-      builder.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+      builder.UseAesDataProtectorProvider();
     }
   }
 }
