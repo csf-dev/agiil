@@ -1,0 +1,61 @@
+{
+  "name": "agiil.web.client",
+  "version": "0.6.0",
+  "description": "Web client/user interface for the Agiil web app",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx karma run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csf-dev/agiil.git"
+  },
+  "keywords": [
+    "agiil",
+    "react",
+    "redux",
+    "ui"
+  ],
+  "author": "CSF Software Limited",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/csf-dev/agiil/issues"
+  },
+  "homepage": "https://github.com/csf-dev/agiil#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-flow": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "flow-bin": "^0.91.0",
+    "flow-typed": "^2.5.1",
+    "jasmine": "^3.3.1",
+    "karma": "^4.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^2.0.1",
+    "karma-webpack": "^3.0.5",
+    "react": "^16.7.0",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1",
+    "webpack": "^4.29.0"
+  },
+  "browserslist": [
+    "> 0.2%",
+    "last 2 versions",
+    "ChromeAndroid >= 55",
+    "Chrome >= 55",
+    "Firefox >= 50",
+    "FirefoxAndroid >= 50",
+    "Edge >= 12",
+    "IE >= 9",
+    "Opera >= 42",
+    "Safari >= 10",
+    "Android >= 4.4",
+    "iOS >= 10",
+    "Node 6",
+    "Node 8",
+    "Node 10"
+  ]
+}
