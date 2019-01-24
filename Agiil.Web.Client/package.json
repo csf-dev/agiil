@@ -4,7 +4,8 @@
   "description": "Web client/user interface for the Agiil web app",
   "main": "index.js",
   "scripts": {
-    "test": "npx karma run"
+    "test": "npx karma start",
+    "tests": "npx karma start --no-single-run"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "@babel/plugin-proposal-class-properties": "^7.3.0",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "flow-bin": "^0.91.0",
     "flow-typed": "^2.5.1",
@@ -36,8 +38,10 @@
     "karma-chrome-launcher": "^2.2.0",
     "karma-jasmine": "^2.0.1",
     "karma-webpack": "^3.0.5",
+    "karma-spec-reporter": "^0.0.32",
     "react": "^16.7.0",
     "react-redux": "^6.0.0",
+    "react-dom": "^16.7.0",
     "redux": "^4.0.1",
     "webpack": "^4.29.0"
   },
