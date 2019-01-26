@@ -2,6 +2,8 @@
 import * as React from "react";
 import type { SelectableLabel } from '../../../domain/Labels/Label';
 import LabelSuggestion from './LabelSuggestion';
+// $FlowFixMe
+import styles from './LabelChooser.scss';
 
 type Props = {
     suggestions: Array<SelectableLabel>,
@@ -16,13 +18,13 @@ export default function LabelSuggestions(props : Props) {
         <div className={getClassNames(props).join(' ')}>
             {getFeedbackMessage(props)}
             <ul>
-                {getSuggections(props)}
+                {getSuggestions(props)}
             </ul>
         </div>
     );
 }
 
-function getSuggections(props : Props) {
+function getSuggestions(props : Props) {
     return props.suggestions.map(getSuggestionMapper(props));
 }
 
@@ -38,15 +40,18 @@ function getSuggestionMapper(props : Props) {
 }
 
 function getClassNames(props : Props) {
-    const classNames = ['LabelSuggestions'];
+    const classNames = [styles.LabelSuggestions];
 
     if(props.noSuggestionsLoaded)
-        classNames.push('no_suggestions');
+        classNames.push(styles.noSuggestions);
     else if(!props.suggestions.length)
-        classNames.push('empty_suggestions');
+        classNames.push(styles.emptySuggestions);
 
     if(props.suggestionsLoading)
-        classNames.push('loading');
+        classNames.push(styles.loading);
+
+    if(!props.show)
+        classNames.push(styles.hidden);
 
     return classNames;
 }

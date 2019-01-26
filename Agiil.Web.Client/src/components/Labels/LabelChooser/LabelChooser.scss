@@ -1,0 +1,54 @@
+.LabelChooser {
+    position: relative;
+}
+.SelectedLabels {
+    display: inline-block;
+}
+.SelectedLabels li {
+    padding: 2px 4px;
+    margin: 0 4px 0 0;
+    background: #BBB;
+    display: inline-block;
+    border-radius: 2px;
+    cursor: default;
+}
+.removeLabel {
+    padding: 1px;
+    margin: 0 0 0 4px;
+    line-height: 100%;
+    border: 0;
+    background: transparent none;
+    cursor: pointer;
+}
+.removeLabel:hover {
+    color: #55F;
+}
+.SelectedLabels li.forRemoval {
+    background: #999;
+}
+.LabelSuggestions {
+    position: absolute;
+    top: 20px;
+    width: 200px;
+    height: 200px;
+    border: 1px solid #999;
+}
+.noSuggestions {
+
+}
+.emptySuggestions {
+
+}
+.loading {
+    background: #EEE;
+}
+.hidden {
+    display: none;
+}
+.LabelSuggestion {
+    padding: 4px 8px;
+}
+.selected {
+    background: #55F;
+    color: #FFF;
+}

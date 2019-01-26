@@ -1,8 +1,14 @@
 //@flow
 
 export function getDocElement() {
-    if(!document || !document.documentElement) throw new Error('Document element missing');
+    if(!document.documentElement) throw new Error('Document element missing');
     return document.documentElement;
+}
+
+export function getElementByIdMandatory(id : string) {
+    const element = document.getElementById(id);
+    if(!element) throw new Error(`Element #${id} missing`);
+    return element;
 }
 
 export function getTestDom() {

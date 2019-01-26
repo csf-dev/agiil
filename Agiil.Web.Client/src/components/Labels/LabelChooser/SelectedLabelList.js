@@ -2,6 +2,8 @@
 import * as React from "react";
 import type { SelectableLabel } from '../../../domain/Labels/Label';
 import SelectedLabel from './SelectedLabel';
+// $FlowFixMe
+import styles from './LabelChooser.scss';
 
 type Props = {
     labels : Array<SelectableLabel>,
@@ -10,7 +12,7 @@ type Props = {
 
 export default function SelectedLabelList(props : Props) {
     return (
-        <ul className="SelectedLabelList">
+        <ul className={styles.SelectedLabels}>
             {getLabels(props)}
         </ul>
     );

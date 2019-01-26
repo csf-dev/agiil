@@ -6,6 +6,8 @@ import LabelSuggestions from './LabelSuggestions';
 import getLabelSuggester from '../../../services/Labels/LabelSuggester';
 import type { LabelChooserProps } from './LabelChooserProps';
 import LabelChooserBehaviours from './LabelChooserBehaviours';
+// $FlowFixMe
+import styles from './LabelChooser.scss';
 
 export default class LabelChooser extends React.Component<LabelChooserProps> {
     behaviours : LabelChooserBehaviours;
@@ -16,7 +18,7 @@ export default class LabelChooser extends React.Component<LabelChooserProps> {
         function onPickerChange(ev) { this.behaviours.onChange(ev); }
 
         return (
-            <div className="LabelChooser" id={this.props.id}>
+            <div className={styles.LabelChooser} id={this.props.id}>
                 { getInputLabel(this.props, inputId) }
                 <SelectedLabelList
                     labels={this.props.labels}

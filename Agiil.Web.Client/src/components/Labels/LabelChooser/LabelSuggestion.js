@@ -1,6 +1,8 @@
 //@flow
 import * as React from "react";
 import type { SelectableLabel } from '../../../domain/Labels/Label';
+// $FlowFixMe
+import styles from './LabelChooser.scss';
 
 type Props = {
     label: SelectableLabel,
@@ -19,8 +21,8 @@ export default function LabelSuggestion(props : Props) {
 }
 
 function getClassNames(props : SelectableLabel) {
-    const classNames = ['LabelSuggestion'];
-    if(props.selected) classNames.push('selected');
+    const classNames = [styles.LabelSuggestion];
+    if(props.selected) classNames.push(styles.selected);
     return classNames;
 }
 
