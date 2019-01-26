@@ -41,18 +41,14 @@ export default class LabelChooser extends React.Component<LabelChooserProps> {
     }
 
     constructor(props : LabelChooserProps) {
-        const mergedProps = Object.assign({}, defaultProps, props);
-        super(mergedProps);
+        super();
 
+        const mergedProps = Object.assign({}, defaultProps, props);
         this.behaviours = new LabelChooserBehaviours(mergedProps);
     }
 }
 
-const defaultProps = {
-    labelSuggester: getLabelSuggester(),
-    inputValue: '',
-    showSuggestions: false
-};
+const defaultProps = { labelSuggester: getLabelSuggester() };
 
 function getInputLabel(props : LabelChooserProps, inputId : ?string) {
     const hideInputLabel = !(props.uiLabelText && props.uiLabelText.length);
