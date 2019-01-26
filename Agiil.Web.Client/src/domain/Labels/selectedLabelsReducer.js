@@ -1,10 +1,10 @@
 //@flow
-import type { RemovableLabel } from './Label';
+import type { SelectableLabel } from './Label';
 import type { SelectedLabelsAction } from './SelectedLabelsActions';
 import { AddLabel, RemoveLabel } from './SelectedLabelsActions';
 
-function selectedLabelsReducer(state : Array<RemovableLabel> = [], action : SelectedLabelsAction) {
-    let newState : Array<RemovableLabel> = state.slice();
+function selectedLabelsReducer(state : Array<SelectableLabel> = [], action : SelectedLabelsAction) {
+    let newState : Array<SelectableLabel> = state.slice();
 
     switch(action.type) {
     case AddLabel:
