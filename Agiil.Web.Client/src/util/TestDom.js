@@ -11,8 +11,11 @@ export function getElementByIdMandatory(id : string) {
     return element;
 }
 
+export const testDomId = 'TestRoot';
+
 export function getTestDom() {
     const testDom = document.createElement('div');
+    testDom.id = testDomId;
     getDocElement().appendChild(testDom);
     return testDom;
 }

@@ -18,7 +18,7 @@ export default class LabelChooser extends React.Component<LabelChooserProps> {
         function onPickerChange(ev) { this.behaviours.onChange(ev); }
 
         return (
-            <div className={styles.LabelChooser} id={this.props.id}>
+            <div className={styles.LabelChooser || 'LabelChooser'} id={this.props.id}>
                 { getInputLabel(this.props, inputId) }
                 <SelectedLabelList
                     labels={this.props.labels}
@@ -56,10 +56,9 @@ function getInputLabel(props : LabelChooserProps, inputId : ?string) {
     const hideInputLabel = !(props.uiLabelText && props.uiLabelText.length);
     if(hideInputLabel) return null;
 
-    return <label for={inputId}>{props.uiLabelText}</label>;
+    return <label htmlFor={inputId}>{props.uiLabelText}</label>;
 }
 
 function getInputId(props : LabelChooserProps) : ?string {
-    if(!props.id) return null;
-    return `${props.id}_input`;
+    return props.id || null;
 }

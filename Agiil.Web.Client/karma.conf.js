@@ -18,7 +18,6 @@ module.exports = function(config) {
     logLevel: config.LOG_WARN,
     autoWatch: true,
     browsers: ['ChromeHeadless'],
-    phantomjsLauncher: { exitOnResourceError: true },
     singleRun: true,
     concurrency: Infinity,
     specReporter: {

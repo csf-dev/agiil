@@ -1,12 +1,7 @@
 const path = require('path');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 
 const webpackConfig = {
-    plugins: [
-        new MiniCssExtractPlugin(),
-    ],
-    entry: {},
     module: {
         rules: [
             {
@@ -18,7 +13,6 @@ const webpackConfig = {
                 test: /\.scss$/,
                 exclude: /(node_modules|bower_components)/,
                 use: [
-                    MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {

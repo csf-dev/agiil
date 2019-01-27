@@ -11,13 +11,13 @@ type Props = {
 
 export default function SelectedLabel(props : Props) {
     const
-        itemClasses = props.label.selected? styles.forRemoval : null,
+        itemClasses = props.label.selected? (styles.forRemoval || 'forRemoval') : null,
         messagesString = `Label '${props.label.name}'`;
     
     return (
         <li className={itemClasses} title={messagesString}>
             {props.label.name}
-            <button className={styles.removeLabel} title="Remove" onClick={props.onRemove}>❌</button>
+            <button className={styles.removeLabel || 'removeLabel'} title="Remove" onClick={props.onRemove}>❌</button>
         </li>
     );
 }

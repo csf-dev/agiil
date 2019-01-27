@@ -12,7 +12,7 @@ type Props = {
 
 export default function SelectedLabelList(props : Props) {
     return (
-        <ul className={styles.SelectedLabels}>
+        <ul className={styles.SelectedLabels || 'SelectedLabels'}>
             {getLabels(props)}
         </ul>
     );

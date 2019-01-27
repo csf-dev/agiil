@@ -1,14 +1,30 @@
 const fileMatcher = require('glob');
 const fs = require('fs');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const webpackCommonConfig = require('./webpack.config.js');
 const webpackConfig = Object.assign({}, webpackCommonConfig);
 
 webpackConfig.mode = 'development';
+webpackConfig.entry = {};
+webpackConfig.plugins = webpackConfig.plugins || [];
 webpackConfig.plugins.push(
     new CopyWebpackPlugin([ { from: './src/**/*.TestHarness.html', to: '.', flatten: true } ])
 );
+addMiniCssPluginAndLoader(webpackConfig);
+
+module.exports = new Promise(async (res, rej) => {
+    await addTestHarnessEntrypoints(webpackConfig);
+    res(webpackConfig);
+});
+
+async function addTestHarnessEntrypoints(webpackConfig) {
+    const testHarnesses = await getTestHarnesses();
+    testHarnesses.forEach(x => {
+        webpackConfig.entry[x.name + '.TestHarness'] = './' + x.path;
+    });
+}
 
 async function getTestHarnesses() {
     const filenames = await getFilenames('src/**/*.TestHarness.js');
@@ -25,12 +41,9 @@ function getFilenames(pattern, opts) {
     });
 }
 
-module.exports = new Promise(async (res, rej) => {
-    const testHarnesses = await getTestHarnesses();
-    testHarnesses.forEach(x => {
-        webpackConfig.entry[x.name + '.TestHarness'] = './' + x.path;
-    });
-    res(webpackConfig);
-});
+function addMiniCssPluginAndLoader(webpackConfig) {
+    webpackConfig.plugins.push(new MiniCssExtractPlugin());
 
-
+    const sassRule = webpackConfig.module.rules.find(x => x.use.includes('sass-loader'));
+    sassRule.use.unshift(MiniCssExtractPlugin.loader);
+}
