@@ -4,8 +4,11 @@
   "description": "Web client/user interface for the Agiil web app",
   "main": "index.js",
   "scripts": {
-    "test": "npx karma start",
-    "tests": "npx karma start --no-single-run"
+    "test": "npx karma start buildConfigs/karma.conf.js",
+    "tests": "npx karma start buildConfigs/karma.conf.js --no-single-run",
+    "devTest": "npx webpack --config buildConfigs/webpack.config.dev.js -w",
+    "clean": "node tools/clean.js",
+    "build": "npx webpack --config buildConfigs/webpack.config.prod.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +36,7 @@
     "babel-loader": "^8.0.5",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^2.1.0",
+    "del": "^3.0.0",
     "flow-bin": "^0.91.0",
     "flow-typed": "^2.5.1",
     "jasmine": "^3.3.1",
