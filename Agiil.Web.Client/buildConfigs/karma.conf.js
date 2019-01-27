@@ -1,6 +1,6 @@
 module.exports = function(config) {
   const webpackConfig = require('./webpack.config.test.js');
-  const testFilePatterns = ['src/**/*.spec.js'];
+  const testFilePatterns = ['../src/**/*.spec.js'];
   
   config.set({
     basePath: '',
