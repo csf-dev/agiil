@@ -1,7 +1,7 @@
 //@flow
 import type { LabelChooserProps } from './LabelChooserProps';
 import type { Label, SelectableLabel } from '../../../domain/Labels/Label';
-import { RequestsDataAsync } from '../../../domain/GetsDataAsync';
+import { RequestsDataAsync } from '../../../GetsDataAsync';
 
 export function getDataService() : RequestsDataAsync<string,Array<Label>> {
     return {

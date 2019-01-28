@@ -1,5 +1,5 @@
 //@flow
-import { RequestsDataAsync } from '../../domain/GetsDataAsync';
+import { RequestsDataAsync } from '../../GetsDataAsync';
 import type { Label } from '../../domain/Labels/Label';
 import { SendsNetworkRequests, requestServiceFactory } from '../../network'
 
