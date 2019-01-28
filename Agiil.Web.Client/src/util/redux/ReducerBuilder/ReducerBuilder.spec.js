@@ -1,8 +1,8 @@
 //@flow
 import type { Reducer } from 'redux';
-import { BuildsObjectReducer, BuildsPrimitiveReducer, ObjectReducerBuilder, PrimitiveReducerBuilder } from './ReducerBuilder';
-import type { ReducingFunction } from './ReducerBuilder';
-import type { AnyAction, Action } from '../../Action';
+import type { BuildsObjectReducer, BuildsReducer } from './BuildsReducer';
+import { ObjectReducerBuilder } from './ReducerBuilder';
+import type { AnyAction, Action } from '../../../Action';
 
 describe('The reducer builder', () => {
     describe('in Object mode', () => {
