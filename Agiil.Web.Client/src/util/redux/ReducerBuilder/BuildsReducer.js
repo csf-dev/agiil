@@ -1,7 +1,7 @@
 //@flow
 import type { Reducer as Redux$Reducer } from 'redux';
 import type { AnyAction, Action } from '../../../Action';
-import type { ActionReducer, Reducer } from '../Reducer';
+import type { ActionReducer, Reducer } from './Reducer';
 
 /**
  * Type aliases

@@ -1,72 +1,46 @@
 //@flow
-// import type { Reducer } from 'redux';
-// import type { AnyAction } from '../../Action';
+import type { Reducer as Redux$Reducer } from 'redux';
+import type { AnyAction } from '../../../Action';
+import type { Reducer } from './Reducer';
 
-// TODO: Switch ths to a builder pattern instead.  We've got to deal with at least three separate
-// concepts here:
-// 
-// * Reducers for specific action types
-// * Reducers for child state
-// * The default state value if state is undefined and no actions match
+/**
+ * Type aliases
+ * ------------
+ *
+ * S = State
+ * T = Action type (key literal)
+ * A = Action
+ * B = Reducer builder
+ * P = Parent state
+ * K = Object key
+ */
 
-/*
+export function createReducer<S>(defaultState : S,
+                                 actionReducers : Map<string,Reducer<S,AnyAction>>,
+                                 children? : Map<string,Reducer<mixed,AnyAction>>) : Redux$Reducer<S,AnyAction> {
+    const childReducers : Map<string,Reducer<mixed,AnyAction>> = children || new Map();
 
-export default function createReducer<TState>(defaultState : TState,
-                                              actionTypeReducers : ChildReducers<TState>,
-                                              childReducers : ChildReducers<mixed>) : Reducer<TState,AnyAction> {
-    const factory = new ReducerMapReducerFactory<TState>(defaultState);
+    return function(state : ?S, action : AnyAction) : S {
+        const newState = getState(state, defaultState);
 
-    if(Array.isArray(actionTypeReducers))
-        actionTypeReducers.forEach(namedFunc => factory.addChild(namedFunc.type, namedFunc.func));
-    else {
-        const objMap = actionTypeReducers;
-        for (const name in objMap) {
-            if (!objMap.hasOwnProperty(name)) continue;
-            if(typeof objMap[name] !== 'function') continue;
-            const func = objMap[name];
-            factory.addChild(name, func);
+        for (const childMapping of childReducers.entries()) {
+            const [key, reducer] = childMapping, childState = (newState : any)[key];
+            (newState : any)[key] = reducer(childState, action);
         }
-    }
 
-    return factory.getReducer();
-}
 
-export type ReducingFunction<TState,-TAction : AnyAction>
-    = (state : ?TState, action : TAction) => TState;
-
-export type NamedReducingFunction<TState> = {
-    type : string,
-    func : ReducingFunction<TState,AnyAction>
-}
-
-export type ReducingFunctionObjectMap = {};
-
-export type ChildReducers<TState> = Array<NamedReducingFunction<TState>> | ReducingFunctionObjectMap;
-
-export class ReducerMapReducerFactory<TState> {
-    map : Map<string,ReducingFunction<TState,AnyAction>>;
-    defaultState : TState;
-
-    addChild(actionType : string, reducer : ReducingFunction<TState,AnyAction>) {
-        if(this.map.has(actionType))
-            throw new Error(`There is already a reducing function registered for action type '${actionType}'. 
-Reducing functions must not registered twice.`);
-
-        this.map.set(actionType, reducer);
-    }
-
-    getReducer() : Reducer<TState,AnyAction> {
-        return (state : ?TState, action : AnyAction) => {
-            const actionReducer = this.map.get(action.type);
-            if(!actionReducer) return state || this.defaultState;
-            return actionReducer(state, action);
+        for (const actionMapping of actionReducers.entries()) {
+            const [type, reducer] = actionMapping;
+            if(action.type === type) return reducer(newState, action);
         }
-    }
 
-    constructor(defaultState : TState) {
-        this.map = new Map();
-        this.defaultState = defaultState;
+        return newState;
     }
 }
 
-*/
+function getState<S>(state : ?S, defaultState : S) : S {
+    if(state === undefined) return defaultState;
+    if(state === null) return defaultState;
+
+    return state;
+}
