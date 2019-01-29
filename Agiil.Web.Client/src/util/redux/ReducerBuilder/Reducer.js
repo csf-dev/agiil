@@ -14,7 +14,7 @@ import type { AnyAction, Action } from '../../../Action';
  */
 
 export type ActionReducer<T,S,-A : Action<T>>
-    = (state : ?S, action : A) => S;
+    = (state : S | void, action : A) => S;
 
 export type Reducer<S,-A : AnyAction>
-    = (state : ?S, action : A) => S;
+    = (state : S | void, action : A) => S;
