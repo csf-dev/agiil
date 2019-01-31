@@ -1,9 +1,14 @@
 //@flow
 import type { SelectableLabel } from './Label';
+import type { ComponentId } from '../../Action';
 
-export type LabelChooserState = {
+export type SelectableLabelList = ComponentId & {
+    labels : Array<SelectableLabel>;
+};
+
+export type LabelChooserState = ComponentId & {
     value: string;
     showSuggestions : bool;
-    selectedLabels : Array<SelectableLabel>;
-    suggestions : Array<SelectableLabel>;
+    selectedLabels : SelectableLabelList;
+    suggestions : SelectableLabelList;
 }

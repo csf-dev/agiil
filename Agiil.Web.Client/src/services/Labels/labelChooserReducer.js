@@ -4,17 +4,21 @@ import { ChangeValue, ChangeSuggestionVisibility } from './LabelChooserActions';
 import type { ChangeValueAction, ChangeSuggestionVisibilityAction } from './LabelChooserActions';
 import { buildObjectReducer } from '../../util/redux/ReducerBuilder';
 import selectedLabelsReducer from './selectedLabelsReducer';
+import getComponentId from '../../util/redux/componentId';
 
-const defaultState = { value: '', showSuggestions: false, selectedLabels: [], suggestions: [] };
+const defaultState = { value: '', showSuggestions: false, selectedLabels: undefined, suggestions: undefined };
+const getDefaultState = (s : ?LabelChooserState) => s || ({...defaultState, id : getComponentId()} : LabelChooserState);
 
-const reducer = buildObjectReducer<LabelChooserState>(defaultState)
+const reducer = buildObjectReducer<LabelChooserState>(getDefaultState)
     .forTypeKey(ChangeValue).andAction<ChangeValueAction>((s, a) => {
-        if(s !== a.chooser) return s || defaultState;
-        return {...s, value: a.value};
+        s = getDefaultState(s);
+        if(s.id !== a.meta?.id) return s;
+        return {...s, value: a.payload.value};
     })
     .forTypeKey(ChangeSuggestionVisibility).andAction<ChangeSuggestionVisibilityAction>((s, a) => {
-        if(s !== a.chooser) return s || defaultState;
-        return {...s, showSuggestions: a.showSuggestions};
+        s = getDefaultState(s);
+        if(s.id !== a.meta?.id) return s;
+        return {...s, showSuggestions: a.payload.showSuggestions};
     })
     .forChild('selectedLabels').andReducer(selectedLabelsReducer)
     .forChild('suggestions').andReducer(selectedLabelsReducer)

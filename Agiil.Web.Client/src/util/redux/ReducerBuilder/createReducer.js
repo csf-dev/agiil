@@ -15,13 +15,13 @@ import type { Reducer } from './Reducer';
  * K = Object key
  */
 
-export function createReducer<S>(defaultState : S,
+export function createReducer<S>(defaultState : S | () => S,
                                  actionReducers : Map<string,Reducer<S,AnyAction>>,
                                  children? : Map<string,Reducer<mixed,AnyAction>>) : Redux$Reducer<S,AnyAction> {
     const childReducers : Map<string,Reducer<mixed,AnyAction>> = children || new Map();
 
     return function(state : ?S, action : AnyAction) : S {
-        const newState = getState(state, defaultState);
+        const newState = getState<S>(state, defaultState);
 
         for (const childMapping of childReducers.entries()) {
             const [key, reducer] = childMapping, childState = (newState : any)[key];
@@ -38,9 +38,14 @@ export function createReducer<S>(defaultState : S,
     }
 }
 
-function getState<S>(state : ?S, defaultState : S) : S {
-    if(state === undefined) return defaultState;
-    if(state === null) return defaultState;
+function getState<S>(state : ?S, defaultState : S | () => S) : S {
+    if(state === undefined) return getDefaultState<S>(defaultState);
+    if(state === null) return getDefaultState<S>(defaultState);
 
     return state;
+}
+
+function getDefaultState<S>(defaultState : S | () => S) : S {
+    if(typeof defaultState === 'function') return defaultState();
+    return defaultState;
 }

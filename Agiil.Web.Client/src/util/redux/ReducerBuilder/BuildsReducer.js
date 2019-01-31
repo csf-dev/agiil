@@ -29,7 +29,7 @@ export interface BuildsObjectReducer<S : {}> {
 type AnyBuilder<S> = BuildsObjectReducer<S> | BuildsReducer<S>;
 
 export interface AcceptsReducer<S, +B : AnyBuilder<S>, T> {
-    andAction<A : Action<T>>(reducingFunc : ActionReducer<T,S,A>) : B;
+    andAction<A : Action<T,any,any>>(reducingFunc : ActionReducer<T,S,A>) : B;
 }
 
 export interface AcceptsChildReducer<S, P : {}, B : BuildsObjectReducer<P>> {

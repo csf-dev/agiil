@@ -21,7 +21,7 @@ import { createReducer } from './createReducer';
 export class ObjectReducerBuilder<S : {}> implements BuildsObjectReducer<S> {
     #actionReducers : Map<string,Reducer<S,AnyAction>>;
     #childReducers : Map<string,Reducer<mixed,AnyAction>>;
-    #defaultState : S;
+    #defaultState : S | () => S;
 
     forTypeKey<T>(type : T) : AcceptsReducer<S,BuildsObjectReducer<S>,T> {
         if(!type) throw new Error('An action type must be specified');
@@ -40,10 +40,10 @@ Only one child handler may be registered per key name.`);
     }
 
     build() : Redux$Reducer<S,AnyAction> {
-        return createReducer(this.#defaultState, this.#actionReducers, this.#childReducers);
+        return createReducer<S>(this.#defaultState, this.#actionReducers, this.#childReducers);
     }
 
-    constructor(defaultState : S) {
+    constructor(defaultState : S | () => S) {
         this.#actionReducers = new Map();
         this.#childReducers = new Map();
         this.#defaultState = defaultState;

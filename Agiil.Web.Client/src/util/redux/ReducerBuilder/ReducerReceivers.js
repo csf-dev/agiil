@@ -7,7 +7,7 @@ export class ObjectReducerReceiver<S : {}, B : BuildsObjectReducer<S>, T> implem
     #builder : B;
     #callback : (reducer : Reducer<S,AnyAction>) => void;
 
-    andAction<A : Action<T>>(reducingFunc : ActionReducer<T,S,A>) : B {
+    andAction<A : Action<T,any,any>>(reducingFunc : ActionReducer<T,S,A>) : B {
         const cb = this.#callback;
         cb((reducingFunc : any));
         return this.#builder;
@@ -23,7 +23,7 @@ export class PrimitiveReducerReceiver<S, B : BuildsReducer<S>, T> implements Acc
     #builder : B;
     #callback : (reducer : Reducer<S,AnyAction>) => void;
 
-    andAction<A : Action<T>>(reducingFunc : ActionReducer<T,S,A>) : B {
+    andAction<A : Action<T,any,any>>(reducingFunc : ActionReducer<T,S,A>) : B {
         const cb = this.#callback;
         cb((reducingFunc : any));
         return this.#builder;

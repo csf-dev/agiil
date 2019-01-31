@@ -12,19 +12,19 @@ const IncrementMyBazWang : 'INC_WANG' = 'INC_WANG';
 const IncrementNumber : 'INC' = 'INC';
 const SetNumber : 'SET' = 'SET';
 
-type MyStateFooAction = Action<typeof MyStateFoo> & { foo : string };
-type MyStateBarAction = Action<typeof MyStateBar> & { bar : number };
-type IncrementMyBazWangAction = Action<typeof IncrementMyBazWang> & { incrementBy : number };
-type IncrementNumberAction = Action<typeof IncrementNumber> & { incrementBy : number };
-type SetNumberAction = Action<typeof SetNumber> & { val : number };
+type MyStateFooAction = Action<typeof MyStateFoo,{ foo : string },void>;
+type MyStateBarAction = Action<typeof MyStateBar,{ bar : number },void>;
+type IncrementMyBazWangAction = Action<typeof IncrementMyBazWang,{ incrementBy : number },void>;
+type IncrementNumberAction = Action<typeof IncrementNumber,{ incrementBy : number },void>;
+type SetNumberAction = Action<typeof SetNumber,{ val : number },void>;
 
-const reduceMyStateFoo = (state : ?MyState, action : MyStateFooAction) => ({...state, foo: action.foo});
-const reduceMyStateBar = (state : ?MyState, action : MyStateBarAction) => ({...state, bar: action.bar});
+const reduceMyStateFoo = (state : ?MyState, action : MyStateFooAction) => ({...state, foo: action.payload.foo});
+const reduceMyStateBar = (state : ?MyState, action : MyStateBarAction) => ({...state, bar: action.payload.bar});
 const reduceMyStateBaz = (state : ?MyBaz, action : IncrementMyBazWangAction) => {
     const val = state? state.wang : 0;
     return {
         ...state,
-        wang: val + action.incrementBy
+        wang: val + action.payload.incrementBy
     };
 };
 
@@ -54,7 +54,7 @@ describe('The reducer builder', () => {
         it('should be able to set the state of a string property', () => {
             const state = defaultState;
 
-            const result = reducer(state, { type: MyStateFoo, foo: 'New value' });
+            const result = reducer(state, { type: MyStateFoo, payload: {foo: 'New value' }});
 
             expect(result.bar).toBe(5);
             expect(result.baz).toBe(defaultState.baz);
@@ -64,7 +64,7 @@ describe('The reducer builder', () => {
         it('should be able to set the state of a numeric property', () => {
             const state = defaultState;
 
-            const result = reducer(state, { type: MyStateBar, bar: 22 });
+            const result = reducer(state, { type: MyStateBar, payload: {bar: 22 }});
 
             expect(result.bar).toBe(22);
             expect(result.baz).toBe(defaultState.baz);
@@ -74,7 +74,7 @@ describe('The reducer builder', () => {
         it('should be able to operate upon a child object', () => {
             const state = defaultState;
 
-            const result = reducer(state, { type: IncrementMyBazWang, incrementBy: 6 });
+            const result = reducer(state, { type: IncrementMyBazWang, payload: {incrementBy: 6 }});
 
             expect(result.bar).toBe(5);
             expect(result.baz.wang).toBe(48);
@@ -87,18 +87,18 @@ describe('The reducer builder', () => {
 
         beforeEach(() => {
             reducer = buildPrimitiveReducer<number>(5)
-                .forTypeKey(IncrementNumber).andAction<IncrementNumberAction>((s, a) => s + a.incrementBy)
-                .forTypeKey(SetNumber).andAction<SetNumberAction>((s, a) => a.val)
+                .forTypeKey(IncrementNumber).andAction<IncrementNumberAction>((s, a) => s + a.payload.incrementBy)
+                .forTypeKey(SetNumber).andAction<SetNumberAction>((s, a) => a.payload.val)
                 .build();
         });
 
         it('should be able to increment a number', () => {
-            const result = reducer(undefined, { type: IncrementNumber, incrementBy: -3 });
+            const result = reducer(undefined, { type: IncrementNumber, payload: {incrementBy: -3 }});
             expect(result).toBe(2);
         });
 
         it('should be able to increment a number', () => {
-            const result = reducer(undefined, { type: SetNumber, val: 16 });
+            const result = reducer(undefined, { type: SetNumber, payload: {val: 16 }});
             expect(result).toBe(16);
         });
     });

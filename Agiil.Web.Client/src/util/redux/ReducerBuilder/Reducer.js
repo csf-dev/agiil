@@ -13,7 +13,7 @@ import type { AnyAction, Action } from '../../../Action';
  * K = Object key
  */
 
-export type ActionReducer<T,S,-A : Action<T>>
+export type ActionReducer<T,S,-A : Action<T,any,any>>
     = (state : S | void, action : A) => S;
 
 export type Reducer<S,-A : AnyAction>
