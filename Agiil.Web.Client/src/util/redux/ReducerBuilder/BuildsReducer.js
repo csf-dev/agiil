@@ -16,11 +16,13 @@ import type { ActionReducer, Reducer } from './Reducer';
  */
 
 export interface BuildsReducer<S> {
+    filterByComponentId() : BuildsReducer<S>;
     forTypeKey<T>(type : T) : AcceptsReducer<S,BuildsReducer<S>,T>;
     build() : Redux$Reducer<S,AnyAction>;
 }
 
 export interface BuildsObjectReducer<S : {}> {
+    filterByComponentId() : BuildsObjectReducer<S>;
     forTypeKey<T>(type : T) : AcceptsReducer<S,BuildsObjectReducer<S>,T>;
     forChild<K : $Keys<S>>(keyName : K) : AcceptsChildReducer<$ElementType<S,K>,S,BuildsObjectReducer<S>>;
     build() : Redux$Reducer<S,AnyAction>;

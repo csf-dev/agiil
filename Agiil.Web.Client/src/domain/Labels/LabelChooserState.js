@@ -10,5 +10,6 @@ export type LabelChooserState = ComponentId & {
     value: string;
     showSuggestions : bool;
     selectedLabels : SelectableLabelList;
+    suggestionsLoading : bool;
     suggestions : SelectableLabelList;
 }

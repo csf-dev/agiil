@@ -13,5 +13,5 @@ export type ErrorAction<+T,+P : Error,+M> = Action<T,P,M> & {|
 export type AnyAction = Action<any,any,any>;
 
 export type ComponentId = {
-    id : string
+    componentId : string
 };

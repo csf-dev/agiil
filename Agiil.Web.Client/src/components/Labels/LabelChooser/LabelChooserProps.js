@@ -1,25 +1,26 @@
 //@flow
 import type { Label, SelectableLabel } from '../../../domain/Labels/Label';
-import { RequestsDataAsync } from '../../../GetsDataAsync';
 
 export type LabelChooserProps = {
     labels : Array<SelectableLabel>,
     id? : string,
     suggestions?: Array<SelectableLabel>,
-    labelSuggester? : RequestsDataAsync<string,Array<Label>>,
     inputValue? : string,
     uiLabelText? : string,
     showSuggestions? : bool,
     noSuggestionsLoaded : bool,
     suggestionsLoading : bool,
-    onAdd : (label : Label) => void,
-    onRemove : (label : SelectableLabel) => void,
-    onSelectForRemoval : (label : SelectableLabel) => void,
-    onDeselectForRemoval : (label : SelectableLabel) => void,
-    onInputValueChanged : (value : string) => void,
-    onShowSuggestionsChanged : (value : bool) => void,
-    onSelectNextSuggestion : () => void,
-    onSelectPrevSuggestion : () => void,
-    onResetSelectedSuggestion : () => void,
-    onClickSuggestion: (label : SelectableLabel) => void
+    componentId : string,
+    selectedLabelsComponentId : string,
+    suggestionsComponentId : string,
+    onAdd : (label : Label, componentId : string) => void,
+    onRemove : (label : SelectableLabel, componentId : string) => void,
+    onSelectForRemoval : (label : SelectableLabel, componentId : string) => void,
+    onDeselectForRemoval : (label : SelectableLabel, componentId : string) => void,
+    onInputValueChanged : (value : string, componentId : string) => void,
+    onShowSuggestionsChanged : (value : bool, componentId : string) => void,
+    onSelectNextSuggestion : (componentId : string) => void,
+    onSelectPrevSuggestion : (componentId : string) => void,
+    onResetSelectedSuggestion : (componentId : string) => void,
+    onClickSuggestion: (label : SelectableLabel, componentId : string) => void
 };

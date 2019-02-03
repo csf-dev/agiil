@@ -21,6 +21,12 @@ import { createReducer } from './createReducer';
 export class PrimitiveReducerBuilder<S> implements BuildsReducer<S> {
     #actionReducers : Map<string,Reducer<S,AnyAction>>;
     #defaultState : S | () => S;
+    #filterByComponentId : bool;
+
+    filterByComponentId() : BuildsReducer<S> {
+        this.#filterByComponentId = true;
+        return this;
+    }
 
     forTypeKey<T>(type : T) : AcceptsReducer<S,BuildsReducer<S>,T> {
         if(!type) throw new Error('An action type must be specified');
@@ -32,11 +38,12 @@ Only one action handler may be registered per type name.`);
     }
 
     build() : Redux$Reducer<S,AnyAction> {
-        return createReducer<S>(this.#defaultState, this.#actionReducers);
+        return createReducer<S>(this.#defaultState, this.#actionReducers, undefined, this.#filterByComponentId);
     }
 
     constructor(defaultState : S | () => S) {
         this.#actionReducers = new Map();
         this.#defaultState = defaultState;
+        this.#filterByComponentId = false;
     }
 }

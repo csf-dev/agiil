@@ -20,12 +20,12 @@ export default class LabelChooserBehaviours {
             break;
 
         case Keyboard.ArrowDown:
-            this.props.onSelectNextSuggestion();
+            this.props.onSelectNextSuggestion(this.props.suggestionsComponentId);
             ev.preventDefault();
             break;
 
         case Keyboard.ArrowUp:
-            this.props.onSelectPrevSuggestion();
+            this.props.onSelectPrevSuggestion(this.props.suggestionsComponentId);
             ev.preventDefault();
             break;
         }
@@ -34,10 +34,9 @@ export default class LabelChooserBehaviours {
             deselectAllForRemoval(this.props);
 
         if(![Keyboard.ArrowDown, Keyboard.ArrowUp].includes(ev.key))
-            this.props.onResetSelectedSuggestion();
+            this.props.onResetSelectedSuggestion(this.props.suggestionsComponentId);
         
-        if(ev.currentTarget.value != this.props.inputValue)
-            handleChangeValue(this.props, ev.currentTarget.value);
+        // handleChangeValue(this.props, ev.currentTarget.value);
     };
 
     onChange = (ev : SyntheticEvent<HTMLInputElement>) => {
@@ -61,9 +60,9 @@ function handleRemoval(props : LabelChooserProps) {
     const label = props.labels[labelCount - 1];
 
     if(label.selected)
-        props.onRemove(label);
+        props.onRemove(label, props.selectedLabelsComponentId);
     else
-        props.onSelectForRemoval(label);
+        props.onSelectForRemoval(label, props.selectedLabelsComponentId);
 }
 
 function getSelected(suggestions : ?Array<SelectableLabel>) : ?SelectableLabel {
@@ -75,18 +74,18 @@ function handleAddition(props : LabelChooserProps) {
     const selectedLabel = getSelected(props.suggestions);
 
     if(selectedLabel)
-        props.onAdd(selectedLabel);
+        props.onAdd(selectedLabel, props.selectedLabelsComponentId);
     else if(props.inputValue)
-        props.onAdd({ name: props.inputValue });
+        props.onAdd({ name: props.inputValue }, props.selectedLabelsComponentId);
 }
 
 function deselectAllForRemoval(props : LabelChooserProps) {
     props.labels.forEach(label => {
         if(!label.selected) return;
-        props.onDeselectForRemoval(label);
+        props.onDeselectForRemoval(label, props.selectedLabelsComponentId);
     })
 }
 
 function handleChangeValue(props : LabelChooserProps, newValue : string) {
-    props.onInputValueChanged(newValue);
+    props.onInputValueChanged(newValue, props.componentId);
 }

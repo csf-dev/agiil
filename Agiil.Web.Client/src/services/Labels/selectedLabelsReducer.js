@@ -2,34 +2,29 @@
 import type { SelectableLabel } from '../../domain/Labels/Label';
 import { AddLabel, RemoveLabel, SelectLabel, NavigateSelection, DeselectAll } from './SelectedLabelsActions';
 import type { AddLabelAction, RemoveLabelAction, SelectLabelAction, NavigateSelectionAction, DeselectAllAction } from './SelectedLabelsActions';
-import { buildPrimitiveReducer } from '../../util/redux/ReducerBuilder';
+import { buildObjectReducer } from '../../util/redux/ReducerBuilder';
 import type { SelectableLabelList } from '../../domain/Labels/LabelChooserState';
-import getComponentId from '../../util/redux/componentId';
+import getComponentId from '../../util/redux/getComponentId';
 
 const defaultState = { labels: [] };
-const getDefaultState = (s : ?SelectableLabelList) => s || ({...defaultState, id : getComponentId()} : SelectableLabelList);
+const getDefaultState = (s : ?SelectableLabelList) => s || ({...defaultState, componentId : getComponentId()} : SelectableLabelList);
 
-const reducer = buildPrimitiveReducer<SelectableLabelList>(getDefaultState)
+const reducer = buildObjectReducer<SelectableLabelList>(getDefaultState)
+    .filterByComponentId()
     .forTypeKey(AddLabel).andAction<AddLabelAction>((s, a) => {
         s = getDefaultState(s);
-        if(a.meta?.id !== s.id) return s;
-
         const out = cloneState(s);
         out.labels.push(a.payload.label);
         return out;
     })
     .forTypeKey(RemoveLabel).andAction<RemoveLabelAction>((s, a) => {
         s = getDefaultState(s);
-        if(a.meta?.id !== s.id) return s;
-        
         const out = cloneState(s);
         out.labels = out.labels.filter(x => x.name !== a.payload.label.name);
         return out;
     })
     .forTypeKey(SelectLabel).andAction<SelectLabelAction>((s, a) => {
         s = getDefaultState(s);
-        if(a.meta?.id !== s.id) return s;
-        
         const out = cloneState(s);
         deselectAll(out.labels);
         const label = out.labels.find(x => x.name === a.payload.label.name);
@@ -38,8 +33,6 @@ const reducer = buildPrimitiveReducer<SelectableLabelList>(getDefaultState)
     })
     .forTypeKey(NavigateSelection).andAction<NavigateSelectionAction>((s, a) => {
         s = getDefaultState(s);
-        if(a.meta?.id !== s.id) return s;
-        
         const out = cloneState(s);
         if(a.payload.dir) {
             const
@@ -55,8 +48,6 @@ const reducer = buildPrimitiveReducer<SelectableLabelList>(getDefaultState)
     })
     .forTypeKey(DeselectAll).andAction<DeselectAllAction>((s, a) => {
         s = getDefaultState(s);
-        if(a.meta?.id !== s.id) return s;
-        
         const out = cloneState(s);
         deselectAll(out.labels);
         return out;
@@ -64,7 +55,7 @@ const reducer = buildPrimitiveReducer<SelectableLabelList>(getDefaultState)
     .build();
 
 function cloneState(s : SelectableLabelList) : SelectableLabelList {
-    return { id: s.id, labels: (s.labels? [...s.labels] : []) };
+    return { componentId: s.componentId, labels: (s.labels? [...s.labels] : []) };
 }
 
 function deselectAll(labels : Array<SelectableLabel>) {

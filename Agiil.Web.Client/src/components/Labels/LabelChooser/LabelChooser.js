@@ -9,48 +9,37 @@ import LabelChooserBehaviours from './LabelChooserBehaviours';
 // $FlowFixMe
 import styles from './LabelChooser.scss';
 
-export default class LabelChooser extends React.Component<LabelChooserProps> {
-    behaviours : LabelChooserBehaviours;
+export default function labelChooser(props : LabelChooserProps) {
+    const behaviours = new LabelChooserBehaviours(props);
+    const inputId = getInputId(props);
 
-    render() {
-        const inputId = getInputId(this.props);
-        function onPickerKeypress(ev) { this.behaviours.onKeypress(ev); }
-        function onPickerChange(ev) { this.behaviours.onChange(ev); }
+    function onPickerKeypress(ev) { behaviours.onKeypress(ev); }
+    function onPickerChange(ev) { behaviours.onChange(ev); }
 
-        return (
-            <div className={styles.LabelChooser || 'LabelChooser'} id={this.props.id}>
-                { getInputLabel(this.props, inputId) }
-                <SelectedLabelList
-                    labels={this.props.labels}
-                    onRemove={this.props.onRemove}
-                    />
-                <LabelPicker
-                    onKeypress={onPickerKeypress.bind(this)}
-                    onChange={onPickerChange.bind(this)}
-                    inputValue={this.props.inputValue}
-                    inputId={inputId}
-                    onFocusChanged={this.props.onShowSuggestionsChanged}
-                    />
-                <LabelSuggestions 
-                    suggestions={this.props.suggestions || []}
-                    show={this.props.showSuggestions || false}
-                    onClickSuggestion={this.props.onClickSuggestion}
-                    noSuggestionsLoaded={this.props.noSuggestionsLoaded}
-                    suggestionsLoading={this.props.suggestionsLoading}
-                    />
-            </div>
-        );
-    }
-
-    constructor(props : LabelChooserProps) {
-        super();
-
-        const mergedProps = Object.assign({}, defaultProps, props);
-        this.behaviours = new LabelChooserBehaviours(mergedProps);
-    }
+    return (
+        <div className={styles.LabelChooser || 'LabelChooser'} id={props.id}>
+            { getInputLabel(props, inputId) }
+            <SelectedLabelList
+                labels={props.labels}
+                onRemove={label => props.onRemove(label, props.selectedLabelsComponentId)}
+                />
+            <LabelPicker
+                onKeypress={onPickerKeypress}
+                onChange={onPickerChange}
+                inputValue={props.inputValue}
+                inputId={inputId}
+                onFocusChanged={val => props.onShowSuggestionsChanged(val, props.componentId)}
+                />
+            <LabelSuggestions 
+                suggestions={props.suggestions || []}
+                show={props.showSuggestions || false}
+                onClickSuggestion={label => props.onClickSuggestion(label, props.suggestionsComponentId)}
+                noSuggestionsLoaded={props.noSuggestionsLoaded}
+                suggestionsLoading={props.suggestionsLoading}
+                />
+        </div>
+    );
 }
-
-const defaultProps = { labelSuggester: getLabelSuggester() };
 
 function getInputLabel(props : LabelChooserProps, inputId : ?string) {
     const hideInputLabel = !(props.uiLabelText && props.uiLabelText.length);

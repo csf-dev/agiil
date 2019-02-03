@@ -1,4 +1,4 @@
 //@flow
 
 export type { LabelChooserProps } from './LabelChooserProps';
-export { default } from './LabelChooser';
+export { default } from './ConnectedLabelChooser';
