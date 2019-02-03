@@ -38,7 +38,7 @@ Only one action handler may be registered per type name.`);
     }
 
     build() : Redux$Reducer<S,AnyAction> {
-        return createReducer<S>(this.#defaultState, this.#actionReducers, undefined, this.#filterByComponentId);
+        return createReducer<S>(this.#defaultState, this.#actionReducers, undefined, this.#filterByComponentId, false);
     }
 
     constructor(defaultState : S | () => S) {

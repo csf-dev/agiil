@@ -20,7 +20,7 @@ export default function LabelPicker(props : Props) {
     return (
         <input
             id={props.inputId}
-            onKeyPress={props.onKeypress}
+            onKeyDown={props.onKeypress}
             onChange={onChange}
             value={props.inputValue || ''}
             onFocus={onInputFocus}

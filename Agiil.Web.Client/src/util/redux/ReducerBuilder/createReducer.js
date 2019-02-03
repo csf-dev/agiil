@@ -18,11 +18,12 @@ import type { Reducer } from './Reducer';
 export function createReducer<S>(defaultState : S | () => S,
                                  actionReducers : Map<string,Reducer<S,AnyAction>>,
                                  children? : Map<string,Reducer<mixed,AnyAction>>,
-                                 filterActionsByComponentId : bool) : Redux$Reducer<S,AnyAction> {
+                                 filterActionsByComponentId : bool,
+                                 isObject : bool) : Redux$Reducer<S,AnyAction> {
     const childReducers : Map<string,Reducer<mixed,AnyAction>> = children || new Map();
 
     return function(state : ?S, action : AnyAction) : S {
-        const newState = getState<S>(state, defaultState);
+        const newState = getState<S>(state, defaultState, isObject);
         const componentIdState = getStateAsComponentId(newState);
 
         for (const childMapping of childReducers.entries()) {
@@ -49,10 +50,10 @@ function getStateAsComponentId<S>(state : S) : ?ComponentId {
     return ((state : any) : ComponentId)
 }
 
-function getState<S>(state : ?S, defaultState : S | () => S) : S {
+function getState<S>(state : ?S, defaultState : S | () => S, isObject : bool) : S {
     if(state === undefined) return getDefaultState<S>(defaultState);
     if(state === null) return getDefaultState<S>(defaultState);
-
+    if(isObject) return {...state};
     return state;
 }
 

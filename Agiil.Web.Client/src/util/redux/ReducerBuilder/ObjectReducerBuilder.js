@@ -46,7 +46,7 @@ Only one child handler may be registered per key name.`);
     }
 
     build() : Redux$Reducer<S,AnyAction> {
-        return createReducer<S>(this.#defaultState, this.#actionReducers, this.#childReducers, this.#filterByComponentId);
+        return createReducer<S>(this.#defaultState, this.#actionReducers, this.#childReducers, this.#filterByComponentId, true);
     }
 
     constructor(defaultState : S | () => S) {

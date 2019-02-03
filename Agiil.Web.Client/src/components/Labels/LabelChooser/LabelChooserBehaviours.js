@@ -16,6 +16,7 @@ export default class LabelChooserBehaviours {
         case Keyboard.Enter:
         case ",":
             handleAddition(this.props);
+            handleChangeValue(this.props, '');
             ev.preventDefault();
             break;
 
@@ -35,8 +36,6 @@ export default class LabelChooserBehaviours {
 
         if(![Keyboard.ArrowDown, Keyboard.ArrowUp].includes(ev.key))
             this.props.onResetSelectedSuggestion(this.props.suggestionsComponentId);
-        
-        // handleChangeValue(this.props, ev.currentTarget.value);
     };
 
     onChange = (ev : SyntheticEvent<HTMLInputElement>) => {
