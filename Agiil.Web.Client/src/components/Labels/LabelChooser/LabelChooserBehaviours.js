@@ -79,12 +79,9 @@ function handleAddition(props : LabelChooserProps) {
 }
 
 function deselectAllForRemoval(props : LabelChooserProps) {
-    props.labels.forEach(label => {
-        if(!label.selected) return;
-        props.onDeselectForRemoval(label, props.selectedLabelsComponentId);
-    })
+    props.onDeselectForRemoval(props.selectedLabelsComponentId);
 }
 
 function handleChangeValue(props : LabelChooserProps, newValue : string) {
-    props.onInputValueChanged(newValue, props.componentId);
+    props.onInputValueChanged(newValue, props.componentId, props.labelSuggester);
 }

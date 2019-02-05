@@ -29,12 +29,13 @@ function getSuggestions(props : Props) {
 }
 
 function getSuggestionMapper(props : Props) {
-    return (label : SelectableLabel) => {
+    return (label : SelectableLabel, idx : number) => {
         return (
             <LabelSuggestion
                 label={label}
                 clickable={props.show && !props.suggestionsLoading}
-                onClick={props.onClickSuggestion}  />
+                onClick={props.onClickSuggestion}
+                key={idx}  />
         );
     }
 }

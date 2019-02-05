@@ -32,7 +32,7 @@ export function selectNext(componentId : string) : NavigateSelectionAction {
 }
 
 export function selectPrev(componentId : string) : NavigateSelectionAction {
-    return { type: NavigateSelection, payload: { dir: 1 }, meta: { componentId } };
+    return { type: NavigateSelection, payload: { dir: -1 }, meta: { componentId } };
 }
 
 export function deselectAll(componentId : string) : DeselectAllAction {

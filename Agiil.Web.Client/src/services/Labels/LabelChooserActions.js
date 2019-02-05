@@ -1,8 +1,10 @@
 //@flow
-import type { Action, ComponentId } from '../../Action';
+import type { Action, AnyAction, ComponentId } from '../../Action';
 import type { LabelChooserState } from '../../domain/Labels/LabelChooserState';
 import type { Label, SelectableLabel } from '../../domain/Labels/Label';
 import { RequestsDataAsync } from '../../GetsDataAsync';
+import getLabelSuggester from './LabelSuggester';
+import type { Dispatch } from 'redux';
 
 export function getDataService() : RequestsDataAsync<string,Array<Label>> {
     return {
@@ -23,8 +25,28 @@ export type ChangeSuggestionVisibilityAction = Action<typeof ChangeSuggestionVis
 export type ChangeSuggestionLoadingStateAction = Action<typeof ChangeSuggestionLoadingState,{loading: bool},ComponentId>;
 export type ReplaceSuggestionsAction = Action<typeof ReplaceSuggestions,{suggestions : Array<SelectableLabel>},ComponentId>;
 
-export function updateValue(value : string, componentId : string) : ChangeValueAction {
-    return { type: ChangeValue, payload: { value }, meta: { componentId } };
+export function updateValue(value : string, componentId : string, labelSuggester? : RequestsDataAsync<string,Array<Label>>) : (d : Dispatch<AnyAction>) => Promise<void> {
+    const suggester : RequestsDataAsync<string,Array<Label>> = labelSuggester || getLabelSuggester();
+
+    return async (dispatch : Dispatch<AnyAction>) => {
+        dispatch({ type: ChangeValue, payload: { value }, meta: { componentId } });
+        
+        if(value.trim() === '')
+        {
+            dispatch(replaceSuggestions([], componentId));
+            dispatch(changeSuggestionLoading(false, componentId));
+            return;
+        }
+
+        dispatch(changeSuggestionLoading(true, componentId));
+
+        const suggestions = await suggester.getDataAsync(value);
+
+        dispatch(replaceSuggestions(suggestions.map(x => ({...x, selected: false})), componentId));
+        dispatch(changeSuggestionLoading(false, componentId));
+    };
+
+
 }
 
 export function changeVisibility(showSuggestions : bool, componentId : string) : ChangeSuggestionVisibilityAction {

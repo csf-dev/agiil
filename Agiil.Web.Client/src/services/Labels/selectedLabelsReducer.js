@@ -41,7 +41,10 @@ const reducer = buildObjectReducer<SelectableLabelList>(getDefaultState)
             
             if(newIndex >= 0 && newIndex < out.labels.length) {
                 deselectAll(out.labels);
-                out[newIndex].selected = true;
+                out.labels[newIndex].selected = true;
+            }
+            else if(newIndex < 0) {
+                deselectAll(out.labels);
             }
         }
         return out;

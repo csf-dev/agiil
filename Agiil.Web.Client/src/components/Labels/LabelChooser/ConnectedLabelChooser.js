@@ -8,11 +8,13 @@ import type { AnyAction } from '../../../Action';
 import * as LabelActions from '../../../services/Labels/SelectedLabelsActions';
 import * as ChooserActions from '../../../services/Labels/LabelChooserActions';
 import type { Label, SelectableLabel } from '../../../domain/Labels/Label';
+import { RequestsDataAsync } from '../../../GetsDataAsync';
 
 export type ConnectedLabelChooserProps = {|
     id? : string,
     labelText? : string,
     stateSelector : (store : any) => LabelChooserState,
+    labelSuggester? : RequestsDataAsync<string,Array<Label>>
 |};
 
 type StatefulProps = {|
@@ -27,6 +29,7 @@ type StatefulProps = {|
     componentId : string,
     selectedLabelsComponentId : string,
     suggestionsComponentId : string,
+    labelSuggester : ?RequestsDataAsync<string,Array<Label>>
 |};
 
 function mapStateToProps(store : any, ownProps : ConnectedLabelChooserProps) : StatefulProps {
@@ -43,6 +46,7 @@ function mapStateToProps(store : any, ownProps : ConnectedLabelChooserProps) : S
         componentId: state.componentId,
         selectedLabelsComponentId: state.selectedLabels.componentId,
         suggestionsComponentId: state.suggestions.componentId,
+        labelSuggester: ownProps.labelSuggester
     };
 }
 
