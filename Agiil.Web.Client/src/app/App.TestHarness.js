@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { getElementByIdMandatory } from '../util/TestDom';
-import LabelChooser from '../components/Labels/LabelChooser';
+import LabelChooser from 'components/labels/LabelChooser';
 import store from './store';
 import { Provider } from 'react-redux';
 import { RequestsDataAsync } from '../GetsDataAsync';

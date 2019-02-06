@@ -2,6 +2,12 @@ const path = require('path');
 
 
 const webpackConfig = {
+    resolve: {
+        modules: [
+            'node_modules',
+            path.resolve(__dirname, '../src')
+        ]
+    },
     module: {
         rules: [
             {
