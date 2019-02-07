@@ -1,3 +1,3 @@
 //@flow
 
-export { default as rootReducer } from './Labels/labelChooserReducer';
+export { default as rootReducer } from './labels/labelChooserReducer';

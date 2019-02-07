@@ -22,9 +22,12 @@ const reduceMyStateFoo = (state : ?MyState, action : MyStateFooAction) => ({...s
 const reduceMyStateBar = (state : ?MyState, action : MyStateBarAction) => ({...state, bar: action.payload.bar});
 const reduceMyStateBaz = (state : ?MyBaz, action : IncrementMyBazWangAction) => {
     const val = state? state.wang : 0;
+    let increment = action?.payload?.incrementBy;
+    increment = isNaN(increment)? 0 : increment;
+    
     return {
         ...state,
-        wang: val + action.payload.incrementBy
+        wang: val + increment 
     };
 };
 
@@ -57,7 +60,7 @@ describe('The reducer builder', () => {
             const result = reducer(state, { type: MyStateFoo, payload: {foo: 'New value' }});
 
             expect(result.bar).toBe(5);
-            expect(result.baz).toBe(defaultState.baz);
+            expect(result.baz).toEqual(defaultState.baz);
             expect(result.foo).toBe('New value');
         });
 
@@ -67,7 +70,7 @@ describe('The reducer builder', () => {
             const result = reducer(state, { type: MyStateBar, payload: {bar: 22 }});
 
             expect(result.bar).toBe(22);
-            expect(result.baz).toBe(defaultState.baz);
+            expect(result.baz).toEqual(defaultState.baz);
             expect(result.foo).toBe('Foo');
         });
 

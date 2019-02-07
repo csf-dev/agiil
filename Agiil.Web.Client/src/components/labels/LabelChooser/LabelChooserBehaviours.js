@@ -1,12 +1,14 @@
 //@flow
 import type { LabelChooserProps } from './LabelChooserProps';
-import Keyboard from '../../../util/Keyboard';
-import type { SelectableLabel } from '../../../domain/Labels/Label';
+import Keyboard from 'util/Keyboard';
+import type { SelectableLabel } from 'models/labels';
+import bound from 'bound-decorator';
 
 export default class LabelChooserBehaviours {
     props : LabelChooserProps;
 
-    onKeypress = (ev: SyntheticKeyboardEvent<HTMLInputElement>) => {
+    @bound
+    onKeypress(ev: SyntheticKeyboardEvent<HTMLInputElement>) {
         switch(ev.key) {
         case Keyboard.Backspace:
             if(mayPressBackspaceToRemoveLabel(ev))
@@ -38,8 +40,20 @@ export default class LabelChooserBehaviours {
             this.props.onResetSelectedSuggestion(this.props.suggestionsComponentId);
     };
 
-    onChange = (ev : SyntheticEvent<HTMLInputElement>) => {
+    @bound
+    onChange(ev : SyntheticEvent<HTMLInputElement>) {
         handleChangeValue(this.props, ev.currentTarget.value);
+    };
+
+    @bound
+    onFocus() { this.props.onShowSuggestionsChanged(true, this.props.componentId); }
+
+    @bound
+    onBlur() { this.props.onShowSuggestionsChanged(false, this.props.componentId); }
+
+    @bound
+    onChooseSuggestion(suggestion : SelectableLabel) {
+        this.props.onClickSuggestion(suggestion, this.props.suggestionsComponentId);
     }
 
     constructor(props : LabelChooserProps) {

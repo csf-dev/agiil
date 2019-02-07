@@ -1,6 +1,6 @@
 //@flow
 import type { LabelChooserProps } from './LabelChooserProps';
-import type { Label, SelectableLabel } from '../../../domain/Labels/Label';
+import type { Label, SelectableLabel } from 'models/labels';
 
 export function getSampleProps() : LabelChooserProps {
     return {

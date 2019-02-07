@@ -1,6 +1,6 @@
 //@flow
-import type { Label, SelectableLabel } from '../../../domain/Labels/Label';
-import { RequestsDataAsync } from '../../../GetsDataAsync';
+import type { Label, SelectableLabel } from 'models/labels';
+import { RequestsDataAsync } from 'GetsDataAsync';
 
 export type LabelChooserProps = {
     labels : Array<SelectableLabel>,

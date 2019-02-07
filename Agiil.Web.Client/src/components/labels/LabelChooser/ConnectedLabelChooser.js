@@ -1,14 +1,14 @@
 //@flow
 import { connect } from 'react-redux';
-import LabelChooser from './LabelChooser';
+import { LabelChooser } from './LabelChooser';
 import type { LabelChooserProps } from './LabelChooserProps';
-import type { LabelChooserState } from '../../../domain/Labels/LabelChooserState';
+import type { LabelChooserState } from './LabelChooserState';
 import type { Dispatch } from 'redux';
-import type { AnyAction } from '../../../Action';
-import * as LabelActions from '../../../services/Labels/SelectedLabelsActions';
-import * as ChooserActions from '../../../services/Labels/LabelChooserActions';
-import type { Label, SelectableLabel } from '../../../domain/Labels/Label';
-import { RequestsDataAsync } from '../../../GetsDataAsync';
+import type { AnyAction } from 'Action';
+import * as LabelActions from 'services/labels/SelectedLabelsActions';
+import * as ChooserActions from 'services/labels/LabelChooserActions';
+import type { Label, SelectableLabel } from 'models/labels';
+import { RequestsDataAsync } from 'GetsDataAsync';
 
 export type ConnectedLabelChooserProps = {|
     id? : string,

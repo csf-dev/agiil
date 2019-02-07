@@ -1,4 +1,4 @@
-.LabelChooser {
+.labelChooser {
     position: relative;
 }
 .SelectedLabels {
@@ -12,7 +12,7 @@
     border-radius: 2px;
     cursor: default;
 }
-.removeLabel {
+.remove {
     padding: 1px;
     margin: 0 0 0 4px;
     line-height: 100%;
@@ -20,7 +20,7 @@
     background: transparent none;
     cursor: pointer;
 }
-.removeLabel:hover {
+.remove:hover {
     color: #55F;
 }
 .SelectedLabels li.forRemoval {
@@ -33,14 +33,12 @@
     height: 200px;
     border: 1px solid #999;
 }
-/*
 .noSuggestions {
-
+    display: block;
 }
 .emptySuggestions {
-
+    display: block;
 }
-*/
 .loading {
     background: #EEE;
 }
@@ -53,4 +51,13 @@
 .selected {
     background: #55F;
     color: #FFF;
+}
+.ticketCount {
+    display: block;
+}
+.ticketCount.open {
+    display: block;
+}
+.ticketCount.closed {
+    display: block;
 }
