@@ -7,7 +7,7 @@ import type { SelectableLabel } from 'models/labels';
 import { getTestDom, testDomId } from 'util/TestDom';
 import mandatory from 'util/mandatory';
 // $FlowFixMe
-import styles from './labelList.scss';
+import styles from './labelList.module.scss';
 
 describe('A selectable label item', () => {
     let label : SelectableLabel;

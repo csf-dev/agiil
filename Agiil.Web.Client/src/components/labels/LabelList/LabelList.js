@@ -1,16 +1,14 @@
 //@flow
 import * as React from "react";
 // $FlowFixMe
-import styles from './labelList.scss';
+import styles from './labelList.module.scss';
 
 export type LabelListProps = {
     children : React.Node
 };
 
 export function LabelList(props : LabelListProps) {
-    const listClass = styles.labelList || 'labelList';
-
-    return (<ul className={listClass}>
+    return (<ul className={`${styles.labelList} LabelList`}>
         {props.children}
     </ul>);
 }

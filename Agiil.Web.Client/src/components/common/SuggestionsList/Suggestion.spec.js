@@ -6,7 +6,7 @@ import { Suggestion } from './Suggestion';
 import { getTestDom, testDomId } from 'util/TestDom';
 import mandatory from 'util/mandatory';
 // $FlowFixMe
-import styles from './suggestionsList.scss';
+import styles from './suggestionsList.module.scss';
 
 describe('A suggestion item', () => {
     let root : HTMLDivElement;

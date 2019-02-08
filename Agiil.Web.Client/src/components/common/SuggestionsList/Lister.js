@@ -1,9 +1,9 @@
 //@flow
 import * as React from "react";
 // $FlowFixMe
-import styles from './suggestionsList.scss';
+import styles from './suggestionsList.module.scss';
 // $FlowFixMe
-import commonStyles from 'components/componentStyles.scss';
+import commonStyles from 'components/componentStyles.module.scss';
 
 export type ListerProps = {
     ineligibleForSuggestions? : bool,
@@ -40,7 +40,7 @@ export function Lister(rawProps : ListerProps) {
 }
 
 function getClassNames(props : ListerProps) : Array<string> {
-    const out = [ styles.suggestions ];
+    const out = [ styles.suggestions, 'SuggestionsList' ];
     if(props.ineligibleForSuggestions) out.push(styles.ineligible);
     if(props.emptySuggestionsList) out.push(styles.empty);
     if(props.suggestionsLoading) out.push(styles.loading);

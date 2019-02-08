@@ -2,7 +2,7 @@
 import * as React from "react";
 import type { SelectableLabel } from 'models/labels';
 // $FlowFixMe
-import styles from './labelList.scss';
+import styles from './labelList.module.scss';
 
 export type TitleFormatter = (label : SelectableLabel) => string;
 

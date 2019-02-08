@@ -1,7 +1,7 @@
 //@flow
 import * as React from "react";
 // $FlowFixMe
-import styles from './suggestionsList.scss';
+import styles from './suggestionsList.module.scss';
 
 export type SuggestionProps = {
     selected : bool,

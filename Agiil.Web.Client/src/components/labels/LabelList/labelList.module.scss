@@ -1,0 +1,15 @@
+.labelList {
+    display: inline-block;
+
+    li {
+        padding: 2px 4px;
+        margin: 0 4px 0 0;
+        background: #BBB;
+        display: inline-block;
+        border-radius: 2px;
+        cursor: default;
+    }
+    li.selected {
+        background: #999;
+    }
+}

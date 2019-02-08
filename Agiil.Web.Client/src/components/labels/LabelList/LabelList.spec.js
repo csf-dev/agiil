@@ -5,7 +5,7 @@ import React from "react";
 import { getTestDom, testDomId } from 'util/TestDom';
 import mandatory from 'util/mandatory';
 // $FlowFixMe
-import styles from './labelList.scss';
+import styles from './labelList.module.scss';
 
 describe('The selected-labels list', () => {
     let root : HTMLDivElement;

@@ -44,6 +44,7 @@ function getFilenames(pattern, opts) {
 function addMiniCssPluginAndLoader(webpackConfig) {
     webpackConfig.plugins.push(new MiniCssExtractPlugin());
 
-    const sassRule = webpackConfig.module.rules.find(x => x.use.includes('sass-loader'));
-    sassRule.use.unshift(MiniCssExtractPlugin.loader);
+    webpackConfig.module.rules
+        .filter(x => x.use.includes('sass-loader'))
+        .forEach(x => x.use.unshift(MiniCssExtractPlugin.loader));
 }

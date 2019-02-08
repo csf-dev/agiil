@@ -1,5 +1,19 @@
 const path = require('path');
 
+const cssModuleLoader = {
+  loader: 'css-loader',
+  options: {
+    modules: true,
+    localIdentName: '[local]__[hash:base64:5]'
+  }
+}
+
+const cssPlainLoader = {
+  loader: 'css-loader',
+  options: {
+    modules: false
+  }
+}
 
 const webpackConfig = {
     resolve: {
@@ -16,16 +30,18 @@ const webpackConfig = {
                 use: [ 'babel-loader' ]
             },
             {
-                test: /\.scss$/,
+                test: /\.module\.scss$/,
                 exclude: /(node_modules|bower_components)/,
                 use: [
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true,
-                            localIdentName: '[local]__[hash:base64:5]'
-                        }
-                    },
+                    cssModuleLoader,
+                    'sass-loader'
+                ]
+            },
+            {
+                test: /\.scss$/,
+                exclude: /(node_modules|bower_components|\.module\.scss)/,
+                use: [
+                    cssPlainLoader,
                     'sass-loader'
                 ]
             },

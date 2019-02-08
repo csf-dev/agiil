@@ -6,7 +6,7 @@ import { getTestDom, testDomId } from 'util/TestDom';
 import mandatory from 'util/mandatory';
 import { getSampleProps } from './getSampleProps';
 // $FlowFixMe
-import styles from './labelChooser.scss';
+import styles from './labelChooser.module.scss';
 
 describe('The label chooser component', () => {
     let root : HTMLDivElement;

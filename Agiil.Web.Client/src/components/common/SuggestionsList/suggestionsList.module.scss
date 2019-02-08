@@ -8,14 +8,15 @@
     display: block;
 }
 .loading {
-    display: block;
+    background: #EEE;
 }
 .feedback {
     display: block;
 }
 .suggestion {
-    display: block;
+    padding: 4px 8px;
 }
 .selected {
-    display: block;
+    background: #55F;
+    color: #FFF;
 }

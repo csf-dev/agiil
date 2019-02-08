@@ -6,13 +6,15 @@ import type { SelectableLabel } from 'models/labels';
 import type { LabelChooserProps } from './LabelChooserProps';
 import LabelChooserBehaviours from './LabelChooserBehaviours';
 // $FlowFixMe
-import styles from './labelChooser.scss';
+import styles from './labelChooser.module.scss';
+// $FlowFixMe
+import './labelChooser.scss';
 
 export function LabelChooser(props : LabelChooserProps) {
     const behaviours = new LabelChooserBehaviours(props);
     const suggestions = props.suggestions || [];
     return (
-        <div className={styles.labelChooser} id={props.id}>
+        <div className={`${styles.labelChooser} LabelChooser`} id={props.id}>
             {getUiLabel(props)}
             <LabelList>
             {props.labels.map(label =>
