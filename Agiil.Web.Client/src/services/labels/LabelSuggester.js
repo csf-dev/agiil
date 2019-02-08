@@ -1,6 +1,6 @@
 //@flow
-import { RequestsDataAsync } from '../../GetsDataAsync';
-import type { Label } from '../../domain/Labels/Label';
+import { RequestsDataAsync } from 'services';
+import type { Label } from 'models/labels';
 import { SendsNetworkRequests, requestServiceFactory } from '../../network'
 
 type LabelsQuery = { q : string };

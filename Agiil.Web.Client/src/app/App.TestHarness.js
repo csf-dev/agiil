@@ -1,12 +1,12 @@
 //@flow
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { getElementByIdMandatory } from '../util/TestDom';
-import LabelChooser from 'components/labels/LabelChooser';
+import { getElementByIdMandatory } from 'util/TestDom';
+import { LabelChooser } from 'components/labels/LabelChooser';
 import store from './store';
 import { Provider } from 'react-redux';
-import { RequestsDataAsync } from '../GetsDataAsync';
-import type { Label } from '../domain/Labels/Label';
+import { RequestsDataAsync } from 'services';
+import type { Label } from 'models/labels';
 
 function startPage() {
     const root = getElementByIdMandatory('root');
@@ -31,7 +31,8 @@ class DummySuggester implements RequestsDataAsync<string,Array<Label>> {
             { name: 'Label four' },
         ];
         return new Promise((res, rej) => {
-            setTimeout(() => res(labels), 2000);
+            const out = (request === 'nope' || !request)? [] : labels
+            setTimeout(() => res(out), 2000);
         });
     }
 }

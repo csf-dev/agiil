@@ -1,15 +1,15 @@
 //@flow
-import type { SelectableLabel } from '../../domain/Labels/Label';
-import { AddLabel, RemoveLabel, SelectLabel, NavigateSelection, DeselectAll } from './SelectedLabelsActions';
-import type { AddLabelAction, RemoveLabelAction, SelectLabelAction, NavigateSelectionAction, DeselectAllAction } from './SelectedLabelsActions';
-import { buildObjectReducer } from '../../util/redux/ReducerBuilder';
-import type { SelectableLabelList } from '../../domain/Labels/LabelChooserState';
-import getComponentId from '../../util/redux/getComponentId';
+import type { SelectableLabel } from 'models/labels';
+import { AddLabel, RemoveLabel, SelectLabel, NavigateSelection, DeselectAll } from './LabelListActions';
+import type { AddLabelAction, RemoveLabelAction, SelectLabelAction, NavigateSelectionAction, DeselectAllAction } from './LabelListActions';
+import { buildObjectReducer } from 'util/redux/ReducerBuilder';
+import type { LabelListState } from 'components/labels/LabelList';
+import getComponentId from 'util/redux/getComponentId';
 
 const defaultState = { labels: [] };
-const getDefaultState = (s : ?SelectableLabelList) => s || ({...defaultState, componentId : getComponentId()} : SelectableLabelList);
+const getDefaultState = (s : ?LabelListState) => s || ({...defaultState, componentId : getComponentId()} : LabelListState);
 
-const reducer = buildObjectReducer<SelectableLabelList>(getDefaultState)
+const reducer = buildObjectReducer<LabelListState>(getDefaultState)
     .filterByComponentId()
     .forTypeKey(AddLabel).andAction<AddLabelAction>((s, a) => {
         s = getDefaultState(s);
@@ -57,7 +57,7 @@ const reducer = buildObjectReducer<SelectableLabelList>(getDefaultState)
     })
     .build();
 
-function cloneState(s : SelectableLabelList) : SelectableLabelList {
+function cloneState(s : LabelListState) : LabelListState {
     return { componentId: s.componentId, labels: (s.labels? [...s.labels] : []) };
 }
 

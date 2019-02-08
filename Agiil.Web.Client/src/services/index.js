@@ -1,3 +1,3 @@
 //@flow
 
-export { default as rootReducer } from './labels/labelChooserReducer';
+export { GetsDataAsync, RequestsDataAsync } from './GetsDataAsync';

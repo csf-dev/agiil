@@ -15,18 +15,18 @@ export function LabelChooser(props : LabelChooserProps) {
         <div className={styles.labelChooser} id={props.id}>
             {getUiLabel(props)}
             <LabelList>
-            {props.labels.map(label => {
+            {props.labels.map(label =>
                 <Label label={label} title={`Label: ${label.name}`}>
                     {label.name}
                     <button className={styles.remove}
                             title="Remove"
                             onClick={() => props.onRemove(label, props.selectedLabelsComponentId)}>❌</button>
                 </Label>
-            })}
+            )}
             </LabelList>
             <input id={getInputId(props)}
                    onKeyDown={behaviours.onKeypress}
-                   onChange={behaviours.onKeypress}
+                   onChange={behaviours.onChange}
                    value={props.inputValue || ''}
                    onFocus={behaviours.onFocus}
                    onBlur={behaviours.onBlur} />
@@ -36,13 +36,13 @@ export function LabelChooser(props : LabelChooserProps) {
                               emptySuggestionsListMessage="No matching labels"
                               suggestionsLoading={props.suggestionsLoading}
                               visible={props.showSuggestions}>
-            {suggestions.map(suggestion => {
+            {suggestions.map(suggestion =>
                 <Suggestion selected={suggestion.selected} onChoose={() => behaviours.onChooseSuggestion(suggestion)}>
                     <strong>{suggestion.name}</strong>
                     {getOpenCount(suggestion)}
                     {getClosedCount(suggestion)}
                 </Suggestion>
-            })}
+            )}
             </SuggestionLister>
         </div>
     );

@@ -1,6 +1,6 @@
 //@flow
-import type { Action, ComponentId } from '../../Action';
-import type { SelectableLabel } from '../../domain/Labels/Label';
+import type { Action, ComponentId } from 'models';
+import type { SelectableLabel } from 'models/labels';
 
 export const
     AddLabel = 'ADD_LABEL',

@@ -1,5 +1,5 @@
 //@flow
-import type { AnyAction, Action } from '../../../Action';
+import type { AnyAction, Action } from 'models';
 
 /**
  * Type aliases

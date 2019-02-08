@@ -1,18 +1,10 @@
 //@flow
-import type { Action, AnyAction, ComponentId } from '../../Action';
-import type { LabelChooserState } from '../../domain/Labels/LabelChooserState';
-import type { Label, SelectableLabel } from '../../domain/Labels/Label';
-import { RequestsDataAsync } from '../../GetsDataAsync';
-import getLabelSuggester from './LabelSuggester';
+import type { Action, AnyAction, ComponentId } from 'models';
+import type { LabelChooserState } from './LabelChooserState';
+import type { Label, SelectableLabel } from 'models/labels';
+import { RequestsDataAsync } from 'services';
+import getLabelSuggester from 'services/labels/LabelSuggester';
 import type { Dispatch } from 'redux';
-
-export function getDataService() : RequestsDataAsync<string,Array<Label>> {
-    return {
-        getDataAsync(request : string) : Promise<Array<Label>> {
-            return Promise.resolve([{name: 'Three'}, {name: 'Four'}, {name: 'Five'}]);
-        }
-    }
-}
 
 export const
     ChangeValue : 'CHANGE_VALUE' = 'CHANGE_VALUE',

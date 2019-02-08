@@ -1,5 +1,5 @@
 //@flow
-import type { AnyAction, Action } from '../../../Action';
+import type { AnyAction, Action } from 'models';
 import { BuildsObjectReducer, BuildsReducer, AcceptsReducer, AcceptsChildReducer } from './BuildsReducer';
 import type { ActionReducer, Reducer } from './Reducer';
 

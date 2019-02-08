@@ -4,11 +4,11 @@ import { LabelChooser } from './LabelChooser';
 import type { LabelChooserProps } from './LabelChooserProps';
 import type { LabelChooserState } from './LabelChooserState';
 import type { Dispatch } from 'redux';
-import type { AnyAction } from 'Action';
-import * as LabelActions from 'services/labels/SelectedLabelsActions';
-import * as ChooserActions from 'services/labels/LabelChooserActions';
+import type { AnyAction } from 'models';
+import * as LabelList from 'components/labels/LabelList';
+import * as ChooserActions from './LabelChooserActions';
 import type { Label, SelectableLabel } from 'models/labels';
-import { RequestsDataAsync } from 'GetsDataAsync';
+import { RequestsDataAsync } from 'services';
 
 export type ConnectedLabelChooserProps = {|
     id? : string,
@@ -41,7 +41,7 @@ function mapStateToProps(store : any, ownProps : ConnectedLabelChooserProps) : S
         inputValue: state.value,
         uiLabelText: ownProps.labelText,
         showSuggestions: state.showSuggestions,
-        noSuggestionsLoaded: state.suggestions.labels.length === 0,
+        noSuggestionsLoaded: state.ineligibleForSuggestions,
         suggestionsLoading: state.suggestionsLoading,
         componentId: state.componentId,
         selectedLabelsComponentId: state.selectedLabels.componentId,
@@ -51,17 +51,20 @@ function mapStateToProps(store : any, ownProps : ConnectedLabelChooserProps) : S
 }
 
 const mapDispatchToProps = {
-    onAdd: LabelActions.addLabel,
-    onRemove: LabelActions.removeLabel,
-    onSelectForRemoval: LabelActions.selectLabel,
-    onDeselectForRemoval: LabelActions.deselectAll,
+    onAdd: LabelList.addLabel,
+    onRemove: LabelList.removeLabel,
+    onSelectForRemoval: LabelList.selectLabel,
+    onDeselectForRemoval: LabelList.deselectAll,
     onInputValueChanged: ChooserActions.updateValue,
     onShowSuggestionsChanged: ChooserActions.changeVisibility,
-    onSelectNextSuggestion : LabelActions.selectNext,
-    onSelectPrevSuggestion : LabelActions.selectPrev,
-    onResetSelectedSuggestion : LabelActions.deselectAll,
-    onClickSuggestion: LabelActions.addLabel
+    onSelectNextSuggestion : LabelList.selectNext,
+    onSelectPrevSuggestion : LabelList.selectPrev,
+    onResetSelectedSuggestion : LabelList.deselectAll,
+    onClickSuggestion: LabelList.addLabel
 }
 
-const connectedLabelChooser = connect<LabelChooserProps,ConnectedLabelChooserProps, any, any, any, any>(mapStateToProps, mapDispatchToProps)(LabelChooser);
+const connectedLabelChooser = connect<LabelChooserProps,ConnectedLabelChooserProps, any, any, any, any>(
+    mapStateToProps,
+    mapDispatchToProps
+)(LabelChooser);
 export default connectedLabelChooser;

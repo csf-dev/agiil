@@ -1,6 +1,6 @@
 //@flow
 import type { Reducer as Redux$Reducer } from 'redux';
-import type { AnyAction, ComponentId } from '../../../Action';
+import type { AnyAction, ComponentId } from 'models';
 import type { Reducer } from './Reducer';
 
 /**

@@ -1,6 +1,6 @@
 //@flow
 import type { Reducer as Redux$Reducer } from 'redux';
-import type { AnyAction } from '../../../Action';
+import type { AnyAction } from 'models';
 import { BuildsObjectReducer, AcceptsReducer, AcceptsChildReducer } from './BuildsReducer';
 import type { Reducer } from './Reducer';
 import { ObjectReducerReceiver, ChildReducerReceiver } from './ReducerReceivers';

@@ -1,12 +1,13 @@
 //@flow
 import type { SelectableLabel } from 'models/labels';
-import type { ComponentId } from 'Action';
+import type { ComponentId } from 'models';
 import type { LabelListState } from 'components/labels/LabelList';
 
 export type LabelChooserState = ComponentId & {
+    selectedLabels : LabelListState;
+    suggestions : LabelListState;
     value: string;
     showSuggestions : bool;
-    selectedLabels : LabelListState;
     suggestionsLoading : bool;
-    suggestions : LabelListState;
+    ineligibleForSuggestions : bool;
 }

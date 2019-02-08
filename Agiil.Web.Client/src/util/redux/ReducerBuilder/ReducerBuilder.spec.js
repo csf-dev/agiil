@@ -1,7 +1,7 @@
 //@flow
 import type { Reducer } from 'redux';
 import { buildObjectReducer, buildPrimitiveReducer } from '.';
-import type { Action, AnyAction } from '../../../Action';
+import type { Action, AnyAction } from 'models';
 
 type MyBaz = {| wing : boolean, wang : number, wong : Array<number> |};
 type MyState = {| foo : string, bar : number, baz : MyBaz |};
