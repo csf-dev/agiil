@@ -17,8 +17,8 @@ export function LabelChooser(props : LabelChooserProps) {
         <div className={`${styles.labelChooser} LabelChooser`} id={props.id}>
             {getUiLabel(props)}
             <LabelList>
-            {props.labels.map(label =>
-                <Label label={label} title={`Label: ${label.name}`}>
+            {props.labels.map((label, idx) =>
+                <Label label={label} title={`Label: ${label.name}`} key={idx}>
                     {label.name}
                     <button className={styles.remove}
                             title="Remove"
@@ -38,8 +38,8 @@ export function LabelChooser(props : LabelChooserProps) {
                               emptySuggestionsListMessage="No matching labels"
                               suggestionsLoading={props.suggestionsLoading}
                               visible={props.showSuggestions}>
-            {suggestions.map(suggestion =>
-                <Suggestion selected={suggestion.selected} onChoose={() => behaviours.onChooseSuggestion(suggestion)}>
+            {suggestions.map((suggestion, idx) =>
+                <Suggestion selected={suggestion.selected} onChoose={() => behaviours.onChooseSuggestion(suggestion)} key={idx}>
                     <strong>{suggestion.name}</strong>
                     {getOpenCount(suggestion)}
                     {getClosedCount(suggestion)}

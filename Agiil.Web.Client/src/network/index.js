@@ -1,9 +1,10 @@
 //@flow
 import { NetworkServiceFactory } from './NetworkServiceFactory';
 import { ApiUrlServiceFactoryDecorator } from './ApiUrlServiceFactoryDecorator';
+import type { Cancelable } from 'models';
 
 export interface SendsNetworkRequests<TRequest,TResponse> {
-    sendRequest(request? : TRequest) : Promise<TResponse>;
+    sendRequest(request? : TRequest) : Cancelable<TResponse>;
 }
 
 export interface GetsNetworkRequestSender {

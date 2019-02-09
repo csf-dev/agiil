@@ -2,15 +2,21 @@
 import xhrSendToPromise from './xhrSendToPromise';
 import { SendsNetworkRequests } from '.';
 import { getUrlWithQuerystringParams } from './querystring';
+import type { Cancelable } from 'models';
+import { getJsonXhr } from './getXhr';
 
 export default class JsonAjaxGetRequest<TRequest : {},TResponse> implements SendsNetworkRequests<TRequest,TResponse> {
     url : string;
 
-    async sendRequest(request? : TRequest) : Promise<TResponse> {
+    sendRequest(request? : TRequest) : Cancelable<TResponse> {
         const url = getUrlWithQuerystringParams(this.url, request);
-        const xhr = getXhr(url);
-        const resultXhr = await xhrSendToPromise(xhr);
-        return (resultXhr.response : TResponse);
+        const xhr = getJsonXhr(url, 'GET');
+        const cancelableXhr = xhrSendToPromise(xhr);
+        return {
+            cancel: () => cancelableXhr.cancel(),
+            requestId: cancelableXhr.requestId,
+            promise: cancelableXhr.promise.then(x => (x.response : TResponse))
+        };
     }
 
     constructor(url : string) {
@@ -18,10 +24,3 @@ export default class JsonAjaxGetRequest<TRequest : {},TResponse> implements Send
     }
 }
 
-function getXhr(url : string) : XMLHttpRequest {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', url);
-    xhr.setRequestHeader('Accept', 'application/json, text/javascript, text/json, text/plain');
-    xhr.responseType = 'json';
-    return xhr;
-}

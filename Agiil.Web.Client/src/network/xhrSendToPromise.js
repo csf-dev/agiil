@@ -1,9 +1,16 @@
 //@flow
+import type { Cancelable } from 'models';
+import { v4 as uuid } from 'uuid';
 
-export default function xhrSendToPromise(xhr : XMLHttpRequest, body? : mixed) : Promise<XMLHttpRequest> {
+export default function xhrSendToPromise(xhr : XMLHttpRequest, body? : mixed) : Cancelable<XMLHttpRequest> {
     const promise = new Promise((resolve, reject) => setupReadyStateChangeHandler(xhr, resolve, reject));
     xhr.send(body);
-    return promise;
+    
+    return {
+        cancel: () => xhr.abort(),
+        requestId: getRequestId(),
+        promise
+    };
 }
 
 function setupReadyStateChangeHandler(xhr : XMLHttpRequest,
@@ -16,3 +23,5 @@ function setupReadyStateChangeHandler(xhr : XMLHttpRequest,
         else if(xhr.status >= 400) reject(xhr);
     }
 }
+
+const getRequestId = () => uuid();

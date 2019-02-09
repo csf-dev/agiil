@@ -22,7 +22,7 @@ describe('The label chooser component', () => {
     it('should always use the \'labelChooser\' class', () => {
         ReactDOM.render(<LabelChooser {...getSampleProps()} />, root);
         const rootElement = mandatory(document.querySelector(rootSelector));
-        expect(rootElement.className).toBe(styles.labelChooser);
+        expect([...rootElement.classList].includes(styles.labelChooser)).toBeTruthy();
     });
 
     it('should use the specified id attribute if provided', () => {

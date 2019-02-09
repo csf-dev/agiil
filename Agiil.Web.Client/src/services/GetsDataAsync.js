@@ -1,9 +1,10 @@
 //@flow
+import type { Cancelable } from 'models';
 
 export interface GetsDataAsync<TResponse> {
-    getDataAsync() : Promise<TResponse>;
+    getDataAsync() : Cancelable<TResponse>;
 }
 
 export interface RequestsDataAsync<TRequest,TResponse> {
-    getDataAsync(request : TRequest) : Promise<TResponse>;
+    getDataAsync(request : TRequest) : Cancelable<TResponse>;
 }

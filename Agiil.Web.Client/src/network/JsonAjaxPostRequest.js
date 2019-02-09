@@ -1,28 +1,26 @@
 //@flow
 import xhrSendToPromise from './xhrSendToPromise';
 import { SendsNetworkRequests } from '.';
+import type { Cancelable } from 'models';
+import { getJsonXhr } from './getXhr';
 
 export default class JsonAjaxPostRequest<TRequest,TResponse> implements SendsNetworkRequests<TRequest,TResponse> {
     url : string;
 
-    async sendRequest(request? : TRequest) : Promise<TResponse> {
-        const xhr = getXhr(this.url);
+    sendRequest(request? : TRequest) : Cancelable<TResponse> {
+        const xhr = getJsonXhr(this.url, 'POST');
         const body = getRequestBody(request);
-        const resultXhr = await xhrSendToPromise(xhr, body);
-        return (resultXhr.response : TResponse);
+        const cancelableXhr = xhrSendToPromise(xhr);
+        return {
+            cancel: () => cancelableXhr.cancel(),
+            requestId: cancelableXhr.requestId,
+            promise: cancelableXhr.promise.then(x => (x.response : TResponse))
+        };
     }
 
     constructor(url : string) {
         this.url = url;
     }
-}
-
-function getXhr(url : string) : XMLHttpRequest {
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', url);
-    xhr.setRequestHeader('Accept', 'application/json, text/javascript, text/json, text/plain');
-    xhr.responseType = 'json';
-    return xhr;
 }
 
 function getRequestBody(request? : mixed) : ?string {

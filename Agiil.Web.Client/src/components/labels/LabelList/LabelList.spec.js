@@ -21,7 +21,7 @@ describe('The selected-labels list', () => {
     it('should have the correct root class name', () => {
         ReactDOM.render(<LabelList><li /></LabelList>, root);
         const rootList = mandatory(document.querySelector(rootSelector));
-        expect(rootList.className).toBe(styles.labelList);
+        expect([...rootList.classList].includes(styles.labelList)).toBeTruthy();
     });
 });
 

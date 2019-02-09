@@ -5,6 +5,9 @@ import type { Label, SelectableLabel } from 'models/labels';
 import { RequestsDataAsync } from 'services';
 import getLabelSuggester from 'services/labels/LabelSuggester';
 import type { Dispatch } from 'redux';
+import type { Cancelable } from 'models';
+import { Subject } from 'rxjs';
+import { debounceInput } from 'services/common';
 
 export const
     ChangeValue : 'CHANGE_VALUE' = 'CHANGE_VALUE',
@@ -17,28 +20,23 @@ export type ChangeSuggestionVisibilityAction = Action<typeof ChangeSuggestionVis
 export type ChangeSuggestionLoadingStateAction = Action<typeof ChangeSuggestionLoadingState,{loading: bool},ComponentId>;
 export type ReplaceSuggestionsAction = Action<typeof ReplaceSuggestions,{suggestions : Array<SelectableLabel>},ComponentId>;
 
-export function updateValue(value : string, componentId : string, labelSuggester? : RequestsDataAsync<string,Array<Label>>) : (d : Dispatch<AnyAction>) => Promise<void> {
+type ValueStream = {
+    value: string;
+    dispatch: Dispatch<AnyAction>;
+    componentId : string;
+    suggester : RequestsDataAsync<string,Array<Label>>;
+};
+
+const pendingRequests = new Map<string,Cancelable<Array<Label>>>();
+const inputStream = new Subject<ValueStream>();
+
+export function updateValue(value : string, componentId : string, labelSuggester? : RequestsDataAsync<string,Array<Label>>) : (d : Dispatch<AnyAction>) => void {
     const suggester : RequestsDataAsync<string,Array<Label>> = labelSuggester || getLabelSuggester();
 
-    return async (dispatch : Dispatch<AnyAction>) => {
+    return (dispatch : Dispatch<AnyAction>) => {
         dispatch({ type: ChangeValue, payload: { value }, meta: { componentId } });
-        
-        if(value.trim() === '')
-        {
-            dispatch(replaceSuggestions([], componentId));
-            dispatch(changeSuggestionLoading(false, componentId));
-            return;
-        }
-
-        dispatch(changeSuggestionLoading(true, componentId));
-
-        const suggestions = await suggester.getDataAsync(value);
-
-        dispatch(replaceSuggestions(suggestions.map(x => ({...x, selected: false})), componentId));
-        dispatch(changeSuggestionLoading(false, componentId));
+        inputStream.next({value, dispatch, componentId, suggester});
     };
-
-
 }
 
 export function changeVisibility(showSuggestions : bool, componentId : string) : ChangeSuggestionVisibilityAction {
@@ -51,4 +49,42 @@ export function changeSuggestionLoading(loading : bool, componentId : string) : 
 
 export function replaceSuggestions(suggestions : Array<SelectableLabel>, componentId : string) : ReplaceSuggestionsAction {
     return { type: ReplaceSuggestions, payload: { suggestions }, meta: { componentId } };
+}
+
+inputStream.subscribe((next : ValueStream) => {
+    if(valueIsEmpty(next.value))
+    {
+        handleEmptyValue(next);
+        return;
+    }
+
+    next.dispatch(changeSuggestionLoading(true, next.componentId));
+});
+
+inputStream.pipe(debounceInput()).subscribe((next : ValueStream) => {
+    if(valueIsEmpty(next.value)) return;
+
+    clearPendingRequests();
+
+    const pendingRequest = next.suggester.getDataAsync(next.value);
+    pendingRequests.set(pendingRequest.requestId, pendingRequest);
+
+    pendingRequest.promise.then(res => {
+        next.dispatch(replaceSuggestions(res.map(x => ({...x, selected: false})), next.componentId));
+        next.dispatch(changeSuggestionLoading(false, next.componentId));
+        pendingRequests.delete(pendingRequest.requestId);
+    });
+});
+
+function valueIsEmpty(value) { return !value || value.trim() === ''; }
+
+function handleEmptyValue(item : ValueStream) {
+    clearPendingRequests();
+    item.dispatch(replaceSuggestions([], item.componentId));
+    item.dispatch(changeSuggestionLoading(false, item.componentId));
+}
+
+function clearPendingRequests() {
+    pendingRequests.forEach(req => req.cancel());
+    pendingRequests.clear();
 }
