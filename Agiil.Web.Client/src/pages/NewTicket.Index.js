@@ -5,8 +5,9 @@ import { getElementByIdMandatory } from 'util/dom';
 import { LabelChooser } from 'components/labels/LabelChooser';
 import store from 'app/store';
 import { Provider } from 'react-redux';
+import pageStarter from 'util/pageStarter';
 
-function startPage() {
+pageStarter(() => {
     const root = getElementByIdMandatory('LabelChooser');
     [...root.children].forEach(child => child.remove());
 
@@ -16,4 +17,4 @@ function startPage() {
         </Provider>,
         root
     );
-}
+});

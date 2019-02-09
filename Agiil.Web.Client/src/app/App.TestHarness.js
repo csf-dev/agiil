@@ -9,8 +9,9 @@ import { RequestsDataAsync } from 'services';
 import type { Label } from 'models/labels';
 import type { Cancelable } from 'models';
 import { v4 as uuid } from 'uuid';
+import pageStarter from 'util/pageStarter';
 
-function startPage() {
+pageStarter(() => {
     const root = getElementByIdMandatory('root');
     const suggester : RequestsDataAsync<string,Array<Label>> = new DummySuggester();
 
@@ -20,9 +21,7 @@ function startPage() {
         </Provider>,
         root
     );
-}
-
-document.addEventListener("DOMContentLoaded", startPage);
+});
 
 class DummySuggester implements RequestsDataAsync<string,Array<Label>> {
     getDataAsync(request : string) : Cancelable<Array<Label>> {
