@@ -5,12 +5,6 @@ export function getDocElement() {
     return document.documentElement;
 }
 
-export function getElementByIdMandatory(id : string) {
-    const element = document.getElementById(id);
-    if(!element) throw new Error(`Element #${id} missing`);
-    return element;
-}
-
 export const testDomId = 'TestRoot';
 
 export function getTestDom() {

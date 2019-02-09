@@ -33,6 +33,7 @@ const webpackConfig = {
                 test: /\.module\.scss$/,
                 exclude: /(node_modules|bower_components)/,
                 use: [
+                    // TODO #AG236 - Add PostCSS here
                     cssModuleLoader,
                     'sass-loader'
                 ]
@@ -41,6 +42,7 @@ const webpackConfig = {
                 test: /\.scss$/,
                 exclude: /(node_modules|bower_components|\.module\.scss)/,
                 use: [
+                    // TODO #AG236 - Add PostCSS here
                     cssPlainLoader,
                     'sass-loader'
                 ]
@@ -50,7 +52,12 @@ const webpackConfig = {
     output: {
         path: path.resolve(__dirname, '../dist')
     },
-    devtool: 'source-map'
+    devtool: 'source-map',
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
+    }
 };
 
 module.exports = webpackConfig;

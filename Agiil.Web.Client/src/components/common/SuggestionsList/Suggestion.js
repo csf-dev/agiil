@@ -4,8 +4,8 @@ import * as React from "react";
 import styles from './suggestionsList.module.scss';
 
 export type SuggestionProps = {
-    selected : bool,
-    onChoose : () => void,
+    selected? : bool,
+    onChoose? : () => void,
     children : React.Node
 };
 

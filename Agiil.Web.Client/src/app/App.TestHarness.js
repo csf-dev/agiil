@@ -1,7 +1,7 @@
 //@flow
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { getElementByIdMandatory } from 'util/TestDom';
+import { getElementByIdMandatory } from 'util/dom';
 import { LabelChooser } from 'components/labels/LabelChooser';
 import store from './store';
 import { Provider } from 'react-redux';

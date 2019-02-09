@@ -39,7 +39,7 @@ describe('A suggestion item', () => {
 
     it('should trigger the appropriate onclick handler when clicked', () => {
         let clicked = false;
-        const handler = () => clicked = true;
+        const handler = () => { clicked = true };
         ReactDOM.render(<Suggestion onChoose={handler}>Suggestion</Suggestion>, root);
         const rootElement = mandatory(document.querySelector(rootSelector));
         ReactTestUtils.Simulate.click(rootElement);
