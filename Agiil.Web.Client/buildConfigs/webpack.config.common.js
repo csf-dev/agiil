@@ -50,12 +50,40 @@ const webpackConfig = {
         ]
     },
     output: {
-        path: path.resolve(__dirname, '../dist')
+        path: path.resolve(__dirname, '../dist/Content')
     },
     devtool: 'source-map',
     optimization: {
         splitChunks: {
-            chunks: 'all'
+            chunks: 'all',
+            cacheGroups: {
+                "babel-polyfill": {
+                    test: /[\\/]node_modules[\\/](core-js|@babel)[\\/]/,
+                    priority: 10,
+                    enforce: true,
+                    name: 'babel-polyfill.bundle',
+                },
+                "react-redux": {
+                    test: /[\\/]node_modules[\\/](react(-dom|-redux|-is)?|redux(-thunk)?|prop-types|hoist-non-react-statics)[\\/]/,
+                    priority: 10,
+                    enforce: true,
+                    name: 'react-redux.bundle',
+                },
+                "vendors": {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: 5,
+                    enforce: true,
+                    name: 'vendors.bundle',
+                },
+                "agiil-app": {
+                    test: /[\\/]src[\\/](?!pages)/,
+                    name: 'agiil-app',
+                    minChunks: 2,
+                    priority: 0,
+                    minSize: 15360,
+                    enforce: true,
+                }
+            },
         }
     }
 };

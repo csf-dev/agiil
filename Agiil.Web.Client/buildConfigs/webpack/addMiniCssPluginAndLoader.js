@@ -4,7 +4,9 @@ module.exports = function addMiniCssPluginAndLoader(webpackConfig) {
     webpackConfig.plugins = webpackConfig.plugins || [];
     webpackConfig.module.rules = webpackConfig.module.rules || [];
 
-    webpackConfig.plugins.push(new MiniCssExtractPlugin());
+    webpackConfig.plugins.push(new MiniCssExtractPlugin({
+        filename: '[name].[contenthash].css'
+    }));
 
     webpackConfig.module.rules
         .filter(x => x.use.includes('sass-loader'))
