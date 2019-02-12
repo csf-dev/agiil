@@ -8,9 +8,9 @@ webpackConfig.mode = 'production';
 
 module.exports = new Promise(async (res, rej) => {
     addMiniCssPluginAndLoader(webpackConfig);
-    configureProdOutputFilenames(webpackConfig);
     await addPageEntryPoints(webpackConfig);
     // HTML plugin must be executed after entry points added
     addHtmlPlugin(webpackConfig);
+    configureProdOutputFilenames(webpackConfig);
     res(webpackConfig);
 });

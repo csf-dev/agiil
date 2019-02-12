@@ -4,8 +4,10 @@ module.exports = function addMiniCssPluginAndLoader(webpackConfig) {
     webpackConfig.plugins = webpackConfig.plugins || [];
     webpackConfig.module.rules = webpackConfig.module.rules || [];
 
+    const filenamePattern = (webpackConfig.mode == 'production')? '[name].[contenthash].css' : '[name].css';
+
     webpackConfig.plugins.push(new MiniCssExtractPlugin({
-        filename: '[name].[contenthash].css'
+        filename: filenamePattern
     }));
 
     webpackConfig.module.rules
