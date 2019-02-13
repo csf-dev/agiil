@@ -11,6 +11,7 @@
 <style metal:fill-slot="extra_styles">
 @import url('Content/Css/CreateTicket.css');
 </style>
+<style metal:fill-slot="asset_styles" metal:use-macro="Views/NewTicket/Index.assets.html/macros/styles"></style>
 </head>
 <body>
 <div metal:fill-slot="page_content"
@@ -126,5 +127,5 @@
     <em>The ticket was created successfully;</em> <a href="Tickets">return to the ticket list</a>.
   </p>
 </div>
-</body>
+<metal:block fill-slot="asset_scripts" use-macro="Views/NewTicket/Index.assets.html/macros/scripts"></metal:block></body>
 </html>

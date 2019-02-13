@@ -16,6 +16,7 @@
 <style metal:fill-slot="extra_styles">
 @import url('Content/Css/EditTicket.css');
 </style>
+<style metal:fill-slot="asset_styles" metal:use-macro="Views/Ticket/Edit.assets.html/macros/styles"></style>
 </head>
 <body>
 <div metal:fill-slot="page_content" class="page_content">
@@ -161,5 +162,6 @@
     </fieldset>
   </form>
 </div>
+<metal:block fill-slot="asset_scripts" use-macro="Views/Ticket/Edit.assets.html/macros/scripts"></metal:block>
 </body>
 </html>

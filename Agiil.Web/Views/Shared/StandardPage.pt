@@ -20,6 +20,7 @@
 @import url('Content/Css/StandardPage.css');
 </style>
 <style metal:define-slot="extra_styles" tal:omit-tag=""></style>
+<style metal:define-slot="asset_styles" tal:omit-tag=""></style>
 </head>
 <body metal:fill-slot="body_element">
 <header metal:define-slot="page_header" metal:use-macro="Views/Shared/StandardHeader/macros/header">
@@ -31,5 +32,6 @@
 <footer metal:define-slot="page_footer" metal:use-macro="Views/Shared/StandardFooter/macros/footer">
 
 </footer>
+<metal:block define-slot="asset_scripts"></metal:block>
 </body>
 </html>
