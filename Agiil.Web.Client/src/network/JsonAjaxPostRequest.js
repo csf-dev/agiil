@@ -1,5 +1,5 @@
 //@flow
-import xhrSendToPromise from './xhrSendToPromise';
+import getCancelableXhr from './getCancelableXhr';
 import { SendsNetworkRequests } from '.';
 import type { Cancelable } from 'models';
 import { getJsonXhr } from './getXhr';
@@ -10,12 +10,8 @@ export default class JsonAjaxPostRequest<TRequest,TResponse> implements SendsNet
     sendRequest(request? : TRequest) : Cancelable<TResponse> {
         const xhr = getJsonXhr(this.url, 'POST');
         const body = getRequestBody(request);
-        const cancelableXhr = xhrSendToPromise(xhr);
-        return {
-            cancel: () => cancelableXhr.cancel(),
-            requestId: cancelableXhr.requestId,
-            promise: cancelableXhr.promise.then(x => (x.response : TResponse))
-        };
+        const cancelableXhr = getCancelableXhr(xhr, body);
+        return cancelableXhr.map<TResponse>(x => (x.response : TResponse));
     }
 
     constructor(url : string) {

@@ -2,6 +2,7 @@
 import type { Reducer as Redux$Reducer } from 'redux';
 import type { AnyAction, ComponentId } from 'models';
 import type { Reducer } from './Reducer';
+import getComponentId from 'util/redux/getComponentId';
 
 /**
  * Type aliases
@@ -23,7 +24,7 @@ export function createReducer<S>(defaultState : S | () => S,
     const childReducers : Map<string,Reducer<mixed,AnyAction>> = children || new Map();
 
     return function(state : ?S, action : AnyAction) : S {
-        const newState = getState<S>(state, defaultState, isObject);
+        const newState = getState<S>(state, defaultState, isObject, filterActionsByComponentId);
         const componentIdState = getStateAsComponentId(newState);
 
         for (const childMapping of childReducers.entries()) {
@@ -50,11 +51,24 @@ function getStateAsComponentId<S>(state : S) : ?ComponentId {
     return ((state : any) : ComponentId)
 }
 
-function getState<S>(state : ?S, defaultState : S | () => S, isObject : bool) : S {
-    if(state === undefined) return getDefaultState<S>(defaultState);
-    if(state === null) return getDefaultState<S>(defaultState);
-    if(isObject) return {...state};
-    return state;
+function getState<S>(state : ?S, defaultState : S | () => S, isObject : bool, useComponentId : bool) : S {
+    let output : S;
+
+    if(state === undefined) output = getDefaultState<S>(defaultState);
+    else if(state === null) output = getDefaultState<S>(defaultState);
+    else if(!isObject) output = state;
+    else output = {...state};
+
+    if(useComponentId) addComponentIdIfNeeded(output);
+    
+    return output;
+}
+
+function addComponentIdIfNeeded(obj : mixed) : void {
+    if(typeof obj !== 'object') return;
+    if(!obj) return;
+    if(Object.getOwnPropertyNames(obj).includes('componentId')) return;
+    obj.componentId = getComponentId();
 }
 
 function getDefaultState<S>(defaultState : S | () => S) : S {

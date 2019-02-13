@@ -1,5 +1,5 @@
 //@flow
-import xhrSendToPromise from './xhrSendToPromise';
+import getCancelableXhr from './getCancelableXhr';
 import { SendsNetworkRequests } from '.';
 import { getUrlWithQuerystringParams } from './querystring';
 import type { Cancelable } from 'models';
@@ -11,12 +11,8 @@ export default class JsonAjaxGetRequest<TRequest : {},TResponse> implements Send
     sendRequest(request? : TRequest) : Cancelable<TResponse> {
         const url = getUrlWithQuerystringParams(this.url, request);
         const xhr = getJsonXhr(url, 'GET');
-        const cancelableXhr = xhrSendToPromise(xhr);
-        return {
-            cancel: () => cancelableXhr.cancel(),
-            requestId: cancelableXhr.requestId,
-            promise: cancelableXhr.promise.then(x => (x.response : TResponse))
-        };
+        const cancelableXhr = getCancelableXhr(xhr);
+        return cancelableXhr.map<TResponse>(x => (x.response : TResponse));
     }
 
     constructor(url : string) {

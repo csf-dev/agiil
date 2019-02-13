@@ -15,9 +15,7 @@ const defaultState = {
     ineligibleForSuggestions: true,
 };
 function getDefaultState(s : ?LabelChooserState) : LabelChooserState {
-    if(!s) return {...defaultState, componentId: getComponentId()};
-    if(!s.componentId) s.componentId = getComponentId();
-    return s;
+    return s || {...defaultState, componentId: getComponentId()};
 }
 
 const reducer = buildObjectReducer<LabelChooserState>(getDefaultState)

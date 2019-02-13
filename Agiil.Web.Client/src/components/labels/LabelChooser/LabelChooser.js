@@ -13,20 +13,21 @@ import './labelChooser.scss';
 export function LabelChooser(props : LabelChooserProps) {
     const behaviours = new LabelChooserBehaviours(props);
     const suggestions = props.suggestions || [];
+    const labels = props.labels || [];
     return (
         <div className={`${styles.labelChooser} LabelChooser`} id={props.id}>
             {getUiLabel(props)}
             <LabelList>
-            {props.labels.map((label, idx) =>
+            {labels.map((label, idx) =>
                 <Label label={label} title={`Label: ${label.name}`} key={idx}>
                     {label.name}
                     <button className={styles.remove}
                             title="Remove"
-                            onClick={() => props.onRemove(label, props.selectedLabelsComponentId)}>❌</button>
+                            onClick={ev => { props.onRemove(label, props.selectedLabelsComponentId); ev.preventDefault(); }}>❌</button>
                 </Label>
             )}
-            <input type="hidden" name={props.name} value={getCommaSeparatedLabelNames(props.labels)} />
             </LabelList>
+            <input type="hidden" name={props.name} value={getCommaSeparatedLabelNames(labels)} />
             <input id={getInputId(props)}
                    type="text"
                    onKeyDown={behaviours.onKeypress}

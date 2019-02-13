@@ -17,7 +17,7 @@ pageStarter(() => {
 function getInitialStore() : AnyStore {
     const labelsInput : HTMLInputElement = (getElementByIdMandatory('Labels') : any);
     const labels = getLabelListFactory(labelsInput).getLabelList();
-    return getStore({selectedLabels: labels});
+    return getStore({selectedLabels: {labels}});
 }
 
 function renderComponents(store : AnyStore) {
@@ -26,7 +26,7 @@ function renderComponents(store : AnyStore) {
 
     ReactDOM.render(
         <Provider store={store}>
-            <LabelChooser id="Labels" stateSelector={store => store} labelText="Labels" />
+            <LabelChooser id="Labels" stateSelector={store => store} labelText="Labels" name="CommaSeparatedLabelNames" />
         </Provider>,
         root
     );

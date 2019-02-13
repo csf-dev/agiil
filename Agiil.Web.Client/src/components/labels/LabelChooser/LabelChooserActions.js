@@ -67,12 +67,12 @@ inputStream.pipe(debounceInput()).subscribe((next : ValueStream) => {
     clearPendingRequests();
 
     const pendingRequest = next.suggester.getDataAsync(next.value);
-    pendingRequests.set(pendingRequest.requestId, pendingRequest);
+    pendingRequests.set(pendingRequest.id, pendingRequest);
 
     pendingRequest.promise.then(res => {
         next.dispatch(replaceSuggestions(res.map(x => ({...x, selected: false})), next.componentId));
         next.dispatch(changeSuggestionLoading(false, next.componentId));
-        pendingRequests.delete(pendingRequest.requestId);
+        pendingRequests.delete(pendingRequest.id);
     });
 });
 
