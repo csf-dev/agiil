@@ -116,14 +116,14 @@ describe('The label chooser component', () => {
             props.name = 'bar';
             ReactDOM.render(<LabelChooser {...props} />, root);
             const hiddenInput = mandatory(document.querySelector(hiddenInputSelector));
-            expect(hiddenInput?.getAttribute('name')).toBe('bar');
+            expect(hiddenInput.getAttribute('name')).toBe('bar');
         });
 
         it('should have a value matching the comma-separated labels chosen', () => {
             const props = getSampleProps();
             ReactDOM.render(<LabelChooser {...props} />, root);
             const hiddenInput : HTMLInputElement = mandatory(document.querySelector(hiddenInputSelector));
-            expect(hiddenInput?.value).toBe('One,Two');
+            expect(hiddenInput.value).toBe('One,Two');
         });
     });
 });

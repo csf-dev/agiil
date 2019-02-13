@@ -14,7 +14,11 @@ const defaultState = {
     suggestionsLoading: false,
     ineligibleForSuggestions: true,
 };
-const getDefaultState = (s : ?LabelChooserState) => s || ({...defaultState, componentId : getComponentId()} : LabelChooserState);
+function getDefaultState(s : ?LabelChooserState) : LabelChooserState {
+    if(!s) return {...defaultState, componentId: getComponentId()};
+    if(!s.componentId) s.componentId = getComponentId();
+    return s;
+}
 
 const reducer = buildObjectReducer<LabelChooserState>(getDefaultState)
     .filterByComponentId()
