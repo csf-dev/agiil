@@ -5,6 +5,7 @@ import { RequestsDataAsync } from 'services';
 export type LabelChooserProps = {
     labels : Array<SelectableLabel>,
     id? : string,
+    name? : string,
     suggestions?: Array<SelectableLabel>,
     inputValue? : string,
     uiLabelText? : string,

@@ -12,6 +12,7 @@ import { RequestsDataAsync } from 'services';
 
 export type ConnectedLabelChooserProps = {|
     id? : string,
+    name? : string,
     labelText? : string,
     stateSelector : (store : any) => LabelChooserState,
     labelSuggester? : RequestsDataAsync<string,Array<Label>>
@@ -20,6 +21,7 @@ export type ConnectedLabelChooserProps = {|
 type StatefulProps = {|
     labels : Array<SelectableLabel>,
     id? : string,
+    name? : string,
     suggestions?: Array<SelectableLabel>,
     inputValue? : string,
     uiLabelText? : string,
@@ -37,6 +39,7 @@ function mapStateToProps(store : any, ownProps : ConnectedLabelChooserProps) : S
     return {
         labels: state.selectedLabels.labels,
         id: ownProps.id,
+        name: ownProps.name,
         suggestions: state.suggestions.labels,
         inputValue: state.value,
         uiLabelText: ownProps.labelText,

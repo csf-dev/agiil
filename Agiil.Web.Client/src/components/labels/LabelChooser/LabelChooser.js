@@ -25,8 +25,10 @@ export function LabelChooser(props : LabelChooserProps) {
                             onClick={() => props.onRemove(label, props.selectedLabelsComponentId)}>❌</button>
                 </Label>
             )}
+            <input type="hidden" name={props.name} value={getCommaSeparatedLabelNames(props.labels)} />
             </LabelList>
             <input id={getInputId(props)}
+                   type="text"
                    onKeyDown={behaviours.onKeypress}
                    onChange={behaviours.onChange}
                    value={props.inputValue || ''}
@@ -73,4 +75,7 @@ function getClosedCount(label : SelectableLabel) {
     const count = label.closedTickets;
     if(typeof count !== 'number') return null;
     return <span className={`${styles.ticketCount} ${styles.closed}`}>{count} closed {getTicketOrTickets(count)}</span>
+}
+function getCommaSeparatedLabelNames(labels : Array<SelectableLabel>) {
+    return labels.map(x => x.name).join(',');
 }

@@ -101,8 +101,34 @@ describe('The label chooser component', () => {
             expect(labelElement.getAttribute('for')).toBeFalsy();
         });
     });
+
+    describe('has a input element which', () => {
+        it('should always render', () => {
+            const props = getSampleProps();
+            props.name = 'bar';
+            ReactDOM.render(<LabelChooser {...props} />, root);
+            const hiddenInput = document.querySelector(hiddenInputSelector);
+            expect(hiddenInput).not.toBeNull();
+        });
+
+        it('should have the correct \'name\' attribute', () => {
+            const props = getSampleProps();
+            props.name = 'bar';
+            ReactDOM.render(<LabelChooser {...props} />, root);
+            const hiddenInput = mandatory(document.querySelector(hiddenInputSelector));
+            expect(hiddenInput?.getAttribute('name')).toBe('bar');
+        });
+
+        it('should have a value matching the comma-separated labels chosen', () => {
+            const props = getSampleProps();
+            ReactDOM.render(<LabelChooser {...props} />, root);
+            const hiddenInput : HTMLInputElement = mandatory(document.querySelector(hiddenInputSelector));
+            expect(hiddenInput?.value).toBe('One,Two');
+        });
+    });
 });
 
 const rootSelector = `#${testDomId}>div`;
 const labelSelector = `#${testDomId}>div>label`;
+const hiddenInputSelector = `#${testDomId}>div input[type=hidden]`;
 const sampleLabel = 'Sample label';
