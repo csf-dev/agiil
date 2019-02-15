@@ -14,7 +14,7 @@ function getHtmlFileMapper(entryPointNames) {
         const otherEntryPoints = entryPointNames.filter(name => name != entryPoint);
 
         return new HtmlPlugin({
-            filename: '../' + entryPoint + '.html',
+            filename: '../../' + entryPoint + '.html',
             excludeChunks: otherEntryPoints,
             minify: false,
             template: 'src/pages/outputPage.template._html',

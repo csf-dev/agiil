@@ -8,7 +8,8 @@
     "tests": "npx karma start buildConfigs/karma.conf.js --no-single-run",
     "devTest": "npx webpack --config buildConfigs/webpack.config.dev.js -w",
     "clean": "node tools/clean.js",
-    "build": "npx webpack --config buildConfigs/webpack.config.prod.js"
+    "build": "npx webpack --config buildConfigs/webpack.config.prod.js",
+    "buildDev": "npx webpack --config buildConfigs/webpack.config.dev.js"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+  </PropertyGroup>
+
+  <Target Name="Clean_Dist">
+    <Exec Command="npm run clean" />
+  </Target>
+
+  <Target Name="Build_Dev">
+    <Exec Command="npm run buildDev" />
+  </Target>
+  
+  <Target Name="Build_Prod">
+    <Exec Command="npm run build" />
+  </Target>
+</Project>

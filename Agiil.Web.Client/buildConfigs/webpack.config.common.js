@@ -50,7 +50,7 @@ const webpackConfig = {
         ]
     },
     output: {
-        path: path.resolve(__dirname, '../dist/Content')
+        path: path.resolve(__dirname, '../dist/Content/bundles')
     },
     devtool: 'source-map',
     optimization: {

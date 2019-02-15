@@ -9,5 +9,10 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
   </PropertyGroup>
-  <Target Name="Build"></Target>
+  <Import Project="BuildClientApp.targets" />
+  <Target Name="Build">
+    <CallTarget Targets="Clean_Dist" />
+    <CallTarget Targets="Build_Dev" Condition="'$(Configuration)' == 'Debug'" />
+    <CallTarget Targets="Build_Prod" Condition="'$(Configuration)' == 'Release'" />
+  </Target>
 </Project>
