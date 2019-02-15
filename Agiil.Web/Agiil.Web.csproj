@@ -491,6 +491,10 @@
       <Project>{8080A385-823C-44F0-B090-71F52337F04A}</Project>
       <Name>Agiil.Web.Rendering</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Agiil.Web.Client\Agiil.Web.Client.csproj">
+      <Project>{93B2453A-C041-4846-94F0-D0E728E23FD0}</Project>
+      <Name>Agiil.Web.Client</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <Optimize>false</Optimize>
@@ -516,6 +520,12 @@
   </Target>
   <Target Name="MoveWebConfigToCorrectLocation" AfterTargets="ScApplyTransforms">
     <Copy SourceFiles="$(OutDir)\Web.config" DestinationFiles="Web.config" />
+  </Target>
+  <Target Name="MarkGeneratedBundlesAsContent" BeforeTargets="DeployWebApp">
+    <ItemGroup>
+      <Content Include="Views\**\*.assets.html" />
+      <Content Include="Content\bundles\**\*" />
+    </ItemGroup>
   </Target>
   <Target Name="MarkGeneratedCssAsContent" BeforeTargets="DeployWebApp">
     <ItemGroup>

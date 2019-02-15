@@ -15,7 +15,8 @@
     <TasksConfig Condition="'$(Configuration)' == 'Release'">Release</TasksConfig>
     <TasksAssemblyPath>bin\$(TasksConfig)\Agiil.Build.Tasks.dll</TasksAssemblyPath>
 
-    <AgiilWebOutputDir>$(MSBuildThisFileDirectory)\..\..\Agiil.Web\bin</AgiilWebOutputDir>
+    <AgiilWebProjectDir>$(MSBuildThisFileDirectory)\..\..\Agiil.Web</AgiilWebProjectDir>
+    <AgiilWebOutputDir>$(AgiilWebProjectDir)\bin</AgiilWebOutputDir>
     
     <DeploymentRoot Condition="'$(DeploymentRoot)' == ''">$(MSBuildThisFileDirectory)\..\..\Output</DeploymentRoot>
     <WebAppStagingDir>$(DeploymentRoot)\Web apps\$(MSBuildProjectName)</WebAppStagingDir>
