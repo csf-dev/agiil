@@ -69,13 +69,15 @@ function getTicketOrTickets(count : number) {
 function getOpenCount(label : SelectableLabel) {
     const count = label.openTickets;
     if(typeof count !== 'number') return null;
-    return <span className={`${styles.ticketCount} ${styles.open}`}>{count} open {getTicketOrTickets(count)}</span>
+    const countMessage = `${count} open ${getTicketOrTickets(count)}`;
+    return <span className={`${styles.ticketCount} ${styles.open}`} title={countMessage}>{count} open</span>
 }
 
 function getClosedCount(label : SelectableLabel) {
     const count = label.closedTickets;
     if(typeof count !== 'number') return null;
-    return <span className={`${styles.ticketCount} ${styles.closed}`}>{count} closed {getTicketOrTickets(count)}</span>
+    const countMessage = `${count} closed ${getTicketOrTickets(count)}`;
+    return <span className={`${styles.ticketCount} ${styles.closed}`} title={countMessage}>{count} closed</span>
 }
 function getCommaSeparatedLabelNames(labels : Array<SelectableLabel>) {
     return labels.map(x => x.name).join(',');

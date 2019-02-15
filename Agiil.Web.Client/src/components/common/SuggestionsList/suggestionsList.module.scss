@@ -1,20 +1,25 @@
 .suggestions {
+    background: #FFF;
     display: block;
 }
-.ineligible {
-    display: block;
+.suggestions.ineligible {
+    font-style: italic;
 }
-.empty {
-    display: block;
+.suggestions.empty {
+    font-style: italic;
 }
-.loading {
-    background: #EEE;
+.suggestions.loading {
+    background: #D9D9D9;
 }
 .feedback {
     display: block;
 }
 .suggestion {
-    padding: 4px 8px;
+    padding: 0.1em 0.3em;
+    border-bottom: 1px solid #d9d9d9;
+}
+.suggestion:last-child {
+    border-bottom: 0 none;
 }
 .selected {
     background: #55F;

@@ -14,11 +14,15 @@
 }
 
 .ticketCount {
-    display: block;
+    font-size: 70%;
+    color: #999;
+}
+.ticketCount+.ticketCount:before {
+    content: ", ";
 }
 .ticketCount.open {
-    display: block;
+    display: inline;
 }
 .ticketCount.closed {
-    display: block;
+    display: inline;
 }
