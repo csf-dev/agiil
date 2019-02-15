@@ -9,6 +9,15 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="src/**/*" />
+    <None Include="buildConfigs/**/*" />
+    <None Include="flow-typed/**/*" />
+    <None Include="tools/**/*" />
+    <None Include="BuildClientApp.targets" />
+    <None Include="package.json" />
+    <None Include="package-lock.json" />
+  </ItemGroup>
   <Import Project="BuildClientApp.targets" />
   <Target Name="Build">
     <CallTarget Targets="Clean_Dist" />
