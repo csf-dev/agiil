@@ -14,7 +14,6 @@ addons:
     packages:
       - mono-xsp4
       - libstdc++6-4.7-dev
-      - nodejs
 
 matrix:
   include:
@@ -49,6 +48,9 @@ matrix:
       - WebDriver_BrowserName="Safari"
       - WebDriver_BrowserVersion="10.0"
       - Analyse_With_SonarCube="No"
+
+before_install:
+    - nvm install "10.0"
 
 install: ./Tools/Travis-install.sh
 

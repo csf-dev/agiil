@@ -65,6 +65,11 @@ install_npm_packages()
   npm install
   stop_if_failure $? "Install npm packages to 'Agiil.Web'"
   cd "$OLD_DIR"
+  
+  cd Agiil.Web.Client/
+  npm install
+  stop_if_failure $? "Install npm packages to 'Agiil.Web.Client'"
+  cd "$OLD_DIR"
 }
 
 install_latest_nuget

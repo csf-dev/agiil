@@ -6,12 +6,20 @@ version: '{branch}-{build}'
 init:
   - cmd: git config --global core.autocrlf true
 
+# Beware that using a batch file to contain the install script (below)
+# does not work.  The `npm install` commands cause the script to
+# terminate early and abort any further execution.
+
 install:
   - ps: Install-Product node $env:nodejs_version
-  - cmd: Tools\AppVeyor-install.bat
-  
-before_build:
-  - cmd: cd ..
+  - git submodule update --init --recursive
+  - nuget restore Agiil.sln
+  - cd Agiil.Web
+  - npm install
+  - cd ..
+  - cd Agiil.Web.Client
+  - npm install
+  - cd ..
 
 configuration: AppVeyorCI
 
