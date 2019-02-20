@@ -19,7 +19,7 @@
     <AgiilWebOutputDir>$(AgiilWebProjectDir)\bin</AgiilWebOutputDir>
     
     <DeploymentRoot Condition="'$(DeploymentRoot)' == ''">$(MSBuildThisFileDirectory)\..\..\Output</DeploymentRoot>
-    <WebAppStagingDir>$(DeploymentRoot)\Web apps\$(MSBuildProjectName)</WebAppStagingDir>
+    <WebAppStagingDir>$(DeploymentRoot)\Web apps\Agiil.Web</WebAppStagingDir>
   </PropertyGroup>
 	
   <Target Name="CopyWebApplicationTestingLogic">
