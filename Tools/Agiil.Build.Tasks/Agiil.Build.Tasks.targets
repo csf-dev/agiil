@@ -26,7 +26,7 @@
     <ItemGroup>
       <WebAppTestingLogic Include="$(OutputPath)\*" />
     </ItemGroup>
-    <Copy SourceFiles="@(WebAppTestingLogic)" DestinationFolder="$(AgiilWebOutputDir)" />
+    <Copy SourceFiles="@(WebAppTestingLogic)" DestinationFolder="$(WebAppStagingDir)\bin" />
   </Target>
   
   <Target Name="CopyWebAppToStagingDir">
