@@ -34,6 +34,8 @@ namespace Agiil.Domain.Tickets
       set { relationshipsToRemove = value ?? new List<DeleteRelationshipRequest>(); }
     }
 
+    public int? StoryPoints { get; set; }
+
     public EditTicketRequest()
     {
       relationshipsToAdd = new List<AddRelationshipRequest>();

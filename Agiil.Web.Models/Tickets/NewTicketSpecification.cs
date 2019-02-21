@@ -12,6 +12,8 @@ namespace Agiil.Web.Models.Tickets
 
     public string Title { get; set; }
 
+    public int? StoryPoints { get; set; }
+
     public string Description { get; set; }
 
     public string CommaSeparatedLabelNames { get; set; }

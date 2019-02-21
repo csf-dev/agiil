@@ -13,6 +13,7 @@ namespace Agiil.Domain.Tickets.Creation
         Title = request.Title,
         Description = request.Description,
         CreationTimestamp = environment.GetCurrentUtcTimestamp(),
+        StoryPoints = request.StoryPoints,
       };
     }
 

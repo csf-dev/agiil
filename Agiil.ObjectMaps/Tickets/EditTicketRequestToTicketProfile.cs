@@ -26,6 +26,7 @@ namespace Agiil.ObjectMaps.Tickets
         .ForMember(x => x.Description, opts => opts.ResolveUsing(s => s.Description))
         .ForMember(x => x.Type, opts => opts.ResolveUsing(typeResolver, x => x.TicketTypeIdentity))
         .ForMember(x => x.Sprint, opts => opts.ResolveUsing(sprintResolver, x => x.SprintIdentity))
+        .ForMember(x => x.StoryPoints, opts => opts.ResolveUsing(x => x.StoryPoints))
         .ForAllOtherMembers(opts => opts.Ignore())
         ;
     }

@@ -77,6 +77,8 @@ namespace Agiil.Domain.Tickets
 
     public virtual TicketType Type { get; set; }
 
+    public virtual int? StoryPoints { get; set; }
+
     public virtual IReadOnlyCollection<TicketRelationship> GetAllRelationships()
     {
       return PrimaryRelationships
