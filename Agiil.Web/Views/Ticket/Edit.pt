@@ -81,6 +81,10 @@
           is not part of any sprint.
         </p>
       </div>
+      <div class="form_element field">
+        <label for="StoryPoints">Story point estimate</label>
+        <input type="number" id="StoryPoints" name="StoryPoints">
+      </div>
       <div class="form_element field form_table">
         <table class="relationship_table editable">
           <colgroup>
