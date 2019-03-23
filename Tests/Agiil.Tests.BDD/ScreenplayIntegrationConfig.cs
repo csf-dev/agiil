@@ -35,11 +35,10 @@ namespace Agiil.Tests.BDD
     {
       builder.UseReporting(reporting => {
         reporting
-          .SubscribeToActorsCreatedInCast()
-          .WithFormattingStrategy<StringCollectionFormattingStrategy>()
-          .WithFormattingStrategy<OptionCollectionFormatter>()
-          .WithFormattingStrategy<ElementCollectionFormatter>()
-          .WithScenarioRenderer(JsonScenarioRenderer.CreateForFile("Agiil.Tests.BDD.report.json"));
+          .WithFormatter<StringCollectionFormattingStrategy>()
+          .WithFormatter<OptionCollectionFormatter>()
+          .WithFormatter<ElementCollectionFormatter>()
+          .WithReportJsonFile("Agiil.Tests.BDD.report.json");
       });
     }
   }
