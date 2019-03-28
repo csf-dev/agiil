@@ -208,6 +208,11 @@
     <Compile Include="Tickets\IGetsAvailableRelationships.cs" />
     <Compile Include="Tickets\AvailableRelationship.cs" />
     <Compile Include="Labels\ISearchesForLabels.cs" />
+    <Compile Include="Activity\TicketWorkLog.cs" />
+    <Compile Include="Activity\IParsesTimespan.cs" />
+    <Compile Include="Activity\IGetsTicketWorkLog.cs" />
+    <Compile Include="Activity\AddWorkLogRequest.cs" />
+    <Compile Include="Activity\IAddsWorkLogForTicket.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
@@ -218,6 +223,7 @@
     <Folder Include="Sprints\" />
     <Folder Include="Labels\" />
     <Folder Include="TicketSearch\" />
+    <Folder Include="Activity\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
