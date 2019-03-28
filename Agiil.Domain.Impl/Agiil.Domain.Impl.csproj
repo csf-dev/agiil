@@ -202,6 +202,7 @@
     <Compile Include="Labels\AllLabelsByPopularitySearcher.cs" />
     <Compile Include="Labels\LabelsMatchingSearchByRelevanceSearcher.cs" />
     <Compile Include="Activity\TimeSpanParser.cs" />
+    <Compile Include="Activity\TicketWorkLogFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

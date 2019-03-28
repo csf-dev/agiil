@@ -32,6 +32,7 @@ namespace Agiil.Domain.Tickets
         .SingleOrDefault();
     }
 
+    // TODO: #AG245 - This logic should be moved to a decorator around the ticket reference parser
     TicketReference GetReferenceWithProjectCode(TicketReference reference)
     {
       if(!String.IsNullOrEmpty(reference.ProjectCode)) return reference;
