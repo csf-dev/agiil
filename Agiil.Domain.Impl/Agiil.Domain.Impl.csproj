@@ -201,6 +201,7 @@
     <Compile Include="Labels\LabelSearcher.cs" />
     <Compile Include="Labels\AllLabelsByPopularitySearcher.cs" />
     <Compile Include="Labels\LabelsMatchingSearchByRelevanceSearcher.cs" />
+    <Compile Include="Activity\TimeSpanParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
@@ -227,6 +228,7 @@
     <Folder Include="TicketCriterionConvertionStrategies\" />
     <Folder Include="Tickets\Creation\" />
     <Folder Include="Tickets\Editing\" />
+    <Folder Include="Activity\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
