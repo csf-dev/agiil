@@ -3,6 +3,6 @@ namespace Agiil.Domain.Activity
 {
   public interface IAddsWorkLogForTicket
   {
-    void AddWorkLog(AddWorkLogRequest request);
+    AddWorklogResponse AddWorkLog(AddWorkLogRequest request);
   }
 }
