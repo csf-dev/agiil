@@ -5,6 +5,8 @@ namespace Agiil.Domain.Activity
   {
     public TicketWorkLog WorkLog { get; set; }
 
+    public Tickets.Ticket Ticket { get; set; }
+
     public bool Success { get; set; }
 
     public bool TimeSpentIsInvalid { get; set; }

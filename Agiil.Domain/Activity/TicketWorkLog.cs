@@ -20,10 +20,8 @@ namespace Agiil.Domain.Activity
       set { minutesSpent = (value < 0)? 0 : value; }
     }
 
-    public virtual TimeSpan TimeSpent
-    {
-      get { return TimeSpan.FromMinutes(MinutesSpent); }
-      set { MinutesSpent = (int) value.TotalMinutes; }
-    }
+    public virtual TimeSpan GetTimeSpent() => TimeSpan.FromMinutes(MinutesSpent);
+
+    public virtual void SetTimeSpent(TimeSpan value) => MinutesSpent = (int) value.TotalMinutes;
   }
 }

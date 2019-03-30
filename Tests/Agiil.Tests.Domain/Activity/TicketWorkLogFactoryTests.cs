@@ -58,8 +58,9 @@ namespace Agiil.Tests.Activity
 
       Assert.That(result?.Success, Is.True);
       Assert.That(result?.WorkLog?.User, Is.SameAs(request.User));
-      Assert.That(result?.WorkLog?.Ticket, Is.SameAs(ticket));
-      Assert.That(result?.WorkLog?.TimeSpent.TotalMinutes, Is.EqualTo(minutes));
+      Assert.That(result?.Ticket, Is.SameAs(ticket));
+      Assert.That(result?.WorkLog?.Ticket, Is.Null);
+      Assert.That(result?.WorkLog?.GetTimeSpent().TotalMinutes, Is.EqualTo(minutes));
       Assert.That(result?.WorkLog?.TimeStarted, Is.EqualTo(request.TimeStarted));
     }
   }

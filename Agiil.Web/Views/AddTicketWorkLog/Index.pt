@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<head>
+<title metal:fill-slot="title_element"
+       tal:define="titleContent string:Add to ticket work log: #${here/TicketReference}"
+       tal:content="titleContent">Add to ticket work log: #AB123</title>
+<base href="../../../" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+</style>
+</head>
+<body>
+<section metal:fill-slot="page_content"
+         class="page_content add_work_log"
+         tal:define="ticketRef string:#${here/TicketReference}">
+  <header>
+    <h1 class="title_content">Add to ticket work log: <span tal:replace="ticketRef">#AG123</span></h1>
+  </header>
+  <form method="POST" action="AddTicketWorkLog/AddWorklog">
+    <fieldset>
+      <input type="hidden" id="TicketReference" name="TicketReference" value="AG123" tal:attributes="value here/TicketReference">
+      <div class="form_element field">
+        <label for="TimeStarted">Time started</label>
+        <input type="datetime-local" id="TimeStarted" name="TimeStarted"
+              tal:attributes="value here/TimeStarted | nothing" />
+        <p class="feedback warning"
+           tal:condition="here/InvalidTime | nothing">
+          The time amount must be entered as hours and/or minutes in a format such as
+          <code>2h, 25m</code> (indicating 2 hours, 25 minutes).
+        </p>
+      </div>
+      <div class="form_element field">
+        <label for="TimeSpent">Time spent</label>
+        <input type="text" id="TimeSpent" name="TimeSpent"
+              tal:attributes="value here/TimeSpent | nothing" />
+      </div>
+      <p class="feedback warning"
+         tal:condition="here/InvalidTicket | nothing">
+        The ticket <span tal:replace="ticketRef">#AG123</span> was not found!
+      </p>
+      <div class="form_element button">
+        <button id="SubmitButton">Submit</button>
+      </div>
+    </fieldset>
+  </form>
+</section>
+</body>
+</html>

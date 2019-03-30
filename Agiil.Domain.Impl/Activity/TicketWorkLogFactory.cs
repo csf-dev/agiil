@@ -20,7 +20,7 @@ namespace Agiil.Domain.Activity
       try {
         time = timespanParser.GetTimeSpan(request.TimeSpent);
       }
-      catch(FormatException ex) {
+      catch(FormatException) {
         return new GetWorklogResponse { Success = false, TimeSpentIsInvalid = true, };
       }
 
@@ -28,14 +28,16 @@ namespace Agiil.Domain.Activity
       if(ticket == null)
         return new GetWorklogResponse { Success = false, TicketNotFound = true, };
 
+      var worklog = new TicketWorkLog {
+        User = request.User,
+        TimeStarted = request.TimeStarted,
+      };
+      worklog.SetTimeSpent(time);
+
       return new GetWorklogResponse {
         Success = true,
-        WorkLog = new TicketWorkLog {
-          User = request.User,
-          TimeStarted = request.TimeStarted,
-          TimeSpent = time,
-          Ticket = ticket,
-        }
+        Ticket = ticket,
+        WorkLog = worklog,
       };
     }
 

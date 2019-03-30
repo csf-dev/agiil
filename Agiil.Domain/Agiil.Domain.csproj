@@ -215,6 +215,7 @@
     <Compile Include="Activity\IAddsWorkLogForTicket.cs" />
     <Compile Include="Activity\GetWorklogResponse.cs" />
     <Compile Include="Activity\AddWorklogResponse.cs" />
+    <Compile Include="Activity\IGetsSumOfLoggedWorkForTicket.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
