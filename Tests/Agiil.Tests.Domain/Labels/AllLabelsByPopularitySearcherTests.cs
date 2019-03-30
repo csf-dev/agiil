@@ -23,6 +23,10 @@ namespace Agiil.Tests.Labels
                                                                                              Ticket ticket3)
     {
       // Arrange
+      ticket1.Closed = false;
+      ticket2.Closed = false;
+      ticket3.Closed = false;
+
       label1.Name = "Label 1";
       label2.Name = "Label 2";
       label1.Tickets.ReplaceContents(new[] { ticket1 });
