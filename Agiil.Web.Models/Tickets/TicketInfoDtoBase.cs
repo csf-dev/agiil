@@ -18,5 +18,10 @@ namespace Agiil.Web.Models.Tickets
     public string CreationTimestamp => Created.ToString("u");
 
     public string TypeName { get; set; }
+
+    public int? StoryPoints { get; set; }
+
+    public bool HasStoryPoints
+      => StoryPoints.HasValue && StoryPoints.Value > 0;
   }
 }

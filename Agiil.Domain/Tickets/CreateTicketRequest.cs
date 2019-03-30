@@ -11,6 +11,8 @@ namespace Agiil.Domain.Tickets
 
     public string Title { get; set; }
 
+    public int? StoryPoints { get; set; }
+
     public string Description { get; set; }
 
     public string CommaSeparatedLabelNames { get; set; }

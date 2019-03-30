@@ -7,7 +7,7 @@ namespace Agiil.Web.Services
 
     public object Get(string key) => Get<object>(key);
 
-    public T Get<T>(string key) => throw new NotSupportedException("This implementation does not expose any data.");
+    public T Get<T>(string key) { throw new NotSupportedException("This implementation does not expose any data."); }
 
     public object TryGet(string key)
     {

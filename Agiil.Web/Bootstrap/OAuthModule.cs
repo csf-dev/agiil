@@ -35,6 +35,7 @@ namespace Agiil.Web.Bootstrap
 
       builder
         .RegisterConfiguration<OAuthConfigurationSection>()
+        .AsSelf()
         .As<IOAuthConfiguration>();
 
       builder

@@ -23,7 +23,10 @@ namespace Agiil.Domain.Tickets
       => resultInterpreter.IncludesFailureFor<CreateTicketRequest>(validationResult, x => x.SprintIdentity);
 
     public bool IsSuccess
-      => !TitleIsInvalid && !DescriptionIsInvalid && !SprintIsInvalid && Ticket != null;
+      => validationResult.IsSuccess && Ticket != null;
+
+    public bool StoryPointsAreInvalid
+      => resultInterpreter.IncludesFailureFor<CreateTicketRequest>(validationResult, x => x.StoryPoints);
 
     protected CreateTicketResponse() {}
 

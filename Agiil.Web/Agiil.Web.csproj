@@ -21,7 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <ReleaseVersion>v0.6.0-alpha</ReleaseVersion>
+    <ReleaseVersion>v0.7.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -331,6 +331,7 @@
     <Folder Include="Services\Rendering\" />
     <Folder Include="Services\Labels\" />
     <Folder Include="Services\Tickets\" />
+    <Folder Include="Views\AddTicketWorkLog\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -424,6 +425,8 @@
     <Compile Include="Services\Tickets\AvailableTicketTypesNewTicketModelFactoryDecorator.cs" />
     <Compile Include="Bootstrap\TempDataModule.cs" />
     <Compile Include="Services\TempDataContainer.cs" />
+    <Compile Include="ApiControllers\LabelsController.cs" />
+    <Compile Include="Controllers\AddTicketWorkLogController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -435,6 +438,7 @@
     <None Include="Content\Css\*.css" />
     <None Include="packages.config" />
     <None Include="Content\Scss\**\*.scss" />
+    <Content Include="Views\AddTicketWorkLog\Index.pt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\**\*.pt" />
@@ -490,6 +494,10 @@
       <Project>{8080A385-823C-44F0-B090-71F52337F04A}</Project>
       <Name>Agiil.Web.Rendering</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Agiil.Web.Client\Agiil.Web.Client.csproj">
+      <Project>{93B2453A-C041-4846-94F0-D0E728E23FD0}</Project>
+      <Name>Agiil.Web.Client</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <Optimize>false</Optimize>
@@ -515,6 +523,12 @@
   </Target>
   <Target Name="MoveWebConfigToCorrectLocation" AfterTargets="ScApplyTransforms">
     <Copy SourceFiles="$(OutDir)\Web.config" DestinationFiles="Web.config" />
+  </Target>
+  <Target Name="MarkGeneratedBundlesAsContent" BeforeTargets="DeployWebApp">
+    <ItemGroup>
+      <Content Include="Views\**\*.assets.html" />
+      <Content Include="Content\bundles\**\*" />
+    </ItemGroup>
   </Target>
   <Target Name="MarkGeneratedCssAsContent" BeforeTargets="DeployWebApp">
     <ItemGroup>

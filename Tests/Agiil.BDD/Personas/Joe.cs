@@ -1,5 +1,5 @@
 ﻿using System;
-using CSF.Screenplay.Actors;
+using CSF.Screenplay;
 
 namespace Agiil.BDD.Personas
 {
@@ -7,8 +7,8 @@ namespace Agiil.BDD.Personas
   /// Joe is a persona representing an anonymous user.  They don't neccesarily have a user account unless
   /// granted one specifically and they most certainly aren't signed in.
   /// </summary>
-  public class Joe : IPersona
+  public class Joe : Persona
   {
-    public string Name => "Joe";
+    public override string Name => "Joe";
   }
 }

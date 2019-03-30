@@ -1,0 +1,28 @@
+.labelChooser {
+    position: relative;
+}
+.remove {
+    padding: 1px;
+    margin: 0 0 0 4px;
+    line-height: 100%;
+    border: 0;
+    background: transparent none;
+    cursor: pointer;
+}
+.remove:hover {
+    color: #55F;
+}
+
+.ticketCount {
+    font-size: 70%;
+    color: #999;
+}
+.ticketCount+.ticketCount:before {
+    content: ", ";
+}
+.ticketCount.open {
+    display: inline;
+}
+.ticketCount.closed {
+    display: inline;
+}

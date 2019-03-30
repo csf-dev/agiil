@@ -1,5 +1,5 @@
 ﻿using System;
-using CSF.Screenplay.Actors;
+using CSF.Screenplay;
 
 namespace Agiil.BDD.Personas
 {
@@ -8,8 +8,8 @@ namespace Agiil.BDD.Personas
   /// she has direct control over the application state (including the database) and can do things which are
   /// impossible via the published UI/API.
   /// </summary>
-  public class April : IPersona
+  public class April : Persona
   {
-    public string Name => "April";
+    public override string Name => "April";
   }
 }

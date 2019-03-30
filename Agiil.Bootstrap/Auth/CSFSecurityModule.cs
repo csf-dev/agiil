@@ -1,24 +1,11 @@
 ﻿using System;
-using System.Reflection;
 using Autofac;
 using CSF.Security.Authentication;
 
 namespace Agiil.Bootstrap.Auth
 {
-  public class CSFSecurityModule : NamespaceModule
+  public class CsfSecurityModule : Module
   {
-    protected override string Namespace => typeof(IPassword).Namespace;
-
-    protected override System.Collections.Generic.IEnumerable<Type> TypesNotToRegisterAutomatically
-    {
-      get { return new [] { typeof(PBKDF2PasswordVerifier), }; }
-    }
-
-    protected override System.Collections.Generic.IEnumerable<System.Reflection.Assembly> GetSearchAssemblies()
-    {
-      return new [] { Assembly.GetAssembly(typeof(ICredentialsCreator)), };
-    }
-
     protected override void Load(ContainerBuilder builder)
     {
       base.Load(builder);

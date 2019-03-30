@@ -15,7 +15,8 @@ namespace Agiil.ObjectMaps.Tickets
     public TicketToTicketDetailDtoProfile(TicketReferenceStringResolver ticketRefResolver,
                                           MarkdownToHtmlResolver markdownResolver,
                                           IParsesLabelNames labelNameParser,
-                                          IGetsRelationshipSummary summaryProvider)
+                                          IGetsRelationshipSummary summaryProvider,
+                                          Domain.Activity.IGetsSumOfLoggedWorkForTicket workLogProvider)
     {
       CreateMap<Ticket,TicketDetailDto>()
         .ForMember(x => x.Id, o => o.ResolveUsing<IdentityValueResolver>())
@@ -26,6 +27,7 @@ namespace Agiil.ObjectMaps.Tickets
         .ForMember(x => x.TypeName, o => o.ResolveUsing(t => t.Type?.Name))
         .ForMember(x => x.CommaSeparatedLabelNames,
                    o => o.ResolveUsing(t => labelNameParser.GetCommaSeparatedLabelNames(t.Labels)))
+        .ForMember(x => x.TotalWorkLogged, o => o.ResolveUsing(t => workLogProvider.GetTotalTimeLogged(t)))
         .AfterMap((ticket, dto, ctx) => {
           dto.Comments = GetOrderedComments(dto);
           dto.Relationships = GetRelationships(ticket, summaryProvider, ctx);

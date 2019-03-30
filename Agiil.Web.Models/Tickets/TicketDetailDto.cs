@@ -28,6 +28,10 @@ namespace Agiil.Web.Models.Tickets
 
     public bool HasRelationships => (Relationships?.Any()).GetValueOrDefault();
 
+    public TimeSpan TotalWorkLogged { get; set; }
+
+    public bool HasWorkLogged => TotalWorkLogged > TimeSpan.Zero;
+
     public TicketDetailDto()
     {
       Comments = Enumerable.Empty<CommentDto>().ToArray();

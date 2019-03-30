@@ -52,6 +52,17 @@
            tal:attributes="href url"><span class="name" tal:content="label/Name">Label name</span></a>
       </li>
     </ul>
+    <h2 tal:condition="ticket/HasStoryPoints">Estimate</h2>
+    <p tal:condition="ticket/HasStoryPoints">
+      Story point estimate: <span tal:content="ticket/StoryPoints"></span>.
+    </p>
+    <h2>Work log</h2>
+    <p tal:condition="ticket/HasWorkLogged">
+      Work logged: <span tal:content="ticket/TotalWorkLogged/TotalMinutes"></span> minutes.
+    </p>
+    <p tal:define="url string:AddTicketWorkLog/Index/${ticket/Reference}">
+      <a href="AddTicketWorkLog/Index/0" tal:attributes="href url">Log work</a>
+    </p>
     <form class="open_close_ticket"
           action="OpenCloseTicket/Close/0"
           method="POST"

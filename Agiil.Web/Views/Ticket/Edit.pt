@@ -16,6 +16,7 @@
 <style metal:fill-slot="extra_styles">
 @import url('Content/Css/EditTicket.css');
 </style>
+<style metal:fill-slot="asset_styles" metal:use-macro="Views/Ticket/Edit.assets.html/macros/styles"></style>
 </head>
 <body>
 <div metal:fill-slot="page_content" class="page_content">
@@ -46,7 +47,7 @@
       <div class="form_element feedback warning" tal:condition="here/Response/DescriptionIsInvalid | nothing">
         <p>Please enter a valid ticket description.</p>
       </div>
-      <div class="form_element field">
+      <div class="form_element field" id="LabelChooser">
         <label for="Labels">Labels</label>
         <input type="text" id="Labels" name="CommaSeparatedLabelNames"
               tal:attributes="value here/Specification/CommaSeparatedLabelNames | ticket/CommaSeparatedLabelNames | nothing" />
@@ -78,6 +79,16 @@
         <p>
           Please choose either a sprint from the list, or <em>None</em> to indicate that the ticket
           is not part of any sprint.
+        </p>
+      </div>
+      <div class="form_element field">
+        <label for="StoryPoints">Story point estimate</label>
+        <input type="number" id="StoryPoints" name="StoryPoints"
+               tal:attributes="value here/Specification/StoryPoints | ticket/StoryPoints | nothing">
+      </div>
+      <div class="form_element feedback warning" tal:condition="here/Response/StoryPointsAreInvalid | nothing">
+        <p>
+          Story points must either be empty or a minimum of one point.
         </p>
       </div>
       <div class="form_element field form_table">
@@ -161,5 +172,6 @@
     </fieldset>
   </form>
 </div>
+<metal:block fill-slot="asset_scripts" use-macro="Views/Ticket/Edit.assets.html/macros/scripts"></metal:block>
 </body>
 </html>

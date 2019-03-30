@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.ObjectMaps</RootNamespace>
     <AssemblyName>Agiil.ObjectMaps</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>v0.6.0-alpha</ReleaseVersion>
+    <ReleaseVersion>v0.7.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -100,6 +100,7 @@
     <Compile Include="Tickets\AvailableRelationshipToAvailableRelationshipDtoProfile.cs" />
     <Compile Include="Tickets\TicketRelationshipIdentityToDeleteRelationshipRequestProfile.cs" />
     <Compile Include="Tickets\DeleteRelationshipRequestToTicketRelationshipIdentityProfile.cs" />
+    <Compile Include="Activity\AddTicketWorkLogModelToAddWorkLogRequestProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -109,6 +110,7 @@
     <Folder Include="Sprints\" />
     <Folder Include="Resolvers\" />
     <Folder Include="Labels\" />
+    <Folder Include="Activity\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

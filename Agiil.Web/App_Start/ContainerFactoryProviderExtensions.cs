@@ -19,7 +19,7 @@ namespace Agiil.Web.App_Start
       if(diFactory == null)
         throw new InvalidOperationException($"The configured container builder factory must implement {nameof(IContainerFactoryWithHttpConfiguration)}.");
 
-      diFactory.SetHttpConfiguration(config);
+      diFactory.OverrideHttpConfiguration(config);
       return diFactory.GetContainer();
     }
   }

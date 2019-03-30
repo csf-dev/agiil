@@ -1,14 +1,13 @@
-﻿using CSF.Screenplay.Integration;
+﻿using Agiil.BDD.Abilities;
 using CSF.Screenplay;
-using CSF.Screenplay.WebApis.Abilities;
-using CSF.Screenplay.Selenium;
-using CSF.Screenplay.Selenium.Abilities;
-using System.IO;
-using CSF.Screenplay.Selenium.Reporting;
-using CSF.Screenplay.SpecFlow;
-using System;
+using CSF.Screenplay.Integration;
 using CSF.Screenplay.ReportFormatting;
 using CSF.Screenplay.Reporting;
+using CSF.Screenplay.Selenium;
+using CSF.Screenplay.Selenium.Abilities;
+using CSF.Screenplay.Selenium.Reporting;
+using CSF.Screenplay.SpecFlow;
+using CSF.Screenplay.WebApis;
 
 [assembly: ScreenplayAssembly(typeof(Agiil.Tests.BDD.ScreenplayIntegrationConfig))]
 
@@ -22,22 +21,24 @@ namespace Agiil.Tests.BDD
 
     public void Configure(IIntegrationConfigBuilder builder)
     {
-      builder.UseCast();
-      builder.UseStage();
-      builder.UseReporting(reporting => {
-        reporting
-          .SubscribeToActorsCreatedInCast()
-          .WithFormattingStrategy<StringCollectionFormattingStrategy>()
-          .WithFormattingStrategy<OptionCollectionFormatter>()
-          .WithFormattingStrategy<ElementCollectionFormatter>()
-          .WithScenarioRenderer(JsonScenarioRenderer.CreateForFile("Agiil.Tests.BDD.report.json"));
-      });
       builder.UseSharedUriTransformer(new RootUriPrependingTransformer(ApplicationBaseUri));
       builder.UseWebDriverFromConfiguration();
       builder.UseWebBrowser();
       builder.UseBrowserFlags();
-      builder.ServiceRegistrations.PerScenario.Add(helper => {
-        helper.RegisterFactory(() => new ConsumeWebServices(new Uri(ApiBaseUri)));
+      builder.UseWebApis(ApiBaseUri);
+      builder.UseAutofacContainer();
+
+      ConfigureReporting(builder);
+    }
+
+    void ConfigureReporting(IIntegrationConfigBuilder builder)
+    {
+      builder.UseReporting(reporting => {
+        reporting
+          .WithFormatter<StringCollectionFormattingStrategy>()
+          .WithFormatter<OptionCollectionFormatter>()
+          .WithFormatter<ElementCollectionFormatter>()
+          .WithReportJsonFile("Agiil.Tests.BDD.report.json");
       });
     }
   }

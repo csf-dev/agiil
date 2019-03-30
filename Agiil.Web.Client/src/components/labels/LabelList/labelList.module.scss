@@ -1,0 +1,21 @@
+.labelList {
+    display: inline-block;
+    margin-right: 4px;
+
+    li {
+        padding: 0 4px 0 7px;
+        margin: 0 4px 0 0;
+        background: #DDD;
+        display: inline-block;
+        border-radius: 4px;
+        cursor: default;
+        border: 1px solid #BBB;
+        font-size: 90%;
+    }
+    li.selected {
+        background: #C6C6C6;
+    }
+    li:last-child {
+      margin-right: 0;
+    }
+}

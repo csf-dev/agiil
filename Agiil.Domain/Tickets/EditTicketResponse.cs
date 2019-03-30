@@ -37,6 +37,9 @@ namespace Agiil.Domain.Tickets
     public bool SprintIsInvalid
      => resultInterpreter.IncludesFailureFor<EditTicketRequest>(validationResult, x => x.SprintIdentity);
 
+    public bool StoryPointsAreInvalid
+      => resultInterpreter.IncludesFailureFor<EditTicketRequest>(validationResult, x => x.StoryPoints);
+
     public bool IsSuccess => validationResult.IsSuccess;
 
     protected EditTicketResponse() {}
