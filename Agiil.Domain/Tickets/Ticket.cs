@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Agiil.Domain.Auth;
-using Agiil.Domain.Labels;
 using CSF.Collections.EventRaising;
 using CSF.Entities;
 
@@ -10,17 +8,21 @@ namespace Agiil.Domain.Tickets
 {
   public class Ticket : Entity<long>, IIdentifiesTicketByProjectAndNumber
   {
-    readonly EventRaisingSetWrapper<Comment> comments;
-    readonly EventRaisingSetWrapper<Label> labels;
-    readonly EventRaisingSetWrapper<TicketRelationship> primaryRelationships, secondaryRelationships;
-
     public virtual string Title { get; set; }
 
     public virtual string Description { get; set; }
 
-    public virtual User User { get; set; }
-
     public virtual DateTime CreationTimestamp { get; set; }
+
+    public virtual long TicketNumber { get; set; }
+
+    public virtual bool Closed { get; set; }
+
+    public virtual int? StoryPoints { get; set; }
+
+    #region Comments
+
+    readonly EventRaisingSetWrapper<Comment> comments;
 
     public virtual ISet<Comment> Comments {
       get { return comments.Collection; }
@@ -33,17 +35,29 @@ namespace Agiil.Domain.Tickets
       set { comments.SourceCollection = value; }
     }
 
+    #endregion
+
+    #region Labels
+
+    readonly EventRaisingSetWrapper<Labels.Label> labels;
+
     [ManyToMany]
-    public virtual ISet<Label> Labels {
+    public virtual ISet<Labels.Label> Labels {
       get { return labels.Collection; }
       protected set { /* no-op */ }
     }
 
-    protected virtual ISet<Label> SourceLabels
+    protected virtual ISet<Labels.Label> SourceLabels
     {
       get { return labels.SourceCollection; }
       set { labels.SourceCollection = value; }
     }
+
+    #endregion
+
+    #region PrimaryRelationships
+
+    readonly EventRaisingSetWrapper<TicketRelationship> primaryRelationships;
 
     public virtual ISet<TicketRelationship> PrimaryRelationships {
       get { return primaryRelationships.Collection; }
@@ -56,6 +70,12 @@ namespace Agiil.Domain.Tickets
       set { primaryRelationships.SourceCollection = value; }
     }
 
+    #endregion
+
+    #region SecondaryRelationships
+
+    readonly EventRaisingSetWrapper<TicketRelationship> secondaryRelationships;
+
     public virtual ISet<TicketRelationship> SecondaryRelationships {
       get { return secondaryRelationships.Collection; }
       protected set { /* no-op */ }
@@ -67,17 +87,32 @@ namespace Agiil.Domain.Tickets
       set { secondaryRelationships.SourceCollection = value; }
     }
 
+    #endregion
+
+    #region WorkLogs
+
+    readonly EventRaisingSetWrapper<Activity.TicketWorkLog> workLogs;
+
+    public virtual ISet<Activity.TicketWorkLog> WorkLogs {
+      get { return workLogs.Collection; }
+      protected set { /* no-op */ }
+    }
+
+    protected virtual ISet<Activity.TicketWorkLog> SourceWorkLogs
+    {
+      get { return workLogs.SourceCollection; }
+      set { workLogs.SourceCollection = value; }
+    }
+
+    #endregion
+
+    public virtual Auth.User User { get; set; }
+
     public virtual Projects.Project Project { get; set; }
 
     public virtual Sprints.Sprint Sprint { get; set; }
 
-    public virtual long TicketNumber { get; set; }
-
-    public virtual bool Closed { get; set; }
-
     public virtual TicketType Type { get; set; }
-
-    public virtual int? StoryPoints { get; set; }
 
     public virtual IReadOnlyCollection<TicketRelationship> GetAllRelationships()
     {
@@ -94,7 +129,7 @@ namespace Agiil.Domain.Tickets
       comments.AfterAdd += (sender, e) => e.Item.Ticket = this;
       comments.AfterRemove += (sender, e) => e.Item.Ticket = null;
 
-      labels = new EventRaisingSetWrapper<Label>(new HashSet<Label>());
+      labels = new EventRaisingSetWrapper<Labels.Label>(new HashSet<Labels.Label>());
       labels.AfterAdd += (sender, e) => {
         if(!e.Item.Tickets.Contains(this))
           e.Item.Tickets.Add(this);
@@ -111,6 +146,10 @@ namespace Agiil.Domain.Tickets
       secondaryRelationships = new EventRaisingSetWrapper<TicketRelationship>(new HashSet<TicketRelationship>());
       secondaryRelationships.AfterAdd += (sender, e) => e.Item.SecondaryTicket = this;
       secondaryRelationships.AfterRemove += (sender, e) => e.Item.SecondaryTicket = null;
+
+      workLogs = new EventRaisingSetWrapper<Activity.TicketWorkLog>(new HashSet<Activity.TicketWorkLog>());
+      workLogs.AfterAdd += (sender, e) => e.Item.Ticket = this;
+      workLogs.AfterRemove += (sender, e) => e.Item.Ticket = null;
     }
   }
 }

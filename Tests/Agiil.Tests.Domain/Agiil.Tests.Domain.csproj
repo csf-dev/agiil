@@ -133,6 +133,8 @@
     <Compile Include="Tickets\Editing\RelationshipRemovingTicketEditorDecoratorTests.cs" />
     <Compile Include="Labels\AllLabelsByPopularitySearcherTests.cs" />
     <Compile Include="Labels\LabelsMatchingSearchByRelevanceSearcherTests.cs" />
+    <Compile Include="Activity\TimeSpanParserTests.cs" />
+    <Compile Include="Activity\TicketWorkLogFactoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
@@ -168,6 +170,7 @@
     <Folder Include="Tickets\Specs\" />
     <Folder Include="Tickets\Creation\" />
     <Folder Include="Tickets\Editing\" />
+    <Folder Include="Activity\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
