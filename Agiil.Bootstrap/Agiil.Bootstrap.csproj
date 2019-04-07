@@ -117,6 +117,9 @@
     <Reference Include="System.Data.SQLite">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.105.0\lib\net46\System.Data.SQLite.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -169,6 +172,7 @@
     <Compile Include="OrderedModuleBulkRegistrationService.cs" />
     <Compile Include="UnorderedModuleBulkRegistrationService.cs" />
     <Compile Include="DoNotAutoRegisterAttribute.cs" />
+    <Compile Include="Log4NetModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

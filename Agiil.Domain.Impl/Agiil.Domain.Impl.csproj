@@ -206,6 +206,9 @@
     <Compile Include="Activity\TicketWorkLogger.cs" />
     <Compile Include="Activity\TimeLoggedForTicketProvider.cs" />
     <Compile Include="Activity\WorkLoggedForTicketSpecification.cs" />
+    <Compile Include="CachingLogForTypeDecorator.cs" />
+    <Compile Include="IGetsLoggerForType.cs" />
+    <Compile Include="Log4NetLoggerForTypeProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

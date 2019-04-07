@@ -106,8 +106,11 @@ namespace Agiil.Data.Sqlite
     }
 
     public SqliteDatabaseTester(Lazy<IConnectionStringProvider> connectionStringProvider,
-                                Lazy<IPerformsDatabaseUpgrades> upgrader)
+                                Lazy<IPerformsDatabaseUpgrades> upgrader,
+                                log4net.ILog logger)
     {
+      if(logger == null)
+        throw new ArgumentNullException(nameof(logger));
       if(upgrader == null)
         throw new ArgumentNullException(nameof(upgrader));
       if(connectionStringProvider == null)
@@ -115,8 +118,7 @@ namespace Agiil.Data.Sqlite
 
       this.connectionStringProvider = connectionStringProvider;
       this.upgrader = upgrader;
-
-      logger = log4net.LogManager.GetLogger(GetType());
+      this.logger = logger;
     }
   }
 }

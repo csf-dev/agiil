@@ -56,13 +56,15 @@ namespace Agiil.Domain.Data
       }
     }
 
-    public ApplicationDependencyTester(ITestsThatDatabaseIsWorking databaseTester)
+    public ApplicationDependencyTester(ITestsThatDatabaseIsWorking databaseTester, log4net.ILog logger)
     {
+      if(logger == null)
+        throw new ArgumentNullException(nameof(logger));
       if(databaseTester == null)
         throw new ArgumentNullException(nameof(databaseTester));
       
       this.databaseTester = databaseTester;
-      logger = log4net.LogManager.GetLogger(GetType());
+      this.logger = logger;
     }
   }
 }
