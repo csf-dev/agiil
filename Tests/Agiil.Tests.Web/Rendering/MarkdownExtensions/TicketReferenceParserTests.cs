@@ -2,7 +2,9 @@
 using Agiil.Domain.Tickets;
 using Agiil.Tests.Attributes;
 using Agiil.Web.Rendering.MarkdownExtensions;
+using log4net;
 using Markdig.Helpers;
+using Moq;
 using NUnit.Framework;
 
 namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
@@ -92,10 +94,15 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
     [TestCase("#1234 ",     5)]
     [TestCase("#1234.",     5)]
     public void GetTicketReference_returns_correct_number_of_characters_consumed_in_reference(string ticketRef,
-                                                                                              int expectedChars)
+                                                                                              int expectedChars,
+                                                                                              IParsesTicketReference parser,
+                                                                                              TicketReference reference)
     {
       // Arrange
-      var sut = new TicketReferenceParser();
+      Mock.Get(parser)
+          .Setup(x => x.ParseReferece(ticketRef))
+          .Returns(reference);
+      var sut = new TicketReferenceParser(Mock.Of<ILog>(), parser);
       var iterator = new StringSlice(ticketRef);
       int charCount;
 
@@ -181,10 +188,13 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
     [TestCase("#ABC 123")]
     [TestCase("#ABC-123")]
     [TestCase("#ABC123DEF")]
-    public void GetTicketReference_returns_correct_number_of_characters_consumed_in_bogus_reference(string ticketRef)
+    public void GetTicketReference_returns_correct_number_of_characters_consumed_in_bogus_reference(string ticketRef, IParsesTicketReference parser)
     {
       // Arrange
-      var sut = new TicketReferenceParser();
+      Mock.Get(parser)
+          .Setup(x => x.ParseReferece(ticketRef))
+          .Returns(() => null);
+      var sut = new TicketReferenceParser(Mock.Of<ILog>(), parser);
       var iterator = new StringSlice(ticketRef);
       int charCount;
 
