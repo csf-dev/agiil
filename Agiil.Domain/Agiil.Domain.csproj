@@ -116,7 +116,7 @@
     <Compile Include="IResponseFactory.cs" />
     <Compile Include="Sprints\ISprintFactory.cs" />
     <Compile Include="Sprints\ISprintLister.cs" />
-    <Compile Include="Tickets\ITicketReferenceParser.cs" />
+    <Compile Include="Tickets\IParsesTicketReference.cs" />
     <Compile Include="Tickets\TicketReference.cs" />
     <Compile Include="Tickets\ITicketReferenceQuery.cs" />
     <Compile Include="Sprints\ISprintDetailService.cs" />

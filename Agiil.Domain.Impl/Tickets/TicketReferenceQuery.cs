@@ -9,9 +9,8 @@ namespace Agiil.Domain.Tickets
 {
   public class TicketReferenceQuery : ITicketReferenceQuery
   {
-    readonly ITicketReferenceParser parser;
+    readonly IParsesTicketReference parser;
     readonly IEntityData repo;
-    readonly ICurrentProjectGetter currentProjectProvider;
 
     public Ticket GetTicketByReference(string reference)
     {
@@ -23,8 +22,7 @@ namespace Agiil.Domain.Tickets
     {
       if(reference == null) return null;
 
-      var refWithProjectCode = GetReferenceWithProjectCode(reference);
-      var spec = new TicketReferenceEquals(refWithProjectCode);
+      var spec = new TicketReferenceEquals(reference);
 
       return repo
         .Query<Ticket>()
@@ -32,27 +30,15 @@ namespace Agiil.Domain.Tickets
         .SingleOrDefault();
     }
 
-    // TODO: #AG245 - This logic should be moved to a decorator around the ticket reference parser
-    TicketReference GetReferenceWithProjectCode(TicketReference reference)
+    public TicketReferenceQuery(IParsesTicketReference parser,
+                                IEntityData repo)
     {
-      if(!String.IsNullOrEmpty(reference.ProjectCode)) return reference;
-
-      return new TicketReference(currentProjectProvider.GetCurrentProject().Code, reference.TicketNumber);
-    }
-
-    public TicketReferenceQuery(ITicketReferenceParser parser,
-                                IEntityData repo,
-                                ICurrentProjectGetter currentProjectProvider)
-    {
-      if(currentProjectProvider == null)
-        throw new ArgumentNullException(nameof(currentProjectProvider));
       if(repo == null)
         throw new ArgumentNullException(nameof(repo));
       if(parser == null)
         throw new ArgumentNullException(nameof(parser));
 
       this.repo = repo;
-      this.currentProjectProvider = currentProjectProvider;
       this.parser = parser;
     }
   }

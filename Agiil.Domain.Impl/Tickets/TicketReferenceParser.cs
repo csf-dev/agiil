@@ -3,12 +3,12 @@ using System.Text.RegularExpressions;
 
 namespace Agiil.Domain.Tickets
 {
-  public class TicketReferenceParser : ITicketReferenceParser
+  public class TicketReferenceParser : IParsesTicketReference
   {
     const RegexOptions ReferenceMatchOptions = RegexOptions.Compiled
                                                | RegexOptions.CultureInvariant
                                                | RegexOptions.IgnoreCase;
-    const string ReferencePattern = @"^([A-Z]+)(\d+)$";
+    const string ReferencePattern = @"^#?([A-Z]+)?(\d+)$";
     static readonly Regex ReferenceMatcher = new Regex(ReferencePattern, ReferenceMatchOptions);
 
     public string CreateReference(IIdentifiesTicketByProjectAndNumber ticket)

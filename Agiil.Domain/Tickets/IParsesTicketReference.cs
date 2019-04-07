@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Agiil.Domain.Tickets
 {
-  public interface ITicketReferenceParser
+  public interface IParsesTicketReference
   {
     TicketReference ParseReferece(string reference);
 

@@ -209,6 +209,7 @@
     <Compile Include="CachingLogForTypeDecorator.cs" />
     <Compile Include="IGetsLoggerForType.cs" />
     <Compile Include="Log4NetLoggerForTypeProvider.cs" />
+    <Compile Include="Tickets\CurrentProjectBackfillingTicketReferenceParserDecorator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

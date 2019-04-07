@@ -173,6 +173,7 @@
     <Compile Include="UnorderedModuleBulkRegistrationService.cs" />
     <Compile Include="DoNotAutoRegisterAttribute.cs" />
     <Compile Include="Log4NetModule.cs" />
+    <Compile Include="Tickets\TickatReferenceParserModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

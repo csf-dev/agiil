@@ -6,7 +6,7 @@ namespace Agiil.ObjectMaps.Resolvers
 {
   public class TicketReferenceStringResolver : IValueResolver<IIdentifiesTicketByProjectAndNumber, object, string>
   {
-    readonly ITicketReferenceParser referenceParser;
+    readonly IParsesTicketReference referenceParser;
 
     public string Resolve(IIdentifiesTicketByProjectAndNumber source,
                           object destination,
@@ -16,7 +16,7 @@ namespace Agiil.ObjectMaps.Resolvers
       return referenceParser.CreateReference(source);
     }
 
-    public TicketReferenceStringResolver(ITicketReferenceParser referenceParser)
+    public TicketReferenceStringResolver(IParsesTicketReference referenceParser)
     {
       if(referenceParser == null)
         throw new ArgumentNullException(nameof(referenceParser));

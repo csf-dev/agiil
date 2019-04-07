@@ -135,6 +135,8 @@
     <Compile Include="Labels\LabelsMatchingSearchByRelevanceSearcherTests.cs" />
     <Compile Include="Activity\TimeSpanParserTests.cs" />
     <Compile Include="Activity\TicketWorkLogFactoryTests.cs" />
+    <Compile Include="Tickets\TicketReferenceParserTests.cs" />
+    <Compile Include="Tickets\CurrentProjectBackfillingTicketReferenceParserDecoratorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
