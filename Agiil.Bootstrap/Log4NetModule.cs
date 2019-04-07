@@ -44,6 +44,8 @@ namespace Agiil.Bootstrap
 
     void OnComponentActivated(object sender, ActivatedEventArgs<object> e)
     {
+      if(e.Instance is IGetsLoggerForType) return;
+
       var instanceType = e.Instance.GetType();
       var logProvider = e.Context.Resolve<IGetsLoggerForType>();
 
@@ -65,6 +67,8 @@ namespace Agiil.Bootstrap
 
     void OnComponentPreparing(object sender, PreparingEventArgs e)
     {
+      if(IsRegisteredAsLogProvider(e.Component)) return;
+
       var logProvider = e.Context.Resolve<IGetsLoggerForType>();
 
       e.Parameters = e.Parameters.Union(
@@ -79,9 +83,6 @@ namespace Agiil.Bootstrap
 
     void RegisterLogProvider(ContainerBuilder builder)
     {
-      builder.RegisterType<Log4NetLoggerForTypeProvider>();
-      builder.RegisterType<CachingLogForTypeDecorator>();
-
       builder
         .Register(ctx => {
           var baseImpl = (IGetsLoggerForType) ctx.Resolve<Log4NetLoggerForTypeProvider>();
@@ -89,6 +90,13 @@ namespace Agiil.Bootstrap
         })
         .As<IGetsLoggerForType>()
         .SingleInstance();
+    }
+
+    bool IsRegisteredAsLogProvider(IComponentRegistration registration)
+    {
+      return registration.Services
+          .OfType<TypedService>()
+          .Any(x => typeof(IGetsLoggerForType).IsAssignableFrom(x.ServiceType));
     }
 	}
 }
