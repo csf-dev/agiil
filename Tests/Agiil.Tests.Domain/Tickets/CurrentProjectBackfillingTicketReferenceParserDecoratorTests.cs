@@ -14,9 +14,9 @@ namespace Agiil.Tests.Tickets
     [Test,AutoMoqData]
     public void ParseReferece_returns_the_result_from_the_wrapped_instance_when_it_is_complete([Frozen] IParsesTicketReference wrapped,
                                                                                                string input,
-                                                                                               TicketReference reference,
                                                                                                CurrentProjectBackfillingTicketReferenceParserDecorator sut)
     {
+      var reference = new TicketReference("ABC", 123);
       Mock.Get(wrapped)
           .Setup(x => x.ParseReferece(input))
           .Returns(reference);

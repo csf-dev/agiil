@@ -4,7 +4,7 @@ using CSF.Data.Entities;
 
 namespace Agiil.Domain.Projects
 {
-  public class DummyCurrentProjectGetter : ICurrentProjectGetter
+  public class FirstProjectInDatabaseProvider : ICurrentProjectGetter
   {
     readonly IEntityData projectRepo;
 
@@ -13,7 +13,7 @@ namespace Agiil.Domain.Projects
       return projectRepo.Query<Project>().FirstOrDefault();
     }
 
-    public DummyCurrentProjectGetter(IEntityData projectRepo)
+    public FirstProjectInDatabaseProvider(IEntityData projectRepo)
     {
       if(projectRepo == null)
         throw new ArgumentNullException(nameof(projectRepo));

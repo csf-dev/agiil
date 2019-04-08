@@ -113,7 +113,7 @@
     <Compile Include="Tickets\CommentEditor.cs" />
     <Compile Include="Tickets\CommentReader.cs" />
     <Compile Include="Tickets\TicketOpenerCloser.cs" />
-    <Compile Include="Projects\DummyCurrentProjectGetter.cs" />
+    <Compile Include="Projects\FirstProjectInDatabaseProvider.cs" />
     <Compile Include="Sprints\SprintCreator.cs" />
     <Compile Include="Validation\EndDateMustNotBeBeforeStartDateRule.cs" />
     <Compile Include="Sprints\CreateSprintValidatorFactory.cs" />

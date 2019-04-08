@@ -14,9 +14,15 @@ namespace Agiil.Web.Rendering.MarkdownExtensions
     public TicketReference GetTicketReference(ICharIterator iterator, out int charactersConsumed)
     {
       var refString = GetCandidateTicketReference(iterator, out charactersConsumed);
-      var ticketRef = referenceParser.ParseReferece(refString);
 
-      if(String.IsNullOrEmpty(ticketRef?.ProjectCode))
+      if(String.IsNullOrEmpty(refString))
+      {
+        charactersConsumed = 0;
+        return null;
+      }
+
+      var ticketRef = referenceParser.ParseReferece(refString);
+      if(ticketRef == null)
       {
         charactersConsumed = 0;
         return null;
@@ -66,6 +72,8 @@ namespace Agiil.Web.Rendering.MarkdownExtensions
         ticketNumber = ticketNumber + currentPeek;
         charactersConsumed = peekPosition + 1;
       }
+
+      if(String.IsNullOrEmpty(ticketNumber)) return null;
 
       return String.Concat(projectCode, ticketNumber);
     }

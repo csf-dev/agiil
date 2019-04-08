@@ -28,7 +28,9 @@ namespace Agiil.Domain.Tickets
 
     public override string ToString() => $"[TicketReference#{ProjectCode}{TicketNumber}]";
 
-		public TicketReference(string projectCode, long ticketNumber)
+    public TicketReference() : this(null, 0) {}
+
+    public TicketReference(string projectCode, long ticketNumber)
     {
       ProjectCode = String.IsNullOrEmpty(projectCode)? null : projectCode;
       TicketNumber = ticketNumber;
