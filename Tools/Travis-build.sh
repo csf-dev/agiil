@@ -52,7 +52,7 @@ prepare_screenplay_env_variables()
   export WebDriver_TunnelIdentifier
 }
 
-run_sonarcube_static_code_analysis()
+begin_sonarcube_analysis()
 {
   if [ "$Analyse_With_SonarCube" == "Yes" ]
   then
@@ -67,18 +67,21 @@ run_sonarcube_static_code_analysis()
       /s:"$anlysis_properties_file" \
       /d:sonar.organization="craigfowler-github" \
       /d:sonar.host.url="https://sonarcloud.io" \
-      /d:sonar.login="$SONARCLOUD_SECRET_KEY"
-    
-    echo "Rebuilding for static code analysis ..."
-    
-    msbuild /t:Rebuild /nologo /verbosity:quiet
-    
-    echo "Completing SonarCube static code analysis ..."
+      /d:sonar.login="$SONARCLOUD_SECRET_KEY" \
+      /d:sonar.cs.nunit.reportsPaths="Tests/Temp/TestResult.unit-tests.xml"
+  else
+    echo "Skipping SonarCube static code analysis because environment variable 'Analyse_With_SonarCube' is not 'Yes'"
+  fi
+}
+
+end_sonarcube_analysis()
+{
+  if [ "$Analyse_With_SonarCube" == "Yes" ]
+  then
+    echo "Ending SonarCube static code analysis ..."
     
     mono "$SONARCUBE_TOOL" end \
       /d:sonar.login="$SONARCLOUD_SECRET_KEY"
-  else
-    echo "Skipping SonarCube static code analysis because environment variable 'Analyse_With_SonarCube' is not 'Yes'"
   fi
 }
 
@@ -88,10 +91,12 @@ run_integration_tests()
   test_outcome=$?
 }
 
+begin_sonarcube_analysis
 build_solution
 run_unit_tests
+end_sonarcube_analysis
 prepare_screenplay_env_variables
 run_integration_tests
-run_sonarcube_static_code_analysis
+
 
 exit $test_outcome
