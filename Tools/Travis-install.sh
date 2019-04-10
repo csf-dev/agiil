@@ -2,9 +2,6 @@
 
 NUGET_LATEST_DIST="https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
 NUGET_DIR=".nuget"
-SONARCUBE_DIST="https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/4.3.1.1372/sonar-scanner-msbuild-4.3.1.1372-net46.zip"
-SONARCUBE_DIR=".sonarcube"
-SONARCUBE_ZIP="${SONARCUBE_DIR}/sonar-scanner-msbuild.zip"
 NUGET_PATH="${NUGET_DIR}/nuget.exe"
 
 stop_if_failure()
@@ -26,22 +23,6 @@ install_latest_nuget()
   mkdir -p "$NUGET_DIR"
   wget -O "$NUGET_PATH" "$NUGET_LATEST_DIST"
   stop_if_failure $? "Download NuGet"
-}
-
-install_sonarcube()
-{
-  echo "Downloading Sonar Scanner ..."
-
-  mkdir -p "$SONARCUBE_DIR"
-  wget -O "$SONARCUBE_ZIP" "$SONARCUBE_DIST"
-  unzip "$SONARCUBE_ZIP" \
-    -d "${SONARCUBE_DIR}/"
-  
-  # Files must be marked as executable or else SonarScanner
-  # ends up crashing with access denied errors
-  chmod 0755 "${SONARCUBE_DIR}"/sonar-scanner-*/bin/*
-  
-  stop_if_failure $? "Download Sonar Scanner"
 }
 
 echo_nuget_version_to_console()
@@ -76,6 +57,5 @@ install_latest_nuget
 echo_nuget_version_to_console
 restore_solution_nuget_packages
 install_npm_packages
-install_sonarcube
 
 exit 0
