@@ -173,6 +173,7 @@
     <Compile Include="Autofixture\CreatesATicketCustomization.cs" />
     <Compile Include="Attributes\CreatesTransactionAttribute.cs" />
     <Compile Include="Autofixture\CreatesTransactionCustomization.cs" />
+    <Compile Include="Data\InMemoryEntityDataFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
@@ -211,6 +212,7 @@
   <ItemGroup>
     <Folder Include="Autofixture\" />
     <Folder Include="Attributes\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
