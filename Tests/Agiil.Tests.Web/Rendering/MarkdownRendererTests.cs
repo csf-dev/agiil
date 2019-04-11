@@ -30,13 +30,6 @@ namespace Agiil.Tests.Web.Rendering
       });
     }
 
-    [OneTimeTearDown]
-    public void FixtureTeardown()
-    {
-      if(container != null)
-        container.Dispose();
-    }
-
     [TearDown]
     public void Teardown()
     {
