@@ -10,7 +10,7 @@ namespace Agiil.Web.Services.Rendering
 {
   public class TicketUriProvider : IGetsTicketUri
   {
-    readonly ITicketReferenceQuery ticketReferenceQuery;
+    readonly IGetsTicketByReference ticketReferenceQuery;
     readonly UrlHelper urlHelper;
     readonly IProvidesApplicationBaseUri baseUriProvider;
 
@@ -32,7 +32,7 @@ namespace Agiil.Web.Services.Rendering
       return builder.Uri;
     }
 
-    public TicketUriProvider(ITicketReferenceQuery ticketReferenceQuery,
+    public TicketUriProvider(IGetsTicketByReference ticketReferenceQuery,
                              UrlHelper urlHelper,
                              IProvidesApplicationBaseUri baseUriProvider)
     {

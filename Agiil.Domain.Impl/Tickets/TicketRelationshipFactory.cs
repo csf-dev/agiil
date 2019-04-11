@@ -8,7 +8,7 @@ namespace Agiil.Domain.Tickets
   public class TicketRelationshipFactory : ICreatesTicketRelationship
   {
     readonly IEntityData data;
-    readonly ITicketReferenceQuery ticketQuery;
+    readonly IGetsTicketByReference ticketQuery;
 
     public TicketRelationship CreateTicketRelationship(IIdentity<Relationship> relationshipId,
                                                        TicketReference relatedTicketReference,
@@ -33,7 +33,7 @@ namespace Agiil.Domain.Tickets
       return relationship;
     }
 
-    public TicketRelationshipFactory(IEntityData data, ITicketReferenceQuery ticketQuery)
+    public TicketRelationshipFactory(IEntityData data, IGetsTicketByReference ticketQuery)
     {
       if(ticketQuery == null)
         throw new ArgumentNullException(nameof(ticketQuery));

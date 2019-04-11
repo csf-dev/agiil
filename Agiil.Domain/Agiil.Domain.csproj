@@ -118,7 +118,7 @@
     <Compile Include="Sprints\ISprintLister.cs" />
     <Compile Include="Tickets\IParsesTicketReference.cs" />
     <Compile Include="Tickets\TicketReference.cs" />
-    <Compile Include="Tickets\ITicketReferenceQuery.cs" />
+    <Compile Include="Tickets\IGetsTicketByReference.cs" />
     <Compile Include="Sprints\ISprintDetailService.cs" />
     <Compile Include="Sprints\ListSprintsRequest.cs" />
     <Compile Include="Sprints\ISprintEditor.cs" />
