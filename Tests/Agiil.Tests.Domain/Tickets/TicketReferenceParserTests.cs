@@ -1,6 +1,7 @@
 ﻿using System;
 using Agiil.Domain.Tickets;
 using Agiil.Tests.Attributes;
+using Moq;
 using NUnit.Framework;
 
 namespace Agiil.Tests.Tickets
@@ -76,6 +77,46 @@ namespace Agiil.Tests.Tickets
     {
       var result = sut.ParseReferece("2");
       Assert.That(result, Is.EqualTo(new TicketReference(null, 2)));
+    }
+
+    [Test, AutoMoqData]
+    public void GetReference_from_valid_project_code_and_number_can_create_useful_reference(TicketReferenceParser sut)
+    {
+      var result = sut.GetReference("AB", 12);
+      Assert.That(result, Is.EqualTo(new TicketReference("AB", 12)));
+    }
+
+    [Test, AutoMoqData]
+    public void GetReference_from_invalid_project_code_and_number_can_create_useful_reference(TicketReferenceParser sut)
+    {
+      var result = sut.GetReference("A+B", 12);
+      Assert.That(result, Is.Null);
+    }
+
+    [Test, AutoMoqData]
+    public void GetReference_with_null_project_code_returns_partial_reference(TicketReferenceParser sut)
+    {
+      var result = sut.GetReference(null, 12);
+      Assert.That(result, Is.EqualTo(new TicketReference(null, 12)));
+    }
+
+    [Test, AutoMoqData]
+    public void GetReference_with_empty_string_project_code_returns_partial_reference(TicketReferenceParser sut)
+    {
+      var result = sut.GetReference(String.Empty, 12);
+      Assert.That(result, Is.EqualTo(new TicketReference(null, 12)));
+    }
+
+    [Test, AutoMoqData]
+    public void GetReference_from_object_can_return_useful_ticket_reference(TicketReferenceParser sut,
+                                                                               IIdentifiesTicketByProjectAndNumber obj)
+    {
+      Mock.Get(obj).SetupGet(x => x.ProjectCode).Returns("AB");
+      Mock.Get(obj).SetupGet(x => x.TicketNumber).Returns(12);
+
+      var result = sut.GetReference(obj);
+
+      Assert.That(result, Is.EqualTo(new TicketReference("AB", 12)));
     }
   }
 }

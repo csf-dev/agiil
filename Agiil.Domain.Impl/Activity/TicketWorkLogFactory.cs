@@ -6,7 +6,7 @@ namespace Agiil.Domain.Activity
   public class TicketWorkLogFactory : IGetsTicketWorkLog
   {
     readonly IParsesTimespan timespanParser;
-    readonly ITicketReferenceQuery ticketProvider;
+    readonly IGetsTicketByReference ticketProvider;
 
     public GetWorklogResponse GetWorkLog(AddWorkLogRequest request)
     {
@@ -41,7 +41,7 @@ namespace Agiil.Domain.Activity
       };
     }
 
-    public TicketWorkLogFactory(IParsesTimespan timespanParser, ITicketReferenceQuery ticketProvider)
+    public TicketWorkLogFactory(IParsesTimespan timespanParser, IGetsTicketByReference ticketProvider)
     {
       if(ticketProvider == null)
         throw new ArgumentNullException(nameof(ticketProvider));

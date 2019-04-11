@@ -33,7 +33,7 @@ namespace Agiil.Tests.Activity
 
     [Test,AutoMoqData]
     public void GetWorkLog_returns_failure_result_if_ticket_query_returns_null(AddWorkLogRequest request,
-                                                                               [Frozen] ITicketReferenceQuery ticketQuery,
+                                                                               [Frozen] IGetsTicketByReference ticketQuery,
                                                                                TicketWorkLogFactory sut)
     {
       Mock.Get(ticketQuery).Setup(x => x.GetTicketByReference(It.IsAny<string>())).Returns(() => null);
@@ -46,7 +46,7 @@ namespace Agiil.Tests.Activity
     [Test,AutoMoqData]
     public void GetWorkLog_returns_success_result_with_correct_values_from_services(AddWorkLogRequest request,
                                                                                     [Frozen] IParsesTimespan timespanParser,
-                                                                                    [Frozen] ITicketReferenceQuery ticketQuery,
+                                                                                    [Frozen] IGetsTicketByReference ticketQuery,
                                                                                     int minutes,
                                                                                     Ticket ticket,
                                                                                     TicketWorkLogFactory sut)

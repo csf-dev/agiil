@@ -7,10 +7,11 @@ using CSF.Data.Specifications;
 
 namespace Agiil.Domain.Tickets
 {
-  public class TicketReferenceQuery : ITicketReferenceQuery
+  public class TicketReferenceQuery : IGetsTicketByReference
   {
     readonly IParsesTicketReference parser;
     readonly IEntityData repo;
+    readonly Func<TicketReference, TicketReferenceEquals> specFactory;
 
     public Ticket GetTicketByReference(string reference)
     {
@@ -22,7 +23,7 @@ namespace Agiil.Domain.Tickets
     {
       if(reference == null) return null;
 
-      var spec = new TicketReferenceEquals(reference);
+      var spec = specFactory(reference);
 
       return repo
         .Query<Ticket>()
@@ -31,14 +32,18 @@ namespace Agiil.Domain.Tickets
     }
 
     public TicketReferenceQuery(IParsesTicketReference parser,
-                                IEntityData repo)
+                                IEntityData repo,
+                                Func<TicketReference,TicketReferenceEquals> specFactory)
     {
+      if(specFactory == null)
+        throw new ArgumentNullException(nameof(specFactory));
       if(repo == null)
         throw new ArgumentNullException(nameof(repo));
       if(parser == null)
         throw new ArgumentNullException(nameof(parser));
 
       this.repo = repo;
+      this.specFactory = specFactory;
       this.parser = parser;
     }
   }

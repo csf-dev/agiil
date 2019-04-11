@@ -5,8 +5,8 @@ namespace Agiil.Domain.Tickets
   {
     TicketReference ParseReferece(string reference);
 
-    string CreateReference(IIdentifiesTicketByProjectAndNumber ticket);
+    TicketReference GetReference(IIdentifiesTicketByProjectAndNumber ticket);
 
-    string CreateReference(string projectCode, long ticketNumber);
+    TicketReference GetReference(string projectCode, long ticketNumber);
   }
 }

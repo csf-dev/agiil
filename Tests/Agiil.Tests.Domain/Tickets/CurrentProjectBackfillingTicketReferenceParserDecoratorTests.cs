@@ -40,5 +40,41 @@ namespace Agiil.Tests.Tickets
       var result = sut.ParseReferece(input);
       Assert.That(result, Is.EqualTo(new TicketReference("ABC", 10)));
     }
+
+    [Test, AutoMoqData]
+    public void GetReference_backfills_current_project_code_when_it_is_empty([Frozen] IParsesTicketReference wrapped,
+                                                                             [Frozen] ICurrentProjectGetter projectProvider,
+                                                                             CurrentProjectBackfillingTicketReferenceParserDecorator sut,
+                                                                             TicketReference reference)
+    {
+      Mock.Get(wrapped)
+          .Setup(x => x.GetReference("ABC", 10))
+          .Returns(reference);
+      Mock.Get(projectProvider)
+          .Setup(x => x.GetCurrentProject())
+          .Returns(new Project { Code = "ABC" });
+      
+      var result = sut.GetReference(null, 10);
+
+      Assert.That(result, Is.SameAs(reference));
+    }
+
+    [Test, AutoMoqData]
+    public void GetReference_does_not_backfill_current_project_code_when_it_is_provided([Frozen] IParsesTicketReference wrapped,
+                                                                                        [Frozen] ICurrentProjectGetter projectProvider,
+                                                                                        CurrentProjectBackfillingTicketReferenceParserDecorator sut,
+                                                                                        TicketReference reference)
+    {
+      Mock.Get(wrapped)
+          .Setup(x => x.GetReference("DEF", 10))
+          .Returns(reference);
+      Mock.Get(projectProvider)
+          .Setup(x => x.GetCurrentProject())
+          .Returns(new Project { Code = "ABC" });
+
+      var result = sut.GetReference("DEF", 10);
+
+      Assert.That(result, Is.SameAs(reference));
+    }
   }
 }

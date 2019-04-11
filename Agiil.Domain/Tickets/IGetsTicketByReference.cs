@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Agiil.Domain.Tickets
 {
-  public interface ITicketReferenceQuery
+  public interface IGetsTicketByReference
   {
     Ticket GetTicketByReference(string reference);
     Ticket GetTicketByReference(TicketReference reference);
