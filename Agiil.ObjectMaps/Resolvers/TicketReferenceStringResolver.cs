@@ -13,7 +13,7 @@ namespace Agiil.ObjectMaps.Resolvers
                           string destMember,
                           ResolutionContext context)
     {
-      return referenceParser.CreateReference(source);
+      return referenceParser.GetReference(source).ToString(false);
     }
 
     public TicketReferenceStringResolver(IParsesTicketReference referenceParser)

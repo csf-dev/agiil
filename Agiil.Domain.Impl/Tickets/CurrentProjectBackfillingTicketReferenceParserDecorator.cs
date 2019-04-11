@@ -8,18 +8,18 @@ namespace Agiil.Domain.Tickets
     readonly IParsesTicketReference wrapped;
     readonly ICurrentProjectGetter currentProjectProvider;
 
-    public string CreateReference(IIdentifiesTicketByProjectAndNumber ticket)
+    public TicketReference GetReference(IIdentifiesTicketByProjectAndNumber ticket)
     {
       if(ticket == null) return null;
-      return CreateReference(ticket.ProjectCode, ticket.TicketNumber);
+      return GetReference(ticket.ProjectCode, ticket.TicketNumber);
     }
 
-    public string CreateReference(string projectCode, long ticketNumber)
+    public TicketReference GetReference(string projectCode, long ticketNumber)
     {
       if(!String.IsNullOrEmpty(projectCode))
-        return wrapped.CreateReference(projectCode, ticketNumber);
+        return wrapped.GetReference(projectCode, ticketNumber);
 
-      return wrapped.CreateReference(GetProjectCode(), ticketNumber);
+      return wrapped.GetReference(GetProjectCode(), ticketNumber);
     }
 
     public TicketReference ParseReferece(string reference)

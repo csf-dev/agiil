@@ -11,25 +11,23 @@ namespace Agiil.Domain.Tickets
     const string ReferencePattern = @"^#?([A-Z]+)?(\d+)$";
     static readonly Regex ReferenceMatcher = new Regex(ReferencePattern, ReferenceMatchOptions);
 
-    public string CreateReference(IIdentifiesTicketByProjectAndNumber ticket)
+    public TicketReference GetReference(IIdentifiesTicketByProjectAndNumber ticket)
     {
       if(ticket == null)
         return null;
 
-      return CreateReference(ticket.ProjectCode, ticket.TicketNumber);
+      return GetReference(ticket.ProjectCode, ticket.TicketNumber);
     }
 
-    public string CreateReference(string projectCode, long ticketNumber)
+    public TicketReference GetReference(string projectCode, long ticketNumber)
     {
-      if(projectCode == null)
-        return null;
-      
-      var output = String.Concat(projectCode, ticketNumber.ToString());
+      var code = projectCode ?? String.Empty;
+      var output = String.Concat(code, ticketNumber.ToString());
 
       if(!ReferenceMatcher.IsMatch(output))
         return null;
 
-      return output;
+      return new TicketReference(code, ticketNumber);
     }
 
     public TicketReference ParseReferece(string reference)
