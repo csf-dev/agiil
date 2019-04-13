@@ -21,7 +21,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
       int charCount;
 
       // Act
-      var result = sut.GetTicketReference(iterator, out charCount);
+      sut.GetTicketReference(iterator, out charCount);
 
       // Assert
       Mock.Get(innerParser)
@@ -37,7 +37,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
       int charCount;
 
       // Act
-      var result = sut.GetTicketReference(iterator, out charCount);
+      sut.GetTicketReference(iterator, out charCount);
 
       // Assert
       Mock.Get(innerParser)
@@ -53,7 +53,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
       int charCount;
 
       // Act
-      var result = sut.GetTicketReference(iterator, out charCount);
+      sut.GetTicketReference(iterator, out charCount);
 
       // Assert
       Mock.Get(innerParser)
@@ -69,7 +69,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
       int charCount;
 
       // Act
-      var result = sut.GetTicketReference(iterator, out charCount);
+      sut.GetTicketReference(iterator, out charCount);
 
       // Assert
       Mock.Get(innerParser)
@@ -85,7 +85,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
       int charCount;
 
       // Act
-      var result = sut.GetTicketReference(iterator, out charCount);
+      sut.GetTicketReference(iterator, out charCount);
 
       // Assert
       Mock.Get(innerParser)
@@ -109,7 +109,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
       Mock.Get(parser)
           .Setup(x => x.ParseReferece(ticketRefWithoutOtherChars))
           .Returns(reference);
-      var sut = new TicketReferenceParser(Mock.Of<ILog>(), parser);
+      var sut = new TicketReferenceParser(parser);
       var iterator = new StringSlice(ticketRef);
       int charCount;
 
@@ -129,7 +129,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
       int charCount;
 
       // Act
-      var result = sut.GetTicketReference(iterator, out charCount);
+      sut.GetTicketReference(iterator, out charCount);
 
       // Assert
       Mock.Get(innerParser)
@@ -145,7 +145,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
       int charCount;
 
       // Act
-      var result = sut.GetTicketReference(iterator, out charCount);
+      sut.GetTicketReference(iterator, out charCount);
 
       // Assert
       Mock.Get(innerParser)
@@ -161,7 +161,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
       int charCount;
 
       // Act
-      var result = sut.GetTicketReference(iterator, out charCount);
+      sut.GetTicketReference(iterator, out charCount);
 
       // Assert
       Mock.Get(innerParser)
@@ -177,7 +177,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
       int charCount;
 
       // Act
-      var result = sut.GetTicketReference(iterator, out charCount);
+      sut.GetTicketReference(iterator, out charCount);
 
       // Assert
       Mock.Get(innerParser)
@@ -193,7 +193,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
       int charCount;
 
       // Act
-      var result = sut.GetTicketReference(iterator, out charCount);
+      sut.GetTicketReference(iterator, out charCount);
 
       // Assert
       Mock.Get(innerParser)
@@ -212,7 +212,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
       Mock.Get(parser)
           .Setup(x => x.ParseReferece(ticketRef))
           .Returns(() => null);
-      var sut = new TicketReferenceParser(Mock.Of<ILog>(), parser);
+      var sut = new TicketReferenceParser(parser);
       var iterator = new StringSlice(ticketRef);
       int charCount;
 

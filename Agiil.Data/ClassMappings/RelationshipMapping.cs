@@ -22,7 +22,6 @@ namespace Agiil.Data.ClassMappings
       mapper.Class<Relationship>(map => {
         map.Discriminator(d => {
           d.Column(nameFormatter.GetColumnName(Reflect.Property<Relationship>(x => x.Type)));
-          // d.NotNullable(true);
         });
       });
     }

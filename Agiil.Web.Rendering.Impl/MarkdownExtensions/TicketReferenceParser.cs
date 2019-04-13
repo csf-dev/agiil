@@ -8,7 +8,6 @@ namespace Agiil.Web.Rendering.MarkdownExtensions
   {
     const char BeginningCharacter = '#';
 
-    readonly log4net.ILog logger;
     readonly IParsesTicketReference referenceParser;
 
     public TicketReference GetTicketReference(ICharIterator iterator, out int charactersConsumed)
@@ -81,13 +80,10 @@ namespace Agiil.Web.Rendering.MarkdownExtensions
     bool IsValidBeginningOfTicketReference(ICharIterator iterator)
       => iterator.CurrentChar == BeginningCharacter;
 
-    public TicketReferenceParser(log4net.ILog logger, IParsesTicketReference referenceParser)
+    public TicketReferenceParser(IParsesTicketReference referenceParser)
     {
       if(referenceParser == null)
         throw new ArgumentNullException(nameof(referenceParser));
-      if(logger == null)
-        throw new ArgumentNullException(nameof(logger));
-      this.logger = logger;
       this.referenceParser = referenceParser;
     }
   }

@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Agiil.Domain.Tickets
 {
-  public class TicketReference : IEquatable<TicketReference>
+  public sealed class TicketReference : IEquatable<TicketReference>
   {
     public string ProjectCode { get; private set; }
 

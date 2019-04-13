@@ -1,6 +1,5 @@
 ﻿using System;
 using CSF.Data;
-using CSF.Data.Entities;
 using CSF.Entities;
 
 namespace Agiil.Domain.Activity
@@ -9,12 +8,9 @@ namespace Agiil.Domain.Activity
   {
     readonly IGetsTicketWorkLog workLogProvider;
     readonly ITransactionCreator transactionFactory;
-    readonly IEntityData data;
 
-    public TicketWorkLogger(IGetsTicketWorkLog workLogProvider, ITransactionCreator transactionFactory, IEntityData data)
+    public TicketWorkLogger(IGetsTicketWorkLog workLogProvider, ITransactionCreator transactionFactory)
     {
-      if(data == null)
-        throw new ArgumentNullException(nameof(data));
       if(transactionFactory == null)
         throw new ArgumentNullException(nameof(transactionFactory));
       if(workLogProvider == null)
@@ -22,7 +18,6 @@ namespace Agiil.Domain.Activity
       
       this.workLogProvider = workLogProvider;
       this.transactionFactory = transactionFactory;
-      this.data = data;
     }
 
     public AddWorklogResponse AddWorkLog(AddWorkLogRequest request)
