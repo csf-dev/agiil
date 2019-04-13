@@ -6,12 +6,12 @@ namespace Agiil.BDD.Pages
 {
   public class TicketDetail : Page
   {
-    long ticketId;
+    string ticketReference;
     static TicketCommentList comments = new TicketCommentList();
 
-    public override string GetName() => $"the ticket detail page for ticket ID {ticketId}";
+    public override string GetName() => $"the ticket detail page for ticket #{ticketReference}";
 
-    public override IUriProvider GetUriProvider() => new AppUri($"Ticket/Index/{ticketId}");
+    public override IUriProvider GetUriProvider() => new AppUri($"Ticket/Index/{ticketReference}");
 
     public static ILocatorBasedTarget TitleContent
       => new ClassName("title_content", "the ticket title");
@@ -60,9 +60,9 @@ namespace Agiil.BDD.Pages
 
     public static TicketCommentList Comments => comments;
 
-    public TicketDetail(long ticketId)
+    public TicketDetail(string ticketReference)
     {
-      this.ticketId = ticketId;
+      this.ticketReference = ticketReference;
     }
   }
 }
