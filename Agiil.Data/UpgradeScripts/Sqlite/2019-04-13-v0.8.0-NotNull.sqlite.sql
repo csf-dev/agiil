@@ -131,6 +131,7 @@ create table ticket_new (
     project_id BIGINT not null,
     sprint_id BIGINT,
     ticket_type_id BIGINT not null,
+    constraint uq_project_and_ticket_number unique (project_id, ticket_number),
     constraint fk_ticket_has_user foreign key (user_id) references user,
     constraint fk_ticket_has_project foreign key (project_id) references project,
     constraint fk_ticket_has_sprint foreign key (sprint_id) references sprint,

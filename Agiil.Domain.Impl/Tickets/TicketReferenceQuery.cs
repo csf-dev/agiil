@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Agiil.Domain.Projects;
 using Agiil.Domain.Tickets.Specs;
 using CSF.Data.Entities;
 using CSF.Data.Specifications;
