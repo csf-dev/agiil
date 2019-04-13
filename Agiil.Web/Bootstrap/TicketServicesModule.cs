@@ -22,6 +22,7 @@ namespace Agiil.Web.Bootstrap
       builder.RegisterType<MappingEditTicketModelFactory>();
       builder.RegisterType<SpecificationBasedNewTicketModelFactory>();
       builder.RegisterType<TempDataRestoringEditTicketModelFactoryDecorator>();
+      builder.RegisterType<TicketDetailDtoProvider>().AsSelf().AsImplementedInterfaces();
 
       builder.Register(GetNewTicketModelFactory);
       builder.Register(GetEditTicketModelFactory);
