@@ -10,6 +10,7 @@ namespace Agiil.Domain.Tickets
   {
     public virtual string Title { get; set; }
 
+    [AllowNull]
     public virtual string Description { get; set; }
 
     public virtual DateTime CreationTimestamp { get; set; }
@@ -110,6 +111,7 @@ namespace Agiil.Domain.Tickets
 
     public virtual Projects.Project Project { get; set; }
 
+    [AllowNull]
     public virtual Sprints.Sprint Sprint { get; set; }
 
     public virtual TicketType Type { get; set; }

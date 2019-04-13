@@ -150,6 +150,7 @@
     <Compile Include="ConventionMappings\EnumerationPropertyMapping.cs" />
     <Compile Include="ClassMappings\TicketRelationshipMapping.cs" />
     <Compile Include="ClassMappings\TicketMapping.cs" />
+    <Compile Include="ConventionMappings\NullableMapping.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ConventionMappings\" />
