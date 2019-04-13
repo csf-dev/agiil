@@ -89,7 +89,6 @@
     <Compile Include="Resolvers\GetEntityByIdentityResolver.cs" />
     <Compile Include="Resolvers\GetEntityByIdentityValueResolver.cs" />
     <Compile Include="Resolvers\IdentityValueResolver.cs" />
-    <Compile Include="Resolvers\TicketReferenceStringResolver.cs" />
     <Compile Include="Resolvers\IResolversNamespaceMarker.cs" />
     <Compile Include="Resolvers\MarkdownToHtmlResolver.cs" />
     <Compile Include="Tickets\TicketTypeToTicketTypeDtoProfile.cs" />

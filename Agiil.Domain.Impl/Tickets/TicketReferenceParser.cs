@@ -11,14 +11,6 @@ namespace Agiil.Domain.Tickets
     const string ReferencePattern = @"^#?([A-Z]+)?(\d+)$";
     static readonly Regex ReferenceMatcher = new Regex(ReferencePattern, ReferenceMatchOptions);
 
-    public TicketReference GetReference(IIdentifiesTicketByProjectAndNumber ticket)
-    {
-      if(ticket == null)
-        return null;
-
-      return GetReference(ticket.ProjectCode, ticket.TicketNumber);
-    }
-
     public TicketReference GetReference(string projectCode, long ticketNumber)
     {
       var code = projectCode ?? String.Empty;

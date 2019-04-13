@@ -20,5 +20,7 @@ namespace Agiil.Web.Models.Tickets
 
       return String.Join(" ", classes);
     }
+
+    public TicketSummaryDto(IGetsTicketUris uriProvider) : base(uriProvider) {}
   }
 }

@@ -106,17 +106,5 @@ namespace Agiil.Tests.Tickets
       var result = sut.GetReference(String.Empty, 12);
       Assert.That(result, Is.EqualTo(new TicketReference(null, 12)));
     }
-
-    [Test, AutoMoqData]
-    public void GetReference_from_object_can_return_useful_ticket_reference(TicketReferenceParser sut,
-                                                                               IIdentifiesTicketByProjectAndNumber obj)
-    {
-      Mock.Get(obj).SetupGet(x => x.ProjectCode).Returns("AB");
-      Mock.Get(obj).SetupGet(x => x.TicketNumber).Returns(12);
-
-      var result = sut.GetReference(obj);
-
-      Assert.That(result, Is.EqualTo(new TicketReference("AB", 12)));
-    }
   }
 }

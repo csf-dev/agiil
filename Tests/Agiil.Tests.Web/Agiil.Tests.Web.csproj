@@ -184,7 +184,7 @@
     <Compile Include="Rendering\MarkdownRendererTests.cs" />
     <Compile Include="CachingWebAppContainerFactory.cs" />
     <Compile Include="Rendering\MarkdownExtensions\TicketReferenceParserTests.cs" />
-    <Compile Include="Controllers\EditTicketRequestHandlerIntegrationTests.cs" />
+    <Compile Include="Controllers\TicketControllerIntegrationTests.cs" />
     <Compile Include="Services\Tickets\TicketDetailDtoProviderTests.cs" />
     <Compile Include="Services\Tickets\TicketUriProviderTests.cs" />
   </ItemGroup>

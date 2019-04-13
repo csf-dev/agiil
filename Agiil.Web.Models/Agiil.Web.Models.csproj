@@ -109,6 +109,7 @@
     <Compile Include="Tickets\IHasAvailableTicketTypes.cs" />
     <Compile Include="Tickets\IHasAvailableRelationships.cs" />
     <Compile Include="Activity\AddTicketWorkLogModel.cs" />
+    <Compile Include="Tickets\IGetsTicketUris.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

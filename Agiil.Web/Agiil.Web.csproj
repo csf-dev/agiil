@@ -403,7 +403,7 @@
     <Compile Include="Controllers\MissingDependenciesController.cs" />
     <Compile Include="Services\Data\IGetsDatabaseMaintenanceSecurity.cs" />
     <Compile Include="Services\Data\AppSettingsDatabaseMaintenanceSecurityProvider.cs" />
-    <Compile Include="Services\Rendering\TicketUriProvider.cs" />
+    <Compile Include="Services\Rendering\RenderingTicketUriProviderAdapter.cs" />
     <Compile Include="Services\Labels\LabelDetailProvider.cs" />
     <Compile Include="Services\Labels\IGetsLabelDetail.cs" />
     <Compile Include="Services\Tickets\IGetsEditTicketModel.cs" />
@@ -432,9 +432,7 @@
     <Compile Include="Controllers\AddTicketWorkLogController.cs" />
     <Compile Include="Services\Tickets\IGetsTicketDetailDtoByReference.cs" />
     <Compile Include="Services\Tickets\TicketDetailDtoProvider.cs" />
-    <Compile Include="Services\Tickets\IGetsTicketUris.cs" />
     <Compile Include="Services\Tickets\TicketUriProvider.cs" />
-    <Compile Include="Bootstrap\AspNetMvcRoutingModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

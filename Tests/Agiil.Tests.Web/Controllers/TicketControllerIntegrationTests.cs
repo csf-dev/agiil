@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 using Agiil.Domain.Projects;
 using Agiil.Domain.Tickets;
 using Agiil.Tests.Data;
@@ -37,6 +39,8 @@ namespace Agiil.Tests.Tickets
         builder.RegisterInstance(InMemoryEntityDataFactory.Default.GetEntityData()).SingleInstance();
         builder.RegisterInstance(new CSF.Data.NoOpTransactionCreator(true)).AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterInstance(Mock.Of<NHibernate.ISession>()).SingleInstance();
+        builder.RegisterInstance(Mock.Of<UrlHelper>()).SingleInstance();
+        builder.RegisterInstance(Mock.Of<HttpRequestBase>()).SingleInstance();
       });
     }
 

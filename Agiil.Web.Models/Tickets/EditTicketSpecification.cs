@@ -11,6 +11,8 @@ namespace Agiil.Web.Models.Tickets
     List<AddRelationshipModel> relationshipsToAdd;
     List<IIdentity<TicketRelationship>> relationshipsToRemove;
 
+    public TicketReference TicketReference { get; set; }
+
     public IIdentity<Ticket> Identity { get; set; }
 
     public string Title { get; set; }

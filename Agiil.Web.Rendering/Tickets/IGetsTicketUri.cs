@@ -10,7 +10,5 @@ namespace Agiil.Web.Rendering.Tickets
   public interface IGetsTicketUri
   {
     Uri GetAbsoluteUri(TicketReference ticketRef);
-
-    Uri GetAbsoluteUri(IIdentity<Ticket> ticketIdentity);
   }
 }

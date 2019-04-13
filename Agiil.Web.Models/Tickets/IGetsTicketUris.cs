@@ -1,7 +1,7 @@
 ﻿using System;
 using Agiil.Domain.Tickets;
 
-namespace Agiil.Web.Services.Tickets
+namespace Agiil.Web.Models.Tickets
 {
   public interface IGetsTicketUris
   {

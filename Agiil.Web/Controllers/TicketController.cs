@@ -4,7 +4,6 @@ using Agiil.Domain.Tickets;
 using Agiil.Web.Models.Tickets;
 using Agiil.Web.Services.Tickets;
 using AutoMapper;
-using CSF.Entities;
 using log4net;
 
 namespace Agiil.Web.Controllers
@@ -17,8 +16,8 @@ namespace Agiil.Web.Controllers
       SuccessfulEditKey = "Successful edit";
 
     readonly IGetsTicketDetailDtoByReference ticketDetailProvider;
-    readonly Lazy<ITicketDetailService> ticketDetailService;
     readonly ILog logger;
+    readonly IGetsTicketByReference ticketProvider;
     readonly Lazy<IHandlesEditTicketRequest> editor;
     readonly Lazy<IGetsEditTicketModel> editTicketModelFactory;
     readonly IMapper mapper;
@@ -29,11 +28,9 @@ namespace Agiil.Web.Controllers
 
       if(ReferenceEquals(ticket, null))
       {
-        logger.DebugFormat("Ticket reference not found: {0}", id);
+        logger.DebugFormat("Ticket reference (to view) not found: {0}", id);
         return HttpNotFound();
       }
-
-
 
       var model = GetViewTicketModel(ticket);
 
@@ -41,12 +38,15 @@ namespace Agiil.Web.Controllers
     }
 
     [HttpGet]
-    public ActionResult Edit(IIdentity<Ticket> id)
+    public ActionResult Edit(TicketReference id)
     {
-      var ticket = ticketDetailService.Value.GetTicket(id);
+      var ticket = ticketProvider.GetTicketByReference(id);
 
       if(ReferenceEquals(ticket, null))
+      {
+        logger.DebugFormat("Ticket reference (to edit) not found: {0}", id);
         return HttpNotFound();
+      }
 
       var editModelFactory = editTicketModelFactory.Value;
       var model = editModelFactory.GetEditTicketModel(ticket);
@@ -68,14 +68,14 @@ namespace Agiil.Web.Controllers
       if(response.IsSuccess)
       {
         TempData.Add(SuccessfulEditKey, true);
-        return RedirectToAction(nameof(Index), new { id = spec.Identity?.Value });
+        return RedirectToAction(nameof(Index), new { id = spec.TicketReference });
       }
 
       var responseModel = mapper.Map<Models.Tickets.EditTicketResponse>(response);
       TempData.Add(EditTicketResponseKey, responseModel);
       TempData.Add(EditTicketSpecKey, spec);
 
-      return RedirectToAction(nameof(Edit), new { id = spec.Identity?.Value });
+      return RedirectToAction(nameof(Edit), new { id = spec.TicketReference });
     }
 
     TicketDetailModel GetViewTicketModel(TicketDetailDto ticket)
@@ -91,13 +91,13 @@ namespace Agiil.Web.Controllers
                             Lazy<IHandlesEditTicketRequest> editor,
                             Lazy<IGetsEditTicketModel> editTicketModelFactory,
                             IMapper mapper,
-                            Lazy<ITicketDetailService> ticketDetailService,
-                            ILog logger)
+                            ILog logger,
+                            IGetsTicketByReference ticketProvider)
     {
+      if(ticketProvider == null)
+        throw new ArgumentNullException(nameof(ticketProvider));
       if(logger == null)
         throw new ArgumentNullException(nameof(logger));
-      if(ticketDetailService == null)
-        throw new ArgumentNullException(nameof(ticketDetailService));
       if(editTicketModelFactory == null)
         throw new ArgumentNullException(nameof(editTicketModelFactory));
       if(mapper == null)
@@ -108,8 +108,8 @@ namespace Agiil.Web.Controllers
         throw new ArgumentNullException(nameof(ticketDetailProvider));
       
       this.mapper = mapper;
-      this.ticketDetailService = ticketDetailService;
       this.logger = logger;
+      this.ticketProvider = ticketProvider;
       this.ticketDetailProvider = ticketDetailProvider;
       this.editor = editor;
       this.editTicketModelFactory = editTicketModelFactory;

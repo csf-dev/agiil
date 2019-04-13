@@ -36,7 +36,7 @@
             class="TicketType">Bug</td>
         <td tal:content="ticket/Reference"
             class="TicketReference">AB123</td>
-        <td tal:define="url string:Ticket/Index/${ticket/Id}"
+        <td tal:define="url ticket/ViewUrl"
             class="TicketTitle">
           <a href="Ticket/Index/0"
              tal:attributes="href url"
