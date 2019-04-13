@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Agiil.Domain.Tickets;
 using Agiil.Domain.Activity;
 using Agiil.Domain.Auth;
+using Agiil.Domain.Tickets;
 using Agiil.Web.Models.Activity;
 using AutoMapper;
-using CSF.Entities;
 
 namespace Agiil.Web.Controllers
 {
@@ -36,7 +32,7 @@ namespace Agiil.Web.Controllers
     }
 
     [HttpGet]
-    public ActionResult Index(string id)
+    public ActionResult Index(TicketReference id)
     {
       var model = GetModel(id);
       return View(model);
@@ -54,7 +50,7 @@ namespace Agiil.Web.Controllers
       if(result.Success)
         return RedirectToAction(nameof(TicketController.Index),
                                 typeof(TicketController).AsControllerName(),
-                                new { id = result.TicketId.GetValueAsString() });
+                                new { id = model.TicketReference });
 
       model.InvalidTicket = result.InvalidTicket;
       model.InvalidTime = result.InvalidTime;
@@ -64,7 +60,7 @@ namespace Agiil.Web.Controllers
                               new { id = model.TicketReference });
     }
 
-    AddTicketWorkLogModel GetModel(string ticketRef)
+    AddTicketWorkLogModel GetModel(TicketReference ticketRef)
     {
       var model = TempData.TryGet<AddTicketWorkLogModel>(ModelKey) ?? new AddTicketWorkLogModel();
       model.TicketReference = ticketRef;

@@ -26,7 +26,7 @@ namespace Agiil.Domain.Tickets
       return (ProjectCode?.GetHashCode()).GetValueOrDefault() ^ TicketNumber.GetHashCode();
 		}
 
-    public override string ToString() => ToString(true);
+    public override string ToString() => ToString(false);
 
     public string ToString(bool includeHash) => $"{(includeHash? "#" : String.Empty)}{ProjectCode}{TicketNumber}";
 

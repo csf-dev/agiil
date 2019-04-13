@@ -6,7 +6,7 @@ using CSF.Entities;
 
 namespace Agiil.Domain.Tickets
 {
-  public class Ticket : Entity<long>, IIdentifiesTicketByProjectAndNumber
+  public class Ticket : Entity<long>
   {
     public virtual string Title { get; set; }
 
@@ -123,7 +123,10 @@ namespace Agiil.Domain.Tickets
         .ToArray();
     }
 
-    string IIdentifiesTicketByProjectAndNumber.ProjectCode => Project?.Code;
+    public virtual TicketReference GetTicketReference()
+    {
+      return new TicketReference(Project?.Code, TicketNumber);
+    }
 
     public Ticket()
     {

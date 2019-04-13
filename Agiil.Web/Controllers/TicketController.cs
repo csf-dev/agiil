@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Mvc;
-using Agiil.Domain.Sprints;
 using Agiil.Domain.Tickets;
-using Agiil.Web.Models.Sprints;
 using Agiil.Web.Models.Tickets;
 using Agiil.Web.Services.Tickets;
 using AutoMapper;
-using CSF.Entities;
+using log4net;
 
 namespace Agiil.Web.Controllers
 {
@@ -18,17 +15,22 @@ namespace Agiil.Web.Controllers
       EditTicketSpecKey = "Edit ticket specification",
       SuccessfulEditKey = "Successful edit";
 
-    readonly ITicketDetailService ticketDetailService;
+    readonly IGetsTicketDetailDtoByReference ticketDetailProvider;
+    readonly ILog logger;
+    readonly IGetsTicketByReference ticketProvider;
     readonly Lazy<IHandlesEditTicketRequest> editor;
     readonly Lazy<IGetsEditTicketModel> editTicketModelFactory;
     readonly IMapper mapper;
 
-    public ActionResult Index(IIdentity<Ticket> id)
+    public ActionResult Index(TicketReference id)
     {
-      var ticket = ticketDetailService.GetTicket(id);
+      var ticket = ticketDetailProvider.GetTicketDetailDto(id);
 
       if(ReferenceEquals(ticket, null))
+      {
+        logger.DebugFormat("Ticket reference (to view) not found: {0}", id);
         return HttpNotFound();
+      }
 
       var model = GetViewTicketModel(ticket);
 
@@ -36,12 +38,15 @@ namespace Agiil.Web.Controllers
     }
 
     [HttpGet]
-    public ActionResult Edit(IIdentity<Ticket> id)
+    public ActionResult Edit(TicketReference id)
     {
-      var ticket = ticketDetailService.GetTicket(id);
+      var ticket = ticketProvider.GetTicketByReference(id);
 
       if(ReferenceEquals(ticket, null))
+      {
+        logger.DebugFormat("Ticket reference (to edit) not found: {0}", id);
         return HttpNotFound();
+      }
 
       var editModelFactory = editTicketModelFactory.Value;
       var model = editModelFactory.GetEditTicketModel(ticket);
@@ -63,41 +68,49 @@ namespace Agiil.Web.Controllers
       if(response.IsSuccess)
       {
         TempData.Add(SuccessfulEditKey, true);
-        return RedirectToAction(nameof(Index), new { id = spec.Identity?.Value });
+        return RedirectToAction(nameof(Index), new { id = spec.TicketReference });
       }
 
       var responseModel = mapper.Map<Models.Tickets.EditTicketResponse>(response);
       TempData.Add(EditTicketResponseKey, responseModel);
       TempData.Add(EditTicketSpecKey, spec);
 
-      return RedirectToAction(nameof(Edit), new { id = spec.Identity?.Value });
+      return RedirectToAction(nameof(Edit), new { id = spec.TicketReference });
     }
 
-    TicketDetailModel GetViewTicketModel(Ticket ticket)
+    TicketDetailModel GetViewTicketModel(TicketDetailDto ticket)
     {
       var model = new TicketDetailModel();
-      model.Ticket = mapper.Map<TicketDetailDto>(ticket);
+      model.Ticket = ticket;
       model.AddCommentSpecification = TempData.TryGet<AddCommentSpecification>(CommentController.CommentSpecKey);
       model.AddCommentResponse = TempData.TryGet<AddCommentResponse>(CommentController.CommentResponseKey);
       return model;
     }
 
-    public TicketController(ITicketDetailService ticketDetailService,
+    public TicketController(IGetsTicketDetailDtoByReference ticketDetailProvider,
                             Lazy<IHandlesEditTicketRequest> editor,
                             Lazy<IGetsEditTicketModel> editTicketModelFactory,
-                            IMapper mapper)
+                            IMapper mapper,
+                            ILog logger,
+                            IGetsTicketByReference ticketProvider)
     {
+      if(ticketProvider == null)
+        throw new ArgumentNullException(nameof(ticketProvider));
+      if(logger == null)
+        throw new ArgumentNullException(nameof(logger));
       if(editTicketModelFactory == null)
         throw new ArgumentNullException(nameof(editTicketModelFactory));
       if(mapper == null)
         throw new ArgumentNullException(nameof(mapper));
       if(editor == null)
         throw new ArgumentNullException(nameof(editor));
-      if(ticketDetailService == null)
-        throw new ArgumentNullException(nameof(ticketDetailService));
+      if(ticketDetailProvider == null)
+        throw new ArgumentNullException(nameof(ticketDetailProvider));
       
       this.mapper = mapper;
-      this.ticketDetailService = ticketDetailService;
+      this.logger = logger;
+      this.ticketProvider = ticketProvider;
+      this.ticketDetailProvider = ticketDetailProvider;
       this.editor = editor;
       this.editTicketModelFactory = editTicketModelFactory;
     }

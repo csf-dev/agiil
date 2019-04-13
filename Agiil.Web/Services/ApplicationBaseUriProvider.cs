@@ -7,14 +7,12 @@ namespace Agiil.Web.Services
 {
   public class ApplicationBaseUriProvider : IProvidesApplicationBaseUri
   {
-    readonly Uri requestUri;
+    readonly HttpRequestBase request;
     readonly UrlHelper urlHelper;
 
     public Uri GetBaseUri()
     {
-      if(requestUri == null) return null;
-
-      var rootOfDomain = requestUri.GetLeftPart(UriPartial.Authority);
+      var rootOfDomain = request?.Url?.GetLeftPart(UriPartial.Authority);
 
       if(urlHelper == null)
         return new Uri(rootOfDomain);
@@ -23,24 +21,10 @@ namespace Agiil.Web.Services
       return new Uri(uriString);
     }
 
-    public ApplicationBaseUriProvider(Uri requestUri, UrlHelper urlHelper)
+    public ApplicationBaseUriProvider(HttpRequestBase request, UrlHelper urlHelper)
     {
-      this.requestUri = requestUri;
+      this.request = request;
       this.urlHelper = urlHelper;
     }
-
-    static HttpRequest GetHttpRequest() => HttpContext.Current?.Request;
-
-    static Uri GetRequestUri() => GetHttpRequest()?.Url;
-
-    static UrlHelper GetUrlHelper()
-    {
-      var requestContext = GetHttpRequest()?.RequestContext;
-      if(requestContext == null) return null;
-      return new UrlHelper(requestContext);
-    }
-
-    public static ApplicationBaseUriProvider CreateFromHttpContext()
-      => new ApplicationBaseUriProvider(GetRequestUri(), GetUrlHelper());
   }
 }

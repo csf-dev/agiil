@@ -32,7 +32,7 @@ namespace Agiil.Web.Models.Tickets
 
     public bool HasWorkLogged => TotalWorkLogged > TimeSpan.Zero;
 
-    public TicketDetailDto()
+    public TicketDetailDto(IGetsTicketUris uriProvider) : base(uriProvider)
     {
       Comments = Enumerable.Empty<CommentDto>().ToArray();
       Labels = Enumerable.Empty<LabelDto>().ToArray();

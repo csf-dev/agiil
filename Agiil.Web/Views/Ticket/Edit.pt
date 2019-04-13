@@ -31,6 +31,8 @@
     <fieldset>
       <input type="hidden" name="Identity" value="/"
              tal:attributes="value ticket/Id | nothing" />
+      <input type="hidden" name="TicketReference" value="ABC123"
+             tal:attributes="value ticket/Reference | nothing" />
       <div class="form_element field">
         <label for="Title">Title</label>
         <input type="text" id="Title" name="Title"
