@@ -186,6 +186,7 @@
     <Compile Include="Rendering\MarkdownExtensions\TicketReferenceParserTests.cs" />
     <Compile Include="Controllers\EditTicketRequestHandlerIntegrationTests.cs" />
     <Compile Include="Services\Tickets\TicketDetailDtoProviderTests.cs" />
+    <Compile Include="Services\Tickets\TicketUriProviderTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

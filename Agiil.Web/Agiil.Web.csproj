@@ -432,6 +432,9 @@
     <Compile Include="Controllers\AddTicketWorkLogController.cs" />
     <Compile Include="Services\Tickets\IGetsTicketDetailDtoByReference.cs" />
     <Compile Include="Services\Tickets\TicketDetailDtoProvider.cs" />
+    <Compile Include="Services\Tickets\IGetsTicketUris.cs" />
+    <Compile Include="Services\Tickets\TicketUriProvider.cs" />
+    <Compile Include="Bootstrap\AspNetMvcRoutingModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

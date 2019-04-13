@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Mvc;
-using Agiil.Domain.Sprints;
 using Agiil.Domain.Tickets;
-using Agiil.Web.Models.Sprints;
 using Agiil.Web.Models.Tickets;
 using Agiil.Web.Services.Tickets;
 using AutoMapper;
@@ -35,6 +32,8 @@ namespace Agiil.Web.Controllers
         logger.DebugFormat("Ticket reference not found: {0}", id);
         return HttpNotFound();
       }
+
+
 
       var model = GetViewTicketModel(ticket);
 
