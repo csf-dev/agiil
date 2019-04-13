@@ -61,10 +61,10 @@ upload_artifacts()
   TRAVIS_SUBFOLDER="Travis-${TRAVIS_JOB_NUMBER}"
   ARTIFACTS_DIR="/Root/BuildArtifacts/${TRAVIS_SUBFOLDER}"
   megamkdir "$ARTIFACTS_DIR"
-  megaput --no-progress --path "${ARTIFACTS_DIR}/TestResult.unit-tests.xml" Tests/Temp/TestResult.unit-tests.xml
-  megaput --no-progress --path "${ARTIFACTS_DIR}/TestResult.bdd-tests.xml" Tests/Temp/TestResult.bdd-tests.xml
-  megaput --no-progress --path "${ARTIFACTS_DIR}/Agiil.Tests.BDD.report.json" Agiil.Tests.BDD.report.json
-  megaput --no-progress --path "${ARTIFACTS_DIR}/Agiil.Web.log" Output/Web apps/Agiil.Web/Agiil.Web.log
+  megaput --no-progress --path "${ARTIFACTS_DIR}/TestResult.unit-tests.xml" "Tests/Temp/TestResult.unit-tests.xml"
+  megaput --no-progress --path "${ARTIFACTS_DIR}/TestResult.bdd-tests.xml" "Tests/Temp/TestResult.bdd-tests.xml"
+  megaput --no-progress --path "${ARTIFACTS_DIR}/Agiil.Tests.BDD.report.json" "Agiil.Tests.BDD.report.json"
+  megaput --no-progress --path "${ARTIFACTS_DIR}/Agiil.Web.log" "Output/Web apps/Agiil.Web/Agiil.Web.log"
 }
 
 build_solution
