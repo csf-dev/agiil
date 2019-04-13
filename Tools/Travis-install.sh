@@ -53,9 +53,18 @@ install_npm_packages()
   cd "$OLD_DIR"
 }
 
+setup_megarc_file()
+{
+  echo "[Login]
+Username = ${MEGA_USERNAME}
+Password = ${MEGA_PASSWORD}
+" > ~/.megarc
+}
+
 install_latest_nuget
 echo_nuget_version_to_console
 restore_solution_nuget_packages
 install_npm_packages
+setup_megarc_file
 
 exit 0
