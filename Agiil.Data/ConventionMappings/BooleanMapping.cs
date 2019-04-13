@@ -11,27 +11,16 @@ namespace Agiil.Data.ConventionMappings
     {
       mapper.BeforeMapProperty += (modelInspector, member, propertyCustomizer) => {
         var prop = member.LocalMember as PropertyInfo;
-        if(ReferenceEquals(prop, null))
-          return;
+        if(ReferenceEquals(prop, null)) return;
+
+        // Actual column nullability is handled in NullableMapping
 
         if(prop.PropertyType == typeof(bool))
-          ConfigureBooleanColumn(propertyCustomizer);
+          propertyCustomizer.Column(c => c.Default(false));
 
         if(prop.PropertyType == typeof(bool?))
-          ConfigureNullableBooleanColumn(propertyCustomizer);
+          propertyCustomizer.Column(c => c.Default(null));
       };
-    }
-
-    void ConfigureBooleanColumn(IPropertyMapper customizer)
-    {
-      customizer.NotNullable(true);
-      customizer.Column(c => c.Default(false));
-    }
-
-    void ConfigureNullableBooleanColumn(IPropertyMapper customizer)
-    {
-      customizer.NotNullable(false);
-      customizer.Column(c => c.Default((bool?) null));
     }
   }
 }
