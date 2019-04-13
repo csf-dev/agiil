@@ -11,12 +11,17 @@ namespace Agiil.Domain.Data
   {
     readonly IUserCreator userCreator;
     readonly ITransactionCreator transactionCreator;
-    readonly IEntityData projectRepo;
+    readonly IEntityData data;
 
     public void Create()
     {
-      CreateInitialUser();
-      CreateInitialProject();
+      using(var tran = transactionCreator.BeginTransaction())
+      {
+        CreateInitialUser();
+        CreateInitialProject();
+
+        tran.Commit();
+      }
     }
 
     void CreateInitialUser()
@@ -33,11 +38,7 @@ namespace Agiil.Domain.Data
         NextAvailableTicketNumber = 1,
       };
 
-      using(var tran = transactionCreator.BeginTransaction())
-      {
-        projectRepo.Add(project);
-        tran.Commit();
-      }
+      data.Add(project);
     }
 
     public DevelopmentInitialDataCreator(IUserCreator userCreator,
@@ -52,7 +53,7 @@ namespace Agiil.Domain.Data
         throw new ArgumentNullException(nameof(userCreator));
 
       this.userCreator = userCreator;
-      this.projectRepo = projectRepo;
+      this.data = projectRepo;
       this.transactionCreator = transactionCreator;
     }
   }
