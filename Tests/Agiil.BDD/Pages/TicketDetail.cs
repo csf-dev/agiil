@@ -6,7 +6,7 @@ namespace Agiil.BDD.Pages
 {
   public class TicketDetail : Page
   {
-    string ticketReference;
+    readonly string ticketReference;
     static TicketCommentList comments = new TicketCommentList();
 
     public override string GetName() => $"the ticket detail page for ticket #{ticketReference}";

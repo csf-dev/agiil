@@ -23,7 +23,7 @@ namespace Agiil.Auth
     {
       var userInfo = request?.StoredCredentials?.UserInformation;
 
-      return new AuthenticationResult(userInfo?.Identity, userInfo?.Username, request.PasswordVerified);
+      return new AuthenticationResult(userInfo?.Identity, userInfo?.Username, (request?.PasswordVerified).GetValueOrDefault());
     }
   }
 }

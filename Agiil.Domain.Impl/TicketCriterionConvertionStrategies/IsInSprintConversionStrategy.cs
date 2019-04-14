@@ -39,6 +39,7 @@ namespace Agiil.Domain.TicketCriterionConvertionStrategies
     ISpecificationExpression<Ticket> GetFromPredicateFunction(Criterion criterion)
     {
       var predicateFunction = criterion?.Test as PredicateFunction;
+      if(predicateFunction == null) return null;
       var sprintNames = valueResolver.ResolveAll<string>(predicateFunction.Parameters);
       var spec = new HasSprint(sprintNames);
 

@@ -34,7 +34,7 @@ namespace Agiil.Web.Models.Tickets
     public bool HasStoryPoints
       => StoryPoints.HasValue && StoryPoints.Value > 0;
 
-    public TicketInfoDtoBase(IGetsTicketUris uriProvider)
+    protected TicketInfoDtoBase(IGetsTicketUris uriProvider)
     {
       if(uriProvider == null)
         throw new ArgumentNullException(nameof(uriProvider));

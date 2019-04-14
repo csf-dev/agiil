@@ -13,6 +13,7 @@ namespace Agiil.Domain.TicketCriterionConvertionStrategies
     public ISpecificationExpression<Ticket> ConvertToSpecification(Criterion criterion)
     {
       var predicateAndValue = criterion?.Test as PredicateAndValue;
+      if(predicateAndValue == null) return null;
       var value = valueResolver.Resolve<string>(predicateAndValue.Value);
 
       if(value == WellKnownValue.Closed)

@@ -11,6 +11,7 @@ namespace Agiil.Domain.TicketCriterionConvertionStrategies
     public ISpecificationExpression<Ticket> ConvertToSpecification(Criterion criterion)
     {
       var predicateFunction = criterion?.Test as PredicateFunction;
+      if(predicateFunction == null) return null;
       var spec = new HasNoSprint();
 
       if(predicateFunction.Inverted)

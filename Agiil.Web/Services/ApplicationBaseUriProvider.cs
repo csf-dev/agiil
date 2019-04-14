@@ -13,6 +13,7 @@ namespace Agiil.Web.Services
     public Uri GetBaseUri()
     {
       var rootOfDomain = request?.Url?.GetLeftPart(UriPartial.Authority);
+      if(rootOfDomain == null) return null;
 
       if(urlHelper == null)
         return new Uri(rootOfDomain);
