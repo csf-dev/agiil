@@ -445,6 +445,7 @@
     <None Include="packages.config" />
     <None Include="Content\Scss\**\*.scss" />
     <Content Include="Views\AddTicketWorkLog\Index.pt" />
+    <None Include="Content\Scss\_TicketEditing.scss" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\**\*.pt" />

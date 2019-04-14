@@ -33,7 +33,7 @@
              tal:attributes="value ticket/Id | nothing" />
       <input type="hidden" name="TicketReference" value="ABC123"
              tal:attributes="value ticket/Reference | nothing" />
-      <div class="form_element field">
+      <div class="form_element field ticket_title">
         <label for="Title">Title</label>
         <input type="text" id="Title" name="Title"
               tal:attributes="value here/Specification/Title | ticket/Title | nothing" />
@@ -44,7 +44,8 @@
       <div class="form_element field long_text">
         <label for="Description">Description</label>
         <textarea id="Description" name="Description"
-                  tal:content="here/Specification/Description | ticket/Description |  nothing"></textarea>
+                  tal:content="here/Specification/Description | ticket/Description |  nothing"
+                  rows="20"></textarea>
       </div>
       <div class="form_element feedback warning" tal:condition="here/Response/DescriptionIsInvalid | nothing">
         <p>Please enter a valid ticket description.</p>
