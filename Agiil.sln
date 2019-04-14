@@ -427,6 +427,6 @@ Global
 		$8.String = T
 		$7.RequiredSuffixes = $9
 		$9.String = Exception
-		version = v0.7.0-alpha
+		version = v0.8.0-alpha
 	EndGlobalSection
 EndGlobal
