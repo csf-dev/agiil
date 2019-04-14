@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Domain</RootNamespace>
     <AssemblyName>Agiil.Domain.Impl</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>v0.7.0-alpha</ReleaseVersion>
+    <ReleaseVersion>v0.8.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -113,7 +113,7 @@
     <Compile Include="Tickets\CommentEditor.cs" />
     <Compile Include="Tickets\CommentReader.cs" />
     <Compile Include="Tickets\TicketOpenerCloser.cs" />
-    <Compile Include="Projects\DummyCurrentProjectGetter.cs" />
+    <Compile Include="Projects\FirstProjectInDatabaseProvider.cs" />
     <Compile Include="Sprints\SprintCreator.cs" />
     <Compile Include="Validation\EndDateMustNotBeBeforeStartDateRule.cs" />
     <Compile Include="Sprints\CreateSprintValidatorFactory.cs" />
@@ -206,6 +206,10 @@
     <Compile Include="Activity\TicketWorkLogger.cs" />
     <Compile Include="Activity\TimeLoggedForTicketProvider.cs" />
     <Compile Include="Activity\WorkLoggedForTicketSpecification.cs" />
+    <Compile Include="CachingLogForTypeDecorator.cs" />
+    <Compile Include="IGetsLoggerForType.cs" />
+    <Compile Include="Log4NetLoggerForTypeProvider.cs" />
+    <Compile Include="Tickets\CurrentProjectBackfillingTicketReferenceParserDecorator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

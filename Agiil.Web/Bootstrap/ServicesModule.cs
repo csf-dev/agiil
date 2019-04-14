@@ -6,7 +6,6 @@ using Agiil.Web.Services.Data;
 using Agiil.Web.Services.Labels;
 using Agiil.Web.Services.Rendering;
 using Autofac;
-using Autofac.Core;
 
 namespace Agiil.Web.Bootstrap
 {
@@ -16,9 +15,9 @@ namespace Agiil.Web.Bootstrap
     {
       builder.RegisterType<LoginStateReader>();
       builder.RegisterType<VersionInfoProvider>().AsSelf().AsImplementedInterfaces();
-      builder.RegisterType<TicketUriProvider>().AsSelf().AsImplementedInterfaces();
+      builder.RegisterType<RenderingTicketUriProviderAdapter>().AsSelf().AsImplementedInterfaces();
       builder
-        .Register(c => ApplicationBaseUriProvider.CreateFromHttpContext())
+        .RegisterType<ApplicationBaseUriProvider>()
         .AsSelf()
         .AsImplementedInterfaces();
       builder

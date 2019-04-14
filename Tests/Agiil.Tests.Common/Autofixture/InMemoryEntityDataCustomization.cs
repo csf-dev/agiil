@@ -1,4 +1,5 @@
 ﻿using System;
+using Agiil.Tests.Data;
 using CSF.Data;
 using CSF.Data.Entities;
 using Ploeh.AutoFixture;
@@ -12,15 +13,7 @@ namespace Agiil.Tests.Autofixture
     public void Customize(IFixture fixture)
     {
       fixture.Customize<IEntityData>(c => {
-        return c.FromFactory(() => {
-          var query = new InMemoryQuery();
-          var persister = new InMemoryPersister(query);
-
-          if(generateIds)
-            return new IdentityGeneratingEntityData(query, persister);
-          
-          return new EntityData(query, persister);
-        });
+        return c.FromFactory(() => InMemoryEntityDataFactory.Default.GetEntityData(generateIds));
       });
     }
 

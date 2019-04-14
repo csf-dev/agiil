@@ -3,33 +3,23 @@ using System.Text.RegularExpressions;
 
 namespace Agiil.Domain.Tickets
 {
-  public class TicketReferenceParser : ITicketReferenceParser
+  public class TicketReferenceParser : IParsesTicketReference
   {
     const RegexOptions ReferenceMatchOptions = RegexOptions.Compiled
                                                | RegexOptions.CultureInvariant
                                                | RegexOptions.IgnoreCase;
-    const string ReferencePattern = @"^([A-Z]+)(\d+)$";
+    const string ReferencePattern = @"^#?([A-Z]+)?(\d+)$";
     static readonly Regex ReferenceMatcher = new Regex(ReferencePattern, ReferenceMatchOptions);
 
-    public string CreateReference(IIdentifiesTicketByProjectAndNumber ticket)
+    public TicketReference GetReference(string projectCode, long ticketNumber)
     {
-      if(ticket == null)
-        return null;
-
-      return CreateReference(ticket.ProjectCode, ticket.TicketNumber);
-    }
-
-    public string CreateReference(string projectCode, long ticketNumber)
-    {
-      if(projectCode == null)
-        return null;
-      
-      var output = String.Concat(projectCode, ticketNumber.ToString());
+      var code = projectCode ?? String.Empty;
+      var output = String.Concat(code, ticketNumber.ToString());
 
       if(!ReferenceMatcher.IsMatch(output))
         return null;
 
-      return output;
+      return new TicketReference(code, ticketNumber);
     }
 
     public TicketReference ParseReferece(string reference)

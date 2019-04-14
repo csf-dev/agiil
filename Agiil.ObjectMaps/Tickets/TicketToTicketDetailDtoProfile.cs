@@ -12,17 +12,18 @@ namespace Agiil.ObjectMaps.Tickets
 {
   public class TicketToTicketDetailDtoProfile : Profile
   {
-    public TicketToTicketDetailDtoProfile(TicketReferenceStringResolver ticketRefResolver,
-                                          MarkdownToHtmlResolver markdownResolver,
+    public TicketToTicketDetailDtoProfile(MarkdownToHtmlResolver markdownResolver,
                                           IParsesLabelNames labelNameParser,
                                           IGetsRelationshipSummary summaryProvider,
-                                          Domain.Activity.IGetsSumOfLoggedWorkForTicket workLogProvider)
+                                          Domain.Activity.IGetsSumOfLoggedWorkForTicket workLogProvider,
+                                          IGetsTicketUris uriProvider)
     {
       CreateMap<Ticket,TicketDetailDto>()
+        .ForCtorParam("uriProvider", x => x.ResolveUsing(t => uriProvider))
         .ForMember(x => x.Id, o => o.ResolveUsing<IdentityValueResolver>())
         .ForMember(x => x.Creator, o => o.ResolveUsing(t => t.User.Username))
         .ForMember(x => x.Created, o => o.ResolveUsing(t => t.CreationTimestamp))
-        .ForMember(x => x.Reference, o => o.ResolveUsing(ticketRefResolver))
+        .ForMember(x => x.TicketReference, o => o.ResolveUsing(t => t.GetTicketReference()))
         .ForMember(x => x.HtmlDescription, o => o.ResolveUsing(markdownResolver, m => m.Description))
         .ForMember(x => x.TypeName, o => o.ResolveUsing(t => t.Type?.Name))
         .ForMember(x => x.CommaSeparatedLabelNames,

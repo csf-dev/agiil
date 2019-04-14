@@ -41,6 +41,8 @@ namespace Agiil.Web.Services.DataPackages
         var ticket5 = CreateTicketFive(sprint2, youssef, bug);
         var ticket6 = CreateTicketSix(sprint2, youssef, bug);
 
+        project.NextAvailableTicketNumber = 7;
+
         var comment1 = CreateCommentOne(ticket1, youssef);
         var comment2 = CreateCommentTwo(ticket2, admin);
         var comment3 = CreateCommentThree(ticket2, admin);

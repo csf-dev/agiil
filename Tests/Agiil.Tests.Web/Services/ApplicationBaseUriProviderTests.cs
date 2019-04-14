@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using System.Web.Mvc;
 using Agiil.Web.Services;
 using Moq;
@@ -15,7 +16,7 @@ namespace Agiil.Tests.Web.Services
       // Arrange
       var requestUri = new Uri("http://example.com/foo/bar/baz");
       var expectedUri = new Uri("http://example.com/");
-      var sut = new ApplicationBaseUriProvider(requestUri, null);
+      var sut = new ApplicationBaseUriProvider(Mock.Of<HttpRequestBase>(x => x.Url == requestUri), null);
 
       // Act
       var result = sut.GetBaseUri();
@@ -30,7 +31,7 @@ namespace Agiil.Tests.Web.Services
       // Arrange
       var requestUri = new Uri("http://example.com:8080/foo");
       var expectedUri = new Uri("http://example.com:8080/");
-      var sut = new ApplicationBaseUriProvider(requestUri, null);
+      var sut = new ApplicationBaseUriProvider(Mock.Of<HttpRequestBase>(x => x.Url == requestUri), null);
 
       // Act
       var result = sut.GetBaseUri();
@@ -45,7 +46,7 @@ namespace Agiil.Tests.Web.Services
       // Arrange
       var requestUri = new Uri("https://example.com/foo");
       var expectedUri = new Uri("https://example.com/");
-      var sut = new ApplicationBaseUriProvider(requestUri, null);
+      var sut = new ApplicationBaseUriProvider(Mock.Of<HttpRequestBase>(x => x.Url == requestUri), null);
 
       // Act
       var result = sut.GetBaseUri();
@@ -61,7 +62,7 @@ namespace Agiil.Tests.Web.Services
       var requestUri = new Uri("https://example.com/foo/bar/baz");
       var urlHelper = Mock.Of<UrlHelper>(x => x.Content("~") == "/foo/");
       var expectedUri = new Uri("https://example.com/foo/");
-      var sut = new ApplicationBaseUriProvider(requestUri, urlHelper);
+      var sut = new ApplicationBaseUriProvider(Mock.Of<HttpRequestBase>(x => x.Url == requestUri), urlHelper);
 
       // Act
       var result = sut.GetBaseUri();

@@ -22,7 +22,6 @@ namespace Agiil.Data.ClassMappings
       mapper.Class<Relationship>(map => {
         map.Discriminator(d => {
           d.Column(nameFormatter.GetColumnName(Reflect.Property<Relationship>(x => x.Type)));
-          d.NotNullable(true);
         });
       });
     }
@@ -31,6 +30,10 @@ namespace Agiil.Data.ClassMappings
     {
       mapper.Subclass<DirectionalRelationship>(map => {
         map.DiscriminatorValue(RelationshipType.Directional);
+
+        map.Property(x => x.SecondarySummary, p => {
+          p.NotNullable(false);
+        });
       });
     }
 

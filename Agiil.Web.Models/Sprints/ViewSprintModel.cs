@@ -6,6 +6,6 @@ namespace Agiil.Web.Models.Sprints
   public class ViewSprintModel : PageModel
   {
     public SprintDetailDto Sprint { get; set; }
-    public ITicketReferenceParser TicketReferenceParser { get; set; }
+    public IParsesTicketReference TicketReferenceParser { get; set; }
   }
 }

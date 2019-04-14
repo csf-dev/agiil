@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Domain</RootNamespace>
     <AssemblyName>Agiil.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>v0.7.0-alpha</ReleaseVersion>
+    <ReleaseVersion>v0.8.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -116,15 +116,14 @@
     <Compile Include="IResponseFactory.cs" />
     <Compile Include="Sprints\ISprintFactory.cs" />
     <Compile Include="Sprints\ISprintLister.cs" />
-    <Compile Include="Tickets\ITicketReferenceParser.cs" />
+    <Compile Include="Tickets\IParsesTicketReference.cs" />
     <Compile Include="Tickets\TicketReference.cs" />
-    <Compile Include="Tickets\ITicketReferenceQuery.cs" />
+    <Compile Include="Tickets\IGetsTicketByReference.cs" />
     <Compile Include="Sprints\ISprintDetailService.cs" />
     <Compile Include="Sprints\ListSprintsRequest.cs" />
     <Compile Include="Sprints\ISprintEditor.cs" />
     <Compile Include="Sprints\EditSprintRequest.cs" />
     <Compile Include="Sprints\EditSprintResponse.cs" />
-    <Compile Include="Tickets\IIdentifiesTicketByProjectAndNumber.cs" />
     <Compile Include="Auth\AdminUser.cs" />
     <Compile Include="Projects\AgiilProject.cs" />
     <Compile Include="Auth\IGetsUserByUsername.cs" />
@@ -216,6 +215,7 @@
     <Compile Include="Activity\GetWorklogResponse.cs" />
     <Compile Include="Activity\AddWorklogResponse.cs" />
     <Compile Include="Activity\IGetsSumOfLoggedWorkForTicket.cs" />
+    <Compile Include="AllowNullAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

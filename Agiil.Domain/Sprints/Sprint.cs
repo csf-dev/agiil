@@ -13,6 +13,7 @@ namespace Agiil.Domain.Sprints
 
     public virtual string Name { get; set; }
 
+    [AllowNull]
     public virtual string Description { get; set; }
 
     public virtual Project Project { get; set; }

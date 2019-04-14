@@ -9,7 +9,7 @@ namespace Agiil.Web.ModelBinders
   [ModelBinderType(typeof(TicketReference))]
   public class TicketReferenceMvcModelBinder : IModelBinder
   {
-    readonly ITicketReferenceParser referenceParser;
+    readonly IParsesTicketReference referenceParser;
 
     public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
     {
@@ -23,7 +23,7 @@ namespace Agiil.Web.ModelBinders
       return referenceParser.ParseReferece(stringVal);
     }
 
-    public TicketReferenceMvcModelBinder(ITicketReferenceParser referenceParser)
+    public TicketReferenceMvcModelBinder(IParsesTicketReference referenceParser)
     {
       if(referenceParser == null)
         throw new ArgumentNullException(nameof(referenceParser));

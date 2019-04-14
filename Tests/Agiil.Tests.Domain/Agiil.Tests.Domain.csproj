@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Tests</RootNamespace>
     <AssemblyName>Agiil.Tests.Services</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>v0.7.0-alpha</ReleaseVersion>
+    <ReleaseVersion>v0.8.0-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -135,6 +135,9 @@
     <Compile Include="Labels\LabelsMatchingSearchByRelevanceSearcherTests.cs" />
     <Compile Include="Activity\TimeSpanParserTests.cs" />
     <Compile Include="Activity\TicketWorkLogFactoryTests.cs" />
+    <Compile Include="Tickets\TicketReferenceParserTests.cs" />
+    <Compile Include="Tickets\CurrentProjectBackfillingTicketReferenceParserDecoratorTests.cs" />
+    <Compile Include="Tickets\TicketReferenceQueryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">

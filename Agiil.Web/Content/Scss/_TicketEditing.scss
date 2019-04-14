@@ -1,0 +1,16 @@
+﻿@import '_AppWideVariables';
+
+@mixin ticket_editing {
+  .form_element.ticket_title {
+    label {
+      display: block;
+      width: auto;
+    }
+  }
+
+  #Title {
+    width: calc(100% - 0.8em);
+    font-size: 110%;
+    padding: 0.2em 0.4em;
+  }
+}

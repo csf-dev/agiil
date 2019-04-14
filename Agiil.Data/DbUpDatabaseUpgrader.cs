@@ -11,8 +11,7 @@ namespace Agiil.Data
 {
   public class DbUpDatabaseUpgrader : IPerformsDatabaseUpgrades, ICreatesDatabaseSchema
   {
-    static readonly ILog logger;
-
+    readonly ILog logger;
     readonly IConnectionStringProvider connectionStringProvider;
     readonly UpgradeEngine upgradeEngine;
 
@@ -80,18 +79,16 @@ namespace Agiil.Data
         .Build();
     }
 
-    public DbUpDatabaseUpgrader(IConnectionStringProvider connectionStringProvider)
+    public DbUpDatabaseUpgrader(IConnectionStringProvider connectionStringProvider, ILog logger)
     {
+      if(logger == null)
+        throw new ArgumentNullException(nameof(logger));
       if(connectionStringProvider == null)
         throw new ArgumentNullException(nameof(connectionStringProvider));
       
       this.connectionStringProvider = connectionStringProvider;
       this.upgradeEngine = GetDbUpEngine();
-    }
-
-    static DbUpDatabaseUpgrader()
-    {
-      logger = LogManager.GetLogger(typeof(DbUpDatabaseUpgrader));
+      this.logger = logger;
     }
   }
 }

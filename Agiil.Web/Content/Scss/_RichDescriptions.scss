@@ -1,9 +1,15 @@
 ﻿@import '_AppWideVariables';
 
 @mixin rich_description {
+  word-break: break-all;
+  
   ul {
     padding-left: 1.6em;
     list-style: disc outside;
+  }
+  ol {
+    padding-left: 1.6em;
+    list-style: decimal outside;
   }
   p, li {
     margin-bottom: $paragraph-spacing;
@@ -17,6 +23,8 @@
   pre {
     @extend %subtle_box;
     padding: 0.2em;
+    overflow: auto;
+    max-width: calc(100% - 0.4em - 2px);
     
     code {
       background: transparent none;
@@ -24,5 +32,10 @@
       font-size: 90%;
       line-height: 120%;
     }
+  }
+  blockquote {
+    margin-left: 0.6em;
+    padding-left: calc(1em - 3px);
+    border-left: 3px solid $subtle-keyline-color;
   }
 }

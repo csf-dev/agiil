@@ -6,10 +6,11 @@ using CSF.Entities;
 
 namespace Agiil.Domain.Tickets
 {
-  public class Ticket : Entity<long>, IIdentifiesTicketByProjectAndNumber
+  public class Ticket : Entity<long>
   {
     public virtual string Title { get; set; }
 
+    [AllowNull]
     public virtual string Description { get; set; }
 
     public virtual DateTime CreationTimestamp { get; set; }
@@ -110,6 +111,7 @@ namespace Agiil.Domain.Tickets
 
     public virtual Projects.Project Project { get; set; }
 
+    [AllowNull]
     public virtual Sprints.Sprint Sprint { get; set; }
 
     public virtual TicketType Type { get; set; }
@@ -121,7 +123,10 @@ namespace Agiil.Domain.Tickets
         .ToArray();
     }
 
-    string IIdentifiesTicketByProjectAndNumber.ProjectCode => Project?.Code;
+    public virtual TicketReference GetTicketReference()
+    {
+      return new TicketReference(Project?.Code, TicketNumber);
+    }
 
     public Ticket()
     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Projects;
+using log4net;
 
 namespace Agiil.Domain.Tickets.Creation
 {
@@ -7,12 +8,14 @@ namespace Agiil.Domain.Tickets.Creation
   {
     readonly ICreatesTicket wrappedInstance;
     readonly ICurrentProjectGetter projectGetter;
+    private readonly ILog logger;
 
     public Ticket CreateTicket(CreateTicketRequest request)
     {
       var ticket = wrappedInstance.CreateTicket(request);
 
       var project = projectGetter.GetCurrentProject();
+      logger.DebugFormat("Next available ticket number: {0}", project?.NextAvailableTicketNumber);
       var ticketNumber = (project != null)? project.NextAvailableTicketNumber++ : default(long);
 
       ticket.Project = project;
@@ -21,8 +24,12 @@ namespace Agiil.Domain.Tickets.Creation
       return ticket;
     }
 
-    public CurrentProjectSettingTicketFactoryDecorator(ICreatesTicket wrappedInstance, ICurrentProjectGetter projectGetter)
+    public CurrentProjectSettingTicketFactoryDecorator(ICreatesTicket wrappedInstance,
+                                                       ICurrentProjectGetter projectGetter,
+                                                       ILog logger)
     {
+      if(logger == null)
+        throw new ArgumentNullException(nameof(logger));
       if(wrappedInstance == null)
         throw new ArgumentNullException(nameof(wrappedInstance));
       if(projectGetter == null)
@@ -30,6 +37,7 @@ namespace Agiil.Domain.Tickets.Creation
       
       this.wrappedInstance = wrappedInstance;
       this.projectGetter = projectGetter;
+      this.logger = logger;
     }
   }
 }

@@ -29,7 +29,7 @@ namespace Agiil.Domain.Activity
       var spec = specFactory(ticket);
       return data.Query<TicketWorkLog>()
                  .Where(spec)
-                 .ToArray()
+                 .AsEnumerable()
                  .Aggregate(TimeSpan.Zero, (acc, next) => acc + next.GetTimeSpent());
     }
   }

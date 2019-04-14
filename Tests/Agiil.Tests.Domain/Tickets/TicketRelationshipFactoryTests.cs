@@ -66,7 +66,7 @@ namespace Agiil.Tests.Tickets
     }
 
     [Test,AutoMoqData]
-    public void CreateTicketRelationship_sets_up_secondary_ticket_when_participation_is_primary([Frozen] ITicketReferenceQuery refQuery,
+    public void CreateTicketRelationship_sets_up_secondary_ticket_when_participation_is_primary([Frozen] IGetsTicketByReference refQuery,
                                                                                                 IIdentity<Relationship> relationshipId,
                                                                                                 TicketReference ticketReference,
                                                                                                 Ticket relatedTicket,
@@ -83,7 +83,7 @@ namespace Agiil.Tests.Tickets
     }
 
     [Test,AutoMoqData]
-    public void CreateTicketRelationship_sets_up_primary_ticket_when_participation_is_secondary([Frozen] ITicketReferenceQuery refQuery,
+    public void CreateTicketRelationship_sets_up_primary_ticket_when_participation_is_secondary([Frozen] IGetsTicketByReference refQuery,
                                                                                                 IIdentity<Relationship> relationshipId,
                                                                                                 TicketReference ticketReference,
                                                                                                 Ticket relatedTicket,
@@ -100,7 +100,7 @@ namespace Agiil.Tests.Tickets
     }
 
     [Test,AutoMoqData]
-    public void CreateTicketRelationship_leaves_primary_ticket_unset_when_participation_is_primary([Frozen] ITicketReferenceQuery refQuery,
+    public void CreateTicketRelationship_leaves_primary_ticket_unset_when_participation_is_primary([Frozen] IGetsTicketByReference refQuery,
                                                                                                    IIdentity<Relationship> relationshipId,
                                                                                                    TicketReference ticketReference,
                                                                                                    Ticket relatedTicket,
@@ -117,7 +117,7 @@ namespace Agiil.Tests.Tickets
     }
 
     [Test,AutoMoqData]
-    public void CreateTicketRelationship_leaves_secondary_ticket_unset_when_participation_is_secondary([Frozen] ITicketReferenceQuery refQuery,
+    public void CreateTicketRelationship_leaves_secondary_ticket_unset_when_participation_is_secondary([Frozen] IGetsTicketByReference refQuery,
                                                                                                        IIdentity<Relationship> relationshipId,
                                                                                                        TicketReference ticketReference,
                                                                                                        Ticket relatedTicket,

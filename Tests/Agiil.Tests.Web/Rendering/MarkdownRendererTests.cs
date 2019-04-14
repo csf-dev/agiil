@@ -9,7 +9,7 @@ using NUnit.Framework;
 
 namespace Agiil.Tests.Web.Rendering
 {
-  [TestFixture,Category( "Integration"),Category("DependencyInjection")]
+  [TestFixture,Category("Integration"),Category("DependencyInjection")]
   public class MarkdownRendererTests
   {
     IContainer container;
@@ -25,14 +25,9 @@ namespace Agiil.Tests.Web.Rendering
     [SetUp]
     public void Setup()
     {
-      diScope = container.BeginLifetimeScope();
-    }
-
-    [OneTimeTearDown]
-    public void FixtureTeardown()
-    {
-      if(container != null)
-        container.Dispose();
+      diScope = container.BeginLifetimeScope(builder => {
+        builder.RegisterInstance(Mock.Of<ICurrentProjectGetter>(x => x.GetCurrentProject() == new Project { Code = "AB" }));
+      });
     }
 
     [TearDown]
@@ -76,7 +71,10 @@ namespace Agiil.Tests.Web.Rendering
       urlprovider
         .Setup(x => x.GetAbsoluteUri(It.Is<TicketReference>(t => t.ProjectCode == "AB" && t.TicketNumber == 12)))
         .Returns(() => new Uri("Ticket/Detail/11", UriKind.Relative));
-      using(var scope = container.BeginLifetimeScope(b => b.RegisterInstance(urlprovider.Object)))
+      using(var scope = container.BeginLifetimeScope(b => {
+              b.RegisterInstance(Mock.Of<ICurrentProjectGetter>(x => x.GetCurrentProject() == new Project { Code = "AB" }));
+              b.RegisterInstance(urlprovider.Object);
+            }))
       {
         var markdown = "This is some markdown which contains #AB12 a ticket reference.";
         var sut = scope.Resolve<IRendersMarkdownToHtml>();
@@ -102,10 +100,10 @@ namespace Agiil.Tests.Web.Rendering
       var projectGetter = Mock.Of<ICurrentProjectGetter>(x => x.GetCurrentProject() == project);
       var urlprovider = new Mock<IGetsTicketUri>();
       urlprovider
-        .Setup(x => x.GetAbsoluteUri(It.Is<TicketReference>(t => t.ProjectCode == null && t.TicketNumber == 12)))
+        .Setup(x => x.GetAbsoluteUri(It.Is<TicketReference>(t => t.ProjectCode == "AB" && t.TicketNumber == 12)))
         .Returns(() => new Uri("Ticket/Detail/11", UriKind.Relative));
       using(var scope = container.BeginLifetimeScope(b => {
-            b.RegisterInstance(urlprovider.Object);
+              b.RegisterInstance(urlprovider.Object);
               b.RegisterInstance(projectGetter);
             }))
       {

@@ -4,9 +4,9 @@ using Agiil.Web.App_Start;
 
 namespace Agiil.Web
 {
-  internal static class ControllerExtensions
+  public static class ControllerExtensions
   {
-    internal static string GetName(this Controller controller)
+    public static string GetName(this Controller controller)
     {
       if(controller == null)
         throw new ArgumentNullException(nameof(controller));
@@ -14,13 +14,13 @@ namespace Agiil.Web
       return RouteConfiguration.GetControllerName(controller.GetType());
     }
 
-    internal static string GetName<TOtherController>(this Controller controller)
+    public static string GetName<TOtherController>(this Controller controller)
         where TOtherController : Controller
     {
       return RouteConfiguration.GetControllerName<TOtherController>();
     }
 
-    internal static string AsControllerName(this Type controllerType)
+    public static string AsControllerName(this Type controllerType)
     {
       return RouteConfiguration.GetControllerName(controllerType);
     }

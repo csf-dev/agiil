@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Linq;
-using Agiil.Domain.Projects;
 using Agiil.Domain.Tickets.Specs;
 using CSF.Data.Entities;
 using CSF.Data.Specifications;
 
 namespace Agiil.Domain.Tickets
 {
-  public class TicketReferenceQuery : ITicketReferenceQuery
+  public class TicketReferenceQuery : IGetsTicketByReference
   {
-    readonly ITicketReferenceParser parser;
+    readonly IParsesTicketReference parser;
     readonly IEntityData repo;
-    readonly ICurrentProjectGetter currentProjectProvider;
+    readonly Func<TicketReference, TicketReferenceEquals> specFactory;
 
     public Ticket GetTicketByReference(string reference)
     {
@@ -23,8 +22,7 @@ namespace Agiil.Domain.Tickets
     {
       if(reference == null) return null;
 
-      var refWithProjectCode = GetReferenceWithProjectCode(reference);
-      var spec = new TicketReferenceEquals(refWithProjectCode);
+      var spec = specFactory(reference);
 
       return repo
         .Query<Ticket>()
@@ -32,27 +30,19 @@ namespace Agiil.Domain.Tickets
         .SingleOrDefault();
     }
 
-    // TODO: #AG245 - This logic should be moved to a decorator around the ticket reference parser
-    TicketReference GetReferenceWithProjectCode(TicketReference reference)
-    {
-      if(!String.IsNullOrEmpty(reference.ProjectCode)) return reference;
-
-      return new TicketReference(currentProjectProvider.GetCurrentProject().Code, reference.TicketNumber);
-    }
-
-    public TicketReferenceQuery(ITicketReferenceParser parser,
+    public TicketReferenceQuery(IParsesTicketReference parser,
                                 IEntityData repo,
-                                ICurrentProjectGetter currentProjectProvider)
+                                Func<TicketReference,TicketReferenceEquals> specFactory)
     {
-      if(currentProjectProvider == null)
-        throw new ArgumentNullException(nameof(currentProjectProvider));
+      if(specFactory == null)
+        throw new ArgumentNullException(nameof(specFactory));
       if(repo == null)
         throw new ArgumentNullException(nameof(repo));
       if(parser == null)
         throw new ArgumentNullException(nameof(parser));
 
       this.repo = repo;
-      this.currentProjectProvider = currentProjectProvider;
+      this.specFactory = specFactory;
       this.parser = parser;
     }
   }
