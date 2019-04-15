@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Web.OAuth</RootNamespace>
     <AssemblyName>Agiil.Web.OAuth</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>v0.8.0-alpha</ReleaseVersion>
+    <ReleaseVersion>v0.8.1-alpha</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
