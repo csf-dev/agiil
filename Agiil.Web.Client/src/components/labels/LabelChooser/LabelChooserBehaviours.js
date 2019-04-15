@@ -49,11 +49,19 @@ export default class LabelChooserBehaviours {
     onFocus() { this.props.onShowSuggestionsChanged(true, this.props.componentId); }
 
     @bound
-    onBlur() { this.props.onShowSuggestionsChanged(false, this.props.componentId); }
+    onBlur(ev : SyntheticEvent<HTMLInputElement>) {
+        this.props.onShowSuggestionsChanged(false, this.props.componentId);
+    }
 
     @bound
     onChooseSuggestion(suggestion : SelectableLabel) {
-        this.props.onClickSuggestion(suggestion, this.props.suggestionsComponentId);
+        this.props.onClickSuggestion(suggestion, this.props.selectedLabelsComponentId);
+        handleChangeValue(this.props, '');
+    }
+
+    @bound
+    onMouseDownSuggestions(ev : SyntheticEvent<HTMLElement>) {
+        ev.preventDefault();
     }
 
     constructor(props : LabelChooserProps) {
