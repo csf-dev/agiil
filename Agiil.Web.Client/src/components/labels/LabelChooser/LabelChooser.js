@@ -40,7 +40,9 @@ export function LabelChooser(props : LabelChooserProps) {
                               emptySuggestionsList={!suggestions.length}
                               emptySuggestionsListMessage="No matching labels"
                               suggestionsLoading={props.suggestionsLoading}
-                              visible={props.showSuggestions}>
+                              visible={props.showSuggestions}
+                              onMouseDown={behaviours.onMouseDownSuggestions}
+                              onTouchStart={behaviours.onMouseDownSuggestions}>
             {suggestions.map((suggestion, idx) =>
                 <Suggestion selected={suggestion.selected} onChoose={() => behaviours.onChooseSuggestion(suggestion)} key={idx}>
                     <strong>{suggestion.name}</strong>

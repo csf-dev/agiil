@@ -12,7 +12,9 @@ export type ListerProps = {
     emptySuggestionsListMessage? : string,
     suggestionsLoading? : bool,
     visible? : bool,
-    children: React.Node
+    children: React.Node,
+    onMouseDown? : (ev : SyntheticEvent<HTMLElement>) => void,
+    onTouchStart? : (ev : SyntheticEvent<HTMLElement>) => void,
 };
 
 const defaultProps = {
@@ -22,6 +24,8 @@ const defaultProps = {
     emptySuggestionsListMessage: 'No suggestions',
     suggestionsLoading: false,
     visible: false,
+    onMouseDown : (ev : SyntheticEvent<HTMLElement>) => {},
+    onTouchStart : (ev : SyntheticEvent<HTMLElement>) => {},
 }
 
 export function Lister(rawProps : ListerProps) {
@@ -29,7 +33,9 @@ export function Lister(rawProps : ListerProps) {
     const listerClass = getClassNames(props).join(' ');
 
     return (
-        <div className={listerClass}>
+        <div className={listerClass}
+             onMouseDown={props.onMouseDown}
+             onTouchStart={props.onMouseDown}>
             {getFeedback(props)}
             <ul>
                 {props.children}
