@@ -1,7 +1,7 @@
 ﻿@import '_AppWideVariables';
 
 @mixin rich_description {
-  word-break: break-all;
+  overflow-wrap: break-word;
   
   ul {
     padding-left: 1.6em;
