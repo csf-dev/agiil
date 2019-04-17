@@ -6,14 +6,17 @@ In order to build Agiil from source, the following must be available in your dev
 
 * A .NET Framework SDK capable of building .NET Framework 4.7.2 applications written with C# v6
     * Mono SDK v5.10.1 is tested, other versions may also work
-* NuGet package manager
+* [NuGet] package manager
     * Version 4.4 is tested, other versions might also work
-* Node JS
-    * Version 10 is tested, other versions might also work
-* npm package manager
-    * The latest version is recommended
+* [Node JS] (include the npm package manager)
+    * Version 10 of Node JS is tested, other versions might also work
+    * It is recommanded to use the latest version of npm
 * Java JDK & runtime
-    * OpenJDK 12 is tested, other versions might also work
+    * [OpenJDK 12] is tested, other versions might also work
+    
+[NuGet]: https://www.nuget.org/downloads
+[Node JS]: https://nodejs.org/en/download/
+[OpenJDK 12]: https://jdk.java.net/
 
 ## Build process
 Building Agiil is performed from **msbuild**. A number of build configurations are supported:
