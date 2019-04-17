@@ -15,7 +15,6 @@ The Agiil application is a web application which uses a number of modern technol
 
 ### Notes
 * Listings for **Chrome** & **Firefox** include their respective Android versions.
-* For some time, **Opera browser** has internally used the same rendering engine as Chrome.
 * **Internet Explorer 9** *might suffer from degraded performance and some non-critical features might be absent*.
 
 ### Browserslist query
