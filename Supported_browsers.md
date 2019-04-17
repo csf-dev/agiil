@@ -16,6 +16,7 @@ The Agiil application is a web application which uses a number of modern technol
 ### Notes
 * Listings for **Chrome** & **Firefox** include their respective Android versions.
 * For some time, **Opera browser** has internally used the same rendering engine as Chrome.
+* **Internet Explorer 9** *might suffer from degraded performance and some non-critical features might be absent*.
 
 ### Browserslist query
 [BrowsersList] is a mechanism for specifying explicitly supported web browsers.  Those explicitly supported web browsers (in the table above) are represented by BrowsersList query string which follows below.  A visualisation of this is available via [the browserl.ist website].  Please note that many other browsers (particularly those which are based upon Chromium) will also work with Agiil.  The list below indicates the minimum/baseline level for explicit support.
