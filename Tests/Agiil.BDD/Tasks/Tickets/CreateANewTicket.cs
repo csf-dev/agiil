@@ -1,6 +1,7 @@
 ﻿using System;
 using Agiil.BDD.Models.Tickets;
 using Agiil.BDD.Pages;
+using Agiil.BDD.Tasks.Labels;
 using CSF.Screenplay.Actors;
 using CSF.Screenplay.Performables;
 using CSF.Screenplay.Selenium.Builders;
@@ -24,7 +25,7 @@ namespace Agiil.BDD.Tasks.Tickets
         actor.Perform(Enter.TheText(details.Description).Into(CreateNewTicket.TicketDescription));
 
       if(!String.IsNullOrEmpty(details.Labels))
-        actor.Perform(Enter.TheText(details.Labels).Into(CreateNewTicket.TicketLabels));
+        actor.Perform(EnterTheLabels.Named(details.Labels));
 
       if(!String.IsNullOrEmpty(details.Sprint))
         actor.Perform(Select.Item(details.Sprint).From(CreateNewTicket.TicketSprint));
