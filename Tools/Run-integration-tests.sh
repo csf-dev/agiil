@@ -41,8 +41,17 @@ shutdown_webserver()
   bash "$SCRIPT_DIR/Stop-webserver.sh"
 }
 
+convert_test_results()
+{
+  nuget install -OutputDirectory packages -Version 1.0.0 CSF.Screenplay.Reporting.JsonToHtml
+  ./packages/CSF.Screenplay.Reporting.JsonToHtml.1.0.0/tools/CSF.Screenplay.Reporting.JsonToHtml.exe \
+    Agiil.Tests.BDD.report.json \
+    Agiil.Tests.BDD.report.html
+}
+
 start_webserver
 run_the_tests
 shutdown_webserver
+convert_test_results
 
 exit $test_outcome
