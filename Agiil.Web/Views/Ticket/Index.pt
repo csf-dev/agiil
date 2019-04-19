@@ -36,7 +36,7 @@
       <section class="ticket_description">
         <header><h2>Ticket description</h2></header>
         <div tal:content="structure ticket/HtmlDescription"
-             class="markdown_rendered_text">
+             class="markdown_rendered_text description_content">
           Ticket description here.
         </div>
       </section>
