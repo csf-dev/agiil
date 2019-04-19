@@ -1,6 +1,9 @@
 .labelChooser {
     position: relative;
 }
+.labelChooser>input[type="text"] {
+    background-color: yellow;
+}
 .remove {
     padding: 1px;
     margin: 0 0 0 4px;
