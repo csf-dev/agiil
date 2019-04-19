@@ -255,6 +255,9 @@
     <Compile Include="Abilities\AutofacIntegrationConfigBuilderExtensions.cs" />
     <Compile Include="Personas\Ingrid.cs" />
     <Compile Include="IntegrationTasks\Auth\OverrideTheCurrentUser.cs" />
+    <Compile Include="Tasks\Tickets\RemoveAllOfTheLabels.cs" />
+    <Compile Include="Tasks\Labels\EnterALabel.cs" />
+    <Compile Include="Tasks\Labels\EnterTheLabels.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" metal:extend-macro="Views/Shared/EmptyPage/macros/page" metal:define-macro="page">
+<head metal:fill-slot="head_element">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title metal:define-slot="title_element">Agiil</title>
+<meta name="version_info"
+      content="Fake meta element which will be replaced with a version-info comment"
+      tal:define="versionComment here/ApplicationVersion/ComponentVersionHtmlComment | nothing"
+      tal:replace="structure versionComment">
+<base href="../../"
+      tal:define="appUri here/BaseUri/Uri | nothing;
+                  fallbackUri string:/;
+                  uri appUri | fallbackUri"
+      tal:attributes="href uri" />
+<link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i%7CSource+Code+Pro:400,700" rel="stylesheet" />
+<style metal:define-slot="standard_styles">
+@import url('Content/Css/StandardPage.css');
+</style>
+<style metal:define-slot="extra_styles" tal:omit-tag=""></style>
+<style metal:define-slot="asset_styles" tal:omit-tag=""></style>
+</head>
+<body metal:fill-slot="body_element" class="new_layout">
+<header metal:define-slot="page_header"></header>
+<div metal:define-slot="page_content" class="page_area">
+  <nav class="application_menu"
+       metal:define-slot="application_menu">
+    <div class="site_links"
+         metal:use-macro="Views/Shared/Controls/SiteNavigation/macros/site_navigation"></div>
+    <div metal:use-macro="Views/Shared/Controls/HeaderLoginLogout/macros/login_logout_control"
+         class="login_logout_control">
+      Login/logout control
+    </div>
+  </nav>
+  <section class="content_area" metal:define-slot="content_area">
+    <header metal:define-slot="content_area_header"></header>
+    <div class="main_content" metal:define-slot="main_content"></div>
+    <aside class="main_content_asides" metal:define-slot="main_content_asides"></aside>
+  </section>
+</div>
+<footer metal:define-slot="page_footer" metal:use-macro="Views/Shared/StandardFooter/macros/footer"></footer>
+<metal:block define-slot="asset_scripts"></metal:block>
+</body>
+</html>
