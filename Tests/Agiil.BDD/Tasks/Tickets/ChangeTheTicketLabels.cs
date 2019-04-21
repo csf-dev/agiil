@@ -16,8 +16,6 @@ namespace Agiil.BDD.Tasks.Tickets
 
     protected override void PerformAs(IPerformer actor)
     {
-      actor.Perform(Wait.ForAtMost(5).Seconds().OrUntil(EditTicket.TicketLabelsInputBox).IsVisible());
-
       actor.Perform(RemoveAllOfTheLabels.FromTheTicket());
       actor.Perform(EnterTheLabels.Named(newLabels));
     }

@@ -17,7 +17,7 @@ namespace Agiil.BDD.Tasks.Labels
     {
       if(String.IsNullOrWhiteSpace(labels)) return;
 
-      actor.Perform(Wait.ForAtMost(5).Seconds().OrUntil(EditTicket.TicketLabelsInputBox).IsVisible());
+      actor.Perform(Wait.ForAtMost(1).Seconds().OrUntil(EditTicket.TicketLabelsInputBox).IsVisible());
 
       var labelNames = labels.Split(',');
       foreach(var name in labelNames)
