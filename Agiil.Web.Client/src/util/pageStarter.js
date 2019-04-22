@@ -1,4 +1,5 @@
 //@flow
+import 'element-remove';
 
 function pageStarter(startup : () => void) {
     let started = false;
