@@ -23,6 +23,11 @@ matrix:
       - WebDriver_Platform="Windows 10"
       - WebDriver_BrowserName="Chrome"
       - WebDriver_BrowserVersion="56.0"
+# Enable this flag to switch on extended web browser debugging in Sauce Labs.
+# This will make the Console logs from the browser available in the online
+# test information screen.  Only supported for Chrome/Firefox.
+# Default is false.
+#      - AgiilExtendedBrowserDebugging="True"
     - env:
       - WebDriver_Platform="Windows 10"
       - WebDriver_BrowserName="Firefox"
