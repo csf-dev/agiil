@@ -258,6 +258,7 @@
     <Compile Include="Tasks\Tickets\RemoveAllOfTheLabels.cs" />
     <Compile Include="Tasks\Labels\EnterALabel.cs" />
     <Compile Include="Tasks\Labels\EnterTheLabels.cs" />
+    <Compile Include="WebDriver\AgiilWebDriverIntegrationBuilderExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -292,6 +293,7 @@
     <Folder Include="Tasks\Labels\" />
     <Folder Include="IntegrationTasks\" />
     <Folder Include="IntegrationTasks\Auth\" />
+    <Folder Include="WebDriver\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj">

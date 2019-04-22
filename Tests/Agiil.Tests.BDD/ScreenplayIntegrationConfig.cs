@@ -1,4 +1,5 @@
 ﻿using Agiil.BDD.Abilities;
+using Agiil.BDD.WebDriver;
 using CSF.Screenplay;
 using CSF.Screenplay.Integration;
 using CSF.Screenplay.ReportFormatting;
@@ -22,7 +23,7 @@ namespace Agiil.Tests.BDD
     public void Configure(IIntegrationConfigBuilder builder)
     {
       builder.UseSharedUriTransformer(new RootUriPrependingTransformer(ApplicationBaseUri));
-      builder.UseWebDriverFromConfiguration();
+      builder.UseAgiilWebDriverFromConfiguration();
       builder.UseWebBrowser();
       builder.UseBrowserFlags();
       builder.UseWebApis(ApiBaseUri);
