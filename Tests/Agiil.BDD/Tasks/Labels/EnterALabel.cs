@@ -16,7 +16,7 @@ namespace Agiil.BDD.Tasks.Labels
     protected override void PerformAs(IPerformer actor)
     {
       actor.Perform(Enter.TheText(label.Trim()).Into(EditTicket.TicketLabelsInputBox));
-      actor.Perform(Enter.TheText(Environment.NewLine).Into(EditTicket.TicketLabelsInputBox));
+      actor.Perform(Enter.TheText("\r\n").Into(EditTicket.TicketLabelsInputBox));
     }
 
     public EnterALabel(string label)
