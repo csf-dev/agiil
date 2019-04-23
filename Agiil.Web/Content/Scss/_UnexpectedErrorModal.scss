@@ -1,0 +1,59 @@
+@import '_AppWideVariables';
+
+.UnhandledPageError_Mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.UnhandledPageError_Dialog {
+  background-color: #FFF;
+  border-radius: 6px;
+  padding: 0.4em 1em;
+  box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.75);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+.UnhandledPageError_CloseButton {
+  float: right;
+  margin-top: 0.8em;
+}
+.UnhandledPageError_Dialog h1 {
+  color: #C00;
+  font-size: 200%;
+  line-height: 140%;
+  margin: 0.4em 0 0.2em;
+}
+.UnhandledPageError_Dialog p {
+  line-height: 140%;
+  margin: 0 0 0.2em
+}
+
+.UnhandledPageError_Dialog.open {
+  width: 90%;
+}
+.UnhandledPageError_Dialog.closed {
+  max-width: 40%;
+}
+.UnhandledPageError_Dialog pre {
+  background: #EEE;
+  border: 1px solid #DDD;
+  margin: 0.2em 0 0;
+  padding: 0.1em;
+  font-family: $monospace-font-stack;
+  font-size: 90%;
+  overflow-x: auto;
+}
+.UnhandledPageError_Dialog.open pre {
+  display: block;
+}
+.UnhandledPageError_Dialog.closed pre {
+  display: none;
+}
+
