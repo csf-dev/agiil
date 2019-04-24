@@ -259,6 +259,8 @@
     <Compile Include="Tasks\Labels\EnterALabel.cs" />
     <Compile Include="Tasks\Labels\EnterTheLabels.cs" />
     <Compile Include="WebDriver\AgiilWebDriverIntegrationBuilderExtensions.cs" />
+    <Compile Include="Tasks\Browsing\TypeTheText.cs" />
+    <Compile Include="Tasks\Type.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
