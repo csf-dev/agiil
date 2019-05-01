@@ -21,7 +21,6 @@
     <None Include="buildConfigs/**/*" />
     <None Include="flow-typed/**/*" />
     <None Include="tools/**/*" />
-    <None Include="BuildClientApp.targets" />
     <None Include="package.json" />
     <None Include="package-lock.json" />
   </ItemGroup>

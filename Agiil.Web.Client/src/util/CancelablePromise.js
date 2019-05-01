@@ -17,7 +17,7 @@ export class CancelablePromise<T> implements Cancelable<T> {
 
     map<TNew>(mapper : (val : T) => TNew) : Cancelable<TNew> {
         const mappedPromise = this.#promise.then(mapper);
-        return new CancelablePromise(this.#promise.then(mapper), this.#cancel, this.#id);
+        return new CancelablePromise(mappedPromise, this.#cancel, this.#id);
     }
 
     constructor(promise : Promise<T>, cancelFunc : () => void, id? : string) {
