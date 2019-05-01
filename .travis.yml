@@ -32,10 +32,12 @@ matrix:
       - WebDriver_Platform="Windows 10"
       - WebDriver_BrowserName="Firefox"
       - WebDriver_BrowserVersion="53.0"
-    - env:
-      - WebDriver_Platform="Windows 7"
-      - WebDriver_BrowserName="Internet Explorer"
-      - WebDriver_BrowserVersion="11.0"
+# TODO: #AG305 - reinstate this once I have fixed problems entering text into
+# React controlled components from IE11
+#     - env:
+#       - WebDriver_Platform="Windows 7"
+#       - WebDriver_BrowserName="Internet Explorer"
+#       - WebDriver_BrowserVersion="11.0"
     - env:
       - WebDriver_Platform="Windows 7"
       - WebDriver_BrowserName="Internet Explorer"
@@ -45,10 +47,13 @@ matrix:
 #       - WebDriver_Platform="Windows 10"
 #       - WebDriver_BrowserName="MicrosoftEdge"
 #       - WebDriver_BrowserVersion="16.16299"
-    - env:
-      - WebDriver_Platform="OS X 10.11"
-      - WebDriver_BrowserName="Safari"
-      - WebDriver_BrowserVersion="10.0"
+# TODO: #AG304 - reinstate this once the upstream limitation on
+# Screenplay/Selenium is resolved, enabling Safari 10 to type text into
+# React controlled components.
+#     - env:
+#       - WebDriver_Platform="OS X 10.11"
+#       - WebDriver_BrowserName="Safari"
+#       - WebDriver_BrowserVersion="10.0"
 
 before_install:
     - nvm install "10.0"
