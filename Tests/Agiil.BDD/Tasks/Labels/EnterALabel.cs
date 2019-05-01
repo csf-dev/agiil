@@ -3,6 +3,7 @@ using Agiil.BDD.Pages;
 using CSF.Screenplay.Actors;
 using CSF.Screenplay.Performables;
 using CSF.Screenplay.Selenium.Builders;
+using OpenQA.Selenium;
 
 namespace Agiil.BDD.Tasks.Labels
 {
@@ -16,7 +17,7 @@ namespace Agiil.BDD.Tasks.Labels
     protected override void PerformAs(IPerformer actor)
     {
       actor.Perform(Enter.TheText(label.Trim()).Into(EditTicket.TicketLabelsInputBox));
-      actor.Perform(Enter.TheText("\r\n").Into(EditTicket.TicketLabelsInputBox));
+      actor.Perform(Enter.TheText(Keys.Enter).Into(EditTicket.TicketLabelsInputBox));
     }
 
     public EnterALabel(string label)
