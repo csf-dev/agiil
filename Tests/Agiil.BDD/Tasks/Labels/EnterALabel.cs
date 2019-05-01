@@ -16,7 +16,7 @@ namespace Agiil.BDD.Tasks.Labels
 
     protected override void PerformAs(IPerformer actor)
     {
-      actor.Perform(Type.TheText(label.Trim()).Into(EditTicket.TicketLabelsInputBox));
+      actor.Perform(Enter.TheText(label.Trim()).Into(EditTicket.TicketLabelsInputBox));
       actor.Perform(Enter.TheText(Keys.Enter).Into(EditTicket.TicketLabelsInputBox));
     }
 
