@@ -1,14 +1,11 @@
 @import '_Reset';
 @import '_AppWideVariables';
+@import '_ApplicationMenu';
 @import '_PageFooter';
 @import '_ContentStyles';
 @import '_UnexpectedErrorModal';
+@import '_ThreeColumnLayout';
 
-html {
-  height: 100%;
-}
 body {
   font-family: $proportional-font-stack;
-  min-height: calc(100% - #{$footer-height});
-  position: relative;
 }

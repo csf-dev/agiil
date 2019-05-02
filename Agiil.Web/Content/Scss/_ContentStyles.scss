@@ -1,4 +1,18 @@
-.page_content {
+@import '_AppWideVariables';
+
+$main_header_top_padding: 1em;
+$main_header_font_size: 200%;
+
+.content_area > header {
+  padding: $main_header_top_padding 1em 0;
+
+  h1 {
+    font-size: $main_header_font_size;
+    line-height: 120%;
+  }
+}
+
+.content_container {
   line-height: 140%;
 
   h1, h2, h3, h4, h5, h6 {
@@ -22,3 +36,13 @@
     font-style: italic;
   }
 }
+
+.main_content, .main_content_asides {
+  padding: 1em 1em 2em;
+}
+.main_content_asides {
+  background: $faint-keyline-color;
+  font-size: $small-text-size;
+  line-height: 140%;
+}
+

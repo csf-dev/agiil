@@ -1,0 +1,16 @@
+@import '_AppWideVariables';
+
+$appmenu-bg-color: #b6f189;
+
+.application_menu {
+  padding-top: $appmenu-top-padding;
+  background: $appmenu-bg-color;
+  font-size: $small-text-size;
+  line-height: 140%;
+}
+
+.site_links {
+  padding-bottom: 2em;
+  margin-bottom: 2em;
+  border-bottom: 1px solid $subtle-keyline-color;
+}

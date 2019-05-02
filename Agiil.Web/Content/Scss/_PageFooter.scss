@@ -1,12 +1,7 @@
-$footer-height: 2em;
+@import '_AppWideVariables';
 
 body>footer {
   box-sizing: border-box;
-  width: 100%;
-  height: $footer-height;
-  position: absolute;
-  bottom: -#{$footer-height};
-  left: 0;
   border-top: 1px solid $subtle-keyline-color;
   padding: 0.4em;
 
