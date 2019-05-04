@@ -1,18 +1,25 @@
 @import '_AppWideVariables';
-@import '_ContentStyles';
+@import '_ResponsiveBreakpoints';
+
+$main_header_top_padding: 1em;
+$main_header_font_size: 200%;
+$side_padding: 20px;
+$double_side_padding: $side_padding * 2;
 
 html {
   height: 100%;
 }
+body {
+  overflow-x: hidden;
+}
 .application_menu {
-  padding-left: 1em;
-  padding-right: 1em;
-  margin-bottom: -$footer-height / ($small-text-size / 100%);
+  padding-left: $side_padding;
+  padding-right: $side_padding;
+  margin-bottom: -$footer-height - 1px;
 }
 .main_content_asides {
   box-sizing: border-box;
 }
-
 
 html.flexbox {
   body {
@@ -26,7 +33,7 @@ html.flexbox {
     flex-direction: row;
   }
   .application_menu {
-    flex-basis: calc(#{$appmenu-width} - 2em);
+    flex-basis: calc(#{$appmenu-width} - #{$double_side_padding});
     flex-shrink: 0;
   }
   .content_area {
@@ -57,7 +64,6 @@ $no_flexbox_content_top_adjustment: -$appmenu-top-padding + $main_header_top_pad
 
 html.no-flexbox {
   body {
-    width: 100%;
     min-height: calc(100% - #{$footer-height});
     display: table;
     position: relative;
@@ -68,7 +74,7 @@ html.no-flexbox {
   }
   .application_menu {
     display: table-cell;
-    width: calc(#{$appmenu-width} - 2em);
+    width: calc(#{$appmenu-width} - #{$double_side_padding});
   }
   .content_area {
     display: table-cell;
@@ -94,5 +100,137 @@ html.no-flexbox {
     height: $footer-height;
     position: absolute;
     width: 100%;
+  }
+}  
+
+@media #{$mobile_media}, #{$tablet_media} {
+  html.flexbox {
+    .page_area {
+      width: 200%;
+      transform: translateX(-50%);
+    }
+    .page_area.app_nav_panel_active {
+      transform: translateX(0);
+    }
+    .page_area.asides_panel_active .content_container {
+      transform: translateX(-50%);
+    }
+    .application_menu, .content_area {
+      flex-grow: 0;
+      flex-shrink: 0;
+      box-sizing: border-box;
+    }
+    .application_menu {
+      flex-basis: 50%;
+    }
+    .content_area {
+      flex-basis: 50%;
+    }
+    .content_area > header {
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .content_container {
+      flex-grow: 1;
+      width: 200%;
+    }
+    .main_content, .main_content_asides {
+      flex-basis: 50%;
+      flex-grow: 0;
+      flex-shrink: 0;
+      box-sizing: border-box;
+    }
+    body>footer {
+      flex-basis: $footer-height;
+      width: 100%;
+      position: static;
+      left: 0;
+    }
+  }
+}
+
+@media #{$tablet_media} {
+  html.flexbox {
+    .main_content {
+      max-width: 700px;
+      margin-left: calc(25% - 350px);
+      margin-right: calc(25% - 350px);
+    }
+    .content_area > header {
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+@media #{$medium_desktop_media} {
+  html.flexbox {
+    .page_area {
+      width: calc(100% + 300px);
+      transform: translateX(-300px);
+    }
+    .content_area > header {
+      min-width: 1000px;
+      max-width: 1080px;
+      box-sizing: border-box;
+      margin-left: 0;
+      margin-right: auto;
+    }
+   .main_content {
+      min-width: 700px;
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    body>footer {
+      flex-basis: $footer-height;
+      width: 100%;
+      position: static;
+      left: 0;
+    }
+  }
+}
+
+@media #{$medium_desktop_max_content_width_media} {
+  html.flexbox {
+    .content_area > header {
+      width: 1080px;
+      box-sizing: border-box;
+      margin-left: calc(50% - 560px);
+      margin-right: auto;
+    }
+  }  
+}
+
+@media #{$large_desktop_media}, #{$widescreen_desktop_media} {
+  html.flexbox {
+    .main_content {
+      max-width: 780px;
+    }
+    .content_area > header {
+      width: 1080px;
+      box-sizing: border-box;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .main_content {
+      margin-left: calc(50% - 540px);
+      margin-right: calc(50% - 540px);
+    }
+  }
+}
+
+@media #{$widescreen_desktop_media} {
+  html.flexbox {
+    .page_area {
+      width: 1720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    body>footer {
+      width: calc(#{$max_large_desktop_width} - #{$appmenu-width});
+      left: calc(50% - #{$max_large_desktop_width / 2} + #{$appmenu-width};
+    }
   }
 }

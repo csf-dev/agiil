@@ -1,0 +1,14 @@
+$max_mobile_width: 739px;
+$max_tablet_width: 999px;
+$medium_desktop_max_content_width: 1120px;
+$max_medium_desktop_width: 1379px;
+$max_large_desktop_width: 1720px;
+
+$mobile_media: "screen and (max-width: #{$max_mobile_width})";
+$tablet_media: "screen and (min-width: #{$max_mobile_width + 1}) and (max-width: #{$max_tablet_width})";
+$medium_desktop_media: "screen and (min-width: #{$max_tablet_width + 1}) and (max-width: #{$max_medium_desktop_width})";
+$medium_desktop_max_content_width_media: "screen and (min-width: #{$medium_desktop_max_content_width}) and (max-width: #{$max_medium_desktop_width})";
+$large_desktop_media: "screen and (min-width: #{$max_medium_desktop_width + 1}) and (max-width: #{$max_large_desktop_width})";
+$widescreen_desktop_media: "screen and (min-width: #{$max_large_desktop_width + 1})";
+
+$tablet_or_larger_media: "#{$tablet_media}, #{$medium_desktop_media}, #{$large_desktop_media}, #{$widescreen_desktop_media}";
