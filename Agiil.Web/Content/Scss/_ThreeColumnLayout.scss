@@ -67,6 +67,9 @@ html.no-flexbox {
     min-height: calc(100% - #{$footer-height});
     display: table;
     position: relative;
+    min-width: $asides-width + 700px;
+    width: 100%;
+    overflow-x: auto;
   }
   .page_area {
     display: table-row;
@@ -91,6 +94,9 @@ html.no-flexbox {
   .main_content {
     margin-right: $asides-width;
     display: table-cell;
+    min-width: 700px;
+    max-width: 780px;
+    box-sizing: border-box;
   }
   .main_content_asides {
     display: table-cell;
