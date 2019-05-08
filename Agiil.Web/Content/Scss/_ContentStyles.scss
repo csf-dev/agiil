@@ -1,6 +1,5 @@
 @import '_AppWideVariables';
-@import '_ThreeColumnLayout';
-
+@import '_ThreeColumnLayout_Base';
 
 .content_area > header {
   padding: $main_header_top_padding $side_padding 0;

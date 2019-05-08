@@ -2,7 +2,7 @@
 <html lang="en"
       metal:extend-macro="Views/Shared/EmptyPage/macros/page"
       metal:define-macro="page"
-      class="no-flexbox">
+      class="flexbox">
 <head metal:fill-slot="head_element">
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">

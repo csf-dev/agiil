@@ -1,25 +1,6 @@
 @import '_AppWideVariables';
 @import '_ResponsiveBreakpoints';
-
-$main_header_top_padding: 1em;
-$main_header_font_size: 200%;
-$side_padding: 20px;
-$double_side_padding: $side_padding * 2;
-
-html {
-  height: 100%;
-}
-body {
-  overflow-x: hidden;
-}
-.application_menu {
-  padding-left: $side_padding;
-  padding-right: $side_padding;
-  margin-bottom: -$footer-height - 1px;
-}
-.main_content_asides {
-  box-sizing: border-box;
-}
+@import '_ThreeColumnLayout_Base';
 
 html.flexbox {
   body {
@@ -60,77 +41,12 @@ html.flexbox {
   }
 }
 
-$no_flexbox_content_top_adjustment: -$appmenu-top-padding + $main_header_top_padding * ($main_header_font_size / 100%);
-
-html.no-flexbox {
-  body {
-    min-height: calc(100% - #{$footer-height});
-    display: table;
-    position: relative;
-    min-width: $asides-width + 700px;
-    width: 100%;
-    overflow-x: auto;
-  }
-  .page_area {
-    display: table-row;
-    height: 100%;
-  }
-  .application_menu {
-    display: table-cell;
-    width: calc(#{$appmenu-width} - #{$double_side_padding});
-  }
-  .content_area {
-    display: table-cell;
-    position: relative;
-  }
-  .content_area > header {
-    transform: translateY($no_flexbox_content_top_adjustment);
-  }
-  .content_container {
-    margin-top: $no_flexbox_content_top_adjustment;
-    display: table;
-    width: 100%;
-  }
-  .main_content {
-    margin-right: $asides-width;
-    display: table-cell;
-    min-width: 700px;
-    max-width: 780px;
-    box-sizing: border-box;
-  }
-  .main_content_asides {
-    display: table-cell;
-    width: $asides-width;
-  }
-  body>footer {
-    height: $footer-height;
-    position: absolute;
-    width: 100%;
-  }
-}  
-
 @media #{$mobile_media}, #{$tablet_media} {
   html.flexbox {
-    .page_area {
-      width: 200%;
-      transform: translateX(-50%);
-    }
-    .page_area.app_nav_panel_active {
-      transform: translateX(0);
-    }
-    .page_area.asides_panel_active .content_container {
-      transform: translateX(-50%);
-    }
     .application_menu, .content_area {
       flex-grow: 0;
       flex-shrink: 0;
       box-sizing: border-box;
-    }
-    .application_menu {
-      flex-basis: 50%;
-    }
-    .content_area {
-      flex-basis: 50%;
     }
     .content_area > header {
       width: 100%;
@@ -141,7 +57,6 @@ html.no-flexbox {
       width: 200%;
     }
     .main_content, .main_content_asides {
-      flex-basis: 50%;
       flex-grow: 0;
       flex-shrink: 0;
       box-sizing: border-box;
@@ -154,13 +69,59 @@ html.no-flexbox {
     }
   }
 }
+@media #{$mobile_media} {
+  html.flexbox {
+    .page_area {
+      width: 200%;
+      transform: translateX(-50%);
+    }
+    .page_area.app_nav_panel_active {
+      transform: translateX(0);
+    }
+    .page_area.asides_panel_active .content_container {
+      transform: translateX(-50%);
+    }
+    .application_menu {
+      flex-basis: 50%;
+    }
+    .content_area {
+      flex-basis: 50%;
+    }
+    .main_content, .main_content_asides {
+      flex-basis: 50%;
+    }
+  }
+}
 
 @media #{$tablet_media} {
   html.flexbox {
+    .page_area {
+      width: calc(100% + 300px);
+      transform: translateX(-300px);
+    }
+    .page_area.app_nav_panel_active {
+      transform: translateX(0);
+    }
+    .page_area.app_nav_panel_active+footer {
+      transform: translateX(300px);
+    }
+    .page_area.asides_panel_active .content_container {
+      transform: translateX(-300px);
+    }
+    .application_menu {
+      flex-basis: 300px;
+    }
+    .content_area {
+      flex-grow: 1;
+    }
     .main_content {
+      flex-basis: 700px;
       max-width: 700px;
       margin-left: calc(25% - 350px);
       margin-right: calc(25% - 350px);
+    }
+    .main_content_asides {
+      flex-basis: 300px;
     }
     .content_area > header {
       max-width: 700px;
@@ -176,18 +137,21 @@ html.no-flexbox {
       width: calc(100% + 300px);
       transform: translateX(-300px);
     }
+    .page_area.app_nav_panel_active .application_menu {
+      transform: translateX(300px);
+    }
     .content_area > header {
-      min-width: 1000px;
+      min-width: 960px;
       max-width: 1080px;
-      box-sizing: border-box;
       margin-left: 0;
       margin-right: auto;
     }
    .main_content {
-      min-width: 700px;
+      min-width: 660px;
       max-width: 780px;
       margin-left: auto;
       margin-right: auto;
+      flex-shrink: 1;
     }
     body>footer {
       flex-basis: $footer-height;

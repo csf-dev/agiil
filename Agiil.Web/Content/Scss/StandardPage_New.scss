@@ -4,7 +4,8 @@
 @import '_PageFooter';
 @import '_ContentStyles';
 @import '_UnexpectedErrorModal';
-@import '_ThreeColumnLayout';
+@import '_ThreeColumnLayout_Flexbox';
+@import '_ThreeColumnLayout_No_Flexbox';
 
 body {
   font-family: $proportional-font-stack;
