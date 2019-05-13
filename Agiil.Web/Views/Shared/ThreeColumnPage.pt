@@ -21,7 +21,7 @@
 <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i%7CSource+Code+Pro:400,700" rel="stylesheet" />
 <script src="Content/bundles/modernizr.agiil.js"></script>
 <style metal:define-slot="standard_styles">
-@import url('Content/Css/StandardPage_New.css');
+@import url('Content/Css/ThreeColumnPage.css');
 </style>
 <style metal:define-slot="extra_styles" tal:omit-tag=""></style>
 <style metal:define-slot="asset_styles" tal:omit-tag=""></style>
