@@ -42,11 +42,14 @@
   </nav>
   <section class="content_area" metal:define-slot="content_area">
     <header metal:define-slot="content_area_header">
-      <h1>This is a page header</h1>
+      <h1>This is where the page header goes; it's the main title for the page</h1>
     </header>
     <div class="content_container">
       <div class="main_content" metal:define-slot="main_content">
-        <p>This is where the page content goes</p>
+        <p>
+          This is where the page content goes.  This should be the most important content on the page.
+          There is an asides area for anything extra, like metadata.
+        </p>
       </div>
       <aside class="main_content_asides" metal:define-slot="main_content_asides">
         <p>Asides for the main content</p>

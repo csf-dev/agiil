@@ -54,7 +54,6 @@ html.flexbox {
     }
     .content_container {
       flex-grow: 1;
-      width: 200%;
     }
     .main_content, .main_content_asides {
       flex-grow: 0;
@@ -74,6 +73,9 @@ html.flexbox {
     .page_area {
       width: 200%;
       transform: translateX(-50%);
+    }
+    .content_container {
+      width: 200%;
     }
     .page_area.app_nav_panel_active {
       transform: translateX(0);
@@ -114,11 +116,15 @@ html.flexbox {
     .content_area {
       flex-grow: 1;
     }
+    .content_container {
+      width: calc(100% + 300px);
+    }
     .main_content {
       flex-basis: 700px;
+      min-width: 700px;
       max-width: 700px;
-      margin-left: calc(25% - 350px);
-      margin-right: calc(25% - 350px);
+      margin-left: auto;
+      margin-right: auto;
     }
     .main_content_asides {
       flex-basis: 300px;
