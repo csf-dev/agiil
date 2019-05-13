@@ -19,4 +19,10 @@ body {
 }
 .main_content_asides {
   box-sizing: border-box;
+  background: $asides-panel-color;
+  font-size: $small-text-size;
+  line-height: 140%;
+}
+.main_content, .main_content_asides {
+  padding: 1em $side_padding 2em;
 }

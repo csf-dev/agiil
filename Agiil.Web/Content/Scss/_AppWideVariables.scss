@@ -5,8 +5,10 @@ $subtle-keyline-alpha: 20% / 100%;
 $subtle-keyline-color: hsla(0, 0%, $keyline-lightness, $subtle-keyline-alpha);
 $faint-keyline-alpha: 5% / 100%;
 $faint-keyline-color: hsla(0, 0%, $keyline-lightness, $faint-keyline-alpha);
-$asides-panel-lightness: 100% * (1 - $subtle-keyline-alpha);
+$asides-panel-lightness: 100% * (1 - $faint-keyline-alpha);
 $asides-panel-color: hsla(0, 0%, $asides-panel-lightness, 1);
+$sunken-content-lightness: 100% * (1 - $subtle-keyline-alpha);
+$sunken-content-color: hsla(0, 0%, $sunken-content-lightness, 1);
 $subtle-text-color: hsla(0, 0%, 50%, 1);
 $small-text-size: 90%;
 $smaller-text-size: 80%;
@@ -37,6 +39,15 @@ $footer-height: 32px;
   padding-bottom: 1px;
 }
 
+@mixin sunken {
+  background-color: $sunken-content-color;
+  box-shadow: inset 1px 1px 5px 0 hsla(0, 0, 25%, 1);
+  padding: 5px;
+}
+@mixin raised {
+  box-shadow: 1px 1px 5px 0 hsla(0, 0, 25%, 1);
+}
+
 %subtle_box {
   background: $faint-keyline-color;
   border: 1px solid $subtle-keyline-color;
@@ -61,4 +72,8 @@ $footer-height: 32px;
   th {
     font-weight: bold;
   }
+}
+
+.screen_reader_only {
+  display: none;
 }

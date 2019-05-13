@@ -70,11 +70,11 @@
                 It runs across two lines.</div>
             </li>
           </ol>
-        </section>
-        <section class="add_a_comment">
-          <header><h2>Add a comment</h2></header>
-          <div metal:use-macro="Views/Shared/Controls/Comments/macros/add_a_comment">
-            Add a comment control
+          <div class="add_a_comment">
+            <header><h2>Add a comment</h2></header>
+            <div metal:use-macro="Views/Shared/Controls/Comments/macros/add_a_comment">
+              Add a comment control
+            </div>
           </div>
         </section>
       </div>
@@ -134,7 +134,7 @@
         </p>
         <h3>Work log</h3>
         <p tal:condition="ticket/HasWorkLogged">
-          <span tal:content="ticket/TotalWorkLogged/TotalMinutes"></span> minutes of work logged
+          <span tal:content="ticket/TotalWorkLogged/TotalMinutes">30</span> minutes of work logged
         </p>
         <p tal:condition="not:ticket/HasWorkLogged">
           No work logged
