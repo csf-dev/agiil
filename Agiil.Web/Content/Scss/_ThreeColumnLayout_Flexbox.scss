@@ -92,14 +92,9 @@ html.flexbox {
     .page_area.asides_panel_active .content_container {
       transform: translateX(-50%);
     }
-    .application_menu {
+    .application_menu, .content_area, .main_content, .main_content_asides {
       flex-basis: 50%;
-    }
-    .content_area {
-      flex-basis: 50%;
-    }
-    .main_content, .main_content_asides {
-      flex-basis: 50%;
+      max-width: 50%;
     }
   }
 }
