@@ -9,8 +9,31 @@ $appmenu-bg-color: hsla(44, 55%, 85%, 1);
   line-height: 140%;
 }
 
-.site_links {
+.site_navigation {
   padding-bottom: 2em;
   margin-bottom: 2em;
   border-bottom: 1px solid $subtle-keyline-color;
+}
+.site_navigation > h5 {
+  @include invisible;
+}
+.site_navigation > ul li {
+  margin-bottom: 0.4em;
+
+  a {
+    display: block;
+    text-decoration: none;
+    background: hsla(0, 0, 0, 0.1);
+    padding: 0.2em 0.6em;
+    color: #000;
+  }
+  a:hover {
+    background: hsla(0, 0, 100%, 0.3);
+  }
+}
+.login_logout_control .logout > h5 {
+  @include invisible;
+}
+.login_logout_control .logout strong {
+  font-weight: bold;
 }

@@ -67,7 +67,16 @@ html.flexbox {
       left: 0;
     }
   }
+  html.no-js.flexbox {
+    body {
+      overflow-x: scroll;
+    }
+    .page_area {
+      transform: none;
+    }
+  } 
 }
+
 @media #{$mobile_media} {
   html.flexbox {
     .page_area {
@@ -165,6 +174,14 @@ html.flexbox {
       left: 0;
     }
   }
+  html.no-js.flexbox {
+    body {
+      overflow-x: scroll;
+    }
+    .page_area {
+      transform: none;
+    }
+  } 
 }
 
 @media #{$medium_desktop_max_content_width_media} {

@@ -70,4 +70,12 @@ html.no-flexbox {
 
     }
   }
+  html.no-js.no-flexbox {
+    body {
+      min-width: 1300px;
+    }
+    .application_menu {
+      display: table-cell;
+    }
+  }
 }
