@@ -1,0 +1,223 @@
+@import '_AppWideVariables';
+@import '_ResponsiveBreakpoints';
+@import '_ThreeColumnLayout_Base';
+
+html.flexbox {
+  body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .page_area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+  }
+  .application_menu {
+    flex-basis: calc(#{$appmenu-width} - #{$double_side_padding});
+    flex-shrink: 0;
+  }
+  .content_area {
+    flex-grow: 1;
+    flex-shrink: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .content_container {
+    display: flex;
+    flex-grow: 1;
+  }
+  .main_content {
+    flex-grow: 1;
+  }
+  .main_content_asides {
+    flex-basis: $asides-width;
+  }
+  body>footer {
+    flex-basis: $footer-height;
+    width: calc(100% - #{$appmenu-width});
+    position: relative;
+    left: $appmenu-width;
+  }
+}
+
+@media #{$mobile_media}, #{$tablet_media} {
+  html.flexbox {
+    .application_menu, .content_area {
+      flex-grow: 0;
+      flex-shrink: 0;
+      box-sizing: border-box;
+    }
+    .content_area > header {
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .content_container {
+      flex-grow: 1;
+    }
+    .main_content, .main_content_asides {
+      flex-grow: 0;
+      flex-shrink: 0;
+      box-sizing: border-box;
+    }
+    body>footer {
+      flex-basis: $footer-height;
+      width: 100%;
+      position: static;
+      left: 0;
+    }
+  }
+  html.no-js.flexbox {
+    body {
+      overflow-x: scroll;
+    }
+    .page_area {
+      transform: none;
+    }
+  } 
+}
+
+@media #{$mobile_media} {
+  html.flexbox {
+    .page_area {
+      width: 200%;
+      transform: translateX(-50%);
+    }
+    .content_container {
+      width: 200%;
+    }
+    .page_area.app_nav_panel_active {
+      transform: translateX(0);
+    }
+    .page_area.asides_panel_active .content_container {
+      transform: translateX(-50%);
+    }
+    .application_menu, .content_area, .main_content, .main_content_asides {
+      flex-basis: 50%;
+      max-width: 50%;
+    }
+  }
+}
+
+@media #{$tablet_media} {
+  html.flexbox {
+    .page_area {
+      width: calc(100% + 600px);
+      transform: translateX(-300px);
+    }
+    .page_area.app_nav_panel_active {
+      transform: translateX(0);
+    }
+    .page_area.app_nav_panel_active+footer {
+      transform: translateX(300px);
+    }
+    .page_area.asides_panel_active .content_container {
+      transform: translateX(-300px);
+    }
+    .application_menu {
+      flex-basis: 300px;
+    }
+    .content_area {
+      flex-grow: 1;
+      flex-shrink: 1;
+    }
+    .content_container {
+      width: 100%;
+    }
+    .main_content {
+      flex-basis: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .main_content_asides {
+      flex-basis: 300px;
+    }
+    .content_area > header {
+      width: 700px;
+      margin-left: calc(50% - 500px);
+      margin-right: calc(50% - 200px);
+    }
+  }
+}
+
+@media #{$medium_desktop_media} {
+  html.flexbox {
+    .page_area {
+      width: calc(100% + 300px);
+      transform: translateX(-300px);
+    }
+    .page_area.app_nav_panel_active .application_menu {
+      transform: translateX(300px);
+    }
+    .content_area > header {
+      min-width: 960px;
+      max-width: 1080px;
+      margin-left: 0;
+      margin-right: auto;
+    }
+   .main_content {
+      min-width: 660px;
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+      flex-shrink: 1;
+    }
+    body>footer {
+      flex-basis: $footer-height;
+      width: 100%;
+      position: static;
+      left: 0;
+    }
+  }
+  html.no-js.flexbox {
+    body {
+      overflow-x: scroll;
+    }
+    .page_area {
+      transform: none;
+    }
+  } 
+}
+
+@media #{$medium_desktop_max_content_width_media} {
+  html.flexbox {
+    .content_area > header {
+      width: 1080px;
+      box-sizing: border-box;
+      margin-left: calc(50% - 560px);
+      margin-right: auto;
+    }
+  }  
+}
+
+@media #{$large_desktop_media}, #{$widescreen_desktop_media} {
+  html.flexbox {
+    .main_content {
+      max-width: 780px;
+    }
+    .content_area > header {
+      width: 1080px;
+      box-sizing: border-box;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .main_content {
+      margin-left: calc(50% - 540px);
+      margin-right: calc(50% - 540px);
+    }
+  }
+}
+
+@media #{$widescreen_desktop_media} {
+  html.flexbox {
+    .page_area {
+      width: 1720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    body>footer {
+      width: calc(#{$max_large_desktop_width} - #{$appmenu-width});
+      left: calc(50% - #{$max_large_desktop_width / 2} + #{$appmenu-width};
+    }
+  }
+}

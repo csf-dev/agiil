@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" metal:extend-macro="Views/Shared/EmptyPage/macros/page" metal:define-macro="page">
+<html lang="en"
+      metal:extend-macro="Views/Shared/EmptyPage/macros/page"
+      metal:define-macro="page"
+      class="no-js">
 <head metal:fill-slot="head_element">
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -16,31 +19,49 @@
       tal:attributes="href uri" />
 <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
 <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i%7CSource+Code+Pro:400,700" rel="stylesheet" />
+<script src="Content/bundles/modernizr.agiil.js"></script>
 <style metal:define-slot="standard_styles">
-@import url('Content/Css/StandardPage.css');
+@import url('Content/Css/ThreeColumnPage.css');
 </style>
 <style metal:define-slot="extra_styles" tal:omit-tag=""></style>
 <style metal:define-slot="asset_styles" tal:omit-tag=""></style>
 </head>
-<body metal:fill-slot="body_element" class="new_layout">
+<body metal:fill-slot="body_element">
 <header metal:define-slot="page_header"></header>
 <div metal:define-slot="page_content" class="page_area">
   <nav class="application_menu"
        metal:define-slot="application_menu">
     <div class="site_links"
-         metal:use-macro="Views/Shared/Controls/SiteNavigation/macros/site_navigation"></div>
+         metal:use-macro="Views/Shared/Controls/SiteNavigation/macros/site_navigation">
+      Site links
+    </div>
     <div metal:use-macro="Views/Shared/Controls/HeaderLoginLogout/macros/login_logout_control"
          class="login_logout_control">
       Login/logout control
     </div>
   </nav>
   <section class="content_area" metal:define-slot="content_area">
-    <header metal:define-slot="content_area_header"></header>
-    <div class="main_content" metal:define-slot="main_content"></div>
-    <aside class="main_content_asides" metal:define-slot="main_content_asides"></aside>
+    <header metal:define-slot="content_area_header">
+      <h1>This is where the page header goes; it's the main title for the page</h1>
+    </header>
+    <div class="content_container">
+      <div class="main_content" metal:define-slot="main_content">
+        <p>
+          This is where the page content goes.  This should be the most important content on the page.
+          There is an asides area for anything extra, like metadata.
+        </p>
+      </div>
+      <aside class="main_content_asides" metal:define-slot="main_content_asides">
+        <p>Asides for the main content</p>
+      </aside>
+    </div>
   </section>
 </div>
-<footer metal:define-slot="page_footer" metal:use-macro="Views/Shared/StandardFooter/macros/footer"></footer>
+<footer metal:define-slot="page_footer" metal:use-macro="Views/Shared/StandardFooter/macros/footer">
+  <p class="VersionStatement">
+    Agiil <span class="ApplicationVersion">v4.5.6</span>
+  </p>
+</footer>
 <metal:block define-slot="asset_scripts"></metal:block>
 </body>
 </html>

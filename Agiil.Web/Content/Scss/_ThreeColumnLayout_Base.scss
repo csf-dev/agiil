@@ -1,0 +1,31 @@
+@import '_AppWideVariables';
+@import '_ResponsiveBreakpoints';
+
+$main_header_top_padding: 1em;
+$main_header_font_size: 200%;
+$side_padding: 20px;
+$double_side_padding: $side_padding * 2;
+
+html {
+  height: 100%;
+}
+body {
+  overflow-x: hidden;
+}
+.application_menu {
+  padding-left: $side_padding;
+  padding-right: $side_padding;
+  margin-bottom: -$footer-height - 1px;
+}
+.main_content_asides {
+  box-sizing: border-box;
+  background: $asides-panel-color;
+  font-size: $small-text-size;
+  line-height: 140%;
+}
+.main_content, .main_content_asides {
+  padding: 1em $side_padding 2em;
+}
+.content_area > header {
+  margin-bottom: 0.6em;
+}
