@@ -17,6 +17,7 @@
 <style metal:fill-slot="extra_styles">
 @import url('Content/Css/TicketDetail.css');
 </style>
+<style metal:fill-slot="asset_styles" metal:use-macro="Views/Ticket/Index.assets.html/macros/styles"></style>
 </head>
 <body>
 <header></header>
@@ -163,5 +164,6 @@
     Agiil <span class="ApplicationVersion">v4.5.6</span>
   </p>
 </footer>
+<metal:block fill-slot="asset_scripts" use-macro="Views/Ticket/Index.assets.html/macros/scripts"></metal:block>
 </body>
 </html>

@@ -10,9 +10,8 @@ export type PanelContainerProps = {|
 
 export function PanelContainer(props : PanelContainerProps) {
     return (
-        <div className={getClassName(props.currentPanel)}>
-            {props.children}
-        </div>
+        <div className={getClassName(props.currentPanel)}
+             dangerouslySetInnerHTML={getChildMarkup(props.children)} />
     );
 }
 
@@ -39,4 +38,12 @@ function getClassName(currentPanel : ?PanelName) {
     }
 
     return classes.join(' ');
+}
+
+function getChildMarkup(children) {
+    var markup = children
+        .map(x => x.outerHTML)
+        .reduce((acc, val) => acc + val, '');
+    
+    return { __html: markup };
 }

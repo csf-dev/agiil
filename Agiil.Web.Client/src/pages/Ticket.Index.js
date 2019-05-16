@@ -29,12 +29,17 @@ function renderComponents(store : AnyStore) {
                 {children}
             </PanelContainer>
         </Provider>,
-        root
+        root,
+        afterRender(root)
     );
 }
 
 function getPageArea() : ?HTMLElement {
-    const elements : HTMLElement[] = document.getElementsByQuery('body > .page_area');
-    if(!elements) return null;
-    return elements[0];
+    return document.querySelector('body > .page_area');
+}
+
+function afterRender(root) {
+  return () => {
+    root.parentNode.replaceChild(root.firstChild, root);
+  };
 }
