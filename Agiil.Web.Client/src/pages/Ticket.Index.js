@@ -7,7 +7,7 @@ import { MainPanel, PanelContainer } from 'components/pageLayout/ToggleablePanel
 import type { AnyStore } from 'util/redux/AnyStore';
 import { Provider } from 'react-redux';
 import { ApplicationMenu } from 'components/pageLayout/ApplicationMenu';
-import { ContentArea } from 'components/pageLayout/ContentArea';
+import { ContentArea } from 'components/pageLayout/TicketContentArea';
 import { querySelectorMandatory } from 'util/dom';
 
 pageStarter(() => {
@@ -30,7 +30,8 @@ function renderComponents(store : AnyStore) {
         <Provider store={store}>
             <PanelContainer>
                 <ApplicationMenu>{[...appMenu.children]}</ApplicationMenu>
-                <ContentArea>{[...contentArea.children]}</ContentArea>
+                <ContentArea headerElement={contentArea.children[0]}
+                             contentContainerElement={contentArea.children[1]} />
             </PanelContainer>
         </Provider>,
         root,

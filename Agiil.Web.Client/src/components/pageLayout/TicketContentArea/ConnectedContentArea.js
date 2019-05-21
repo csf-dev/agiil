@@ -1,3 +1,5 @@
+/*
+
 //@flow
 import { connect } from 'react-redux';
 import * as React from "react";
@@ -18,3 +20,5 @@ const connectedContentArea = connect<ContentAreaProps,ConnectedContentAreaProps,
     mapStateToProps
 )(ContentArea);
 export default connectedContentArea;
+
+*/

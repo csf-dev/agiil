@@ -1,3 +1,5 @@
+/*
+
 //@flow
 import { connect } from 'react-redux';
 import * as React from "react";
@@ -18,3 +20,5 @@ const connectedApplicationMenu = connect<ApplicationMenuProps,ConnectedApplicati
     mapStateToProps
 )(ApplicationMenu);
 export default connectedApplicationMenu;
+
+*/
