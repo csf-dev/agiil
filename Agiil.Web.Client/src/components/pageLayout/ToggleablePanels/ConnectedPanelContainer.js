@@ -7,12 +7,12 @@ import { MainPanel } from "./PanelName";
 import type { PanelContainerProps } from './PanelContainer';
 
 type ConnectedPanelContainerProps = {
-    children? : React.Node
+    children? : Array<HTMLElement>
 }
 
 function mapStateToProps(state : any, ownProps : ConnectedPanelContainerProps) : PanelContainerProps {
     return {
-        children: ownProps.children,
+        children: ownProps.children || [],
         currentPanel: state.currentActivePagePanel || MainPanel
     };
 }

@@ -5,7 +5,7 @@ import { NavigationPanel, MainPanel, AsidesPanel } from "./PanelName";
 
 export type PanelContainerProps = {|
     currentPanel : ?PanelName,
-    children : React.Node
+    children : Array<HTMLElement>
 |};
 
 export function PanelContainer(props : PanelContainerProps) {

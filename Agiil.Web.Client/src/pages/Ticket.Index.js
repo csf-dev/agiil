@@ -38,8 +38,10 @@ function getPageArea() : ?HTMLElement {
     return document.querySelector('body > .page_area');
 }
 
-function afterRender(root) {
-  return () => {
-    root.parentNode.replaceChild(root.firstChild, root);
-  };
+function afterRender(root : HTMLElement) {
+    return () => {
+        const parent = root.parentElement, newChild = root.firstChild;
+        if(!parent || !newChild) return;
+        parent.replaceChild(newChild, root);
+    };
 }
