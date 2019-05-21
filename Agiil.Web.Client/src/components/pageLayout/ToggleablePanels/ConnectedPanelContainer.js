@@ -7,7 +7,7 @@ import { MainPanel } from "./PanelName";
 import type { PanelContainerProps } from './PanelContainer';
 
 type ConnectedPanelContainerProps = {
-    children? : Array<HTMLElement>
+    children? : Array<React$Node>
 }
 
 function mapStateToProps(state : any, ownProps : ConnectedPanelContainerProps) : PanelContainerProps {

@@ -1,3 +1,3 @@
 //@flow
 
-export { default as default } from "./ConnectedApplicationMenu";
+export { default as ApplicationMenu } from "./ConnectedApplicationMenu";

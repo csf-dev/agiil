@@ -6,8 +6,8 @@ import getStore from 'app/getStore';
 import { MainPanel, PanelContainer } from 'components/pageLayout/ToggleablePanels'
 import type { AnyStore } from 'util/redux/AnyStore';
 import { Provider } from 'react-redux';
-import ApplicationMenu from 'components/pageLayout/ApplicationMenu';
-import ContentArea from 'components/pageLayout/ContentArea';
+import { ApplicationMenu } from 'components/pageLayout/ApplicationMenu';
+import { ContentArea } from 'components/pageLayout/ContentArea';
 import { querySelectorMandatory } from 'util/dom';
 
 pageStarter(() => {
@@ -25,8 +25,6 @@ function renderComponents(store : AnyStore) {
         children = [...root.children],
         appMenu = querySelectorMandatory('body > .page_area > nav.application_menu'),
         contentArea = querySelectorMandatory('body > .page_area > section.content_area');
-    
-    children.forEach(child => child.remove());
 
     ReactDOM.render(
         <Provider store={store}>

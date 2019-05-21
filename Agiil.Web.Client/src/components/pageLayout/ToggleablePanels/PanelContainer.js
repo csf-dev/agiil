@@ -6,13 +6,14 @@ import { getElementsHtml } from 'util/dom';
 
 export type PanelContainerProps = {|
     currentPanel : ?PanelName,
-    children : Array<HTMLElement>
+    children : Array<React$Node>
 |};
 
 export function PanelContainer(props : PanelContainerProps) {
     return (
-        <div className={getClassName(props.currentPanel)}
-             dangerouslySetInnerHTML={getElementsHtml(props.children)} />
+        <div className={getClassName(props.currentPanel)}>
+            {props.children}
+        </div>
     );
 }
 

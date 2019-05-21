@@ -1,3 +1,3 @@
 //@flow
 
-export { default as default } from "./ConnectedContentArea";
+export { default as ContentArea } from "./ConnectedContentArea";
