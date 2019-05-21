@@ -2,6 +2,7 @@
 import * as React from "react";
 import type { PanelName } from "./PanelName";
 import { NavigationPanel, MainPanel, AsidesPanel } from "./PanelName";
+import { getElementsHtml } from 'util/dom';
 
 export type PanelContainerProps = {|
     currentPanel : ?PanelName,
@@ -11,7 +12,7 @@ export type PanelContainerProps = {|
 export function PanelContainer(props : PanelContainerProps) {
     return (
         <div className={getClassName(props.currentPanel)}
-             dangerouslySetInnerHTML={getChildMarkup(props.children)} />
+             dangerouslySetInnerHTML={getElementsHtml(props.children)} />
     );
 }
 
@@ -38,12 +39,4 @@ function getClassName(currentPanel : ?PanelName) {
     }
 
     return classes.join(' ');
-}
-
-function getChildMarkup(children) {
-    var markup = children
-        .map(x => x.outerHTML)
-        .reduce((acc, val) => acc + val, '');
-    
-    return { __html: markup };
 }
