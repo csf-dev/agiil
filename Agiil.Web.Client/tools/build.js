@@ -37,8 +37,11 @@ function runWebpack(options) {
     if(options.watched) webpackArgs.push('-w');
 
     return new Promise((res, rej) => {
-        const webpackProcess = spawn('npx', webpackArgs);
+		console.log('Running webpack');
+		const webpackProcess = spawn('npx', webpackArgs);
+		
         webpackProcess.on('exit', (code) => {
+			console.log('Completed webpack, exit code ' + code);
             if(code == 0 || options.watched) res();
             else rej();
         });
@@ -49,8 +52,11 @@ function buildModernizr(options) {
     const modernizrArgs = ['modernizr', '-c', 'buildConfigs/modernizr.config.json', '-d', 'dist/Content/bundles/modernizr.agiil.js'];
 
     return new Promise((res, rej) => {
+		console.log('Creating custom modernizr build');
         const modernizrProcess = spawn('npx', modernizrArgs);
+		
         modernizrProcess.on('exit', (code) => {
+			console.log('Completed custom modernizr build, exit code ' + code);
             if(code == 0) res();
             else rej();
         });
