@@ -35,7 +35,7 @@ function getCommentId(commentElement : HTMLElement) : number {
 
     const
         idPattern = /\w+\/\w+\/(\d+)/,
-        idMatch = [...((idElement.innerText || '').match(idPattern) || [])];
+        idMatch = [...((idElement.getAttribute('href') || '').match(idPattern) || [])];
     
     if(idMatch.length == 2)
         return parseInt(idMatch[1]);
