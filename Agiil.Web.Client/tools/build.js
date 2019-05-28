@@ -38,7 +38,7 @@ function runWebpack(options) {
 
     return new Promise((res, rej) => {
 		console.log('Running webpack');
-		const webpackProcess = spawn('npx', webpackArgs);
+		const webpackProcess = spawn('npx', webpackArgs, { shell: os.platform() === 'win32' });
 		
         webpackProcess.on('exit', (code) => {
 			console.log('Completed webpack, exit code ' + code);
@@ -53,7 +53,7 @@ function buildModernizr(options) {
 
     return new Promise((res, rej) => {
 		console.log('Creating custom modernizr build');
-        const modernizrProcess = spawn('npx', modernizrArgs);
+        const modernizrProcess = spawn('npx', modernizrArgs, { shell: os.platform() === 'win32' });
 		
         modernizrProcess.on('exit', (code) => {
 			console.log('Completed custom modernizr build, exit code ' + code);
