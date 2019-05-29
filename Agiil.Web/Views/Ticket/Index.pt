@@ -126,18 +126,22 @@
         <h2>Story point estimate</h2>
         <p tal:condition="ticket/HasStoryPoints"
            tal:define="multiplePoints csharp:ticket.StoryPoints &gt; 1;
-                       pointOrPoints csharp:multiplePoints? &quot;points&quot; : &quot;point&quot;">
-          <span tal:content="ticket/StoryPoints">3</span>
+                       pointOrPoints csharp:multiplePoints? &quot;points&quot; : &quot;point&quot;"
+           class="story_point_estimate">
+          <span tal:content="ticket/StoryPoints" class="value">3</span>
           story <span tal:replace="pointOrPoints">points</span>
         </p>
-        <p tal:condition="not:ticket/HasStoryPoints">
+        <p tal:condition="not:ticket/HasStoryPoints"
+           class="story_point_estimate no_estimate">
           No story point estimate
         </p>
         <h3>Work log</h3>
-        <p tal:condition="ticket/HasWorkLogged">
-          <span tal:content="ticket/TotalWorkLogged/TotalMinutes">30</span> minutes of work logged
+        <p tal:condition="ticket/HasWorkLogged"
+           class="total_work_logged">
+          <span tal:content="ticket/TotalWorkLogged/TotalMinutes" class="total_minutes">30</span> minutes of work logged
         </p>
-        <p tal:condition="not:ticket/HasWorkLogged">
+        <p tal:condition="not:ticket/HasWorkLogged"
+           class="total_work_logged nothing_logged">
           No work logged
         </p>
         <p tal:define="url string:AddTicketWorkLog/Index/${ticket/Reference}">

@@ -11,6 +11,8 @@ export default class TicketDetail {
     descriptionMarkup : string;
     comments : Array<TicketComment>;
     newCommentFeedback : ?FeedbackMessage;
+    isOpen : bool;
+
 
     getTicketReference() : TicketReference {
         return { reference : this.reference };

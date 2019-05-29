@@ -1,7 +1,14 @@
 {
 	"folders": [
 		{
-			"path": "./Agiil.Web.Client"
+			"path": "Agiil.Web.Client"
+		},
+		{
+			"path": "Agiil.Web/Content/Scss"
+		},
+		{
+			"path": "Agiil.Web/Views"
 		}
-	]
+	],
+    "settings": {}
 }
