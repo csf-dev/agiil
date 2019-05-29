@@ -169,5 +169,12 @@
   </p>
 </footer>
 <metal:block fill-slot="asset_scripts" use-macro="Views/Ticket/Index.assets.html/macros/scripts"></metal:block>
+<metal:block fill-slot="page_state">
+<script tal:define="serializer csharp:ViewBag.JsonSerializer;
+                    ticket here/Ticket;
+                    serializedTicket csharp:serializer.Serialize(ticket);
+                    pageState string:var ticketData = $serializedTicket;"
+        tal:content="structure pageState"></script>
+</metal:block>
 </body>
 </html>

@@ -433,6 +433,10 @@
     <Compile Include="Services\Tickets\IGetsTicketDetailDtoByReference.cs" />
     <Compile Include="Services\Tickets\TicketDetailDtoProvider.cs" />
     <Compile Include="Services\Tickets\TicketUriProvider.cs" />
+    <Compile Include="Services\ISerialisesToJson.cs" />
+    <Compile Include="Services\NewtonsoftJsonObjectSerialiser.cs" />
+    <Compile Include="ActionFilters\ObjectSerializerPopulator.cs" />
+    <Compile Include="ActionFilters\ActionExecutedContextExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
