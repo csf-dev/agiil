@@ -1,4 +1,3 @@
 //@flow
 
-export { PageHeader } from './PageHeader';
-export type { PageHeaderProps } from './PageHeader';
+export { connectedTicketPageHeader as TicketPageHeader } from './ConnectedTicketPageHeader';

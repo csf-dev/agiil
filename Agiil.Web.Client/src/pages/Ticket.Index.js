@@ -7,8 +7,10 @@ import { MainPanel, PanelContainer } from 'components/pageLayout/ToggleablePanel
 import type { AnyStore } from 'util/redux/AnyStore';
 import { Provider } from 'react-redux';
 import { ApplicationMenu } from 'components/pageLayout/ApplicationMenu';
-import { ContentArea } from 'components/pageLayout/TicketContentArea';
+import { ContentArea } from 'components/pageLayout/ContentArea';
 import { querySelectorMandatory } from 'util/dom';
+import { TicketPageHeader } from 'components/pageLayout/TicketPageHeader';
+import { ContentContainer } from 'components/pageLayout/TicketContentContainer';
 
 pageStarter(() => {
     const store = getInitialStore();
@@ -23,15 +25,19 @@ function renderComponents(store : AnyStore) {
     const
         root = querySelectorMandatory('body > .page_area'),
         children = [...root.children],
-        appMenu = querySelectorMandatory('body > .page_area > nav.application_menu'),
-        contentArea = querySelectorMandatory('body > .page_area > section.content_area');
+        appMenu = querySelectorMandatory('body > .page_area > nav.application_menu');
 
     ReactDOM.render(
         <Provider store={store}>
             <PanelContainer>
                 <ApplicationMenu>{[...appMenu.children]}</ApplicationMenu>
-                <ContentArea headerElement={contentArea.children[0]}
-                             contentContainerElement={contentArea.children[1]} />
+                <ContentArea>
+                    <TicketPageHeader />
+                    <ContentContainer>
+                        <ViewTicketMainContent />
+                        <ViewTicketAsides />
+                    </ContentContainer>
+                </ContentArea>
             </PanelContainer>
         </Provider>,
         root,

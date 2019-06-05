@@ -3,11 +3,11 @@ import * as React from "react";
 import type { PanelName } from "./PanelName";
 import { NavigationPanel, MainPanel, AsidesPanel } from "./PanelName";
 import { getElementsHtml } from 'util/dom';
+import type { HasChildren } from 'components';
 
-export type PanelContainerProps = {|
-    currentPanel : ?PanelName,
-    children : Array<React$Node>
-|};
+export type PanelContainerProps = {
+    currentPanel : ?PanelName
+} & HasChildren;
 
 export function PanelContainer(props : PanelContainerProps) {
     return (
