@@ -1,6 +1,6 @@
 //@flow
 
-export default class TicketComment {
+export type TicketComment = {
     id : number;
     author : string;
     createdTimestamp : string;
