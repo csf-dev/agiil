@@ -1,8 +1,18 @@
 //@flow
 
-export type TicketComment = {
-    id : number;
-    author : string;
-    createdTimestamp : string;
-    commentMarkup : string;
+export default class TicketComment {
+
+    #id : number;
+
+    get id() { return this.#id; }
+    author : ?string;
+    createdTimestamp : ?string;
+    commentMarkup : ?string;
+    isMine : bool;
+
+    get editUrl() { return `Comment/Edit/${this.id}`; }
+
+    constructor(id : number) {
+        this.#id = id;
+    }
 }

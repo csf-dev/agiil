@@ -2,6 +2,7 @@
 import * as React from "react";
 import { TicketIdentity } from './TicketIdentity';
 import { TitleContent } from './TitleContent';
+import { ContentHeader } from 'components/pageLayout';
 
 export type TicketPageHeaderProps = {
     ticketType : string,
@@ -11,9 +12,9 @@ export type TicketPageHeaderProps = {
 
 export function TicketPageHeader(props : TicketPageHeaderProps) {
     return (
-        <header>
+        <ContentHeader>
             <TicketIdentity reference={props.ticketRef} type={props.ticketType} />
             <TitleContent title={props.ticketTitle} />
-        </header>
+        </ContentHeader>
     );
 }

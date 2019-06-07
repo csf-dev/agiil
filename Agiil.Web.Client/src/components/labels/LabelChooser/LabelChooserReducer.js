@@ -1,7 +1,9 @@
 //@flow
 import type { LabelChooserState } from './LabelChooserState';
-import { ChangeValue, ChangeSuggestionVisibility, ChangeSuggestionLoadingState, ReplaceSuggestions } from './LabelChooserActions';
-import type { ChangeValueAction, ChangeSuggestionVisibilityAction, ChangeSuggestionLoadingStateAction, ReplaceSuggestionsAction } from './LabelChooserActions';
+import { ChangeSuggestionVisibility, ChangeSuggestionLoadingState, ReplaceSuggestions } from './LabelChooserActions';
+import type { ChangeSuggestionVisibilityAction, ChangeSuggestionLoadingStateAction, ReplaceSuggestionsAction } from './LabelChooserActions';
+import { ChangeComponentTextValue } from 'actions';
+import type { ChangeComponentTextValueAction } from 'actions';
 import { buildObjectReducer } from 'util/redux/ReducerBuilder';
 import { labelListReducer } from '../LabelList';
 import getComponentId from 'util/redux/getComponentId';
@@ -20,7 +22,7 @@ function getDefaultState(s : ?LabelChooserState) : LabelChooserState {
 
 const reducer = buildObjectReducer<LabelChooserState>(getDefaultState)
     .filterByComponentId()
-    .forTypeKey(ChangeValue).andAction<ChangeValueAction>((s, a) => {
+    .forTypeKey(ChangeComponentTextValue).andAction<ChangeComponentTextValueAction>((s, a) => {
         s = getDefaultState(s);
         return {...s, value: a.payload.value, ineligibleForSuggestions: !a.payload.value};
     })

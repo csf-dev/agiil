@@ -8,14 +8,13 @@ import type { Dispatch } from 'redux';
 import type { Cancelable } from 'models';
 import { Subject } from 'rxjs';
 import { debounceInput } from 'services/common';
+import { ChangeComponentTextValue } from 'actions';
 
 export const
-    ChangeValue : 'CHANGE_VALUE' = 'CHANGE_VALUE',
     ChangeSuggestionVisibility : 'CHANGE_VISIBILITY' = 'CHANGE_VISIBILITY',
     ChangeSuggestionLoadingState : 'CHANGE_SUGGESTION_LOADING_STATE' = 'CHANGE_SUGGESTION_LOADING_STATE',
     ReplaceSuggestions : 'REPLACE_SUGGESTIONS' = 'REPLACE_SUGGESTIONS';
 
-export type ChangeValueAction = Action<typeof ChangeValue,{value: string},ComponentId>;
 export type ChangeSuggestionVisibilityAction = Action<typeof ChangeSuggestionVisibility,{showSuggestions : bool},ComponentId>;
 export type ChangeSuggestionLoadingStateAction = Action<typeof ChangeSuggestionLoadingState,{loading: bool},ComponentId>;
 export type ReplaceSuggestionsAction = Action<typeof ReplaceSuggestions,{suggestions : Array<SelectableLabel>},ComponentId>;
@@ -34,7 +33,7 @@ export function updateValue(value : string, componentId : string, labelSuggester
     const suggester : RequestsDataAsync<string,Array<Label>> = labelSuggester || getLabelSuggester();
 
     return (dispatch : Dispatch<AnyAction>) => {
-        dispatch({ type: ChangeValue, payload: { value }, meta: { componentId } });
+        dispatch({ type: ChangeComponentTextValue, payload: { value }, meta: { componentId } });
         inputStream.next({value, dispatch, componentId, suggester});
     };
 }

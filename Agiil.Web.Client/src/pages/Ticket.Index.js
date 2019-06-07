@@ -1,16 +1,12 @@
 //@flow
 import React from 'react';
 import ReactDOM from 'react-dom';
-import pageStarter from 'util/pageStarter';
-import getStore from 'app/getStore';
-import { MainPanel, PanelContainer } from 'components/pageLayout/ToggleablePanels'
-import type { AnyStore } from 'util/redux/AnyStore';
 import { Provider } from 'react-redux';
-import { ApplicationMenu } from 'components/pageLayout/ApplicationMenu';
-import { ContentArea } from 'components/pageLayout/ContentArea';
+import type { AnyStore } from 'util/redux/AnyStore';
+import pageStarter from 'util/pageStarter';
 import { querySelectorMandatory } from 'util/dom';
-import { TicketPageHeader } from 'components/pageLayout/TicketPageHeader';
-import { ContentContainer } from 'components/pageLayout/TicketContentContainer';
+import getStore from 'app/getStore';
+import { MainPanel, PanelContainer, ApplicationMenu } from 'components/pageLayout'
 
 pageStarter(() => {
     const store = getInitialStore();
@@ -31,13 +27,7 @@ function renderComponents(store : AnyStore) {
         <Provider store={store}>
             <PanelContainer>
                 <ApplicationMenu>{[...appMenu.children]}</ApplicationMenu>
-                <ContentArea>
-                    <TicketPageHeader />
-                    <ContentContainer>
-                        <ViewTicketMainContent />
-                        <ViewTicketAsides />
-                    </ContentContainer>
-                </ContentArea>
+                <ViewTicketContentArea />
             </PanelContainer>
         </Provider>,
         root,
