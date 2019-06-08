@@ -5,4 +5,6 @@ export { ContentContainer } from './ContentContainer';
 export { ContentHeader } from './ContentHeader';
 export { ApplicationMenu } from './ApplicationMenu';
 export { MainContent } from './MainContent';
+export { MainContentAsides } from './MainContentAsides';
+export { AsideItem } from './AsideItem';
 export { NavigationPanel, MainPanel, AsidesPanel, PanelContainer } from "./ToggleablePanels";

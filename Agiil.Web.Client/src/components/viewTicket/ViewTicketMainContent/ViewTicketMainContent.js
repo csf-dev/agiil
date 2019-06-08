@@ -3,9 +3,9 @@ import * as React from "react";
 import { MainContent } from 'components/pageLayout';
 import { TicketDescription } from './TicketDescription';
 import { CommentsList, AddAComment } from '../TicketComments';
-import TicketDetail from 'models/tickets/TicketDetail';
+import type { ViewTicketProps } from 'components/viewTicket';
 
-export function ViewTicketMainContent(props : { ticket : TicketDetail }) {
+export function ViewTicketMainContent(props : ViewTicketProps) {
     return (
         <MainContent>
             <section className="ticket_description">
@@ -19,7 +19,7 @@ export function ViewTicketMainContent(props : { ticket : TicketDetail }) {
                     <h2>Ticket comments</h2>
                 </header>
                 <CommentsList ticket={props.ticket} />
-                <AddAComment ticket={props.ticket} stateSelector={x => x} />
+                <AddAComment ticket={props.ticket} stateSelector={x => x.addComment} />
             </section>
         </MainContent>
     );
