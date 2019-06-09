@@ -1,8 +1,8 @@
 //@flow
 import * as React from "react";
 import { MainContent } from 'components/pageLayout';
-import { TicketDescription } from './TicketDescription';
 import { CommentsList, AddAComment } from '../TicketComments';
+import { TicketDescription } from './TicketDescription';
 import type { ViewTicketProps } from 'components/viewTicket';
 
 export function ViewTicketMainContent(props : ViewTicketProps) {

@@ -1,7 +1,15 @@
+//@flow
+import * as React from "react";
+import type { ViewTicketProps } from 'components/viewTicket';
+import { AsideItem } from 'components/pageLayout';
+
+export function EditTicketLink(props : ViewTicketProps) {
+    return (
+        <AsideItem>
             <h3>Edit</h3>
             <p>
-            <a href="Ticket/Edit/0"
-                tal:define="editUrl ticket/EditUrl"
-                tal:attributes="href editUrl"
-                id="EditTicketLink">Edit this ticket</a>
+                <a href={props.ticket.editUrl} id="EditTicketLink">Edit this ticket</a>
             </p>
+        </AsideItem>
+    );
+}

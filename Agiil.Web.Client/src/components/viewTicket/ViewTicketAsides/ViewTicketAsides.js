@@ -3,6 +3,14 @@ import * as React from "react";
 import TicketDetail from 'models/tickets/TicketDetail';
 import { MainContentAsides } from 'components/pageLayout';
 import type { ViewTicketProps } from 'components/viewTicket';
+import { TicketStatus,
+         EditTicketLink,
+         TicketSprint,
+         TicketLabels,
+         TicketStoryPoints,
+         TicketWorkLog,
+         RelatedTickets,
+         TicketCreationInfo } from 'components/viewTicket/ViewTicketAsides';
 
 export function ViewTicketAsides(props : ViewTicketProps) {
     return (
