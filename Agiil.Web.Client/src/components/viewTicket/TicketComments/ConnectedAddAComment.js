@@ -28,7 +28,7 @@ function mapStateToProps(store : any, ownProps : ConnectedAddACommentProps) : Ad
 }
 
 const mapDispatchToProps = {
-    onAdd: updateComponentTextValue,
+    onChangeValue: updateComponentTextValue,
 };
 
 const connectedAddAComment = connect<AddACommentProps,ConnectedAddACommentProps, any, any, any, any>(

@@ -1,11 +1,11 @@
 //@flow
-import type { LabelChooserState } from './LabelChooserState';
-import { ChangeSuggestionVisibility, ChangeSuggestionLoadingState, ReplaceSuggestions } from './LabelChooserActions';
-import type { ChangeSuggestionVisibilityAction, ChangeSuggestionLoadingStateAction, ReplaceSuggestionsAction } from './LabelChooserActions';
+import type { LabelChooserState } from 'components/labels/LabelChooser';
+import { ChangeSuggestionVisibility, ChangeSuggestionLoadingState, ReplaceSuggestions } from 'components/labels/LabelChooser';
+import type { ChangeSuggestionVisibilityAction, ChangeSuggestionLoadingStateAction, ReplaceSuggestionsAction } from 'components/labels/LabelChooser';
 import { ChangeComponentTextValue } from 'actions';
 import type { ChangeComponentTextValueAction } from 'actions';
 import { buildObjectReducer } from 'util/redux/ReducerBuilder';
-import { labelListReducer } from '../LabelList';
+import labelListReducer from './LabelListReducer';
 import getComponentId from 'util/redux/getComponentId';
 
 const defaultState = {

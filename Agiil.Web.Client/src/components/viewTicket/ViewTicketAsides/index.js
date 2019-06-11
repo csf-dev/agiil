@@ -1,6 +1,6 @@
 //@flow
 
-export { ViewTicketAsides } from './ViewTicketAsides';
+export { connectedViewTicketAsides as ViewTicketAsides } from './ConnectedViewTicketAsides';
 
 export { EditTicketLink } from './EditTicketLink';
 export { RelatedTickets } from './RelatedTickets';

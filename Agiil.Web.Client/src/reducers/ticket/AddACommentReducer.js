@@ -3,7 +3,7 @@ import { ChangeComponentTextValue } from 'actions';
 import type { ChangeComponentTextValueAction } from 'actions';
 import { buildObjectReducer } from 'util/redux/ReducerBuilder';
 import getComponentId from 'util/redux/getComponentId';
-import type { AddACommentState } from './AddACommentState';
+import type { AddACommentState } from 'components/viewTicket/TicketComments';
 
 const defaultState = {
     commentBody: '',
@@ -23,4 +23,4 @@ const reducer = buildObjectReducer<AddACommentState>(getDefaultState)
     })
     .build();
 
-export default reducer;
+export { reducer };

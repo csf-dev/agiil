@@ -1,7 +1,7 @@
 //@flow
 import type { SelectableLabel } from 'models/labels';
-import { AddLabel, RemoveLabel, SelectLabel, NavigateSelection, DeselectAll } from './LabelListActions';
-import type { AddLabelAction, RemoveLabelAction, SelectLabelAction, NavigateSelectionAction, DeselectAllAction } from './LabelListActions';
+import { AddLabel, RemoveLabel, SelectLabel, NavigateSelection, DeselectAll } from 'components/labels/LabelList';
+import type { AddLabelAction, RemoveLabelAction, SelectLabelAction, NavigateSelectionAction, DeselectAllAction } from 'components/labels/LabelList';
 import { buildObjectReducer } from 'util/redux/ReducerBuilder';
 import type { LabelListState } from 'components/labels/LabelList';
 import getComponentId from 'util/redux/getComponentId';

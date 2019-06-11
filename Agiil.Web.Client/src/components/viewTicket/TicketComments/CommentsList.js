@@ -3,10 +3,10 @@ import * as React from "react";
 import TicketDetail from 'models/tickets/TicketDetail';
 import TicketComment from 'models/tickets/TicketComment';
 
-export function CommentsList(props : { ticket : TicketDetail })  {
+export function CommentsList(props : {| ticket : TicketDetail |})  {
     return (
         <ol className="comment_list">
-            {props.ticket.comments.map(CommentsListItem)}
+            {props.ticket.comments?.map(CommentsListItem)}
         </ol>
     );
 }

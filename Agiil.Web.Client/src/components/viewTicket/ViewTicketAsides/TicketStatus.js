@@ -14,7 +14,7 @@ export function TicketStatus(props : ViewTicketProps) {
                     <div className="form_element">
                         <p>
                             <span className="screen_reader_only">This ticket is</span>
-                            <span className="ticket_state">{props.ticket.isClosed? 'Closed' : 'Open'}</span><span class="screen_reader_only">.</span>
+                            <span className="ticket_state">{props.ticket.isClosed? 'Closed' : 'Open'}</span><span className="screen_reader_only">.</span>
                             <button id="OpenCloseButton">{props.ticket.isClosed? 'Re-open' : 'Close'}</button>
                         </p>
                     </div>

@@ -7,6 +7,8 @@ import pageStarter from 'util/pageStarter';
 import { querySelectorMandatory } from 'util/dom';
 import getStore from 'app/getStore';
 import { MainPanel, PanelContainer, ApplicationMenu } from 'components/pageLayout'
+import { ViewTicketContentArea } from 'components/viewTicket';
+import { getTicketDetailProvider } from 'services/tickets';
 
 pageStarter(() => {
     const store = getInitialStore();
@@ -14,7 +16,9 @@ pageStarter(() => {
 });
 
 function getInitialStore() : AnyStore {
-    return getStore({currentActivePagePanel: MainPanel});
+    const provider = getTicketDetailProvider(window.ticketData);
+    const ticket = provider.getTicketDetail();
+    return getStore({currentActivePagePanel: MainPanel, ticket, addComment: getAddCommentModel() });
 }
 
 function renderComponents(store : AnyStore) {
@@ -42,5 +46,13 @@ function afterRender(root : HTMLElement) {
             newChild = root.firstChild;
         if(!parent || !newChild) return;
         parent.replaceChild(newChild, root);
+    };
+}
+
+function getAddCommentModel() {
+    return {
+        commentBody: '',
+        showSuccessMessage: !!document.querySelector('.success.AddCommentFeedbackMessage'),
+        showInvalidCommentMessage: !!document.querySelector('.warning.AddCommentFeedbackMessage'),
     };
 }

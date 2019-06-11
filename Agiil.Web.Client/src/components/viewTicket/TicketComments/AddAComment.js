@@ -4,10 +4,10 @@ import type { AddACommentState } from './AddACommentState';
 import type { ComponentId } from 'models';
 import TicketDetail from 'models/tickets/TicketDetail';
 
-export type CommentProps = {
+export type CommentProps = {|
     commentModel : AddACommentState,
     ticket : TicketDetail,
-};
+|};
 
 export type AddACommentProps = ComponentId & CommentProps & {
     onChangeValue : (val : string, componentId : string) => void,
@@ -27,7 +27,8 @@ export function AddAComment(props : AddACommentProps) {
                     <label htmlFor="AddCommentBody">Body</label>
                     <textarea id="AddCommentBody"
                               name="Body"
-                              onChange={onChange}>{props.commentModel?.commentBody}</textarea>
+                              onChange={onChange}
+                              value={props.commentModel?.commentBody}></textarea>
                 </div>
                 <CommentFeedback commentModel={props.commentModel} ticket={props.ticket} />
                 <div className="form_element button">

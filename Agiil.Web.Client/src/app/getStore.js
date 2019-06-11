@@ -1,7 +1,7 @@
 //@flow
 import { createStore, applyMiddleware } from 'redux';
 import type { AnyStore } from 'util/redux/AnyStore';
-import { rootReducer } from 'models';
+import rootReducer from 'reducers';
 import thunk from 'redux-thunk';
 import mandatory from 'util/mandatory';
 

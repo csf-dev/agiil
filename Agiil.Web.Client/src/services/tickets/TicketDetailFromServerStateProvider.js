@@ -1,6 +1,6 @@
 //@flow
 import { GetsTicketDetail } from './GetsTicketDetail';
-import type { TicketComment } from 'models/tickets/TicketComment';
+import TicketComment from 'models/tickets/TicketComment';
 import type { TicketRelationship } from 'models/tickets/TicketRelationship';
 import TicketDetail from 'models/tickets/TicketDetail';
 import { parseTimespan } from 'util/parseTimespan';
@@ -47,12 +47,12 @@ function relationshipMapper(relationship : any) : ?TicketRelationship {
 }
 
 function commentMapper(comment : any) : ?TicketComment {
-    return {
-        id: comment.Id || 0,
-        author: comment.Author || '',
-        createdTimestamp: comment.Timestamp || '',
-        commentMarkup: comment.HtmlBody || ''
-    };
+    const output = new TicketComment(comment.Id || 0);
+    output.author = comment.Author || '';
+    output.createdTimestamp = comment.Timestamp || '';
+    output.commentMarkup = comment.HtmlBody || '';
+
+    return output;
 }
 
 function getTicketSummary(relatedTicket : any) : TicketSummary {
@@ -66,4 +66,8 @@ function getTicketSummary(relatedTicket : any) : TicketSummary {
     output.humanReadableCreated = relatedTicket.ShortTimestamp || null;
 
     return output;
+}
+
+export default function getTicketDetailProvider(state : any) : GetsTicketDetail {
+    return new TicketDetailFromServerStateProvider(state || window.ticketData);
 }
