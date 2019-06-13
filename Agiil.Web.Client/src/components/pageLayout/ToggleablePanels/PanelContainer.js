@@ -6,12 +6,13 @@ import { getElementsHtml } from 'util/dom';
 import type { HasChildren } from 'components';
 
 export type PanelContainerProps = {
-    currentPanel : ?PanelName
+    currentPanel : ?PanelName,
+    recentlyChanged : bool
 } & HasChildren;
 
 export function PanelContainer(props : PanelContainerProps) {
     return (
-        <div className={getClassName(props.currentPanel)}>
+        <div className={getClassName(props.currentPanel, props.recentlyChanged)}>
             {props.children}
         </div>
     );
@@ -23,7 +24,7 @@ const
     asidesPanelActiveClass = 'asides_panel_active',
     mainPanelActiveClass = '';
 
-function getClassName(currentPanel : ?PanelName) {
+function getClassName(currentPanel : ?PanelName, recentlyChanged : bool) {
     const classes = [pageAreaClass];
 
     switch(currentPanel)
@@ -38,6 +39,8 @@ function getClassName(currentPanel : ?PanelName) {
         classes.push(asidesPanelActiveClass);
         break;
     }
+
+    if(recentlyChanged) classes.push('recently_changed');
 
     return classes.join(' ');
 }

@@ -4,10 +4,10 @@ import type { AddACommentState } from './AddACommentState';
 import type { ComponentId } from 'models';
 import TicketDetail from 'models/tickets/TicketDetail';
 
-export type CommentProps = {|
+export type CommentProps = {
     commentModel : AddACommentState,
     ticket : TicketDetail,
-|};
+};
 
 export type AddACommentProps = ComponentId & CommentProps & {
     onChangeValue : (val : string, componentId : string) => void,

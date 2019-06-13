@@ -12,9 +12,9 @@ export type ConnectedAddACommentProps = {|
     stateSelector : (store : any) => AddACommentState & ComponentId,
 |};
 
-export type AddACommentDispatchProps = {
+export type AddACommentDispatchProps = {|
     onChangeValue : (val : string, componentId : string) => void,
-};
+|};
 
 export type AddACommentStatefulProps = $Diff<AddACommentProps,AddACommentDispatchProps>;
 

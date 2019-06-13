@@ -5,11 +5,13 @@ import type { AddLabelAction, RemoveLabelAction, SelectLabelAction, NavigateSele
 import { buildObjectReducer } from 'util/redux/ReducerBuilder';
 import type { LabelListState } from 'components/labels/LabelList';
 import getComponentId from 'util/redux/getComponentId';
+import type { Reducer } from 'redux';
+import type { AnyAction } from 'models';
 
 const defaultState = { labels: [] };
 const getDefaultState = (s : ?LabelListState) => s || ({...defaultState, componentId : getComponentId()} : LabelListState);
 
-const reducer = buildObjectReducer<LabelListState>(getDefaultState)
+const reducer : Reducer<LabelListState,AnyAction> = buildObjectReducer<LabelListState>(getDefaultState)
     .filterByComponentId()
     .forTypeKey(AddLabel).andAction<AddLabelAction>((s, a) => {
         s = getDefaultState(s);

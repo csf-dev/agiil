@@ -4,9 +4,12 @@ import TicketDetail from 'models/tickets/TicketDetail';
 import TicketComment from 'models/tickets/TicketComment';
 
 export function CommentsList(props : {| ticket : TicketDetail |})  {
+    //$FlowFixMe
+    const commentsMarkup = props.ticket.comments?.map(CommentsListItem);
+    
     return (
         <ol className="comment_list">
-            {props.ticket.comments?.map(CommentsListItem)}
+            {commentsMarkup}
         </ol>
     );
 }

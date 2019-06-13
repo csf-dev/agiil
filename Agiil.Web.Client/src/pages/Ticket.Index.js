@@ -18,7 +18,7 @@ pageStarter(() => {
 function getInitialStore() : AnyStore {
     const provider = getTicketDetailProvider(window.ticketData);
     const ticket = provider.getTicketDetail();
-    return getStore({currentActivePagePanel: MainPanel, ticket, addComment: getAddCommentModel() });
+    return getStore({activePagePanel: { activePanel: MainPanel }, ticket, addComment: getAddCommentModel() });
 }
 
 function renderComponents(store : AnyStore) {

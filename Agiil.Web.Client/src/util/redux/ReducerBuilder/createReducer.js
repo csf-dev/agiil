@@ -72,8 +72,11 @@ function addComponentIdIfNeeded(obj : mixed) : void {
 }
 
 function getDefaultState<S>(defaultState : S | () => S) : S {
-    if(typeof defaultState === 'function') return defaultState();
-    return defaultState;
+    if(typeof defaultState !== 'function')
+        return defaultState;
+
+    //$FlowFixMe
+    return defaultState();
 }
 
 function actionMatches(action : AnyAction, type : string, state : ?ComponentId, filterByComponentId : bool) : bool {

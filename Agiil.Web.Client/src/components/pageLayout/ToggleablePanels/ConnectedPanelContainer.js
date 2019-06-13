@@ -8,7 +8,8 @@ import type { HasChildren } from 'components';
 function mapStateToProps(state : any, ownProps : HasChildren) : PanelContainerProps {
     return {
         children: ownProps.children,
-        currentPanel: state.currentActivePagePanel || MainPanel
+        currentPanel: state.activePagePanel.activePanel || MainPanel,
+        recentlyChanged : state.activePagePanel.recentlyChanged || false
     };
 }
 

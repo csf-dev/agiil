@@ -7,6 +7,8 @@ import type { ChangeComponentTextValueAction } from 'actions';
 import { buildObjectReducer } from 'util/redux/ReducerBuilder';
 import labelListReducer from './LabelListReducer';
 import getComponentId from 'util/redux/getComponentId';
+import type { Reducer } from 'redux';
+import type { AnyAction } from 'models';
 
 const defaultState = {
     value: '',
@@ -20,7 +22,7 @@ function getDefaultState(s : ?LabelChooserState) : LabelChooserState {
     return s || {...defaultState, componentId: getComponentId()};
 }
 
-const reducer = buildObjectReducer<LabelChooserState>(getDefaultState)
+const reducer : Reducer<LabelChooserState,AnyAction> = buildObjectReducer<LabelChooserState>(getDefaultState)
     .filterByComponentId()
     .forTypeKey(ChangeComponentTextValue).andAction<ChangeComponentTextValueAction>((s, a) => {
         s = getDefaultState(s);

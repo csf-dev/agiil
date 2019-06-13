@@ -60,7 +60,8 @@ inputStream.subscribe((next : ValueStream) => {
     next.dispatch(changeSuggestionLoading(true, next.componentId));
 });
 
-inputStream.pipe(debounceInput()).subscribe((next : ValueStream) => {
+const debouncedStream = inputStream.pipe(debounceInput<ValueStream>());
+debouncedStream.subscribe((next : ValueStream) => {
     if(valueIsEmpty(next.value)) return;
 
     clearPendingRequests();

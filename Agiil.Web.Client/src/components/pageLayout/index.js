@@ -8,3 +8,4 @@ export { MainContent } from './MainContent';
 export { MainContentAsides } from './MainContentAsides';
 export { AsideItem } from './AsideItem';
 export { NavigationPanel, MainPanel, AsidesPanel, PanelContainer } from "./ToggleablePanels";
+export type { PanelName } from "./ToggleablePanels";
