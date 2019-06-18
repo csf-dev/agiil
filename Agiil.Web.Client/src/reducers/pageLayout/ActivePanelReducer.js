@@ -43,12 +43,10 @@ function getRightHandPanel(current : PanelName) {
 const reducer : Reducer<ActivePagePanel,AnyAction> = buildObjectReducer<ActivePagePanel>(getDefaultState)
     .forTypeKey(MoveLeft).andAction<MovePanelsLeftAction>((s, a) => {
         s = getDefaultState(s);
-        console.log(s);
         return {...s, activePanel: getLeftHandPanel(s.activePanel)};
     })
     .forTypeKey(MoveRight).andAction<MovePanelsRightAction>((s, a) => {
         s = getDefaultState(s);
-        console.log(s);
         return {...s, activePanel: getRightHandPanel(s.activePanel)};
     })
     .forTypeKey(PanelRecentlyChanged).andAction<PanelsRecentlyChangedAction>((s, a) => {

@@ -1,9 +1,12 @@
 //@flow
 import { connect } from 'react-redux';
-import type { MovePanelType } from './ChangePanelProps';
+import type { MovePanelType, ChangePanelProps } from './ChangePanelProps';
+import { Left, Right } from './ChangePanelProps'
+import type { ActivePagePanel } from 'models/pageLayout';
+import { NavigationPanel, AsidesPanel } from 'components/pageLayout';
 import { ChangePanelButton } from './ChangePanelButton'
-import type { ChangePanelProps } from './ChangePanelProps'
 import { movePanels } from 'actions/pageLayout/ChangeActivePanel';
+
 
 export type ConnectedChangePanelButtonProps = {
     type : MovePanelType
@@ -13,11 +16,18 @@ type EventProps = {
     onClick : () => void
 };
 
-function mapStateToProps(state : any, ownProps : ConnectedChangePanelButtonProps) : $Diff<ChangePanelProps,EventProps> {
+function isButtonEnabled(type : MovePanelType, state : ?ActivePagePanel) {
+    if(type === Left && state?.activePanel === NavigationPanel) return false;
+    if(type === Right && state?.activePanel === AsidesPanel) return false;
+    return true;
+}
+
+function mapStateToProps(state : { activePagePanel : ActivePagePanel }, ownProps : ConnectedChangePanelButtonProps) : $Diff<ChangePanelProps,EventProps> {
     return {
         type: ownProps.type,
-        activePanel: state.activePanel,
-        recentlyChanged: state.recentlyChanged,
+        activePanel: state?.activePagePanel?.activePanel,
+        recentlyChanged: state?.activePagePanel?.recentlyChanged,
+        enabled: isButtonEnabled(ownProps.type, state?.activePagePanel),
     };
 }
 
@@ -26,7 +36,6 @@ const mapDispatchToProps = {
 };
 
 function movePanelsFunc() {
-    console.log('Move panels clicked.', this.type);
     return movePanels(this.type);
 }
 

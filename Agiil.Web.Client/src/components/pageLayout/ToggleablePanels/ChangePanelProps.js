@@ -10,5 +10,6 @@ export type MovePanelType = MoveLeft | MoveRight;
 
 export type ChangePanelProps = ActivePagePanel & {
     type : MovePanelType,
+    enabled : bool,
     onClick : () => void
 };
