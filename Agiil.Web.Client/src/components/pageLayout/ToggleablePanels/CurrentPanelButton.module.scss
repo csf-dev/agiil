@@ -1,9 +1,21 @@
-.active_panel_indicator {
-    display: inline-block;
-    background: #F0F0F0 url('../../../../../Graphics/Exported/hamburger-icon.svg') middle right no-repeat;
+.activePanelIndicator {
+    background: #F0F0F0 url('../../../../../Graphics/Exported/hamburger-icon.svg') center right no-repeat;
+    background-size: 12px 12px;
+    background-position: center right 4px;
     border: 1px solid #444;
+    height: 20px;
+    padding: 0 20px 0 4px;
+    line-height: 20px;
+    box-sizing: content-box;
+    float: right;
+    cursor: pointer;
 
     .text {
         color: #444;
+        display: inline-block;
+        border-right: 1px solid #444;
+        height: 20px;
+        box-sizing: border-box;
+        padding-right: 4px;
     }
 }

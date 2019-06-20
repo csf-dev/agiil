@@ -34,6 +34,9 @@ body {
   .content_header button.change_panel {
     display: none;
   }
+  .content_header .activePanel {
+    display: none;
+  }
 }
 
 @media #{$mobile_media}, #{$tablet_media}, #{$medium_desktop_media} {
@@ -127,6 +130,9 @@ body {
   .page_area.app_nav_panel_active .content_header button.change_panel.Right {
     margin-right: 286px;
   }
+  .page_area.app_nav_panel_active .content_header .activePanel {
+    margin-right: 286px;
+  }
   .content_header button.change_panel.Left::after {
     margin-left: 0;
   }
@@ -153,6 +159,7 @@ body {
     float: none;
     margin: 0;
   }
-
-
+  .content_header .activePanel {
+    display: none;
+  }
 }

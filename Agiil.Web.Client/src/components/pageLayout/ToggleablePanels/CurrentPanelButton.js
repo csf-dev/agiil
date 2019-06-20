@@ -11,7 +11,8 @@ export type CurrentPanelButtonProps = ActivePagePanel & {
 
 export function CurrentPanelButton(props : CurrentPanelButtonProps) {
     return (
-        <button className={styles.activePanelIndicator}>
+        <button className={`${styles.activePanelIndicator} activePanel`}
+                title="Active panel">
             <span className={styles.text}>{getPanelName(props)}</span>
         </button>
     );
