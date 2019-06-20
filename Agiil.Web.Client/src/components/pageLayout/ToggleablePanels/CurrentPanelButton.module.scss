@@ -1,0 +1,9 @@
+.active_panel_indicator {
+    display: inline-block;
+    background: #F0F0F0 url('../../../../../Graphics/Exported/hamburger-icon.svg') middle right no-repeat;
+    border: 1px solid #444;
+
+    .text {
+        color: #444;
+    }
+}

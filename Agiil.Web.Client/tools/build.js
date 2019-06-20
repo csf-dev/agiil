@@ -4,7 +4,8 @@ const spawn = require('child_process').spawn;
 var options = getOptions();
 
 buildModernizr(options)
-    .then(() => runWebpack(options));
+    .then(() => runWebpack(options))
+    .then(() => {}, (err) => { console.error('Unexpected error', err); process.exit(1); });
 
 function getOptions() {
     let buildType = process.argv[2];
@@ -40,7 +41,7 @@ function runWebpack(options) {
         const webpackProcess = spawn('npx', webpackArgs);
         webpackProcess.on('exit', (code) => {
             if(code == 0 || options.watched) res();
-            else rej();
+            else rej('Webpack failed');
         });
     });
 }
@@ -52,7 +53,7 @@ function buildModernizr(options) {
         const modernizrProcess = spawn('npx', modernizrArgs);
         modernizrProcess.on('exit', (code) => {
             if(code == 0) res();
-            else rej();
+            else rej('Modernizr failed');
         });
     });
 }
