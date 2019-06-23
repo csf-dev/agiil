@@ -31,7 +31,7 @@ export function ChoosePanelModal(props : ChoosePanelModalProps) {
                     <button onClick={() => props.choosePanel(AsidesPanel)}>Asides</button>
                 </li>
             </ul>
-            <div className="touchscreenOnly">
+            <div className={`touchscreenOnly ${styles.touchscreenTip}`}>
                 <h3>Tip</h3>
                 <p>
                     On a touchscreen, you may swipe left/right to switch panels.

@@ -3,6 +3,8 @@
 @import '_ThreeColumnLayout_Base';
 
 html.flexbox {
+    overflow-x: hidden;
+
   body {
     min-height: 100%;
     display: flex;
@@ -102,6 +104,13 @@ html.flexbox {
       flex-basis: 50%;
       max-width: 50%;
     }
+    .application_menu {
+        padding-top: 4em;
+    }
+    .app_nav_panel_active .activePanel {
+        position: relative;
+        right: calc(100% + #{$double_side_padding});
+    }    
   }
 }
 
@@ -223,7 +232,8 @@ html.flexbox {
     }
     .page_root>footer {
       width: calc(#{$max_large_desktop_width} - #{$appmenu-width});
-      left: calc(50% - #{$max_large_desktop_width / 2} + #{$appmenu-width};
+      left: calc(50% - #{$max_large_desktop_width / 2} + #{$appmenu-width});
     }
   }
 }
+

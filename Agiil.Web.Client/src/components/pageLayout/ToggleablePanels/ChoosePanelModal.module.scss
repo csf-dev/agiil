@@ -1,6 +1,33 @@
 .cancelButton {
     float: right;
+    line-height: 100%;
+    padding: 0.3em;
+    box-sizing: content-box;
+    margin-top: calc(0.18em + 1px);
 }
-.panelsList {
+.cancelButton::after {
+    content: '❌';
+}
+.panelsList li {
+    margin-bottom: 0.8em;
+}
+.panelsList li button {
     display: block;
+    width: 100%;
+    padding: 0.4em 0;
+}
+.panelsList li:last-child {
+    margin-bottom: 0;
+}
+.touchscreenTip {
+    color: #444;
+    font-size: 85%;
+}
+.touchscreenTip h3 {
+    margin: 2em 0 0.2em;
+    font-size: 110%;
+    line-height: 140%;
+}
+.touchscreenTip p {
+    line-height: 140%;
 }
