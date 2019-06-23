@@ -6,7 +6,7 @@ import type { AnyStore } from 'util/redux/AnyStore';
 import pageStarter from 'util/pageStarter';
 import { querySelectorMandatory } from 'util/dom';
 import getStore from 'app/getStore';
-import { MainPanel, PanelContainer, ApplicationMenu } from 'components/pageLayout'
+import { MainPanel, PanelContainer, ApplicationMenu, PageFooter } from 'components/pageLayout'
 import { ViewTicketContentArea } from 'components/viewTicket';
 import { getTicketDetailProvider } from 'services/tickets';
 
@@ -18,14 +18,20 @@ pageStarter(() => {
 function getInitialStore() : AnyStore {
     const provider = getTicketDetailProvider(window.ticketData);
     const ticket = provider.getTicketDetail();
-    return getStore({activePagePanel: { activePanel: MainPanel }, ticket, addComment: getAddCommentModel() });
+
+    return getStore({
+        activePagePanel: { activePanel: MainPanel },
+        ticket,
+        addComment: getAddCommentModel()
+    });
 }
 
 function renderComponents(store : AnyStore) {
     const
-        root = querySelectorMandatory('body > .page_area'),
+        root = querySelectorMandatory('body > .page_root'),
         children = [...root.children],
-        appMenu = querySelectorMandatory('body > .page_area > nav.application_menu');
+        appMenu = querySelectorMandatory('body > .page_root > .page_area > nav.application_menu'),
+        footer = querySelectorMandatory('body > .page_root > footer');
 
     ReactDOM.render(
         <Provider store={store}>
@@ -33,20 +39,11 @@ function renderComponents(store : AnyStore) {
                 <ApplicationMenu>{[...appMenu.children]}</ApplicationMenu>
                 <ViewTicketContentArea />
             </PanelContainer>
+            <PageFooter>{[...footer.children]}</PageFooter>
+            <div id="modalHost" />
         </Provider>,
-        root,
-        afterRender(root)
+        root
     );
-}
-
-function afterRender(root : HTMLElement) {
-    return () => {
-        const
-            parent = root.parentElement,
-            newChild = root.firstChild;
-        if(!parent || !newChild) return;
-        parent.replaceChild(newChild, root);
-    };
 }
 
 function getAddCommentModel() {

@@ -17,7 +17,7 @@ const
     PanelRecentlyChanged : 'PANEL_RECENTLY_CHANGED' = 'PANEL_RECENTLY_CHANGED',
     PanelNotRecentlyChanged : 'PANEL_NOT_RECENTLY_CHANGED' = 'PANEL_NOT_RECENTLY_CHANGED';
 
-export { MoveLeft, MoveRight, SetPanel, PanelRecentlyChanged, PanelNotRecentlyChanged };
+export { MoveLeft, MoveRight, SetPanel, PanelRecentlyChanged, PanelNotRecentlyChanged, OpenChangePanelDialog, CloseChangePanelDialog };
 
 export type MovePanelsLeftAction = Action<typeof MoveLeft,{||},{||}>;
 export type MovePanelsRightAction = Action<typeof MoveRight,{||},{||}>;

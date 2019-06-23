@@ -9,6 +9,12 @@ $double_side_padding: $side_padding * 2;
 html {
   height: 100%;
 }
+html.modal-visible {
+    overflow-y: hidden;
+}
+html.no-possibletouchscreen .touchscreenOnly {
+    display: none;
+}
 body {
   overflow-x: hidden;
 }

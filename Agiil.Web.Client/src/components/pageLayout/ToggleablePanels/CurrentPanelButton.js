@@ -4,17 +4,25 @@ import type { ActivePagePanel } from 'models/pageLayout';
 import { NavigationPanel, MainPanel, AsidesPanel } from 'components/pageLayout';
 // $FlowFixMe
 import styles from './CurrentPanelButton.module.scss';
+import { ChoosePanelModal } from './ChoosePanelModal';
+import type { PanelName } from './PanelName';
 
 export type CurrentPanelButtonProps = ActivePagePanel & {
-    onClick: () => void
+    onClick: () => void,
+    dismissModal: () => void,
+    choosePanel: (panel : PanelName) => void,
 };
 
 export function CurrentPanelButton(props : CurrentPanelButtonProps) {
     return (
-        <button className={`${styles.activePanelIndicator} activePanel`}
-                title="Active panel">
-            <span className={styles.text}>{getPanelName(props)}</span>
-        </button>
+        <>
+            <button className={`${styles.activePanelIndicator} activePanel`}
+                    title="Active panel"
+                    onClick={props.onClick}>
+                <span className={styles.text}>{getPanelName(props)}</span>
+            </button>
+            <ChoosePanelModal dismissModal={props.dismissModal} choosePanel={props.choosePanel} />
+        </>
     );
 }
 

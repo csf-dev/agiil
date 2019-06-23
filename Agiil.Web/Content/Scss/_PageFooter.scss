@@ -1,6 +1,6 @@
 @import '_AppWideVariables';
 
-body>footer {
+.page_root > footer {
   box-sizing: border-box;
   border-top: 1px solid $subtle-keyline-color;
   padding: 0.4em;

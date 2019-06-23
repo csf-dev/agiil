@@ -28,6 +28,7 @@ function mapStateToProps(state : { activePagePanel : ActivePagePanel }, ownProps
         activePanel: state?.activePagePanel?.activePanel,
         recentlyChanged: state?.activePagePanel?.recentlyChanged,
         enabled: isButtonEnabled(ownProps.type, state?.activePagePanel),
+        choosePanelDialogVisible: state?.activePagePanel?.choosePanelDialogVisible,
     };
 }
 

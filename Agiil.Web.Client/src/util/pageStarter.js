@@ -7,6 +7,7 @@ function getStartupFunction(startup : () => void) : () => void {
     return () => {
         const errorDetector = getWindowErrorDetector();
         errorDetector.addUnhandledErrorHandler(showModalOnUnhandledError);
+        configureModernizr();
         startup();
     };
 }
@@ -27,6 +28,20 @@ function pageStarter(startup : () => void) {
         startupFunc();
         started = true;
     }
+}
+
+function configureModernizr() {
+    // TODO: Fix this by importing Modernizr as a global
+    // $FlowFixMe
+    const modernizr = Modernizr;
+
+    modernizr.addTest({
+        'possibletouchscreen': function() {
+            if(!modernizr.pointermq) return false;
+            if(!modernizr.touchevents) return false;
+            return window.matchMedia('(pointer: coarse)').matches;
+        }
+    });
 }
 
 export default pageStarter;
