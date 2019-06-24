@@ -6,7 +6,7 @@ import type { AnyStore } from 'util/redux/AnyStore';
 import pageStarter from 'util/pageStarter';
 import { querySelectorMandatory } from 'util/dom';
 import getStore from 'app/getStore';
-import { MainPanel, PanelContainer, ApplicationMenu, PageFooter } from 'components/pageLayout'
+import { MainPanel, PanelContainer, ApplicationMenu, PageFooter, PanelChangeIndicator } from 'components/pageLayout'
 import { ViewTicketContentArea } from 'components/viewTicket';
 import { getTicketDetailProvider } from 'services/tickets';
 
@@ -40,6 +40,7 @@ function renderComponents(store : AnyStore) {
                 <ViewTicketContentArea />
             </PanelContainer>
             <PageFooter>{[...footer.children]}</PageFooter>
+            <PanelChangeIndicator />
             <div id="modalHost" />
         </Provider>,
         root
