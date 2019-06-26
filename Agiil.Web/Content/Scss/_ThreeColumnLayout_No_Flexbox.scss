@@ -6,6 +6,9 @@ $no_flexbox_content_top_adjustment: -$appmenu-top-padding + $main_header_top_pad
 
 html.no-flexbox {
   body {
+    min-height: 100%;
+  }
+  .page_root {
     min-height: calc(100% - #{$footer-height});
     display: table;
     position: relative;
@@ -46,7 +49,7 @@ html.no-flexbox {
     display: table-cell;
     width: $asides-width;
   }
-  body>footer {
+  .page_root>footer {
     height: $footer-height;
     position: absolute;
     width: 100%;

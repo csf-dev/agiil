@@ -25,8 +25,8 @@
                             me here/LoginState/Username;
                             commentIsMine csharp:Equals(author, me)">
           <p>
-            Written by <strong tal:content="comment/Author">Username</strong> on
-            <strong tal:content="comment/AuthoredTimestamp">2001-01-01 19:21:22</strong>.
+            Written by <strong tal:content="comment/Author" class="author_name">Username</strong> on
+            <strong tal:content="comment/AuthoredTimestamp" class="author_timestamp">2001-01-01 19:21:22</strong>.
           </p>
           <tal:block condition="commentIsMine">
           <p>
@@ -42,7 +42,7 @@
           </form>
           </tal:block>
         </header>
-        <div tal:content="structure comment/HtmlBody" class="comment_content">Comment text here</div>
+        <div tal:content="structure comment/HtmlBody" class="comment_content markdown_rendered_text">Comment text here</div>
       </li>
     </ol>
     <form metal:define-macro="add_a_comment"

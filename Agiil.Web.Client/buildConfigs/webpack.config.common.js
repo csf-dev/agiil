@@ -19,7 +19,7 @@ const webpackConfig = {
     resolve: {
         modules: [
             'node_modules',
-            path.resolve(__dirname, '../src')
+            path.resolve(__dirname, '../src'),
         ]
     },
     module: {
@@ -72,6 +72,10 @@ const webpackConfig = {
                     cssPlainLoader,
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.(png|svg|jpg)$/,
+                use: [ 'file-loader' ],
             },
         ]
     },

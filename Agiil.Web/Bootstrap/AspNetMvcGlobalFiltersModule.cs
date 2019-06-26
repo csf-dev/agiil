@@ -13,6 +13,7 @@ namespace Agiil.Web.Bootstrap
       typeof(LoginStateModelPopulator),
       typeof(VersionInfoModelPopulator),
       typeof(BaseUriModelPopulator),
+      typeof(ObjectSerializerPopulator),
     };
 
     protected override void Load(ContainerBuilder builder)

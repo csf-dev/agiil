@@ -1,10 +1,14 @@
 //@flow
-import type { LabelChooserState } from './LabelChooserState';
-import { ChangeValue, ChangeSuggestionVisibility, ChangeSuggestionLoadingState, ReplaceSuggestions } from './LabelChooserActions';
-import type { ChangeValueAction, ChangeSuggestionVisibilityAction, ChangeSuggestionLoadingStateAction, ReplaceSuggestionsAction } from './LabelChooserActions';
+import type { LabelChooserState } from 'components/labels/LabelChooser';
+import { ChangeSuggestionVisibility, ChangeSuggestionLoadingState, ReplaceSuggestions } from 'components/labels/LabelChooser';
+import type { ChangeSuggestionVisibilityAction, ChangeSuggestionLoadingStateAction, ReplaceSuggestionsAction } from 'components/labels/LabelChooser';
+import { ChangeComponentTextValue } from 'actions';
+import type { ChangeComponentTextValueAction } from 'actions';
 import { buildObjectReducer } from 'util/redux/ReducerBuilder';
-import { labelListReducer } from '../LabelList';
+import labelListReducer from './LabelListReducer';
 import getComponentId from 'util/redux/getComponentId';
+import type { Reducer } from 'redux';
+import type { AnyAction } from 'models';
 
 const defaultState = {
     value: '',
@@ -18,9 +22,9 @@ function getDefaultState(s : ?LabelChooserState) : LabelChooserState {
     return s || {...defaultState, componentId: getComponentId()};
 }
 
-const reducer = buildObjectReducer<LabelChooserState>(getDefaultState)
+const reducer : Reducer<LabelChooserState,AnyAction> = buildObjectReducer<LabelChooserState>(getDefaultState)
     .filterByComponentId()
-    .forTypeKey(ChangeValue).andAction<ChangeValueAction>((s, a) => {
+    .forTypeKey(ChangeComponentTextValue).andAction<ChangeComponentTextValueAction>((s, a) => {
         s = getDefaultState(s);
         return {...s, value: a.payload.value, ineligibleForSuggestions: !a.payload.value};
     })

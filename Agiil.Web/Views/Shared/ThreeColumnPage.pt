@@ -27,6 +27,7 @@
 <style metal:define-slot="asset_styles" tal:omit-tag=""></style>
 </head>
 <body metal:fill-slot="body_element">
+<div class="page_root">
 <header metal:define-slot="page_header"></header>
 <div metal:define-slot="page_content" class="page_area">
   <nav class="application_menu"
@@ -62,6 +63,8 @@
     Agiil <span class="ApplicationVersion">v4.5.6</span>
   </p>
 </footer>
+</div>
 <metal:block define-slot="asset_scripts"></metal:block>
+<metal:block define-slot="page_state"></metal:block>
 </body>
 </html>

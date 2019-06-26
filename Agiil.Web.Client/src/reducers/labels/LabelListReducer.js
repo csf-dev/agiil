@@ -1,15 +1,17 @@
 //@flow
 import type { SelectableLabel } from 'models/labels';
-import { AddLabel, RemoveLabel, SelectLabel, NavigateSelection, DeselectAll } from './LabelListActions';
-import type { AddLabelAction, RemoveLabelAction, SelectLabelAction, NavigateSelectionAction, DeselectAllAction } from './LabelListActions';
+import { AddLabel, RemoveLabel, SelectLabel, NavigateSelection, DeselectAll } from 'components/labels/LabelList';
+import type { AddLabelAction, RemoveLabelAction, SelectLabelAction, NavigateSelectionAction, DeselectAllAction } from 'components/labels/LabelList';
 import { buildObjectReducer } from 'util/redux/ReducerBuilder';
 import type { LabelListState } from 'components/labels/LabelList';
 import getComponentId from 'util/redux/getComponentId';
+import type { Reducer } from 'redux';
+import type { AnyAction } from 'models';
 
 const defaultState = { labels: [] };
 const getDefaultState = (s : ?LabelListState) => s || ({...defaultState, componentId : getComponentId()} : LabelListState);
 
-const reducer = buildObjectReducer<LabelListState>(getDefaultState)
+const reducer : Reducer<LabelListState,AnyAction> = buildObjectReducer<LabelListState>(getDefaultState)
     .filterByComponentId()
     .forTypeKey(AddLabel).andAction<AddLabelAction>((s, a) => {
         s = getDefaultState(s);

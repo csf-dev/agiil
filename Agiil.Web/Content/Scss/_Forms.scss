@@ -17,6 +17,7 @@ $form_row_spacing: 0.4em;
     &.long_text textarea {
       width: 100%;
       min-height: 10em;
+      box-sizing: border-box;
     }
   }
 }

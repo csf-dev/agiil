@@ -1,9 +1,11 @@
 {
     "minify": true,
     "options": [
-      "setClasses"
+        "setClasses"
     ],
     "feature-detects": [
-      "test/css/flexbox"
+        "test/touchevents",
+        "test/css/flexbox",
+        "test/mediaquery/pointermq"
     ]
 }

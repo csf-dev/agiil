@@ -1,0 +1,31 @@
+.panelChangeIndicator {
+    position: fixed;
+    height: 1em;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5em;
+    padding: 1em 2em;
+    background-color: rgba(45, 125, 200, 0.25);
+    display: none;
+    border-radius: 1em 1em 0 0;      
+}
+.panelChangeIndicator.active {
+    display: block;
+}
+
+.panelIndicator {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    padding: 0;
+    background-color: rgba(35, 100, 160, 0.4);
+    border-radius: 0.5em;
+    margin-right: 1em;
+}
+.panelIndicator.active {
+    background-color: rgba(35, 100, 160, 1);
+}
+.panelIndicator:last-child {
+    margin-right: 0;
+}

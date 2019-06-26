@@ -3,10 +3,18 @@
 @import '_ThreeColumnLayout_Base';
 
 html.flexbox {
+    overflow-x: hidden;
+
   body {
     min-height: 100%;
     display: flex;
     flex-direction: column;
+  }
+  .page_root{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex-grow: 1;
   }
   .page_area {
     flex-grow: 1;
@@ -33,7 +41,7 @@ html.flexbox {
   .main_content_asides {
     flex-basis: $asides-width;
   }
-  body>footer {
+  .page_root>footer {
     flex-basis: $footer-height;
     width: calc(100% - #{$appmenu-width});
     position: relative;
@@ -60,7 +68,7 @@ html.flexbox {
       flex-shrink: 0;
       box-sizing: border-box;
     }
-    body>footer {
+    .page_root>footer {
       flex-basis: $footer-height;
       width: 100%;
       position: static;
@@ -96,6 +104,13 @@ html.flexbox {
       flex-basis: 50%;
       max-width: 50%;
     }
+    .application_menu {
+        padding-top: 4em;
+    }
+    .app_nav_panel_active .activePanel {
+        position: relative;
+        right: calc(100% + #{$double_side_padding});
+    }    
   }
 }
 
@@ -162,7 +177,7 @@ html.flexbox {
       margin-right: auto;
       flex-shrink: 1;
     }
-    body>footer {
+    .page_root>footer {
       flex-basis: $footer-height;
       width: 100%;
       position: static;
@@ -215,9 +230,10 @@ html.flexbox {
       margin-left: auto;
       margin-right: auto;
     }
-    body>footer {
+    .page_root>footer {
       width: calc(#{$max_large_desktop_width} - #{$appmenu-width});
-      left: calc(50% - #{$max_large_desktop_width / 2} + #{$appmenu-width};
+      left: calc(50% - #{$max_large_desktop_width / 2} + #{$appmenu-width});
     }
   }
 }
+
