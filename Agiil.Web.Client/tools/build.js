@@ -36,12 +36,17 @@ function getOptions() {
 function runWebpack(options) {
     const webpackArgs = ['webpack', '--config', options.configFile];
     if(options.watched) webpackArgs.push('-w');
-    const spawnOptions = { stdio: 'inherit' };
+    const spawnOptions = {
+        stdio: 'inherit',
+        shell: os.platform() === 'win32'
+    };
 
     return new Promise((res, rej) => {
         console.log(`Executing Webpack: npx ${webpackArgs.join(' ')}`);
         const webpackProcess = spawn('npx', webpackArgs, spawnOptions);
+        
         webpackProcess.on('exit', (code) => {
+            console.log('Completed webpack, exit code ' + code);
             if(code == 0 || options.watched) res();
             else rej('Webpack failed');
         });
@@ -50,12 +55,17 @@ function runWebpack(options) {
 
 function buildModernizr(options) {
     const modernizrArgs = ['modernizr', '-c', 'buildConfigs/modernizr.config.json', '-d', 'dist/Content/bundles/modernizr.agiil.js'];
-    const spawnOptions = { stdio: 'inherit' };
+    const spawnOptions = {
+        stdio: 'inherit',
+        shell: os.platform() === 'win32'
+    };
 
     return new Promise((res, rej) => {
         const modernizrProcess = spawn('npx', modernizrArgs, spawnOptions);
         console.log(`Executing Modernizr: npx ${modernizrArgs.join(' ')}`);
+        
         modernizrProcess.on('exit', (code) => {
+            console.log('Completed custom modernizr build, exit code ' + code);
             if(code == 0) res();
             else rej('Modernizr failed');
         });
