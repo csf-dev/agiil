@@ -5,6 +5,7 @@ import type { TicketRelationship } from 'models/tickets/TicketRelationship';
 import TicketDetail from 'models/tickets/TicketDetail';
 import { parseTimespan } from 'util/parseTimespan';
 import TicketSummary from 'models/tickets/TicketSummary';
+import { querySelectorMandatory } from 'util/dom';
 
 export class TicketDetailFromServerStateProvider implements GetsTicketDetail {
     #state : any;
@@ -55,8 +56,19 @@ function commentMapper(comment : any) : ?TicketComment {
     output.author = comment.Author || '';
     output.createdTimestamp = comment.Timestamp || '';
     output.commentMarkup = comment.HtmlBody || '';
+    output.isMine = comment.Author === getCurrentUser();
 
     return output;
+}
+
+let currentUser : ?string = null;
+function getCurrentUser() : string {
+    if(!currentUser) {
+        const userElement = querySelectorMandatory('.login_logout_control .logout p strong');
+        currentUser = userElement.innerText;
+    }
+
+    return currentUser || '';
 }
 
 function getTicketSummary(relatedTicket : any) : TicketSummary {
