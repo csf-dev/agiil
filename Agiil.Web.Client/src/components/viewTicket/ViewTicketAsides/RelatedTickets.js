@@ -8,6 +8,7 @@ export function RelatedTickets(props : ViewTicketProps) {
     return (
         <AsideItem>
             <h3>Related tickets</h3>
+            {getRelatedTicketsContent(props)}
         </AsideItem>
     );
 }
