@@ -31,6 +31,9 @@ html.flexbox {
     display: flex;
     flex-direction: column;
   }
+  .page_area, .content_container {
+    transition: transform 200ms cubic-bezier(0, 0.4, 0.2, 1);
+  }
   .content_container {
     display: flex;
     flex-grow: 1;
@@ -160,6 +163,9 @@ html.flexbox {
     .page_area {
       width: calc(100% + 300px);
       transform: translateX(-300px);
+    }
+    .page_area .application_menu {
+        transition: transform 200ms cubic-bezier(0, 0.4, 0.2, 1);
     }
     .page_area.app_nav_panel_active .application_menu {
       transform: translateX(300px);
