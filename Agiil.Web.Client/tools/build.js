@@ -1,5 +1,6 @@
 // Script accepts a single parameter, and that's the type of build we are running
 const spawn = require('child_process').spawn;
+const os = require('os');
 
 var options = getOptions();
 
