@@ -8,8 +8,7 @@ export function TicketCreationInfo(props : ViewTicketProps) {
         <AsideItem>
             <h3>Created</h3>
             <p>
-                Created by <strong id="TicketCreatorUsername">{props.ticket.author}</strong>
-                on <strong>{props.ticket.humanReadableCreated}</strong>
+                Created by <strong id="TicketCreatorUsername">{props.ticket.author}</strong> on <strong>{props.ticket.humanReadableCreated}</strong>
             </p>
         </AsideItem>
     );
