@@ -2,6 +2,8 @@
 @import '_RichDescriptions';
 @import '_RelationshipTables';
 @import '_AppWideVariables';
+@import '_ResponsiveBreakpoints';
+@import '_ThreeColumnLayout_Base';
 
 .content_area>header .ticket_identity {
   font-size: $small-text-size;
@@ -37,3 +39,9 @@
 .comment_content {
   @include rich_description;
 }
+
+@media #{$mobile_media}, #{$tablet_media} {
+    .content_area > header h1 {
+        font-size: $main_header_font_size * 0.8;
+    }
+}  
