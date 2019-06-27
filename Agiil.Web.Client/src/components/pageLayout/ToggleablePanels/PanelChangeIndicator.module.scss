@@ -5,13 +5,16 @@
     left: 50%;
     transform: translateX(-50%);
     width: 5em;
-    padding: 1em 2em;
-    background-color: rgba(45, 125, 200, 0.25);
-    display: none;
-    border-radius: 1em 1em 0 0;      
+    padding: 0.5em 1em;
+    background-color: hsla(209, 63%, 80%, 0.75);
+    border: 1px solid hsla(209, 63%, 80%, 0.90);
+    border-bottom-width: 0;
+    opacity: 0;
+    border-radius: 1em 1em 0 0;
+    transition: opacity 800ms ease-out;
 }
 .panelChangeIndicator.active {
-    display: block;
+    opacity: 1;
 }
 
 .panelIndicator {
