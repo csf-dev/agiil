@@ -42,7 +42,7 @@ export function CommentAdminTools(props : { comment : TicketComment }) {
             <form method="post" action="Comment/ConfirmDelete" >
                 <fieldset>
                     <input type="hidden" name="id" value={props.comment.id} />
-                    <button class="delete_comment">Delete this comment</button>
+                    <button className="delete_comment">Delete this comment</button>
                 </fieldset>
             </form>
         </>

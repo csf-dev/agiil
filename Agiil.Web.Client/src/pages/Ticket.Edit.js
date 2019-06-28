@@ -17,7 +17,7 @@ pageStarter(() => {
 function getInitialStore() : AnyStore {
     const labelsInput : HTMLInputElement = (getElementByIdMandatory('Labels') : any);
     const labels = getLabelListFactory(labelsInput).getLabelList();
-    return getStore({selectedLabels: {labels}});
+    return getStore({labelChooser: {selectedLabels: {labels}}});
 }
 
 function renderComponents(store : AnyStore) {
