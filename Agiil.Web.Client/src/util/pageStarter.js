@@ -3,11 +3,23 @@ import 'element-remove';
 import getWindowErrorDetector from './WindowErrorDetector';
 import showModalOnUnhandledError from './showModalOnUnhandledError';
 
+// TODO: Fix this by importing Modernizr in the normal way
+// This will probably require some WebPack config to make it
+// into a module.
+// $FlowFixMe
+const modernizr = Modernizr;
+
 function getStartupFunction(startup : () => void) : () => void {
     return () => {
         const errorDetector = getWindowErrorDetector();
         errorDetector.addUnhandledErrorHandler(showModalOnUnhandledError);
         configureModernizr();
+
+        if(!modernizr.flexbox) {
+            console.log('Not loading client scripts; we are in an ancient browser which does not does not support the baseline requirements.');
+            return;
+        }
+
         startup();
     };
 }
@@ -31,10 +43,6 @@ function pageStarter(startup : () => void) {
 }
 
 function configureModernizr() {
-    // TODO: Fix this by importing Modernizr as a global
-    // $FlowFixMe
-    const modernizr = Modernizr;
-
     modernizr.addTest({
         'possibletouchscreen': function() {
             if(!modernizr.pointermq) return false;

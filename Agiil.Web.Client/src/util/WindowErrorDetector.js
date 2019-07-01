@@ -19,12 +19,13 @@ export class WindowErrorDetector implements DetectsErrorsInWindow {
     #handlers : Set<ErrorHandler>;
 
     onError(event : ErrorEvent) {
-        console.log('Error detected by WindowErrorDetector');
+        console.error('Unhandled error event', event.error);
+
         const handlers = this.#handlers;
         handlers.forEach(handler => {
             try { handler(event.error); }
             catch(error) {
-                console.error('Error whilst handling an unhandled error, bailing out for sanity\'s sake!', error);
+                console.error("Encountered an whilst handling an unhandled error, bailing out for sanity's sake!", error);
             }
         });
     }
