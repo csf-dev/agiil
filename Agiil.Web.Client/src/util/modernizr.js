@@ -28,7 +28,7 @@ export type ModernizrApi = {
     testAllProps : (prop : string, value? : string, skipValueTest? : bool) => bool,
     testProp : (prop : string, value? : string, useValue? : bool) => bool,
     testStyles : (rule : string, callback : (ele : HTMLElement, rule : string) => void, nodes? : number, testnames? : Array<string>) => void,
-    passesTest : (test : string) => bool,
+    has : (test : string) => bool,
 }
 
 //$FlowFixMe

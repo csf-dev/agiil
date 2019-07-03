@@ -10,11 +10,6 @@ function getStartupFunction(startup : () => void) : () => void {
         errorDetector.addUnhandledErrorHandler(showModalOnUnhandledError);
         configureModernizr();
 
-        if(!modernizr.passesTest('flexbox')) {
-            console.log('Not loading client scripts; we are in an ancient browser which does not does not support the baseline requirements.');
-            return;
-        }
-
         startup();
     };
 }
@@ -40,8 +35,8 @@ function pageStarter(startup : () => void) {
 function configureModernizr() {
     modernizr.addTest({
         'possibletouchscreen': function() {
-            if(!modernizr.passesTest('pointermq')) return false;
-            if(!modernizr.passesTest('touchevents')) return false;
+            if(!modernizr.has('pointermq')) return false;
+            if(!modernizr.has('touchevents')) return false;
             return window.matchMedia('(pointer: coarse)').matches;
         }
     });

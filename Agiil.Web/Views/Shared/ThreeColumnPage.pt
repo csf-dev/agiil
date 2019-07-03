@@ -64,7 +64,7 @@
   </p>
 </footer>
 </div>
-<metal:block define-slot="asset_scripts"></metal:block>
 <metal:block define-slot="page_state"></metal:block>
+<metal:block define-slot="asset_scripts"></metal:block>
 </body>
 </html>
