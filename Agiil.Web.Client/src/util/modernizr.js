@@ -32,7 +32,7 @@ export type ModernizrApi = {
 }
 
 //$FlowFixMe
-Modernizr.passesTest = function(test : string) { return this[test]; }
+Modernizr.has = function(test : string) { return this[test]; }
 
 //$FlowFixMe
 export const modernizr : ModernizrApi = Modernizr;
