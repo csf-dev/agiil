@@ -154,6 +154,9 @@
     <Compile Include="ClassMappings\TicketRelationshipMapping.cs" />
     <Compile Include="ClassMappings\TicketMapping.cs" />
     <Compile Include="ConventionMappings\NullableMapping.cs" />
+    <Compile Include="Types\JsonSerializedType.cs" />
+    <Compile Include="Serialization\NewtonsoftJsonSerializer.cs" />
+    <Compile Include="Serialization\OrderedPropertiesContractResolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ConventionMappings\" />
@@ -161,6 +164,8 @@
     <Folder Include="UpgradeScripts\" />
     <Folder Include="ClassMappings\" />
     <Folder Include="MappingProviders\" />
+    <Folder Include="Types\" />
+    <Folder Include="Serialization\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
