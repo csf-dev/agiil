@@ -90,6 +90,12 @@
     <Reference Include="AutoMapper">
       <HintPath>..\..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -138,6 +144,7 @@
     <Compile Include="Tickets\TicketReferenceParserTests.cs" />
     <Compile Include="Tickets\CurrentProjectBackfillingTicketReferenceParserDecoratorTests.cs" />
     <Compile Include="Tickets\TicketReferenceQueryTests.cs" />
+    <Compile Include="TestSetup.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
