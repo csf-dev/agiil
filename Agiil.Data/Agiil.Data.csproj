@@ -157,6 +157,7 @@
     <Compile Include="Types\JsonSerializedType.cs" />
     <Compile Include="Serialization\NewtonsoftJsonSerializer.cs" />
     <Compile Include="Serialization\OrderedPropertiesContractResolver.cs" />
+    <Compile Include="ClassMappings\HierarchicalTicketRelationshipMapping.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ConventionMappings\" />

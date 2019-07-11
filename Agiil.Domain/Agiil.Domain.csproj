@@ -218,6 +218,9 @@
     <Compile Include="AllowNullAttribute.cs" />
     <Compile Include="Tickets\RelationshipBehaviour.cs" />
     <Compile Include="Data\ISerializesToFromString.cs" />
+    <Compile Include="Tickets\HierarchicalTicketRelationship.cs" />
+    <Compile Include="Tickets\HierarchicalRelationshipDirection.cs" />
+    <Compile Include="Tickets\IGetsHierarchicalTicketRelationships.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

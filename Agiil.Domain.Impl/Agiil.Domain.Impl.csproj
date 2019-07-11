@@ -213,6 +213,7 @@
     <Compile Include="Tickets\RelationshipValidation\TheoreticalRelationship.cs" />
     <Compile Include="Tickets\RelationshipValidation\IGetsTheoreticalTicketRelationships.cs" />
     <Compile Include="Tickets\RelationshipValidation\TheoreticalRelationshipProvider.cs" />
+    <Compile Include="Tickets\HierarchicalTicketRelationshipProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
