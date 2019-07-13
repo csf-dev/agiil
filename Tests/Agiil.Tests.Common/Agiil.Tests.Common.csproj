@@ -175,6 +175,8 @@
     <Compile Include="Autofixture\CreatesTransactionCustomization.cs" />
     <Compile Include="Data\InMemoryEntityDataFactory.cs" />
     <Compile Include="Attributes\WithRelationshipAttribute.cs" />
+    <Compile Include="Bootstrap\DataModule.cs" />
+    <Compile Include="Data\TestingDatabaseConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
@@ -209,11 +211,16 @@
       <Project>{36A605F5-89BD-4FBA-BDB1-088C38E54886}</Project>
       <Name>Agiil.ObjectMaps</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Data\Agiil.Data.csproj">
+      <Project>{AB167238-0D06-4D8A-A646-198D63575AF5}</Project>
+      <Name>Agiil.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Autofixture\" />
     <Folder Include="Attributes\" />
     <Folder Include="Data\" />
+    <Folder Include="Bootstrap\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

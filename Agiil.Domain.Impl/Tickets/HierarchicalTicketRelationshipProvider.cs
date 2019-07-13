@@ -138,15 +138,16 @@ namespace Agiil.Domain.Tickets
     FROM ancestors
   )
 SELECT
-  ticket_id AS {{htr.Ticket}},
-  related_ticket_id AS {{htr.RelatedTicket}},
-  direction AS {{htr.Direction}},
+  ticket_relationship_id AS {{htr.IdentityValue}},
+  ticket_id AS {{htr.{nameof(HierarchicalTicketRelationship.Ticket)}}},
+  related_ticket_id AS {{htr.{nameof(HierarchicalTicketRelationship.RelatedTicket)}}},
+  direction AS {{htr.{nameof(HierarchicalTicketRelationship.Direction)}}},
+  ticket_relationship_id AS {{htr.{nameof(HierarchicalTicketRelationship.TicketRelationship)}}},
   ticket_relationship_id AS {{tr.IdentityValue}},
-  primary_ticket_id AS {{tr.PrimaryTicket}},
-  secondary_ticket_id AS {{tr.SecondaryTicket}},
-  relationship_id AS {{tr.Relationship}}
-FROM
-  relationship_hierarchy;";
+  relationship_id AS {{tr.{nameof(TicketRelationship.Relationship)}}},
+  primary_ticket_id AS {{tr.{nameof(TicketRelationship.PrimaryTicket)}}},
+  secondary_ticket_id AS {{tr.{nameof(TicketRelationship.SecondaryTicket)}}}
+FROM relationship_hierarchy;";
     }
 
     public HierarchicalTicketRelationshipProvider(ISession session)

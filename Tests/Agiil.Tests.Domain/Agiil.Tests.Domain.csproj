@@ -96,6 +96,11 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="Mono.Data.Sqlite" />
+    <Reference Include="CSF.Data.NHibernate">
+      <HintPath>..\..\packages\CSF.Data.NHibernate.6.1.3\lib\net45\CSF.Data.NHibernate.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -146,6 +151,7 @@
     <Compile Include="Tickets\TicketReferenceQueryTests.cs" />
     <Compile Include="Tickets\RelationshipValidation\TheoreticalRelationshipProviderTests.cs" />
     <Compile Include="TestSetup.cs" />
+    <Compile Include="Tickets\HierarchicalTicketRelationshipProviderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">

@@ -1,6 +1,8 @@
-﻿namespace Agiil.Domain.Tickets
+﻿using CSF.Entities;
+
+namespace Agiil.Domain.Tickets
 {
-  public class HierarchicalTicketRelationship
+  public class HierarchicalTicketRelationship : Entity<long>
   {
     public virtual Ticket Ticket { get; protected set; }
     public virtual Ticket RelatedTicket { get; protected set; }

@@ -11,7 +11,11 @@ namespace Agiil.Web.App_Start
   {
 		protected override IEnumerable<Assembly> GetModuleAssemblies()
 		{
-      return base.GetModuleAssemblies().Union(new [] { Assembly.GetExecutingAssembly() });
+      return base.GetModuleAssemblies()
+        .Union(new [] {
+          Assembly.GetExecutingAssembly(),
+          typeof(Agiil.Tests.Bootstrap.DataModule).Assembly,
+        });
 		}
 
     protected override void RegisterAspNetWebApiComponents(ContainerBuilder builder)
