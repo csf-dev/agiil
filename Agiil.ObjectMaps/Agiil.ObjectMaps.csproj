@@ -100,6 +100,8 @@
     <Compile Include="Tickets\TicketRelationshipIdentityToDeleteRelationshipRequestProfile.cs" />
     <Compile Include="Tickets\DeleteRelationshipRequestToTicketRelationshipIdentityProfile.cs" />
     <Compile Include="Activity\AddTicketWorkLogModelToAddWorkLogRequestProfile.cs" />
+    <Compile Include="Tickets\TheoreticalRelationshipToTraversibleRelationshipProfile.cs" />
+    <Compile Include="Tickets\HierarchicalTicketRelationshipToTraversibleRelationshipProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

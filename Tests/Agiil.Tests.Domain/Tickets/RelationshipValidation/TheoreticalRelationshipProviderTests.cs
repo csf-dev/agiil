@@ -70,11 +70,11 @@ namespace Agiil.Tests.Tickets.RelationshipValidation
     }
 
     [Test, AutoMoqData]
-    public void GetTheoreticalTicketRelationships_does_not_include_existing_relationships_being_removed([Frozen, InMemory] IEntityData data,
-                                                                                                        Ticket ticket,
-                                                                                                        [WithRelationship] IEnumerable<TicketRelationship> relationships,
-                                                                                                        TicketRelationship toRemove,
-                                                                                                        TheoreticalRelationshipProvider sut)
+    public void GetTheoreticalTicketRelationships_marks_up_relationships_for_removal([Frozen, InMemory] IEntityData data,
+                                                                                     Ticket ticket,
+                                                                                     [WithRelationship] IEnumerable<TicketRelationship> relationships,
+                                                                                     TicketRelationship toRemove,
+                                                                                     TheoreticalRelationshipProvider sut)
     {
       data.Add(ticket);
       foreach(var t in relationships.Select(x => x.PrimaryTicket))
@@ -91,6 +91,13 @@ namespace Agiil.Tests.Tickets.RelationshipValidation
           SecondaryTicket = ticket.GetIdentity(),
           Relationship = x.Relationship,
           TicketRelationship = x.GetIdentity(),
+        })
+        .Append(new TheoreticalRelationship { 
+          PrimaryTicket = toRemove.PrimaryTicket?.GetIdentity(),
+          SecondaryTicket = toRemove.SecondaryTicket?.GetIdentity(),
+          Relationship = toRemove.Relationship,
+          TicketRelationship = toRemove.GetIdentity(),
+          Type = TheoreticalRelationshipType.Removed,
         })
         .ToList();
 

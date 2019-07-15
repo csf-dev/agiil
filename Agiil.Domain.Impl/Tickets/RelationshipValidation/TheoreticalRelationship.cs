@@ -9,6 +9,7 @@ namespace Agiil.Domain.Tickets.RelationshipValidation
     public IIdentity<Ticket> PrimaryTicket { get; set; }
     public IIdentity<Ticket> SecondaryTicket { get; set; }
     public Relationship Relationship { get; set; }
+    public TheoreticalRelationshipType Type { get; set; }
 
     public override bool Equals(object obj)
     {
@@ -22,13 +23,11 @@ namespace Agiil.Domain.Tickets.RelationshipValidation
       if(ReferenceEquals(other, this)) return true;
       if(ReferenceEquals(other, null)) return false;
 
-      return (PrimaryTicket?.Equals(other.PrimaryTicket) == true
-              && SecondaryTicket?.Equals(other.SecondaryTicket) == true
-              && (
-                (TicketRelationship == null && other.TicketRelationship == null)
-                || (TicketRelationship?.Equals(other.TicketRelationship) == true)
-              )
-              && Relationship?.Equals(other.Relationship) == true);
+      return (Equals(PrimaryTicket, other.PrimaryTicket)
+              && Equals(SecondaryTicket, other.SecondaryTicket)
+              && Equals(TicketRelationship, other.TicketRelationship)
+              && Equals(Relationship, other.Relationship)
+              && Equals(Type, other.Type));
     }
 
     public override int GetHashCode()
@@ -37,13 +36,14 @@ namespace Agiil.Domain.Tickets.RelationshipValidation
       var primaryHash = (PrimaryTicket?.GetHashCode()).GetValueOrDefault(23);
       var secondaryHash = (SecondaryTicket?.GetHashCode()).GetValueOrDefault(29);
       var relationshipHash = (Relationship?.GetHashCode()).GetValueOrDefault(37);
+      var typeHash = Type.GetHashCode();
 
-      return ticketRelationshipHash ^ primaryHash ^ secondaryHash ^ relationshipHash;
+      return ticketRelationshipHash ^ primaryHash ^ secondaryHash ^ relationshipHash ^ typeHash;
     }
 
     public override string ToString()
     {
-      return $"[{nameof(TheoreticalRelationship)}: Primary: {PrimaryTicket}, Secondary: {SecondaryTicket}, Relationship: {Relationship?.GetIdentity()}, TicketRelationship: {TicketRelationship}]";
+      return $"[{nameof(TheoreticalRelationship)}: Primary: {PrimaryTicket}, Secondary: {SecondaryTicket}, Relationship: {Relationship?.GetIdentity()}, TicketRelationship: {TicketRelationship}, Type: {Type}]";
     }
   }
 }

@@ -2,7 +2,6 @@
 using Agiil.Domain.Sprints;
 using Agiil.Domain.Validation;
 using CSF.Validation;
-using CSF.Validation.Manifest;
 using CSF.Validation.Manifest.Fluent;
 using CSF.Validation.StockRules;
 

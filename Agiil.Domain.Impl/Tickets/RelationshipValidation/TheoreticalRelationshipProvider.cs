@@ -17,10 +17,10 @@ namespace Agiil.Domain.Tickets.RelationshipValidation
                                                                                           IEnumerable<DeleteRelationshipRequest> removed = null)
     {
       var existingRelationships = GetExistingRelationships(ticketIdentity);
-      var existingWithRemovedRelationships = RemoveDeletedRelationships(existingRelationships, removed);
-      var addedRelationships = GetAddedRelationships(added);
+      MarkupRemovedRelationships(existingRelationships, removed);
+      var addedRelationships = GetAddedRelationships(ticketIdentity, added);
 
-      return existingWithRemovedRelationships.Union(addedRelationships).ToArray();
+      return existingRelationships.Union(addedRelationships).ToArray();
     }
 
     List<TheoreticalRelationship> GetExistingRelationships(IIdentity<Ticket> ticketIdentity)
@@ -39,17 +39,18 @@ namespace Agiil.Domain.Tickets.RelationshipValidation
         .ToList();
     }
 
-    List<TheoreticalRelationship> RemoveDeletedRelationships(List<TheoreticalRelationship> existing,
-                                                             IEnumerable<DeleteRelationshipRequest> toDelete)
+    void MarkupRemovedRelationships(List<TheoreticalRelationship> existing,
+                                    IEnumerable<DeleteRelationshipRequest> toDelete)
     {
-      if(toDelete == null) return existing;
+      if(toDelete == null || !toDelete.Any()) return;
 
-      return existing
-        .Where(x => !toDelete.Any(d => d.TicketRelationshipId?.Equals(x.TicketRelationship) == true))
-        .ToList();
+      foreach(var removed in existing.Where(x => toDelete.Any(d => Equals(d.TicketRelationshipId, x.TicketRelationship))))
+      {
+        removed.Type = TheoreticalRelationshipType.Removed;
+      }
     }
 
-    List<TheoreticalRelationship> GetAddedRelationships(IEnumerable<AddRelationshipRequest> added)
+    List<TheoreticalRelationship> GetAddedRelationships(IIdentity<Ticket> ticketIdentity, IEnumerable<AddRelationshipRequest> added)
     {
       if(added == null || !added.Any()) return new List<TheoreticalRelationship>();
 
@@ -63,8 +64,9 @@ namespace Agiil.Domain.Tickets.RelationshipValidation
 
           return new TheoreticalRelationship {
             Relationship = relationshipType,
-            SecondaryTicket = relatedIsPrimary? ticket.GetIdentity() : null,
-            PrimaryTicket = relatedIsPrimary ? null : ticket.GetIdentity(),
+            SecondaryTicket = relatedIsPrimary? ticket.GetIdentity() : ticketIdentity,
+            PrimaryTicket = relatedIsPrimary ? ticketIdentity : ticket.GetIdentity(),
+            Type = TheoreticalRelationshipType.Added,
           };
         })
         .ToList();
@@ -91,7 +93,8 @@ namespace Agiil.Domain.Tickets.RelationshipValidation
         PrimaryTicket = tr.PrimaryTicket.GetIdentity(),
         SecondaryTicket = tr.SecondaryTicket.GetIdentity(),
         TicketRelationship = tr.GetIdentity(),
-        Relationship = tr.Relationship
+        Relationship = tr.Relationship,
+        Type = TheoreticalRelationshipType.Existing,
       };
     }
 
