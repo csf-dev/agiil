@@ -10,7 +10,8 @@ namespace Agiil.Domain.Tickets.RelationshipValidation
   {
     readonly IMapper mapper;
 
-    public IEnumerable<TraversibleRelationship> GetTraversibleRelationships(IEnumerable<TheoreticalRelationship> relationships, IEnumerable<HierarchicalTicketRelationship> hierarchicalRelationships)
+    public IEnumerable<TraversibleRelationship> GetTraversibleRelationships(IEnumerable<TheoreticalRelationship> relationships,
+                                                                            IEnumerable<HierarchicalTicketRelationship> hierarchicalRelationships)
     {
       var removedRelationships = relationships
         .Where(x => x.Type == TheoreticalRelationshipType.Removed)
@@ -20,11 +21,13 @@ namespace Agiil.Domain.Tickets.RelationshipValidation
 
       var traversibleTheoreticalRelationships = relationships
         .Except(removedRelationships)
-        .Select(mapper.Map<TraversibleRelationship>);
+        .Select(mapper.Map<TraversibleRelationship>)
+        .Where(x => !ReferenceEquals(x, null));
 
       var traversibleHierarchicalRelationships = hierarchicalRelationships
         .Where(x => !removedRelationshipIds.Contains(x.TicketRelationship.GetIdentity()))
-        .Select(mapper.Map<TraversibleRelationship>);
+        .Select(mapper.Map<TraversibleRelationship>)
+        .Where(x => !ReferenceEquals(x, null));
 
       return traversibleTheoreticalRelationships
         .Union(traversibleHierarchicalRelationships)

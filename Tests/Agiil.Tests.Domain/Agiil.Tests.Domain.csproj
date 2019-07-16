@@ -154,6 +154,7 @@
     <Compile Include="Tickets\HierarchicalTicketRelationshipProviderTests.cs" />
     <Compile Include="Tickets\RelationshipValidation\CircularRelationshipValidatorTests.cs" />
     <Compile Include="Tickets\RelationshipValidation\PossiblyCircularHierarchicalTicketRelationshipProviderAdapterTests.cs" />
+    <Compile Include="Tickets\RelationshipValidation\TraversibleRelationshipProviderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">

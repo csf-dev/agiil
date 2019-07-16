@@ -9,9 +9,9 @@ namespace Agiil.Domain.Tickets
   /// </summary>
   public class HierarchicalTicketRelationship : Entity<long>
   {
-    public virtual Ticket Ticket { get; protected set; }
-    public virtual Ticket RelatedTicket { get; protected set; }
-    public virtual HierarchicalRelationshipDirection Direction { get; protected set; }
-    public virtual TicketRelationship TicketRelationship { get; protected set; }
+    public virtual Ticket Ticket { get; set; }
+    public virtual Ticket RelatedTicket { get; set; }
+    public virtual HierarchicalRelationshipDirection Direction { get; set; }
+    public virtual TicketRelationship TicketRelationship { get; set; }
   }
 }
