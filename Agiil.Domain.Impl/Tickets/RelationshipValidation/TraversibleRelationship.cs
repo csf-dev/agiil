@@ -23,6 +23,24 @@ namespace Agiil.Domain.Tickets.RelationshipValidation
       return Equals(Id, other.Id);
     }
 
+    public override bool Equals(object obj)
+    {
+      if(ReferenceEquals(obj, this)) return true;
+      if(ReferenceEquals(obj, null)) return false;
+      if(!(obj is TraversibleRelationship)) return false;
+      return Equals((TraversibleRelationship) obj);
+    }
+
+    public override int GetHashCode()
+    {
+      var id = Id?.GetHashCode() ?? 17;
+      var start = Start?.GetHashCode() ?? 23;
+      var end = End?.GetHashCode() ?? 37;
+      var type = Type.GetHashCode();
+
+      return id ^ start ^ end ^ type;
+    }
+
     public TraversibleRelationship(IIdentity<TicketRelationship> id,
                                    IIdentity<Ticket> start,
                                    IIdentity<Ticket> end,
