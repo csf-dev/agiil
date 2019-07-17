@@ -225,6 +225,7 @@
     <Compile Include="Tickets\RelationshipValidation\IGetsTraversibleRelationships.cs" />
     <Compile Include="Tickets\RelationshipValidation\TraversibleRelationshipProvider.cs" />
     <Compile Include="Tickets\RelationshipValidation\CircularRelationshipDetector.cs" />
+    <Compile Include="Tickets\RelationshipValidation\MultipleSecondaryRelationshipPreventingValidationDecorator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

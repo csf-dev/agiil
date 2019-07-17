@@ -175,6 +175,7 @@
     <Compile Include="DoNotAutoRegisterAttribute.cs" />
     <Compile Include="Log4NetModule.cs" />
     <Compile Include="Tickets\TickatReferenceParserModule.cs" />
+    <Compile Include="Tickets\TicketReferenceValidationModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
