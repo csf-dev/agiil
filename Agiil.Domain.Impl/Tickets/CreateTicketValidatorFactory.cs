@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Sprints;
+using Agiil.Domain.Tickets.RelationshipValidation;
 using Agiil.Domain.Validation;
 using CSF.Validation;
 using CSF.Validation.Manifest.Fluent;
@@ -19,6 +20,7 @@ namespace Agiil.Domain.Tickets
       builder.AddMemberRule<EntityMustExistRule<Sprint>>(x => x.SprintIdentity);
       builder.AddMemberRule<NotNullValueRule>(x => x.TicketTypeIdentity);
       builder.AddMemberRule<EntityMustExistRule<TicketType>>(x => x.TicketTypeIdentity);
+      builder.AddRule<ChangedTicketRelationshipsRule>();
     }
 
     public CreateTicketValidatorFactory(IValidatorFactory validatorFactory) : base(validatorFactory) {}

@@ -4,6 +4,7 @@ using CSF.Data.Entities;
 using CSF.Entities;
 using System.Linq;
 using CSF.Data.NHibernate;
+using log4net;
 
 namespace Agiil.Domain.Tickets.RelationshipValidation
 {
@@ -11,12 +12,19 @@ namespace Agiil.Domain.Tickets.RelationshipValidation
   {
     readonly IEntityData data;
     readonly IGetsTicketByReference ticketProvider;
+    readonly ILog logger;
 
     public IReadOnlyCollection<TheoreticalRelationship> GetTheoreticalTicketRelationships(IIdentity<Ticket> ticketIdentity = null,
                                                                                           IEnumerable<AddRelationshipRequest> added = null,
                                                                                           IEnumerable<DeleteRelationshipRequest> removed = null)
     {
       var existingRelationships = GetExistingRelationships(ticketIdentity);
+
+      if(logger.IsDebugEnabled)
+      {
+        logger.Debug($"Existing relationships: {String.Join(", ", existingRelationships.Select(x => x.TicketRelationship))}");
+      }
+
       MarkupRemovedRelationships(existingRelationships, removed);
       var addedRelationships = GetAddedRelationships(ticketIdentity, added);
 
@@ -63,6 +71,7 @@ namespace Agiil.Domain.Tickets.RelationshipValidation
         })
         .Where(x => x.relatedTicket != null)
         .Select(x => {
+          logger.Debug($"{nameof(GetAddedRelationships)} found added relationship {x.relationshipType}");
 
           return new TheoreticalRelationship {
             Relationship = x.relationshipType,
@@ -85,10 +94,11 @@ namespace Agiil.Domain.Tickets.RelationshipValidation
       };
     }
 
-    public TheoreticalRelationshipProvider(IEntityData data, IGetsTicketByReference ticketProvider)
+    public TheoreticalRelationshipProvider(IEntityData data, IGetsTicketByReference ticketProvider, ILog logger)
     {
       this.data = data ?? throw new ArgumentNullException(nameof(data));
       this.ticketProvider = ticketProvider ?? throw new ArgumentNullException(nameof(ticketProvider));
+      this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
   }
 }
