@@ -120,6 +120,7 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -174,6 +175,7 @@
     <Compile Include="DoNotAutoRegisterAttribute.cs" />
     <Compile Include="Log4NetModule.cs" />
     <Compile Include="Tickets\TickatReferenceParserModule.cs" />
+    <Compile Include="Tickets\TicketReferenceValidationModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

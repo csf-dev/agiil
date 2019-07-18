@@ -1,7 +1,7 @@
 ﻿using System;
 using Agiil.Data;
 
-namespace Agiil.Web.Data
+namespace Agiil.Tests.Data
 {
   public class TestingDatabaseConfiguration : IDatabaseConfiguration
   {

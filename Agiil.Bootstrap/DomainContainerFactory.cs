@@ -1,17 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Agiil.Bootstrap.ObjectMaps;
 using Agiil.ObjectMaps;
 using Autofac;
+using log4net;
 
 namespace Agiil.Bootstrap
 {
   public class DomainContainerFactory : IGetsAutofacContainer
   {
+    static readonly ILog logger;
+
     public virtual IContainer GetContainer()
     {
-      var builder = GetContainerBuilder();
-      return builder.Build();
+      try
+      {
+        var builder = GetContainerBuilder();
+        return builder.Build();
+      }
+      catch(Exception e)
+      {
+        logger.Error(e);
+        throw;
+      }
     }
 
     public virtual ContainerBuilder GetContainerBuilder()
@@ -55,6 +67,11 @@ namespace Agiil.Bootstrap
     protected virtual ContainerBuilder CreateContainerBuilder()
     {
       return new ContainerBuilder();
+    }
+
+    static DomainContainerFactory()
+    {
+      logger = LogManager.GetLogger(typeof(DomainContainerFactory));
     }
   }
 }

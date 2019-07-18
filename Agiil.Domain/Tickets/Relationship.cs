@@ -6,7 +6,8 @@ namespace Agiil.Domain.Tickets
 {
   public abstract class Relationship : Entity<long>
   {
-    RelationshipType type;
+    readonly RelationshipType type;
+    RelationshipBehaviour behaviour;
 
     public virtual string PrimarySummary { get; set; }
 
@@ -18,10 +19,18 @@ namespace Agiil.Domain.Tickets
 
     public abstract void Accept(IVisitsRelationship visitor);
 
-    [Obsolete("Do not use this constructor, it exists only so that NHibernate may proxy this entity")]
-    protected Relationship() {}
+    public virtual RelationshipBehaviour Behaviour
+    {
+      get => behaviour;
+      protected set => behaviour = value;
+    }
 
-    protected Relationship(RelationshipType type)
+    protected Relationship()
+    {
+      behaviour = new RelationshipBehaviour();
+    }
+
+    protected Relationship(RelationshipType type) : this()
     {
       type.RequireDefinedValue(nameof(type));
 

@@ -216,6 +216,12 @@
     <Compile Include="Activity\AddWorklogResponse.cs" />
     <Compile Include="Activity\IGetsSumOfLoggedWorkForTicket.cs" />
     <Compile Include="AllowNullAttribute.cs" />
+    <Compile Include="Tickets\RelationshipBehaviour.cs" />
+    <Compile Include="Data\ISerializesToFromString.cs" />
+    <Compile Include="Tickets\HierarchicalTicketRelationship.cs" />
+    <Compile Include="Tickets\HierarchicalRelationshipDirection.cs" />
+    <Compile Include="Tickets\IGetsHierarchicalTicketRelationships.cs" />
+    <Compile Include="Tickets\IChangesTicketRelationships.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

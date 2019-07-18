@@ -1,10 +1,10 @@
 ﻿using System;
 using Autofac;
-using Agiil.Web.Data;
 using Agiil.Domain.Data;
+using Agiil.Tests.Data;
 using Agiil.Data;
 
-namespace Agiil.Web.Bootstrap
+namespace Agiil.Tests.Bootstrap
 {
   public class DataModule : Module
   {

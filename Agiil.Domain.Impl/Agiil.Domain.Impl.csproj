@@ -210,6 +210,23 @@
     <Compile Include="IGetsLoggerForType.cs" />
     <Compile Include="Log4NetLoggerForTypeProvider.cs" />
     <Compile Include="Tickets\CurrentProjectBackfillingTicketReferenceParserDecorator.cs" />
+    <Compile Include="Tickets\RelationshipValidation\ChangedTicketRelationshipsRule.cs" />
+    <Compile Include="Tickets\RelationshipValidation\TheoreticalRelationship.cs" />
+    <Compile Include="Tickets\RelationshipValidation\IGetsTheoreticalTicketRelationships.cs" />
+    <Compile Include="Tickets\RelationshipValidation\TheoreticalRelationshipProvider.cs" />
+    <Compile Include="Tickets\RelationshipValidation\IValidatesTheoreticalTicketRelationships.cs" />
+    <Compile Include="Tickets\RelationshipValidation\CircularRelationshipValidator.cs" />
+    <Compile Include="Tickets\HierarchicalTicketRelationshipProvider.cs" />
+    <Compile Include="Tickets\RelationshipValidation\TheoreticalRelationshipType.cs" />
+    <Compile Include="Tickets\RelationshipValidation\IDetectsCircularRelationship.cs" />
+    <Compile Include="Tickets\RelationshipValidation\TraversibleRelationship.cs" />
+    <Compile Include="Tickets\RelationshipValidation\IGetsHierarchicalTicketRelationshipsWhichCouldCreateACircularRelationship.cs" />
+    <Compile Include="Tickets\RelationshipValidation\PossiblyCircularHierarchicalTicketRelationshipProviderAdapter.cs" />
+    <Compile Include="Tickets\RelationshipValidation\IGetsTraversibleRelationships.cs" />
+    <Compile Include="Tickets\RelationshipValidation\TraversibleRelationshipProvider.cs" />
+    <Compile Include="Tickets\RelationshipValidation\CircularRelationshipDetector.cs" />
+    <Compile Include="Tickets\RelationshipValidation\MultipleSecondaryRelationshipPreventingValidationDecorator.cs" />
+    <Compile Include="Validation\ValidationResultRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
@@ -237,6 +254,7 @@
     <Folder Include="Tickets\Creation\" />
     <Folder Include="Tickets\Editing\" />
     <Folder Include="Activity\" />
+    <Folder Include="Tickets\RelationshipValidation\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
