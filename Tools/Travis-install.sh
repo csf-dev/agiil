@@ -37,18 +37,23 @@ restore_solution_nuget_packages()
   stop_if_failure $? "Restore NuGet packages"
 }
 
+install_latest_npm()
+{
+  npm install -g npm@latest
+}
+
 install_npm_packages()
 {
   echo "Installing npm packages for the solution ..."
   OLD_DIR="$(pwd)"
   
   cd Agiil.Web/
-  npm install
+  npm ci
   stop_if_failure $? "Install npm packages to 'Agiil.Web'"
   cd "$OLD_DIR"
   
   cd Agiil.Web.Client/
-  npm install
+  npm ci
   stop_if_failure $? "Install npm packages to 'Agiil.Web.Client'"
   cd "$OLD_DIR"
 }
