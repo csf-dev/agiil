@@ -1,28 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using CSF.Entities;
 using CSF.Validation.Rules;
 
 namespace Agiil.Domain.Tickets.RelationshipValidation
 {
-  public class ChangedTicketRelationshipsRule : Rule
+  public class ChangedTicketRelationshipsRule : Rule<IChangesTicketRelationships>
   {
     readonly IGetsTheoreticalTicketRelationships theoreticalRelationshipProvider;
     readonly IValidatesTheoreticalTicketRelationships relationshipValidator;
 
-    public IIdentity<Ticket> EditedTicketIdentity { get; set; }
-    public IEnumerable<AddRelationshipRequest> RelationshipsAdded { get; set; }
-    public IEnumerable<DeleteRelationshipRequest> RelationshipsRemoved { get; set; }
-
-    protected override RuleOutcome GetOutcome(object validated)
+    protected override RuleOutcome GetOutcome(IChangesTicketRelationships validated)
     {
       var theoreticalRelationships = theoreticalRelationshipProvider.GetTheoreticalTicketRelationships(
-        ticketIdentity: EditedTicketIdentity,
-        added: RelationshipsAdded,
-        removed: RelationshipsRemoved
+        ticketIdentity: validated.EditedTicket,
+        added: validated.RelationshipsToAdd,
+        removed: validated.RelationshipsToRemove
       );
 
-      if(relationshipValidator.AreRelationshipsValid(EditedTicketIdentity, theoreticalRelationships))
+      if(relationshipValidator.AreRelationshipsValid(validated.EditedTicket, theoreticalRelationships))
         return Success;
 
       return Failure;

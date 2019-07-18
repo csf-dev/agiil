@@ -5,7 +5,7 @@ using CSF.Entities;
 
 namespace Agiil.Domain.Tickets
 {
-  public class EditTicketRequest
+  public class EditTicketRequest : IChangesTicketRelationships
   {
     ICollection<AddRelationshipRequest> relationshipsToAdd;
     ICollection<DeleteRelationshipRequest> relationshipsToRemove;
@@ -35,6 +35,12 @@ namespace Agiil.Domain.Tickets
     }
 
     public int? StoryPoints { get; set; }
+
+    IIdentity<Ticket> IChangesTicketRelationships.EditedTicket => Identity;
+
+    IEnumerable<AddRelationshipRequest> IChangesTicketRelationships.RelationshipsToAdd => RelationshipsToAdd;
+
+    IEnumerable<DeleteRelationshipRequest> IChangesTicketRelationships.RelationshipsToRemove => RelationshipsToRemove;
 
     public EditTicketRequest()
     {
