@@ -88,7 +88,7 @@ const webpackConfig = {
             chunks: 'all',
             cacheGroups: {
                 "babel-polyfill": {
-                    test: /[\\/]node_modules[\\/](core-js|@babel)[\\/]/,
+                    test: /[\\/]node_modules[\\/](core-js|@babel|regenerator-runtime|regenerator-transform)[\\/]/,
                     priority: 10,
                     enforce: true,
                     name: 'babel-polyfill.bundle',
