@@ -43,7 +43,7 @@ const webpackConfig = {
                 // transpiled, with only specific exceptions.
                 test: /\.js$/,
                 include: /node_modules/,
-                exclude: [ /node_modules\/core-js/ ],
+                exclude: [ /node_modules\/(core-js|webpack|html-webpack-plugin)/ ],
                 use: [
                     {
                         loader: 'babel-loader',
