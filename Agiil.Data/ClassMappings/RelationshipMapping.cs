@@ -27,7 +27,6 @@ namespace Agiil.Data.ClassMappings
 
         map.Property(p => p.Behaviour, m => {
           m.Type<JsonSerializedType<RelationshipBehaviour>>(new { AllowNull = Boolean.FalseString });
-          m.Lazy(true);
         });
       });
     }

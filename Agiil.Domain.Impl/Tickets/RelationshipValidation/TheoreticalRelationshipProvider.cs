@@ -25,7 +25,7 @@ namespace Agiil.Domain.Tickets.RelationshipValidation
 
     List<TheoreticalRelationship> GetExistingRelationships(IIdentity<Ticket> ticketIdentity)
     {
-      if(ticketIdentity == null) return new List<TheoreticalRelationship>();
+      if(ReferenceEquals(ticketIdentity, null)) return new List<TheoreticalRelationship>();
 
       var ticket = data.Theorise(ticketIdentity);
       return (from rel in data.Query<TicketRelationship>()
@@ -50,40 +50,27 @@ namespace Agiil.Domain.Tickets.RelationshipValidation
       }
     }
 
-    List<TheoreticalRelationship> GetAddedRelationships(IIdentity<Ticket> ticketIdentity, IEnumerable<AddRelationshipRequest> added)
+    List<TheoreticalRelationship> GetAddedRelationships(IIdentity<Ticket> editedTicketIdentity, IEnumerable<AddRelationshipRequest> added)
     {
       if(added == null || !added.Any()) return new List<TheoreticalRelationship>();
 
-      var relationshipTypes = GetRelationshipTypes(added);
-
       return added
-        .Select(add => {
-          var ticket = ticketProvider.GetTicketByReference(add.RelatedTicketReference);
-          var relatedIsPrimary = add.ParticipationType == RelationshipParticipant.Secondary;
-          var relationshipType = relationshipTypes.Single(x => x.GetIdentity() == add.RelationshipId);
+        .Where(x => !ReferenceEquals(x.RelationshipId, null))
+        .Select(add => new {
+          relatedTicket = ticketProvider.GetTicketByReference(add.RelatedTicketReference),
+          relatedIsPrimary = add.ParticipationType == RelationshipParticipant.Secondary,
+          relationshipType = data.Get(add.RelationshipId)
+        })
+        .Where(x => x.relatedTicket != null)
+        .Select(x => {
 
           return new TheoreticalRelationship {
-            Relationship = relationshipType,
-            SecondaryTicket = relatedIsPrimary? ticket.GetIdentity() : ticketIdentity,
-            PrimaryTicket = relatedIsPrimary ? ticketIdentity : ticket.GetIdentity(),
+            Relationship = x.relationshipType,
+            PrimaryTicket = x.relatedIsPrimary? x.relatedTicket.GetIdentity() : editedTicketIdentity,
+            SecondaryTicket = x.relatedIsPrimary ? editedTicketIdentity : x.relatedTicket.GetIdentity(),
             Type = TheoreticalRelationshipType.Added,
           };
         })
-        .ToList();
-    }
-
-    List<Relationship> GetRelationshipTypes(IEnumerable<AddRelationshipRequest> added)
-    {
-      var distinctTypes = added
-        .Select(x => x.RelationshipId)
-        .Distinct()
-        .Select(x => data.Theorise(x))
-        .ToList();
-
-      return (from relationship in data.Query<Relationship>()
-              where distinctTypes.Contains(relationship)
-              select relationship)
-        .Fetch(x => x.Behaviour)
         .ToList();
     }
 

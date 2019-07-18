@@ -17,12 +17,15 @@ namespace Agiil.Data.ClassMappings
 
         map.ManyToOne(x => x.Ticket, m => {
           m.Column(nameFormatter.GetForeignKeyColumnName(Reflect.Property<HierarchicalTicketRelationship>(x => x.Ticket)));
+          m.Cascade(Cascade.None);
         });
         map.ManyToOne(x => x.RelatedTicket, m => {
           m.Column(nameFormatter.GetForeignKeyColumnName(Reflect.Property<HierarchicalTicketRelationship>(x => x.RelatedTicket)));
+          m.Cascade(Cascade.None);
         });
         map.ManyToOne(x => x.TicketRelationship, m => {
           m.Column(nameFormatter.GetForeignKeyColumnName(Reflect.Property<HierarchicalTicketRelationship>(x => x.TicketRelationship)));
+          m.Cascade(Cascade.None);
         });
       });
     }

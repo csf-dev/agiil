@@ -21,7 +21,7 @@ VALUES (
   'Directional',
   'Parent of',
   'Child of',
-  '{"ProhibitCircularRelationship":True,"ProhibitMultipleSecondaryRelationships":True}'
+  '{"ProhibitCircularRelationship":true,"ProhibitMultipleSecondaryRelationships":true}'
 );
 
 
