@@ -1,4 +1,6 @@
-﻿environment:
+﻿image: Visual Studio 2017
+
+environment:
   nodejs_version: "10.0"
 
 version: '{branch}-{build}'
