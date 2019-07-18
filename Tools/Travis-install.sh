@@ -69,6 +69,7 @@ Password = ${MEGA_PASSWORD}
 install_latest_nuget
 echo_nuget_version_to_console
 restore_solution_nuget_packages
+install_latest_npm
 install_npm_packages
 setup_megarc_file
 
