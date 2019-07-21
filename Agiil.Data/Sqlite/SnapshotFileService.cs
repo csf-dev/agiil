@@ -52,19 +52,22 @@ namespace Agiil.Data.Sqlite
       logger.Debug($"{nameof(GetFileForNewSnapshot)} snapshot filename to be '{filename}'");
 
       var snapshotPath = Path.Combine(parentDirectory.FullName, filename);
-      logger.Debug($"{nameof(GetFileForNewSnapshot)} snapshow path to be '{snapshotPath}'");
+      logger.Debug($"{nameof(GetFileForNewSnapshot)} snapshot path to be '{snapshotPath}'");
 
       return new FileInfo(snapshotPath);
     }
 
     string GetSnapshotFilename(string baseFilename)
     {
-      var timestamp = environment.GetCurrentLocalTimestamp().ToString("s");
+      var timestamp = GetTimestampSanitisedForFilename();
       var newExtension = $"snapshot.{timestamp}";
       var newFilename = extensionChanger.InsertExtensionBeforeLast(baseFilename, newExtension);
 
       return newFilename;
     }
+
+    string GetTimestampSanitisedForFilename()
+      => environment.GetCurrentLocalTimestamp().ToString("s").Replace(':', '_');
 
     void EnsureExists(FileInfo file, string name = "The database file")
     {
