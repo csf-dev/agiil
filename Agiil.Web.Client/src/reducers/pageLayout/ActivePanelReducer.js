@@ -32,7 +32,7 @@ const defaultState = {
 
 function getDefaultState(s : ?ActivePagePanel) : ActivePagePanel {
     return {...defaultState, ...s};
-};
+}
 
 function getLeftHandPanel(current : PanelName) {
     switch(current) {

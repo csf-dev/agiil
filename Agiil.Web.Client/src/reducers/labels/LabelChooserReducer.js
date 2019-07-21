@@ -22,7 +22,7 @@ function getDefaultState(s : ?LabelChooserState) : LabelChooserState {
     return s || {...defaultState, componentId: getComponentId()};
 }
 
-const reducer : Reducer<LabelChooserState,AnyAction> = buildObjectReducer<LabelChooserState>(getDefaultState)
+const LabelChooserReducer : Reducer<LabelChooserState,AnyAction> = buildObjectReducer<LabelChooserState>(getDefaultState)
     .filterByComponentId()
     .forTypeKey(ChangeComponentTextValue).andAction<ChangeComponentTextValueAction>((s, a) => {
         s = getDefaultState(s);
@@ -44,4 +44,4 @@ const reducer : Reducer<LabelChooserState,AnyAction> = buildObjectReducer<LabelC
     .forChild('suggestions').andReducer(labelListReducer)
     .build();
 
-export default reducer;
+export default LabelChooserReducer;

@@ -1,6 +1,5 @@
 //@flow
 import TicketComment from './TicketComment';
-import type { FeedbackMessage } from 'models/common/FeedbackMessage';
 import type { Sprint } from 'models/sprints/Sprint';
 import type { TicketRelationship } from './TicketRelationship';
 import TicketSummary from './TicketSummary';

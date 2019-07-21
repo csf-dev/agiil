@@ -26,7 +26,7 @@ function renderComponents(store : AnyStore) {
 
     ReactDOM.render(
         <Provider store={store}>
-            <LabelChooser id="Labels" stateSelector={store => store.labelChooser} labelText="Labels" name="CommaSeparatedLabelNames" />
+            <LabelChooser id="Labels" stateSelector={s => s.labelChooser} labelText="Labels" name="CommaSeparatedLabelNames" />
         </Provider>,
         root
     );

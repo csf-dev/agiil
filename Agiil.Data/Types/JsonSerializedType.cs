@@ -47,7 +47,7 @@ namespace Agiil.Data.Types
       var serializedX = serializer.Serialize((T) x);
       var serializedY = serializer.Serialize((T) y);
 
-      return String.Equals(x, y);
+      return String.Equals(serializedX, serializedY);
     }
 
     public int GetHashCode(object x)

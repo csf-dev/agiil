@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Agiil.Domain.Sprints;
 using CSF.Entities;
 
@@ -29,9 +30,11 @@ namespace Agiil.Domain.Tickets
 
     IIdentity<Ticket> IChangesTicketRelationships.EditedTicket => null;
 
-    IEnumerable<AddRelationshipRequest> IChangesTicketRelationships.RelationshipsToAdd => RelationshipsToAdd;
+    IEnumerable<AddRelationshipRequest> IChangesTicketRelationships.RelationshipsToAdd
+      => RelationshipsToAdd;
 
-    IEnumerable<DeleteRelationshipRequest> IChangesTicketRelationships.RelationshipsToRemove => null;
+    IEnumerable<DeleteRelationshipRequest> IChangesTicketRelationships.RelationshipsToRemove
+      => Enumerable.Empty<DeleteRelationshipRequest>();
 
     public CreateTicketRequest()
     {

@@ -1,7 +1,7 @@
 //@flow
 import * as React from "react";
 import type { ActivePagePanel } from 'models/pageLayout';
-import { NavigationPanel, MainPanel, AsidesPanel } from 'components/pageLayout';
+import { NavigationPanel, AsidesPanel } from 'components/pageLayout';
 // $FlowFixMe
 import styles from './CurrentPanelButton.module.scss';
 import { ChoosePanelModal } from './ChoosePanelModal';

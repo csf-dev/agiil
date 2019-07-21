@@ -10,7 +10,7 @@ namespace Agiil.Bootstrap
 {
   public class DomainContainerFactory : IGetsAutofacContainer
   {
-    static readonly ILog logger;
+    static readonly ILog logger = LogManager.GetLogger(typeof(DomainContainerFactory));
 
     public virtual IContainer GetContainer()
     {
@@ -67,11 +67,6 @@ namespace Agiil.Bootstrap
     protected virtual ContainerBuilder CreateContainerBuilder()
     {
       return new ContainerBuilder();
-    }
-
-    static DomainContainerFactory()
-    {
-      logger = LogManager.GetLogger(typeof(DomainContainerFactory));
     }
   }
 }

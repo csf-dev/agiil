@@ -3,7 +3,7 @@ using CSF.Entities;
 
 namespace Agiil.Domain.Tickets.RelationshipValidation
 {
-  public class TraversibleRelationship : IEquatable<TraversibleRelationship>
+  public sealed class TraversibleRelationship : IEquatable<TraversibleRelationship>
   {
     public IIdentity<TicketRelationship> Id { get; private set; }
     public IIdentity<Ticket> Start { get; private set; }

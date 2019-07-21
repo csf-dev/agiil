@@ -22,7 +22,7 @@ export class Timespan {
         this.minutes = minutes;
         this.seconds = seconds;
     }
-};
+}
 
 function getHigherOrderTime(lowerOrder : number) : number {
     return lowerOrder / 60;
