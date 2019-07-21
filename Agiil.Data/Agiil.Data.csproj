@@ -70,9 +70,6 @@
       <HintPath>..\packages\Mono.Data.Sqlite.Portable.1.0.3.5\lib\net4\System.Transactions.Portable.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
-    <Reference Include="DbUp.SQLite.Mono">
-      <HintPath>..\packages\dbup-sqlite-mono.3.3.5\lib\net40\DbUp.SQLite.Mono.dll</HintPath>
-    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
@@ -99,6 +96,12 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="DbUp.SQLite" Condition="'$(OS)' == 'Windows_NT'">
+      <HintPath>..\packages\dbup-sqlite.3.3.5\lib\net40\DbUp.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="DbUp.SQLite.Mono" Condition="'$(OS)' != 'Windows_NT'">
+      <HintPath>..\packages\dbup-sqlite-mono.3.3.5\lib\net40\DbUp.SQLite.Mono.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
