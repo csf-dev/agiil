@@ -187,6 +187,7 @@
     <Compile Include="Controllers\TicketControllerIntegrationTests.cs" />
     <Compile Include="Services\Tickets\TicketDetailDtoProviderTests.cs" />
     <Compile Include="Services\Tickets\TicketUriProviderTests.cs" />
+    <Compile Include="Services\NewtonsoftJsonObjectSerialiserTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -190,6 +190,7 @@
     <Compile Include="Tickets\RelationshipValidation\TraversibleRelationshipProviderTests.cs" />
     <Compile Include="Tickets\RelationshipValidation\CircularRelationshipDetectorTests.cs" />
     <Compile Include="Tickets\RelationshipValidation\MultipleSecondaryRelationshipPreventingValidationDecoratorTests.cs" />
+    <Compile Include="Tickets\RelationshipValidation\TraversibleRelationshipTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
@@ -214,12 +215,8 @@
     </ProjectReference>
   </ItemGroup>
   <Target Name="MoveAppConfigToCorrectLocation" AfterTargets="ScApplyTransforms">
-    <Copy SourceFiles="App.template.config"
-          DestinationFiles="$(OutDir)\Agiil.Tests.Services.dll.config"
-          Condition="!Exists('$(OutDir)\App.config')" />
-    <Move SourceFiles="$(OutDir)\App.config"
-          DestinationFiles="$(OutDir)\Agiil.Tests.Services.dll.config"
-          Condition="Exists('$(OutDir)\App.config')" />
+    <Copy SourceFiles="App.template.config" DestinationFiles="$(OutDir)\Agiil.Tests.Services.dll.config" Condition="!Exists('$(OutDir)\App.config')" />
+    <Move SourceFiles="$(OutDir)\App.config" DestinationFiles="$(OutDir)\Agiil.Tests.Services.dll.config" Condition="Exists('$(OutDir)\App.config')" />
   </Target>
   <ItemGroup>
     <Folder Include="Auth\" />
