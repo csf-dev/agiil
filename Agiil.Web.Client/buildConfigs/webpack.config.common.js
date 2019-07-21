@@ -26,7 +26,9 @@ const webpackConfig = {
         rules: [
             {
                 test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
+                exclude: [
+                    path.resolve(__dirname, '../node_modules'),
+                ],
                 use: [
                     {
                         loader: 'babel-loader',
@@ -42,8 +44,12 @@ const webpackConfig = {
                 // See #AG294 for more info.  By default everything in node_modules is
                 // transpiled, with only specific exceptions.
                 test: /\.js$/,
-                include: /node_modules/,
-                exclude: [ /node_modules\/core-js/ ],
+                include: [
+                    path.resolve(__dirname, '../node_modules'),
+                ],
+                include: [
+                    path.resolve(__dirname, '../node_modules/core-js'),
+                ],
                 use: [
                     {
                         loader: 'babel-loader',
