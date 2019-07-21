@@ -35,7 +35,7 @@ build_script:
   - msbuild /verbosity:normal "Agiil.sln" /p:Configuration=AppVeyorCI
 
 test_script:
-  - .OpenCover\OpenCover.4.7.922\tools\OpenCover.Console.exe -register:user -target:%APPVEYOR_BUILD_FOLDER%\Tools\AppVeyor-Run-unit-tests.bat -output:%APPVEYOR_BUILD_FOLDER%\OpenCover.xml -filter:"+[Agiil.*]* -[Agiil.Tests.*]* -[Agiil.BDD]* -[Agiil.Web.TestBuild]* -[Agiil.Web.Client]* -[Agiil.QueryLanguage.Antlr]* -[Agiil.Bootstrap]* -[Agiil.Web.Models]*"
+  - .OpenCover\OpenCover.4.7.922\tools\OpenCover.Console.exe -register:user -target:.\packages\NUnit.ConsoleRunner.3.7.0\tools\nunit3-console.exe -targetargs:"--result=%APPVEYOR_BUILD_FOLDER%\Tests\Temp\TestResult.unit-tests.xml --result=%APPVEYOR_BUILD_FOLDER%\Tests\Temp\TestResult.unit-tests.AppVeyor.xml;format=AppVeyor Tests\Agiil.Tests.Auth\bin\Debug\Agiil.Tests.Auth.dll Tests\Agiil.Tests.Data\bin\Debug\Agiil.Tests.Data.dll Tests\Agiil.Tests.Domain\bin\Debug\Agiil.Tests.Services.dll Tests\Agiil.Tests.Web\bin\Debug\Agiil.Tests.Web.dll" -output:%APPVEYOR_BUILD_FOLDER%\OpenCover.xml -filter:"+[Agiil.*]* -[Agiil.Tests.*]* -[Agiil.BDD]* -[Agiil.Web.TestBuild]* -[Agiil.Web.Client]* -[Agiil.QueryLanguage.Antlr]* -[Agiil.Bootstrap]* -[Agiil.Web.Models]*"
 
 after_test:
   - SonarScanner.MSBuild.exe end /d:"sonar.login=%SONARCLOUD_SECRET_KEY%"
