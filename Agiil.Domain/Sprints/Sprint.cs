@@ -9,8 +9,6 @@ namespace Agiil.Domain.Sprints
 {
   public class Sprint : Entity<long>
   {
-    readonly EventRaisingSetWrapper<Ticket> tickets;
-
     public virtual string Name { get; set; }
 
     [AllowNull]
@@ -26,15 +24,9 @@ namespace Agiil.Domain.Sprints
 
     public virtual bool Closed { get; set; }
 
+    readonly EventRaisingSetWrapper<Ticket> tickets;
     public virtual ISet<Ticket> Tickets {
       get { return tickets.Collection; }
-      protected set { /* no-op */ }
-    }
-
-    protected virtual ISet<Ticket> SourceTickets
-    {
-      get { return tickets.SourceCollection; }
-      set { tickets.SourceCollection = value; }
     }
 
     public Sprint()

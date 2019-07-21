@@ -9,8 +9,6 @@ namespace Agiil.Domain.Projects
 {
   public class Project : Entity<long>
   {
-    readonly EventRaisingSetWrapper<Sprint> sprints;
-    readonly EventRaisingSetWrapper<Ticket> tickets;
 
     public virtual string Name { get; set; }
 
@@ -18,26 +16,14 @@ namespace Agiil.Domain.Projects
 
     public virtual long NextAvailableTicketNumber { get; set; }
 
+    readonly EventRaisingSetWrapper<Ticket> tickets;
     public virtual ISet<Ticket> Tickets {
       get { return tickets.Collection; }
-      protected set { /* no-op */ }
     }
 
-    protected virtual ISet<Ticket> SourceTickets
-    {
-      get { return tickets.SourceCollection; }
-      set { tickets.SourceCollection = value; }
-    }
-
+    readonly EventRaisingSetWrapper<Sprint> sprints;
     public virtual ISet<Sprint> Sprints {
       get { return sprints.Collection; }
-      protected set { /* no-op */ }
-    }
-
-    protected virtual ISet<Sprint> SourceSprints
-    {
-      get { return sprints.SourceCollection; }
-      set { sprints.SourceCollection = value; }
     }
 
     public Project()

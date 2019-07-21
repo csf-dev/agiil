@@ -21,91 +21,31 @@ namespace Agiil.Domain.Tickets
 
     public virtual int? StoryPoints { get; set; }
 
-    #region Comments
-
     readonly EventRaisingSetWrapper<Comment> comments;
-
     public virtual ISet<Comment> Comments {
       get { return comments.Collection; }
-      protected set { /* no-op */ }
     }
-
-    protected virtual ISet<Comment> SourceComments
-    {
-      get { return comments.SourceCollection; }
-      set { comments.SourceCollection = value; }
-    }
-
-    #endregion
-
-    #region Labels
 
     readonly EventRaisingSetWrapper<Labels.Label> labels;
-
     [ManyToMany]
     public virtual ISet<Labels.Label> Labels {
       get { return labels.Collection; }
-      protected set { /* no-op */ }
     }
-
-    protected virtual ISet<Labels.Label> SourceLabels
-    {
-      get { return labels.SourceCollection; }
-      set { labels.SourceCollection = value; }
-    }
-
-    #endregion
-
-    #region PrimaryRelationships
 
     readonly EventRaisingSetWrapper<TicketRelationship> primaryRelationships;
-
     public virtual ISet<TicketRelationship> PrimaryRelationships {
       get { return primaryRelationships.Collection; }
-      protected set { /* no-op */ }
     }
-
-    protected virtual ISet<TicketRelationship> SourcePrimaryRelationships
-    {
-      get { return primaryRelationships.SourceCollection; }
-      set { primaryRelationships.SourceCollection = value; }
-    }
-
-    #endregion
-
-    #region SecondaryRelationships
 
     readonly EventRaisingSetWrapper<TicketRelationship> secondaryRelationships;
-
     public virtual ISet<TicketRelationship> SecondaryRelationships {
       get { return secondaryRelationships.Collection; }
-      protected set { /* no-op */ }
     }
-
-    protected virtual ISet<TicketRelationship> SourceSecondaryRelationships
-    {
-      get { return secondaryRelationships.SourceCollection; }
-      set { secondaryRelationships.SourceCollection = value; }
-    }
-
-    #endregion
-
-    #region WorkLogs
 
     readonly EventRaisingSetWrapper<Activity.TicketWorkLog> workLogs;
-
     public virtual ISet<Activity.TicketWorkLog> WorkLogs {
       get { return workLogs.Collection; }
-      protected set { /* no-op */ }
     }
-
-    protected virtual ISet<Activity.TicketWorkLog> SourceWorkLogs
-    {
-      get { return workLogs.SourceCollection; }
-      set { workLogs.SourceCollection = value; }
-    }
-
-    #endregion
 
     public virtual Auth.User User { get; set; }
 

@@ -103,6 +103,9 @@
     <Reference Include="DbUp.SQLite.Mono" Condition="'$(OS)' != 'Windows_NT'">
       <HintPath>..\packages\dbup-sqlite-mono.3.3.5\lib\net40\DbUp.SQLite.Mono.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Collections.EventRaising">
+      <HintPath>..\packages\CSF.Collections.EventRaising.1.0.3\lib\net45\CSF.Collections.EventRaising.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -161,6 +164,8 @@
     <Compile Include="Serialization\NewtonsoftJsonSerializer.cs" />
     <Compile Include="Serialization\OrderedPropertiesContractResolver.cs" />
     <Compile Include="ClassMappings\HierarchicalTicketRelationshipMapping.cs" />
+    <Compile Include="ConventionMappings\GenericSourceCollectionPropertyProvider.cs" />
+    <Compile Include="ConventionMappings\SourceCollectionGetterSetter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ConventionMappings\" />
