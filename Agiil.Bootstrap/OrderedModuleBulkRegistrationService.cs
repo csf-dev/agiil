@@ -17,11 +17,8 @@ namespace Agiil.Bootstrap
       var pass = 1;
       IEnumerable<Autofac.Module> modulesToRegister;
 
-      while(true)
+      while((modulesToRegister = GetOrderedModules(pass++)) != null && modulesToRegister.Any())
       {
-        modulesToRegister = GetOrderedModules(pass++);
-        if(modulesToRegister == null || !modulesToRegister.Any()) break;
-
         foreach(var module in modulesToRegister)
           builder.RegisterModule(module);
       }

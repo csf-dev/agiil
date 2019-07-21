@@ -28,7 +28,7 @@ namespace Agiil.Bootstrap
       var unorderedModuleTypes = moduleAssemblies.SelectMany(x => x.GetExportedTypes()).Where(spec);
 
       return unorderedModuleTypes
-        .Select(x => Activator.CreateInstance(x))
+        .Select(Activator.CreateInstance)
         .Cast<Autofac.Module>()
         .ToArray();
     }
