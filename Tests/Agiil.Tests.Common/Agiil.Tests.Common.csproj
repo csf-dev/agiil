@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Tests</RootNamespace>
     <AssemblyName>Agiil.Tests.Common</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>v0.8.1-alpha</ReleaseVersion>
+    <ReleaseVersion>0.9.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -174,6 +174,9 @@
     <Compile Include="Attributes\CreatesTransactionAttribute.cs" />
     <Compile Include="Autofixture\CreatesTransactionCustomization.cs" />
     <Compile Include="Data\InMemoryEntityDataFactory.cs" />
+    <Compile Include="Attributes\WithRelationshipAttribute.cs" />
+    <Compile Include="Bootstrap\DataModule.cs" />
+    <Compile Include="Data\TestingDatabaseConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
@@ -208,11 +211,16 @@
       <Project>{36A605F5-89BD-4FBA-BDB1-088C38E54886}</Project>
       <Name>Agiil.ObjectMaps</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Data\Agiil.Data.csproj">
+      <Project>{AB167238-0D06-4D8A-A646-198D63575AF5}</Project>
+      <Name>Agiil.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Autofixture\" />
     <Folder Include="Attributes\" />
     <Folder Include="Data\" />
+    <Folder Include="Bootstrap\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

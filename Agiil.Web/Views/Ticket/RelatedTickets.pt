@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Open or close ticket</title>
+<base href="../../" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+</style>
+<style>
+@import url('Content/Css/TicketDetail.css');
+</style>
+</head>
+<body class="new_layout">
+<div class="page_area">
+  <nav class="application_menu"></nav>
+  <section class="content_area">
+    <header>
+      <h1 class="title_content">Ticket title</h1>
+    </header>
+    <div class="main_content">
+      <section class="ticket_description">
+        <header><h2>Ticket description</h2></header>
+        <div class="markdown_rendered_text">
+          Ticket description here.
+        </div>
+      </section>
+      <section class="ticket_comments">
+        <header><h2>Ticket comments</h2></header>
+      </section>
+      <section class="add_a_comment">
+        <header><h2>Add a comment</h2></header>
+        <div>
+          Add a comment control
+        </div>
+      </section>
+    </div>
+    <aside class="main_content_asides">
+      <header><h2>Ticket properties</h2></header>
+      <h3>Related tickets</h3>
+      <div metal:define-macro="related_tickets_list" tal:omit-tag="">
+      <p tal:condition="not:ticket/HasRelationships">
+        No related tickets
+      </p>
+      <ul class="related_tickets">
+        <li tal:repeat="relationship ticket/Relationships">
+          <header>
+            <span class="relationship_summary" tal:content="relationship/Summary">Relates to</span>
+          </header>
+          <div tal:define="relatedTicket relationship/RelatedTicket">
+            <a href="Ticket/1"
+               tal:attributes="href relatedTicket/ViewUrl"
+               class="ticket_title"
+               tal:content="relatedTicket/Title">
+              This is the related ticket
+            </a>
+            <a href="Ticket/1"
+               tal:attributes="href relatedTicket/ViewUrl"
+               class="ticket_reference"
+               tal:content="string:#${relatedTicket/Reference}">
+              #AB123
+            </a>
+          </div>
+        </li>
+      </ul>
+      </div>
+    </aside>
+  </section>
+</div>
+</body>
+</html>

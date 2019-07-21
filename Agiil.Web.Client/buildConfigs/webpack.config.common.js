@@ -6,20 +6,20 @@ const cssModuleLoader = {
     modules: true,
     localIdentName: '[local]__[hash:base64:5]'
   }
-}
+};
 
 const cssPlainLoader = {
   loader: 'css-loader',
   options: {
     modules: false
   }
-}
+};
 
 const webpackConfig = {
     resolve: {
         modules: [
             'node_modules',
-            path.resolve(__dirname, '../src')
+            path.resolve(__dirname, '../src'),
         ]
     },
     module: {
@@ -27,7 +27,33 @@ const webpackConfig = {
             {
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
-                use: [ 'babel-loader' ]
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            babelrc: false,
+                            configFile: path.resolve(__dirname, '../babel.config.json')
+                        }
+                    }
+                ]
+            },
+            {
+                // Some node modules must be transpiled to work with my target browsers
+                // See #AG294 for more info.  By default everything in node_modules is
+                // transpiled, with only specific exceptions.
+                test: /\.js$/,
+                include: /node_modules/,
+                exclude: [ /node_modules\/core-js/ ],
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            babelrc: false,
+                            configFile: path.resolve(__dirname, '../babel.config.json'),
+                            sourceType: 'unambiguous'
+                        }
+                    }
+                ]
             },
             {
                 test: /\.module\.scss$/,
@@ -46,6 +72,10 @@ const webpackConfig = {
                     cssPlainLoader,
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.(png|svg|jpg)$/,
+                use: [ 'file-loader' ],
             },
         ]
     },

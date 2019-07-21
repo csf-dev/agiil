@@ -1,0 +1,84 @@
+@import '_AppWideVariables';
+@import '_ResponsiveBreakpoints';
+@import '_ThreeColumnLayout_Base';
+
+$no_flexbox_content_top_adjustment: -$appmenu-top-padding + $main_header_top_padding * ($main_header_font_size / 100%);
+
+html.no-flexbox {
+  body {
+    min-height: 100%;
+  }
+  .page_root {
+    min-height: calc(100% - #{$footer-height});
+    display: table;
+    position: relative;
+    min-width: $asides-width + 700px;
+    max-width: $appmenu-width + $asides-width + 700px;
+    margin: 0 auto;
+    width: 100%;
+    overflow-x: auto;
+  }
+  .page_area {
+    display: table-row;
+    height: 100%;
+  }
+  .application_menu {
+    display: table-cell;
+    width: calc(#{$appmenu-width} - #{$double_side_padding});
+  }
+  .content_area {
+    display: table-cell;
+    position: relative;
+  }
+  .content_area > header {
+    transform: translateY($no_flexbox_content_top_adjustment);
+  }
+  .content_container {
+    margin-top: $no_flexbox_content_top_adjustment;
+    display: table;
+    width: 100%;
+  }
+  .main_content {
+    margin-right: $asides-width;
+    display: table-cell;
+    min-width: 700px;
+    max-width: 780px;
+    box-sizing: border-box;
+  }
+  .main_content_asides {
+    display: table-cell;
+    width: $asides-width;
+  }
+  .page_root>footer {
+    height: $footer-height;
+    position: absolute;
+    width: 100%;
+  }
+}  
+
+@media #{$mobile_media}, #{$tablet_media}, #{$medium_desktop_media} {
+  html.no-flexbox {
+    .application_menu {
+      display: none;
+    }
+    .page_area.app_nav_panel_active .application_menu {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 300px;
+      z-index: 100;
+      box-sizing: border-box;
+
+    }
+  }
+  html.no-js.no-flexbox {
+    body {
+      min-width: 1300px;
+    }
+    .application_menu {
+      display: table-cell;
+    }
+  }
+}

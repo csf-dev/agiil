@@ -24,6 +24,7 @@ namespace Agiil.Web.Bootstrap
         .RegisterType<AppSettingsDatabaseMaintenanceSecurityProvider>()
         .AsImplementedInterfaces();
       builder.RegisterType<LabelDetailProvider>().AsSelf().AsImplementedInterfaces();
+      builder.RegisterType<NewtonsoftJsonObjectSerialiser>().AsSelf().AsImplementedInterfaces();
     }
   }
 }

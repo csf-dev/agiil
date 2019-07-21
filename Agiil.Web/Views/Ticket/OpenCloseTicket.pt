@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Open or close ticket</title>
+<base href="../../" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+</style>
+<style>
+@import url('Content/Css/TicketDetail.css');
+</style>
+</head>
+<body class="new_layout">
+<div class="page_area">
+  <nav class="application_menu"></nav>
+  <section class="content_area">
+    <header>
+      <h1 class="title_content">Ticket title</h1>
+    </header>
+    <div class="main_content">
+      <section class="ticket_description">
+        <header><h2>Ticket description</h2></header>
+        <div class="markdown_rendered_text">
+          Ticket description here.
+        </div>
+      </section>
+      <section class="ticket_comments">
+        <header><h2>Ticket comments</h2></header>
+      </section>
+      <section class="add_a_comment">
+        <header><h2>Add a comment</h2></header>
+        <div>
+          Add a comment control
+        </div>
+      </section>
+    </div>
+    <aside class="main_content_asides">
+      <header><h2>Ticket properties</h2></header>
+      <h3>Status</h3>
+      <form class="open_close_ticket"
+            action="OpenCloseTicket/Close/0"
+            method="POST"
+            tal:define="isClosed ticket/Closed;
+                        openCloseAction csharp:isClosed? &quot;Reopen&quot; : &quot;Close&quot;;
+                        openCloseUrl string:OpenCloseTicket/${openCloseAction}/${ticket/Id}"
+            tal:attributes="action openCloseUrl"
+            metal:define-macro="open_close_control">
+        <fieldset>
+          <div class="form_element"
+               tal:define="currentState csharp:isClosed? &quot;Closed&quot; : &quot;Open&quot;;
+                           buttonText csharp:isClosed? &quot;Re-open&quot; : &quot;Close&quot;">
+            <p>
+              <span class="screen_reader_only">This ticket is</span>
+              <span class="ticket_state" tal:content="currentState">Open</span><span class="screen_reader_only">.</span>
+              <button id="OpenCloseButton" tal:content="buttonText">Close</button>
+            </p>
+          </div>
+        </fieldset>
+      </form>
+    </aside>
+  </section>
+</div>
+</body>
+</html>

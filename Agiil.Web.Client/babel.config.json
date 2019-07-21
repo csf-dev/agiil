@@ -1,0 +1,33 @@
+{
+    "presets": [
+        [
+             "@babel/preset-env", {
+                "useBuiltIns": "usage",
+                "targets": [
+                    "> 0.2%",
+                    "last 2 versions",
+                    "ChromeAndroid >= 55",
+                    "Chrome >= 55",
+                    "Firefox >= 50",
+                    "FirefoxAndroid >= 50",
+                    "Edge >= 12",
+                    "IE >= 9",
+                    "Opera >= 42",
+                    "Safari >= 10",
+                    "Android >= 4.4",
+                    "iOS >= 10",
+                    "Node 6",
+                    "Node 8",
+                    "Node 10"
+                ]
+            }
+        ],
+        "@babel/flow",
+        "@babel/preset-react"
+    ],
+    "plugins": [
+        [ "@babel/plugin-proposal-decorators", { "decoratorsBeforeExport": false } ],
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-proposal-optional-chaining"
+    ]
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<html lang="en" metal:use-macro="Views/Shared/ThreeColumnPage/macros/page">
 <head>
 <title metal:fill-slot="title_element"
        tal:define="ticket here/Ticket;
@@ -9,147 +9,172 @@
        tal:content="titleContent">AB123: Ticket title</title>
 <base href="../../" />
 <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<script src="Content/bundles/modernizr.agiil.js"></script>
 <style>
 @import url('Content/Css/Reset.css');
-@import url('Content/Css/StandardPage.css');
+@import url('Content/Css/ThreeColumnPage.css');
 </style>
 <style metal:fill-slot="extra_styles">
 @import url('Content/Css/TicketDetail.css');
 </style>
+<style metal:fill-slot="asset_styles" metal:use-macro="Views/Ticket/Index.assets.html/macros/styles"></style>
 </head>
 <body>
-<section metal:fill-slot="page_content"
-         class="page_content ticket_detail"
-         tal:define="ticket here/Ticket">
-  <header>
-    <h1 tal:content="ticket/Title" class="title_content">Ticket title</h1>
-    <p>
-      Ticket <strong tal:content="string:#${ticket/Reference}" class="ticket_reference">AB123</strong>:
-      <span class="ticket_type" tal:content="ticket/TypeName">Thing</span>.
-    </p>
-  </header>
-  <section class="details">
-    <p>
-      Created by <strong tal:content="ticket/Creator" id="TicketCreatorUsername">username</strong>
-      on <strong tal:content="ticket/CreationTimestamp">2001-01-01 19:21:22</strong>.
-    </p>
-    <p tal:condition="ticket/Sprint">
-      This ticket is part of sprint
-      <a href="Sprint/Index/0"
-         tal:define="url string:Sprint/Index/${ticket/Sprint/Id}"
-         tal:attributes="href url"><strong tal:content="ticket/Sprint/Name"
-                                           class="TicketSprintName">Sprint name</strong></a>.
-    </p>
-    <p tal:condition="not:ticket/Sprint">
-      This ticket is not part of any sprint.
-    </p>
-    <h2 tal:condition="ticket/HasLabels">Labels</h2>
-    <ul class="ticket_labels" tal:condition="ticket/HasLabels">
-      <li tal:repeat="label ticket/Labels">
-        <a href="Label/Index/label+name"
-           tal:define="encodedName label/UrlEncodedName;
-                       url string:Label/Index/$encodedName"
-           tal:attributes="href url"><span class="name" tal:content="label/Name">Label name</span></a>
-      </li>
-    </ul>
-    <h2 tal:condition="ticket/HasStoryPoints">Estimate</h2>
-    <p tal:condition="ticket/HasStoryPoints">
-      Story point estimate: <span tal:content="ticket/StoryPoints"></span>.
-    </p>
-    <h2>Work log</h2>
-    <p tal:condition="ticket/HasWorkLogged">
-      Work logged: <span tal:content="ticket/TotalWorkLogged/TotalMinutes"></span> minutes.
-    </p>
-    <p tal:define="url string:AddTicketWorkLog/Index/${ticket/Reference}">
-      <a href="AddTicketWorkLog/Index/0" tal:attributes="href url">Log work</a>
-    </p>
-    <form class="open_close_ticket"
-          action="OpenCloseTicket/Close/0"
-          method="POST"
-          tal:define="isClosed ticket/Closed;
-                      openCloseAction csharp:isClosed? &quot;Reopen&quot; : &quot;Close&quot;;
-                      openCloseUrl string:OpenCloseTicket/${openCloseAction}/${ticket/Id}"
-          tal:attributes="action openCloseUrl">
-      <fieldset>
-        <div class="form_element button" tal:condition="not:isClosed">
-          <p>This ticket is <span id="TicketState">open</span></p>
-          <button id="CloseTicket">Close</button>
-        </div>
-        <div class="form_element button" tal:condition="isClosed">
-          <p>This ticket is <span id="TicketState">closed</span></p>
-          <button id="ReopenTicket">Re-open</button>
-        </div>
-      </fieldset>
-    </form>
-  </section>
-  <section class="description">
-    <h2>Description</h2>
-    <div tal:content="structure ticket/HtmlDescription" class="description_content">
-      Ticket description here.
-    </div>
-  </section>
-  <section class="relationships" tal:condition="ticket/HasRelationships">
-    <h2>Relationships</h2>
-    <table class="relationship_table">
-      <colgroup>
-        <col class="summary">
-        <col class="ticket_title">
-        <col class="ticket_ref">
-      </colgroup>
-      <thead>
-        <th class="summary">Relationship</th>
-        <th class="ticket_title">Title</th>
-        <th class="ticket_ref">#</th>
-      </thead>
-      <tbody>
-        <tr tal:repeat="relationship ticket/Relationships" class="existing_relationship">
-          <td class="summary" tal:content="relationship/Summary">Relates to</td>
-          <td class="ticket_title" tal:content="relationship/RelatedTicket/Title">This is a ticket title</td>
-          <td class="ticket_ref" tal:define="relatedTicket relationship/RelatedTicket">
-            <a href="Ticket/1"
-               tal:attributes="href relatedTicket/ViewUrl"
-               tal:content="relatedTicket/Reference">AB123</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-  <a href="Ticket/Edit/0"
-     tal:define="editUrl ticket/EditUrl"
-     tal:attributes="href editUrl"
-     id="EditTicketLink">Edit this ticket</a>
-  <section class="comments">
-    <header>
-      <h2>Comments</h2>
+<header></header>
+<div class="page_area">
+  <nav class="application_menu">
+    <div>Application menu</div>
+  </nav>
+  <section class="content_area">
+    <header metal:fill-slot="content_area_header"
+            tal:define="ticket here/Ticket">
+      <div class="ticket_identity">
+        <span class="screen_reader_only">Ticket reference</span>
+        <strong tal:content="string:#${ticket/Reference}" class="ticket_reference">AB123</strong>:
+        <span class="ticket_type" tal:content="ticket/TypeName">Thing</span>
+      </div>
+      <h1 tal:content="ticket/Title" class="title_content">Ticket title</h1>
     </header>
-    <ol metal:use-macro="Views/Shared/Controls/Comments/macros/comment_list"
-        class="comment_list">
-      <li>
-        <header>
-          <p>
-            Written by <strong>Username</strong> on
-            <strong>2001-01-01 19:21:22</strong>.
-          </p>
-        </header>
-        <div class="comment_content">Here is some comment text.
-          It runs across two lines.</div>
-      </li>
-      <li>
-        <header>
-          <p>
-            Written by <strong>Username</strong> on
-            <strong>2001-01-01 19:21:22</strong>.
-          </p>
-        </header>
-        <div class="comment_content">Here is some comment text.
-          It runs across two lines.</div>
-      </li>
-    </ol>
-    <h3>Add a comment</h3>
-    <div metal:use-macro="Views/Shared/Controls/Comments/macros/add_a_comment">
-      Add a comment control
+    <div class="content_container">
+      <div class="main_content"
+           metal:fill-slot="main_content"
+           tal:define="ticket here/Ticket">
+        <section class="ticket_description">
+          <header><h2 class="screen_reader_only">Ticket description</h2></header>
+          <div tal:content="structure ticket/HtmlDescription"
+              class="markdown_rendered_text description_content">
+            Ticket description here.
+          </div>
+        </section>
+        <section class="ticket_comments">
+          <header><h2>Ticket comments</h2></header>
+          <ol metal:use-macro="Views/Shared/Controls/Comments/macros/comment_list"
+              class="comment_list">
+            <li>
+              <header>
+                <p>
+                  Written by <strong>Username</strong> on
+                  <strong>2001-01-01 19:21:22</strong>.
+                </p>
+              </header>
+              <div class="comment_content">Here is some comment text.
+                It runs across two lines.</div>
+            </li>
+            <li>
+              <header>
+                <p>
+                  Written by <strong>Username</strong> on
+                  <strong>2001-01-01 19:21:22</strong>.
+                </p>
+              </header>
+              <div class="comment_content">Here is some comment text.
+                It runs across two lines.</div>
+            </li>
+          </ol>
+          <div class="add_a_comment">
+            <header><h2>Add a comment</h2></header>
+            <div metal:use-macro="Views/Shared/Controls/Comments/macros/add_a_comment">
+              Add a comment control
+            </div>
+          </div>
+        </section>
+      </div>
+      <aside class="main_content_asides"
+             metal:fill-slot="main_content_asides"
+             tal:define="ticket here/Ticket">
+        <header><h2>Ticket properties</h2></header>
+        <h3>Status</h3>
+        <form class="open_close_ticket"
+              metal:use-macro="Views/Ticket/OpenCloseTicket/macros/open_close_control">
+          <fieldset>
+            <div class="form_element button">
+              <p>This ticket is <span id="TicketState">open</span></p>
+              <button id="CloseTicket">Close</button>
+            </div>
+          </fieldset>
+        </form>
+        <h3>Edit</h3>
+        <p>
+          <a href="Ticket/Edit/0"
+             tal:define="editUrl ticket/EditUrl"
+             tal:attributes="href editUrl"
+             id="EditTicketLink">Edit this ticket</a>
+        </p>
+        <h3>Sprint</h3>
+        <p tal:condition="ticket/Sprint">
+          <span class="screen_reader_only">This ticket is part of</span>
+          <a href="Sprint/Index/0"
+             tal:define="url string:Sprint/Index/${ticket/Sprint/Id}"
+             tal:attributes="href url"><strong tal:content="ticket/Sprint/Name"
+                                               class="TicketSprintName">Sprint name</strong></a>
+        </p>
+        <p tal:condition="not:ticket/Sprint">
+          This ticket is not part of any sprint
+        </p>
+        <h3>Labels</h3>
+        <ul class="ticket_labels" tal:condition="ticket/HasLabels">
+          <li tal:repeat="label ticket/Labels">
+            <a href="Label/Index/label+name"
+               tal:define="encodedName label/UrlEncodedName;
+                           url string:Label/Index/$encodedName"
+               tal:attributes="href url"><span class="name" tal:content="label/Name">Label name</span></a>
+          </li>
+        </ul>
+        <p tal:condition="not:ticket/HasLabels">
+          This ticket has no labels
+        </p>
+        <h2>Story point estimate</h2>
+        <p tal:condition="ticket/HasStoryPoints"
+           tal:define="multiplePoints csharp:ticket.StoryPoints &gt; 1;
+                       pointOrPoints csharp:multiplePoints? &quot;points&quot; : &quot;point&quot;"
+           class="story_point_estimate">
+          <span tal:content="ticket/StoryPoints" class="value">3</span>
+          story <span tal:replace="pointOrPoints">points</span>
+        </p>
+        <p tal:condition="not:ticket/HasStoryPoints"
+           class="story_point_estimate no_estimate">
+          No story point estimate
+        </p>
+        <h3>Work log</h3>
+        <p tal:condition="ticket/HasWorkLogged"
+           class="total_work_logged">
+          <span tal:content="ticket/TotalWorkLogged/TotalMinutes" class="total_minutes">30</span> minutes of work logged
+        </p>
+        <p tal:condition="not:ticket/HasWorkLogged"
+           class="total_work_logged nothing_logged">
+          No work logged
+        </p>
+        <p tal:define="url string:AddTicketWorkLog/Index/${ticket/Reference}">
+          <a href="AddTicketWorkLog/Index/0" tal:attributes="href url">Log work</a>
+        </p>
+        <h3>Related tickets</h3>
+        <div class="related_tickets"
+             metal:use-macro="Views/Ticket/RelatedTickets/macros/related_tickets_list">
+          Related tickets
+        </div>
+        <h3>Created</h3>
+        <p>
+          Created by
+          <strong tal:content="ticket/Creator" id="TicketCreatorUsername">username</strong>
+          on
+          <strong tal:content="ticket/CreationTimestamp">2001-01-01 19:21:22</strong>
+        </p>
+      </aside>
     </div>
   </section>
-</section>
+</div>
+<footer>
+  <p class="VersionStatement">
+    Agiil <span class="ApplicationVersion">v4.5.6</span>
+  </p>
+</footer>
+<metal:block fill-slot="page_state">
+<script tal:define="serializer csharp:ViewBag.JsonSerializer;
+                    ticket here/Ticket;
+                    serializedTicket csharp:serializer.Serialize(ticket);
+                    pageState string:var ticketData = $serializedTicket;"
+        tal:content="pageState"></script>
+</metal:block>
+<metal:block fill-slot="asset_scripts" use-macro="Views/Ticket/Index.assets.html/macros/scripts"></metal:block>
 </body>
 </html>

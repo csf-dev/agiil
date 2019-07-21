@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.Data.MappingProviders;
+using Agiil.Data.Types;
 using Agiil.Domain.Tickets;
 using CSF.Reflection;
 using NHibernate.Mapping.ByCode;
@@ -22,6 +23,10 @@ namespace Agiil.Data.ClassMappings
       mapper.Class<Relationship>(map => {
         map.Discriminator(d => {
           d.Column(nameFormatter.GetColumnName(Reflect.Property<Relationship>(x => x.Type)));
+        });
+
+        map.Property(p => p.Behaviour, m => {
+          m.Type<JsonSerializedType<RelationshipBehaviour>>(new { AllowNull = Boolean.FalseString });
         });
       });
     }

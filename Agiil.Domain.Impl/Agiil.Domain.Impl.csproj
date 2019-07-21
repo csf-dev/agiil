@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Domain</RootNamespace>
     <AssemblyName>Agiil.Domain.Impl</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>v0.8.1-alpha</ReleaseVersion>
+    <ReleaseVersion>0.9.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -210,6 +210,23 @@
     <Compile Include="IGetsLoggerForType.cs" />
     <Compile Include="Log4NetLoggerForTypeProvider.cs" />
     <Compile Include="Tickets\CurrentProjectBackfillingTicketReferenceParserDecorator.cs" />
+    <Compile Include="Tickets\RelationshipValidation\ChangedTicketRelationshipsRule.cs" />
+    <Compile Include="Tickets\RelationshipValidation\TheoreticalRelationship.cs" />
+    <Compile Include="Tickets\RelationshipValidation\IGetsTheoreticalTicketRelationships.cs" />
+    <Compile Include="Tickets\RelationshipValidation\TheoreticalRelationshipProvider.cs" />
+    <Compile Include="Tickets\RelationshipValidation\IValidatesTheoreticalTicketRelationships.cs" />
+    <Compile Include="Tickets\RelationshipValidation\CircularRelationshipValidator.cs" />
+    <Compile Include="Tickets\HierarchicalTicketRelationshipProvider.cs" />
+    <Compile Include="Tickets\RelationshipValidation\TheoreticalRelationshipType.cs" />
+    <Compile Include="Tickets\RelationshipValidation\IDetectsCircularRelationship.cs" />
+    <Compile Include="Tickets\RelationshipValidation\TraversibleRelationship.cs" />
+    <Compile Include="Tickets\RelationshipValidation\IGetsHierarchicalTicketRelationshipsWhichCouldCreateACircularRelationship.cs" />
+    <Compile Include="Tickets\RelationshipValidation\PossiblyCircularHierarchicalTicketRelationshipProviderAdapter.cs" />
+    <Compile Include="Tickets\RelationshipValidation\IGetsTraversibleRelationships.cs" />
+    <Compile Include="Tickets\RelationshipValidation\TraversibleRelationshipProvider.cs" />
+    <Compile Include="Tickets\RelationshipValidation\CircularRelationshipDetector.cs" />
+    <Compile Include="Tickets\RelationshipValidation\MultipleSecondaryRelationshipPreventingValidationDecorator.cs" />
+    <Compile Include="Validation\ValidationResultRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
@@ -237,6 +254,7 @@
     <Folder Include="Tickets\Creation\" />
     <Folder Include="Tickets\Editing\" />
     <Folder Include="Activity\" />
+    <Folder Include="Tickets\RelationshipValidation\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

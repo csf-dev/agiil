@@ -1,11 +1,23 @@
 $proportional-font-stack: Lato, 'DejaVu Sans', Verdana, sans;
 $monospace-font-stack: 'Source Code Pro', 'DejaVu Sans Mono', 'Lucida Console', monospace;
-$subtle-keyline-color: hsla(0, 0%, 85%, 1);
-$faint-keyline-color: hsla(0, 0%, 95%, 1);
+$keyline-lightness: 0%;
+$subtle-keyline-alpha: 20% / 100%;
+$subtle-keyline-color: hsla(0, 0%, $keyline-lightness, $subtle-keyline-alpha);
+$faint-keyline-alpha: 5% / 100%;
+$faint-keyline-color: hsla(0, 0%, $keyline-lightness, $faint-keyline-alpha);
+$asides-panel-lightness: 100% * (1 - $faint-keyline-alpha);
+$asides-panel-color: hsla(0, 0%, $asides-panel-lightness, 1);
+$sunken-content-lightness: 100% * (1 - $subtle-keyline-alpha);
+$sunken-content-color: hsla(0, 0%, $sunken-content-lightness, 1);
 $subtle-text-color: hsla(0, 0%, 50%, 1);
+$small-text-size: 90%;
 $smaller-text-size: 80%;
 $paragraph-spacing: 0.4em;
 $link-underline-color: #CCE;
+$appmenu-top-padding: 2em;
+$appmenu-width: 300px;
+$asides-width: 300px;
+$footer-height: 32px;
 
 @mixin invisible {
   width: 1px;
@@ -25,6 +37,15 @@ $link-underline-color: #CCE;
   text-decoration: none;
   border-bottom: 1px solid $link-underline-color;
   padding-bottom: 1px;
+}
+
+@mixin sunken {
+  background-color: $sunken-content-color;
+  box-shadow: inset 1px 1px 5px 0 hsla(0, 0, 25%, 1);
+  padding: 5px;
+}
+@mixin raised {
+  box-shadow: 1px 1px 5px 0 hsla(0, 0, 25%, 1);
 }
 
 %subtle_box {
@@ -51,4 +72,8 @@ $link-underline-color: #CCE;
   th {
     font-weight: bold;
   }
+}
+
+.screen_reader_only {
+  display: none;
 }

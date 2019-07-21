@@ -6,7 +6,7 @@ export default function getCancelableXhr(xhr : XMLHttpRequest, body? : mixed) : 
     const promise = new Promise((resolve, reject) => setupReadyStateChangeHandler(xhr, resolve, reject));
     xhr.send(body);
     
-    return new CancelablePromise(promise, xhr.abort);
+    return new CancelablePromise(promise, () => xhr.abort());
 }
 
 function setupReadyStateChangeHandler(xhr : XMLHttpRequest,

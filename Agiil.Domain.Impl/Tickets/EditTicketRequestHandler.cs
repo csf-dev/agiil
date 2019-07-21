@@ -3,6 +3,7 @@ using Agiil.Domain.Validation;
 using CSF.Data;
 using CSF.Data.Entities;
 using CSF.Validation;
+using log4net;
 
 namespace Agiil.Domain.Tickets
 {
@@ -13,10 +14,14 @@ namespace Agiil.Domain.Tickets
     readonly ICreatesValidators<EditTicketRequest> validatorFactory;
     readonly ICreatesEditTicketResponse responseCreator;
     readonly IEditsTicket editor;
+    readonly ILog logger;
 
     public EditTicketResponse Edit(EditTicketRequest request)
     {
+      logger.Debug("About to validate an edit-ticket request");
       var validationResult = ValidateRequest(request);
+      logger.Debug(validationResult);
+
       if(!validationResult.IsSuccess)
         return responseCreator.GetResponse(validationResult, null);
 
@@ -42,7 +47,8 @@ namespace Agiil.Domain.Tickets
                                     ITransactionCreator transactionFactory,
                                     ICreatesValidators<EditTicketRequest> validatorFactory,
                                     ICreatesEditTicketResponse responseCreator,
-                                    IEditsTicket editor)
+                                    IEditsTicket editor,
+                                    ILog logger)
     {
       if(editor == null)
         throw new ArgumentNullException(nameof(editor));
@@ -60,6 +66,7 @@ namespace Agiil.Domain.Tickets
       this.validatorFactory = validatorFactory;
       this.responseCreator = responseCreator;
       this.editor = editor;
+      this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
   }
 }

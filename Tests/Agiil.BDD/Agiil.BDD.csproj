@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.BDD</RootNamespace>
     <AssemblyName>Agiil.BDD</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>v0.8.1-alpha</ReleaseVersion>
+    <ReleaseVersion>0.9.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -255,6 +255,10 @@
     <Compile Include="Abilities\AutofacIntegrationConfigBuilderExtensions.cs" />
     <Compile Include="Personas\Ingrid.cs" />
     <Compile Include="IntegrationTasks\Auth\OverrideTheCurrentUser.cs" />
+    <Compile Include="Tasks\Tickets\RemoveAllOfTheLabels.cs" />
+    <Compile Include="Tasks\Labels\EnterALabel.cs" />
+    <Compile Include="Tasks\Labels\EnterTheLabels.cs" />
+    <Compile Include="WebDriver\AgiilWebDriverIntegrationBuilderExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -289,6 +293,7 @@
     <Folder Include="Tasks\Labels\" />
     <Folder Include="IntegrationTasks\" />
     <Folder Include="IntegrationTasks\Auth\" />
+    <Folder Include="WebDriver\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj">

@@ -6,10 +6,10 @@
   "scripts": {
     "test": "npx karma start buildConfigs/karma.conf.js",
     "tests": "npx karma start buildConfigs/karma.conf.js --no-single-run",
-    "devTest": "npx webpack --config buildConfigs/webpack.config.dev.js -w",
+    "devTest": "node tools/build.js watchedDev",
     "clean": "node tools/clean.js",
-    "build": "npx webpack --config buildConfigs/webpack.config.prod.js",
-    "buildDev": "npx webpack --config buildConfigs/webpack.config.dev.js"
+    "build": "node tools/build.js prod",
+    "buildDev": "node tools/build.js dev"
   },
   "repository": {
     "type": "git",
@@ -40,16 +40,18 @@
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^2.1.0",
     "del": "^3.0.0",
+    "file-loader": "^4.1.0",
     "flow-bin": "^0.91.0",
     "flow-typed": "^2.5.1",
     "html-webpack-plugin": "^3.2.0",
     "jasmine": "^3.3.1",
-    "karma": "^4.0.0",
+    "karma": "^4.1.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-jasmine": "^2.0.1",
     "karma-spec-reporter": "^0.0.32",
     "karma-webpack": "^3.0.5",
     "mini-css-extract-plugin": "^0.5.0",
+    "modernizr": "^3.7.1",
     "node-sass": "^4.11.0",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
@@ -67,7 +69,8 @@
     "redux-thunk": "^2.3.0",
     "rxjs": "^6.3.3",
     "uuid": "^3.3.2",
-    "bound-decorator": "^1.1.0"
+    "bound-decorator": "^1.1.0",
+    "element-remove": "^1.0.4"
   },
   "browserslist": [
     "> 0.2%",

@@ -35,13 +35,13 @@ namespace Agiil.BDD.Pages
       => new ElementId("EditTicketLink", "the edit ticket link");
 
     public static ILocatorBasedTarget CloseTicketButton
-      => new ElementId("CloseTicket", "the close-ticket button");
+      => new ElementId("OpenCloseButton", "the close-ticket button");
 
     public static ILocatorBasedTarget ReopenTicketButton
-      => new ElementId("ReopenTicket", "the reopen-ticket button");
+      => new ElementId("OpenCloseButton", "the reopen-ticket button");
 
     public static ILocatorBasedTarget TicketState
-      => new ElementId("TicketState", "the ticket state");
+      => new CssSelector(".open_close_ticket .ticket_state", "the ticket state");
 
     public static ILocatorBasedTarget TicketCreatorUsername
       => new ElementId("TicketCreatorUsername", "the ticket creator");

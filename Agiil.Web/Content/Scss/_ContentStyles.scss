@@ -1,4 +1,16 @@
-.page_content {
+@import '_AppWideVariables';
+@import '_ThreeColumnLayout_Base';
+
+.content_area > header {
+  padding: $main_header_top_padding $side_padding 0;
+
+  h1 {
+    font-size: $main_header_font_size;
+    line-height: 120%;
+  }
+}
+
+.content_container {
   line-height: 140%;
 
   h1, h2, h3, h4, h5, h6 {
@@ -22,3 +34,4 @@
     font-style: italic;
   }
 }
+

@@ -17,7 +17,13 @@ namespace Agiil.BDD.Pages
 
     public static ILocatorBasedTarget DescriptionInputBox => new ElementId("Description", "the ticket description");
 
-    public static ILocatorBasedTarget TicketLabelsInputBox => new ElementId("Labels", "the ticket labels");
+    public static ILocatorBasedTarget TicketLabelsInputBox => new ElementId("Labels_input", "the ticket labels");
+
+    public static ILocatorBasedTarget ExistingLabelList
+    => new CssSelector(".LabelChooser .LabelList", "the existing label list");
+
+    public static ILocatorBasedTarget RemoveLabelButtons
+      => new CssSelector(".LabelChooser .LabelList button", "the remove label buttons");
 
     public static ILocatorBasedTarget SubmitButton => new ElementId("SubmitButton", "the submit button");
 

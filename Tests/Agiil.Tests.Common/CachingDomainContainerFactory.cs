@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Agiil.Bootstrap;
 using Autofac;
 
@@ -10,6 +13,11 @@ namespace Agiil.Tests
 
     readonly object syncRoot;
     IContainer container;
+
+    protected override IEnumerable<Assembly> GetModuleAssemblies()
+    {
+      return base.GetModuleAssemblies().Union(new [] { Assembly.GetExecutingAssembly() });
+    }
 
     public override IContainer GetContainer()
     {

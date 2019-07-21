@@ -1,9 +1,10 @@
 //@flow
 import { createStore, applyMiddleware } from 'redux';
 import type { AnyStore } from 'util/redux/AnyStore';
-import { rootReducer } from 'models';
+import rootReducer from 'reducers';
 import thunk from 'redux-thunk';
 import mandatory from 'util/mandatory';
+import { syncHeadWithModalState } from './middleware';
 
 export class StoreFactory {
     #store : ?AnyStore;
@@ -27,7 +28,7 @@ export class StoreFactory {
 }
 
 function createNewStore(initial : ?mixed) : AnyStore {
-    return createStore<any,any,any>(rootReducer, initial, applyMiddleware(thunk));
+    return createStore<any,any,any>(rootReducer, initial, applyMiddleware(thunk, syncHeadWithModalState));
 }
 
 const provider = new StoreFactory();

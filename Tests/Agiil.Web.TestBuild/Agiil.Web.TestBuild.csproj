@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Web</RootNamespace>
     <AssemblyName>Agiil.Web.TestBuild</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>v0.8.1-alpha</ReleaseVersion>
+    <ReleaseVersion>0.9.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -100,7 +100,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\InstallAgiilController.cs" />
-    <Compile Include="Bootstrap\DataModule.cs" />
     <Compile Include="App_Start\WebAppTestingContainerFactory.cs" />
     <Compile Include="Bootstrap\ServicesModule.cs" />
     <Compile Include="Bootstrap\AspNetWebApiTestBuildModule.cs" />
@@ -116,7 +115,6 @@
     <Compile Include="Services\IOverridesCurrentLogin.cs" />
     <Compile Include="Services\OverridableLoginReader.cs" />
     <Compile Include="Models\CreateUserModel.cs" />
-    <Compile Include="Data\TestingDatabaseConfiguration.cs" />
     <Compile Include="Services\IServicesNamespaceMarker.cs" />
     <Compile Include="Services\Auth\PermissiveBrakePedalThrottlePolicyProvider.cs" />
     <Compile Include="Bootstrap\BrakePedalPolicyModule.cs" />

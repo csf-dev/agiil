@@ -1,0 +1,14 @@
+@import '_AppWideVariables';
+
+.page_root > footer {
+  box-sizing: border-box;
+  border-top: 1px solid $subtle-keyline-color;
+  padding: 0.4em;
+
+  .VersionStatement {
+    font-size: $smaller-text-size;
+    color: $subtle-text-color;
+    line-height: 1.2em / ($smaller-text-size / 100%);
+    vertical-align: middle;
+  }
+}
