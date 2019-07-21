@@ -47,7 +47,7 @@ const webpackConfig = {
                 include: [
                     path.resolve(__dirname, '../node_modules'),
                 ],
-                include: [
+                exclude: [
                     path.resolve(__dirname, '../node_modules/core-js'),
                 ],
                 use: [
