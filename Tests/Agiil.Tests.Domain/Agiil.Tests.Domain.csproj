@@ -213,6 +213,14 @@
       <Name>Agiil.Bootstrap</Name>
     </ProjectReference>
   </ItemGroup>
+  <Target Name="MoveAppConfigToCorrectLocation" AfterTargets="ScApplyTransforms">
+    <Copy SourceFiles="App.template.config"
+          DestinationFiles="$(OutDir)\Agiil.Tests.Services.dll.config"
+          Condition="!Exists('$(OutDir)\App.config')" />
+    <Move SourceFiles="$(OutDir)\App.config"
+          DestinationFiles="$(OutDir)\Agiil.Tests.Services.dll.config"
+          Condition="Exists('$(OutDir)\App.config')" />
+  </Target>
   <ItemGroup>
     <Folder Include="Auth\" />
     <Folder Include="Tickets\" />
