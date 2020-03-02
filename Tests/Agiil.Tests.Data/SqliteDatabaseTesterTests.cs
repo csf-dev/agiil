@@ -29,8 +29,9 @@ namespace Agiil.Tests.Data
       var basePath = TestFilesystem.GetTestTemporaryDirectory<SqliteDatabaseTesterTests>();
       invalidDbPath = Path.Combine(basePath.FullName, NonExistentDirectoryName, DatabaseFilename);
       validDbPath = Path.Combine(basePath.FullName, DatabaseFilename);
+      var monoRuntimeDetector = new MonoRuntimeDetector();
 
-      providerName = Reflect.IsMono()? MonoSqliteProviderName : typeof(System.Data.SQLite.SQLiteFactory).Namespace;
+      providerName = monoRuntimeDetector.IsExecutingWithMono()? MonoSqliteProviderName : typeof(System.Data.SQLite.SQLiteFactory).Namespace;
     }
 
     [Test,AutoMoqData]

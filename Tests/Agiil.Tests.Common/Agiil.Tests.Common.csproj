@@ -177,6 +177,11 @@
     <Compile Include="Attributes\WithRelationshipAttribute.cs" />
     <Compile Include="Bootstrap\DataModule.cs" />
     <Compile Include="Data\TestingDatabaseConfiguration.cs" />
+    <Compile Include="Attributes\FromDiAttribute.cs" />
+    <Compile Include="Autofixture\FromDiCustomization.cs" />
+    <Compile Include="Autofixture\FromDiSpecimenBuilder.cs" />
+    <Compile Include="Attributes\WithDiAttribute.cs" />
+    <Compile Include="Attributes\WithDiCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
