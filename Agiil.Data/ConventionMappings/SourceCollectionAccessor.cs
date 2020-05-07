@@ -12,7 +12,7 @@ namespace Agiil.Data.ConventionMappings
     {
       var field = GetFieldInfo(theClass, propertyName);
       if(field == null) return null;
-      var provider = GenericSourceCollectionPropertyProvider.Create(field);
+      var provider = SourceCollectionGetterSetterFactory.Create(field);
       if(provider == null) return null;
       return provider.GetGetter();
     }
@@ -21,7 +21,7 @@ namespace Agiil.Data.ConventionMappings
     {
       var field = GetFieldInfo(theClass, propertyName);
       if(field == null) return null;
-      var provider = GenericSourceCollectionPropertyProvider.Create(field);
+      var provider = SourceCollectionGetterSetterFactory.Create(field);
       if(provider == null) return null;
       return provider.GetSetter();
     }
