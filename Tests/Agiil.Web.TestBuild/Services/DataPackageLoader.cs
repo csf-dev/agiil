@@ -13,12 +13,7 @@ namespace Agiil.Web.Services
     public void LoadDataPackage(string typeName)
     {
       var package = SelectDataPackage(typeName);
-
-      using(var tran = transactionCreator.GetTransaction())
-      {
-        package.Load();
-        tran.Commit();
-      }
+      package.Load();
     }
 
     IDataPackage SelectDataPackage(string typeName)
