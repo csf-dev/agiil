@@ -2,7 +2,7 @@
 using System.Linq;
 using Agiil.Domain.Validation;
 using Moq;
-using Ploeh.AutoFixture;
+using AutoFixture;
 
 namespace Agiil.Tests.Autofixture
 {

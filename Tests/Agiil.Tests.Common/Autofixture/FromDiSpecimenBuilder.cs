@@ -3,7 +3,7 @@ using System.Reflection;
 using Agiil.Tests.Attributes;
 using Autofac;
 using NUnit.Framework;
-using Ploeh.AutoFixture.Kernel;
+using AutoFixture.Kernel;
 
 namespace Agiil.Tests.Autofixture
 {

@@ -2,7 +2,7 @@
 using System;
 using Agiil.Domain.Tickets.RelationshipValidation;
 using Agiil.Tests.Attributes;
-using Ploeh.AutoFixture.NUnit3;
+using AutoFixture.NUnit3;
 using AutoMapper;
 using System.Linq;
 using Agiil.Domain.Tickets;

@@ -2,8 +2,8 @@
 using System.Reflection;
 using Agiil.Domain.Tickets;
 using CSF.Entities;
-using Ploeh.AutoFixture;
-using Ploeh.AutoFixture.NUnit3;
+using AutoFixture;
+using AutoFixture.NUnit3;
 
 namespace Agiil.Tests.Attributes
 {

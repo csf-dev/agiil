@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
-using Ploeh.AutoFixture.NUnit3;
+using AutoFixture.NUnit3;
 using CSF.ORM;
 using CSF.ORM.InMemory;
 using Agiil.Domain.Auth;

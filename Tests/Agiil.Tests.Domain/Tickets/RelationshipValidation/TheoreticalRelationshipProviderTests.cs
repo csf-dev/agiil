@@ -8,7 +8,7 @@ using CSF.Collections;
 using CSF.ORM;
 using CSF.Entities;
 using NUnit.Framework;
-using Ploeh.AutoFixture.NUnit3;
+using AutoFixture.NUnit3;
 
 namespace Agiil.Tests.Tickets.RelationshipValidation
 {

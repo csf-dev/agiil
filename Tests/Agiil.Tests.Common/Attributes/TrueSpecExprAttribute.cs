@@ -3,8 +3,8 @@ using System.Reflection;
 using CSF.Reflection;
 using CSF.Specifications;
 using Moq;
-using Ploeh.AutoFixture;
-using Ploeh.AutoFixture.NUnit3;
+using AutoFixture;
+using AutoFixture.NUnit3;
 using System.Linq;
 
 namespace Agiil.Tests.Attributes

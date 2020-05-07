@@ -1,7 +1,7 @@
 ﻿using System;
 using CSF.ORM;
 using Moq;
-using Ploeh.AutoFixture;
+using AutoFixture;
 
 namespace Agiil.Tests.Autofixture
 {

@@ -6,7 +6,7 @@ using Agiil.Tests.Attributes;
 using CSF.Collections;
 using CSF.ORM;
 using NUnit.Framework;
-using Ploeh.AutoFixture.NUnit3;
+using AutoFixture.NUnit3;
 
 namespace Agiil.Tests.Labels
 {

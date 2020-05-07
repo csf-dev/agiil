@@ -62,9 +62,6 @@
     <Reference Include="NHibernate">
       <HintPath>..\..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="Ploeh.AutoFixture">
-      <HintPath>..\..\packages\AutoFixture.3.50.2\lib\net40\Ploeh.AutoFixture.dll</HintPath>
-    </Reference>
     <Reference Include="WebDriver">
       <HintPath>..\..\packages\Selenium.WebDriver.3.4.0\lib\net40\WebDriver.dll</HintPath>
     </Reference>
@@ -131,6 +128,13 @@
     <Reference Include="CSF.Screenplay.WebApis">
       <HintPath>..\..\packages\CSF.Screenplay.WebApis.1.0.0\lib\net45\CSF.Screenplay.WebApis.dll</HintPath>
     </Reference>
+    <Reference Include="Fare">
+      <HintPath>..\..\packages\Fare.2.1.1\lib\net35\Fare.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoFixture">
+      <HintPath>..\..\packages\AutoFixture.4.11.0\lib\net452\AutoFixture.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bindings\Auth\UserAccountSteps.cs" />

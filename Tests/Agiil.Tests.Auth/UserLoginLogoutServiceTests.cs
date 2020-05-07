@@ -5,7 +5,7 @@ using CSF.Entities;
 using Microsoft.Owin.Security;
 using Moq;
 using NUnit.Framework;
-using Ploeh.AutoFixture.NUnit3;
+using AutoFixture.NUnit3;
 
 namespace Agiil.Tests.Auth
 {

@@ -7,7 +7,7 @@ using AutoMapper;
 using CSF.ORM;
 using Moq;
 using NUnit.Framework;
-using Ploeh.AutoFixture.NUnit3;
+using AutoFixture.NUnit3;
 
 namespace Agiil.Tests.Web.Services.Tickets
 {
