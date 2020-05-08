@@ -280,6 +280,8 @@
     <Compile Include="Attributes\WithDiAttribute.cs" />
     <Compile Include="Attributes\WithDiCommand.cs" />
     <Compile Include="Attributes\TrueSpecExprAttribute.cs" />
+    <Compile Include="Autofixture\NoRecursionCustomization.cs" />
+    <Compile Include="Autofixture\OpenGenericTypeRelayCustomization.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
