@@ -7,27 +7,38 @@ namespace Agiil.Web.ModelBinders
 {
     public class IdentityWebApiModelBinder : IModelBinder
     {
+        internal static readonly Type BaseIdentityType = typeof(IIdentity<>);
         static readonly IParsesIdentity parser = new IdentityParser();
 
         public bool BindModel(HttpActionContext actionContext, ModelBindingContext bindingContext)
         {
+            var value = GetValue(bindingContext);
+            var entityType = GetEntityType(bindingContext);
+            if(entityType == null)
+                return false;
+
+            bindingContext.Model = parser.Parse(entityType, value);
+            return true;
+        }
+
+        Type GetEntityType(ModelBindingContext bindingContext)
+        {
+            var type = bindingContext.ModelType;
+            if(!type.IsGenericType || type.GetGenericTypeDefinition() != BaseIdentityType)
+                return null;
+
+            return type.GenericTypeArguments[0];
+        }
+
+        object GetValue(ModelBindingContext bindingContext)
+        {
             var name = bindingContext.ModelName;
             var value = bindingContext.ValueProvider.GetValue(name);
 
-            if(ReferenceEquals(value, null))
-                return false;
-
-            var type = bindingContext.ModelType;
-
-            if(!type.IsGenericType
-               || type.GetGenericTypeDefinition() != IdentityModelBinder.BaseIdentityType)
-            {
-                return false;
-            }
-
-            var entityType = type.GenericTypeArguments[0];
-            bindingContext.Model = parser.Parse(entityType, value.RawValue);
-            return true;
+            var rawValue = value.RawValue;
+            if(rawValue is string[] stringArray)
+                return stringArray[0];
+            return rawValue;
         }
     }
 }
