@@ -1,5 +1,5 @@
 ﻿using System;
-using CSF.Data;
+using CSF.ORM;
 using Moq;
 using Ploeh.AutoFixture;
 
@@ -9,8 +9,8 @@ namespace Agiil.Tests.Autofixture
   {
     public void Customize(IFixture fixture)
     {
-      fixture.Customize<ITransactionCreator>(c => c.FromFactory((ITransaction tran) => {
-        return Mock.Of<ITransactionCreator>(x => x.BeginTransaction() == tran);
+      fixture.Customize<IGetsTransaction>(c => c.FromFactory((ITransaction tran) => {
+        return Mock.Of<IGetsTransaction>(x => x.GetTransaction() == tran);
       }));
     }
   }

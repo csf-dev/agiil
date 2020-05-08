@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Linq;
-using CSF.Data.Entities;
-using CSF.Data.NHibernate;
 using CSF.Entities;
+using CSF.ORM;
 
 namespace Agiil.Domain.Tickets
 {
@@ -21,8 +20,8 @@ namespace Agiil.Domain.Tickets
       return repo
         .Query<Ticket>()
         .Where(x => x == ticketTheory)
-        .FetchMany(x => x.Comments)
-        .Fetch(x => x.Type)
+        .FetchChildren(x => x.Comments)
+        .FetchChild(x => x.Type)
         .ToArray()
         .FirstOrDefault();
     }

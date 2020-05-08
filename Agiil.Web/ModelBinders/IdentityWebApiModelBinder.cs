@@ -5,29 +5,29 @@ using CSF.Entities;
 
 namespace Agiil.Web.ModelBinders
 {
-  public class IdentityWebApiModelBinder : IModelBinder
-  {
-    public bool BindModel(HttpActionContext actionContext, ModelBindingContext bindingContext)
+    public class IdentityWebApiModelBinder : IModelBinder
     {
-      var name = bindingContext.ModelName;
-      var value = bindingContext.ValueProvider.GetValue(name);
+        static readonly IParsesIdentity parser = new IdentityParser();
 
-      if(ReferenceEquals(value, null))
-        return false;
+        public bool BindModel(HttpActionContext actionContext, ModelBindingContext bindingContext)
+        {
+            var name = bindingContext.ModelName;
+            var value = bindingContext.ValueProvider.GetValue(name);
 
-      var type = bindingContext.ModelType;
+            if(ReferenceEquals(value, null))
+                return false;
 
-      if(!type.IsGenericType
-         || type.GetGenericTypeDefinition() != IdentityModelBinder.BaseIdentityType)
-      {
-        return false;
-      }
+            var type = bindingContext.ModelType;
 
-      var entityType = type.GenericTypeArguments[0];
-      var identityType = Identity.GetIdentityType(entityType);
+            if(!type.IsGenericType
+               || type.GetGenericTypeDefinition() != IdentityModelBinder.BaseIdentityType)
+            {
+                return false;
+            }
 
-      bindingContext.Model = Identity.Create(entityType, identityType, value.ConvertTo(identityType));
-      return true;
+            var entityType = type.GenericTypeArguments[0];
+            bindingContext.Model = parser.Parse(entityType, value.RawValue);
+            return true;
+        }
     }
-  }
 }

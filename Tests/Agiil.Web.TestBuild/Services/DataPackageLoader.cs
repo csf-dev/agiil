@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CSF.Data;
+using CSF.ORM;
 
 namespace Agiil.Web.Services
 {
   public class DataPackageLoader
   {
     readonly IEnumerable<Lazy<IDataPackage,DataPackageMetadata>> allPackages;
-    readonly ITransactionCreator transactionCreator;
+    readonly IGetsTransaction transactionCreator;
 
     public void LoadDataPackage(string typeName)
     {
       var package = SelectDataPackage(typeName);
 
-      using(var tran = transactionCreator.BeginTransaction())
+      using(var tran = transactionCreator.GetTransaction())
       {
         package.Load();
         tran.Commit();
@@ -33,7 +33,7 @@ namespace Agiil.Web.Services
     }
 
     public DataPackageLoader(IEnumerable<Lazy<IDataPackage,DataPackageMetadata>> allPackages,
-                             ITransactionCreator transactionCreator)
+                             IGetsTransaction transactionCreator)
     {
       if(transactionCreator == null)
         throw new ArgumentNullException(nameof(transactionCreator));

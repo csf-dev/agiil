@@ -1,7 +1,6 @@
 ﻿using System;
 using Agiil.Tests.Data;
-using CSF.Data;
-using CSF.Data.Entities;
+using CSF.ORM;
 using Ploeh.AutoFixture;
 
 namespace Agiil.Tests.Autofixture

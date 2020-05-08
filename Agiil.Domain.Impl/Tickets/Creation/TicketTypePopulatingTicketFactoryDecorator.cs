@@ -1,5 +1,5 @@
 ﻿using System;
-using CSF.Data.Entities;
+using CSF.ORM;
 
 namespace Agiil.Domain.Tickets.Creation
 {

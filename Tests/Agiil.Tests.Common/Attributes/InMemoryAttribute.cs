@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using Agiil.Tests.Autofixture;
-using CSF.Data.Entities;
+using CSF.ORM;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.NUnit3;
 

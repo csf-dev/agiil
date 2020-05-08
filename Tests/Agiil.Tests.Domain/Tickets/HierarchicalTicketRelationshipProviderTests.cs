@@ -5,8 +5,7 @@ using Agiil.Bootstrap;
 using Agiil.Domain.Tickets;
 using Agiil.Tests.Attributes;
 using Autofac;
-using CSF.Data;
-using CSF.Data.Entities;
+using CSF.ORM;
 using CSF.Entities;
 using NUnit.Framework;
 using Agiil.Domain;
@@ -131,9 +130,9 @@ namespace Agiil.Tests.Tickets
         dbResetter.ResetDatabase();
 
         var data = scope.Resolve<IEntityData>();
-        var tranProvider = scope.Resolve<ITransactionCreator>();
+        var tranProvider = scope.Resolve<IGetsTransaction>();
 
-        using(var tran = tranProvider.BeginTransaction())
+        using(var tran = tranProvider.GetTransaction())
         {
           foreach(var relationship in relationships)
             data.Add(relationship);

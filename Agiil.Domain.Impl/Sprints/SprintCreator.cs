@@ -1,8 +1,7 @@
 ﻿using System;
 using Agiil.Domain.Validation;
 using Agiil.Domain.Projects;
-using CSF.Data.Entities;
-using CSF.Data;
+using CSF.ORM;
 using CSF.Validation;
 
 namespace Agiil.Domain.Sprints
@@ -12,7 +11,7 @@ namespace Agiil.Domain.Sprints
     readonly ICreatesValidators<CreateSprintRequest> validatorFactory;
     readonly ICurrentProjectGetter projectGetter;
     readonly IEntityData sprintRepo;
-    readonly ITransactionCreator transactionFactory;
+    readonly IGetsTransaction transactionFactory;
     readonly IResponseFactory<CreateSprintResponse> responseFactory;
     readonly ISprintFactory sprintFactory;
 
@@ -26,7 +25,7 @@ namespace Agiil.Domain.Sprints
 
       Sprint sprint;
 
-      using(var trans = transactionFactory.BeginTransaction())
+      using(var trans = transactionFactory.GetTransaction())
       {
         var project = projectGetter.GetCurrentProject();
         if(project == null)
@@ -59,7 +58,7 @@ namespace Agiil.Domain.Sprints
     public SprintCreator(ICreatesValidators<CreateSprintRequest> validatorFactory,
                          ICurrentProjectGetter projectGetter,
                          IEntityData sprintRepo,
-                         ITransactionCreator transactionFactory,
+                         IGetsTransaction transactionFactory,
                          IResponseFactory<CreateSprintResponse> responseFactory,
                          ISprintFactory sprintFactory)
     {

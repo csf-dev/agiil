@@ -1,34 +1,26 @@
-﻿using System;
-using Autofac;
-using CSF.Data;
-using CSF.Data.Entities;
-using CSF.Data.NHibernate;
+﻿using Autofac;
+using CSF.ORM;
+using CSF.ORM.InMemory;
+using CSF.ORM.NHibernate;
 
 namespace Agiil.Bootstrap.Data
 {
-  public class ExternalDataDependenciesModule : Module
-  {
-    protected override void Load(ContainerBuilder builder)
+    public class ExternalDataDependenciesModule : Module
     {
-      builder
-        .RegisterType<NHibernateQuery>()
-        .AsSelf()
-        .As<IQuery>();
+        protected override void Load(ContainerBuilder builder)
+        {
+            var csfOrmNHibernateAssemblies = new[] {
+                typeof(IQuery).Assembly,
+                typeof(IEntityData).Assembly,
+                typeof(SessionAdapter).Assembly,
+                typeof(TransactionAdapter).Assembly,
+            };
 
-      builder
-        .RegisterType<NHibernatePersister>()
-        .AsSelf()
-        .As<IPersister>();
-
-      builder
-        .RegisterType<EntityData>()
-        .AsSelf()
-        .As<IEntityData>();
-
-      builder
-        .RegisterType<TransactionCreator>()
-        .AsSelf()
-        .As<ITransactionCreator>();
+            builder
+                .RegisterAssemblyTypes(csfOrmNHibernateAssemblies)
+                .Where(x => !x.Namespace.StartsWith(typeof(DataStore).Namespace, System.StringComparison.InvariantCulture))
+                .AsSelf()
+                .AsImplementedInterfaces();
+        }
     }
-  }
 }

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq.Expressions;
-using CSF.Data.Specifications;
+using CSF.Specifications;
 
 namespace Agiil.Bootstrap.Specifications
 {
-  public class IsConcreteSpecification : SpecificationExpression<Type>
+  public class IsConcreteSpecification : ISpecificationExpression<Type>
   {
     static readonly Type DelegateType = typeof(MulticastDelegate);
 
-    public override Expression<Func<Type, bool>> GetExpression()
+    public Expression<Func<Type, bool>> GetExpression()
       => type => type.IsClass 
                  && !type.IsAbstract
                  && !DelegateType.IsAssignableFrom(type);

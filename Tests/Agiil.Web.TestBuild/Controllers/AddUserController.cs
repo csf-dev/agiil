@@ -3,7 +3,7 @@ using System.Web.Http;
 using Agiil.Auth;
 using Agiil.Domain.Auth;
 using Agiil.Web.Models;
-using CSF.Data;
+using CSF.ORM;
 
 namespace Agiil.Web.Controllers
 {
@@ -13,7 +13,7 @@ namespace Agiil.Web.Controllers
     readonly IUserCreator userCreator;
     readonly IGetsUserByUsername userQuery;
     readonly IUserPasswordUpdater passwordChanger;
-    readonly ITransactionCreator transactionCreator;
+    readonly IGetsTransaction transactionCreator;
 
     public IHttpActionResult Post(CreateUserModel model)
     {
@@ -22,7 +22,7 @@ namespace Agiil.Web.Controllers
 
       bool exists;
 
-      using(var tran = transactionCreator.BeginTransaction())
+      using(var tran = transactionCreator.GetTransaction())
       {
         var existingUser = userQuery.Get(model.username);
 
@@ -46,7 +46,7 @@ namespace Agiil.Web.Controllers
     public AddUserController(IUserCreator userCreator,
                              IGetsUserByUsername userQuery,
                              IUserPasswordUpdater passwordChanger,
-                             ITransactionCreator transactionCreator)
+                             IGetsTransaction transactionCreator)
     {
       if(transactionCreator == null)
         throw new ArgumentNullException(nameof(transactionCreator));

@@ -23,9 +23,9 @@ namespace Agiil.Tests
         throw new ArgumentNullException (nameof (entity));
       }
 
-      var identityType = entity.GetIdentityType();
+      var identityType = entity.IdentityType;
       var identity = CreateInstance(identityType);
-      entity.SetIdentity(identity);
+      entity.IdentityValue = identity;
     }
 
     #endregion

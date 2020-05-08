@@ -2,8 +2,7 @@
 using Agiil.Domain.Tickets;
 using Agiil.Domain.Tickets.Creation;
 using Agiil.Tests.Attributes;
-using CSF.Data;
-using CSF.Data.Entities;
+using CSF.ORM;
 using Moq;
 using NUnit.Framework;
 using Ploeh.AutoFixture.NUnit3;
@@ -38,7 +37,7 @@ namespace Agiil.Tests.Tickets.Creation
                                               [Frozen] ICreatesTicket ticketFactory,
                                               Ticket ticket,
                                               [Frozen] ITransaction trans,
-                                              [Frozen,CreatesTransaction] ITransactionCreator transFactory,
+                                              [Frozen,CreatesTransaction] IGetsTransaction transFactory,
                                               PersistingTicketFactoryDecorator sut)
     {
       // Arrange

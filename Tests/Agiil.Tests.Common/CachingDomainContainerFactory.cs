@@ -7,39 +7,37 @@ using Autofac;
 
 namespace Agiil.Tests
 {
-  public class CachingDomainContainerFactory : DomainContainerFactory
-  {
-    static readonly IGetsAutofacContainer defaultInstance;
-
-    readonly object syncRoot;
-    IContainer container;
-
-    protected override IEnumerable<Assembly> GetModuleAssemblies()
+    public class CachingDomainContainerFactory : DomainContainerFactory
     {
-      return base.GetModuleAssemblies().Union(new [] { Assembly.GetExecutingAssembly() });
+        readonly object syncRoot;
+        IContainer container;
+
+        protected override IEnumerable<Assembly> GetModuleAssemblies()
+        {
+            return base.GetModuleAssemblies().Union(new[] { Assembly.GetExecutingAssembly() });
+        }
+
+        public override IContainer GetContainer()
+        {
+            lock(syncRoot)
+            {
+                if(container == null)
+                    container = base.GetContainer();
+            }
+
+            return container;
+        }
+
+        public CachingDomainContainerFactory()
+        {
+            syncRoot = new object();
+        }
+
+        static CachingDomainContainerFactory()
+        {
+            Default = new CachingDomainContainerFactory();
+        }
+
+        public static IGetsAutofacContainer Default { get; private set; }
     }
-
-    public override IContainer GetContainer()
-    {
-      lock(syncRoot)
-      {
-        if(container == null)
-          container = base.GetContainer();
-      }
-
-      return container;
-    }
-
-    public CachingDomainContainerFactory()
-    {
-      syncRoot = new object();
-    }
-
-    static CachingDomainContainerFactory()
-    {
-      defaultInstance = new CachingDomainContainerFactory();
-    }
-
-    public static IGetsAutofacContainer Default => defaultInstance;
-  }
 }

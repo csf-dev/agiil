@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using CSF.Data.Specifications;
+using CSF.Specifications;
 
 namespace Agiil.Domain.Tickets.Specs
 {
-  public class HasAllLabels : SpecificationExpression<Ticket>
+  public class HasAllLabels : ISpecificationExpression<Ticket>
   {
     readonly string[] labelNames;
 
     public IReadOnlyList<string> LabelNames => labelNames;
 
-    public override Expression<Func<Ticket, bool>> GetExpression()
+    public Expression<Func<Ticket, bool>> GetExpression()
     {
-      ISpecificationExpression<Ticket> output = new DynamicSpecificationExpression<Ticket>(x => true);
+      ISpecificationExpression<Ticket> output = Spec.Expr<Ticket>(x => true);
 
       foreach(var labelName in labelNames)
       {
-        var nameExpression = new DynamicSpecificationExpression<Ticket>(x => x.Labels.Any(l => l.Name == labelName));
+        var nameExpression = Spec.Expr<Ticket>(x => x.Labels.Any(l => l.Name == labelName));
         output = output.And(nameExpression);
       }
 

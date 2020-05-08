@@ -1,20 +1,19 @@
 ﻿using System;
-using CSF.Data;
-using CSF.Data.Entities;
+using CSF.ORM;
 
 namespace Agiil.Domain.Tickets
 {
   public class TicketOpenerCloser : ITicketOpenerCloser
   {
     readonly IEntityData repo;
-    readonly ITransactionCreator transactionFactory;
+    readonly IGetsTransaction transactionFactory;
 
     public CloseTicketResponse Close(CloseTicketRequest request)
     {
       if(request == null)
         throw new ArgumentNullException(nameof(request));
 
-      using(var trans = transactionFactory.BeginTransaction())
+      using(var trans = transactionFactory.GetTransaction())
       {
         var ticket = repo.Get(request.Identity);
         if(ReferenceEquals(ticket, null))
@@ -36,7 +35,7 @@ namespace Agiil.Domain.Tickets
       if(request == null)
         throw new ArgumentNullException(nameof(request));
 
-      using(var trans = transactionFactory.BeginTransaction())
+      using(var trans = transactionFactory.GetTransaction())
       {
         var ticket = repo.Get(request.Identity);
         if(ReferenceEquals(ticket, null))
@@ -54,7 +53,7 @@ namespace Agiil.Domain.Tickets
     }
 
     public TicketOpenerCloser(IEntityData repo,
-                              ITransactionCreator transactionFactory)
+                              IGetsTransaction transactionFactory)
     {
       if(transactionFactory == null)
         throw new ArgumentNullException(nameof(transactionFactory));

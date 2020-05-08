@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using Agiil.Domain;
-using CSF.IO;
+using CSF;
 using log4net;
 
 namespace Agiil.Data.Sqlite

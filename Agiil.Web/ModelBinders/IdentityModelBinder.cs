@@ -5,37 +5,35 @@ using CSF.Entities;
 
 namespace Agiil.Web.ModelBinders
 {
-  [ModelBinderType(typeof(IIdentity<>))]
-  public class IdentityModelBinder : IModelBinder
-  {
-    internal static readonly Type BaseIdentityType = typeof(IIdentity<>);
-
-    public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
+    [ModelBinderType(typeof(IIdentity<>))]
+    public class IdentityModelBinder : IModelBinder
     {
-      var name = bindingContext.ModelName;
-      var value = bindingContext.ValueProvider.GetValue(name);
+        internal static readonly Type BaseIdentityType = typeof(IIdentity<>);
+        static readonly IParsesIdentity parser = new IdentityParser();
 
-      if(ReferenceEquals(value, null))
-        return null;
-      
-      var type = bindingContext.ModelType;
 
-      if(!type.IsGenericType
-         || type.GetGenericTypeDefinition() != BaseIdentityType)
-      {
-        return null;
-      }
+        public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
+        {
+            var name = bindingContext.ModelName;
+            var value = bindingContext.ValueProvider.GetValue(name);
 
-      var entityType = type.GenericTypeArguments[0];
-      var identityType = Identity.GetIdentityType(entityType);
-      var convertedValue = value.ConvertTo(identityType);
+            if(ReferenceEquals(value, null))
+                return null;
 
-      if(ReferenceEquals(convertedValue, null)
-         || (identityType.IsValueType
-             && convertedValue == Activator.CreateInstance(identityType)))
-        return null;
+            var type = bindingContext.ModelType;
 
-      return Identity.Create(entityType, identityType, convertedValue);
+            if(!type.IsGenericType
+               || type.GetGenericTypeDefinition() != BaseIdentityType)
+            {
+                return null;
+            }
+
+            var entityType = type.GenericTypeArguments[0];
+
+            if(ReferenceEquals(value.RawValue, null))
+                return null;
+
+            return parser.Parse(entityType, value.RawValue);
+        }
     }
-  }
 }

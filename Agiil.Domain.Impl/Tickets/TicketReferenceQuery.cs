@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Agiil.Domain.Tickets.Specs;
-using CSF.Data.Entities;
-using CSF.Data.Specifications;
+using CSF.ORM;
+using CSF.Specifications;
 
 namespace Agiil.Domain.Tickets
 {
@@ -10,7 +10,7 @@ namespace Agiil.Domain.Tickets
   {
     readonly IParsesTicketReference parser;
     readonly IEntityData repo;
-    readonly Func<TicketReference, TicketReferenceEquals> specFactory;
+    readonly Func<TicketReference, ISpecForTicketReferenceEquality> specFactory;
 
     public Ticket GetTicketByReference(string reference)
     {
@@ -32,7 +32,7 @@ namespace Agiil.Domain.Tickets
 
     public TicketReferenceQuery(IParsesTicketReference parser,
                                 IEntityData repo,
-                                Func<TicketReference,TicketReferenceEquals> specFactory)
+                                Func<TicketReference,ISpecForTicketReferenceEquality> specFactory)
     {
       if(specFactory == null)
         throw new ArgumentNullException(nameof(specFactory));

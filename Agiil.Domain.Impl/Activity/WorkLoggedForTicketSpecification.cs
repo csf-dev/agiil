@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq.Expressions;
-using CSF.Data.Specifications;
+using CSF.Specifications;
 
 namespace Agiil.Domain.Activity
 {
-  public class WorkLoggedForTicketSpecification : SpecificationExpression<TicketWorkLog>
+  public class WorkLoggedForTicketSpecification : ISpecificationExpression<TicketWorkLog>
   {
     readonly Tickets.Ticket ticket;
 
@@ -15,7 +15,7 @@ namespace Agiil.Domain.Activity
       this.ticket = ticket;
     }
 
-    public override Expression<Func<TicketWorkLog, bool>> GetExpression()
+    public Expression<Func<TicketWorkLog, bool>> GetExpression()
     {
       return x => x.Ticket == ticket;
     }

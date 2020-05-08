@@ -1,7 +1,7 @@
 ﻿using System;
 using Agiil.Domain.Tickets;
 using Agiil.Tests.Attributes;
-using CSF.Data.Entities;
+using CSF.ORM;
 using CSF.Entities;
 using Moq;
 using NUnit.Framework;

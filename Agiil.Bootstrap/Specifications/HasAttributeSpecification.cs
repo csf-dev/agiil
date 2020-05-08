@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Reflection;
 using System.Linq.Expressions;
-using CSF.Data.Specifications;
+using CSF.Specifications;
 
 namespace Agiil.Bootstrap.Specifications
 {
-  public class HasAttributeSpecification<T> : SpecificationExpression<Type> where T : Attribute
+  public class HasAttributeSpecification<T> : ISpecificationExpression<Type> where T : Attribute
   {
-    public override Expression<Func<Type, bool>> GetExpression()
+    public Expression<Func<Type, bool>> GetExpression()
       => type => type.GetCustomAttribute<T>() != null;
   }
 }

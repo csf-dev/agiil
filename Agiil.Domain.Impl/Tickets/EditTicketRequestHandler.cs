@@ -1,7 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Validation;
-using CSF.Data;
-using CSF.Data.Entities;
+using CSF.ORM;
 using CSF.Validation;
 using log4net;
 
@@ -10,7 +9,7 @@ namespace Agiil.Domain.Tickets
   public class EditTicketRequestHandler : IHandlesEditTicketRequest
   {
     readonly IEntityData ticketRepo;
-    readonly ITransactionCreator transactionFactory;
+    readonly IGetsTransaction transactionFactory;
     readonly ICreatesValidators<EditTicketRequest> validatorFactory;
     readonly ICreatesEditTicketResponse responseCreator;
     readonly IEditsTicket editor;
@@ -25,7 +24,7 @@ namespace Agiil.Domain.Tickets
       if(!validationResult.IsSuccess)
         return responseCreator.GetResponse(validationResult, null);
 
-      using(var trans = transactionFactory.BeginTransaction())
+      using(var trans = transactionFactory.GetTransaction())
       {
         var ticket = ticketRepo.Get(request.Identity);
 
@@ -44,7 +43,7 @@ namespace Agiil.Domain.Tickets
     }
 
     public EditTicketRequestHandler(IEntityData ticketRepo,
-                                    ITransactionCreator transactionFactory,
+                                    IGetsTransaction transactionFactory,
                                     ICreatesValidators<EditTicketRequest> validatorFactory,
                                     ICreatesEditTicketResponse responseCreator,
                                     IEditsTicket editor,

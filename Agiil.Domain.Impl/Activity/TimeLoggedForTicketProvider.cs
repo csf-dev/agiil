@@ -1,8 +1,8 @@
 ﻿using System;
 using Agiil.Domain.Tickets;
-using CSF.Data.Entities;
+using CSF.ORM;
 using System.Linq;
-using CSF.Data.Specifications;
+using CSF.Specifications;
 
 namespace Agiil.Domain.Activity
 {
