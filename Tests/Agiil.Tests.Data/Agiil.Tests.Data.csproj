@@ -113,6 +113,20 @@
     <Compile Include="NHibernateSchemaExportingDatabaseCreatorTests.cs" />
     <Compile Include="SqliteDatabaseTesterTests.cs" />
     <Compile Include="SourceCollectionAccessorTests.cs" />
+    <Compile Include="Persistence\ProjectPersistenceTests.cs" />
+    <Compile Include="Persistence\SprintPersistenceTests.cs" />
+    <Compile Include="Persistence\TicketPersistenceTests.cs" />
+    <Compile Include="Persistence\CachingDataConnectionFactoryAdapter.cs" />
+    <Compile Include="Persistence\ComparerFactory.cs" />
+    <Compile Include="TestSetup.cs" />
+    <Compile Include="Persistence\CommentPersistenceTests.cs" />
+    <Compile Include="Persistence\LabelPersistenceTests.cs" />
+    <Compile Include="Persistence\TicketWorkLogPersistenceTests.cs" />
+    <Compile Include="Persistence\UserPersistenceTests.cs" />
+    <Compile Include="Persistence\TicketTypePersistenceTests.cs" />
+    <Compile Include="Persistence\TicketRelationshipPersistenceTests.cs" />
+    <Compile Include="Persistence\DirectionalRelationshipPersistenceTests.cs" />
+    <Compile Include="Persistence\NonDirectionalRelationshipPersistenceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Data\Agiil.Data.csproj">
