@@ -1,7 +1,7 @@
 ﻿using System;
 using Agiil.Domain.Auth;
 using Moq;
-using Ploeh.AutoFixture;
+using AutoFixture;
 
 namespace Agiil.Tests.Autofixture
 {

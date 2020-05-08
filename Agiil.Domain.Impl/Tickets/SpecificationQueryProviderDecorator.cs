@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using CSF.Data.Specifications;
+using CSF.Specifications;
 
 namespace Agiil.Domain.Tickets
 {

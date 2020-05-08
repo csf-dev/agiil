@@ -5,10 +5,10 @@ using Agiil.Domain.Tickets;
 using Agiil.Domain.Tickets.RelationshipValidation;
 using Agiil.Tests.Attributes;
 using CSF.Collections;
-using CSF.Data.Entities;
+using CSF.ORM;
 using CSF.Entities;
 using NUnit.Framework;
-using Ploeh.AutoFixture.NUnit3;
+using AutoFixture.NUnit3;
 
 namespace Agiil.Tests.Tickets.RelationshipValidation
 {

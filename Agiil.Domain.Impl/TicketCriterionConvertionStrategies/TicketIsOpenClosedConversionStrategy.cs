@@ -2,7 +2,7 @@
 using Agiil.Domain.Tickets;
 using Agiil.Domain.Tickets.Specs;
 using Agiil.Domain.TicketSearch;
-using CSF.Data.Specifications;
+using CSF.Specifications;
 
 namespace Agiil.Domain.TicketCriterionConvertionStrategies
 {

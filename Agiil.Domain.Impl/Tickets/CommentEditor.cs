@@ -1,7 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Validation;
-using CSF.Data;
-using CSF.Data.Entities;
+using CSF.ORM;
 using CSF.Validation;
 
 namespace Agiil.Domain.Tickets
@@ -10,7 +9,7 @@ namespace Agiil.Domain.Tickets
   {
     readonly ICreatesValidators<EditCommentRequest> validatorFactory;
     readonly Func<IValidationResult, EditCommentResponse> responseCreator;
-    readonly ITransactionCreator transactionCreator;
+    readonly IGetsTransaction transactionCreator;
     readonly IEntityData commentRepo;
     readonly IEnvironment environment;
 
@@ -22,7 +21,7 @@ namespace Agiil.Domain.Tickets
       if(!validationResult.IsSuccess)
         return responseCreator(validationResult);
 
-      using(var tran = transactionCreator.BeginTransaction())
+      using(var tran = transactionCreator.GetTransaction())
       {
         var comment = commentRepo.Get(request.CommentIdentity);
         comment.Body = request.Body;
@@ -36,7 +35,7 @@ namespace Agiil.Domain.Tickets
 
     public CommentEditor(ICreatesValidators<EditCommentRequest> validatorFactory,
                          Func<IValidationResult, EditCommentResponse> responseCreator,
-                         ITransactionCreator transactionCreator,
+                         IGetsTransaction transactionCreator,
                          IEntityData commentRepo,
                          IEnvironment environment)
     {

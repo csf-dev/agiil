@@ -9,19 +9,23 @@ namespace Agiil.Data.ConventionMappings
   public class PropertyMapping : IConventionMapping
   {
     readonly IDbNameFormatter formatter;
+    readonly IGetsWhetherPropertyShouldBeMapped ignoredPropertiesProvider;
 
     public void ApplyMapping(ConventionModelMapper mapper)
     {
       mapper.IsPersistentProperty((member, declared) => {
         var property = member as PropertyInfo;
 
-        if(property == null || !property.CanRead || !property.CanWrite)
+        if(property == null || !property.CanRead)
           return false;
 
         if(IsIdentityProperty(property))
           return false;
         
         if(property.ReflectedType.GetProperty(property.Name, BindingFlags.Instance | BindingFlags.Public) == null)
+          return false;
+
+        if(!ignoredPropertiesProvider.ShouldMapProperty(property))
           return false;
 
         return true;
@@ -39,11 +43,11 @@ namespace Agiil.Data.ConventionMappings
               && property.DeclaringType == typeof(Entity<long>));
     }
 
-    public PropertyMapping(IDbNameFormatter formatter)
+    public PropertyMapping(IDbNameFormatter formatter,
+                           IGetsWhetherPropertyShouldBeMapped ignoredPropertiesProvider)
     {
-      if(formatter == null)
-        throw new ArgumentNullException(nameof(formatter));
-      this.formatter = formatter;
+      this.formatter = formatter ?? throw new ArgumentNullException(nameof(formatter));
+      this.ignoredPropertiesProvider = ignoredPropertiesProvider ?? throw new ArgumentNullException(nameof(ignoredPropertiesProvider));
     }
   }
 }

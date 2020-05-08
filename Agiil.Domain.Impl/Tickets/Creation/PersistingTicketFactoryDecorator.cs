@@ -1,6 +1,5 @@
 ﻿using System;
-using CSF.Data;
-using CSF.Data.Entities;
+using CSF.ORM;
 using log4net;
 
 namespace Agiil.Domain.Tickets.Creation
@@ -8,13 +7,13 @@ namespace Agiil.Domain.Tickets.Creation
   public class PersistingTicketFactoryDecorator : ICreatesTicket
   {
     readonly ICreatesTicket wrappedInstance;
-    readonly ITransactionCreator transactionFactory;
+    readonly IGetsTransaction transactionFactory;
     readonly IEntityData data;
     readonly ILog logger;
 
     public Ticket CreateTicket(CreateTicketRequest request)
     {
-      using(var trans = transactionFactory.BeginTransaction())
+      using(var trans = transactionFactory.GetTransaction())
       {
         var ticket = wrappedInstance.CreateTicket(request);
         data.Add(ticket);
@@ -25,7 +24,7 @@ namespace Agiil.Domain.Tickets.Creation
     }
 
     public PersistingTicketFactoryDecorator(ICreatesTicket wrappedInstance,
-                                            ITransactionCreator transactionFactory,
+                                            IGetsTransaction transactionFactory,
                                             IEntityData data,
                                             ILog logger)
     {

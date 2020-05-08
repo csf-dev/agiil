@@ -4,7 +4,7 @@ using Agiil.Domain.TicketSearch;
 using Agiil.Tests.Attributes;
 using Moq;
 using NUnit.Framework;
-using Ploeh.AutoFixture.NUnit3;
+using AutoFixture.NUnit3;
 using System;
 namespace Agiil.Tests.TicketCriterionConvertionStrategies
 {

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq.Expressions;
-using CSF.Data.Specifications;
+using CSF.Specifications;
 
 namespace Agiil.Domain.Tickets.Specs
 {
-  public class IsOpen : SpecificationExpression<Ticket>
+  public class IsOpen : ISpecificationExpression<Ticket>
   {
-    public override Expression<Func<Ticket, bool>> GetExpression()
+    public Expression<Func<Ticket, bool>> GetExpression()
     {
       return ticket => !ticket.Closed;
     }

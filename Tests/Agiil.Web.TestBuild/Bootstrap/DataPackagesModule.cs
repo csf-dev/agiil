@@ -7,7 +7,7 @@ using Autofac;
 using Agiil.Web.Services;
 using Agiil.Bootstrap;
 using Agiil.Bootstrap.Specifications;
-using CSF.Data.Specifications;
+using CSF.Specifications;
 
 namespace Agiil.Web.Bootstrap
 {

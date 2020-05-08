@@ -11,8 +11,8 @@ using Agiil.Web.Controllers;
 using Agiil.Web.Models.Tickets;
 using Autofac;
 using Autofac.Core.Lifetime;
-using CSF.Data.Entities;
 using CSF.Entities;
+using CSF.ORM;
 using Moq;
 using NUnit.Framework;
 
@@ -37,7 +37,7 @@ namespace Agiil.Tests.Tickets
     {
       diScope = container.BeginLifetimeScope(MatchingScopeLifetimeTags.RequestLifetimeScopeTag, builder => {
         builder.RegisterInstance(InMemoryEntityDataFactory.Default.GetEntityData()).SingleInstance();
-        builder.RegisterInstance(new CSF.Data.NoOpTransactionCreator(true)).AsSelf().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterInstance(new CSF.ORM.InMemory.NoOpTransactionCreator(true)).AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterInstance(Mock.Of<NHibernate.ISession>()).SingleInstance();
         builder.RegisterInstance(Mock.Of<UrlHelper>()).SingleInstance();
         builder.RegisterInstance(Mock.Of<HttpRequestBase>()).SingleInstance();
@@ -65,7 +65,7 @@ namespace Agiil.Tests.Tickets
           }
         },
         Title = "This is a ticket",
-        TicketTypeIdentity = Identity.Create<TicketType>(1),
+        TicketTypeIdentity = Identity.Create<TicketType>(5),
       };
       var ticket = Data.Get(ticketId);
       var expectedOtherTicket = Data.Get(Identity.Create<Ticket>(7));
@@ -85,26 +85,26 @@ namespace Agiil.Tests.Tickets
       var ticketType = new TicketType {
         Name = "Ticket"
       };
-      ticketType.SetIdentityValue(1);
+            ((IEntity) ticketType).IdentityValue = 5L;
       data.Add(ticketType);
 
       var firstTicket = new Ticket {
         Project = project,
         TicketNumber = 11,
       };
-      firstTicket.SetIdentityValue(5);
+      ((IEntity) firstTicket).IdentityValue = 5L;
       var secondTicket = new Ticket {
         Project = project,
         TicketNumber = 22
       };
-      secondTicket.SetIdentityValue(7);
+            ((IEntity) secondTicket).IdentityValue = 7L;
       data.Add(firstTicket);
       data.Add(secondTicket);
 
       var relationship = new NonDirectionalRelationship {
         PrimarySummary = "Relates"
       };
-      relationship.SetIdentityValue(6);
+            ((IEntity) relationship).IdentityValue = 6L;
       data.Add(relationship);
     }
   }

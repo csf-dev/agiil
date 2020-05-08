@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSF.Data.Entities;
+using CSF.ORM;
 using CSF.Entities;
 using System.Linq;
-using CSF.Data.NHibernate;
 using log4net;
 
 namespace Agiil.Domain.Tickets.RelationshipValidation
@@ -41,7 +40,7 @@ namespace Agiil.Domain.Tickets.RelationshipValidation
                 rel.PrimaryTicket == ticket
                 || rel.SecondaryTicket == ticket
               select rel)
-        .Fetch(x => x.Relationship)
+        .FetchChild(x => x.Relationship)
         .AsEnumerable()
         .Select(MapToTheoreticalRelationship)
         .ToList();

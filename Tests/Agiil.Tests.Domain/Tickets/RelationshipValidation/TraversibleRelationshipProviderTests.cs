@@ -2,7 +2,7 @@
 using System;
 using Agiil.Domain.Tickets.RelationshipValidation;
 using Agiil.Tests.Attributes;
-using Ploeh.AutoFixture.NUnit3;
+using AutoFixture.NUnit3;
 using AutoMapper;
 using System.Linq;
 using Agiil.Domain.Tickets;
@@ -73,7 +73,7 @@ namespace Agiil.Tests.Tickets.RelationshipValidation
     {
       rel1.Type = TheoreticalRelationshipType.Removed;
       rel1.TicketRelationship = Identity.Create<TicketRelationship>(5);
-      hRel1.TicketRelationship.SetIdentityValue(5);
+      ((IEntity) hRel1.TicketRelationship).IdentityValue = 5L;
 
       Mock.Get(mapper).Setup(x => x.Map<TraversibleRelationship>(rel1)).Returns(trav1);
 

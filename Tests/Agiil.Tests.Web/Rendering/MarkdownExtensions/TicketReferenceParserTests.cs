@@ -6,7 +6,7 @@ using log4net;
 using Markdig.Helpers;
 using Moq;
 using NUnit.Framework;
-using Ploeh.AutoFixture.NUnit3;
+using AutoFixture.NUnit3;
 
 namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
 {

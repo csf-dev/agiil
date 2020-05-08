@@ -5,29 +5,40 @@ using CSF.Entities;
 
 namespace Agiil.Web.ModelBinders
 {
-  public class IdentityWebApiModelBinder : IModelBinder
-  {
-    public bool BindModel(HttpActionContext actionContext, ModelBindingContext bindingContext)
+    public class IdentityWebApiModelBinder : IModelBinder
     {
-      var name = bindingContext.ModelName;
-      var value = bindingContext.ValueProvider.GetValue(name);
+        internal static readonly Type BaseIdentityType = typeof(IIdentity<>);
+        static readonly IParsesIdentity parser = new IdentityParser();
 
-      if(ReferenceEquals(value, null))
-        return false;
+        public bool BindModel(HttpActionContext actionContext, ModelBindingContext bindingContext)
+        {
+            var value = GetValue(bindingContext);
+            var entityType = GetEntityType(bindingContext);
+            if(entityType == null)
+                return false;
 
-      var type = bindingContext.ModelType;
+            bindingContext.Model = parser.Parse(entityType, value);
+            return true;
+        }
 
-      if(!type.IsGenericType
-         || type.GetGenericTypeDefinition() != IdentityModelBinder.BaseIdentityType)
-      {
-        return false;
-      }
+        Type GetEntityType(ModelBindingContext bindingContext)
+        {
+            var type = bindingContext.ModelType;
+            if(!type.IsGenericType || type.GetGenericTypeDefinition() != BaseIdentityType)
+                return null;
 
-      var entityType = type.GenericTypeArguments[0];
-      var identityType = Identity.GetIdentityType(entityType);
+            return type.GenericTypeArguments[0];
+        }
 
-      bindingContext.Model = Identity.Create(entityType, identityType, value.ConvertTo(identityType));
-      return true;
+        object GetValue(ModelBindingContext bindingContext)
+        {
+            var name = bindingContext.ModelName;
+            var value = bindingContext.ValueProvider.GetValue(name);
+
+            var rawValue = value.RawValue;
+            if(rawValue is string[] stringArray)
+                return stringArray[0];
+            return rawValue;
+        }
     }
-  }
 }

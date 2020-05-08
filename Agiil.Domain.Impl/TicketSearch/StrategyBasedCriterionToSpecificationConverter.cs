@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using Agiil.Domain.Tickets;
 using System.Linq;
-using CSF.Data.Specifications;
+using CSF.Specifications;
 
 namespace Agiil.Domain.TicketSearch
 {

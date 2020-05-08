@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using Agiil.Data.MappingProviders;
-using CSF.Data.NHibernate;
+using CSF.NHibernate;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
@@ -40,9 +39,10 @@ namespace Agiil.Data
       var connectionString = connectionStringProvider.GetConnectionString();
 
       config.DataBaseIntegration(x => {
-        x.SelectSQLiteDriver();
+        x.Driver<MonoSafeSQLite20Driver>();
         x.Dialect<SQLiteDialect>();
         x.ConnectionString = connectionString;
+          x.ConnectionReleaseMode = ConnectionReleaseMode.OnClose;
       });
     }
 

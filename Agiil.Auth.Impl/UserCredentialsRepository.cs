@@ -1,7 +1,6 @@
 ﻿using System;
-using CSF.Data;
+using CSF.ORM;
 using CSF.Security.Authentication;
-using CSF.Data.Entities;
 using Agiil.Domain.Auth;
 using System.Linq;
 using CSF.Entities;
@@ -12,7 +11,7 @@ namespace Agiil.Auth
   {
     #region fields
 
-    readonly IQuery query;
+    readonly IEntityData query;
 
     #endregion
 
@@ -52,7 +51,7 @@ namespace Agiil.Auth
 
     #region constructor
 
-    public UserCredentialsRepository (IQuery query)
+    public UserCredentialsRepository (IEntityData query)
     {
       if (query == null)
         throw new ArgumentNullException (nameof (query));

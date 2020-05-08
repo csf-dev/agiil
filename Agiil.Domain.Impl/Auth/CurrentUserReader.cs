@@ -1,13 +1,12 @@
 ﻿using System;
-using CSF.Data;
-using CSF.Data.Entities;
+using CSF.ORM;
 
 namespace Agiil.Domain.Auth
 {
   public class CurrentUserReader : ICurrentUserReader
   {
     readonly IIdentityReader identityReader;
-    readonly IQuery query;
+    readonly IEntityData query;
 
     public User GetCurrentUser()
     {
@@ -44,7 +43,7 @@ namespace Agiil.Domain.Auth
       return query.Get(userInfo.Identity);
     }
 
-    public CurrentUserReader(IIdentityReader identityReader, IQuery query)
+    public CurrentUserReader(IIdentityReader identityReader, IEntityData query)
     {
       if(query == null)
         throw new ArgumentNullException(nameof(query));

@@ -1,7 +1,8 @@
 ﻿using NUnit.Framework;
 using System;
-using Ploeh.AutoFixture.NUnit3;
-using CSF.Data;
+using AutoFixture.NUnit3;
+using CSF.ORM;
+using CSF.ORM.InMemory;
 using Agiil.Domain.Auth;
 using Moq;
 using CSF.Entities;
@@ -14,7 +15,7 @@ namespace Agiil.Tests.Auth
   {
     [Test, AutoMoqData]
     public void RequireCurrentUser_returns_user_when_they_are_logged_in([Frozen] IIdentityReader identityReader,
-                                                                        [Frozen,ProvidesService(typeof(IQuery))] InMemoryQuery query,
+                                                                        [Frozen,InMemory] IEntityData query,
                                                                         CurrentUserReader sut,
                                                                         ICurrentUserInfo userInfo,
                                                                         [HasIdentity] User user)
@@ -31,7 +32,7 @@ namespace Agiil.Tests.Auth
 
     [Test, AutoMoqData]
     public void RequireCurrentUser_raises_exception_when_they_are_not_logged_in([Frozen] IIdentityReader identityReader,
-                                                                                [Frozen,ProvidesService(typeof(IQuery))] InMemoryQuery query,
+                                                                        [Frozen, InMemory] IEntityData query,
                                                                                 CurrentUserReader sut)
     {
       // Arrange
@@ -45,7 +46,7 @@ namespace Agiil.Tests.Auth
 
     [Test, AutoMoqData]
     public void RequireCurrentUser_raises_exception_when_they_are_not_found([Frozen] IIdentityReader identityReader,
-                                                                            [Frozen,ProvidesService(typeof(IQuery))] InMemoryQuery query,
+                                                                        [Frozen, InMemory] IEntityData query,
                                                                             CurrentUserReader sut,
                                                                             ICurrentUserInfo userInfo,
                                                                             [HasIdentity] User user)
@@ -59,7 +60,7 @@ namespace Agiil.Tests.Auth
 
     [Test, AutoMoqData]
     public void GetCurrentUser_returns_user_when_they_are_logged_in([Frozen] IIdentityReader identityReader,
-                                                                    [Frozen,ProvidesService(typeof(IQuery))] InMemoryQuery query,
+                                                                        [Frozen, InMemory] IEntityData query,
                                                                     CurrentUserReader sut,
                                                                     ICurrentUserInfo userInfo,
                                                                     [HasIdentity] User user)
@@ -76,7 +77,7 @@ namespace Agiil.Tests.Auth
 
     [Test, AutoMoqData]
     public void GetCurrentUser_returns_null_when_they_are_not_logged_in([Frozen] IIdentityReader identityReader,
-                                                                        [Frozen,ProvidesService(typeof(IQuery))] InMemoryQuery query,
+                                                                        [Frozen, InMemory] IEntityData query,
                                                                         CurrentUserReader sut)
     {
       // Arrange
@@ -93,7 +94,7 @@ namespace Agiil.Tests.Auth
 
     [Test, AutoMoqData]
     public void GetCurrentUser_returns_null_when_they_are_not_found([Frozen] IIdentityReader identityReader,
-                                                                    [Frozen,ProvidesService(typeof(IQuery))] InMemoryQuery query,
+                                                                        [Frozen, InMemory] IEntityData query,
                                                                     CurrentUserReader sut,
                                                                     ICurrentUserInfo userInfo,
                                                                     [HasIdentity] User user)
@@ -110,11 +111,11 @@ namespace Agiil.Tests.Auth
 
     private void FullySetupLoggedInUser(User user,
                                         ICurrentUserInfo userInfo,
-                                        InMemoryQuery query,
+                                        IEntityData query,
                                         IIdentityReader identityReader)
     {
       SetupCurrentUserIdentity(user, userInfo, identityReader);
-      query.Add(new [] { user }, x => x.GetIdentity().Value);
+      query.Add(user);
     }
 
     private void SetupCurrentUserIdentity(User user,

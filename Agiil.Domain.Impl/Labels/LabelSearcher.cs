@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSF.Data.Entities;
+using CSF.ORM;
 
 namespace Agiil.Domain.Labels
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Tickets;
-using CSF.Data.Specifications;
+using CSF.Specifications;
 using CSF;
 using System.Linq;
 
@@ -59,7 +59,7 @@ namespace Agiil.Domain.TicketSearch
     }
 
     public ISpecificationExpression<Ticket> GetSpecification()
-      => specBeingBuilt ?? new DynamicSpecificationExpression<Ticket>(x => true);
+      => specBeingBuilt ?? Spec.Expr<Ticket>(x => true);
 
     ISpecificationExpression<Ticket> AddSpecification(ISpecificationExpression<Ticket> toAdd,
                                                       LogicalOperator logicalOperator)

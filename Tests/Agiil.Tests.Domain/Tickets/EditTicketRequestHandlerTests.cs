@@ -3,13 +3,12 @@ using Agiil.Domain.Tickets;
 using Agiil.Domain.Validation;
 using Agiil.Tests.Attributes;
 using AutoMapper;
-using CSF.Data;
-using CSF.Data.Entities;
+using CSF.ORM;
 using CSF.Entities;
 using CSF.Validation;
 using Moq;
 using NUnit.Framework;
-using Ploeh.AutoFixture.NUnit3;
+using AutoFixture.NUnit3;
 
 namespace Agiil.Tests.Tickets
 {
@@ -65,7 +64,7 @@ namespace Agiil.Tests.Tickets
     public void Edit_does_not_begin_transaction_when_validation_fails(EditTicketRequest request,
                                                                       [Frozen] ICreatesValidators<EditTicketRequest> validatorFactory,
                                                                       IValidator validator,
-                                                                      [Frozen] ITransactionCreator transactionCreator,
+                                                                      [Frozen] IGetsTransaction transactionCreator,
                                                                       EditTicketRequestHandler sut)
     {
       // Arrange
@@ -80,28 +79,28 @@ namespace Agiil.Tests.Tickets
       sut.Edit(request);
 
       // Assert
-      Mock.Get(transactionCreator).Verify(x => x.BeginTransaction(), Times.Never);
+      Mock.Get(transactionCreator).Verify(x => x.GetTransaction(), Times.Never);
     }
 
     [Test, AutoMoqData]
     public void Edit_uses_transaction_when_validation_passes(EditTicketRequest request,
                                                              [Frozen,AlwaysPasses] ICreatesValidators<EditTicketRequest> validatorFactory,
                                                              [Frozen] ITransaction tran,
-                                                             [Frozen,CreatesTransaction] ITransactionCreator transactionCreator,
+                                                             [Frozen,CreatesTransaction] IGetsTransaction transactionCreator,
                                                              EditTicketRequestHandler sut)
     {
       // Act
       sut.Edit(request);
 
       // Assert
-      Mock.Get(transactionCreator).Verify(x => x.BeginTransaction(), Times.Once);
+      Mock.Get(transactionCreator).Verify(x => x.GetTransaction(), Times.Once);
       Mock.Get(tran).Verify(x => x.Commit(), Times.Once);
     }
 
     [Test, AutoMoqData]
     public void Edit_passes_correct_ticket_to_editing_service(EditTicketRequest request,
                                                               [Frozen,AlwaysPasses] ICreatesValidators<EditTicketRequest> validatorFactory,
-                                                              [Frozen,CreatesTransaction] ITransactionCreator transactionCreator,
+                                                              [Frozen,CreatesTransaction] IGetsTransaction transactionCreator,
                                                               [InMemory,Frozen] IEntityData data,
                                                               Ticket ticket,
                                                               [Frozen] IEditsTicket editor,
@@ -121,7 +120,7 @@ namespace Agiil.Tests.Tickets
     [Test, AutoMoqData]
     public void Edit_returns_edited_ticket_in_response(EditTicketRequest request,
                                                        [Frozen,AlwaysPasses] ICreatesValidators<EditTicketRequest> validatorFactory,
-                                                       [Frozen,CreatesTransaction] ITransactionCreator transactionCreator,
+                                                       [Frozen,CreatesTransaction] IGetsTransaction transactionCreator,
                                                        [InMemory,Frozen] IEntityData data,
                                                        [HasIdentity] Ticket ticket,
                                                        [Frozen] ICreatesEditTicketResponse editResponseCreator,

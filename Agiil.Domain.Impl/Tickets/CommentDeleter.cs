@@ -1,7 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Validation;
-using CSF.Data;
-using CSF.Data.Entities;
+using CSF.ORM;
 using CSF.Validation;
 
 namespace Agiil.Domain.Tickets
@@ -9,7 +8,7 @@ namespace Agiil.Domain.Tickets
   public class CommentDeleter : ICommentDeleter
   {
     readonly ICreatesValidators<DeleteCommentRequest> validatorFactory;
-    readonly ITransactionCreator transactionCreator;
+    readonly IGetsTransaction transactionCreator;
     readonly IEntityData data;
     readonly Func<IValidationResult, DeleteCommentResponse> responseCreator;
 
@@ -21,7 +20,7 @@ namespace Agiil.Domain.Tickets
       if(!validationResult.IsSuccess)
         return responseCreator(validationResult);
 
-      using(var tran = transactionCreator.BeginTransaction())
+      using(var tran = transactionCreator.GetTransaction())
       {
         var comment = data.Get(request.CommentId);
         comment.Ticket.Comments.Remove(comment);
@@ -32,7 +31,7 @@ namespace Agiil.Domain.Tickets
     }
 
     public CommentDeleter(ICreatesValidators<DeleteCommentRequest> validatorFactory,
-                          ITransactionCreator transactionCreator,
+                          IGetsTransaction transactionCreator,
                           IEntityData data,
                           Func<IValidationResult, DeleteCommentResponse> responseCreator)
     {

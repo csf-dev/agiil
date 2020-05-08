@@ -73,29 +73,17 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Reflection">
-      <HintPath>..\packages\CSF.Reflection.1.0.3\lib\net45\CSF.Reflection.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Utils">
-      <HintPath>..\packages\CSF.Utils.6.1.1\lib\net45\CSF.Utils.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Data.NHibernate">
-      <HintPath>..\packages\CSF.Data.NHibernate.6.1.3\lib\net45\CSF.Data.NHibernate.dll</HintPath>
-    </Reference>
     <Reference Include="CSF.Entities">
-      <HintPath>..\packages\CSF.Entities.1.2.1\lib\net45\CSF.Entities.dll</HintPath>
+      <HintPath>..\packages\CSF.Entities.2.0.3\lib\net45\CSF.Entities.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Configuration.Data">
       <HintPath>..\packages\CSF.Configuration.Data.1.0.1\lib\net45\CSF.Configuration.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Data">
-      <HintPath>..\packages\CSF.Data.1.3.0\lib\net45\CSF.Data.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.SQLite">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.105.0\lib\net46\System.Data.SQLite.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="DbUp.SQLite" Condition="'$(OS)' == 'Windows_NT'">
       <HintPath>..\packages\dbup-sqlite.3.3.5\lib\net40\DbUp.SQLite.dll</HintPath>
@@ -104,7 +92,25 @@
       <HintPath>..\packages\dbup-sqlite-mono.3.3.5\lib\net40\DbUp.SQLite.Mono.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Collections.EventRaising">
-      <HintPath>..\packages\CSF.Collections.EventRaising.1.0.3\lib\net45\CSF.Collections.EventRaising.dll</HintPath>
+      <HintPath>..\packages\CSF.Collections.EventRaising.1.1.0\lib\net45\CSF.Collections.EventRaising.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.ORM">
+      <HintPath>..\packages\CSF.ORM.2.0.3\lib\net45\CSF.ORM.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Reflector">
+      <HintPath>..\packages\CSF.Reflector.3.0.0\lib\net45\CSF.Reflector.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.IO">
+      <HintPath>..\packages\CSF.IO.7.0.0\lib\net45\CSF.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Utils">
+      <HintPath>..\packages\CSF.Utils.6.1.1\lib\net45\CSF.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Reflection">
+      <HintPath>..\packages\CSF.Reflection.3.0.0\lib\net45\CSF.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.NHibernate4.MonoSafeSQLite20Driver">
+      <HintPath>..\packages\CSF.NHibernate4.MonoSafeSQLite20Driver.7.0.0\lib\net45\CSF.NHibernate4.MonoSafeSQLite20Driver.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -164,8 +170,10 @@
     <Compile Include="Serialization\NewtonsoftJsonSerializer.cs" />
     <Compile Include="Serialization\OrderedPropertiesContractResolver.cs" />
     <Compile Include="ClassMappings\HierarchicalTicketRelationshipMapping.cs" />
-    <Compile Include="ConventionMappings\GenericSourceCollectionPropertyProvider.cs" />
+    <Compile Include="ConventionMappings\SourceCollectionGetterSetterFactory.cs" />
     <Compile Include="ConventionMappings\SourceCollectionGetterSetter.cs" />
+    <Compile Include="ClassMappings\IgnoredPropertiesProvider.cs" />
+    <Compile Include="ConventionMappings\IGetsWhetherPropertyShouldBeMapped.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ConventionMappings\" />

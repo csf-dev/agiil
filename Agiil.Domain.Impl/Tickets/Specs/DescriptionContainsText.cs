@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq.Expressions;
-using CSF.Data.Specifications;
+using CSF.Specifications;
 
 namespace Agiil.Domain.Tickets.Specs
 {
-  public class DescriptionContainsText : SpecificationExpression<Ticket>
+  public class DescriptionContainsText : ISpecificationExpression<Ticket>
   {
     readonly string text;
 
-    public override Expression<Func<Ticket, bool>> GetExpression()
+    public Expression<Func<Ticket, bool>> GetExpression()
       => ticket => ticket.Description != null && ticket.Description.Contains(text);
 
     public DescriptionContainsText(string text)

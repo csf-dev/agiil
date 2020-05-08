@@ -1,6 +1,6 @@
 ﻿using System;
 using CSF;
-using CSF.Data.Entities;
+using CSF.ORM;
 using CSF.Entities;
 
 namespace Agiil.Domain.Tickets

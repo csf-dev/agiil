@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CSF.Data;
-using CSF.Data.Entities;
+using CSF.ORM;
 
 namespace Agiil.Domain.Sprints
 {
   public class SprintLister : ISprintLister
   {
-    readonly IQuery queryProvider;
+    readonly IEntityData queryProvider;
 
     public IList<Sprint> GetSprints()
     {
@@ -38,7 +37,7 @@ namespace Agiil.Domain.Sprints
       return query;
     }
 
-    public SprintLister(IQuery query)
+    public SprintLister(IEntityData query)
     {
       if(query == null)
         throw new ArgumentNullException(nameof(query));

@@ -45,11 +45,7 @@ namespace Agiil.Auth
       return principal.Claims.SingleOrDefault(x => x.Type == claimType)?.Value;
     }
 
-    protected virtual IIdentity<User> CreateIdentity(string identityValue)
-    {
-      var val = long.Parse(identityValue);
-      return Identity.Create<User>(val);
-    }
+        protected virtual IIdentity<User> CreateIdentity(string identityValue) => new Identity<long,User>(long.Parse(identityValue));
 
     public ClaimsIdentityReader(IPrincipalGetter principalGetter)
     {

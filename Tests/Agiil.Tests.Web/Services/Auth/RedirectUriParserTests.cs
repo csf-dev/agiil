@@ -1,7 +1,7 @@
 ﻿using System;
 using Agiil.Web.Services.Auth;
 using NUnit.Framework;
-using Ploeh.AutoFixture.NUnit3;
+using AutoFixture.NUnit3;
 
 namespace Agiil.Tests.Web.Services.Auth
 {

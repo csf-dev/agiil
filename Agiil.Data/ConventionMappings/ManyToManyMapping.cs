@@ -15,7 +15,7 @@ namespace Agiil.Data.ConventionMappings
       mapper.IsManyToMany((member, declared) => {
         var property = member as PropertyInfo;
 
-        if(property == null || !property.CanRead || !property.CanWrite)
+        if(property == null || !property.CanRead)
           return false;
 
         if(property.GetCustomAttribute<ManyToManyAttribute>() != null)
