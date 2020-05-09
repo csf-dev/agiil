@@ -529,6 +529,12 @@
     </PropertyGroup>
     <Exec Command="node $(SassNodePath) $(SassInputDir) --output $(SassOutputDir) --source-map true" WorkingDirectory="$(MSBuildThisFileDirectory)" />
   </Target>
+  <Target Name="CopyCsfReflection3" BeforeTargets="AfterBuild">
+    <ItemGroup>
+      <CsfReflectionFiles Include="..\packages\CSF.Reflection.3.0.0\lib\net45\CSF.Reflection.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(CsfReflectionFiles)" DestinationFiles="$(WebAppStagingDir)\bin\CSF.Reflection3%(Extension)" />
+  </Target>
   <Target Name="MoveWebConfigToCorrectLocation" AfterTargets="ScApplyTransforms">
     <Copy SourceFiles="$(OutDir)\Web.config" DestinationFiles="Web.config" />
   </Target>
