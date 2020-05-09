@@ -10,7 +10,7 @@
                  loginSucceded here/LoginSucceded;
                  loginAttempted here/LoginAttempted;
                  username here/LoginState/Username | nothing"
-     class="page_content">
+     class="content_container">
   <h1>Log in</h1>
   <form method="post" id="LoginForm" action="Login/Login" tal:condition="not:username">
     <fieldset>

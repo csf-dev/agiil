@@ -15,7 +15,7 @@
 <body>
 <div metal:fill-slot="page_content"
      tal:define="submitted here/Result"
-     class="page_content">
+     class="content_container">
   <h1>Create sprint</h1>
   <form method="post" action="NewSprint/Index" class="create_sprint">
     <fieldset>

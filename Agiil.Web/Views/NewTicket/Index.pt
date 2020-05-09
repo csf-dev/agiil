@@ -17,7 +17,7 @@
 <div metal:fill-slot="page_content"
      tal:define="submitted here/Response;
                  createSuccess here/Response/Success | nothing"
-     class="page_content">
+     class="content_container">
   <h1>Create ticket</h1>
   <form method="post" action="NewTicket/Create" tal:condition="not:createSuccess" class="create_ticket">
     <fieldset>

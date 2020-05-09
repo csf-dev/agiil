@@ -12,7 +12,7 @@
 </style>
 </head>
 <body>
-<section class="page_content ticket_detail">
+<section class="content_container ticket_detail">
   <section class="comments">
     <header>
       <h2>Comments</h2>

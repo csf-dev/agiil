@@ -16,7 +16,7 @@
 </head>
 <body>
 <section metal:fill-slot="page_content"
-         class="page_content sprint_detail"
+         class="content_container sprint_detail"
          tal:define="sprint here/Sprint">
   <header>
     <h1 tal:content="sprint/Name" id="SprintName">Sprint name</h1>

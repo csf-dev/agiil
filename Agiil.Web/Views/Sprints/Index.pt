@@ -8,7 +8,7 @@
 </head>
 <body>
 <div metal:fill-slot="page_content"
-     class="page_content">
+     class="content_container">
   <h1>Sprints</h1>
   <p tal:condition="not:here/ShowingClosedSprints">
     Currently displaying <strong>open</strong> sprints only.

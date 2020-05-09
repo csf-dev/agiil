@@ -10,7 +10,7 @@
 </style>
 </head>
 <body>
-<div metal:fill-slot="page_content" class="page_content">
+<div metal:fill-slot="page_content" class="content_container">
   <h1>Delete comment</h1>
   <form action="Comment/Delete" method="post" id="DeleteComment">
     <p>

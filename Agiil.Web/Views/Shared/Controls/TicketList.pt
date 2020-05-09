@@ -12,7 +12,7 @@
 </style>
 </head>
 <body>
-<section class="page_content">
+<section class="content_container">
   <table metal:define-macro="ticket_list_table" class="ticket_list">
     <colgroup>
       <col class="TicketType" />

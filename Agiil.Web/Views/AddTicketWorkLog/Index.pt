@@ -13,7 +13,7 @@
 </head>
 <body>
 <section metal:fill-slot="page_content"
-         class="page_content add_work_log"
+         class="content_container add_work_log"
          tal:define="ticketRef string:#${here/TicketReference}">
   <header>
     <h1 class="title_content">Add to ticket work log: <span tal:replace="ticketRef">#AG123</span></h1>

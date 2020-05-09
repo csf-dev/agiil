@@ -4,7 +4,7 @@
 <title metal:fill-slot="title_element">You have logged out</title>
 </head>
 <body>
-<div metal:fill-slot="page_content" class="page_content">
+<div metal:fill-slot="page_content" class="content_container">
   <h1>Logged out</h1>
   <p>You have been logged out.</p>
   <p>You may <a href="Login">log in again</a> if you wish.</p>
