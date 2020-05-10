@@ -282,6 +282,7 @@
     <Compile Include="Attributes\TrueSpecExprAttribute.cs" />
     <Compile Include="Autofixture\NoRecursionCustomization.cs" />
     <Compile Include="Autofixture\OpenGenericTypeRelayCustomization.cs" />
+    <Compile Include="Bootstrap\TicketUriProviderModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
