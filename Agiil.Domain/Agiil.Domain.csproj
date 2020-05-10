@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Domain</RootNamespace>
     <AssemblyName>Agiil.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>0.9.0</ReleaseVersion>
+    <ReleaseVersion>0.9.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -226,6 +226,7 @@
     <Compile Include="Tickets\IGetsHierarchicalTicketRelationships.cs" />
     <Compile Include="Tickets\IChangesTicketRelationships.cs" />
     <Compile Include="Tickets\IGetsTicketUris.cs" />
+    <Compile Include="Tickets\IGetsTicketReference.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
