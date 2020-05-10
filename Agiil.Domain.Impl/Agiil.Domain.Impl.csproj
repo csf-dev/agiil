@@ -230,6 +230,7 @@
     <Compile Include="Tickets\RelationshipValidation\CircularRelationshipDetector.cs" />
     <Compile Include="Tickets\RelationshipValidation\MultipleSecondaryRelationshipPreventingValidationDecorator.cs" />
     <Compile Include="Validation\ValidationResultRenderer.cs" />
+    <Compile Include="Tickets\TicketReferenceProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
