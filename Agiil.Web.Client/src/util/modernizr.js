@@ -36,3 +36,17 @@ Modernizr.has = function(test : string) { return this[test]; }
 
 //$FlowFixMe
 export const modernizr : ModernizrApi = Modernizr;
+
+const
+    possibletouchscreen = 'possibletouchscreen',
+    pointermediaquery = 'pointermq',
+    touchevents = 'touchevents';
+
+const tests = {
+    possibletouchscreen,
+    pointermediaquery,
+    touchevents
+};
+Object.freeze(tests);
+
+export { tests };

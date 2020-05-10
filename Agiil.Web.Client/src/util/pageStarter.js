@@ -2,7 +2,7 @@
 import 'element-remove';
 import getWindowErrorDetector from './WindowErrorDetector';
 import showModalOnUnhandledError from './showModalOnUnhandledError';
-import { modernizr } from './modernizr';
+import { modernizr, tests } from './modernizr';
 
 function getStartupFunction(startup : () => void) : () => void {
     return () => {
@@ -34,9 +34,9 @@ function pageStarter(startup : () => void) {
 
 function configureModernizr() {
     modernizr.addTest({
-        'possibletouchscreen': function() {
-            if(!modernizr.has('pointermq')) return false;
-            if(!modernizr.has('touchevents')) return false;
+        [tests.possibletouchscreen]: function() {
+            if(!modernizr.has(tests.pointermediaquery)) return false;
+            if(!modernizr.has(tests.touchevents)) return false;
             return window.matchMedia('(pointer: coarse)').matches;
         }
     });
