@@ -101,7 +101,7 @@ namespace Agiil.Web.Controllers
         var comment = commentReader.Value.Read(spec.CommentId);
         return RedirectToAction(nameof(TicketController.Index),
                                 this.GetName<TicketController>(),
-                                new { id = comment.Ticket.GetIdentity()?.Value });
+                                new { id = comment.Ticket.GetTicketReference() });
       }
 
       var responseModel = MapEditResponse(response);
