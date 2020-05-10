@@ -241,6 +241,9 @@
     <Reference Include="AutoFixture.AutoMoq">
       <HintPath>..\..\packages\AutoFixture.AutoMoq.4.11.0\lib\net452\AutoFixture.AutoMoq.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -282,6 +285,8 @@
     <Compile Include="Attributes\TrueSpecExprAttribute.cs" />
     <Compile Include="Autofixture\NoRecursionCustomization.cs" />
     <Compile Include="Autofixture\OpenGenericTypeRelayCustomization.cs" />
+    <Compile Include="Bootstrap\TicketUriProviderModule.cs" />
+    <Compile Include="Attributes\LoggerForAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">

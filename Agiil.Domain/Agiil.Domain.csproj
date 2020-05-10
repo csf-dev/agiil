@@ -225,6 +225,7 @@
     <Compile Include="Tickets\HierarchicalRelationshipDirection.cs" />
     <Compile Include="Tickets\IGetsHierarchicalTicketRelationships.cs" />
     <Compile Include="Tickets\IChangesTicketRelationships.cs" />
+    <Compile Include="Tickets\IGetsTicketUris.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

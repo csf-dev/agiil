@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using Agiil.Domain;
 using Agiil.Domain.Tickets;
 using Agiil.Web.Controllers;
-using Agiil.Web.Models.Tickets;
 using log4net;
 
 namespace Agiil.Web.Services.Tickets

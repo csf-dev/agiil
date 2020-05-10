@@ -2,46 +2,58 @@
 using System.Collections.Generic;
 using System.Linq;
 using CSF.Entities;
+using log4net;
 
 namespace Agiil.Domain.Tickets.RelationshipValidation
 {
-  public class CircularRelationshipValidator : IValidatesTheoreticalTicketRelationships
-  {
-    readonly IGetsHierarchicalTicketRelationshipsWhichCouldCreateACircularRelationship hierarchicalRelationshipProvider;
-    readonly IDetectsCircularRelationship circularRelationshipDetector;
-    readonly IGetsTraversibleRelationships traversibleRelationshipProvider;
-
-    public bool AreRelationshipsValid(IIdentity<Ticket> editedTicket, IEnumerable<TheoreticalRelationship> relationships)
+    public class CircularRelationshipValidator : IValidatesTheoreticalTicketRelationships
     {
-      if(ReferenceEquals(relationships, null)) return true;
+        readonly IGetsHierarchicalTicketRelationshipsWhichCouldCreateACircularRelationship hierarchicalRelationshipProvider;
+        readonly IDetectsCircularRelationship circularRelationshipDetector;
+        readonly IGetsTraversibleRelationships traversibleRelationshipProvider;
+        readonly ILog logger;
 
-      var hierarchicalRelationships = hierarchicalRelationshipProvider.GetRelevantHierarchicalRelationships(relationships);
-      var traversibleRelationships = traversibleRelationshipProvider.GetTraversibleRelationships(relationships, hierarchicalRelationships);
+        public bool AreRelationshipsValid(IIdentity<Ticket> editedTicket, IEnumerable<TheoreticalRelationship> relationships)
+        {
+            if(ReferenceEquals(relationships, null)) return true;
 
-      if(traversibleRelationships == null)
-        return true;
+            if(logger.IsDebugEnabled)
+                logger.Debug($"Theoretical relationships: {String.Join(", ", relationships)}");
 
-      var relationshipTypes = traversibleRelationships
-        .Select(x => x.Type)
-        .Distinct()
-        .ToList();
+            var hierarchicalRelationships = hierarchicalRelationshipProvider.GetRelevantHierarchicalRelationships(relationships);
+            var traversibleRelationships = traversibleRelationshipProvider.GetTraversibleRelationships(relationships, hierarchicalRelationships);
 
-      foreach(var type in relationshipTypes)
-      {
-        if(circularRelationshipDetector.IsRelationshipCircular(type, traversibleRelationships))
-          return false;
-      }
+            if(traversibleRelationships == null)
+                return true;
 
-      return true;
+            if(logger.IsDebugEnabled)
+                logger.Debug($"{traversibleRelationships.Count()} traversible relationship(s) found");
+
+            var relationshipTypes = traversibleRelationships
+              .Select(x => x.Type)
+              .Distinct()
+              .ToList();
+
+            foreach(var type in relationshipTypes)
+            {
+                if(circularRelationshipDetector.IsRelationshipCircular(type, traversibleRelationships))
+                    return false;
+            }
+
+            logger.Debug("Validation success");
+
+            return true;
+        }
+
+        public CircularRelationshipValidator(IGetsHierarchicalTicketRelationshipsWhichCouldCreateACircularRelationship hierarchicalRelationshipProvider,
+                                             IDetectsCircularRelationship circularRelationshipDetector,
+                                             IGetsTraversibleRelationships traversibleRelationshipProvider,
+                                             ILog logger)
+        {
+            this.hierarchicalRelationshipProvider = hierarchicalRelationshipProvider ?? throw new ArgumentNullException(nameof(hierarchicalRelationshipProvider));
+            this.circularRelationshipDetector = circularRelationshipDetector ?? throw new ArgumentNullException(nameof(circularRelationshipDetector));
+            this.traversibleRelationshipProvider = traversibleRelationshipProvider ?? throw new ArgumentNullException(nameof(traversibleRelationshipProvider));
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        }
     }
-
-    public CircularRelationshipValidator(IGetsHierarchicalTicketRelationshipsWhichCouldCreateACircularRelationship hierarchicalRelationshipProvider,
-                                         IDetectsCircularRelationship circularRelationshipDetector,
-                                         IGetsTraversibleRelationships traversibleRelationshipProvider)
-    {
-      this.hierarchicalRelationshipProvider = hierarchicalRelationshipProvider ?? throw new ArgumentNullException(nameof(hierarchicalRelationshipProvider));
-      this.circularRelationshipDetector = circularRelationshipDetector ?? throw new ArgumentNullException(nameof(circularRelationshipDetector));
-      this.traversibleRelationshipProvider = traversibleRelationshipProvider ?? throw new ArgumentNullException(nameof(traversibleRelationshipProvider));
-    }
-  }
 }
