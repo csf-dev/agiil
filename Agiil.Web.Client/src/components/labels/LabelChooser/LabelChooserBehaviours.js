@@ -9,6 +9,7 @@ export default class LabelChooserBehaviours {
 
     @bound
     onKeypress(ev: SyntheticKeyboardEvent<HTMLInputElement>) {
+        alert(`Key pressed: ${ev.key}`);
         switch(ev.key) {
         case Keyboard.Backspace:
             if(mayPressBackspaceToRemoveLabel(ev))
