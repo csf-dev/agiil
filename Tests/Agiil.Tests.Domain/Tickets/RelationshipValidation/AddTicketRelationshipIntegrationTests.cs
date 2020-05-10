@@ -77,7 +77,7 @@ namespace Agiil.Tests.Tickets.RelationshipValidation
             Assert.That(result?.IsSuccess, Is.True);
         }
 
-        [Test, AutoData, WithDi, Description("Intended to reproduce #AG337 - where tickets in a complex relationship structure prevented the addition of a new (valid) relationship")]
+        [Test, AutoData, WithDi, Description("Reproduces #AG337 - where tickets in a complex relationship structure prevent the addition of a new (valid) relationship")]
         public void A_user_may_add_a_relatinship_to_a_complex_multipath_directional_relationship_structure(Project project,
                                                                                                            Ticket editedTicket,
                                                                                                            Ticket blockedTicket1,
