@@ -3,13 +3,13 @@ import type { LabelChooserProps } from './LabelChooserProps';
 import Keyboard from 'util/Keyboard';
 import type { SelectableLabel } from 'models/labels';
 import bound from 'bound-decorator';
+import { modernizr, tests } from 'util/modernizr';
 
 export default class LabelChooserBehaviours {
     props : LabelChooserProps;
 
     @bound
     onKeypress(ev: SyntheticKeyboardEvent<HTMLInputElement>) {
-        alert(`Key pressed: ${ev.key}`);
         switch(ev.key) {
         case Keyboard.Backspace:
             if(mayPressBackspaceToRemoveLabel(ev))
@@ -18,7 +18,6 @@ export default class LabelChooserBehaviours {
         
         case Keyboard.Enter:
         case ",":
-        case Keyboard.Tab:
             handleAddition(this.props);
             handleChangeValue(this.props, '');
             ev.preventDefault();
@@ -52,6 +51,23 @@ export default class LabelChooserBehaviours {
 
     @bound
     onBlur(ev : SyntheticEvent<HTMLInputElement>) {
+        // On some touch devices, they don't send a keydown event for
+        // 'Enter' (or 'Next' on Android).  What we do here is - if we
+        // blur the control on what-is-probably-a-touch-device and
+        // there was some text in the control (and no dropdown selection)
+        // - then we presume that the user really meant to enter an item.
+        // In that case we treat it the same as if they'd pressed Enter on
+        // a non-touch device.
+        if (modernizr.has(tests.possibletouchscreen)
+            && this.props.inputValue
+            && !getSelected(this.props.suggestions)) {
+
+            handleAddition(this.props);
+            handleChangeValue(this.props, '');
+            const target : HTMLInputElement = (ev.target : any);
+            target.focus();
+        }
+
         this.props.onShowSuggestionsChanged(false, this.props.componentId);
     }
 
