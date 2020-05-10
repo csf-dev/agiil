@@ -11,7 +11,7 @@
 </style>
 </head>
 <body>
-<div metal:fill-slot="page_content" class="page_content">
+<div metal:fill-slot="page_content" class="content_container">
   <h1>Agiil</h1>
   <p>Agiil is issue-tracking software for <strong>agile development</strong>.</p>
 </div>

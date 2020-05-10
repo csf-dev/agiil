@@ -17,6 +17,7 @@ export default class LabelChooserBehaviours {
         
         case Keyboard.Enter:
         case ",":
+        case Keyboard.Tab:
             handleAddition(this.props);
             handleChangeValue(this.props, '');
             ev.preventDefault();

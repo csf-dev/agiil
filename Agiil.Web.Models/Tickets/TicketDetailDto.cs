@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Agiil.Domain.Tickets;
 using Agiil.Web.Models.Labels;
 using Agiil.Web.Models.Sprints;
 

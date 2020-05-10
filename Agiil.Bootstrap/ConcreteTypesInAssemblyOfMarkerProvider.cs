@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Agiil.Bootstrap.Specifications;
-using CSF.Data.Specifications;
+using CSF.Specifications;
 
 namespace Agiil.Bootstrap
 {
@@ -18,7 +18,7 @@ namespace Agiil.Bootstrap
                      .ToArray();
     }
 
-    ISpecification<Type> GetConcreteTypesSpec()
-      => new IsConcreteSpecification().And(new IsOpenGenericSpecification().Negate());
+    ISpecificationExpression<Type> GetConcreteTypesSpec()
+      => new IsConcreteSpecification().And(new IsOpenGenericSpecification().Not());
   }
 }

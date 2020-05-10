@@ -4,7 +4,7 @@
 <title metal:fill-slot="title_element">Change password</title>
 </head>
 <body>
-<div metal:fill-slot="page_content" class="page_content">
+<div metal:fill-slot="page_content" class="content_container">
   <h1>Change password</h1>
   <form method="post" action="ChangePassword/Change" tal:define="result here/Result | nothing">
     <fieldset>

@@ -3,6 +3,8 @@ using Agiil.Domain.Labels.Specs;
 using Agiil.Tests.Attributes;
 using NUnit.Framework;
 using System;
+using CSF.Specifications;
+
 namespace Agiil.Tests.Labels.Specs
 {
   [TestFixture,Parallelizable]

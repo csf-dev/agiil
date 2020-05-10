@@ -1,6 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Auth;
-using CSF.Data.Entities;
+using CSF.ORM;
 using CSF.Security.Authentication;
 
 namespace Agiil.Auth

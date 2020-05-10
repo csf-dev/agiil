@@ -2,7 +2,7 @@
 using Agiil.Domain.Tickets;
 using Agiil.Domain.Tickets.Specs;
 using Agiil.Domain.TicketSearch;
-using CSF.Data.Specifications;
+using CSF.Specifications;
 
 namespace Agiil.Domain.TicketCriterionConvertionStrategies
 {
@@ -17,7 +17,7 @@ namespace Agiil.Domain.TicketCriterionConvertionStrategies
       var spec = new HasNoLabels();
 
       if(predicateFunction.Inverted)
-        return spec.Negate();
+        return spec.Not();
 
       return spec;
     }

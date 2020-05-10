@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
-using CSF.Data.Entities;
-using CSF.Data.NHibernate;
+using CSF.ORM;
 using CSF.Entities;
 
 namespace Agiil.Domain.Sprints
@@ -19,9 +18,9 @@ namespace Agiil.Domain.Sprints
       return repo
         .Query<Sprint>()
         .Where(x => x == theory)
-        .Fetch(x => x.Project)
-        .FetchMany(x => x.Tickets)
-        .ThenFetch(x => x.Type)
+        .FetchChild(x => x.Project)
+        .FetchChildren(x => x.Tickets)
+        .ThenFetchGrandchild(x => x.Type)
         .ToList()
         .SingleOrDefault();
     }

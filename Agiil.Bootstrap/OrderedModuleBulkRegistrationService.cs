@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Agiil.Bootstrap.Specifications;
 using Autofac;
-using CSF.Data.Specifications;
+using CSF.Specifications;
 
 namespace Agiil.Bootstrap
 {
@@ -17,11 +17,8 @@ namespace Agiil.Bootstrap
       var pass = 1;
       IEnumerable<Autofac.Module> modulesToRegister;
 
-      while(true)
+      while((modulesToRegister = GetOrderedModules(pass++)) != null && modulesToRegister.Any())
       {
-        modulesToRegister = GetOrderedModules(pass++);
-        if(modulesToRegister == null || !modulesToRegister.Any()) break;
-
         foreach(var module in modulesToRegister)
           builder.RegisterModule(module);
       }
@@ -42,13 +39,13 @@ namespace Agiil.Bootstrap
 
     }
 
-    ISpecification<Type> GetOrderedModuleSpecification()
+    ISpecificationExpression<Type> GetOrderedModuleSpecification()
     {
       return new IsConcreteSpecification()
         .And(new ImplementsSpecification<Autofac.Module>())
         .And(new HasAttributeSpecification<RegistrationOrderAttribute>())
         .And(new HasParameterlessConstructorSpecification())
-        .And(new HasAttributeSpecification<DoNotAutoRegisterAttribute>().Negate());
+        .And(new HasAttributeSpecification<DoNotAutoRegisterAttribute>().Not());
     }
 
     public OrderedModuleBulkRegistrationService(IEnumerable<Assembly> moduleAssemblies)

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq.Expressions;
-using CSF.Data.Specifications;
+using CSF.Specifications;
 
 namespace Agiil.Bootstrap.Specifications
 {
-  public class ImplementsSpecification<T> : SpecificationExpression<Type> where T : class
+  public class ImplementsSpecification<T> : ISpecificationExpression<Type> where T : class
   {
-    public override Expression<Func<Type, bool>> GetExpression() => type => typeof(T).IsAssignableFrom(type);
+    public Expression<Func<Type, bool>> GetExpression() => type => typeof(T).IsAssignableFrom(type);
   }
 }

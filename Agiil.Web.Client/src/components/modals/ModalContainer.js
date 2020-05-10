@@ -4,7 +4,7 @@ import React from 'react';
 import styles from './ModalContainer.module.scss';
 import type { HasChildren } from 'components/common';
 import type { ModalWidth } from './ModalWindow';
-import { Narrow, Medium, Wide } from './ModalWindow';
+import { Narrow, Wide } from './ModalWindow';
 
 export type ModalContainerProps = HasChildren & {
     width : ModalWidth

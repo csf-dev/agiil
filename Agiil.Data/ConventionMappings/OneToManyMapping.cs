@@ -18,13 +18,7 @@ namespace Agiil.Data.ConventionMappings
         if(isDeclared)
           return true;
 
-        if(member.GetCustomAttribute<ManyToManyAttribute>() != null)
-          return false;
-
-        var isSourceCollection = member.Name.StartsWith(SourceCollectionAccessor.PropertyNamePrefix,
-                                                        StringComparison.InvariantCulture);
-
-        return !isSourceCollection;
+        return member.GetCustomAttribute<ManyToManyAttribute>() == null;
       });
 
       mapper.IsSet((member, isDeclared) => {
@@ -44,11 +38,6 @@ namespace Agiil.Data.ConventionMappings
         if(!typeof(IEntity).IsAssignableFrom(propertyType.GetGenericArguments()[0]))
           return false;
 
-        var isSourceCollection = member.Name.StartsWith(SourceCollectionAccessor.PropertyNamePrefix,
-                                                        StringComparison.InvariantCulture);
-        if(isSourceCollection)
-          return false;
-        
         return true;
       });
 

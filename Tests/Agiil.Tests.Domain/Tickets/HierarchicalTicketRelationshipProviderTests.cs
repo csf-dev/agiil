@@ -5,8 +5,7 @@ using Agiil.Bootstrap;
 using Agiil.Domain.Tickets;
 using Agiil.Tests.Attributes;
 using Autofac;
-using CSF.Data;
-using CSF.Data.Entities;
+using CSF.ORM;
 using CSF.Entities;
 using NUnit.Framework;
 using Agiil.Domain;
@@ -36,26 +35,7 @@ namespace Agiil.Tests.Tickets
         Relationship = relationship
       };
 
-      List<HierarchicalTicketRelationship> result;
-
-      using(var scope = containerProvider.GetContainer().BeginLifetimeScope(ComponentScope.ApplicationConnection))
-      {
-        var dbResetter = scope.Resolve<IResetsDatabase>();
-        dbResetter.ResetDatabase();
-
-        var data = scope.Resolve<IEntityData>();
-        var tranProvider = scope.Resolve<ITransactionCreator>();
-
-        using(var tran = tranProvider.BeginTransaction())
-        {
-          data.Add(rel1);
-          data.Add(rel2);
-          tran.Commit();
-        }
-
-        var sut = scope.Resolve<HierarchicalTicketRelationshipProvider>();
-        result = sut.GetRelationships(ticket1.GetIdentity()).ToList();
-      }
+      var result = ExerciseSut(ticket1, rel1, rel2);
 
       Assert.That(result?.Count, Is.EqualTo(2), "Count of results");
       Assert.That(result?.Select(x => x?.Ticket)?.ToList(), Is.EquivalentTo(new[] { ticket1, ticket1 }), "Correct source tickets");
@@ -81,26 +61,7 @@ namespace Agiil.Tests.Tickets
         Relationship = relationship
       };
 
-      List<HierarchicalTicketRelationship> result;
-
-      using(var scope = containerProvider.GetContainer().BeginLifetimeScope(ComponentScope.ApplicationConnection))
-      {
-        var dbResetter = scope.Resolve<IResetsDatabase>();
-        dbResetter.ResetDatabase();
-
-        var data = scope.Resolve<IEntityData>();
-        var tranProvider = scope.Resolve<ITransactionCreator>();
-
-        using(var tran = tranProvider.BeginTransaction())
-        {
-          data.Add(rel1);
-          data.Add(rel2);
-          tran.Commit();
-        }
-
-        var sut = scope.Resolve<HierarchicalTicketRelationshipProvider>();
-        result = sut.GetRelationships(ticket1.GetIdentity()).ToList();
-      }
+      var result = ExerciseSut(ticket1, rel1, rel2);
 
       Assert.That(result?.Count, Is.EqualTo(2), "Count of results");
       Assert.That(result?.Select(x => x?.Ticket)?.ToList(), Is.EquivalentTo(new[] { ticket1, ticket1 }), "Correct source tickets");
@@ -126,26 +87,7 @@ namespace Agiil.Tests.Tickets
         Relationship = relationship
       };
 
-      List<HierarchicalTicketRelationship> result;
-
-      using(var scope = containerProvider.GetContainer().BeginLifetimeScope(ComponentScope.ApplicationConnection))
-      {
-        var dbResetter = scope.Resolve<IResetsDatabase>();
-        dbResetter.ResetDatabase();
-
-        var data = scope.Resolve<IEntityData>();
-        var tranProvider = scope.Resolve<ITransactionCreator>();
-
-        using(var tran = tranProvider.BeginTransaction())
-        {
-          data.Add(rel1);
-          data.Add(rel2);
-          tran.Commit();
-        }
-
-        var sut = scope.Resolve<HierarchicalTicketRelationshipProvider>();
-        result = sut.GetRelationships(ticket1.GetIdentity()).ToList();
-      }
+      var result = ExerciseSut(ticket1, rel1, rel2);
 
       Assert.That(result?.Count, Is.EqualTo(2), "Count of results");
       Assert.That(result?.Select(x => x?.Ticket)?.ToList(), Is.EquivalentTo(new[] { ticket1, ticket1 }), "Correct source tickets");
@@ -171,32 +113,36 @@ namespace Agiil.Tests.Tickets
         Relationship = relationship
       };
 
-      List<HierarchicalTicketRelationship> result;
-
-      using(var scope = containerProvider.GetContainer().BeginLifetimeScope(ComponentScope.ApplicationConnection))
-      {
-        var dbResetter = scope.Resolve<IResetsDatabase>();
-        dbResetter.ResetDatabase();
-
-        var data = scope.Resolve<IEntityData>();
-        var tranProvider = scope.Resolve<ITransactionCreator>();
-
-        using(var tran = tranProvider.BeginTransaction())
-        {
-          data.Add(rel1);
-          data.Add(rel2);
-          tran.Commit();
-        }
-
-        var sut = scope.Resolve<HierarchicalTicketRelationshipProvider>();
-        result = sut.GetRelationships(ticket1.GetIdentity()).ToList();
-      }
+      var result = ExerciseSut(ticket1, rel1, rel2);
 
       Assert.That(result?.Count, Is.EqualTo(2), "Count of results");
       Assert.That(result?.Select(x => x?.Ticket)?.ToList(), Is.EquivalentTo(new[] { ticket1, ticket1 }), "Correct source tickets");
       Assert.That(result?.Select(x => x?.RelatedTicket)?.ToList(), Is.EquivalentTo(new[] { ticket2, ticket3 }), "Correct related tickets");
       Assert.That(result?.Select(x => x?.Direction)?.ToList(), Is.EquivalentTo(new[] { HierarchicalRelationshipDirection.Ancestor, HierarchicalRelationshipDirection.Ancestor }), "Correct relationship direction");
       Assert.That(result?.Select(x => x?.TicketRelationship)?.ToList(), Is.EquivalentTo(new[] { rel1, rel2 }), "Correct ticket relationships");
+    }
+
+    List<HierarchicalTicketRelationship> ExerciseSut(Ticket ticket, params TicketRelationship[] relationships)
+    {
+      using(var scope = containerProvider.GetContainer().BeginLifetimeScope(ComponentScope.ApplicationConnection))
+      {
+        var dbResetter = scope.Resolve<IResetsDatabase>();
+        dbResetter.ResetDatabase();
+
+        var data = scope.Resolve<IEntityData>();
+        var tranProvider = scope.Resolve<IGetsTransaction>();
+
+        using(var tran = tranProvider.GetTransaction())
+        {
+          foreach(var relationship in relationships)
+            data.Add(relationship);
+
+          tran.Commit();
+        }
+
+        var sut = scope.Resolve<HierarchicalTicketRelationshipProvider>();
+        return sut.GetRelationships(ticket.GetIdentity()).ToList();
+      }
     }
   }
 }

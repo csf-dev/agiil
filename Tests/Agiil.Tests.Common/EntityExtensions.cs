@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Reflection;
 using CSF.Entities;
-using Ploeh.AutoFixture;
-using Ploeh.AutoFixture.Kernel;
+using AutoFixture;
+using AutoFixture.Kernel;
 
 namespace Agiil.Tests
 {
@@ -23,9 +23,9 @@ namespace Agiil.Tests
         throw new ArgumentNullException (nameof (entity));
       }
 
-      var identityType = entity.GetIdentityType();
+      var identityType = entity.IdentityType;
       var identity = CreateInstance(identityType);
-      entity.SetIdentity(identity);
+      entity.IdentityValue = identity;
     }
 
     #endregion

@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-<div metal:fill-slot="page_content" class="page_content">
+<div metal:fill-slot="page_content" class="content_container">
   <h1 tal:content="here/Sprint/Name">Edit sprint</h1>
   <form action="Sprint/Edit"
         method="post"

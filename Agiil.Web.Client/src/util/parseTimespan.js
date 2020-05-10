@@ -22,7 +22,7 @@ export class Timespan {
         this.minutes = minutes;
         this.seconds = seconds;
     }
-};
+}
 
 function getHigherOrderTime(lowerOrder : number) : number {
     return lowerOrder / 60;
@@ -41,7 +41,9 @@ function* getPatternMatches(timeHoursMinutesSeconds : string) : Iterable<string>
     const hoursMinsSecsPattern = /:?(\d{1,7}){1,3}/g;
     let timeMatch;
     while((timeMatch = hoursMinsSecsPattern.exec(timeHoursMinutesSeconds)) != null) {
-        if(!timeMatch) break;
+        // The while statement above ensures that timeMatch cannot be null, yet
+        // FlowJS thinks it could be here
+        // $FlowFixMe
         yield timeMatch[1];
     }
 }

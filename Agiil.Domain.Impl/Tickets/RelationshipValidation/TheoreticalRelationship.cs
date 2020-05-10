@@ -3,7 +3,7 @@ using CSF.Entities;
 
 namespace Agiil.Domain.Tickets.RelationshipValidation
 {
-  public class TheoreticalRelationship : IEquatable<TheoreticalRelationship>
+  public sealed class TheoreticalRelationship : IEquatable<TheoreticalRelationship>
   {
     public IIdentity<TicketRelationship> TicketRelationship { get; set; }
     public IIdentity<Ticket> PrimaryTicket { get; set; }

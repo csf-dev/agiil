@@ -6,7 +6,7 @@ using CSF.Screenplay;
 using CSF.Screenplay.Actors;
 using CSF.Screenplay.Selenium.Builders;
 using FluentAssertions;
-using Ploeh.AutoFixture;
+using AutoFixture;
 using TechTalk.SpecFlow;
 using static CSF.Screenplay.StepComposer;
 

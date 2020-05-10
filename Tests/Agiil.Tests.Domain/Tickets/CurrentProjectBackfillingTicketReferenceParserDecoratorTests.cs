@@ -4,7 +4,7 @@ using Agiil.Domain.Tickets;
 using Agiil.Tests.Attributes;
 using Moq;
 using NUnit.Framework;
-using Ploeh.AutoFixture.NUnit3;
+using AutoFixture.NUnit3;
 
 namespace Agiil.Tests.Tickets
 {

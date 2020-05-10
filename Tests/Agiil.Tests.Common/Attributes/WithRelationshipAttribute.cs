@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Reflection;
 using Agiil.Domain.Tickets;
-using Ploeh.AutoFixture;
-using Ploeh.AutoFixture.NUnit3;
+using CSF.Entities;
+using AutoFixture;
+using AutoFixture.NUnit3;
 
 namespace Agiil.Tests.Attributes
 {
@@ -41,7 +42,7 @@ namespace Agiil.Tests.Attributes
 
       }
 
-      relationship.SetIdentityValue(relationshipId);
+      ((IEntity) relationship).IdentityValue = relationshipId;
 
       return new TicketRelationship { Relationship = relationship };
     }

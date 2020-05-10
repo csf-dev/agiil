@@ -24,13 +24,13 @@ install_npm_packages()
   OLD_DIR="$(pwd)"
   
   cd Agiil.Web/
-  npm install
+  npm ci
   npm_exit=$?
   cd "$OLD_DIR"
   stop_if_failure $npm_exit "Install npm packages to 'Agiil.Web'"
   
   cd Agiil.Web.Client/
-  npm install
+  npm ci
   npm_exit=$?
   cd "$OLD_DIR"
   stop_if_failure $npm_exit "Install npm packages to 'Agiil.Web.Client'"

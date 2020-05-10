@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using Agiil.Auth;
-using Ploeh.AutoFixture.NUnit3;
+using AutoFixture.NUnit3;
 using Moq;
 using Agiil.Web.Controllers;
 using System.Web.Mvc;

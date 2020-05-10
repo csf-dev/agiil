@@ -4,9 +4,9 @@ using Agiil.Domain.Labels;
 using Agiil.Domain.Tickets;
 using Agiil.Tests.Attributes;
 using CSF.Collections;
-using CSF.Data.Entities;
+using CSF.ORM;
 using NUnit.Framework;
-using Ploeh.AutoFixture.NUnit3;
+using AutoFixture.NUnit3;
 
 namespace Agiil.Tests.Labels
 {

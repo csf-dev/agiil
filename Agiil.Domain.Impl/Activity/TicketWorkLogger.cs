@@ -1,5 +1,5 @@
 ﻿using System;
-using CSF.Data;
+using CSF.ORM;
 using CSF.Entities;
 
 namespace Agiil.Domain.Activity
@@ -7,9 +7,9 @@ namespace Agiil.Domain.Activity
   public class TicketWorkLogger : IAddsWorkLogForTicket
   {
     readonly IGetsTicketWorkLog workLogProvider;
-    readonly ITransactionCreator transactionFactory;
+    readonly IGetsTransaction transactionFactory;
 
-    public TicketWorkLogger(IGetsTicketWorkLog workLogProvider, ITransactionCreator transactionFactory)
+    public TicketWorkLogger(IGetsTicketWorkLog workLogProvider, IGetsTransaction transactionFactory)
     {
       if(transactionFactory == null)
         throw new ArgumentNullException(nameof(transactionFactory));
@@ -25,7 +25,7 @@ namespace Agiil.Domain.Activity
       if(request == null)
         throw new ArgumentNullException(nameof(request));
 
-      using(var transaction = transactionFactory.BeginTransaction())
+      using(var transaction = transactionFactory.GetTransaction())
       {
         var getWorklogResponse = workLogProvider.GetWorkLog(request);
         if(getWorklogResponse?.Success != true)

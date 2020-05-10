@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Web.OAuth</RootNamespace>
     <AssemblyName>Agiil.Web.OAuth</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>0.9.0</ReleaseVersion>
+    <ReleaseVersion>0.9.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -79,7 +79,7 @@
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Jwt">
       <HintPath>..\packages\Microsoft.Owin.Security.Jwt.3.0.1\lib\net45\Microsoft.Owin.Security.Jwt.dll</HintPath>

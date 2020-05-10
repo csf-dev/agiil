@@ -43,3 +43,5 @@ after_test:
 artifacts:
   - path: OpenCover.xml
   - path: Tests\Temp\TestResult.unit-tests.xml
+  - path: Tests\Temp\*.db
+  - path: Tests\**\*.log

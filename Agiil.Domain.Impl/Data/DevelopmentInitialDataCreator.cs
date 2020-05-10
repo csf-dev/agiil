@@ -2,20 +2,19 @@
 using Agiil.Auth;
 using Agiil.Domain.Auth;
 using Agiil.Domain.Projects;
-using CSF.Data;
-using CSF.Data.Entities;
+using CSF.ORM;
 
 namespace Agiil.Domain.Data
 {
   public class DevelopmentInitialDataCreator : IInitialDataCreator
   {
     readonly IUserCreator userCreator;
-    readonly ITransactionCreator transactionCreator;
+    readonly IGetsTransaction transactionCreator;
     readonly IEntityData data;
 
     public void Create()
     {
-      using(var tran = transactionCreator.BeginTransaction())
+      using(var tran = transactionCreator.GetTransaction())
       {
         CreateInitialUser();
         CreateInitialProject();
@@ -42,7 +41,7 @@ namespace Agiil.Domain.Data
     }
 
     public DevelopmentInitialDataCreator(IUserCreator userCreator,
-                                         ITransactionCreator transactionCreator,
+                                         IGetsTransaction transactionCreator,
                                          IEntityData projectRepo)
     {
       if(projectRepo == null)

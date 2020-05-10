@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.ObjectMaps</RootNamespace>
     <AssemblyName>Agiil.ObjectMaps</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>0.9.0</ReleaseVersion>
+    <ReleaseVersion>0.9.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,17 +49,14 @@
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Data.Entities">
-      <HintPath>..\packages\CSF.Data.Entities.1.3.2\lib\net45\CSF.Data.Entities.dll</HintPath>
-    </Reference>
     <Reference Include="CSF.Entities">
-      <HintPath>..\packages\CSF.Entities.1.2.1\lib\net45\CSF.Entities.dll</HintPath>
+      <HintPath>..\packages\CSF.Entities.2.0.3\lib\net45\CSF.Entities.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Utils">
-      <HintPath>..\packages\CSF.Utils.6.1.1\lib\net45\CSF.Utils.dll</HintPath>
+    <Reference Include="CSF.ORM">
+      <HintPath>..\packages\CSF.ORM.2.0.3\lib\net45\CSF.ORM.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Data">
-      <HintPath>..\packages\CSF.Data.1.3.0\lib\net45\CSF.Data.dll</HintPath>
+    <Reference Include="CSF.ORM.Entities">
+      <HintPath>..\packages\CSF.ORM.Entities.2.0.3\lib\net45\CSF.ORM.Entities.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

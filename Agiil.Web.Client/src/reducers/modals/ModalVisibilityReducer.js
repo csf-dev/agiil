@@ -1,6 +1,5 @@
 //@flow
 import type { ModalDialogState } from 'models/modals';
-import type { Reducer } from 'redux';
 import type { AnyAction } from 'models';
 import { OpenChangePanelDialog, CloseChangePanelDialog } from 'actions/pageLayout/ChangeActivePanel';
 

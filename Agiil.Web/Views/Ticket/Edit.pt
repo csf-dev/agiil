@@ -19,7 +19,7 @@
 <style metal:fill-slot="asset_styles" metal:use-macro="Views/Ticket/Edit.assets.html/macros/styles"></style>
 </head>
 <body>
-<div metal:fill-slot="page_content" class="page_content">
+<div metal:fill-slot="page_content" class="content_container">
   <h1 tal:content="here/Ticket/Title">
     Edit <span tal:content="string:#${ticket/Reference}">AB123</span>
   </h1>

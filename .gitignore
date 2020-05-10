@@ -24,3 +24,4 @@ Agiil.QueryLanguage.Antlr/Generated_Java/*.class
 Agiil.Tests.BDD.report.json
 Agiil.Tests.BDD.report.html
 .OpenCover/
+*.DotSettings.user

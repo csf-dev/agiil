@@ -21,7 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <ReleaseVersion>0.9.0</ReleaseVersion>
+    <ReleaseVersion>0.9.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -167,7 +167,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Dynamic" />
     <Reference Include="Owin">
@@ -264,11 +264,8 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.6.17\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Data.NHibernate">
-      <HintPath>..\packages\CSF.Data.NHibernate.6.1.3\lib\net45\CSF.Data.NHibernate.dll</HintPath>
-    </Reference>
     <Reference Include="CSF.Entities">
-      <HintPath>..\packages\CSF.Entities.1.2.1\lib\net45\CSF.Entities.dll</HintPath>
+      <HintPath>..\packages\CSF.Entities.2.0.3\lib\net45\CSF.Entities.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Security">
       <HintPath>..\packages\CSF.Security.2.0.2\lib\net45\CSF.Security.dll</HintPath>
@@ -303,17 +300,17 @@
     <Reference Include="CSF.Zpt.MVC5">
       <HintPath>..\packages\CSF.Zpt.MVC5.1.1.0\lib\net45\CSF.Zpt.MVC5.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Data">
-      <HintPath>..\packages\CSF.Data.1.3.0\lib\net45\CSF.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data.SQLite">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.105.0\lib\net46\System.Data.SQLite.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Zpt.Log4net">
       <HintPath>..\packages\CSF.Zpt.Log4net.1.1.0\lib\net45\CSF.Zpt.Log4net.dll</HintPath>
     </Reference>
-    <Reference Include="CSF.Data.Entities">
-      <HintPath>..\packages\CSF.Data.Entities.1.3.2\lib\net45\CSF.Data.Entities.dll</HintPath>
+    <Reference Include="CSF.ORM">
+      <HintPath>..\packages\CSF.ORM.2.0.3\lib\net45\CSF.ORM.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.ORM.Entities">
+      <HintPath>..\packages\CSF.ORM.Entities.2.0.3\lib\net45\CSF.ORM.Entities.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -531,6 +528,12 @@
       <SassNodePath>$(MSBuildThisFileDirectory)node_modules\node-sass\bin\node-sass</SassNodePath>
     </PropertyGroup>
     <Exec Command="node $(SassNodePath) $(SassInputDir) --output $(SassOutputDir) --source-map true" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+  </Target>
+  <Target Name="CopyCsfReflection3" BeforeTargets="AfterBuild">
+    <ItemGroup>
+      <CsfReflectionFiles Include="..\packages\CSF.Reflection.3.0.0\lib\net45\CSF.Reflection.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(CsfReflectionFiles)" DestinationFiles="$(WebAppStagingDir)\bin\CSF.Reflection3%(Extension)" />
   </Target>
   <Target Name="MoveWebConfigToCorrectLocation" AfterTargets="ScApplyTransforms">
     <Copy SourceFiles="$(OutDir)\Web.config" DestinationFiles="Web.config" />

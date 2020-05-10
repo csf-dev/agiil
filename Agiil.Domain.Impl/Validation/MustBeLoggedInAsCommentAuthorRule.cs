@@ -1,7 +1,7 @@
 ﻿using System;
 using Agiil.Domain.Auth;
 using Agiil.Domain.Tickets;
-using CSF.Data.Entities;
+using CSF.ORM;
 using CSF.Entities;
 using CSF.Validation.Rules;
 

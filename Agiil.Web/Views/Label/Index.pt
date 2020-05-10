@@ -18,7 +18,7 @@
 </head>
 <body>
 <section metal:fill-slot="page_content"
-         class="page_content label_detail"
+         class="content_container label_detail"
          tal:define="label here/Label">
   <header>
     <h1>

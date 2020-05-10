@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using CSF.Data.Specifications;
+using CSF.Specifications;
 
 namespace Agiil.Domain.Labels.Specs
 {
-  public class LabelNameIn : SpecificationExpression<Label>
+  public class LabelNameIn : ISpecificationExpression<Label>
   {
     readonly IEnumerable<string> names;
 
-    public override Expression<Func<Label, bool>> GetExpression()
+    public Expression<Func<Label, bool>> GetExpression()
       => label => names.Contains(label.Name);
 
     public LabelNameIn(IEnumerable<string> names)

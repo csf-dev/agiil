@@ -1,7 +1,7 @@
 ﻿using System;
 using AutoMapper;
-using CSF.Data.Entities;
 using CSF.Entities;
+using CSF.ORM;
 
 namespace Agiil.ObjectMaps.Resolvers
 {

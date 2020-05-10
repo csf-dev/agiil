@@ -8,21 +8,13 @@ namespace Agiil.Domain.Labels
 {
   public class Label : Entity<long>
   {
-    readonly EventRaisingSetWrapper<Ticket> tickets;
-
     public virtual string Name { get; set; }
 
+    readonly EventRaisingSetWrapper<Ticket> tickets;
     [ManyToMany(false)]
     public virtual ISet<Ticket> Tickets
     {
       get { return tickets.Collection; }
-      protected set { /* no-op */ }
-    }
-
-    protected virtual ISet<Ticket> SourceTickets
-    {
-      get { return tickets.SourceCollection; }
-      set { tickets.SourceCollection = value; }
     }
 
     public Label()

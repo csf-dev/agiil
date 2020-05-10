@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using log4net;
 
 namespace Agiil.Data.Sqlite
 {
@@ -7,6 +8,7 @@ namespace Agiil.Data.Sqlite
   {
     readonly DatabaseFileProvider dbFileProvider;
     readonly ISnapshotFileService fileService;
+    readonly ILog logger;
 
     public void RestoreFromSnapshot(Snapshot snapshot)
     {
@@ -20,7 +22,9 @@ namespace Agiil.Data.Sqlite
     public Snapshot TakeDatabaseSnapshot()
     {
       var dataFile = dbFileProvider.GetDatabaseFile();
+      logger.Debug($"{nameof(TakeDatabaseSnapshot)} getting the file for a new snapshot, based on data file '{dataFile.FullName}'");
       var snapshotFile = fileService.GetFileForNewSnapshot(dataFile);
+      logger.Debug($"{nameof(TakeDatabaseSnapshot)} got new snapshot file: '{snapshotFile.FullName}'");
       fileService.Copy(dataFile, snapshotFile);
       return GetSnapshot(snapshotFile);
     }
@@ -35,7 +39,8 @@ namespace Agiil.Data.Sqlite
     }
 
     public SnapshotService(DatabaseFileProvider dbFileProvider,
-                           ISnapshotFileService fileService)
+                           ISnapshotFileService fileService,
+                           ILog logger)
     {
       if(dbFileProvider == null)
         throw new ArgumentNullException(nameof(dbFileProvider));
@@ -43,6 +48,7 @@ namespace Agiil.Data.Sqlite
         throw new ArgumentNullException(nameof(fileService));
       
       this.fileService = fileService;
+      this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
       this.dbFileProvider = dbFileProvider;
     }
   }

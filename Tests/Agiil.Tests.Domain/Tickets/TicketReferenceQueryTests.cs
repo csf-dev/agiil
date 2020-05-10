@@ -3,7 +3,7 @@ using System.Linq;
 using Agiil.Domain.Tickets;
 using Agiil.Domain.Tickets.Specs;
 using Agiil.Tests.Attributes;
-using CSF.Data.Entities;
+using CSF.ORM;
 using Moq;
 using NUnit.Framework;
 
@@ -15,7 +15,7 @@ namespace Agiil.Tests.Tickets
     [Test, AutoMoqData]
     public void GetTicketByReference_uses_the_specification_factory_with_a_ref(IParsesTicketReference parser,
                                                                                [InMemory] IEntityData repo,
-                                                                               TicketReferenceEqualsStub spec,
+                                                                               [TrueSpecExpr] ISpecForTicketReferenceEquality spec,
                                                                                TicketReference reference)
     {
       TicketReference refProvidedToFactory = null;
@@ -32,7 +32,7 @@ namespace Agiil.Tests.Tickets
     [Test, AutoMoqData]
     public void GetTicketByReference_uses_the_specification_factory_with_a_string_ref(IParsesTicketReference parser,
                                                                                       [InMemory] IEntityData repo,
-                                                                                      TicketReferenceEqualsStub spec,
+                                                                                      [TrueSpecExpr] ISpecForTicketReferenceEquality spec,
                                                                                       TicketReference reference,
                                                                                       string stringReference)
     {
@@ -57,10 +57,10 @@ namespace Agiil.Tests.Tickets
                                                                               Ticket ticketThree,
                                                                               TicketReference reference)
     {
-      var spec = Mock.Of<TicketReferenceEqualsStub>();
+      var spec = Mock.Of<ISpecForTicketReferenceEquality>();
       Mock.Get(spec)
-          .Setup(x => x.ApplyTo(It.IsAny<IQueryable<Ticket>>()))
-          .Returns((IQueryable<Ticket> query) => query.Where(x => x == ticketTwo));
+          .Setup(x => x.GetExpression())
+          .Returns((Ticket x) => x == ticketTwo);
       repo.Add(ticketOne);
       repo.Add(ticketTwo);
       repo.Add(ticketThree);
@@ -76,20 +76,15 @@ namespace Agiil.Tests.Tickets
                                                                         [InMemory] IEntityData repo,
                                                                         TicketReference reference)
     {
-      var spec = Mock.Of<TicketReferenceEqualsStub>();
-      Mock.Get(spec)
-          .Setup(x => x.ApplyTo(It.IsAny<IQueryable<Ticket>>()))
-          .Returns((IQueryable<Ticket> query) => query.Where(x => false));
-      var sut = new TicketReferenceQuery(parser, repo, refParam => spec);
+      var spec = Mock.Of<ISpecForTicketReferenceEquality>();
+            Mock.Get(spec)
+                .Setup(x => x.GetExpression())
+                .Returns((Ticket x) => false);
+            var sut = new TicketReferenceQuery(parser, repo, refParam => spec);
 
       var result = sut.GetTicketByReference(reference);
 
       Assert.That(result, Is.Null);
-    }
-
-    public class TicketReferenceEqualsStub : TicketReferenceEquals
-    {
-      public TicketReferenceEqualsStub() : base(new TicketReference(null, 0)) {}
     }
   }
 }

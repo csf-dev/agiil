@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Auth</RootNamespace>
     <AssemblyName>Agiil.Auth</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>0.9.0</ReleaseVersion>
+    <ReleaseVersion>0.9.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,10 +49,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Entities">
-      <HintPath>..\packages\CSF.Entities.1.2.1\lib\net45\CSF.Entities.dll</HintPath>
+      <HintPath>..\packages\CSF.Entities.2.0.3\lib\net45\CSF.Entities.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Security">
       <HintPath>..\packages\CSF.Security.2.0.2\lib\net45\CSF.Security.dll</HintPath>

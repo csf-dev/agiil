@@ -1,6 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Auth;
-using CSF.Data;
+using CSF.ORM;
 using CSF.Security.Authentication;
 
 namespace Agiil.Auth
@@ -11,14 +11,14 @@ namespace Agiil.Auth
     readonly ICurrentUserReader userReader;
     readonly IPasswordAuthenticationService authService;
     readonly IPasswordPolicy policy;
-    readonly ITransactionCreator transactionCreator;
+    readonly IGetsTransaction transactionCreator;
 
     public PasswordChangeResponse ChangeOwnPassword(PasswordChangeRequest request)
     {
       if(request == null)
         throw new ArgumentNullException(nameof(request));
 
-      using(var tran = transactionCreator.BeginTransaction())
+      using(var tran = transactionCreator.GetTransaction())
       {
         var user = userReader.RequireCurrentUser();
         if(!IsExistingPasswordCorrect(request.ExistingPassword, user))
@@ -51,7 +51,7 @@ namespace Agiil.Auth
                            IPasswordAuthenticationService authService,
                            ICurrentUserReader userReader,
                            IUserPasswordUpdater updater,
-                           ITransactionCreator transactionCreator)
+                           IGetsTransaction transactionCreator)
     {
       if(transactionCreator == null)
         throw new ArgumentNullException(nameof(transactionCreator));

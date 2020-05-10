@@ -14,7 +14,7 @@
 </head>
 <body>
 <section metal:fill-slot="page_content"
-         class="page_content labels_list">
+         class="content_container labels_list">
   <header>
     <h1>All labels</h1>
   </header>

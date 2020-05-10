@@ -1,8 +1,8 @@
 //@flow
 import * as React from "react";
 import type { ChangePanelProps } from './ChangePanelProps';
-import { Left, Right } from './ChangePanelProps'
-import { NavigationPanel, MainPanel, AsidesPanel } from 'components/pageLayout';
+import { Left } from './ChangePanelProps'
+import { NavigationPanel, AsidesPanel } from 'components/pageLayout';
 
 export function ChangePanelButton(props : ChangePanelProps) {
     const title = getTitle(props);

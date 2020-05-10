@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Agiil.Domain.TicketSearch;
-using CSF.Data.NHibernate;
-using CSF.Data.Specifications;
+using CSF.Specifications;
+using CSF.ORM;
 
 namespace Agiil.Domain.Tickets
 {
@@ -30,10 +30,10 @@ namespace Agiil.Domain.Tickets
 
       query = query.OrderByDescending(x => x.CreationTimestamp);
       return query
-        .Fetch(x => x.User)
-        .Fetch(x => x.Type)
-        .FetchMany(x => x.PrimaryRelationships)
-        .FetchMany(x => x.SecondaryRelationships)
+        .FetchChild(x => x.User)
+        .FetchChild(x => x.Type)
+        .FetchChildren(x => x.PrimaryRelationships)
+        .FetchChildren(x => x.SecondaryRelationships)
         .ToList();
     }
 

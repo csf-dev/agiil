@@ -1,6 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Projects;
-using Ploeh.AutoFixture;
+using AutoFixture;
 
 namespace Agiil.Tests.Autofixture
 {

@@ -1,8 +1,7 @@
 ﻿using System;
 using Agiil.Domain.Validation;
 using AutoMapper;
-using CSF.Data;
-using CSF.Data.Entities;
+using CSF.ORM;
 using CSF.Validation;
 
 namespace Agiil.Domain.Sprints
@@ -10,7 +9,7 @@ namespace Agiil.Domain.Sprints
   public class SprintEditor : ISprintEditor
   {
     readonly IEntityData sprintRepo;
-    readonly ITransactionCreator transactionFactory;
+    readonly IGetsTransaction transactionFactory;
     readonly ICreatesValidators<EditSprintRequest> validatorFactory;
     readonly Func<IValidationResult, Sprint, EditSprintResponse> responseCreator;
     readonly IMapper mapper;
@@ -23,7 +22,7 @@ namespace Agiil.Domain.Sprints
 
       Sprint sprint;
 
-      using(var trans = transactionFactory.BeginTransaction())
+      using(var trans = transactionFactory.GetTransaction())
       {
         sprint = sprintRepo.Get(request.SprintIdentity);
         mapper.Map(request, sprint);
@@ -41,7 +40,7 @@ namespace Agiil.Domain.Sprints
     }
 
     public SprintEditor(IEntityData sprintRepo,
-                        ITransactionCreator transactionFactory,
+                        IGetsTransaction transactionFactory,
                         ICreatesValidators<EditSprintRequest> validatorFactory,
                         Func<IValidationResult, Sprint, EditSprintResponse> responseCreator,
                         IMapper mapper)

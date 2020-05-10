@@ -1,9 +1,7 @@
 ﻿using System;
-using CSF.Data.Entities;
+using CSF.ORM;
 using CSF.Entities;
 using CSF.Validation.Rules;
-using System.Linq;
-using CSF.Data.NHibernate;
 
 namespace Agiil.Domain.Validation
 {

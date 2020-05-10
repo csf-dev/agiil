@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
-using CSF.Data.Entities;
-using CSF.Data.NHibernate;
+using CSF.ORM;
 
 namespace Agiil.Domain.Labels
 {
@@ -15,7 +14,7 @@ namespace Agiil.Domain.Labels
 
       return data.Query<Label>()
                  .Where(x => x.Name == name)
-                 .FetchMany(x => x.Tickets)
+                 .FetchChildren(x => x.Tickets)
                  .AsEnumerable()
                  .FirstOrDefault();
     }

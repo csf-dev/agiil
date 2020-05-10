@@ -6,21 +6,20 @@ using Agiil.Domain.Labels;
 using Agiil.Domain.Projects;
 using Agiil.Domain.Sprints;
 using Agiil.Domain.Tickets;
-using CSF.Data;
-using CSF.Data.Entities;
+using CSF.ORM;
 
 namespace Agiil.Web.Services.DataPackages
 {
   public class SimpleSampleProject : IDataPackage
   {
     readonly IEntityData repo;
-    readonly ITransactionCreator transactionCreator;
+    readonly IGetsTransaction transactionCreator;
     readonly IGetsUserByUsername userQuery;
     readonly IUserCreator userCreator;
 
     public void Load()
     {
-      using(var tran = transactionCreator.BeginTransaction())
+      using(var tran = transactionCreator.GetTransaction())
       {
         var project = repo.Query<Project>().First();
         var admin = userQuery.Get(AdminUser.Username);
@@ -328,7 +327,7 @@ namespace Agiil.Web.Services.DataPackages
     }
 
     public SimpleSampleProject(IEntityData repo,
-                               ITransactionCreator transactionCreator,
+                               IGetsTransaction transactionCreator,
                                IGetsUserByUsername userQuery,
                                IUserCreator userCreator)
     {

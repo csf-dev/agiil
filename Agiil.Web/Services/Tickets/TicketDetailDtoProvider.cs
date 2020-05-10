@@ -2,9 +2,8 @@
 using Agiil.Domain.Tickets;
 using Agiil.Web.Models.Tickets;
 using AutoMapper;
-using CSF.Data.Entities;
+using CSF.ORM;
 using System.Linq;
-using CSF.Data.NHibernate;
 
 namespace Agiil.Web.Services.Tickets
 {
@@ -22,13 +21,13 @@ namespace Agiil.Web.Services.Tickets
       var eagerFetchedTicket = data
         .Query<Ticket>()
         .Where(x => x == ticket)
-        .FetchMany(x => x.Comments)
-        .FetchMany(x => x.PrimaryRelationships)
-        .FetchMany(x => x.SecondaryRelationships)
-        .FetchMany(x => x.Labels)
-        .Fetch(x => x.Project)
-        .Fetch(x => x.User)
-        .Fetch(x => x.Type)
+        .FetchChildren(x => x.Comments)
+        .FetchChildren(x => x.PrimaryRelationships)
+        .FetchChildren(x => x.SecondaryRelationships)
+        .FetchChildren(x => x.Labels)
+        .FetchChild(x => x.Project)
+        .FetchChild(x => x.User)
+        .FetchChild(x => x.Type)
         .AsEnumerable()
         .FirstOrDefault();
 

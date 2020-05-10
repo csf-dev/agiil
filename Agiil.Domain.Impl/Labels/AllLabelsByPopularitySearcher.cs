@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Agiil.Domain.Tickets.Specs;
-using CSF.Data.Entities;
-using CSF.Data.Specifications;
+using CSF.ORM;
+using CSF.Specifications;
 
 namespace Agiil.Domain.Labels
 {

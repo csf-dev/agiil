@@ -11,7 +11,7 @@
 </style>
 </head>
 <body metal:fill-slot="body_element" class="database_maintenance">
-<div class="page_content">
+<div class="content_container">
   <h1>Database maintenance</h1>
   <h2>Reset the database</h2>
   <p>

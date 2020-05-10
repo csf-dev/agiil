@@ -1,14 +1,14 @@
 ﻿using System;
-using CSF.Data;
-using CSF.Data.Entities;
+using CSF.ORM;
 using Agiil.Domain.Auth;
 using CSF.Security;
 using Moq;
 using NUnit.Framework;
-using Ploeh.AutoFixture.NUnit3;
+using AutoFixture.NUnit3;
 using Agiil.Auth;
 using CSF.Entities;
 using Agiil.Tests.Attributes;
+using CSF.ORM.InMemory;
 
 namespace Agiil.Tests.Auth
 {
@@ -28,16 +28,16 @@ namespace Agiil.Tests.Auth
       Assert.IsNull(result);
     }
 
-    [Test,AutoData]
+    [Test, AutoMoqData]
     public void GetStoredCredentials_returns_credentials_when_user_is_found (LoginCredentials credentials,
                                                                              User user,
-                                                                             [Frozen,ProvidesService(typeof(IQuery))] InMemoryQuery query,
+                                                                             [Frozen,InMemory] IEntityData data,
                                                                              UserCredentialsRepository sut)
     {
       // Arrange
       user.GenerateIdentity();
       user.Username = credentials.Username;
-      query.Add(user);
+            data.Add(user);
 
       // Act
       var result = sut.GetStoredCredentials(credentials);
@@ -46,61 +46,61 @@ namespace Agiil.Tests.Auth
       Assert.NotNull(result);
     }
 
-    [Test,AutoData]
+    [Test, AutoMoqData]
     public void GetStoredCredentials_returns_matching_serialized_credentials_when_user_found (LoginCredentials credentials,
                                                                                               User user,
-                                                                                              [Frozen,ProvidesService(typeof(IQuery))] InMemoryQuery query,
+                                                                             [Frozen, InMemory] IEntityData data,
                                                                                               UserCredentialsRepository sut)
     {
       // Arrange
       user.GenerateIdentity();
       user.Username = credentials.Username;
-      query.Add(user);
+            data.Add(user);
 
-      // Act
-      var result = sut.GetStoredCredentials(credentials);
+            // Act
+            var result = sut.GetStoredCredentials(credentials);
 
       // Assert
       Assert.AreEqual(user.SerializedCredentials, result.SerializedCredentials);
     }
 
-    [Test,AutoData]
+    [Test, AutoMoqData]
     public void GetStoredCredentials_returns_correct_username_when_user_found (LoginCredentials credentials,
                                                                                User user,
-                                                                               [Frozen,ProvidesService(typeof(IQuery))] InMemoryQuery query,
+                                                                             [Frozen, InMemory] IEntityData data,
                                                                                UserCredentialsRepository sut)
     {
       // Arrange
       user.GenerateIdentity();
       user.Username = credentials.Username;
-      query.Add(user);
+            data.Add(user);
 
-      // Act
-      var result = sut.GetStoredCredentials(credentials);
+            // Act
+            var result = sut.GetStoredCredentials(credentials);
 
       // Assert
       Assert.AreEqual(user.Username, result.UserInformation.Username);
     }
 
-    [Test,AutoData]
+    [Test, AutoMoqData]
     public void GetStoredCredentials_returns_correct_identity_when_user_found (LoginCredentials credentials,
                                                                                User user,
-                                                                               [Frozen,ProvidesService(typeof(IQuery))] InMemoryQuery query,
+                                                                             [Frozen,InMemory] IEntityData data,
                                                                                UserCredentialsRepository sut)
     {
       // Arrange
       user.GenerateIdentity();
       user.Username = credentials.Username;
-      query.Add(user);
+            data.Add(user);
 
-      // Act
-      var result = sut.GetStoredCredentials(credentials);
+            // Act
+            var result = sut.GetStoredCredentials(credentials);
 
       // Assert
       Assert.AreEqual(user.GetIdentity(), result.UserInformation.Identity);
     }
 
-    [Test,AutoMoqData]
+    [Test, AutoMoqData]
     public void GetStoredCredentials_throws_exception_when_credentials_are_null (UserCredentialsRepository sut)
     {
       // Act & Assert

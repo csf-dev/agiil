@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using Agiil.Domain.Labels;
 using Agiil.Tests.Attributes;
-using CSF.Data.Entities;
+using CSF.ORM;
 using Moq;
 using NUnit.Framework;
-using Ploeh.AutoFixture.NUnit3;
+using AutoFixture.NUnit3;
 
 namespace Agiil.Tests.Labels
 {

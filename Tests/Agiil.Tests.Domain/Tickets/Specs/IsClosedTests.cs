@@ -3,6 +3,7 @@ using Agiil.Domain.Tickets;
 using Agiil.Domain.Tickets.Specs;
 using Agiil.Tests.Attributes;
 using NUnit.Framework;
+using CSF.Specifications;
 
 namespace Agiil.Tests.Tickets.Specs
 {

@@ -1,39 +1,41 @@
 ﻿using System;
+using System.Reflection;
 using NHibernate.Properties;
 
 namespace Agiil.Data.ConventionMappings
 {
   public class SourceCollectionAccessor : IPropertyAccessor
   {
-    internal const string PropertyNamePrefix = "Source";
-
-    readonly BasicPropertyAccessor accessor;
-
-    public bool CanAccessThroughReflectionOptimizer => accessor.CanAccessThroughReflectionOptimizer;
+    public bool CanAccessThroughReflectionOptimizer => false;
 
     public IGetter GetGetter(Type theClass, string propertyName)
     {
-      if(propertyName == null)
-        throw new ArgumentNullException(nameof(propertyName));
-      if(theClass == null)
-        throw new ArgumentNullException(nameof(theClass));
-      
-      return accessor.GetGetter(theClass, String.Concat(PropertyNamePrefix, propertyName));
+      var field = GetFieldInfo(theClass, propertyName);
+      if(field == null) return null;
+      var provider = SourceCollectionGetterSetterFactory.Create(field);
+      if(provider == null) return null;
+      return provider.GetGetter();
     }
 
     public ISetter GetSetter(Type theClass, string propertyName)
     {
-      if(propertyName == null)
-        throw new ArgumentNullException(nameof(propertyName));
-      if(theClass == null)
-        throw new ArgumentNullException(nameof(theClass));
-
-      return accessor.GetSetter(theClass, String.Concat(PropertyNamePrefix, propertyName));
+      var field = GetFieldInfo(theClass, propertyName);
+      if(field == null) return null;
+      var provider = SourceCollectionGetterSetterFactory.Create(field);
+      if(provider == null) return null;
+      return provider.GetSetter();
     }
 
-    public SourceCollectionAccessor()
+    FieldInfo GetFieldInfo(Type theClass, string propertyName)
     {
-      accessor = new BasicPropertyAccessor();
+      var name = GetFieldName(propertyName);
+      return theClass.GetField(name, BindingFlags.Instance | BindingFlags.NonPublic);
+    }
+
+    string GetFieldName(string propertyName)
+    {
+      var firstCharacter = propertyName.Substring(0, 1);
+      return String.Concat(firstCharacter.ToLowerInvariant(), propertyName.Substring(1));
     }
   }
 }

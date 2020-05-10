@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Agiil.Bootstrap.Specifications;
 using Autofac;
-using CSF.Data.Specifications;
+using CSF.Specifications;
 
 namespace Agiil.Bootstrap
 {
@@ -28,18 +28,18 @@ namespace Agiil.Bootstrap
       var unorderedModuleTypes = moduleAssemblies.SelectMany(x => x.GetExportedTypes()).Where(spec);
 
       return unorderedModuleTypes
-        .Select(x => Activator.CreateInstance(x))
+        .Select(Activator.CreateInstance)
         .Cast<Autofac.Module>()
         .ToArray();
     }
 
-    ISpecification<Type> GetUnorderedModuleSpecification()
+    ISpecificationExpression<Type> GetUnorderedModuleSpecification()
     {
       return new IsConcreteSpecification()
         .And(new ImplementsSpecification<Autofac.Module>())
-        .And(new HasAttributeSpecification<RegistrationOrderAttribute>().Negate())
+        .And(new HasAttributeSpecification<RegistrationOrderAttribute>().Not())
         .And(new HasParameterlessConstructorSpecification())
-        .And(new HasAttributeSpecification<DoNotAutoRegisterAttribute>().Negate());
+        .And(new HasAttributeSpecification<DoNotAutoRegisterAttribute>().Not());
     }
 
     public UnorderedModuleBulkRegistrationService(IEnumerable<Assembly> moduleAssemblies)
