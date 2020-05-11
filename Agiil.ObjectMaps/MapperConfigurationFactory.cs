@@ -1,31 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using AutoMapper;
+
 namespace Agiil.ObjectMaps
 {
-  public class MapperConfigurationFactory : IMapperConfigurationFactory
-  {
-    readonly IEnumerable<Profile> allProfiles;
-
-    public virtual MapperConfiguration GetConfiguration()
+    public class MapperConfigurationFactory : IMapperConfigurationFactory
     {
-      return new MapperConfiguration(Configure);
-    }
+        readonly IEnumerable<Profile> allProfiles;
 
-    protected virtual void Configure(IMapperConfigurationExpression config)
-    {
-      foreach(var profile in allProfiles)
-      {
-        config.AddProfile(profile);
-      }
-    }
+        public virtual MapperConfiguration GetConfiguration() => new MapperConfiguration(Configure);
 
-    public MapperConfigurationFactory(IEnumerable<Profile> allProfiles)
-    {
-      if(allProfiles == null)
-        throw new ArgumentNullException(nameof(allProfiles));
-      this.allProfiles = allProfiles;
+        protected virtual void Configure(IMapperConfigurationExpression config)
+        {
+            foreach(var profile in allProfiles)
+                config.AddProfile(profile);
+        }
+
+        public MapperConfigurationFactory(IEnumerable<Profile> allProfiles)
+        {
+            this.allProfiles = allProfiles ?? throw new ArgumentNullException(nameof(allProfiles));
+        }
     }
-  }
 }

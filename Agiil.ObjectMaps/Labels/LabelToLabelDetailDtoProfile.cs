@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Labels;
+using Agiil.ObjectMaps.Resolvers;
 using Agiil.Web.Models.Labels;
 using AutoMapper;
 
@@ -7,11 +8,11 @@ namespace Agiil.ObjectMaps.Labels
 {
   public class LabelToLabelDetailDtoProfile : Profile
   {
-    public LabelToLabelDetailDtoProfile(IGetsTicketsWithLabel ticketProvider)
+    public LabelToLabelDetailDtoProfile()
     {
       CreateMap<Label,LabelDetailDto>()
-        .ForMember(x => x.OpenTickets, opts => opts.ResolveUsing(label => ticketProvider.GetAllOpenTickets(label)))
-        .ForMember(x => x.ClosedTickets, opts => opts.ResolveUsing(label => ticketProvider.GetAllClosedTickets(label)))
+        .ForMember(x => x.OpenTickets, opts => opts.ResolveUsing<OpenTicketsForLabelResolver>())
+        .ForMember(x => x.ClosedTickets, opts => opts.ResolveUsing<ClosedTicketsForLabelResolver>())
         ;
     }
   }

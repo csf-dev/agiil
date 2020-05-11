@@ -25,9 +25,7 @@ namespace Agiil.ObjectMaps.Resolvers
 
     public GetEntityByIdentityValueResolver(IEntityData repo)
     {
-      if(repo == null)
-        throw new ArgumentNullException(nameof(repo));
-      this.repo = repo;
+      this.repo = repo ?? throw new ArgumentNullException(nameof(repo));
     }
   }
 }

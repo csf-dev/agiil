@@ -5,19 +5,28 @@ using AutoMapper;
 
 namespace Agiil.Bootstrap.ObjectMaps
 {
-  public class AutomapperModule : Module
-  {
-    protected override void Load(ContainerBuilder builder)
+    public class AutomapperModule : Module
     {
-      builder.Register(GetMapperConfiguration);
+        protected override void Load(ContainerBuilder builder)
+        {
+            builder
+                .Register(GetMapperConfiguration)
+                .SingleInstance();
+            builder
+                .Register(GetMapper)
+                .SingleInstance();
+        }
 
-      builder.Register(GetMapper);
+        MapperConfiguration GetMapperConfiguration(IComponentContext ctx)
+            => ctx.Resolve<IMapperConfigurationFactory>().GetConfiguration();
+
+        IMapper GetMapper(IComponentContext ctx)
+        {
+            var config = ctx.Resolve<MapperConfiguration>();
+            var scope = ctx.Resolve<ILifetimeScope>();
+            var mapper = config.CreateMapper(scope.Resolve);
+
+            return mapper;
+        }
     }
-
-    MapperConfiguration GetMapperConfiguration(IComponentContext ctx)
-      => ctx.Resolve<IMapperConfigurationFactory>().GetConfiguration();
-
-    IMapper GetMapper(IComponentContext ctx)
-      => ctx.Resolve<MapperConfiguration>().CreateMapper();
-  }
 }
