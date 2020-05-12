@@ -9,7 +9,7 @@ namespace Agiil.BDD.Pages
 
     public override IUriProvider GetUriProvider() => new AppUri("Login");
 
-    public static ITarget Heading => new CssSelector(".page_content h1", "the page header");
+    public static ITarget Heading => new CssSelector(".content_container h1", "the page header");
 
     public static ILocatorBasedTarget LoginFailureMessage
       => new CssSelector("#LoginForm .feedback.warning", "the login failure message");
