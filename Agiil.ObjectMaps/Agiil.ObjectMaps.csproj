@@ -99,6 +99,10 @@
     <Compile Include="Activity\AddTicketWorkLogModelToAddWorkLogRequestProfile.cs" />
     <Compile Include="Tickets\TheoreticalRelationshipToTraversibleRelationshipProfile.cs" />
     <Compile Include="Tickets\HierarchicalTicketRelationshipToTraversibleRelationshipProfile.cs" />
+    <Compile Include="Resolvers\TicketsForLabelResolver.cs" />
+    <Compile Include="Resolvers\TicketsForSprintResolver.cs" />
+    <Compile Include="Resolvers\CommaSeparatedLabelNameResolver.cs" />
+    <Compile Include="Resolvers\TotalWorkLoggedForTicketResolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

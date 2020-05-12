@@ -17,10 +17,6 @@ namespace Agiil.Tests.Bootstrap
               .As<IDatabaseConfiguration>();
 
             builder.Register(BuildSnapshotDatabaseResetter);
-
-            builder
-                .Register(ctx => ctx.Resolve<ISessionFactory>().OpenSession())
-                .InstancePerMatchingLifetimeScope(ComponentScope.ApplicationConnection);
         }
 
         IResetsDatabase BuildSnapshotDatabaseResetter(IComponentContext ctx)

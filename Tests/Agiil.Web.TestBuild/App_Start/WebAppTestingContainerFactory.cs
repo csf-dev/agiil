@@ -7,20 +7,17 @@ using System.Linq;
 
 namespace Agiil.Web.App_Start
 {
-  public class WebAppTestingContainerFactory : WebAppContainerFactory
-  {
-		protected override IEnumerable<Assembly> GetModuleAssemblies()
-		{
-      return base.GetModuleAssemblies()
-        .Union(new [] {
-          Assembly.GetExecutingAssembly(),
-          typeof(Agiil.Tests.Bootstrap.DataModule).Assembly,
-        });
-		}
-
-    protected override void RegisterAspNetWebApiComponents(ContainerBuilder builder)
+    public class WebAppTestingContainerFactory : WebAppContainerFactory
     {
-      builder.RegisterModule(new AspNetWebApiTestBuildModule(HttpConfig));
+        protected override IEnumerable<Assembly> GetModuleAssemblies()
+        {
+            return base.GetModuleAssemblies()
+              .Union(new[] { Assembly.GetExecutingAssembly(), });
+        }
+
+        protected override void RegisterAspNetWebApiComponents(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new AspNetWebApiTestBuildModule(HttpConfig));
+        }
     }
-  }
 }

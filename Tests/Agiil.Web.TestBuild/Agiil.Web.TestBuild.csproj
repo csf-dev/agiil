@@ -125,6 +125,7 @@
     <Compile Include="Controllers\OverrideVersionNumberController.cs" />
     <Compile Include="Bootstrap\LoginReaderModule.cs" />
     <Compile Include="Bootstrap\VersionInfoModule.cs" />
+    <Compile Include="Bootstrap\DataModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

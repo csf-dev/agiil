@@ -8,13 +8,8 @@ namespace Agiil.Web.Bootstrap
   {
     protected override void Load(ContainerBuilder builder)
     {
-      // Overrides the registration for ISession.  This module will be loaded after the one from the parent app.
-      // This scopes the ISession to the request lifetime scope.
       builder
-        .Register((ctx, parameters) => {
-          var factory = ctx.Resolve<ISessionFactory>();
-          return factory.OpenSession();
-        })
+        .Register(ctx => ctx.Resolve<ISessionFactory>().OpenSession())
         .InstancePerRequest();
     }
   }

@@ -12,7 +12,7 @@ namespace Agiil.BDD.Pages
 
     public override IUriProvider GetUriProvider() => new AppUri(String.Empty);
 
-    public static ITarget PageContentArea => new CssSelector(".page_content", "the page content area");
+    public static ITarget PageContentArea => new CssSelector(".content_container", "the page content area");
 
     public static HeaderLoginLogoutWidget HeaderLoginLogoutWidget => headerLoginLogoutWidget;
   }

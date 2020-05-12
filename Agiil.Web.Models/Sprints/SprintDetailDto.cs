@@ -17,8 +17,8 @@ namespace Agiil.Web.Models.Sprints
 
     public string GetShortCreationDate() => CreationDate.ToString("D");
 
-    public IEnumerable<TicketSummaryDto> OpenTickets { get; set; }
+    public IReadOnlyCollection<TicketSummaryDto> OpenTickets { get; set; }
 
-    public IEnumerable<TicketSummaryDto> ClosedTickets { get; set; }
+    public IReadOnlyCollection<TicketSummaryDto> ClosedTickets { get; set; }
   }
 }

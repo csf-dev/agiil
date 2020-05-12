@@ -8,10 +8,10 @@ namespace Agiil.ObjectMaps.Sprints
 {
   public class EditSprintSpecificationToEditSprintRequestProfile : Profile
   {
-    public EditSprintSpecificationToEditSprintRequestProfile(CreateIdentityResolver<Sprint> resolver)
+    public EditSprintSpecificationToEditSprintRequestProfile()
     {
       CreateMap<EditSprintSpecification,EditSprintRequest>()
-        .ForMember(x => x.SprintIdentity, opts => opts.ResolveUsing(resolver, x => x.Id));
+        .ForMember(x => x.SprintIdentity, opts => opts.ResolveUsing<CreateIdentityResolver<Sprint>, long>(x => x.Id));
     }
   }
 }
