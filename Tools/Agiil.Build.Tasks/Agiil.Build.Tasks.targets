@@ -24,7 +24,7 @@
 	
   <Target Name="CopyWebApplicationTestingLogic">
     <ItemGroup>
-      <WebAppTestingLogic Include="$(OutputPath)\*" />
+      <WebAppTestingLogic Include="$(OutputPath)\*" Exclude="$(OutputPath)\**\CSF.Reflection*" />
     </ItemGroup>
     <Copy SourceFiles="@(WebAppTestingLogic)" DestinationFolder="$(WebAppStagingDir)\bin" />
   </Target>
