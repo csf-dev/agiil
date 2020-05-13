@@ -6,87 +6,94 @@ var AgiilQueryVisitor = require('./AgiilQueryVisitor').AgiilQueryVisitor;
 var grammarFileName = "AgiilQuery.g4";
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
-    "\u0003\u0015\u008c\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004",
+    "\u0003\u0019\u0095\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004",
     "\t\u0004\u0004\u0005\t\u0005\u0004\u0006\t\u0006\u0004\u0007\t\u0007",
     "\u0004\b\t\b\u0004\t\t\t\u0004\n\t\n\u0004\u000b\t\u000b\u0004\f\t\f",
     "\u0004\r\t\r\u0004\u000e\t\u000e\u0004\u000f\t\u000f\u0004\u0010\t\u0010",
-    "\u0004\u0011\t\u0011\u0004\u0012\t\u0012\u0003\u0002\u0005\u0002&\n",
-    "\u0002\u0003\u0002\u0005\u0002)\n\u0002\u0003\u0002\u0005\u0002,\n\u0002",
-    "\u0003\u0002\u0003\u0002\u0003\u0003\u0003\u0003\u0003\u0004\u0003\u0004",
-    "\u0005\u00044\n\u0004\u0003\u0004\u0007\u00047\n\u0004\f\u0004\u000e",
-    "\u0004:\u000b\u0004\u0003\u0005\u0003\u0005\u0005\u0005>\n\u0005\u0003",
-    "\u0006\u0003\u0006\u0003\u0006\u0003\u0006\u0003\u0007\u0003\u0007\u0003",
-    "\u0007\u0003\b\u0003\b\u0003\b\u0003\b\u0005\bK\n\b\u0003\b\u0005\b",
-    "N\n\b\u0003\t\u0003\t\u0003\n\u0003\n\u0003\u000b\u0005\u000bU\n\u000b",
-    "\u0003\u000b\u0003\u000b\u0003\f\u0003\f\u0003\r\u0003\r\u0005\r]\n",
-    "\r\u0003\u000e\u0003\u000e\u0003\u000e\u0003\u000e\u0003\u000e\u0006",
-    "\u000ed\n\u000e\r\u000e\u000e\u000ee\u0003\u000e\u0003\u000e\u0003\u000e",
-    "\u0005\u000ek\n\u000e\u0003\u000f\u0003\u000f\u0003\u000f\u0003\u000f",
-    "\u0003\u000f\u0003\u0010\u0003\u0010\u0003\u0010\u0007\u0010u\n\u0010",
-    "\f\u0010\u000e\u0010x\u000b\u0010\u0005\u0010z\n\u0010\u0003\u0011\u0003",
-    "\u0011\u0003\u0011\u0003\u0011\u0007\u0011\u0080\n\u0011\f\u0011\u000e",
-    "\u0011\u0083\u000b\u0011\u0003\u0012\u0003\u0012\u0005\u0012\u0087\n",
-    "\u0012\u0003\u0012\u0005\u0012\u008a\n\u0012\u0003\u0012\u0002\u0002",
-    "\u0013\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0016\u0018\u001a",
-    "\u001c\u001e \"\u0002\u0005\u0003\u0002\r\u000e\u0004\u0002\u0006\b",
-    "\u0012\u0012\u0003\u0002\u0010\u0011\u0002\u0091\u0002%\u0003\u0002",
-    "\u0002\u0002\u0004/\u0003\u0002\u0002\u0002\u00061\u0003\u0002\u0002",
-    "\u0002\b=\u0003\u0002\u0002\u0002\n?\u0003\u0002\u0002\u0002\fC\u0003",
-    "\u0002\u0002\u0002\u000eM\u0003\u0002\u0002\u0002\u0010O\u0003\u0002",
-    "\u0002\u0002\u0012Q\u0003\u0002\u0002\u0002\u0014T\u0003\u0002\u0002",
-    "\u0002\u0016X\u0003\u0002\u0002\u0002\u0018\\\u0003\u0002\u0002\u0002",
-    "\u001aj\u0003\u0002\u0002\u0002\u001cl\u0003\u0002\u0002\u0002\u001e",
-    "y\u0003\u0002\u0002\u0002 {\u0003\u0002\u0002\u0002\"\u0086\u0003\u0002",
-    "\u0002\u0002$&\u0007\u0003\u0002\u0002%$\u0003\u0002\u0002\u0002%&\u0003",
-    "\u0002\u0002\u0002&(\u0003\u0002\u0002\u0002\')\u0005\u0004\u0003\u0002",
-    "(\'\u0003\u0002\u0002\u0002()\u0003\u0002\u0002\u0002)+\u0003\u0002",
-    "\u0002\u0002*,\u0005 \u0011\u0002+*\u0003\u0002\u0002\u0002+,\u0003",
-    "\u0002\u0002\u0002,-\u0003\u0002\u0002\u0002-.\u0007\u0002\u0002\u0003",
-    ".\u0003\u0003\u0002\u0002\u0002/0\u0005\u0006\u0004\u00020\u0005\u0003",
-    "\u0002\u0002\u000218\u0005\b\u0005\u000224\u0005\u0010\t\u000232\u0003",
-    "\u0002\u0002\u000234\u0003\u0002\u0002\u000245\u0003\u0002\u0002\u0002",
-    "57\u0005\b\u0005\u000263\u0003\u0002\u0002\u00027:\u0003\u0002\u0002",
-    "\u000286\u0003\u0002\u0002\u000289\u0003\u0002\u0002\u00029\u0007\u0003",
-    "\u0002\u0002\u0002:8\u0003\u0002\u0002\u0002;>\u0005\f\u0007\u0002<",
-    ">\u0005\n\u0006\u0002=;\u0003\u0002\u0002\u0002=<\u0003\u0002\u0002",
-    "\u0002>\t\u0003\u0002\u0002\u0002?@\u0007\u0004\u0002\u0002@A\u0005",
-    "\u0006\u0004\u0002AB\u0007\u0005\u0002\u0002B\u000b\u0003\u0002\u0002",
-    "\u0002CD\u0005\u0012\n\u0002DE\u0005\u000e\b\u0002E\r\u0003\u0002\u0002",
-    "\u0002FG\u0005\u0014\u000b\u0002GH\u0005\u0018\r\u0002HN\u0003\u0002",
-    "\u0002\u0002IK\u0007\f\u0002\u0002JI\u0003\u0002\u0002\u0002JK\u0003",
-    "\u0002\u0002\u0002KL\u0003\u0002\u0002\u0002LN\u0005\u001c\u000f\u0002",
-    "MF\u0003\u0002\u0002\u0002MJ\u0003\u0002\u0002\u0002N\u000f\u0003\u0002",
-    "\u0002\u0002OP\t\u0002\u0002\u0002P\u0011\u0003\u0002\u0002\u0002QR",
-    "\u0007\u0012\u0002\u0002R\u0013\u0003\u0002\u0002\u0002SU\u0007\f\u0002",
-    "\u0002TS\u0003\u0002\u0002\u0002TU\u0003\u0002\u0002\u0002UV\u0003\u0002",
-    "\u0002\u0002VW\u0005\u0016\f\u0002W\u0015\u0003\u0002\u0002\u0002XY",
-    "\t\u0003\u0002\u0002Y\u0017\u0003\u0002\u0002\u0002Z]\u0005\u001a\u000e",
-    "\u0002[]\u0005\u001c\u000f\u0002\\Z\u0003\u0002\u0002\u0002\\[\u0003",
-    "\u0002\u0002\u0002]\u0019\u0003\u0002\u0002\u0002^k\u0007\u0012\u0002",
-    "\u0002_k\u0007\f\u0002\u0002`k\u0007\r\u0002\u0002ak\u0007\u000e\u0002",
-    "\u0002bd\u0007\u0013\u0002\u0002cb\u0003\u0002\u0002\u0002de\u0003\u0002",
-    "\u0002\u0002ec\u0003\u0002\u0002\u0002ef\u0003\u0002\u0002\u0002fk\u0003",
-    "\u0002\u0002\u0002gk\u0007\u0010\u0002\u0002hk\u0007\u0011\u0002\u0002",
-    "ik\u0007\u0014\u0002\u0002j^\u0003\u0002\u0002\u0002j_\u0003\u0002\u0002",
-    "\u0002j`\u0003\u0002\u0002\u0002ja\u0003\u0002\u0002\u0002jc\u0003\u0002",
-    "\u0002\u0002jg\u0003\u0002\u0002\u0002jh\u0003\u0002\u0002\u0002ji\u0003",
-    "\u0002\u0002\u0002k\u001b\u0003\u0002\u0002\u0002lm\u0007\u0012\u0002",
-    "\u0002mn\u0007\u0004\u0002\u0002no\u0005\u001e\u0010\u0002op\u0007\u0005",
-    "\u0002\u0002p\u001d\u0003\u0002\u0002\u0002qv\u0005\u0018\r\u0002rs",
-    "\u0007\t\u0002\u0002su\u0005\u0018\r\u0002tr\u0003\u0002\u0002\u0002",
-    "ux\u0003\u0002\u0002\u0002vt\u0003\u0002\u0002\u0002vw\u0003\u0002\u0002",
-    "\u0002wz\u0003\u0002\u0002\u0002xv\u0003\u0002\u0002\u0002yq\u0003\u0002",
-    "\u0002\u0002yz\u0003\u0002\u0002\u0002z\u001f\u0003\u0002\u0002\u0002",
-    "{|\u0007\u000f\u0002\u0002|\u0081\u0005\"\u0012\u0002}~\u0007\t\u0002",
-    "\u0002~\u0080\u0005\"\u0012\u0002\u007f}\u0003\u0002\u0002\u0002\u0080",
-    "\u0083\u0003\u0002\u0002\u0002\u0081\u007f\u0003\u0002\u0002\u0002\u0081",
-    "\u0082\u0003\u0002\u0002\u0002\u0082!\u0003\u0002\u0002\u0002\u0083",
-    "\u0081\u0003\u0002\u0002\u0002\u0084\u0087\u0007\u0012\u0002\u0002\u0085",
-    "\u0087\u0005\u001c\u000f\u0002\u0086\u0084\u0003\u0002\u0002\u0002\u0086",
-    "\u0085\u0003\u0002\u0002\u0002\u0087\u0089\u0003\u0002\u0002\u0002\u0088",
-    "\u008a\t\u0004\u0002\u0002\u0089\u0088\u0003\u0002\u0002\u0002\u0089",
-    "\u008a\u0003\u0002\u0002\u0002\u008a#\u0003\u0002\u0002\u0002\u0013",
-    "%(+38=JMT\\ejvy\u0081\u0086\u0089"].join("");
+    "\u0004\u0011\t\u0011\u0004\u0012\t\u0012\u0004\u0013\t\u0013\u0003\u0002",
+    "\u0005\u0002(\n\u0002\u0003\u0002\u0005\u0002+\n\u0002\u0003\u0002\u0005",
+    "\u0002.\n\u0002\u0003\u0002\u0003\u0002\u0003\u0003\u0003\u0003\u0003",
+    "\u0004\u0003\u0004\u0005\u00046\n\u0004\u0003\u0004\u0007\u00049\n\u0004",
+    "\f\u0004\u000e\u0004<\u000b\u0004\u0003\u0005\u0003\u0005\u0005\u0005",
+    "@\n\u0005\u0003\u0006\u0003\u0006\u0003\u0006\u0003\u0006\u0003\u0007",
+    "\u0003\u0007\u0003\u0007\u0003\b\u0003\b\u0003\b\u0003\b\u0005\bM\n",
+    "\b\u0003\b\u0005\bP\n\b\u0003\t\u0003\t\u0003\n\u0003\n\u0003\u000b",
+    "\u0005\u000bW\n\u000b\u0003\u000b\u0003\u000b\u0003\f\u0003\f\u0003",
+    "\f\u0003\f\u0003\f\u0005\f`\n\f\u0003\r\u0003\r\u0003\u000e\u0003\u000e",
+    "\u0005\u000ef\n\u000e\u0003\u000f\u0003\u000f\u0003\u000f\u0003\u000f",
+    "\u0003\u000f\u0006\u000fm\n\u000f\r\u000f\u000e\u000fn\u0003\u000f\u0003",
+    "\u000f\u0003\u000f\u0005\u000ft\n\u000f\u0003\u0010\u0003\u0010\u0003",
+    "\u0010\u0003\u0010\u0003\u0010\u0003\u0011\u0003\u0011\u0003\u0011\u0007",
+    "\u0011~\n\u0011\f\u0011\u000e\u0011\u0081\u000b\u0011\u0005\u0011\u0083",
+    "\n\u0011\u0003\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0007\u0012",
+    "\u0089\n\u0012\f\u0012\u000e\u0012\u008c\u000b\u0012\u0003\u0013\u0003",
+    "\u0013\u0005\u0013\u0090\n\u0013\u0003\u0013\u0005\u0013\u0093\n\u0013",
+    "\u0003\u0013\u0002\u0002\u0014\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012",
+    "\u0014\u0016\u0018\u001a\u001c\u001e \"$\u0002\u0005\u0003\u0002\u0011",
+    "\u0012\u0003\u0002\u000b\u000e\u0003\u0002\u0014\u0015\u0002\u009d\u0002",
+    "\'\u0003\u0002\u0002\u0002\u00041\u0003\u0002\u0002\u0002\u00063\u0003",
+    "\u0002\u0002\u0002\b?\u0003\u0002\u0002\u0002\nA\u0003\u0002\u0002\u0002",
+    "\fE\u0003\u0002\u0002\u0002\u000eO\u0003\u0002\u0002\u0002\u0010Q\u0003",
+    "\u0002\u0002\u0002\u0012S\u0003\u0002\u0002\u0002\u0014V\u0003\u0002",
+    "\u0002\u0002\u0016_\u0003\u0002\u0002\u0002\u0018a\u0003\u0002\u0002",
+    "\u0002\u001ae\u0003\u0002\u0002\u0002\u001cs\u0003\u0002\u0002\u0002",
+    "\u001eu\u0003\u0002\u0002\u0002 \u0082\u0003\u0002\u0002\u0002\"\u0084",
+    "\u0003\u0002\u0002\u0002$\u008f\u0003\u0002\u0002\u0002&(\u0007\u0003",
+    "\u0002\u0002\'&\u0003\u0002\u0002\u0002\'(\u0003\u0002\u0002\u0002(",
+    "*\u0003\u0002\u0002\u0002)+\u0005\u0004\u0003\u0002*)\u0003\u0002\u0002",
+    "\u0002*+\u0003\u0002\u0002\u0002+-\u0003\u0002\u0002\u0002,.\u0005\"",
+    "\u0012\u0002-,\u0003\u0002\u0002\u0002-.\u0003\u0002\u0002\u0002./\u0003",
+    "\u0002\u0002\u0002/0\u0007\u0002\u0002\u00030\u0003\u0003\u0002\u0002",
+    "\u000212\u0005\u0006\u0004\u00022\u0005\u0003\u0002\u0002\u00023:\u0005",
+    "\b\u0005\u000246\u0005\u0010\t\u000254\u0003\u0002\u0002\u000256\u0003",
+    "\u0002\u0002\u000267\u0003\u0002\u0002\u000279\u0005\b\u0005\u00028",
+    "5\u0003\u0002\u0002\u00029<\u0003\u0002\u0002\u0002:8\u0003\u0002\u0002",
+    "\u0002:;\u0003\u0002\u0002\u0002;\u0007\u0003\u0002\u0002\u0002<:\u0003",
+    "\u0002\u0002\u0002=@\u0005\f\u0007\u0002>@\u0005\n\u0006\u0002?=\u0003",
+    "\u0002\u0002\u0002?>\u0003\u0002\u0002\u0002@\t\u0003\u0002\u0002\u0002",
+    "AB\u0007\u0004\u0002\u0002BC\u0005\u0006\u0004\u0002CD\u0007\u0005\u0002",
+    "\u0002D\u000b\u0003\u0002\u0002\u0002EF\u0005\u0012\n\u0002FG\u0005",
+    "\u000e\b\u0002G\r\u0003\u0002\u0002\u0002HI\u0005\u0014\u000b\u0002",
+    "IJ\u0005\u001a\u000e\u0002JP\u0003\u0002\u0002\u0002KM\u0007\u0010\u0002",
+    "\u0002LK\u0003\u0002\u0002\u0002LM\u0003\u0002\u0002\u0002MN\u0003\u0002",
+    "\u0002\u0002NP\u0005\u001e\u0010\u0002OH\u0003\u0002\u0002\u0002OL\u0003",
+    "\u0002\u0002\u0002P\u000f\u0003\u0002\u0002\u0002QR\t\u0002\u0002\u0002",
+    "R\u0011\u0003\u0002\u0002\u0002ST\u0007\u0016\u0002\u0002T\u0013\u0003",
+    "\u0002\u0002\u0002UW\u0007\u0010\u0002\u0002VU\u0003\u0002\u0002\u0002",
+    "VW\u0003\u0002\u0002\u0002WX\u0003\u0002\u0002\u0002XY\u0005\u0016\f",
+    "\u0002Y\u0015\u0003\u0002\u0002\u0002Z`\u0007\u0006\u0002\u0002[`\u0007",
+    "\u0007\u0002\u0002\\`\u0007\b\u0002\u0002]`\u0007\u0016\u0002\u0002",
+    "^`\u0005\u0018\r\u0002_Z\u0003\u0002\u0002\u0002_[\u0003\u0002\u0002",
+    "\u0002_\\\u0003\u0002\u0002\u0002_]\u0003\u0002\u0002\u0002_^\u0003",
+    "\u0002\u0002\u0002`\u0017\u0003\u0002\u0002\u0002ab\t\u0003\u0002\u0002",
+    "b\u0019\u0003\u0002\u0002\u0002cf\u0005\u001c\u000f\u0002df\u0005\u001e",
+    "\u0010\u0002ec\u0003\u0002\u0002\u0002ed\u0003\u0002\u0002\u0002f\u001b",
+    "\u0003\u0002\u0002\u0002gt\u0007\u0016\u0002\u0002ht\u0007\u0010\u0002",
+    "\u0002it\u0007\u0011\u0002\u0002jt\u0007\u0012\u0002\u0002km\u0007\u0017",
+    "\u0002\u0002lk\u0003\u0002\u0002\u0002mn\u0003\u0002\u0002\u0002nl\u0003",
+    "\u0002\u0002\u0002no\u0003\u0002\u0002\u0002ot\u0003\u0002\u0002\u0002",
+    "pt\u0007\u0014\u0002\u0002qt\u0007\u0015\u0002\u0002rt\u0007\u0018\u0002",
+    "\u0002sg\u0003\u0002\u0002\u0002sh\u0003\u0002\u0002\u0002si\u0003\u0002",
+    "\u0002\u0002sj\u0003\u0002\u0002\u0002sl\u0003\u0002\u0002\u0002sp\u0003",
+    "\u0002\u0002\u0002sq\u0003\u0002\u0002\u0002sr\u0003\u0002\u0002\u0002",
+    "t\u001d\u0003\u0002\u0002\u0002uv\u0007\u0016\u0002\u0002vw\u0007\u0004",
+    "\u0002\u0002wx\u0005 \u0011\u0002xy\u0007\u0005\u0002\u0002y\u001f\u0003",
+    "\u0002\u0002\u0002z\u007f\u0005\u001a\u000e\u0002{|\u0007\t\u0002\u0002",
+    "|~\u0005\u001a\u000e\u0002}{\u0003\u0002\u0002\u0002~\u0081\u0003\u0002",
+    "\u0002\u0002\u007f}\u0003\u0002\u0002\u0002\u007f\u0080\u0003\u0002",
+    "\u0002\u0002\u0080\u0083\u0003\u0002\u0002\u0002\u0081\u007f\u0003\u0002",
+    "\u0002\u0002\u0082z\u0003\u0002\u0002\u0002\u0082\u0083\u0003\u0002",
+    "\u0002\u0002\u0083!\u0003\u0002\u0002\u0002\u0084\u0085\u0007\u0013",
+    "\u0002\u0002\u0085\u008a\u0005$\u0013\u0002\u0086\u0087\u0007\t\u0002",
+    "\u0002\u0087\u0089\u0005$\u0013\u0002\u0088\u0086\u0003\u0002\u0002",
+    "\u0002\u0089\u008c\u0003\u0002\u0002\u0002\u008a\u0088\u0003\u0002\u0002",
+    "\u0002\u008a\u008b\u0003\u0002\u0002\u0002\u008b#\u0003\u0002\u0002",
+    "\u0002\u008c\u008a\u0003\u0002\u0002\u0002\u008d\u0090\u0007\u0016\u0002",
+    "\u0002\u008e\u0090\u0005\u001e\u0010\u0002\u008f\u008d\u0003\u0002\u0002",
+    "\u0002\u008f\u008e\u0003\u0002\u0002\u0002\u0090\u0092\u0003\u0002\u0002",
+    "\u0002\u0091\u0093\t\u0004\u0002\u0002\u0092\u0091\u0003\u0002\u0002",
+    "\u0002\u0092\u0093\u0003\u0002\u0002\u0002\u0093%\u0003\u0002\u0002",
+    "\u0002\u0014\'*-5:?LOV_ens\u007f\u0082\u008a\u008f\u0092"].join("");
 
 
 var atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -96,18 +103,19 @@ var decisionsToDFA = atn.decisionToState.map( function(ds, index) { return new a
 var sharedContextCache = new antlr4.PredictionContextCache();
 
 var literalNames = [ null, "'\uFEFF'", "'('", "')'", "'='", "'!='", "'~'", 
-                     "','", "'\"'" ];
+                     "','", "'\"'", "'>'", "'<'", "'>='", "'<='" ];
 
 var symbolicNames = [ null, "BOM", "OPENPAREN", "CLOSEPAREN", "EQUALS", 
-                      "NOTEQUALS", "TILDE", "COMMA", "DOUBLEQUOTE", "WHITESPACE", 
-                      "NOT", "AND", "OR", "ORDERBY", "DESCENDING", "ASCENDING", 
-                      "NAME", "WORD", "QUOTEDVALUE", "ANY" ];
+                      "NOTEQUALS", "TILDE", "COMMA", "DOUBLEQUOTE", "GREATERTHAN", 
+                      "LESSTHAN", "GREATERTHANOREQUAL", "LESSTHANOREQUAL", 
+                      "WHITESPACE", "NOT", "AND", "OR", "ORDERBY", "DESCENDING", 
+                      "ASCENDING", "NAME", "WORD", "QUOTEDVALUE", "ANY" ];
 
 var ruleNames =  [ "search", "criteria", "logicalcriteriagroups", "criterionorgroup", 
                    "criteriagroup", "criterion", "elementtest", "logicaloperator", 
-                   "element", "predicate", "predicatename", "value", "constantvalue", 
-                   "functioninvocation", "functionparameters", "orders", 
-                   "orderelement" ];
+                   "element", "predicate", "predicatename", "comparison", 
+                   "value", "constantvalue", "functioninvocation", "functionparameters", 
+                   "orders", "orderelement" ];
 
 function AgiilQueryParser (input) {
 	antlr4.Parser.call(this, input);
@@ -136,17 +144,21 @@ AgiilQueryParser.NOTEQUALS = 5;
 AgiilQueryParser.TILDE = 6;
 AgiilQueryParser.COMMA = 7;
 AgiilQueryParser.DOUBLEQUOTE = 8;
-AgiilQueryParser.WHITESPACE = 9;
-AgiilQueryParser.NOT = 10;
-AgiilQueryParser.AND = 11;
-AgiilQueryParser.OR = 12;
-AgiilQueryParser.ORDERBY = 13;
-AgiilQueryParser.DESCENDING = 14;
-AgiilQueryParser.ASCENDING = 15;
-AgiilQueryParser.NAME = 16;
-AgiilQueryParser.WORD = 17;
-AgiilQueryParser.QUOTEDVALUE = 18;
-AgiilQueryParser.ANY = 19;
+AgiilQueryParser.GREATERTHAN = 9;
+AgiilQueryParser.LESSTHAN = 10;
+AgiilQueryParser.GREATERTHANOREQUAL = 11;
+AgiilQueryParser.LESSTHANOREQUAL = 12;
+AgiilQueryParser.WHITESPACE = 13;
+AgiilQueryParser.NOT = 14;
+AgiilQueryParser.AND = 15;
+AgiilQueryParser.OR = 16;
+AgiilQueryParser.ORDERBY = 17;
+AgiilQueryParser.DESCENDING = 18;
+AgiilQueryParser.ASCENDING = 19;
+AgiilQueryParser.NAME = 20;
+AgiilQueryParser.WORD = 21;
+AgiilQueryParser.QUOTEDVALUE = 22;
+AgiilQueryParser.ANY = 23;
 
 AgiilQueryParser.RULE_search = 0;
 AgiilQueryParser.RULE_criteria = 1;
@@ -159,12 +171,13 @@ AgiilQueryParser.RULE_logicaloperator = 7;
 AgiilQueryParser.RULE_element = 8;
 AgiilQueryParser.RULE_predicate = 9;
 AgiilQueryParser.RULE_predicatename = 10;
-AgiilQueryParser.RULE_value = 11;
-AgiilQueryParser.RULE_constantvalue = 12;
-AgiilQueryParser.RULE_functioninvocation = 13;
-AgiilQueryParser.RULE_functionparameters = 14;
-AgiilQueryParser.RULE_orders = 15;
-AgiilQueryParser.RULE_orderelement = 16;
+AgiilQueryParser.RULE_comparison = 11;
+AgiilQueryParser.RULE_value = 12;
+AgiilQueryParser.RULE_constantvalue = 13;
+AgiilQueryParser.RULE_functioninvocation = 14;
+AgiilQueryParser.RULE_functionparameters = 15;
+AgiilQueryParser.RULE_orders = 16;
+AgiilQueryParser.RULE_orderelement = 17;
 
 function SearchContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -218,31 +231,31 @@ AgiilQueryParser.prototype.search = function() {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 35;
+        this.state = 37;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===AgiilQueryParser.BOM) {
-            this.state = 34;
+            this.state = 36;
             this.match(AgiilQueryParser.BOM);
         }
 
-        this.state = 38;
+        this.state = 40;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===AgiilQueryParser.OPENPAREN || _la===AgiilQueryParser.NAME) {
-            this.state = 37;
+            this.state = 39;
             this.criteria();
         }
 
-        this.state = 41;
+        this.state = 43;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===AgiilQueryParser.ORDERBY) {
-            this.state = 40;
+            this.state = 42;
             this.orders();
         }
 
-        this.state = 43;
+        this.state = 45;
         this.match(AgiilQueryParser.EOF);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -297,7 +310,7 @@ AgiilQueryParser.prototype.criteria = function() {
     this.enterRule(localctx, 2, AgiilQueryParser.RULE_criteria);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 45;
+        this.state = 47;
         this.logicalcriteriagroups();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -371,23 +384,23 @@ AgiilQueryParser.prototype.logicalcriteriagroups = function() {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 47;
+        this.state = 49;
         this.criterionorgroup();
-        this.state = 54;
+        this.state = 56;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << AgiilQueryParser.OPENPAREN) | (1 << AgiilQueryParser.AND) | (1 << AgiilQueryParser.OR) | (1 << AgiilQueryParser.NAME))) !== 0)) {
-            this.state = 49;
+            this.state = 51;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===AgiilQueryParser.AND || _la===AgiilQueryParser.OR) {
-                this.state = 48;
+                this.state = 50;
                 this.logicaloperator();
             }
 
-            this.state = 51;
+            this.state = 53;
             this.criterionorgroup();
-            this.state = 56;
+            this.state = 58;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
         }
@@ -448,15 +461,15 @@ AgiilQueryParser.prototype.criterionorgroup = function() {
     this.enterRule(localctx, 6, AgiilQueryParser.RULE_criterionorgroup);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 59;
+        this.state = 61;
         this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case AgiilQueryParser.NAME:
-            this.state = 57;
+            this.state = 59;
             this.criterion();
             break;
         case AgiilQueryParser.OPENPAREN:
-            this.state = 58;
+            this.state = 60;
             this.criteriagroup();
             break;
         default:
@@ -523,11 +536,11 @@ AgiilQueryParser.prototype.criteriagroup = function() {
     this.enterRule(localctx, 8, AgiilQueryParser.RULE_criteriagroup);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 61;
-        this.match(AgiilQueryParser.OPENPAREN);
-        this.state = 62;
-        this.logicalcriteriagroups();
         this.state = 63;
+        this.match(AgiilQueryParser.OPENPAREN);
+        this.state = 64;
+        this.logicalcriteriagroups();
+        this.state = 65;
         this.match(AgiilQueryParser.CLOSEPAREN);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -586,9 +599,9 @@ AgiilQueryParser.prototype.criterion = function() {
     this.enterRule(localctx, 10, AgiilQueryParser.RULE_criterion);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 65;
+        this.state = 67;
         this.element();
-        this.state = 66;
+        this.state = 68;
         this.elementtest();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -656,27 +669,27 @@ AgiilQueryParser.prototype.elementtest = function() {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 75;
+        this.state = 77;
         this._errHandler.sync(this);
         var la_ = this._interp.adaptivePredict(this._input,7,this._ctx);
         switch(la_) {
         case 1:
-            this.state = 68;
+            this.state = 70;
             this.predicate();
-            this.state = 69;
+            this.state = 71;
             this.value();
             break;
 
         case 2:
-            this.state = 72;
+            this.state = 74;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===AgiilQueryParser.NOT) {
-                this.state = 71;
+                this.state = 73;
                 this.match(AgiilQueryParser.NOT);
             }
 
-            this.state = 74;
+            this.state = 76;
             this.functioninvocation();
             break;
 
@@ -739,7 +752,7 @@ AgiilQueryParser.prototype.logicaloperator = function() {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 77;
+        this.state = 79;
         _la = this._input.LA(1);
         if(!(_la===AgiilQueryParser.AND || _la===AgiilQueryParser.OR)) {
         this._errHandler.recoverInline(this);
@@ -801,7 +814,7 @@ AgiilQueryParser.prototype.element = function() {
     this.enterRule(localctx, 16, AgiilQueryParser.RULE_element);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 79;
+        this.state = 81;
         this.match(AgiilQueryParser.NAME);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -861,15 +874,15 @@ AgiilQueryParser.prototype.predicate = function() {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 82;
+        this.state = 84;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===AgiilQueryParser.NOT) {
-            this.state = 81;
+            this.state = 83;
             this.match(AgiilQueryParser.NOT);
         }
 
-        this.state = 84;
+        this.state = 86;
         this.predicatename();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -917,6 +930,10 @@ PredicatenameContext.prototype.NAME = function() {
     return this.getToken(AgiilQueryParser.NAME, 0);
 };
 
+PredicatenameContext.prototype.comparison = function() {
+    return this.getTypedRuleContext(ComparisonContext,0);
+};
+
 PredicatenameContext.prototype.accept = function(visitor) {
     if ( visitor instanceof AgiilQueryVisitor ) {
         return visitor.visitPredicatename(this);
@@ -934,12 +951,106 @@ AgiilQueryParser.prototype.predicatename = function() {
 
     var localctx = new PredicatenameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 20, AgiilQueryParser.RULE_predicatename);
+    try {
+        this.enterOuterAlt(localctx, 1);
+        this.state = 93;
+        this._errHandler.sync(this);
+        switch(this._input.LA(1)) {
+        case AgiilQueryParser.EQUALS:
+            this.state = 88;
+            this.match(AgiilQueryParser.EQUALS);
+            break;
+        case AgiilQueryParser.NOTEQUALS:
+            this.state = 89;
+            this.match(AgiilQueryParser.NOTEQUALS);
+            break;
+        case AgiilQueryParser.TILDE:
+            this.state = 90;
+            this.match(AgiilQueryParser.TILDE);
+            break;
+        case AgiilQueryParser.NAME:
+            this.state = 91;
+            this.match(AgiilQueryParser.NAME);
+            break;
+        case AgiilQueryParser.GREATERTHAN:
+        case AgiilQueryParser.LESSTHAN:
+        case AgiilQueryParser.GREATERTHANOREQUAL:
+        case AgiilQueryParser.LESSTHANOREQUAL:
+            this.state = 92;
+            this.comparison();
+            break;
+        default:
+            throw new antlr4.error.NoViableAltException(this);
+        }
+    } catch (re) {
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
+    } finally {
+        this.exitRule();
+    }
+    return localctx;
+};
+
+function ComparisonContext(parser, parent, invokingState) {
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
+    this.parser = parser;
+    this.ruleIndex = AgiilQueryParser.RULE_comparison;
+    return this;
+}
+
+ComparisonContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
+ComparisonContext.prototype.constructor = ComparisonContext;
+
+ComparisonContext.prototype.GREATERTHAN = function() {
+    return this.getToken(AgiilQueryParser.GREATERTHAN, 0);
+};
+
+ComparisonContext.prototype.LESSTHAN = function() {
+    return this.getToken(AgiilQueryParser.LESSTHAN, 0);
+};
+
+ComparisonContext.prototype.GREATERTHANOREQUAL = function() {
+    return this.getToken(AgiilQueryParser.GREATERTHANOREQUAL, 0);
+};
+
+ComparisonContext.prototype.LESSTHANOREQUAL = function() {
+    return this.getToken(AgiilQueryParser.LESSTHANOREQUAL, 0);
+};
+
+ComparisonContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof AgiilQueryVisitor ) {
+        return visitor.visitComparison(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
+
+
+AgiilQueryParser.ComparisonContext = ComparisonContext;
+
+AgiilQueryParser.prototype.comparison = function() {
+
+    var localctx = new ComparisonContext(this, this._ctx, this.state);
+    this.enterRule(localctx, 22, AgiilQueryParser.RULE_comparison);
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 86;
+        this.state = 95;
         _la = this._input.LA(1);
-        if(!((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << AgiilQueryParser.EQUALS) | (1 << AgiilQueryParser.NOTEQUALS) | (1 << AgiilQueryParser.TILDE) | (1 << AgiilQueryParser.NAME))) !== 0))) {
+        if(!((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << AgiilQueryParser.GREATERTHAN) | (1 << AgiilQueryParser.LESSTHAN) | (1 << AgiilQueryParser.GREATERTHANOREQUAL) | (1 << AgiilQueryParser.LESSTHANOREQUAL))) !== 0))) {
         this._errHandler.recoverInline(this);
         }
         else {
@@ -1000,20 +1111,20 @@ AgiilQueryParser.ValueContext = ValueContext;
 AgiilQueryParser.prototype.value = function() {
 
     var localctx = new ValueContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 22, AgiilQueryParser.RULE_value);
+    this.enterRule(localctx, 24, AgiilQueryParser.RULE_value);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 90;
+        this.state = 99;
         this._errHandler.sync(this);
-        var la_ = this._interp.adaptivePredict(this._input,9,this._ctx);
+        var la_ = this._interp.adaptivePredict(this._input,10,this._ctx);
         switch(la_) {
         case 1:
-            this.state = 88;
+            this.state = 97;
             this.constantvalue();
             break;
 
         case 2:
-            this.state = 89;
+            this.state = 98;
             this.functioninvocation();
             break;
 
@@ -1104,51 +1215,51 @@ AgiilQueryParser.ConstantvalueContext = ConstantvalueContext;
 AgiilQueryParser.prototype.constantvalue = function() {
 
     var localctx = new ConstantvalueContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 24, AgiilQueryParser.RULE_constantvalue);
+    this.enterRule(localctx, 26, AgiilQueryParser.RULE_constantvalue);
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 104;
+        this.state = 113;
         this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case AgiilQueryParser.NAME:
-            this.state = 92;
+            this.state = 101;
             this.match(AgiilQueryParser.NAME);
             break;
         case AgiilQueryParser.NOT:
-            this.state = 93;
+            this.state = 102;
             this.match(AgiilQueryParser.NOT);
             break;
         case AgiilQueryParser.AND:
-            this.state = 94;
+            this.state = 103;
             this.match(AgiilQueryParser.AND);
             break;
         case AgiilQueryParser.OR:
-            this.state = 95;
+            this.state = 104;
             this.match(AgiilQueryParser.OR);
             break;
         case AgiilQueryParser.WORD:
-            this.state = 97; 
+            this.state = 106; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
             do {
-                this.state = 96;
+                this.state = 105;
                 this.match(AgiilQueryParser.WORD);
-                this.state = 99; 
+                this.state = 108; 
                 this._errHandler.sync(this);
                 _la = this._input.LA(1);
             } while(_la===AgiilQueryParser.WORD);
             break;
         case AgiilQueryParser.DESCENDING:
-            this.state = 101;
+            this.state = 110;
             this.match(AgiilQueryParser.DESCENDING);
             break;
         case AgiilQueryParser.ASCENDING:
-            this.state = 102;
+            this.state = 111;
             this.match(AgiilQueryParser.ASCENDING);
             break;
         case AgiilQueryParser.QUOTEDVALUE:
-            this.state = 103;
+            this.state = 112;
             this.match(AgiilQueryParser.QUOTEDVALUE);
             break;
         default:
@@ -1216,16 +1327,16 @@ AgiilQueryParser.FunctioninvocationContext = FunctioninvocationContext;
 AgiilQueryParser.prototype.functioninvocation = function() {
 
     var localctx = new FunctioninvocationContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 26, AgiilQueryParser.RULE_functioninvocation);
+    this.enterRule(localctx, 28, AgiilQueryParser.RULE_functioninvocation);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 106;
+        this.state = 115;
         this.match(AgiilQueryParser.NAME);
-        this.state = 107;
+        this.state = 116;
         this.match(AgiilQueryParser.OPENPAREN);
-        this.state = 108;
+        this.state = 117;
         this.functionparameters();
-        this.state = 109;
+        this.state = 118;
         this.match(AgiilQueryParser.CLOSEPAREN);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1296,25 +1407,25 @@ AgiilQueryParser.FunctionparametersContext = FunctionparametersContext;
 AgiilQueryParser.prototype.functionparameters = function() {
 
     var localctx = new FunctionparametersContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 28, AgiilQueryParser.RULE_functionparameters);
+    this.enterRule(localctx, 30, AgiilQueryParser.RULE_functionparameters);
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 119;
+        this.state = 128;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << AgiilQueryParser.NOT) | (1 << AgiilQueryParser.AND) | (1 << AgiilQueryParser.OR) | (1 << AgiilQueryParser.DESCENDING) | (1 << AgiilQueryParser.ASCENDING) | (1 << AgiilQueryParser.NAME) | (1 << AgiilQueryParser.WORD) | (1 << AgiilQueryParser.QUOTEDVALUE))) !== 0)) {
-            this.state = 111;
+            this.state = 120;
             this.value();
-            this.state = 116;
+            this.state = 125;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
             while(_la===AgiilQueryParser.COMMA) {
-                this.state = 112;
+                this.state = 121;
                 this.match(AgiilQueryParser.COMMA);
-                this.state = 113;
+                this.state = 122;
                 this.value();
-                this.state = 118;
+                this.state = 127;
                 this._errHandler.sync(this);
                 _la = this._input.LA(1);
             }
@@ -1393,23 +1504,23 @@ AgiilQueryParser.OrdersContext = OrdersContext;
 AgiilQueryParser.prototype.orders = function() {
 
     var localctx = new OrdersContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 30, AgiilQueryParser.RULE_orders);
+    this.enterRule(localctx, 32, AgiilQueryParser.RULE_orders);
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 121;
+        this.state = 130;
         this.match(AgiilQueryParser.ORDERBY);
-        this.state = 122;
+        this.state = 131;
         this.orderelement();
-        this.state = 127;
+        this.state = 136;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         while(_la===AgiilQueryParser.COMMA) {
-            this.state = 123;
+            this.state = 132;
             this.match(AgiilQueryParser.COMMA);
-            this.state = 124;
+            this.state = 133;
             this.orderelement();
-            this.state = 129;
+            this.state = 138;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
         }
@@ -1475,30 +1586,30 @@ AgiilQueryParser.OrderelementContext = OrderelementContext;
 AgiilQueryParser.prototype.orderelement = function() {
 
     var localctx = new OrderelementContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 32, AgiilQueryParser.RULE_orderelement);
+    this.enterRule(localctx, 34, AgiilQueryParser.RULE_orderelement);
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 132;
+        this.state = 141;
         this._errHandler.sync(this);
-        var la_ = this._interp.adaptivePredict(this._input,15,this._ctx);
+        var la_ = this._interp.adaptivePredict(this._input,16,this._ctx);
         switch(la_) {
         case 1:
-            this.state = 130;
+            this.state = 139;
             this.match(AgiilQueryParser.NAME);
             break;
 
         case 2:
-            this.state = 131;
+            this.state = 140;
             this.functioninvocation();
             break;
 
         }
-        this.state = 135;
+        this.state = 144;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===AgiilQueryParser.DESCENDING || _la===AgiilQueryParser.ASCENDING) {
-            this.state = 134;
+            this.state = 143;
             _la = this._input.LA(1);
             if(!(_la===AgiilQueryParser.DESCENDING || _la===AgiilQueryParser.ASCENDING)) {
             this._errHandler.recoverInline(this);
