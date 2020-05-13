@@ -281,6 +281,11 @@
     <Compile Include="Tickets\RelationshipValidation\MultipleSecondaryRelationshipPreventingValidationDecoratorTests.cs" />
     <Compile Include="Tickets\RelationshipValidation\TraversibleRelationshipTests.cs" />
     <Compile Include="Tickets\RelationshipValidation\AddTicketRelationshipIntegrationTests.cs" />
+    <Compile Include="Tickets\Specs\HasNoStoryPointsTests.cs" />
+    <Compile Include="Tickets\Specs\StoryPointsIsOneOfTests.cs" />
+    <Compile Include="Tickets\Specs\StoryPointsComparedToConstantValueSpecFactoryTests.cs" />
+    <Compile Include="TicketCriterionConvertionStrategies\StoryPointsConversionStrategyTests.cs" />
+    <Compile Include="TicketCriterionConvertionStrategies\ISpecification.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
