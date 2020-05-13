@@ -533,7 +533,7 @@
     <ItemGroup>
       <CsfReflectionFiles Include="..\packages\CSF.Reflection.3.0.0\lib\net45\CSF.Reflection.*" />
     </ItemGroup>
-    <Copy SourceFiles="@(CsfReflectionFiles)" DestinationFiles="$(WebAppStagingDir)\bin\CSF.Reflection3%(Extension)" />
+    <Copy SourceFiles="@(CsfReflectionFiles)" DestinationFiles="$(MSBuildThisFileDirectory)\bin\CSF.Reflection3%(Extension)" />
   </Target>
   <Target Name="MoveWebConfigToCorrectLocation" AfterTargets="ScApplyTransforms">
     <Copy SourceFiles="$(OutDir)\Web.config" DestinationFiles="Web.config" />
@@ -550,9 +550,9 @@
       <Content Include="Content\Css\*.css.map" />
     </ItemGroup>
   </Target>
-  <Target Name="DeployWebApp" AfterTargets="MoveWebConfigToCorrectLocation">
+  <Target Name="DeployWebApp" AfterTargets="MoveWebConfigToCorrectLocation" Condition="'$(Configuration)' == 'Release'">
     <CallTarget Targets="CopyWebAppToStagingDir" />
-    <CallTarget Targets="PackageWebAppAsZipfile" Condition="'$(Configuration)' == 'Release'" />
+    <CallTarget Targets="PackageWebAppAsZipfile" />
   </Target>
   <ProjectExtensions>
     <MonoDevelop>
