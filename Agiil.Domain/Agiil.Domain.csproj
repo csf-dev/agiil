@@ -227,6 +227,7 @@
     <Compile Include="Tickets\IChangesTicketRelationships.cs" />
     <Compile Include="Tickets\IGetsTicketUris.cs" />
     <Compile Include="Tickets\IGetsTicketReference.cs" />
+    <Compile Include="Tickets\IGetsStoryPointsComparisonSpec.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
