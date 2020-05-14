@@ -14,7 +14,7 @@ namespace Agiil.Tests.Tickets.Creation
   {
     [Test,AutoMoqData]
     public void Create_ticket_sets_project_using_current_project([Frozen,CreatesATicket] ICreatesTicket wrappedInstance,
-                                                                 [Frozen] ICurrentProjectGetter projectGetter,
+                                                                 [Frozen] IGetsCurrentProject projectGetter,
                                                                  Project project,
                                                                  CreateTicketRequest request,
                                                                  CurrentProjectSettingTicketFactoryDecorator sut)
@@ -31,7 +31,7 @@ namespace Agiil.Tests.Tickets.Creation
 
     [Test,AutoMoqData]
     public void Create_ticket_sets_ticket_number([Frozen,CreatesATicket] ICreatesTicket wrappedInstance,
-                                                 [Frozen] ICurrentProjectGetter projectGetter,
+                                                 [Frozen] IGetsCurrentProject projectGetter,
                                                  Project project,
                                                  CreateTicketRequest request,
                                                  CurrentProjectSettingTicketFactoryDecorator sut)
@@ -49,7 +49,7 @@ namespace Agiil.Tests.Tickets.Creation
 
     [Test,AutoMoqData]
     public void Create_ticket_advances_the_ticket_number([Frozen,CreatesATicket] ICreatesTicket wrappedInstance,
-                                                         [Frozen] ICurrentProjectGetter projectGetter,
+                                                         [Frozen] IGetsCurrentProject projectGetter,
                                                          Project project,
                                                          CreateTicketRequest request,
                                                          CurrentProjectSettingTicketFactoryDecorator sut)

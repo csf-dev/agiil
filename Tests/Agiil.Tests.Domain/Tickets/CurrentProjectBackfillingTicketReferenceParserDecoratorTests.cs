@@ -26,7 +26,7 @@ namespace Agiil.Tests.Tickets
 
     [Test,AutoMoqData]
     public void ParseReferece_backfills_current_project_code_when_it_is_empty([Frozen] IParsesTicketReference wrapped,
-                                                                              [Frozen] ICurrentProjectGetter projectProvider,
+                                                                              [Frozen] IGetsCurrentProject projectProvider,
                                                                               string input,
                                                                               CurrentProjectBackfillingTicketReferenceParserDecorator sut)
     {
@@ -43,7 +43,7 @@ namespace Agiil.Tests.Tickets
 
     [Test, AutoMoqData]
     public void GetReference_backfills_current_project_code_when_it_is_empty([Frozen] IParsesTicketReference wrapped,
-                                                                             [Frozen] ICurrentProjectGetter projectProvider,
+                                                                             [Frozen] IGetsCurrentProject projectProvider,
                                                                              CurrentProjectBackfillingTicketReferenceParserDecorator sut,
                                                                              TicketReference reference)
     {
@@ -61,7 +61,7 @@ namespace Agiil.Tests.Tickets
 
     [Test, AutoMoqData]
     public void GetReference_does_not_backfill_current_project_code_when_it_is_provided([Frozen] IParsesTicketReference wrapped,
-                                                                                        [Frozen] ICurrentProjectGetter projectProvider,
+                                                                                        [Frozen] IGetsCurrentProject projectProvider,
                                                                                         CurrentProjectBackfillingTicketReferenceParserDecorator sut,
                                                                                         TicketReference reference)
     {

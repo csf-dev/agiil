@@ -4,7 +4,7 @@ using CSF.ORM;
 
 namespace Agiil.Domain.Projects
 {
-  public class FirstProjectInDatabaseProvider : ICurrentProjectGetter
+  public class FirstProjectInDatabaseProvider : IGetsCurrentProject
   {
     readonly IEntityData projectRepo;
 

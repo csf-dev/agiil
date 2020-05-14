@@ -26,7 +26,7 @@ namespace Agiil.Tests.Web.Rendering
     public void Setup()
     {
       diScope = container.BeginLifetimeScope(builder => {
-        builder.RegisterInstance(Mock.Of<ICurrentProjectGetter>(x => x.GetCurrentProject() == new Project { Code = "AB" }));
+        builder.RegisterInstance(Mock.Of<IGetsCurrentProject>(x => x.GetCurrentProject() == new Project { Code = "AB" }));
       });
     }
 
@@ -72,7 +72,7 @@ namespace Agiil.Tests.Web.Rendering
         .Setup(x => x.GetAbsoluteUri(It.Is<TicketReference>(t => t.ProjectCode == "AB" && t.TicketNumber == 12)))
         .Returns(() => new Uri("Ticket/Detail/11", UriKind.Relative));
       using(var scope = container.BeginLifetimeScope(b => {
-              b.RegisterInstance(Mock.Of<ICurrentProjectGetter>(x => x.GetCurrentProject() == new Project { Code = "AB" }));
+              b.RegisterInstance(Mock.Of<IGetsCurrentProject>(x => x.GetCurrentProject() == new Project { Code = "AB" }));
               b.RegisterInstance(urlprovider.Object);
             }))
       {
@@ -97,7 +97,7 @@ namespace Agiil.Tests.Web.Rendering
     {
       // Arrange
       var project = new Project { Code = "AB" };
-      var projectGetter = Mock.Of<ICurrentProjectGetter>(x => x.GetCurrentProject() == project);
+      var projectGetter = Mock.Of<IGetsCurrentProject>(x => x.GetCurrentProject() == project);
       var urlprovider = new Mock<IGetsTicketUri>();
       urlprovider
         .Setup(x => x.GetAbsoluteUri(It.Is<TicketReference>(t => t.ProjectCode == "AB" && t.TicketNumber == 12)))

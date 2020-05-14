@@ -7,7 +7,7 @@ namespace Agiil.Domain.Tickets.Creation
   public class CurrentProjectSettingTicketFactoryDecorator : ICreatesTicket
   {
     readonly ICreatesTicket wrappedInstance;
-    readonly ICurrentProjectGetter projectGetter;
+    readonly IGetsCurrentProject projectGetter;
     private readonly ILog logger;
 
     public Ticket CreateTicket(CreateTicketRequest request)
@@ -25,7 +25,7 @@ namespace Agiil.Domain.Tickets.Creation
     }
 
     public CurrentProjectSettingTicketFactoryDecorator(ICreatesTicket wrappedInstance,
-                                                       ICurrentProjectGetter projectGetter,
+                                                       IGetsCurrentProject projectGetter,
                                                        ILog logger)
     {
       if(logger == null)
