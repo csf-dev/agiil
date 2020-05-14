@@ -10,6 +10,7 @@ using CSF.Entities;
 using NUnit.Framework;
 using Agiil.Domain;
 using Agiil.Domain.Data;
+using Autofac.Core.Lifetime;
 
 namespace Agiil.Tests.Tickets
 {
@@ -124,7 +125,7 @@ namespace Agiil.Tests.Tickets
 
     List<HierarchicalTicketRelationship> ExerciseSut(Ticket ticket, params TicketRelationship[] relationships)
     {
-      using(var scope = containerProvider.GetContainer().BeginLifetimeScope(ComponentScope.ApplicationConnection))
+      using(var scope = containerProvider.GetContainer().BeginLifetimeScope(MatchingScopeLifetimeTags.RequestLifetimeScopeTag))
       {
         var dbResetter = scope.Resolve<IResetsDatabase>();
         dbResetter.ResetDatabase();

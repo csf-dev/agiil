@@ -228,6 +228,8 @@
     <Compile Include="Tickets\IGetsTicketUris.cs" />
     <Compile Include="Tickets\IGetsTicketReference.cs" />
     <Compile Include="Tickets\IGetsStoryPointsComparisonSpec.cs" />
+    <Compile Include="IAppSessionStore.cs" />
+    <Compile Include="SessionKey.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

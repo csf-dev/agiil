@@ -33,13 +33,22 @@ namespace Agiil.Domain.Projects
         /// A markdown-rendered free-text description of the project.
         /// </summary>
         /// <value>The description.</value>
-        public virtual string Description { get; set; }
+        public virtual string Description { get => description; set => description = value; }
+        string description;
 
-        readonly EventRaisingSetWrapper<Ticket> tickets;
+        /// <summary>
+        /// Gets a collection of the tickets in this project.
+        /// </summary>
+        /// <value>The tickets.</value>
         public virtual ISet<Ticket> Tickets => tickets.Collection;
+        readonly EventRaisingSetWrapper<Ticket> tickets;
 
-        readonly EventRaisingSetWrapper<Sprint> sprints;
+        /// <summary>
+        /// Gets a collection of the sprints in this project.
+        /// </summary>
+        /// <value>The sprints.</value>
         public virtual ISet<Sprint> Sprints => sprints.Collection;
+        readonly EventRaisingSetWrapper<Sprint> sprints;
 
         public Project()
         {
@@ -50,6 +59,8 @@ namespace Agiil.Domain.Projects
             sprints = new EventRaisingSetWrapper<Sprint>(new HashSet<Sprint>());
             sprints.BeforeAdd += (sender, e) => e.Item.Project = this;
             sprints.BeforeRemove += (sender, e) => e.Item.Project = null;
+
+            description = String.Empty;
         }
     }
 }

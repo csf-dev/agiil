@@ -1,6 +1,7 @@
 ﻿using System;
 using Agiil.Domain;
 using Autofac;
+using Autofac.Core.Lifetime;
 using NHibernate;
 
 namespace Agiil.Tests.Bootstrap
@@ -11,7 +12,7 @@ namespace Agiil.Tests.Bootstrap
         {
             builder
               .Register(ctx => ctx.Resolve<ISessionFactory>().OpenSession())
-              .InstancePerMatchingLifetimeScope(ComponentScope.ApplicationConnection);
+              .InstancePerMatchingLifetimeScope(MatchingScopeLifetimeTags.RequestLifetimeScopeTag);
         }
     }
 }

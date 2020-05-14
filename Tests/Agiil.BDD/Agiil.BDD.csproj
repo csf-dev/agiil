@@ -102,7 +102,7 @@
       <HintPath>..\..\packages\CSF.Entities.2.0.3\lib\net45\CSF.Entities.dll</HintPath>
     </Reference>
     <Reference Include="Autofac">
-      <HintPath>..\..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <HintPath>..\..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="CSF.WebDriverExtras">
       <HintPath>..\..\packages\CSF.WebDriverExtras.1.0.4\lib\net45\CSF.WebDriverExtras.dll</HintPath>

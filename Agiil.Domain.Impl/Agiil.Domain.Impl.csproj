@@ -53,7 +53,7 @@
       <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="Autofac">
-      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <HintPath>..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
@@ -235,6 +235,7 @@
     <Compile Include="Tickets\Specs\HasNoStoryPoints.cs" />
     <Compile Include="Tickets\Specs\StoryPointsIsOneOf.cs" />
     <Compile Include="TicketCriterionConvertionStrategies\StoryPointsConversionStrategy.cs" />
+    <Compile Include="Projects\CurrentlyChosenProjectDecorator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
