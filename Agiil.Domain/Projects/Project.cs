@@ -7,34 +7,49 @@ using CSF.Entities;
 
 namespace Agiil.Domain.Projects
 {
-  public class Project : Entity<long>
-  {
-
-    public virtual string Name { get; set; }
-
-    public virtual string Code { get; set; }
-
-    public virtual long NextAvailableTicketNumber { get; set; }
-
-    readonly EventRaisingSetWrapper<Ticket> tickets;
-    public virtual ISet<Ticket> Tickets {
-      get { return tickets.Collection; }
-    }
-
-    readonly EventRaisingSetWrapper<Sprint> sprints;
-    public virtual ISet<Sprint> Sprints {
-      get { return sprints.Collection; }
-    }
-
-    public Project()
+    public class Project : Entity<long>
     {
-      tickets = new EventRaisingSetWrapper<Ticket>(new HashSet<Ticket>());
-      tickets.BeforeAdd += (sender, e) => e.Item.Project = this;
-      tickets.BeforeRemove += (sender, e) => e.Item.Project = null;
+        /// <summary>
+        /// The human-readable name of the project.  This is intended to be quite short, such as one line.
+        /// </summary>
+        /// <value>The name.</value>
+        public virtual string Name { get; set; }
 
-      sprints = new EventRaisingSetWrapper<Sprint>(new HashSet<Sprint>());
-      sprints.BeforeAdd += (sender, e) => e.Item.Project = this;
-      sprints.BeforeRemove += (sender, e) => e.Item.Project = null;
+        /// <summary>
+        /// A short (few characters) code assigned to this project, to
+        /// differentiate it from others on the same application site.
+        /// The project code is used in <see cref="TicketReference"/> instances.
+        /// </summary>
+        /// <value>The project code.</value>
+        public virtual string Code { get; set; }
+
+        /// <summary>
+        /// Gets the next available ticket number from which a <see cref="TicketReference"/> may be formed.
+        /// </summary>
+        /// <value>The next available ticket number.</value>
+        public virtual long NextAvailableTicketNumber { get; set; }
+
+        /// <summary>
+        /// A markdown-rendered free-text description of the project.
+        /// </summary>
+        /// <value>The description.</value>
+        public virtual string Description { get; set; }
+
+        readonly EventRaisingSetWrapper<Ticket> tickets;
+        public virtual ISet<Ticket> Tickets => tickets.Collection;
+
+        readonly EventRaisingSetWrapper<Sprint> sprints;
+        public virtual ISet<Sprint> Sprints => sprints.Collection;
+
+        public Project()
+        {
+            tickets = new EventRaisingSetWrapper<Ticket>(new HashSet<Ticket>());
+            tickets.BeforeAdd += (sender, e) => e.Item.Project = this;
+            tickets.BeforeRemove += (sender, e) => e.Item.Project = null;
+
+            sprints = new EventRaisingSetWrapper<Sprint>(new HashSet<Sprint>());
+            sprints.BeforeAdd += (sender, e) => e.Item.Project = this;
+            sprints.BeforeRemove += (sender, e) => e.Item.Project = null;
+        }
     }
-  }
 }
