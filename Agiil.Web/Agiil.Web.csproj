@@ -442,6 +442,7 @@
     <Compile Include="ActionFilters\ObjectSerializerPopulator.cs" />
     <Compile Include="ActionFilters\ActionExecutedContextExtensions.cs" />
     <Compile Include="Services\MvcSessionStore.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

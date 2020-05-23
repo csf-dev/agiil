@@ -230,6 +230,8 @@
     <Compile Include="Tickets\IGetsStoryPointsComparisonSpec.cs" />
     <Compile Include="IAppSessionStore.cs" />
     <Compile Include="SessionKey.cs" />
+    <Compile Include="Projects\IGetsListOfProjects.cs" />
+    <Compile Include="Projects\ISetsCurrentProject.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
