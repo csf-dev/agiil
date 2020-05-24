@@ -240,9 +240,14 @@
     <Compile Include="Capabilities\IGetsUserCapabilities`2.cs" />
     <Compile Include="Capabilities\IGetsEntityTypeForCapability.cs" />
     <Compile Include="Capabilities\IGetsTargetEntityIdentity.cs" />
-    <Compile Include="Capabilities\IAssertsUserHasCapabilityForParameter.cs" />
+    <Compile Include="Capabilities\IAssertsUserHasCapability.cs" />
     <Compile Include="Capabilities\IGetsCurrentCapabilityUser.cs" />
     <Compile Include="Capabilities\IGetsTypedCapabilityTester.cs" />
+    <Compile Include="Capabilities\RequireCapabilityAttribute.cs" />
+    <Compile Include="Capabilities\EnforceCapabilitiesAttribute.cs" />
+    <Compile Include="Capabilities\IGetsWhetherCapabilitiesShouldBeEnforcedForType.cs" />
+    <Compile Include="Capabilities\IGetsCapabilitiesAssertionsToPerform.cs" />
+    <Compile Include="Capabilities\CapabilitiesAssertionSpec.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

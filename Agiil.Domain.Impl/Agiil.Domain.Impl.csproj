@@ -244,6 +244,8 @@
     <Compile Include="Auth\UserIsASiteAdministrator.cs" />
     <Compile Include="Projects\UserCanSeeProjectInList.cs" />
     <Compile Include="Capabilities\CapabilityForParameterChecker.cs" />
+    <Compile Include="Capabilities\CapabilityEnforcementProvider.cs" />
+    <Compile Include="Capabilities\CapabilityAssertionSpecProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

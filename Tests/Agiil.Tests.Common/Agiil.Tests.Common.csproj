@@ -289,6 +289,9 @@
     <Compile Include="Attributes\LoggerForAttribute.cs" />
     <Compile Include="Bootstrap\NHibernateModule.cs" />
     <Compile Include="Bootstrap\SessionModule.cs" />
+    <Compile Include="Attributes\CapabilitySpecAttribute.cs" />
+    <Compile Include="Autofixture\CapabilitySpecCustomization.cs" />
+    <Compile Include="Autofixture\CapabilitySpecSpecimenBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">

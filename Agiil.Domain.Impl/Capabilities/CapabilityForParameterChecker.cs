@@ -5,7 +5,7 @@ using CSF.Reflection;
 
 namespace Agiil.Domain.Capabilities
 {
-    public class CapabilityForParameterChecker : IAssertsUserHasCapabilityForParameter
+    public class CapabilityForParameterChecker : IAssertsUserHasCapability
     {
         static readonly MethodInfo OpenGenericAssertMethod = Reflect
             .Method<CapabilityForParameterChecker>(x => x.AssertCurrentUserHasCapability<IEntity, Enum>(null, null))
@@ -16,24 +16,33 @@ namespace Agiil.Domain.Capabilities
         readonly IGetsCurrentCapabilityUser userProvider;
         readonly IGetsTargetEntityIdentity targetEntityProvider;
 
-        public void AssertCurrentUserHasCapability(ParameterInfo parameter, object parameterValue, object requiredCapability)
+        public void AssertCurrentUserHasCapability(CapabilitiesAssertionSpec assertionSpec)
         {
-            if(parameter == null)
-                throw new ArgumentNullException(nameof(parameter));
-            if(requiredCapability == null)
-                throw new ArgumentNullException(nameof(requiredCapability));
+            if(assertionSpec == null)
+                throw new ArgumentNullException(nameof(assertionSpec));
 
-            var capabilityType = requiredCapability.GetType();
-            if(!capabilityType.IsEnum)
-                throw new ArgumentException($"The {nameof(requiredCapability)} must derive from {nameof(Enum)}, but type {capabilityType.Name} does not.",
-                                            nameof(requiredCapability));
-
+            var capabilityType = GetCapabilityType(assertionSpec.CapabilityAttribute);
+            var requiredCapability = assertionSpec.CapabilityAttribute.RequiredCapability;
             var entityType = entityTypeProvider.GetEntityType(requiredCapability);
 
             // Need to use reflection to get into the generic method from a non-generic one.
             // The trade-off is worth it IMO, because it allows the rest of the capabilities stack 'from here downwards' to be strongly-typed.
             var method = OpenGenericAssertMethod.MakeGenericMethod(entityType, capabilityType);
-            method.Invoke(this, new[] { parameterValue, requiredCapability });
+
+            method.Invoke(this, new[] { assertionSpec.ParameterValue, requiredCapability });
+        }
+
+        Type GetCapabilityType(RequireCapabilityAttribute capabilityAttribute)
+        {
+            var capabilityType = capabilityAttribute.RequiredCapability.GetType();
+            if(!capabilityType.IsEnum)
+            {
+                throw new ArgumentException($"The capability indicated by {nameof(capabilityAttribute)}.{nameof(RequireCapabilityAttribute.RequiredCapability)} " +
+                                            $"must derive from {nameof(Enum)}, but type {capabilityType.Name} does not.",
+                                            nameof(capabilityAttribute));
+            }
+
+            return capabilityType;
         }
 
         void AssertCurrentUserHasCapability<TEntity,TCapability>(object entityProviderValue, TCapability requiredCapability)
