@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 
 namespace Agiil.Domain.Capabilities
 {
@@ -9,16 +8,19 @@ namespace Agiil.Domain.Capabilities
         public Type ParameterType { get; }
         public object ParameterValue { get; }
         public RequireCapabilityAttribute CapabilityAttribute { get; }
+        public string ActionName { get; }
 
         public CapabilitiesAssertionSpec(string parameterName,
                                          Type parameterType,
                                          object parameterValue,
-                                         RequireCapabilityAttribute capabilityAttribute)
+                                         RequireCapabilityAttribute capabilityAttribute,
+                                         string actionName)
         {
             ParameterName = parameterName ?? throw new ArgumentNullException(nameof(parameterName));
             ParameterType = parameterType ?? throw new ArgumentNullException(nameof(parameterType));
             ParameterValue = parameterValue;
             CapabilityAttribute = capabilityAttribute ?? throw new ArgumentNullException(nameof(capabilityAttribute));
+            ActionName = actionName ?? throw new ArgumentNullException(nameof(actionName));
         }
     }
 }

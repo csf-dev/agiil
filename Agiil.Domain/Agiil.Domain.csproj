@@ -245,9 +245,11 @@
     <Compile Include="Capabilities\IGetsTypedCapabilityTester.cs" />
     <Compile Include="Capabilities\RequireCapabilityAttribute.cs" />
     <Compile Include="Capabilities\EnforceCapabilitiesAttribute.cs" />
-    <Compile Include="Capabilities\IGetsWhetherCapabilitiesShouldBeEnforcedForType.cs" />
+    <Compile Include="Capabilities\ISpecForTypesWhichShouldHaveCapabilitiesEnforced.cs" />
     <Compile Include="Capabilities\IGetsCapabilitiesAssertionsToPerform.cs" />
     <Compile Include="Capabilities\CapabilitiesAssertionSpec.cs" />
+    <Compile Include="Capabilities\UserMustHaveCapabilityException.cs" />
+    <Compile Include="Capabilities\IGetsTargetEntityIdentity`2.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

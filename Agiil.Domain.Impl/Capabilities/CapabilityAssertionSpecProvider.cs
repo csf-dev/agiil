@@ -17,11 +17,14 @@ namespace Agiil.Domain.Capabilities
                     select new CapabilitiesAssertionSpec(paramAndValue.Item1.Name,
                                                          paramAndValue.Item1.ParameterType,
                                                          paramAndValue.Item2,
-                                                         attrib))
+                                                         attrib,
+                                                         GetActionName(method)))
                 .ToList();
         }
 
-        IEnumerable<(ParameterInfo,object)> GetParametersAndValues(MethodInfo method, object[] parameterValues)
+        static string GetActionName(MethodInfo method) => $"{method.DeclaringType.Name}.{method.Name}";
+
+        static IEnumerable<(ParameterInfo,object)> GetParametersAndValues(MethodInfo method, object[] parameterValues)
         {
             if(method == null)
                 throw new ArgumentNullException(nameof(method));

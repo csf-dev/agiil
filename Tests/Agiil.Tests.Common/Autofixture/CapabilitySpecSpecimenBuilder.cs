@@ -19,7 +19,8 @@ namespace Agiil.Tests.Autofixture
             return new CapabilitiesAssertionSpec(context.Create<string>(),
                                                  context.Create<Type>(),
                                                  context.Create<object>(),
-                                                 new RequireCapabilityAttribute(context.Create<CapabilitySpecAttribute.SampleCapability>()));
+                                                 new RequireCapabilityAttribute(context.Create<CapabilitySpecAttribute.SampleCapability>()),
+                                                 context.Create<string>());
         }
     }
 }

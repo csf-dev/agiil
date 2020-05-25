@@ -7,6 +7,6 @@ namespace Agiil.Domain.Capabilities
     {
         IAssertsUserHasCapability<TEntity, TCapability> GetCapabilityTester<TEntity, TCapability>()
             where TEntity : IEntity
-            where TCapability : Enum;
+            where TCapability : struct, Enum;
     }
 }

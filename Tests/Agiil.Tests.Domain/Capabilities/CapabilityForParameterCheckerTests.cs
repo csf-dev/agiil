@@ -25,7 +25,7 @@ namespace Agiil.Tests.Capabilities
                                                                                                            int incorrectCapabilityValue,
                                                                                                            CapabilityForParameterChecker sut)
         {
-            var spec = new CapabilitiesAssertionSpec(paramName, paramType, paramValue, new RequireCapabilityAttribute(incorrectCapabilityValue));
+            var spec = new CapabilitiesAssertionSpec(paramName, paramType, paramValue, new RequireCapabilityAttribute(incorrectCapabilityValue), null);
             Assert.That(() => sut.AssertCurrentUserHasCapability(spec),
                         Throws.InstanceOf<ArgumentException>().And.Message.Matches<string>(x => x.Contains("must derive from Enum")));
         }
