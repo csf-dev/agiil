@@ -12,6 +12,6 @@ namespace Agiil.Domain.Capabilities
         where TEntity : IEntity
         where TCapability : struct, Enum
     {
-        TCapability GetCapabilities(IIdentity<User> user, IIdentity<TEntity> targetEntity);
+        TCapability GetCapabilities(IIdentity<User> userIdentity, IIdentity<TEntity> targetEntity);
     }
 }

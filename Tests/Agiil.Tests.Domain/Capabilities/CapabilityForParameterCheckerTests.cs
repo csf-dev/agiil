@@ -20,12 +20,13 @@ namespace Agiil.Tests.Capabilities
 
         [Test, AutoMoqData]
         public void AssertCurrentUserHasCapability_throws_ArgumentException_if_capability_type_is_not_enum(string paramName,
+                                                                                                           string actionName,
                                                                                                            Type paramType,
                                                                                                            object paramValue,
                                                                                                            int incorrectCapabilityValue,
                                                                                                            CapabilityForParameterChecker sut)
         {
-            var spec = new CapabilitiesAssertionSpec(paramName, paramType, paramValue, new RequireCapabilityAttribute(incorrectCapabilityValue), null);
+            var spec = new CapabilitiesAssertionSpec(paramName, paramType, paramValue, new RequireCapabilityAttribute(incorrectCapabilityValue), actionName);
             Assert.That(() => sut.AssertCurrentUserHasCapability(spec),
                         Throws.InstanceOf<ArgumentException>().And.Message.Matches<string>(x => x.Contains("must derive from Enum")));
         }

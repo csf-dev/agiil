@@ -10,7 +10,12 @@ namespace Agiil.Bootstrap.Capabilities
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<EntityIdentityProvider>().AsSelf().AsImplementedInterfaces();
+            builder.RegisterType<EntityIdentityProvider>()
+                .AsSelf()
+                .AsImplementedInterfaces();
+            builder.RegisterGeneric(typeof(EntityIdentityFactory<,>))
+                .AsSelf()
+                .As(typeof(IGetsTargetEntityIdentity<,>));
         }
 
         /// <summary>

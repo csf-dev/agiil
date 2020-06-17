@@ -250,6 +250,9 @@
     <Compile Include="Capabilities\CapabilitiesAssertionSpec.cs" />
     <Compile Include="Capabilities\UserMustHaveCapabilityException.cs" />
     <Compile Include="Capabilities\IGetsTargetEntityIdentity`2.cs" />
+    <Compile Include="App\AgiilApp.cs" />
+    <Compile Include="Projects\ProjectCapability.cs" />
+    <Compile Include="App\AppCapability.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
@@ -262,6 +265,7 @@
     <Folder Include="TicketSearch\" />
     <Folder Include="Activity\" />
     <Folder Include="Capabilities\" />
+    <Folder Include="App\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

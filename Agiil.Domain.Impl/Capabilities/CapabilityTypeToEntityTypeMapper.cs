@@ -6,7 +6,8 @@ namespace Agiil.Domain.Capabilities
     public class CapabilityTypeToEntityTypeMapper : IGetsEntityTypeForCapability
     {
         static readonly IReadOnlyDictionary<Type, Type> CapabilityTypeToEntityTypeMapping = new Dictionary<Type, Type> {
-            { typeof(Projects.ProjectCapability), typeof(Projects.Project) },
+            { typeof(Projects.ProjectCapability),   typeof(Projects.Project) },
+            { typeof(App.AppCapability),            typeof(App.AgiilApp) },
         };
 
         public Type GetEntityType(object capability)

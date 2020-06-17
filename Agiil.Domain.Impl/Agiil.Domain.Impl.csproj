@@ -246,10 +246,11 @@
     <Compile Include="Capabilities\CapabilityForParameterChecker.cs" />
     <Compile Include="Capabilities\CapabilityEnforcementSpec.cs" />
     <Compile Include="Capabilities\CapabilityAssertionSpecProvider.cs" />
-    <Compile Include="Projects\ProjectCapability.cs" />
     <Compile Include="Capabilities\CapabilityTypeToEntityTypeMapper.cs" />
     <Compile Include="Capabilities\CurrentLoggedInUserCapabilityUserAdapter.cs" />
     <Compile Include="Capabilities\RequiredCapabilityTester.cs" />
+    <Compile Include="Projects\ProjectCapabilitiesProvider.cs" />
+    <Compile Include="App\AppCapabilitiesProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
@@ -279,6 +280,7 @@
     <Folder Include="Activity\" />
     <Folder Include="Tickets\RelationshipValidation\" />
     <Folder Include="Capabilities\" />
+    <Folder Include="App\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
