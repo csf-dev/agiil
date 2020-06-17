@@ -13,9 +13,6 @@ namespace Agiil.Bootstrap.Capabilities
             builder.RegisterType<EntityIdentityProvider>()
                 .AsSelf()
                 .AsImplementedInterfaces();
-            builder.RegisterGeneric(typeof(EntityIdentityFactory<,>))
-                .AsSelf()
-                .As(typeof(IGetsTargetEntityIdentity<,>));
         }
 
         /// <summary>

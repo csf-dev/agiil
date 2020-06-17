@@ -290,6 +290,7 @@
     <Compile Include="Capabilities\CapabilityEnforcementProviderTests.cs" />
     <Compile Include="Capabilities\CapabilityAssertionSpecProviderTests.cs" />
     <Compile Include="Capabilities\CapabilityForParameterCheckerTests.cs" />
+    <Compile Include="Capabilities\RequiredCapabilityTesterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
