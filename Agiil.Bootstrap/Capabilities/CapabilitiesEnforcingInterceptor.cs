@@ -15,6 +15,8 @@ namespace Agiil.Bootstrap.Capabilities
                                                                                invocation.Arguments);
             foreach(var spec in assertionsSpecs)
                 assertionExecutor.AssertCurrentUserHasCapability(spec);
+
+            invocation.Proceed();
         }
 
         public CapabilitiesEnforcingInterceptor(IGetsCapabilitiesAssertionsToPerform assertionSpecProvider,

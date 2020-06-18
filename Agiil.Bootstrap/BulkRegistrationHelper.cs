@@ -41,7 +41,6 @@ namespace Agiil.Bootstrap
                 .AsImplementedInterfaces();
 
             builder.RegisterTypes(typesToIntercept)
-                .AsSelf()
                 .AsImplementedInterfaces()
                 .EnableInterfaceInterceptors()
                 .InterceptedBy(typeof(CapabilitiesEnforcingInterceptor));

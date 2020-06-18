@@ -339,6 +339,7 @@
     <Folder Include="Services\Tickets\" />
     <Folder Include="Views\AddTicketWorkLog\" />
     <Folder Include="Services\Projects\" />
+    <Folder Include="Views\NewProject\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -443,6 +444,7 @@
     <Compile Include="ActionFilters\ActionExecutedContextExtensions.cs" />
     <Compile Include="Services\MvcSessionStore.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\NewProjectController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -456,6 +458,7 @@
     <None Include="Content\Scss\**\*.scss" />
     <Content Include="Views\AddTicketWorkLog\Index.pt" />
     <None Include="Content\Scss\_TicketEditing.scss" />
+    <None Include="Views\NewProject\Index.pt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\**\*.pt" />

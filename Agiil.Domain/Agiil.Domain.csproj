@@ -253,6 +253,8 @@
     <Compile Include="App\AgiilApp.cs" />
     <Compile Include="Projects\ProjectCapability.cs" />
     <Compile Include="App\AppCapability.cs" />
+    <Compile Include="Projects\ICreatesProject.cs" />
+    <Compile Include="Projects\CreateProjectRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

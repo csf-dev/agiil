@@ -103,6 +103,7 @@
     <Compile Include="Resolvers\TicketsForSprintResolver.cs" />
     <Compile Include="Resolvers\CommaSeparatedLabelNameResolver.cs" />
     <Compile Include="Resolvers\TotalWorkLoggedForTicketResolver.cs" />
+    <Compile Include="Projects\CreateProjectRequestToProjectProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -113,6 +114,7 @@
     <Folder Include="Resolvers\" />
     <Folder Include="Labels\" />
     <Folder Include="Activity\" />
+    <Folder Include="Projects\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

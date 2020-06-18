@@ -25,7 +25,7 @@ namespace Agiil.Domain.Capabilities
             if(requiredList.Intersect(actualList).Count() == requiredList.Count()) return;
 
             var message = $@"The user {user} must have the capability {requiredCapability} for {targetEntity},
-but their actual capabilities were {actualCapability}.";
+but their actual capabilities were {(Equals(actualCapability,default(TCapability))? "<none>" : actualCapability.ToString())}.";
 
             throw new UserMustHaveCapabilityException(message,
                                                       user,

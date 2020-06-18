@@ -251,6 +251,8 @@
     <Compile Include="Capabilities\RequiredCapabilityTester.cs" />
     <Compile Include="Projects\ProjectCapabilitiesProvider.cs" />
     <Compile Include="App\AppCapabilitiesProvider.cs" />
+    <Compile Include="Projects\ProjectCreator.cs" />
+    <Compile Include="Projects\AppIdentityProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

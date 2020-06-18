@@ -211,6 +211,7 @@
     <Compile Include="Capabilities\TargetEntityIdentityProvidersModule.cs" />
     <Compile Include="Capabilities\CapabilitiesEnforcingInterceptor.cs" />
     <Compile Include="Capabilities\RequiredCapabilityTesterModule.cs" />
+    <Compile Include="Capabilities\CapabilitiesEnforcingInterceptorModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
