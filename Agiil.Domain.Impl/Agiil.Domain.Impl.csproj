@@ -19,6 +19,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -26,6 +27,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,12 +39,14 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <Optimize>false</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -53,7 +57,7 @@
       <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="Autofac">
-      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <HintPath>..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
@@ -235,6 +239,31 @@
     <Compile Include="Tickets\Specs\HasNoStoryPoints.cs" />
     <Compile Include="Tickets\Specs\StoryPointsIsOneOf.cs" />
     <Compile Include="TicketCriterionConvertionStrategies\StoryPointsConversionStrategy.cs" />
+    <Compile Include="Projects\CurrentlyChosenProjectDecorator.cs" />
+    <Compile Include="Projects\ProjectLister.cs" />
+    <Compile Include="Auth\UserIsASiteAdministrator.cs" />
+    <Compile Include="Projects\UserCanSeeProjectInList.cs" />
+    <Compile Include="Capabilities\CapabilityForParameterChecker.cs" />
+    <Compile Include="Capabilities\CapabilityEnforcementSpec.cs" />
+    <Compile Include="Capabilities\CapabilityAssertionSpecProvider.cs" />
+    <Compile Include="Capabilities\CapabilityTypeToEntityTypeMapper.cs" />
+    <Compile Include="Capabilities\CurrentLoggedInUserCapabilityUserAdapter.cs" />
+    <Compile Include="Capabilities\RequiredCapabilityTester.cs" />
+    <Compile Include="Projects\ProjectCapabilitiesProvider.cs" />
+    <Compile Include="App\AppCapabilitiesProvider.cs" />
+    <Compile Include="Projects\ProjectCreator.cs" />
+    <Compile Include="Projects\AppIdentityProvider.cs" />
+    <Compile Include="Projects\ValidatingProjectCreatorDecorator.cs" />
+    <Compile Include="Projects\TransactionProjectCreatorDecorator.cs" />
+    <Compile Include="Projects\CreateProjectValidatorFactory.cs" />
+    <Compile Include="Projects\ProjectCodeMustBeUniqueValueRule.cs" />
+    <Compile Include="Projects\ProjectProvider.cs" />
+    <Compile Include="Projects\ProjectEditor.cs" />
+    <Compile Include="Projects\ValidatingProjectEditorDecorator.cs" />
+    <Compile Include="Projects\EditProjectValidatorFactory.cs" />
+    <Compile Include="Projects\ProjectCodeMustBeUniqueExceptForSelfRule.cs" />
+    <Compile Include="Projects\TransactionProjectEditorDecorator.cs" />
+    <Compile Include="Projects\ProjectIdentityFromEditProjectRequestProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
@@ -263,6 +292,8 @@
     <Folder Include="Tickets\Editing\" />
     <Folder Include="Activity\" />
     <Folder Include="Tickets\RelationshipValidation\" />
+    <Folder Include="Capabilities\" />
+    <Folder Include="App\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

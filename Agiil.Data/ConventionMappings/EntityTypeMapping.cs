@@ -4,32 +4,32 @@ using Agiil.Data.MappingProviders;
 
 namespace Agiil.Data.ConventionMappings
 {
-  public class EntityTypeMapping : IConventionMapping
-  {
-    readonly IDbNameFormatter formatter;
-
-    public void ApplyMapping(ConventionModelMapper mapper)
+    public class EntityTypeMapping : IConventionMapping
     {
-      mapper.IsEntity(IsEntity);
+        readonly IDbNameFormatter formatter;
 
-      mapper.BeforeMapClass += (modelInspector, type, classCustomizer) => {
-        classCustomizer.Table(formatter.GetTableName(type));
-      };
-    }
+        public void ApplyMapping(ConventionModelMapper mapper)
+        {
+            mapper.IsEntity(IsEntity);
 
-    bool IsEntity(Type type, bool isDeclaredAsEntity)
-    {
-      if(!type.IsClass) return false;
-      if(!AgiilMappingProvider.BaseEntityType.IsAssignableFrom(type)) return false;
-      if(AgiilMappingProvider.IsEntityBaseType(type)) return false;
-      return true;
-    }
+            mapper.BeforeMapClass += (modelInspector, type, classCustomizer) => {
+                classCustomizer.Table(formatter.GetTableName(type));
+            };
+        }
 
-    public EntityTypeMapping(IDbNameFormatter formatter)
-    {
-      if(formatter == null)
-        throw new ArgumentNullException(nameof(formatter));
-      this.formatter = formatter;
+        bool IsEntity(Type type, bool isDeclaredAsEntity)
+        {
+            if(!type.IsClass) return false;
+            if(!AgiilMappingProvider.BaseEntityType.IsAssignableFrom(type)) return false;
+            if(AgiilMappingProvider.IsEntityBaseType(type)) return false;
+            if(type == typeof(Domain.App.AgiilApp)) return false;
+
+            return true;
+        }
+
+        public EntityTypeMapping(IDbNameFormatter formatter)
+        {
+            this.formatter = formatter ?? throw new ArgumentNullException(nameof(formatter));
+        }
     }
-  }
 }

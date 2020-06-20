@@ -3,14 +3,16 @@ using Agiil.Domain.Auth;
 
 namespace Agiil.Web.Models.Shared
 {
-  public class LoginStateModel
-  {
-    public ICurrentUserInfo UserInfo { get; set; }
+    public class LoginStateModel
+    {
+        public ICurrentUserInfo UserInfo { get; set; }
 
-    public string Username => UserInfo?.Username;
+        public bool IsSiteAdmin { get; set; }
 
-    public string UserIdentity => UserInfo?.Identity?.GetValueAsString();
+        public string Username => UserInfo?.Username;
 
-    public bool IsLoggedIn => UserInfo != null;
-  }
+        public string UserIdentity => UserInfo?.Identity?.GetValueAsString();
+
+        public bool IsLoggedIn => UserInfo != null;
+    }
 }

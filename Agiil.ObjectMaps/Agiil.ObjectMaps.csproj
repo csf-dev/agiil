@@ -103,6 +103,12 @@
     <Compile Include="Resolvers\TicketsForSprintResolver.cs" />
     <Compile Include="Resolvers\CommaSeparatedLabelNameResolver.cs" />
     <Compile Include="Resolvers\TotalWorkLoggedForTicketResolver.cs" />
+    <Compile Include="Projects\CreateProjectRequestToProjectProfile.cs" />
+    <Compile Include="Projects\CreateProjectModelToCreateProjectRequestProfile.cs" />
+    <Compile Include="Projects\ProjectToProjectDescriptionDtoProfile.cs" />
+    <Compile Include="Projects\ProjectToEditProjectModelProfile.cs" />
+    <Compile Include="Projects\EditProjectRequestToProjectProfile.cs" />
+    <Compile Include="Projects\EditProjectModelToEditProjectRequestProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -113,6 +119,7 @@
     <Folder Include="Resolvers\" />
     <Folder Include="Labels\" />
     <Folder Include="Activity\" />
+    <Folder Include="Projects\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

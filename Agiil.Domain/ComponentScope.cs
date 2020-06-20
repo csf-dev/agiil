@@ -1,62 +1,22 @@
 ﻿using System;
 namespace Agiil.Domain
 {
-  public class ComponentScope : IEquatable<ComponentScope>
-  {
-    #region constants
-
-    const string
-      APPLICATION_CONNECTION_SCOPE_NAME = "Application connection";
-
-    #endregion
-
-    #region instance functionality
-
-    public string Name { get; private set; }
-
-    public bool Equals(ComponentScope other)
+    [Serializable]
+    public class ComponentScope : IEquatable<ComponentScope>
     {
-      return other != null && other.Name == Name;
+        public string Name { get; }
+
+        public bool Equals(ComponentScope other) => String.Equals(other?.Name, Name, StringComparison.InvariantCulture);
+
+        public override bool Equals(object obj) => Equals(obj as ComponentScope);
+
+        public override int GetHashCode() => Name.GetHashCode();
+
+        public override string ToString() => $"[ComponentScope:'{Name}']";
+
+        ComponentScope(string name)
+        {
+            Name = name ?? throw new ArgumentNullException(nameof(name));
+        }
     }
-
-    public override bool Equals(object obj)
-    {
-      return Equals(obj as ComponentScope);
-    }
-
-    public override int GetHashCode()
-    {
-      return Name.GetHashCode();
-    }
-
-    public override string ToString()
-    {
-      return $"[ComponentScope:'{Name}']";
-    }
-
-    #endregion
-
-    #region constructors
-
-    ComponentScope(string name)
-    {
-      if(name == null)
-        throw new ArgumentNullException(nameof(name));
-
-      Name = name;
-    }
-
-    static ComponentScope()
-    {
-      ApplicationConnection = new ComponentScope(APPLICATION_CONNECTION_SCOPE_NAME);
-    }
-
-    #endregion
-
-    #region singletons
-
-    public static ComponentScope ApplicationConnection { get; private set; }
-
-    #endregion
-  }
 }

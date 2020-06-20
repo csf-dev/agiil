@@ -19,6 +19,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -26,6 +27,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,17 +39,19 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <Optimize>false</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Autofac">
-      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <HintPath>..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -133,6 +137,19 @@
     <Reference Include="CSF.ORM.Entities">
       <HintPath>..\packages\CSF.ORM.Entities.2.0.3\lib\net45\CSF.ORM.Entities.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.DecoratorBuilder">
+      <HintPath>..\packages\CSF.DecoratorBuilder.Interfaces.2.0.0\lib\net461\CSF.DecoratorBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.DecoratorBuilder.Impl">
+      <HintPath>..\packages\CSF.DecoratorBuilder.2.0.0\lib\net461\CSF.DecoratorBuilder.Impl.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.4.4.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Extras.DynamicProxy">
+      <HintPath>..\packages\Autofac.Extras.DynamicProxy.4.5.0\lib\net45\Autofac.Extras.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -188,6 +205,15 @@
     <Compile Include="Log4NetModule.cs" />
     <Compile Include="Tickets\TickatReferenceParserModule.cs" />
     <Compile Include="Tickets\TicketReferenceValidationModule.cs" />
+    <Compile Include="ExternalModulesModule.cs" />
+    <Compile Include="Projects\CurrentProjectModule.cs" />
+    <Compile Include="Capabilities\TypedCapabilityTesterFactoryModule.cs" />
+    <Compile Include="Capabilities\TargetEntityIdentityProvidersModule.cs" />
+    <Compile Include="Capabilities\CapabilitiesEnforcingInterceptor.cs" />
+    <Compile Include="Capabilities\RequiredCapabilityTesterModule.cs" />
+    <Compile Include="Capabilities\CapabilitiesEnforcingInterceptorModule.cs" />
+    <Compile Include="Projects\ProjectCreatorModule.cs" />
+    <Compile Include="Projects\ProjectEditorModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
@@ -254,6 +280,8 @@
     <Folder Include="Labels\" />
     <Folder Include="Specifications\" />
     <Folder Include="RegistrationPassOne\" />
+    <Folder Include="Projects\" />
+    <Folder Include="Capabilities\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.0\build\net46\System.Data.SQLite.Core.targets')" />

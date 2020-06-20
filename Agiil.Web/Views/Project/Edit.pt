@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
+<head>
+<title metal:fill-slot="title_element">Edit project</title>
+<base href="../../" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+</style>
+<style metal:fill-slot="extra_styles">
+@import url('Content/Css/EditProject.css');
+</style>
+</head>
+<body>
+<div metal:fill-slot="page_content"
+     class="content_container">
+  <h1>Edit project</h1>
+  <form method="post"
+        action="Project/Edit/ABC"
+        class="edit_project">
+    <fieldset>
+      <input type="hidden" name="Identity" value="/"
+             tal:attributes="value here/Request/Identity/Value | here/Identity/Value | nothing" />
+      <div class="form_element field">
+        <label for="Name">Name</label>
+        <input type="text" id="Name" name="Name" tal:attributes="value here/Request/Name | here/Name | nothing" />
+      </div>
+      <div class="form_element feedback warning" tal:condition="here/Response/NameMustNotBeEmpty | nothing">
+        <p>Please enter a project name.</p>
+      </div>
+      <div class="form_element field">
+        <label for="Code">Code</label>
+        <input type="text" id="Code" name="Code" tal:attributes="value here/Request/Code | here/Code | nothing" />
+      </div>
+      <div class="form_element feedback warning" tal:condition="here/Response/CodeMustHaveCorrectLength | nothing">
+        <p>The project code must be between <span tal:replace="here/Response/MinCodeLength">1</span> and <span tal:replace="here/Response/MaxCodeLength">20</span> characters long.</p>
+      </div>
+      <div class="form_element feedback warning" tal:condition="here/Response/CodeMustBeUnique | nothing">
+        <p>The project code must be unique.</p>
+      </div>
+      <div class="form_element field long_text">
+        <label for="Description">Description</label>
+        <textarea id="Description" name="Description" rows="20" tal:content="here/Request/Description | here/Description | nothing"></textarea>
+      </div>
+      <div class="form_element button">
+        <button id="Submit">Save</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
+</body>
+</html>

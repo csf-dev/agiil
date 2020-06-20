@@ -109,6 +109,11 @@
     <Compile Include="Tickets\IHasAvailableTicketTypes.cs" />
     <Compile Include="Tickets\IHasAvailableRelationships.cs" />
     <Compile Include="Activity\AddTicketWorkLogModel.cs" />
+    <Compile Include="Projects\ProjectDescriptionDto.cs" />
+    <Compile Include="Projects\ProjectsListModel.cs" />
+    <Compile Include="Projects\CreateProjectModel.cs" />
+    <Compile Include="Projects\EditProjectModel.cs" />
+    <Compile Include="Projects\ViewProjectModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
@@ -117,6 +122,7 @@
     <Folder Include="Tickets\" />
     <Folder Include="Labels\" />
     <Folder Include="Activity\" />
+    <Folder Include="Projects\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

@@ -89,7 +89,7 @@
       <HintPath>..\..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Autofac">
-      <HintPath>..\..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <HintPath>..\..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="CSF.Entities">
       <HintPath>..\..\packages\CSF.Entities.2.0.3\lib\net45\CSF.Entities.dll</HintPath>
@@ -219,6 +219,7 @@
     <Folder Include="Rendering\" />
     <Folder Include="Rendering\MarkdownExtensions\" />
     <Folder Include="Services\Tickets\" />
+    <Folder Include="Bootstrap\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Web\Agiil.Web.csproj">
@@ -271,6 +272,7 @@
     <Compile Include="Services\Tickets\TicketDetailDtoProviderTests.cs" />
     <Compile Include="Services\Tickets\TicketUriProviderTests.cs" />
     <Compile Include="Services\NewtonsoftJsonObjectSerialiserTests.cs" />
+    <Compile Include="Bootstrap\SessionModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

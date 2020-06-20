@@ -19,6 +19,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -26,6 +27,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,12 +39,14 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <Optimize>false</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -114,7 +118,7 @@
     <Compile Include="Sprints\ISprintCreator.cs" />
     <Compile Include="Sprints\CreateSprintRequest.cs" />
     <Compile Include="Sprints\CreateSprintResponse.cs" />
-    <Compile Include="Projects\ICurrentProjectGetter.cs" />
+    <Compile Include="Projects\IGetsCurrentProject.cs" />
     <Compile Include="IHasStartAndEndDates.cs" />
     <Compile Include="IResponseFactory.cs" />
     <Compile Include="Sprints\ISprintFactory.cs" />
@@ -228,6 +232,34 @@
     <Compile Include="Tickets\IGetsTicketUris.cs" />
     <Compile Include="Tickets\IGetsTicketReference.cs" />
     <Compile Include="Tickets\IGetsStoryPointsComparisonSpec.cs" />
+    <Compile Include="IAppSessionStore.cs" />
+    <Compile Include="SessionKey.cs" />
+    <Compile Include="Projects\IGetsListOfProjects.cs" />
+    <Compile Include="Projects\ISetsCurrentProject.cs" />
+    <Compile Include="Capabilities\IAssertsUserHasCapability`2.cs" />
+    <Compile Include="Capabilities\IGetsUserCapabilities`2.cs" />
+    <Compile Include="Capabilities\IGetsEntityTypeForCapability.cs" />
+    <Compile Include="Capabilities\IGetsTargetEntityIdentity.cs" />
+    <Compile Include="Capabilities\IAssertsUserHasCapability.cs" />
+    <Compile Include="Capabilities\IGetsCurrentCapabilityUser.cs" />
+    <Compile Include="Capabilities\IGetsTypedCapabilityTester.cs" />
+    <Compile Include="Capabilities\RequireCapabilityAttribute.cs" />
+    <Compile Include="Capabilities\EnforceCapabilitiesAttribute.cs" />
+    <Compile Include="Capabilities\ISpecForTypesWhichShouldHaveCapabilitiesEnforced.cs" />
+    <Compile Include="Capabilities\IGetsCapabilitiesAssertionsToPerform.cs" />
+    <Compile Include="Capabilities\CapabilitiesAssertionSpec.cs" />
+    <Compile Include="Capabilities\UserMustHaveCapabilityException.cs" />
+    <Compile Include="Capabilities\IGetsTargetEntityIdentity`2.cs" />
+    <Compile Include="App\AgiilApp.cs" />
+    <Compile Include="Projects\ProjectCapability.cs" />
+    <Compile Include="App\AppCapability.cs" />
+    <Compile Include="Projects\ICreatesProject.cs" />
+    <Compile Include="Projects\CreateProjectRequest.cs" />
+    <Compile Include="Projects\CreateProjectResponse.cs" />
+    <Compile Include="Projects\IGetsProject.cs" />
+    <Compile Include="Projects\IEditsProject.cs" />
+    <Compile Include="Projects\EditProjectRequest.cs" />
+    <Compile Include="Projects\EditProjectResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
@@ -239,6 +271,8 @@
     <Folder Include="Labels\" />
     <Folder Include="TicketSearch\" />
     <Folder Include="Activity\" />
+    <Folder Include="Capabilities\" />
+    <Folder Include="App\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

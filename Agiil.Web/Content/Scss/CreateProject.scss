@@ -1,0 +1,6 @@
+﻿@import '_Forms';
+@import '_RelationshipTables';
+
+form.create_project {
+  @include full_page_form;
+}
