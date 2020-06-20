@@ -111,6 +111,7 @@
     <Compile Include="Activity\AddTicketWorkLogModel.cs" />
     <Compile Include="Projects\ProjectDescriptionDto.cs" />
     <Compile Include="Projects\ProjectsListModel.cs" />
+    <Compile Include="Projects\CreateProjectModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

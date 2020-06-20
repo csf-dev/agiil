@@ -253,6 +253,9 @@
     <Compile Include="App\AppCapabilitiesProvider.cs" />
     <Compile Include="Projects\ProjectCreator.cs" />
     <Compile Include="Projects\AppIdentityProvider.cs" />
+    <Compile Include="Projects\ValidatingProjectCreatorDecorator.cs" />
+    <Compile Include="Projects\TransactionProjectCreatorDecorator.cs" />
+    <Compile Include="Projects\CreateProjectValidatorFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

@@ -7,6 +7,6 @@ namespace Agiil.Domain.Projects
     [EnforceCapabilities]
     public interface ICreatesProject
     {
-        Project CreateNewProject([RequireCapability(CreateProject)] CreateProjectRequest request);
+        CreateProjectResponse CreateNewProject([RequireCapability(CreateProject)] CreateProjectRequest request);
     }
 }

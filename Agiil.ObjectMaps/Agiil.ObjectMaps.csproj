@@ -104,6 +104,7 @@
     <Compile Include="Resolvers\CommaSeparatedLabelNameResolver.cs" />
     <Compile Include="Resolvers\TotalWorkLoggedForTicketResolver.cs" />
     <Compile Include="Projects\CreateProjectRequestToProjectProfile.cs" />
+    <Compile Include="Projects\CreateProjectModelToCreateProjectRequestProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

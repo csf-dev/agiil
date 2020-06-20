@@ -9,6 +9,10 @@ namespace Agiil.Domain.Projects
 {
     public class Project : Entity<long>
     {
+        public static readonly int
+            MinCodeLength = 2,
+            MaxCodeLength = 10;
+
         /// <summary>
         /// The human-readable name of the project.  This is intended to be quite short, such as one line.
         /// </summary>
@@ -27,7 +31,8 @@ namespace Agiil.Domain.Projects
         /// Gets the next available ticket number from which a <see cref="TicketReference"/> may be formed.
         /// </summary>
         /// <value>The next available ticket number.</value>
-        public virtual long NextAvailableTicketNumber { get; set; }
+        public virtual long NextAvailableTicketNumber { get => nextAvailableTicketNumber; set => nextAvailableTicketNumber = value; }
+        long nextAvailableTicketNumber;
 
         /// <summary>
         /// A markdown-rendered free-text description of the project.
@@ -61,6 +66,7 @@ namespace Agiil.Domain.Projects
             sprints.BeforeRemove += (sender, e) => e.Item.Project = null;
 
             description = String.Empty;
+            nextAvailableTicketNumber = 1;
         }
     }
 }
