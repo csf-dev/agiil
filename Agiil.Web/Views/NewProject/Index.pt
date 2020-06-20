@@ -8,6 +8,9 @@
 @import url('Content/Css/Reset.css');
 @import url('Content/Css/StandardPage.css');
 </style>
+<style metal:fill-slot="extra_styles">
+@import url('Content/Css/CreateProject.css');
+</style>
 </head>
 <body>
 <div metal:fill-slot="page_content"
@@ -17,15 +20,21 @@
     <fieldset>
       <div class="form_element field">
         <label for="Name">Name</label>
-        <input type="text" id="Name" name="Name" />
+        <input type="text" id="Name" name="Name" tal:attributes="value here/Name | nothing" />
+      </div>
+      <div class="form_element feedback warning" tal:condition="here/Response/NameMustNotBeEmpty | nothing">
+        <p>Please enter a project name.</p>
       </div>
       <div class="form_element field">
         <label for="Code">Code</label>
-        <input type="text" id="Code" name="Code" />
+        <input type="text" id="Code" name="Code" tal:attributes="value here/Code | nothing" />
       </div>
-      <div class="form_element field">
+      <div class="form_element feedback warning" tal:condition="here/Response/CodeMustBeUniqueAndHaveCorrectLength | nothing">
+        <p>The project code must be unique and must be between <span tal:replace="here/Response/MinCodeLength">1</span> and <span tal:replace="here/Response/MaxCodeLength">20</span> characters long.</p>
+      </div>
+      <div class="form_element field long_text">
         <label for="Description">Description</label>
-        <textarea id="Description" name="Description" rows="20"></textarea>
+        <textarea id="Description" name="Description" rows="20" tal:content="here/Description | nothing"></textarea>
       </div>
       <div class="form_element button">
         <button id="Submit">Create</button>

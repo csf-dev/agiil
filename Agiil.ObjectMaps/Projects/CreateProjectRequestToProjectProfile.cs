@@ -8,7 +8,8 @@ namespace Agiil.ObjectMaps.Projects
     {
         public CreateProjectRequestToProjectProfile()
         {
-            CreateMap<CreateProjectRequest, Project>();
+            CreateMap<CreateProjectRequest, Project>()
+                .ForMember(x => x.Description, o => o.ResolveUsing(r => r.Description ?? String.Empty));
         }
     }
 }

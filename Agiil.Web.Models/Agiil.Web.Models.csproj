@@ -112,6 +112,8 @@
     <Compile Include="Projects\ProjectDescriptionDto.cs" />
     <Compile Include="Projects\ProjectsListModel.cs" />
     <Compile Include="Projects\CreateProjectModel.cs" />
+    <Compile Include="Projects\EditProjectModel.cs" />
+    <Compile Include="Projects\ViewProjectModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

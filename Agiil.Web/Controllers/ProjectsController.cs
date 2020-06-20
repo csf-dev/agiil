@@ -2,11 +2,13 @@
 using System.Linq;
 using System.Web.Mvc;
 using Agiil.Domain.Projects;
+using Agiil.Web.ActionFilters;
 using Agiil.Web.Models.Projects;
 using AutoMapper;
 
 namespace Agiil.Web.Controllers
 {
+    [RequireAppAdmin]
     public class ProjectsController : Controller
     {
         readonly IMapper mapper;

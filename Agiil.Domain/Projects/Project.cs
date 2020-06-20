@@ -25,7 +25,8 @@ namespace Agiil.Domain.Projects
         /// The project code is used in <see cref="TicketReference"/> instances.
         /// </summary>
         /// <value>The project code.</value>
-        public virtual string Code { get; set; }
+        public virtual string Code { get => code; set => code = value?.ToUpperInvariant(); }
+        string code;
 
         /// <summary>
         /// Gets the next available ticket number from which a <see cref="TicketReference"/> may be formed.

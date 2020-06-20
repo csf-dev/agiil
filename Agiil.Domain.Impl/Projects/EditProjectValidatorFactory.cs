@@ -6,10 +6,12 @@ using CSF.Validation.StockRules;
 
 namespace Agiil.Domain.Projects
 {
-    public class CreateProjectValidatorFactory : ValidatorFactoryBase<CreateProjectRequest>
+    public class EditProjectValidatorFactory : ValidatorFactoryBase<EditProjectRequest>
     {
-        protected override void ConfigureManifest(IManifestBuilder<CreateProjectRequest> builder)
+        protected override void ConfigureManifest(IManifestBuilder<EditProjectRequest> builder)
         {
+            builder.AddMemberRule<EntityMustExistRule<Project>>(x => x.Identity);
+
             builder.AddMemberRule<NotNullValueRule>(x => x.Name);
             builder.AddMemberRule<StringLengthValueRule>(x => x.Name, r => {
                 r.Configure(c => c.MinLength = 1);
@@ -22,9 +24,10 @@ namespace Agiil.Domain.Projects
                     c.MaxLength = Project.MaxCodeLength;
                 });
             });
-            builder.AddMemberRule<ProjectCodeMustBeUniqueValueRule>(x => x.Code);
+
+            builder.AddRule<ProjectCodeMustBeUniqueExceptForSelfRule>(r => r.Name("UniqueCode"));
         }
 
-        public CreateProjectValidatorFactory(IValidatorFactory fac) : base(fac) { }
+        public EditProjectValidatorFactory(IValidatorFactory fac) : base(fac) { }
     }
 }

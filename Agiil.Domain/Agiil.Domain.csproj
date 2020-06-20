@@ -256,6 +256,10 @@
     <Compile Include="Projects\ICreatesProject.cs" />
     <Compile Include="Projects\CreateProjectRequest.cs" />
     <Compile Include="Projects\CreateProjectResponse.cs" />
+    <Compile Include="Projects\IGetsProject.cs" />
+    <Compile Include="Projects\IEditsProject.cs" />
+    <Compile Include="Projects\EditProjectRequest.cs" />
+    <Compile Include="Projects\EditProjectResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

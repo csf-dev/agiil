@@ -9,19 +9,24 @@ namespace Agiil.Domain.Projects
     {
         readonly IEntityData data;
         readonly IMapper mapper;
+        private readonly Func<CreateProjectResponse> responseFactory;
 
         public CreateProjectResponse CreateNewProject(CreateProjectRequest request)
         {
             var project = mapper.Map<Project>(request);
             data.Add(project);
-            return new CreateProjectResponse { ProjectIdentity = project.GetIdentity() };
+            var response = responseFactory();
+            response.ProjectIdentity = project.GetIdentity();
+            return response;
         }
 
         public ProjectCreator(IEntityData data,
-                              IMapper mapper)
+                              IMapper mapper,
+                              Func<CreateProjectResponse> responseFactory)
         {
             this.data = data ?? throw new ArgumentNullException(nameof(data));
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            this.responseFactory = responseFactory ?? throw new ArgumentNullException(nameof(responseFactory));
         }
     }
 }

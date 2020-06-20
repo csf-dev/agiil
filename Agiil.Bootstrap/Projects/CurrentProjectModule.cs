@@ -1,5 +1,4 @@
-﻿using System;
-using Agiil.Domain.Projects;
+﻿using Agiil.Domain.Projects;
 using Autofac;
 using CSF.DecoratorBuilder;
 

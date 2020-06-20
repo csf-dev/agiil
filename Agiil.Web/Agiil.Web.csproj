@@ -313,10 +313,10 @@
       <HintPath>..\packages\CSF.ORM.Entities.2.0.3\lib\net45\CSF.ORM.Entities.dll</HintPath>
     </Reference>
     <Reference Include="CSF.DecoratorBuilder">
-      <HintPath>..\packages\CSF.DecoratorBuilder.Interfaces.1.0.0\lib\net461\CSF.DecoratorBuilder.dll</HintPath>
+      <HintPath>..\packages\CSF.DecoratorBuilder.Interfaces.2.0.0\lib\net461\CSF.DecoratorBuilder.dll</HintPath>
     </Reference>
     <Reference Include="CSF.DecoratorBuilder.Impl">
-      <HintPath>..\packages\CSF.DecoratorBuilder.1.0.0\lib\net461\CSF.DecoratorBuilder.Impl.dll</HintPath>
+      <HintPath>..\packages\CSF.DecoratorBuilder.2.0.0\lib\net461\CSF.DecoratorBuilder.Impl.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -340,6 +340,8 @@
     <Folder Include="Views\AddTicketWorkLog\" />
     <Folder Include="Services\Projects\" />
     <Folder Include="Views\NewProject\" />
+    <Folder Include="Views\Projects\" />
+    <Folder Include="Views\Project\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -445,6 +447,8 @@
     <Compile Include="Services\MvcSessionStore.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\NewProjectController.cs" />
+    <Compile Include="ActionFilters\RequireAppAdminAttribute.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -456,9 +460,7 @@
     <None Include="Content\Css\*.css" />
     <None Include="packages.config" />
     <None Include="Content\Scss\**\*.scss" />
-    <Content Include="Views\AddTicketWorkLog\Index.pt" />
-    <None Include="Content\Scss\_TicketEditing.scss" />
-    <None Include="Views\NewProject\Index.pt" />
+    <None Include="Content\Scss\EditProject.scss" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\**\*.pt" />

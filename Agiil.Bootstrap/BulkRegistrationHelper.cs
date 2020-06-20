@@ -33,10 +33,8 @@ namespace Agiil.Bootstrap
                                     where shouldInterceptSpec.Matches(@interface)
                                     select type)
                 .ToArray();
-            var typesNotToIntercept = concreteTypes.Except(typesToIntercept)
-                .ToArray();
     
-            builder.RegisterTypes(typesNotToIntercept)
+            builder.RegisterTypes(concreteTypes)
                 .AsSelf()
                 .AsImplementedInterfaces();
 

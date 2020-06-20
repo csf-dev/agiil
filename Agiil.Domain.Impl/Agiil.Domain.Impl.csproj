@@ -256,6 +256,14 @@
     <Compile Include="Projects\ValidatingProjectCreatorDecorator.cs" />
     <Compile Include="Projects\TransactionProjectCreatorDecorator.cs" />
     <Compile Include="Projects\CreateProjectValidatorFactory.cs" />
+    <Compile Include="Projects\ProjectCodeMustBeUniqueValueRule.cs" />
+    <Compile Include="Projects\ProjectProvider.cs" />
+    <Compile Include="Projects\ProjectEditor.cs" />
+    <Compile Include="Projects\ValidatingProjectEditorDecorator.cs" />
+    <Compile Include="Projects\EditProjectValidatorFactory.cs" />
+    <Compile Include="Projects\ProjectCodeMustBeUniqueExceptForSelfRule.cs" />
+    <Compile Include="Projects\TransactionProjectEditorDecorator.cs" />
+    <Compile Include="Projects\ProjectIdentityFromEditProjectRequestProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
