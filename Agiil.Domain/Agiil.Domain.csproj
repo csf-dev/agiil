@@ -260,6 +260,8 @@
     <Compile Include="Projects\IEditsProject.cs" />
     <Compile Include="Projects\EditProjectRequest.cs" />
     <Compile Include="Projects\EditProjectResponse.cs" />
+    <Compile Include="Tickets\TicketCapability.cs" />
+    <Compile Include="Tickets\CommentCapability.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

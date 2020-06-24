@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Agiil.Domain.Auth;
 using Agiil.Domain.Capabilities;
 using CSF.Entities;
@@ -14,12 +15,47 @@ namespace Agiil.Domain.Projects
         {
             if(userIdentity == null)
                 throw new ArgumentNullException(nameof(userIdentity));
+            if(targetEntity == null) return default;
 
-            var user = data.Get(userIdentity);
-            if(user.SiteAdministrator)
-                return ProjectCapability.EditProject | ProjectCapability.DeleteProject;
+            var user = GetUser(userIdentity);
+            var project = data.Get(targetEntity);
+
+            if(user == null || project == null)
+                return default;
+
+            var isAContributor = user.ContributorTo.Contains(project);
+            var isAProjectAdmin = user.AdministratorOf.Contains(project);
+            var isASiteAdmin = user.SiteAdministrator;
+
+            if(isASiteAdmin || isAProjectAdmin)
+            {
+                // IE: All of the capabilities!
+                return Enum.GetValues(typeof(ProjectCapability))
+                    .Cast<ProjectCapability>()
+                    .Aggregate(default(ProjectCapability), (acc, next) => acc | next);
+            }
+
+            if(isAContributor)
+            {
+                return ProjectCapability.CreateTicket
+                     | ProjectCapability.View
+                     | ProjectCapability.ViewSprints
+                     | ProjectCapability.ViewTickets;
+            }
 
             return default;
+        }
+
+        User GetUser(IIdentity<User> userIdentity)
+        {
+            var u = data.Theorise(userIdentity);
+            return data.Query<User>()
+                .Where(x => x == u)
+                .FetchChildren(x => x.ContributorTo)
+                .FetchChildren(x => x.AdministratorOf)
+                // Must use ToList first, because otherwise the fetches won't work
+                .ToList()
+                .FirstOrDefault();
         }
 
         public ProjectCapabilitiesProvider(IEntityData data)

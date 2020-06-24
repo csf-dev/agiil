@@ -264,6 +264,7 @@
     <Compile Include="Projects\ProjectCodeMustBeUniqueExceptForSelfRule.cs" />
     <Compile Include="Projects\TransactionProjectEditorDecorator.cs" />
     <Compile Include="Projects\ProjectIdentityFromEditProjectRequestProvider.cs" />
+    <Compile Include="Tickets\TicketCapabilitiesProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

@@ -56,6 +56,22 @@ namespace Agiil.Domain.Projects
         public virtual ISet<Sprint> Sprints => sprints.Collection;
         readonly EventRaisingSetWrapper<Sprint> sprints;
 
+        /// <summary>
+        /// Gets a collection of the <see cref="Auth.User"/> objects which are a contributor to this project.
+        /// </summary>
+        /// <value>The contributors.</value>
+        [ManyToMany(false)]
+        public virtual ISet<Auth.User> Contributors => contributors.Collection;
+        readonly EventRaisingSetWrapper<Auth.User> contributors;
+
+        /// <summary>
+        /// Gets a collection of the <see cref="Auth.User"/> objects which are administrators of this project.
+        /// </summary>
+        /// <value>The administrators.</value>
+        [ManyToMany(false)]
+        public virtual ISet<Auth.User> Administrators => administrators.Collection;
+        readonly EventRaisingSetWrapper<Auth.User> administrators;
+
         public Project()
         {
             tickets = new EventRaisingSetWrapper<Ticket>(new HashSet<Ticket>());
@@ -65,6 +81,26 @@ namespace Agiil.Domain.Projects
             sprints = new EventRaisingSetWrapper<Sprint>(new HashSet<Sprint>());
             sprints.BeforeAdd += (sender, e) => e.Item.Project = this;
             sprints.BeforeRemove += (sender, e) => e.Item.Project = null;
+
+            contributors = new EventRaisingSetWrapper<Auth.User>(new HashSet<Auth.User>());
+            contributors.BeforeAdd += (sender, e) => {
+                if(!e.Item.ContributorTo.Contains(this))
+                    e.Item.ContributorTo.Add(this);
+            };
+            contributors.BeforeRemove += (sender, e) => {
+                if(e.Item.ContributorTo.Contains(this))
+                    e.Item.ContributorTo.Remove(this);
+            };
+
+            administrators = new EventRaisingSetWrapper<Auth.User>(new HashSet<Auth.User>());
+            administrators.BeforeAdd += (sender, e) => {
+                if(!e.Item.AdministratorOf.Contains(this))
+                    e.Item.AdministratorOf.Add(this);
+            };
+            administrators.BeforeRemove += (sender, e) => {
+                if(e.Item.AdministratorOf.Contains(this))
+                    e.Item.AdministratorOf.Remove(this);
+            };
 
             description = String.Empty;
             nextAvailableTicketNumber = 1;

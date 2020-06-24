@@ -6,29 +6,26 @@ using CSF.Entities;
 
 namespace Agiil.Domain.Labels
 {
-  public class Label : Entity<long>
-  {
-    public virtual string Name { get; set; }
-
-    readonly EventRaisingSetWrapper<Ticket> tickets;
-    [ManyToMany(false)]
-    public virtual ISet<Ticket> Tickets
+    public class Label : Entity<long>
     {
-      get { return tickets.Collection; }
-    }
+        public virtual string Name { get; set; }
 
-    public Label()
-    {
-      tickets = new EventRaisingSetWrapper<Ticket>(new HashSet<Ticket>());
+        [ManyToMany(false)]
+        public virtual ISet<Ticket> Tickets => tickets.Collection;
+        readonly EventRaisingSetWrapper<Ticket> tickets;
 
-      tickets.AfterAdd += (sender, e) => {
-        if(!e.Item.Labels.Contains(this))
-          e.Item.Labels.Add(this);
-      };
-      tickets.AfterRemove += (sender, e) => {
-        if(e.Item.Labels.Contains(this))
-          e.Item.Labels.Remove(this);
-      };
+        public Label()
+        {
+            tickets = new EventRaisingSetWrapper<Ticket>(new HashSet<Ticket>());
+
+            tickets.AfterAdd += (sender, e) => {
+                if(!e.Item.Labels.Contains(this))
+                    e.Item.Labels.Add(this);
+            };
+            tickets.AfterRemove += (sender, e) => {
+                if(e.Item.Labels.Contains(this))
+                    e.Item.Labels.Remove(this);
+            };
+        }
     }
-  }
 }
