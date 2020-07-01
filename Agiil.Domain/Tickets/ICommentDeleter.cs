@@ -1,10 +1,12 @@
 ﻿using System;
+using Agiil.Domain.Capabilities;
 using CSF.Entities;
 
 namespace Agiil.Domain.Tickets
 {
-  public interface ICommentDeleter
-  {
-    DeleteCommentResponse Delete(DeleteCommentRequest request);
-  }
+    [EnforceCapabilities]
+    public interface ICommentDeleter
+    {
+        DeleteCommentResponse Delete([RequireCapability(CommentCapability.Delete)] DeleteCommentRequest request);
+    }
 }

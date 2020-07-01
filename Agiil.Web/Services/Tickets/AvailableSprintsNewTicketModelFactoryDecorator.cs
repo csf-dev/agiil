@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using Agiil.Domain.Sprints;
-using Agiil.Domain.Tickets;
 using Agiil.Web.Models.Sprints;
 using Agiil.Web.Models.Tickets;
 using AutoMapper;
@@ -23,7 +22,7 @@ namespace Agiil.Web.Services.Tickets
 
     void AddAvailableSprints(IHasAvailableSprints model)
     {
-      model.AvailableSprints = sprintLister.GetSprints()
+      model.AvailableSprints = sprintLister.GetSprints(new ListSprintsRequest())
         .Select(mapper.Map<SprintSummaryDto>)
         .ToList();
     }

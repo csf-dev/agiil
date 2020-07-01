@@ -9,7 +9,7 @@ namespace Agiil.Domain.Tickets
 {
     public class TicketCapabilitiesProvider : IGetsUserCapabilities<Ticket, TicketCapability>
     {
-        private readonly IEntityData data;
+        readonly IEntityData data;
 
         public TicketCapability GetCapabilities(IIdentity<User> userIdentity, IIdentity<Ticket> targetEntity)
         {

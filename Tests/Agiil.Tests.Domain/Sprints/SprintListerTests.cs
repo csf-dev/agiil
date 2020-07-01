@@ -69,11 +69,17 @@ namespace Agiil.Tests.Sprints
         }
 
         [Test, AutoMoqData]
-        public void GetSprints_returns_only_open_sprints_when_request_is_null([Frozen, InMemory] IEntityData query,
-                                                                              SprintLister sut,
-                                                                              [HasIdentity] Sprint sprintOne,
-                                                                              [HasIdentity] Sprint sprintTwo,
-                                                                              [HasIdentity] Sprint sprintThree)
+        public void GetSprints_throws_ANE_when_request_is_null(SprintLister sut)
+        {
+            Assert.That(() => sut.GetSprints(null), Throws.ArgumentNullException);
+        }
+
+        [Test, AutoMoqData]
+        public void GetSprints_returns_only_open_sprints_when_request_is_default([Frozen, InMemory] IEntityData query,
+                                                                                 SprintLister sut,
+                                                                                 [HasIdentity] Sprint sprintOne,
+                                                                                 [HasIdentity] Sprint sprintTwo,
+                                                                                 [HasIdentity] Sprint sprintThree)
         {
             // Arrange
             sprintOne.Closed = false;
@@ -86,7 +92,7 @@ namespace Agiil.Tests.Sprints
             var expected = new[] { sprintOne, sprintThree };
 
             // Act
-            var result = sut.GetSprints(null);
+            var result = sut.GetSprints(new ListSprintsRequest());
 
             // Assert
             Assert.That(result, Is.EquivalentTo(expected));

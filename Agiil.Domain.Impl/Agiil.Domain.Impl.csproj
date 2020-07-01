@@ -265,6 +265,12 @@
     <Compile Include="Projects\TransactionProjectEditorDecorator.cs" />
     <Compile Include="Projects\ProjectIdentityFromEditProjectRequestProvider.cs" />
     <Compile Include="Tickets\TicketCapabilitiesProvider.cs" />
+    <Compile Include="Tickets\CommentCapabilitiesProvider.cs" />
+    <Compile Include="Sprints\SprintCapabilitiesProvider.cs" />
+    <Compile Include="Sprints\SprintIsOpenSpecification.cs" />
+    <Compile Include="Sprints\SprintIsClosedSpecification.cs" />
+    <Compile Include="Sprints\SprintIsForProjectSpecification.cs" />
+    <Compile Include="Sprints\ListSprintsRequestProjectIdentityProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

@@ -262,6 +262,8 @@
     <Compile Include="Projects\EditProjectResponse.cs" />
     <Compile Include="Tickets\TicketCapability.cs" />
     <Compile Include="Tickets\CommentCapability.cs" />
+    <Compile Include="Sprints\SprintCapability.cs" />
+    <Compile Include="Capabilities\IdentityProviderNotAvailableException.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

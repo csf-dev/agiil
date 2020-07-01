@@ -23,7 +23,7 @@ namespace Agiil.Web.Services.Tickets
 
     void AddAvailableSprints(IHasAvailableSprints model)
     {
-      model.AvailableSprints = sprintLister.GetSprints()
+      model.AvailableSprints = sprintLister.GetSprints(new ListSprintsRequest())
         .Select(mapper.Map<SprintSummaryDto>)
         .ToList();
     }

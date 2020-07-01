@@ -30,6 +30,8 @@ namespace Agiil.Bootstrap.Capabilities
             public IIdentity<TEntity> GetTargetEntityIdentity<TEntity>(object value) where TEntity : IEntity
             {
                 if(value == null) return null;
+                if(value is IIdentity<TEntity> identityValue) return identityValue;
+
                 var valueType = value.GetType();
 
                 var getMethod = GenericGetMethod.MakeGenericMethod(typeof(TEntity), valueType);
@@ -37,7 +39,20 @@ namespace Agiil.Bootstrap.Capabilities
             }
 
             IIdentity<TEntity> GetTargetEntityIdentity<TEntity, TValue>(TValue value) where TEntity : IEntity
-                => scope.Resolve<IGetsTargetEntityIdentity<TEntity, TValue>>().GetTargetEntityIdentity(value);
+            {
+                try
+                {
+                    return scope.Resolve<IGetsTargetEntityIdentity<TEntity, TValue>>().GetTargetEntityIdentity(value);
+                }
+                catch(Autofac.Core.Registration.ComponentNotRegisteredException ex)
+                {
+                    throw new IdentityProviderNotAvailableException($@"No service could be resolved to provide the entity identity for a capabilities test.
+Service required:
+    {nameof(IGetsTargetEntityIdentity<TEntity,TValue>)}<{typeof(TEntity).Name},{typeof(TValue).Name}>
+
+Perhaps it has not be written, or not registered in dependency injection?", ex);
+                }
+            }
 
             public EntityIdentityProvider(ILifetimeScope scope)
             {
