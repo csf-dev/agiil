@@ -48,21 +48,21 @@ namespace Agiil.Domain.Auth
         public User()
         {
             contributorTo = new EventRaisingSetWrapper<Projects.Project>(new HashSet<Projects.Project>());
-            contributorTo.BeforeAdd += (sender, e) => {
+            contributorTo.AfterAdd += (sender, e) => {
                 if(!e.Item.Contributors.Contains(this))
                     e.Item.Contributors.Add(this);
             };
-            contributorTo.BeforeRemove += (sender, e) => {
+            contributorTo.AfterRemove += (sender, e) => {
                 if(e.Item.Contributors.Contains(this))
                     e.Item.Contributors.Remove(this);
             };
 
             administratorOf = new EventRaisingSetWrapper<Projects.Project>(new HashSet<Projects.Project>());
-            administratorOf.BeforeAdd += (sender, e) => {
+            administratorOf.AfterAdd += (sender, e) => {
                 if(!e.Item.Administrators.Contains(this))
                     e.Item.Administrators.Add(this);
             };
-            administratorOf.BeforeRemove += (sender, e) => {
+            administratorOf.AfterRemove += (sender, e) => {
                 if(e.Item.Administrators.Contains(this))
                     e.Item.Administrators.Remove(this);
             };

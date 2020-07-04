@@ -4,6 +4,7 @@ namespace Agiil.Domain.Tickets
     /// <summary>
     /// The various capabilities which a user may have for a comment.
     /// </summary>
+    [Flags]
     public enum CommentCapability
     {
         /// <summary>

@@ -271,6 +271,9 @@
     <Compile Include="Sprints\SprintIsClosedSpecification.cs" />
     <Compile Include="Sprints\SprintIsForProjectSpecification.cs" />
     <Compile Include="Sprints\ListSprintsRequestProjectIdentityProvider.cs" />
+    <Compile Include="Tickets\TicketIdentityFromTicketReferenceProvider.cs" />
+    <Compile Include="Tickets\TicketIdentityFromCreateCommentRequestProvider.cs" />
+    <Compile Include="Tickets\CommentIdentityFromRequestProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

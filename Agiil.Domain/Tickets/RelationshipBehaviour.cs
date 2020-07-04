@@ -4,6 +4,7 @@ namespace Agiil.Domain.Tickets
   /// <summary>
   /// Describes the behaviour of a <see cref="Relationship"/>.
   /// </summary>
+  [Serializable]
   public class RelationshipBehaviour
   {
     /// <summary>

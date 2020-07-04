@@ -51,8 +51,8 @@ namespace Agiil.Domain.Projects
             var u = data.Theorise(userIdentity);
             return data.Query<User>()
                 .Where(x => x == u)
-                .FetchChildren(x => x.ContributorTo)
-                .FetchChildren(x => x.AdministratorOf)
+                //.FetchChildren(x => x.ContributorTo)
+                //.FetchChildren(x => x.AdministratorOf)
                 // Must use ToList first, because otherwise the fetches won't work
                 .ToList()
                 .FirstOrDefault();

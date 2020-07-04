@@ -264,6 +264,8 @@
     <Compile Include="Tickets\CommentCapability.cs" />
     <Compile Include="Sprints\SprintCapability.cs" />
     <Compile Include="Capabilities\IdentityProviderNotAvailableException.cs" />
+    <Compile Include="Capabilities\CapabilitiesCouldNotBeCheckedException.cs" />
+    <Compile Include="Capabilities\IDetectsAmbientCapabilityAssertion.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

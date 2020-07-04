@@ -83,21 +83,21 @@ namespace Agiil.Domain.Projects
             sprints.BeforeRemove += (sender, e) => e.Item.Project = null;
 
             contributors = new EventRaisingSetWrapper<Auth.User>(new HashSet<Auth.User>());
-            contributors.BeforeAdd += (sender, e) => {
+            contributors.AfterAdd += (sender, e) => {
                 if(!e.Item.ContributorTo.Contains(this))
                     e.Item.ContributorTo.Add(this);
             };
-            contributors.BeforeRemove += (sender, e) => {
+            contributors.AfterRemove += (sender, e) => {
                 if(e.Item.ContributorTo.Contains(this))
                     e.Item.ContributorTo.Remove(this);
             };
 
             administrators = new EventRaisingSetWrapper<Auth.User>(new HashSet<Auth.User>());
-            administrators.BeforeAdd += (sender, e) => {
+            administrators.AfterAdd += (sender, e) => {
                 if(!e.Item.AdministratorOf.Contains(this))
                     e.Item.AdministratorOf.Add(this);
             };
-            administrators.BeforeRemove += (sender, e) => {
+            administrators.AfterRemove += (sender, e) => {
                 if(e.Item.AdministratorOf.Contains(this))
                     e.Item.AdministratorOf.Remove(this);
             };
