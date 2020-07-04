@@ -266,6 +266,7 @@
     <Compile Include="Capabilities\IdentityProviderNotAvailableException.cs" />
     <Compile Include="Capabilities\CapabilitiesCouldNotBeCheckedException.cs" />
     <Compile Include="Capabilities\IDetectsAmbientCapabilityAssertion.cs" />
+    <Compile Include="Capabilities\IGetsTargetEntityIdentityProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

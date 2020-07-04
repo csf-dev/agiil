@@ -94,6 +94,9 @@
     <Reference Include="CSF.Reflector">
       <HintPath>..\packages\CSF.Reflector.3.0.0\lib\net45\CSF.Reflector.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Reflection">
+      <HintPath>..\packages\CSF.Reflection.3.0.0\lib\net45\CSF.Reflection.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -107,7 +110,7 @@
     <Compile Include="Tickets\TicketLister.cs" />
     <Compile Include="Tickets\TicketDetailService.cs" />
     <Compile Include="Tickets\EditTicketValidatorFactory.cs" />
-    <Compile Include="IDomainImplementationAssemblyMarker.cs" />
+    <Compile Include="DomainImplAssemblyMarker.cs" />
     <Compile Include="Tickets\EditTicketRequestHandler.cs" />
     <Compile Include="ValidationResultInterpreter.cs" />
     <Compile Include="Validation\EntityMustExistRule.cs" />
@@ -188,16 +191,12 @@
     <Compile Include="Tickets\Creation\TicketTypePopulatingTicketFactoryDecorator.cs" />
     <Compile Include="Tickets\Creation\PersistingTicketFactoryDecorator.cs" />
     <Compile Include="Tickets\Creation\TicketFactory.cs" />
-    <Compile Include="Tickets\Creation\TicketFactoryProvider.cs" />
-    <Compile Include="Tickets\Creation\IGetsTicketCreator.cs" />
     <Compile Include="Tickets\Creation\RelationshipPopulatingTicketFactoryDecorator.cs" />
     <Compile Include="Tickets\TicketRelationshipFactory.cs" />
     <Compile Include="Tickets\ICreatesEditTicketResponse.cs" />
     <Compile Include="Tickets\EditTicketResponseFactory.cs" />
     <Compile Include="Tickets\Editing\AutomapperBasedTicketEditor.cs" />
     <Compile Include="Tickets\Editing\LabelResolvingTicketEditorDecorator.cs" />
-    <Compile Include="Tickets\Editing\IGetsTicketEditor.cs" />
-    <Compile Include="Tickets\Editing\TicketEditorFactory.cs" />
     <Compile Include="Tickets\Editing\RelationshipAddingTicketEditorDecorator.cs" />
     <Compile Include="Tickets\IConvertsAddRelationshipRequestsToTicketRelationships.cs" />
     <Compile Include="Tickets\AddRelationshipRequestToTicketRelationshipConverter.cs" />
@@ -274,6 +273,8 @@
     <Compile Include="Tickets\TicketIdentityFromTicketReferenceProvider.cs" />
     <Compile Include="Tickets\TicketIdentityFromCreateCommentRequestProvider.cs" />
     <Compile Include="Tickets\CommentIdentityFromRequestProvider.cs" />
+    <Compile Include="Capabilities\EntityIdentityProvider.cs" />
+    <Compile Include="Capabilities\EntityIdentityProviderAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
@@ -283,6 +284,10 @@
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
       <Project>{922B2D9C-444E-451A-B626-DAE59E79C0E5}</Project>
       <Name>Agiil.Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Utils\Agiil.Utils.csproj">
+      <Project>{DBDD73A5-A79D-4CD8-8EAE-1C6B7D3759D9}</Project>
+      <Name>Agiil.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

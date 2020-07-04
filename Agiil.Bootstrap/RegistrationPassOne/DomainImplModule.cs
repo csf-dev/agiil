@@ -8,7 +8,7 @@ namespace Agiil.Bootstrap.RegistrationPassOne
   {
     protected override void Load(ContainerBuilder builder)
     {
-      BulkRegistrationHelper.Default.RegisterAll<Domain.IDomainImplementationAssemblyMarker>(builder);
+      BulkRegistrationHelper.Default.RegisterAll<Domain.DomainImplAssemblyMarker>(builder);
     }
   }
 }

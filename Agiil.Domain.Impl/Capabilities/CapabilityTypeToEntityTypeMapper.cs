@@ -10,6 +10,7 @@ namespace Agiil.Domain.Capabilities
             { typeof(App.AppCapability),            typeof(App.AgiilApp) },
             { typeof(Tickets.TicketCapability),     typeof(Tickets.Ticket) },
             { typeof(Tickets.CommentCapability),    typeof(Tickets.Comment) },
+            { typeof(Sprints.SprintCapability),     typeof(Sprints.Sprint) },
         };
 
         public Type GetEntityType(object capability)
