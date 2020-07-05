@@ -275,6 +275,12 @@
     <Compile Include="Tickets\CommentIdentityFromRequestProvider.cs" />
     <Compile Include="Capabilities\EntityIdentityProvider.cs" />
     <Compile Include="Capabilities\EntityIdentityProviderAdapter.cs" />
+    <Compile Include="Tickets\TicketIdentityFromAddWorkLogRequestProvider.cs" />
+    <Compile Include="Projects\ProjectIdentityFromCreateSprintRequestProvider.cs" />
+    <Compile Include="Sprints\SprintIdentityFromEditSprintRequestProvider.cs" />
+    <Compile Include="Projects\ProjectIdentityFromProjectCodeProvider.cs" />
+    <Compile Include="Projects\ProjectIdentityFromCreateTicketRequestProvider.cs" />
+    <Compile Include="Tickets\TicketIdentityFromEditTicketRequestProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
