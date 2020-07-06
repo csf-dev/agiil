@@ -15,13 +15,13 @@ namespace Agiil.Domain.Tickets
         {
             if(userIdentity == null)
                 throw new ArgumentNullException(nameof(userIdentity));
-            if(targetEntity == null) return 0;
+            if(targetEntity == null) return default;
 
             var user = GetUser(userIdentity);
             var ticket = GetTicket(targetEntity);
 
             if(user == null || ticket == null)
-                return 0;
+                return default;
 
             var isTicketCreator = ticket.User == user;
             var isAContributor = user.ContributorTo.Contains(ticket.Project);
@@ -50,7 +50,7 @@ namespace Agiil.Domain.Tickets
                      | TicketCapability.AddComment;
             }
 
-            return 0;
+            return default;
         }
 
         User GetUser(IIdentity<User> identity)

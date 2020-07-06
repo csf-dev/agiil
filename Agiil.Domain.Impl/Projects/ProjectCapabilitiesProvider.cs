@@ -15,13 +15,13 @@ namespace Agiil.Domain.Projects
         {
             if(userIdentity == null)
                 throw new ArgumentNullException(nameof(userIdentity));
-            if(targetEntity == null) return 0;
+            if(targetEntity == null) return default;
 
             var user = GetUser(userIdentity);
             var project = data.Get(targetEntity);
 
             if(user == null || project == null)
-                return 0;
+                return default;
 
             var isAContributor = user.ContributorTo.Contains(project);
             var isAProjectAdmin = user.AdministratorOf.Contains(project);
@@ -43,7 +43,7 @@ namespace Agiil.Domain.Projects
                      | ProjectCapability.ViewTickets;
             }
 
-            return 0;
+            return default;
         }
 
         User GetUser(IIdentity<User> userIdentity)

@@ -10,7 +10,7 @@ namespace Agiil.Domain.Capabilities
     /// </summary>
     public interface IGetsUserCapabilities<TEntity, TCapability>
         where TEntity : IEntity
-        where TCapability : struct
+        where TCapability : struct, Enum
     {
         TCapability GetCapabilities(IIdentity<User> userIdentity, IIdentity<TEntity> targetEntity);
     }
