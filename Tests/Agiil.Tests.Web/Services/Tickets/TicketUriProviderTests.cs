@@ -14,7 +14,7 @@ using NUnit.Framework;
 
 namespace Agiil.Tests.Web.Services.Tickets
 {
-  [TestFixture,Parallelizable,Ignore("Temporarily ignored to see if this is the cause of hanging builds #AG377")]
+  [TestFixture,Parallelizable]
   public class TicketUriProviderTests
   {
     [Test, AutoMoqData]
