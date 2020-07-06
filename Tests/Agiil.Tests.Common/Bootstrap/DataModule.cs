@@ -3,8 +3,6 @@ using Autofac;
 using Agiil.Domain.Data;
 using Agiil.Tests.Data;
 using Agiil.Data;
-using NHibernate;
-using Agiil.Domain;
 
 namespace Agiil.Tests.Bootstrap
 {
