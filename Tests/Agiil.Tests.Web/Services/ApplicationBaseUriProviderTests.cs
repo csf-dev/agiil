@@ -55,7 +55,7 @@ namespace Agiil.Tests.Web.Services
       Assert.That(result, Is.EqualTo(expectedUri));
     }
 
-    [Test, Ignore("Attempt to fix hanging tests #AG377")]
+    [Test]
     public void GetBaseUri_returns_root_of_the_application_when_url_helper_indicates_a_path()
     {
       // Arrange
