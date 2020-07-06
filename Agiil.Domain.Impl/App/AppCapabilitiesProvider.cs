@@ -19,7 +19,7 @@ namespace Agiil.Domain.App
             if(user.SiteAdministrator)
                 return AppCapability.CreateProject;
 
-            return default;
+            return 0;
         }
 
         public AppCapabilitiesProvider(IEntityData data)

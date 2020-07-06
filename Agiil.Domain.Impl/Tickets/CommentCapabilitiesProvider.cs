@@ -15,13 +15,13 @@ namespace Agiil.Domain.Tickets
         {
             if(userIdentity == null)
                 throw new ArgumentNullException(nameof(userIdentity));
-            if(targetEntity == null) return default;
+            if(targetEntity == null) return 0;
 
             var user = GetUser(userIdentity);
             var comment = GetComment(targetEntity);
 
             if(user == null || comment == null)
-                return default;
+                return 0;
 
             var isAuthor = user == comment.User;
             var isProjectAdmin = user.AdministratorOf.Contains(comment.Ticket.Project);
@@ -36,7 +36,7 @@ namespace Agiil.Domain.Tickets
 
             }
 
-            return default;
+            return 0;
         }
 
         User GetUser(IIdentity<User> identity)

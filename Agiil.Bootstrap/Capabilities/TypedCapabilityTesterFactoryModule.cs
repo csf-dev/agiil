@@ -18,7 +18,7 @@ namespace Agiil.Bootstrap.Capabilities
 
             public IAssertsUserHasCapability<TEntity, TCapability> GetCapabilityTester<TEntity, TCapability>()
                 where TEntity : IEntity
-                where TCapability : struct,Enum
+                where TCapability : struct
             {
                 return scope.Resolve<IAssertsUserHasCapability<TEntity, TCapability>>();
             }

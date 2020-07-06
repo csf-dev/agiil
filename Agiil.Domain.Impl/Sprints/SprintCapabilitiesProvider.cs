@@ -15,13 +15,13 @@ namespace Agiil.Domain.Sprints
         {
             if(userIdentity == null)
                 throw new ArgumentNullException(nameof(userIdentity));
-            if(targetEntity == null) return default;
+            if(targetEntity == null) return 0;
 
             var user = GetUser(userIdentity);
             var sprint = GetSprint(targetEntity);
 
             if(user == null || sprint == null)
-                return default;
+                return 0;
 
             var isProjectContributor = user.ContributorTo.Contains(sprint.Project);
             var isProjectAdmin = user.AdministratorOf.Contains(sprint.Project);
@@ -38,7 +38,7 @@ namespace Agiil.Domain.Sprints
             if(isProjectContributor)
                 return SprintCapability.View;
 
-            return default;
+            return 0;
         }
 
         User GetUser(IIdentity<User> identity)

@@ -8,7 +8,7 @@ namespace Agiil.Domain.Capabilities
 {
     public class RequiredCapabilityTester<TEntity,TCapability> : IAssertsUserHasCapability<TEntity, TCapability>
         where TEntity : IEntity
-        where TCapability : struct,Enum
+        where TCapability : struct
     {
         readonly IGetsUserCapabilities<TEntity, TCapability> capabilitiesProvider;
 

@@ -6,7 +6,7 @@ namespace Agiil.Domain.Capabilities
 {
     public interface IAssertsUserHasCapability<TEntity,TCapability>
         where TEntity : IEntity
-        where TCapability : struct,Enum
+        where TCapability : struct
     {
         void AssertUserHasCapability(IIdentity<User> user, IIdentity<TEntity> targetEntity, TCapability requiredCapability);
     }
