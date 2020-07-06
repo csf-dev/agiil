@@ -67,7 +67,7 @@ Capability type: {capabilityType.FullName}");
 
         void AssertCurrentUserHasCapability<TEntity,TCapability>(object entityProviderValue, TCapability requiredCapability, string actionName)
             where TEntity : IEntity
-            where TCapability : struct,Enum
+            where TCapability : struct
         {
             var targetEntity = targetEntityProvider.GetTargetEntityIdentity<TEntity>(entityProviderValue);
             if(targetEntity == null) return;
