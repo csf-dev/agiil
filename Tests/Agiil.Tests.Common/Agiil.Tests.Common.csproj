@@ -250,6 +250,12 @@
     <Reference Include="System.Threading.Tasks.Extensions">
       <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.5.1\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.DecoratorBuilder">
+      <HintPath>..\..\packages\CSF.DecoratorBuilder.Interfaces.2.0.0\lib\net461\CSF.DecoratorBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.DecoratorBuilder.Impl">
+      <HintPath>..\..\packages\CSF.DecoratorBuilder.2.0.0\lib\net461\CSF.DecoratorBuilder.Impl.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
