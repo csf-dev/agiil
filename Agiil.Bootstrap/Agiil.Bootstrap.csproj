@@ -172,7 +172,7 @@
     <Compile Include="ContainerBuilderExtensions.cs" />
     <Compile Include="Labels\LabelsModule.cs" />
     <Compile Include="Tickets\TicketQueryProviderModule.cs" />
-    <Compile Include="Tickets\TicketFactoryModule.cs" />
+    <Compile Include="Tickets\TicketCreatorModule.cs" />
     <Compile Include="Tickets\TicketEditorModule.cs" />
     <Compile Include="Validation\AutofacGenericValidator.cs" />
     <Compile Include="Specifications\IsConcreteSpecification.cs" />

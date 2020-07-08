@@ -8,6 +8,7 @@ using AutoFixture.NUnit3;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CSF.Collections;
 
 namespace Agiil.Tests.TicketCriterionConvertionStrategies
 {
@@ -91,7 +92,7 @@ namespace Agiil.Tests.TicketCriterionConvertionStrategies
     {
       // Arrange
       Mock.Get(resolver)
-          .Setup(x => x.ResolveAll<string>(It.IsAny<IReadOnlyList<Value>>()))
+          .Setup(x => x.ResolveAll<string>(It.IsAny<IList<Value>>()))
           .Returns(resolvedValues);
       var criterion = Criterion.FromElementAndPredicateFunctionWithConstantValues("sprint", "isanyof", "one", "two");
       var expectedParams = new [] {
@@ -105,7 +106,7 @@ namespace Agiil.Tests.TicketCriterionConvertionStrategies
       sut.ConvertToSpecification(criterion);
 
       // Assert
-      Mock.Get(resolver).Verify(x => x.ResolveAll<string>(expectedParams), Times.Once);
+      Mock.Get(resolver).Verify(x => x.ResolveAll<string>(It.Is<IList<Value>>(l => new SetEqualityComparer<Value>().Equals(l, expectedParams))), Times.Once);
     }
 
     [Test,AutoMoqData]
@@ -116,7 +117,7 @@ namespace Agiil.Tests.TicketCriterionConvertionStrategies
     {
       // Arrange
       Mock.Get(resolver)
-          .Setup(x => x.ResolveAll<string>(It.IsAny<IReadOnlyList<Value>>()))
+          .Setup(x => x.ResolveAll<string>(It.IsAny<IList<Value>>()))
           .Returns(resolvedValues);
       var criterion = Criterion.FromElementAndPredicateFunctionWithConstantValues("sprint", "isanyof", paramValues);
 
@@ -136,7 +137,7 @@ namespace Agiil.Tests.TicketCriterionConvertionStrategies
     {
       // Arrange
       Mock.Get(resolver)
-          .Setup(x => x.ResolveAll<string>(It.IsAny<IReadOnlyList<Value>>()))
+          .Setup(x => x.ResolveAll<string>(It.IsAny<IList<Value>>()))
           .Returns(resolvedValues);
       var criterion = Criterion.FromElementAndPredicateFunctionWithConstantValues("sprint", "isanyof", paramValues);
 

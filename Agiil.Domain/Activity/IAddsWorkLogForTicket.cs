@@ -1,8 +1,12 @@
 ﻿using System;
+using Agiil.Domain.Capabilities;
+using Agiil.Domain.Tickets;
+
 namespace Agiil.Domain.Activity
 {
-  public interface IAddsWorkLogForTicket
-  {
-    AddWorklogResponse AddWorkLog(AddWorkLogRequest request);
-  }
+    [EnforceCapabilities]
+    public interface IAddsWorkLogForTicket
+    {
+        AddWorklogResponse AddWorkLog([RequireCapability(TicketCapability.Edit)] AddWorkLogRequest request);
+    }
 }

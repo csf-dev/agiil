@@ -6,6 +6,6 @@ namespace Agiil.Domain.Projects
     [EnforceCapabilities]
     public interface IEditsProject
     {
-        EditProjectResponse EditProject([RequireCapability(ProjectCapability.EditProject)] EditProjectRequest request);
+        EditProjectResponse EditProject([RequireCapability(ProjectCapability.Edit)] EditProjectRequest request);
     }
 }

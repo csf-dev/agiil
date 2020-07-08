@@ -77,10 +77,10 @@
       <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core">
-      <HintPath>..\..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+      <HintPath>..\..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
-      <HintPath>..\..\packages\Moq.4.5.30\lib\net45\Moq.dll</HintPath>
+      <HintPath>..\..\packages\Moq.4.14.5\lib\net45\Moq.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -211,6 +211,13 @@
     <Reference Include="AutoFixture.AutoMoq">
       <HintPath>..\..\packages\AutoFixture.AutoMoq.4.11.0\lib\net452\AutoFixture.AutoMoq.dll</HintPath>
     </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions">
+      <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.5.1\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -273,6 +280,7 @@
     <Compile Include="Services\Tickets\TicketUriProviderTests.cs" />
     <Compile Include="Services\NewtonsoftJsonObjectSerialiserTests.cs" />
     <Compile Include="Bootstrap\SessionModule.cs" />
+    <Compile Include="Bootstrap\NoCapabilitiesAssertionsModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

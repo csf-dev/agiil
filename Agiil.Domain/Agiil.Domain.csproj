@@ -260,6 +260,13 @@
     <Compile Include="Projects\IEditsProject.cs" />
     <Compile Include="Projects\EditProjectRequest.cs" />
     <Compile Include="Projects\EditProjectResponse.cs" />
+    <Compile Include="Tickets\TicketCapability.cs" />
+    <Compile Include="Tickets\CommentCapability.cs" />
+    <Compile Include="Sprints\SprintCapability.cs" />
+    <Compile Include="Capabilities\IdentityProviderNotAvailableException.cs" />
+    <Compile Include="Capabilities\CapabilitiesCouldNotBeCheckedException.cs" />
+    <Compile Include="Capabilities\IDetectsAmbientCapabilityAssertion.cs" />
+    <Compile Include="Capabilities\IGetsTargetEntityIdentityProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

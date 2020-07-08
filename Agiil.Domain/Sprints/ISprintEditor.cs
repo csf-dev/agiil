@@ -1,8 +1,11 @@
 ﻿using System;
+using Agiil.Domain.Capabilities;
+
 namespace Agiil.Domain.Sprints
 {
-  public interface ISprintEditor
-  {
-    EditSprintResponse Edit(EditSprintRequest request);
-  }
+    [EnforceCapabilities]
+    public interface ISprintEditor
+    {
+        EditSprintResponse Edit([RequireCapability(SprintCapability.Edit)] EditSprintRequest request);
+    }
 }

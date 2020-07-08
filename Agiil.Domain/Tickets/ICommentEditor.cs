@@ -1,8 +1,11 @@
 ﻿using System;
+using Agiil.Domain.Capabilities;
+
 namespace Agiil.Domain.Tickets
 {
-  public interface ICommentEditor
-  {
-    EditCommentResponse Edit(EditCommentRequest request);
-  }
+    [EnforceCapabilities]
+    public interface ICommentEditor
+    {
+        EditCommentResponse Edit([RequireCapability(CommentCapability.Edit)] EditCommentRequest request);
+    }
 }

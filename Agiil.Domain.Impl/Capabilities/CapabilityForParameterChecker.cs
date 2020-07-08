@@ -2,6 +2,7 @@
 using System.Reflection;
 using CSF.Entities;
 using CSF.Reflection;
+using log4net;
 
 namespace Agiil.Domain.Capabilities
 {
@@ -20,6 +21,7 @@ namespace Agiil.Domain.Capabilities
         readonly IGetsEntityTypeForCapability entityTypeProvider;
         readonly IGetsCurrentCapabilityUser userProvider;
         readonly IGetsTargetEntityIdentity targetEntityProvider;
+        readonly ILog logger;
 
         public void AssertCurrentUserHasCapability(CapabilitiesAssertionSpec assertionSpec)
         {
@@ -29,6 +31,19 @@ namespace Agiil.Domain.Capabilities
             var capabilityType = GetCapabilityType(assertionSpec.CapabilityAttribute);
             var requiredCapability = assertionSpec.CapabilityAttribute.RequiredCapability;
             var entityType = entityTypeProvider.GetEntityType(requiredCapability);
+
+            if(entityType == null)
+                throw new CapabilitiesCouldNotBeCheckedException($@"No entity type could be found to match the capability type {capabilityType}.
+Every type of required capability must have a corresponding entity type, provided by the service {nameof(IGetsEntityTypeForCapability)}.
+Have you forgotten to add the entity type to the default implementation of that service?");
+
+            if(logger.IsDebugEnabled)
+            {
+                logger.Debug($@"Executing {OpenGenericAssertMethod.Name} to assert that the user has required capabilities.
+    Action name: {assertionSpec.ActionName}
+    Entity type: {entityType.FullName}
+Capability type: {capabilityType.FullName}");
+            }
 
             // Need to use reflection to get into the generic method from a non-generic one.
             // The trade-off is worth it IMO, because it allows the rest of the capabilities stack 'from here downwards' to be strongly-typed.
@@ -68,25 +83,36 @@ namespace Agiil.Domain.Capabilities
             catch(UserMustHaveCapabilityException e)
             {
                 // The reason for the catch-and-rethrow is to add the 'action name' information to the exception.
-                throw new UserMustHaveCapabilityException($"{e.Message}\nAction: {actionName}",
-                                                          e,
-                                                          e.UserIdentity,
-                                                          e.EntityIdentity,
-                                                          e.RequiredCapabilities,
-                                                          e.ActualCapabilities,
-                                                          actionName);
+                var exception = new UserMustHaveCapabilityException($"{e.Message}\nAction: {actionName}",
+                                                                    e,
+                                                                    e.UserIdentity,
+                                                                    e.EntityIdentity,
+                                                                    e.RequiredCapabilities,
+                                                                    e.ActualCapabilities,
+                                                                    actionName);
+                if(logger.IsInfoEnabled)
+                {
+                    logger.Info($@"{e.UserIdentity} does not have capability for action {actionName}
+       Entity identity: {e.EntityIdentity}
+ Required capabilities: {e.RequiredCapabilities}
+   Actual capabilities: {e.ActualCapabilities}");
+                }
+
+                throw exception;
             }
         }
 
         public CapabilityForParameterChecker(IGetsTypedCapabilityTester testerFactory,
                                              IGetsEntityTypeForCapability entityTypeProvider,
                                              IGetsCurrentCapabilityUser userProvider,
-                                             IGetsTargetEntityIdentity targetEntityProvider)
+                                             IGetsTargetEntityIdentity targetEntityProvider,
+                                             ILog logger)
         {
             this.testerFactory = testerFactory ?? throw new ArgumentNullException(nameof(testerFactory));
             this.entityTypeProvider = entityTypeProvider ?? throw new ArgumentNullException(nameof(entityTypeProvider));
             this.userProvider = userProvider ?? throw new ArgumentNullException(nameof(userProvider));
             this.targetEntityProvider = targetEntityProvider ?? throw new ArgumentNullException(nameof(targetEntityProvider));
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
     }
 }

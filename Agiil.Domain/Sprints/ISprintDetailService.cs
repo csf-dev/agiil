@@ -1,10 +1,12 @@
 ﻿using System;
+using Agiil.Domain.Capabilities;
 using CSF.Entities;
 
 namespace Agiil.Domain.Sprints
 {
-  public interface ISprintDetailService
-  {
-    Sprint GetSprint(IIdentity<Sprint> identity);
-  }
+    [EnforceCapabilities]
+    public interface ISprintDetailService
+    {
+        Sprint GetSprint([RequireCapability(SprintCapability.View)] IIdentity<Sprint> identity);
+    }
 }

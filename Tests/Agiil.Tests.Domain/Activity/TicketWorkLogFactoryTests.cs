@@ -36,7 +36,7 @@ namespace Agiil.Tests.Activity
                                                                                [Frozen] IGetsTicketByReference ticketQuery,
                                                                                TicketWorkLogFactory sut)
     {
-      Mock.Get(ticketQuery).Setup(x => x.GetTicketByReference(It.IsAny<string>())).Returns(() => null);
+      Mock.Get(ticketQuery).Setup(x => x.GetTicketByReference(It.IsAny<TicketReference>())).Returns(() => null);
       var result = sut.GetWorkLog(request);
 
       Assert.That(result?.Success, Is.False);

@@ -11,7 +11,7 @@ namespace Agiil.Web.Bootstrap
     protected override void Load(ContainerBuilder builder)
     {
       BulkRegistrationHelper.Default.RegisterAllExcept<IServicesNamespaceMarker>(builder,
-                                                                                 typeof(SimpleSampleProject));
+                                                                                 new[] { typeof(SimpleSampleProject) });
     }
   }
 }
