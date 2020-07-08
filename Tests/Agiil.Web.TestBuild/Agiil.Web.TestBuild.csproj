@@ -99,6 +99,12 @@
     <Reference Include="CSF.Specifications">
       <HintPath>..\..\packages\CSF.Specifications.2.0.0\lib\net45\CSF.Specifications.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.DecoratorBuilder">
+      <HintPath>..\..\packages\CSF.DecoratorBuilder.Interfaces.2.0.0\lib\net461\CSF.DecoratorBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.DecoratorBuilder.Impl">
+      <HintPath>..\..\packages\CSF.DecoratorBuilder.2.0.0\lib\net461\CSF.DecoratorBuilder.Impl.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
