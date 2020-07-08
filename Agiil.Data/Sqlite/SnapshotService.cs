@@ -18,7 +18,7 @@ namespace Agiil.Data.Sqlite
             var dataFile = dbFileProvider.GetDatabaseFile();
             fileService.Replace(snapshot.File, dataFile);
 
-            Console.WriteLine($"Restored database {dataFile.Name} using {snapshot.File.Name}");
+            logger.Debug($"Restored database {dataFile.Name} using {snapshot.File.Name}");
         }
 
         public Snapshot TakeDatabaseSnapshot()

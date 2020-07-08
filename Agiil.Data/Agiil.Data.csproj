@@ -176,6 +176,7 @@
     <Compile Include="ConventionMappings\IGetsWhetherPropertyShouldBeMapped.cs" />
     <Compile Include="ClassMappings\UserMapping.cs" />
     <Compile Include="ClassMappings\ProjectMapping.cs" />
+    <Compile Include="Sqlite\IGetsDatabaseFilePath.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ConventionMappings\" />

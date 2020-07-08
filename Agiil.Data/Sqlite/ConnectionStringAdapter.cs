@@ -1,38 +1,32 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using log4net;
 
 namespace Agiil.Data.Sqlite
 {
-    public class ConnectionStringAdapter
+    public class ConnectionStringAdapter : IGetsDatabaseFilePath
     {
         const string DataFilePattern = @"Data Source=([^;]+)";
         static readonly Regex DataFileMatcher = new Regex(DataFilePattern,
                                                           RegexOptions.CultureInvariant
                                                           | RegexOptions.IgnoreCase
                                                           | RegexOptions.Compiled);
+        readonly ILog logger;
 
         public string ConnectionString { get; }
 
         public string GetDataFile()
         {
             var match = DataFileMatcher.Match(ConnectionString);
-            Console.WriteLine(ConnectionString);
+            logger.Debug(ConnectionString);
 
             return match.Success ? match.Groups[1].Value : null;
         }
 
-        public ConnectionStringAdapter(string connectionString)
+        public ConnectionStringAdapter(string connectionString, ILog logger)
         {
             ConnectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
-        }
-
-        public static ConnectionStringAdapter Create(IConnectionStringProvider connectionStringProvider)
-        {
-            if(connectionStringProvider == null)
-                throw new ArgumentNullException(nameof(connectionStringProvider));
-
-            var connString = connectionStringProvider.GetConnectionString();
-            return new ConnectionStringAdapter(connString);
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
     }
 }
