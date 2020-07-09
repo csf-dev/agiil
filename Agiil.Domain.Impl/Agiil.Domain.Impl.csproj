@@ -97,6 +97,7 @@
     <Reference Include="CSF.Reflection">
       <HintPath>..\packages\CSF.Reflection.3.0.0\lib\net45\CSF.Reflection.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -119,7 +120,6 @@
     <Compile Include="Tickets\CommentFactory.cs" />
     <Compile Include="Tickets\CreateCommentValidatorFactory.cs" />
     <Compile Include="Tickets\EditCommentValidatorFactory.cs" />
-    <Compile Include="Validation\MustBeLoggedInAsCommentAuthorRule.cs" />
     <Compile Include="Tickets\CommentEditor.cs" />
     <Compile Include="Tickets\CommentReader.cs" />
     <Compile Include="Tickets\TicketOpenerCloser.cs" />
@@ -281,6 +281,7 @@
     <Compile Include="Projects\ProjectIdentityFromProjectCodeProvider.cs" />
     <Compile Include="Projects\ProjectIdentityFromCreateTicketRequestProvider.cs" />
     <Compile Include="Tickets\TicketIdentityFromEditTicketRequestProvider.cs" />
+    <Compile Include="AllEnumFlagValuesProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

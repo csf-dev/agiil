@@ -10,6 +10,7 @@ namespace Agiil.Domain.Tickets
     public class CommentCapabilitiesProvider : IGetsUserCapabilities<Comment, CommentCapability>
     {
         readonly IEntityData data;
+        readonly IGetsAllEnumFlags flagsProvider;
 
         public CommentCapability GetCapabilities(IIdentity<User> userIdentity, IIdentity<Comment> targetEntity)
         {
@@ -28,13 +29,7 @@ namespace Agiil.Domain.Tickets
             var isASiteAdmin = user.SiteAdministrator;
 
             if(isAuthor || isProjectAdmin || isASiteAdmin)
-            {
-                // IE: All of the capabilities!
-                return Enum.GetValues(typeof(CommentCapability))
-                    .Cast<CommentCapability>()
-                    .Aggregate(default(CommentCapability), (acc, next) => acc | next);
-
-            }
+                return flagsProvider.GetValueWithAllFlags<CommentCapability>();
 
             return default;
         }
@@ -62,9 +57,10 @@ namespace Agiil.Domain.Tickets
                 .FirstOrDefault();
         }
 
-        public CommentCapabilitiesProvider(IEntityData data)
+        public CommentCapabilitiesProvider(IEntityData data, IGetsAllEnumFlags flagsProvider)
         {
             this.data = data ?? throw new ArgumentNullException(nameof(data));
+            this.flagsProvider = flagsProvider ?? throw new ArgumentNullException(nameof(flagsProvider));
         }
     }
 }
