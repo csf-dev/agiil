@@ -123,7 +123,7 @@
     <Compile Include="Tickets\CommentEditor.cs" />
     <Compile Include="Tickets\CommentReader.cs" />
     <Compile Include="Tickets\TicketOpenerCloser.cs" />
-    <Compile Include="Projects\FirstProjectInDatabaseProvider.cs" />
+    <Compile Include="Projects\BestProjectForCurrentUserProvider.cs" />
     <Compile Include="Sprints\SprintCreator.cs" />
     <Compile Include="Validation\EndDateMustNotBeBeforeStartDateRule.cs" />
     <Compile Include="Sprints\CreateSprintValidatorFactory.cs" />
@@ -282,6 +282,9 @@
     <Compile Include="Projects\ProjectIdentityFromCreateTicketRequestProvider.cs" />
     <Compile Include="Tickets\TicketIdentityFromEditTicketRequestProvider.cs" />
     <Compile Include="AllEnumFlagValuesProvider.cs" />
+    <Compile Include="TicketSearch\DoesSearchContainProjectCriteriaVisitor.cs" />
+    <Compile Include="TicketSearch\CurrentProjectCriterionAddingSpecProviderDecorator.cs" />
+    <Compile Include="Tickets\Specs\IsInProject.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

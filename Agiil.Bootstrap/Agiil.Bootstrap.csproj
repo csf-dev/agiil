@@ -214,6 +214,7 @@
     <Compile Include="Capabilities\CapabilitiesEnforcingInterceptorModule.cs" />
     <Compile Include="Projects\ProjectCreatorModule.cs" />
     <Compile Include="Projects\ProjectEditorModule.cs" />
+    <Compile Include="Tickets\TicketSpecificationProviderModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

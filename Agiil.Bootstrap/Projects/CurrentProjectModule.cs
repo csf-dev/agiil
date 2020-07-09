@@ -9,7 +9,7 @@ namespace Agiil.Web.Bootstrap
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterDecoratedService<IGetsCurrentProject>(x => x
-                .UsingInitialImpl<FirstProjectInDatabaseProvider>()
+                .UsingInitialImpl<BestProjectForCurrentUserProvider>()
                 .ThenWrapWith<CurrentlyChosenProjectDecorator>());
         }
     }
