@@ -5,7 +5,7 @@ namespace Agiil.Data.Sqlite
 {
   public class DatabaseFileProvider
   {
-    readonly ConnectionStringAdapter connectionStringAdapter;
+    readonly IGetsDatabaseFilePath connectionStringAdapter;
 
     public FileInfo GetDatabaseFile()
     {
@@ -13,9 +13,10 @@ namespace Agiil.Data.Sqlite
       return new FileInfo(filePath);
     }
 
-    public DatabaseFileProvider(IConnectionStringProvider connectionStringProvider)
+    public DatabaseFileProvider(Func<IConnectionStringProvider, IGetsDatabaseFilePath> connectionStringAdapterFactory,
+                                IConnectionStringProvider connectionStringProvider)
     {
-      connectionStringAdapter = ConnectionStringAdapter.Create(connectionStringProvider);
+      connectionStringAdapter = connectionStringAdapterFactory(connectionStringProvider);
     }
   }
 }
