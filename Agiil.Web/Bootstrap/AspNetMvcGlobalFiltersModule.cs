@@ -16,6 +16,7 @@ namespace Agiil.Web.Bootstrap
             typeof(VersionInfoModelPopulator),
             typeof(BaseUriModelPopulator),
             typeof(ObjectSerializerPopulator),
+            typeof(AvailableProjectsModelPopulator),
         };
 
         protected override void Load(ContainerBuilder builder)

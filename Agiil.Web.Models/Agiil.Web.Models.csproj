@@ -114,6 +114,9 @@
     <Compile Include="Projects\CreateProjectModel.cs" />
     <Compile Include="Projects\EditProjectModel.cs" />
     <Compile Include="Projects\ViewProjectModel.cs" />
+    <Compile Include="Projects\AvailableProjectsModel.cs" />
+    <Compile Include="Projects\AvailableProjectModel.cs" />
+    <Compile Include="Projects\IHasAvailableProjects.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

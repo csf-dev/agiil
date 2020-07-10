@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Site navigation widget</title>
+<base href="../../../" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
+<style>
+@import url('Content/Css/Reset.css');
+@import url('Content/Css/StandardPage.css');
+</style>
+</head>
+<body>
+<header class="standard">
+  <div>
+  <nav class="site_navigation">
+    <h5>Application navigation</h5>
+    <ul>
+      <li><a href="Projects">Project list</a></li>
+      <li><a href="Tickets">Ticket list</a></li>
+      <li><a href="NewTicket">Create ticket</a></li>
+      <li><a href="NewSprint">Create sprint</a></li>
+      <li><a href="Sprints">Sprint list</a></li>
+      <li><a href="Labels">Labels</a></li>
+      <li metal:define-macro="chooser"
+          tal:define="model here/AvailableProjects;
+                      isLoggedIn here/LoginState/IsLoggedIn | nothing;
+                      hasMultipleProjects model/MultipleProjectsAvaialble | nothing"
+          tal:condition="csharp:isLoggedIn &amp;&amp; hasMultipleProjects">
+        <form class="current_project_chooser"
+              method="post"
+              action="SetCurrentProject/Index">
+            <fieldset>
+                <label>
+                    <span>Current project</span>
+                    <select name="projectId">
+                        <tal:item repeat="project model/Projects"><option tal:define="className project/Class;
+                                                                                      selected project/Selected;
+                                                                                      name project/Name;
+                                                                                      code project/Code;
+                                                                                      identity project/Identity;"
+                                                                          tal:attributes="class className;
+                                                                                          selected selected;
+                                                                                          value identity/Value;"
+                                                                          tal:content="string:${code}: $name">Project name</option></tal:item>
+                    </select>
+                </label>
+                <button>Select</button>
+            </fieldset>
+        </form>
+      </li>
+    </ul>
+  </nav>
+  </div>
+</header>
+<div>
+  Page content here
+</div>
+<footer>
+
+</footer>
+</body>
+</html>
+
+

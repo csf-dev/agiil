@@ -32,6 +32,12 @@ body>header {
       background-color: $subtle-keyline-color;
       color: #009;
     }
+    .current_project_chooser span {
+      display: none;
+    }
+    .current_project_chooser .current_project {
+      font-weight: bold;
+    }
   }
   
   .login_logout_control {

@@ -449,6 +449,8 @@
     <Compile Include="Controllers\NewProjectController.cs" />
     <Compile Include="ActionFilters\RequireAppAdminAttribute.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="ActionFilters\AvailableProjectsModelPopulator.cs" />
+    <Compile Include="Controllers\SetCurrentProjectController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -461,6 +463,7 @@
     <None Include="packages.config" />
     <None Include="Content\Scss\**\*.scss" />
     <None Include="Content\Scss\EditProject.scss" />
+    <Content Include="Views\Shared\Controls\ProjectChooser.pt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\**\*.pt" />

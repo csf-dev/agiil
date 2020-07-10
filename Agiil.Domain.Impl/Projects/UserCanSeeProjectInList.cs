@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using Agiil.Domain.Auth;
+using CSF.Entities;
 using CSF.Specifications;
 
 namespace Agiil.Domain.Projects
@@ -10,22 +11,19 @@ namespace Agiil.Domain.Projects
     public class UserCanSeeProjectInList : ISpecificationForProjectsWhichTheCurrentUserCanSeeInAList
     {
         readonly ICurrentUserReader userProvider;
-        readonly ISpecificationForSiteAdministrators siteAdminSpec;
+        readonly Func<IIdentity<User>, ISpecForProjectsAvailableForAUser> availableProjectsSpecFactory;
 
         public Expression<Func<Project, bool>> GetExpression()
         {
-            // This is really only temporary logic.  Right now it
-            // means that only site admins can see lists of projects.
-            // Later I can rewrite this.
-
             var user = userProvider.RequireCurrentUser();
-            return project => siteAdminSpec.Matches(user);
+            var availableProjectsSpec = availableProjectsSpecFactory(user.GetIdentity());
+            return availableProjectsSpec.GetExpression();
         }
 
-        public UserCanSeeProjectInList(ICurrentUserReader userProvider, ISpecificationForSiteAdministrators siteAdminSpec)
+        public UserCanSeeProjectInList(ICurrentUserReader userProvider, Func<IIdentity<User>,ISpecForProjectsAvailableForAUser> availableProjectsSpecFactory)
         {
             this.userProvider = userProvider ?? throw new ArgumentNullException(nameof(userProvider));
-            this.siteAdminSpec = siteAdminSpec ?? throw new ArgumentNullException(nameof(siteAdminSpec));
+            this.availableProjectsSpecFactory = availableProjectsSpecFactory ?? throw new ArgumentNullException(nameof(availableProjectsSpecFactory));
         }
     }
 }

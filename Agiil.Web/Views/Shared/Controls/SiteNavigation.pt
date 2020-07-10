@@ -25,6 +25,7 @@
       <li><a href="NewSprint">Create sprint</a></li>
       <li><a href="Sprints">Sprint list</a></li>
       <li><a href="Labels">Labels</a></li>
+      <li metal:use-macro="Views/Shared/Controls/ProjectChooser/macros/chooser">Project chooser</li>
     </ul>
   </nav>
   </div>

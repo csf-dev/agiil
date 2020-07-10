@@ -109,6 +109,7 @@
     <Compile Include="Projects\ProjectToEditProjectModelProfile.cs" />
     <Compile Include="Projects\EditProjectRequestToProjectProfile.cs" />
     <Compile Include="Projects\EditProjectModelToEditProjectRequestProfile.cs" />
+    <Compile Include="Projects\ProjectToAvailableProjectModelProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
