@@ -12,6 +12,7 @@ export default class TicketDetail extends TicketSummary {
     relationships : Array<TicketRelationship>;
     sprint : ?Sprint;
     workLoggedMinutes : number;
+    canEdit : boolean;
 
     get hasWorkLogged() { return this.workLoggedMinutes > 0; }
     get hasRelationships() { return this.relationships && this.relationships.length >= 1; }
@@ -29,5 +30,6 @@ export default class TicketDetail extends TicketSummary {
         this.author = '';
         this.created = '';
         this.workLoggedMinutes = 0;
+        this.canEdit = false;
     }
 }

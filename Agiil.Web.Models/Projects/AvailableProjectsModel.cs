@@ -7,6 +7,8 @@ namespace Agiil.Web.Models.Projects
     {
         public bool MultipleProjectsAvaialble => Projects?.Count > 1;
 
+        public bool CanCreateSprints { get; set; }
+
         public IList<AvailableProjectModel> Projects { get; set; }
     }
 }

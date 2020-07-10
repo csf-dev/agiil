@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Agiil.Domain.Auth;
+using Agiil.Domain.Capabilities;
 using Agiil.Domain.Projects;
 using Agiil.Web.Models.Projects;
 using AutoMapper;
@@ -16,6 +17,7 @@ namespace Agiil.Web.ActionFilters
         readonly IGetsCurrentProject currentProjectProvider;
         readonly IMapper mapper;
         readonly ICurrentUserReader userReader;
+        private readonly IDeterminesIfCurrentUserHasCapability capabilityProvider;
 
         public void OnActionExecuted(ActionExecutedContext filterContext)
         {
@@ -37,6 +39,8 @@ namespace Agiil.Web.ActionFilters
 
             return new AvailableProjectsModel {
                 Projects = mappedProjects,
+                CanCreateSprints = capabilityProvider.DoesUserHaveCapability(ProjectCapability.CreateSprint,
+                                                                             currentProject.GetIdentity()),
             };
         }
 
@@ -45,12 +49,14 @@ namespace Agiil.Web.ActionFilters
         public AvailableProjectsModelPopulator(IGetsListOfProjects projectsProvider,
                                                IGetsCurrentProject currentProjectProvider,
                                                IMapper mapper,
-                                               ICurrentUserReader userReader)
+                                               ICurrentUserReader userReader,
+                                               IDeterminesIfCurrentUserHasCapability capabilityProvider)
         {
             this.projectsProvider = projectsProvider ?? throw new ArgumentNullException(nameof(projectsProvider));
             this.currentProjectProvider = currentProjectProvider ?? throw new ArgumentNullException(nameof(currentProjectProvider));
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             this.userReader = userReader ?? throw new ArgumentNullException(nameof(userReader));
+            this.capabilityProvider = capabilityProvider ?? throw new ArgumentNullException(nameof(capabilityProvider));
         }
     }
 }

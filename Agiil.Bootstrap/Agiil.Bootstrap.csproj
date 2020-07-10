@@ -150,6 +150,9 @@
       <HintPath>..\packages\Autofac.Extras.DynamicProxy.4.5.0\lib\net45\Autofac.Extras.DynamicProxy.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Agiil.Web">
+      <HintPath>..\Agiil.Web\bin\Agiil.Web.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -215,6 +218,7 @@
     <Compile Include="Projects\ProjectCreatorModule.cs" />
     <Compile Include="Projects\ProjectEditorModule.cs" />
     <Compile Include="Tickets\TicketSpecificationProviderModule.cs" />
+    <Compile Include="Capabilities\CapabilitiesProviderModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

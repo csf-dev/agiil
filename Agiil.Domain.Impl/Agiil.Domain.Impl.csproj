@@ -287,6 +287,7 @@
     <Compile Include="Tickets\Specs\IsInProject.cs" />
     <Compile Include="Projects\ProjectIsAvailableForUserSpec.cs" />
     <Compile Include="Projects\CurrentProjectSetter.cs" />
+    <Compile Include="Capabilities\CapabilitiesForCurrentUserProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">

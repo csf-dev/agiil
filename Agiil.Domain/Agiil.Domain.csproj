@@ -269,6 +269,8 @@
     <Compile Include="Capabilities\IGetsTargetEntityIdentityProvider.cs" />
     <Compile Include="IGetsAllEnumFlags.cs" />
     <Compile Include="TicketSearch\IGetsWhetherSearchContainsProjectCriteria.cs" />
+    <Compile Include="Capabilities\IDeterminesIfCurrentUserHasCapability.cs" />
+    <Compile Include="Capabilities\IGetsUserCapabilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

@@ -32,19 +32,33 @@ export function CommentsListItem(comment : TicketComment, idx : number) {
 }
 
 export function CommentAdminTools(props : { comment : TicketComment }) {
-    if(!props.comment.isMine) return null;
-
     return (
         <>
-            <p>
-                <a href={props.comment.editUrl} className="edit_comment">Edit this comment</a>
-            </p>
-            <form method="post" action="Comment/ConfirmDelete" >
-                <fieldset>
-                    <input type="hidden" name="id" value={props.comment.id} />
-                    <button className="delete_comment">Delete this comment</button>
-                </fieldset>
-            </form>
+            <EditComment comment={props.comment} />
+            <DeleteComment comment={props.comment} />
         </>
+    );
+}
+
+function EditComment(props : { comment : TicketComment }) {
+    if(!props.comment.canEdit) return null;
+
+    return (
+        <p>
+            <a href={props.comment.editUrl} className="edit_comment">Edit this comment</a>
+        </p>
+    );
+}
+
+function DeleteComment(props : { comment : TicketComment }) {
+    if(!props.comment.canDelete) return null;
+    
+    return (
+        <form method="post" action="Comment/ConfirmDelete" >
+            <fieldset>
+                <input type="hidden" name="id" value={props.comment.id} />
+                <button className="delete_comment">Delete this comment</button>
+            </fieldset>
+        </form>
     );
 }

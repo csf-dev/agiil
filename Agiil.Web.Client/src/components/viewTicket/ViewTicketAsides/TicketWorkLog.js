@@ -8,7 +8,7 @@ export function TicketWorkLog(props : ViewTicketProps) {
         <AsideItem>
             <h3>Work log</h3>
             {getWorkLogMessage(props)}
-            <p><a href={getLogWorkUrl(props)}>Log work</a></p>
+            {getWorkLogLink(props)}
         </AsideItem>
     );
 }
@@ -22,6 +22,11 @@ function getWorkLogMessage(props : ViewTicketProps) {
             <span className="total_minutes">{props.ticket.workLoggedMinutes}</span> minutes of work logged
         </p>
     );
+}
+
+function getWorkLogLink(props : ViewTicketProps) {
+    if(!props.ticket.canEdit) return null;
+    return (<p><a href={getLogWorkUrl(props)}>Log work</a></p>);
 }
 
 function getLogWorkUrl(props : ViewTicketProps) {

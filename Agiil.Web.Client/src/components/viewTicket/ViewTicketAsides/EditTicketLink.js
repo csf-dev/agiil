@@ -4,6 +4,8 @@ import type { ViewTicketProps } from 'components/viewTicket';
 import { AsideItem } from 'components/pageLayout';
 
 export function EditTicketLink(props : ViewTicketProps) {
+    if(!props.ticket.canEdit) return null;
+    
     return (
         <AsideItem>
             <h3>Edit</h3>

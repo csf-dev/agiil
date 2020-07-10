@@ -24,6 +24,7 @@ namespace Agiil.ObjectMaps.Tickets
               .ForMember(x => x.TypeName, o => o.ResolveUsing(t => t.Type?.Name))
               .ForMember(x => x.CommaSeparatedLabelNames, o => o.ResolveUsing<CommaSeparatedLabelNameResolver, ISet<Label>>(t => t.Labels))
               .ForMember(x => x.TotalWorkLogged, o => o.ResolveUsing<TotalWorkLoggedForTicketResolver>())
+              .ForMember(x => x.CanEdit, o => o.Ignore())
               .AfterMap((ticket, dto, ctx) => {
                   var summaryProvider = (IGetsRelationshipSummary) ctx.Mapper.ServiceCtor(typeof(IGetsRelationshipSummary));
                   dto.Comments = GetOrderedComments(dto);

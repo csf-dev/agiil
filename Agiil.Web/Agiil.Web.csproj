@@ -451,6 +451,7 @@
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="ActionFilters\AvailableProjectsModelPopulator.cs" />
     <Compile Include="Controllers\SetCurrentProjectController.cs" />
+    <Compile Include="Services\Tickets\UserCanEditTicketDetailDecorator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
