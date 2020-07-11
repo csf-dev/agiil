@@ -71,7 +71,7 @@ namespace Agiil.Web.Controllers
                 throw new NotSupportedException("Failure to log out is not supported.");
             }
 
-            Session.Abandon();
+            Session?.Abandon();
             return RedirectToAction(nameof(LoginController.LoggedOut), this.GetName<LoginController>());
         }
 
