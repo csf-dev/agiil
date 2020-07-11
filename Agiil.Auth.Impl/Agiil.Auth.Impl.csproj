@@ -31,7 +31,6 @@
     <PackageReference Include="CSF.Utils" Version="6.1.1" />
     <PackageReference Include="CSF.ORM" Version="2.0.3" />
     <PackageReference Include="CSF.ORM.Entities" Version="2.0.3" />
-
     <PackageReference Include="Iesi.Collections" Version="4.0.0.4000" />
     <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.1" />
     <PackageReference Include="Microsoft.AspNet.Identity.Owin" Version="2.2.1" />
@@ -62,5 +61,8 @@
     </Compile>
   </ItemGroup>
     
+  <ItemGroup>
+    <None Remove="packages.config" />
+  </ItemGroup>
   <Import Project="..\Tools\EnableMultiTargetingWithMono.targets" />
 </Project>

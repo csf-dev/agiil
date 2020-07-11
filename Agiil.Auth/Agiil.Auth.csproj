@@ -30,5 +30,8 @@
     <PackageReference Include="CSF.Security" Version="2.0.2" />
   </ItemGroup>
     
+  <ItemGroup>
+    <None Remove="packages.config" />
+  </ItemGroup>
   <Import Project="..\Tools\EnableMultiTargetingWithMono.targets" />
 </Project>
