@@ -13,10 +13,11 @@ namespace Agiil.Web.Services.Auth
         public LoginStateModel GetLoginState()
         {
             var userInfo = userReader.GetCurrentUserInfo();
+            var user = (userInfo?.Identity != null) ? data.Get(userInfo.Identity) : null;
 
             return new LoginStateModel {
                 UserInfo = userInfo,
-                IsSiteAdmin = (userInfo != null)? data.Get(userInfo.Identity).SiteAdministrator : false,
+                IsSiteAdmin = user?.SiteAdministrator == true,
             };
         }
 
