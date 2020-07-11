@@ -52,6 +52,12 @@
     <!-- Referenced assemblies -->
     <Copy SourceFiles="@(ReferenceCopyLocalPaths)" DestinationFolder="$(WebAppStagingDir)\bin" SkipUnchangedFiles="true" />
 
+    <!-- The CSF.Reflection3 assembly
+         This is just here as a workaround to the fact that ZPT-Sharp doesn't support CSF.Reflection version 3
+         and so requires an older version of the assembly.  This workaround leverages the fact that they are strong-named
+         to copy both versions into the output directory under different filenames, so that they can coexist -->
+    <Copy SourceFiles="$(OutputPath)\CSF.Reflection3.dll" DestinationFolder="$(WebAppStagingDir)\bin" SkipUnchangedFiles="true" />
+
     <!-- Any other files marked as "Content" -->
     <Copy SourceFiles="@(Content)" DestinationFolder="$(WebAppStagingDir)\%(Content.RelativeDir)" />
   </Target>
