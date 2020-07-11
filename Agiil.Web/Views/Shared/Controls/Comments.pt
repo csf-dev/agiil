@@ -21,8 +21,7 @@
         tal:define="comments ticket/Comments"
         class="comment_list">
       <li tal:repeat="comment comments">
-        <header tal:define="author comment/Author;
-                            me here/LoginState/Username;">
+        <header tal:define="author comment/Author;">
           <p>
             Written by <strong tal:content="comment/Author" class="author_name">Username</strong> on
             <strong tal:content="comment/AuthoredTimestamp" class="author_timestamp">2001-01-01 19:21:22</strong>.

@@ -3,7 +3,7 @@ using Agiil.Domain.Projects;
 
 namespace Agiil.Web.Models.Projects
 {
-    public class CreateProjectModel : PageModel
+    public class CreateProjectModel
     {
         public string Name { get; set; }
         public string Code { get; set; }

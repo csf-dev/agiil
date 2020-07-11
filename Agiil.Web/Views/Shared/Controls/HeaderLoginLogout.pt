@@ -16,8 +16,8 @@
         class="login_logout_control"
         method="post"
         action="Login/Login"
-        tal:define="loggedIn here/LoginState/IsLoggedIn | nothing;
-                    username here/LoginState/Username | nothing;
+        tal:define="loggedIn csharp:ViewBag.LoginState.IsLoggedIn ?? false;
+                    username csharp:ViewBag.LoginState.Username ?? null;
                     action csharp:Equals(loggedIn, true)? &quot;Login/Logout&quot; : &quot;Login/Login&quot;"
         tal:attributes="action action">
     <fieldset tal:condition="loggedIn" class="logout">

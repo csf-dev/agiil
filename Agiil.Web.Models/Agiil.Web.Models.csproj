@@ -81,7 +81,6 @@
     <Compile Include="Sprints\NewSprintResult.cs" />
     <Compile Include="Sprints\ListSprintModel.cs" />
     <Compile Include="Sprints\SprintSummaryDto.cs" />
-    <Compile Include="PageModel.cs" />
     <Compile Include="Sprints\SprintDetailDto.cs" />
     <Compile Include="Sprints\SprintDtoBase.cs" />
     <Compile Include="Sprints\ViewSprintModel.cs" />
@@ -91,12 +90,9 @@
     <Compile Include="Sprints\EditSprintModel.cs" />
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="Tickets\TicketTypeDto.cs" />
-    <Compile Include="Shared\IHasLoginState.cs" />
-    <Compile Include="Shared\IHasApplicationVersion.cs" />
     <Compile Include="Shared\ApplicationVersionInfo.cs" />
     <Compile Include="Labels\LabelDto.cs" />
     <Compile Include="Shared\BaseUriModel.cs" />
-    <Compile Include="Shared\IHasBaseUri.cs" />
     <Compile Include="Labels\ListedLabelDto.cs" />
     <Compile Include="Labels\ListOfLabelsModel.cs" />
     <Compile Include="Labels\LabelDetailDto.cs" />
@@ -116,7 +112,6 @@
     <Compile Include="Projects\ViewProjectModel.cs" />
     <Compile Include="Projects\AvailableProjectsModel.cs" />
     <Compile Include="Projects\AvailableProjectModel.cs" />
-    <Compile Include="Projects\IHasAvailableProjects.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />

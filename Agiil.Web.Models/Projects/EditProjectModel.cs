@@ -4,7 +4,7 @@ using CSF.Entities;
 
 namespace Agiil.Web.Models.Projects
 {
-    public class EditProjectModel : PageModel
+    public class EditProjectModel
     {
         public IIdentity<Project> Identity { get; set; }
         public string Name { get; set; }

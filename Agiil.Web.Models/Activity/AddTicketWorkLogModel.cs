@@ -3,7 +3,7 @@ using Agiil.Domain.Tickets;
 
 namespace Agiil.Web.Models.Activity
 {
-  public class AddTicketWorkLogModel : PageModel
+  public class AddTicketWorkLogModel
   {
     public string TimeSpent { get; set; }
 

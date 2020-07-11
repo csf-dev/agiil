@@ -9,7 +9,7 @@
                  loginThrottled here/LoginThrottled;
                  loginSucceded here/LoginSucceded;
                  loginAttempted here/LoginAttempted;
-                 username here/LoginState/Username | nothing"
+                 username csharp:ViewBag.LoginState.Username ?? null"
      class="content_container">
   <h1>Log in</h1>
   <form method="post" id="LoginForm" action="Login/Login" tal:condition="not:username">

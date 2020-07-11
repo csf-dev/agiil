@@ -10,10 +10,10 @@
 <title metal:define-slot="title_element">Agiil</title>
 <meta name="version_info"
       content="Fake meta element which will be replaced with a version-info comment"
-      tal:define="versionComment here/ApplicationVersion/ComponentVersionHtmlComment | nothing"
+      tal:define="versionComment csharp:ViewBag.ApplicationVersion.ComponentVersionHtmlComment ?? null"
       tal:replace="structure versionComment">
 <base href="../../"
-      tal:define="appUri here/BaseUri/Uri | nothing;
+      tal:define="appUri csharp:ViewBag.BaseUri.Uri ?? null;
                   fallbackUri string:/;
                   uri appUri | fallbackUri"
       tal:attributes="href uri" />
