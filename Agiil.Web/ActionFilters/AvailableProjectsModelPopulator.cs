@@ -17,15 +17,14 @@ namespace Agiil.Web.ActionFilters
         readonly IGetsCurrentProject currentProjectProvider;
         readonly IMapper mapper;
         readonly ICurrentUserReader userReader;
-        private readonly IDeterminesIfCurrentUserHasCapability capabilityProvider;
+        readonly IDeterminesIfCurrentUserHasCapability capabilityProvider;
 
         public void OnActionExecuted(ActionExecutedContext filterContext)
         {
             if(!(filterContext.Result is ViewResult viewResult)) return;
-            if(!(viewResult.Model is IHasAvailableProjects availableProjectsModel)) return;
             if(userReader.GetCurrentUser() == null) return;
 
-            availableProjectsModel.AvailableProjects = GetAvailableProjects();
+            viewResult.ViewBag.AvailableProjects = GetAvailableProjects();
         }
 
         AvailableProjectsModel GetAvailableProjects()

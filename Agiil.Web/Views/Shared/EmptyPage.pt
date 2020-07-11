@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <title>Agiil</title>
 <base href="../../"
-      tal:define="appUri here/BaseUri/Uri | nothing;
+      tal:define="appUri csharp:ViewBag.BaseUri.Uri ?? null;
                   fallbackUri string:/;
                   uri appUri | fallbackUri"
       tal:attributes="href uri" />

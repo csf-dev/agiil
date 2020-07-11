@@ -23,8 +23,8 @@
       <li><a href="Sprints">Sprint list</a></li>
       <li><a href="Labels">Labels</a></li>
       <li metal:define-macro="chooser"
-          tal:define="model here/AvailableProjects;
-                      isLoggedIn here/LoginState/IsLoggedIn | nothing;
+          tal:define="model csharp:ViewBag.AvailableProjects;
+                      isLoggedIn csharp:ViewBag.LoginState.IsLoggedIn ?? false;
                       hasMultipleProjects model/MultipleProjectsAvaialble | nothing"
           tal:condition="csharp:isLoggedIn &amp;&amp; hasMultipleProjects">
         <form class="current_project_chooser"

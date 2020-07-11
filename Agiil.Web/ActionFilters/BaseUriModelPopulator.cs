@@ -14,20 +14,12 @@ namespace Agiil.Web.ActionFilters
       var viewResult = filterContext.Result as ViewResult;
       if(viewResult == null) return;
 
-      var baseUriModel = viewResult.Model as IHasBaseUri;
-      if(baseUriModel == null) return;
-
-      Populate(baseUriModel);
+      viewResult.ViewBag.BaseUri = new BaseUriModel {
+          Uri = baseUriProvider.GetBaseUri()
+      };
     }
 
     public void OnActionExecuting(ActionExecutingContext filterContext) { /* No-op */ }
-
-    void Populate(IHasBaseUri model)
-    {
-      model.BaseUri = new BaseUriModel {
-        Uri = baseUriProvider.GetBaseUri()
-      };
-    }
 
     public BaseUriModelPopulator(IProvidesApplicationBaseUri baseUriProvider)
     {
