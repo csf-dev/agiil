@@ -1,9 +1,11 @@
 ﻿using System;
+using Agiil.Domain.Capabilities;
+
 namespace Agiil.Domain.Tickets
 {
-  public interface IGetsTicketByReference
-  {
-    Ticket GetTicketByReference(string reference);
-    Ticket GetTicketByReference(TicketReference reference);
-  }
+    [EnforceCapabilities]
+    public interface IGetsTicketByReference
+    {
+        Ticket GetTicketByReference([RequireCapability(TicketCapability.View)] TicketReference reference);
+    }
 }

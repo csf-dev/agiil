@@ -3,8 +3,7 @@ using Autofac;
 using Agiil.Domain.Data;
 using Agiil.Tests.Data;
 using Agiil.Data;
-using NHibernate;
-using Agiil.Domain;
+using CSF.DecoratorBuilder;
 
 namespace Agiil.Tests.Bootstrap
 {
@@ -16,18 +15,9 @@ namespace Agiil.Tests.Bootstrap
               .RegisterType<TestingDatabaseConfiguration>()
               .As<IDatabaseConfiguration>();
 
-            builder.Register(BuildSnapshotDatabaseResetter);
-
-            builder
-                .Register(ctx => ctx.Resolve<ISessionFactory>().OpenSession())
-                .InstancePerMatchingLifetimeScope(ComponentScope.ApplicationConnection);
-        }
-
-        IResetsDatabase BuildSnapshotDatabaseResetter(IComponentContext ctx)
-        {
-            var factory = ctx.Resolve<Func<IResetsDatabase, SnapshottingDatabaseResetter>>();
-            var baseResetter = ctx.Resolve<DevelopmentDatabaseResetter>();
-            return factory(baseResetter);
+            builder.RegisterDecoratedService<IResetsDatabase>(d => d
+                .UsingInitialImpl<DevelopmentDatabaseResetter>()
+                .ThenWrapWith<SnapshottingDatabaseResetter>());
         }
     }
 }

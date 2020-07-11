@@ -9,22 +9,23 @@ using Autofac;
 
 namespace Agiil.Web.Bootstrap
 {
-  public class ServicesModule : Module
-  {
-    protected override void Load(ContainerBuilder builder)
+    public class ServicesModule : Module
     {
-      builder.RegisterType<LoginStateReader>();
-      builder.RegisterType<VersionInfoProvider>().AsSelf().AsImplementedInterfaces();
-      builder.RegisterType<RenderingTicketUriProviderAdapter>().AsSelf().AsImplementedInterfaces();
-      builder
-        .RegisterType<ApplicationBaseUriProvider>()
-        .AsSelf()
-        .AsImplementedInterfaces();
-      builder
-        .RegisterType<AppSettingsDatabaseMaintenanceSecurityProvider>()
-        .AsImplementedInterfaces();
-      builder.RegisterType<LabelDetailProvider>().AsSelf().AsImplementedInterfaces();
-      builder.RegisterType<NewtonsoftJsonObjectSerialiser>().AsSelf().AsImplementedInterfaces();
+        protected override void Load(ContainerBuilder builder)
+        {
+            builder.RegisterType<LoginStateReader>();
+            builder.RegisterType<VersionInfoProvider>().AsSelf().AsImplementedInterfaces();
+            builder.RegisterType<RenderingTicketUriProviderAdapter>().AsSelf().AsImplementedInterfaces();
+            builder
+              .RegisterType<ApplicationBaseUriProvider>()
+              .AsSelf()
+              .AsImplementedInterfaces();
+            builder
+              .RegisterType<AppSettingsDatabaseMaintenanceSecurityProvider>()
+              .AsImplementedInterfaces();
+            builder.RegisterType<LabelDetailProvider>().AsSelf().AsImplementedInterfaces();
+            builder.RegisterType<NewtonsoftJsonObjectSerialiser>().AsSelf().AsImplementedInterfaces();
+            builder.RegisterType<MvcSessionStore>().AsSelf().AsImplementedInterfaces();
+        }
     }
-  }
 }

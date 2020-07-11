@@ -4,30 +4,32 @@ using System.Reflection;
 
 namespace Agiil.Data.MappingProviders
 {
-  public interface IDbNameFormatter
-  {
-    string GetTableName(Type entityType);
+    public interface IDbNameFormatter
+    {
+        string GetTableName(Type entityType);
 
-    string GetManyToManyTableName(Type primaryEntityType, Type secondaryEntityType);
+        string GetManyToManyTableName(Type primaryEntityType, Type secondaryEntityType);
 
-    string GetIdentityColumnName(Type entityType);
+        string GetManyToManyTableName(Type primaryEntityType, string qualifier, Type secondaryEntityType);
 
-    string GetColumnName(MemberInfo member);
+        string GetIdentityColumnName(Type entityType);
 
-    string GetForeignKeyColumnName(MemberInfo member);
+        string GetColumnName(MemberInfo member);
 
-    string GetForeignKeyColumnName(params string[] parts);
+        string GetForeignKeyColumnName(MemberInfo member);
 
-    string GetIndexName(Type entityType, MemberInfo member);
+        string GetForeignKeyColumnName(params string[] parts);
 
-    string GetIndexName(Type entityType, Type referencedType);
+        string GetIndexName(Type entityType, MemberInfo member);
 
-    string GetUniqueIndexName(Type entityType, MemberInfo member);
+        string GetIndexName(Type entityType, Type referencedType);
 
-    string GetUniqueIndexName<TEntity>(Expression<Func<TEntity,object>> memberExpression);
+        string GetUniqueIndexName(Type entityType, MemberInfo member);
 
-    string GetForeignKeyConstraintName(Type parent, Type child);
+        string GetUniqueIndexName<TEntity>(Expression<Func<TEntity, object>> memberExpression);
 
-    string GetForeignKeyConstraintName(MemberInfo parentMember, Type child);
-  }
+        string GetForeignKeyConstraintName(Type parent, Type child);
+
+        string GetForeignKeyConstraintName(MemberInfo parentMember, Type child);
+    }
 }

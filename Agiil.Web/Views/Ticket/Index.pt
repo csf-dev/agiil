@@ -93,13 +93,15 @@
             </div>
           </fieldset>
         </form>
-        <h3>Edit</h3>
-        <p>
-          <a href="Ticket/Edit/0"
-             tal:define="editUrl ticket/EditUrl"
-             tal:attributes="href editUrl"
-             id="EditTicketLink">Edit this ticket</a>
-        </p>
+        <div tal:condition="ticket/CanEdit">
+            <h3>Edit</h3>
+            <p>
+              <a href="Ticket/Edit/0"
+                 tal:define="editUrl ticket/EditUrl"
+                 tal:attributes="href editUrl"
+                 id="EditTicketLink">Edit this ticket</a>
+            </p>
+        </div>
         <h3>Sprint</h3>
         <p tal:condition="ticket/Sprint">
           <span class="screen_reader_only">This ticket is part of</span>

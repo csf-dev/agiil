@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.QueryLanguage.Antlr</RootNamespace>
     <AssemblyName>Agiil.QueryLanguage.Antlr</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>0.9.2</ReleaseVersion>
+    <ReleaseVersion>0.10.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug</OutputPath>

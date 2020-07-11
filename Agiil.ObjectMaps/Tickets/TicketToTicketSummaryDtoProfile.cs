@@ -8,10 +8,10 @@ namespace Agiil.ObjectMaps.Tickets
 {
   public class TicketToTicketSummaryDtoProfile : Profile
   {
-    public TicketToTicketSummaryDtoProfile(IGetsTicketUris uriProvider)
+    public TicketToTicketSummaryDtoProfile()
     {
       CreateMap<Ticket,TicketSummaryDto>()
-        .ForCtorParam("uriProvider", x => x.ResolveUsing(t => uriProvider))
+        .ForCtorParam("uriProvider", x => x.ResolveUsing((t, r) => r.Mapper.ServiceCtor(typeof(IGetsTicketUris))))
         .ForMember(x => x.Id, o => o.ResolveUsing<IdentityValueResolver>())
         .ForMember(x => x.Creator, o => o.ResolveUsing(t => t.User.Username))
         .ForMember(x => x.Created, o => o.ResolveUsing(t => t.CreationTimestamp))

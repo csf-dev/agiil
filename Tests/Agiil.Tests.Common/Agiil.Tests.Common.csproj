@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Tests</RootNamespace>
     <AssemblyName>Agiil.Tests.Common</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>0.9.2</ReleaseVersion>
+    <ReleaseVersion>0.10.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,13 +47,13 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Castle.Core">
-      <HintPath>..\..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+      <HintPath>..\..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
-      <HintPath>..\..\packages\Moq.4.5.30\lib\net45\Moq.dll</HintPath>
+      <HintPath>..\..\packages\Moq.4.14.5\lib\net45\Moq.dll</HintPath>
     </Reference>
     <Reference Include="Autofac">
-      <HintPath>..\..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <HintPath>..\..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -244,6 +244,18 @@
     <Reference Include="log4net">
       <HintPath>..\..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions">
+      <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.5.1\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.DecoratorBuilder">
+      <HintPath>..\..\packages\CSF.DecoratorBuilder.Interfaces.2.0.0\lib\net461\CSF.DecoratorBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.DecoratorBuilder.Impl">
+      <HintPath>..\..\packages\CSF.DecoratorBuilder.2.0.0\lib\net461\CSF.DecoratorBuilder.Impl.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -287,6 +299,13 @@
     <Compile Include="Autofixture\OpenGenericTypeRelayCustomization.cs" />
     <Compile Include="Bootstrap\TicketUriProviderModule.cs" />
     <Compile Include="Attributes\LoggerForAttribute.cs" />
+    <Compile Include="Bootstrap\NHibernateModule.cs" />
+    <Compile Include="Bootstrap\SessionModule.cs" />
+    <Compile Include="Attributes\CapabilitySpecAttribute.cs" />
+    <Compile Include="Autofixture\CapabilitySpecCustomization.cs" />
+    <Compile Include="Autofixture\CapabilitySpecSpecimenBuilder.cs" />
+    <Compile Include="Autofixture\HardCodedSpecAttribute.cs" />
+    <Compile Include="Bootstrap\NoCapabilitiesAssertionsModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">

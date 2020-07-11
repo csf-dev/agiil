@@ -15,7 +15,7 @@ namespace Agiil.Web.ApiControllers
 
     public IList<SprintSummaryDto> Get()
     {
-      var sprints = lister.GetSprints();
+      var sprints = lister.GetSprints(new ListSprintsRequest());
       return sprints.Select(x => mapper.Value.Map<SprintSummaryDto>(x)).ToList();
     }
 

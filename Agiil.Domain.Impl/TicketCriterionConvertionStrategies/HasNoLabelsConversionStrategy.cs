@@ -8,8 +8,6 @@ namespace Agiil.Domain.TicketCriterionConvertionStrategies
 {
   public class HasNoLabelsConversionStrategy : IStrategyForConvertingCriterionToSpecification
   {
-    readonly IResolvesValue valueResolver;
-
     public ISpecificationExpression<Ticket> ConvertToSpecification(Criterion criterion)
     {
       var predicateFunction = criterion?.Test as PredicateFunction;
@@ -26,13 +24,6 @@ namespace Agiil.Domain.TicketCriterionConvertionStrategies
 
     CriterionToSpecificationConversionStrategyMetadata IStrategyForConvertingCriterionToSpecification.GetMetadata()
                                                                                                      => GetMetadata();
-
-    public HasNoLabelsConversionStrategy(IResolvesValue valueResolver)
-    {
-      if(valueResolver == null)
-        throw new ArgumentNullException(nameof(valueResolver));
-      this.valueResolver = valueResolver;
-    }
 
     class HasNoLabelsConversionMetadata : CriterionToSpecificationConversionStrategyMetadata
     {

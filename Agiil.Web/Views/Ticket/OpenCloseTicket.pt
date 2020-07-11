@@ -54,7 +54,9 @@
             <p>
               <span class="screen_reader_only">This ticket is</span>
               <span class="ticket_state" tal:content="currentState">Open</span><span class="screen_reader_only">.</span>
-              <button id="OpenCloseButton" tal:content="buttonText">Close</button>
+              <button id="OpenCloseButton"
+                      tal:content="buttonText"
+                      tal:condition="ticket/CanEdit">Close</button>
             </p>
           </div>
         </fieldset>

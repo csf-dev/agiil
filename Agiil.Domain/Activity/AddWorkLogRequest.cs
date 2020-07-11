@@ -1,5 +1,6 @@
 ﻿using System;
 using Agiil.Domain.Auth;
+using Agiil.Domain.Tickets;
 
 namespace Agiil.Domain.Activity
 {
@@ -9,7 +10,7 @@ namespace Agiil.Domain.Activity
 
     public DateTime TimeStarted { get; set; }
   
-    public string TicketReference { get; set; }
+    public TicketReference TicketReference { get; set; }
 
     public User User { get; set; }
   }

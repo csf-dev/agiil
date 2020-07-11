@@ -78,6 +78,12 @@ AgiilQueryVisitor.prototype.visitPredicatename = function(ctx) {
 };
 
 
+// Visit a parse tree produced by AgiilQueryParser#comparison.
+AgiilQueryVisitor.prototype.visitComparison = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by AgiilQueryParser#value.
 AgiilQueryVisitor.prototype.visitValue = function(ctx) {
   return this.visitChildren(ctx);

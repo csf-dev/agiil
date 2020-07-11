@@ -23,7 +23,9 @@ element                   : NAME;
 
 predicate                 : NOT? predicatename;
 
-predicatename             : (EQUALS | NOTEQUALS | TILDE | NAME);
+predicatename             : (EQUALS | NOTEQUALS | TILDE | NAME | comparison);
+
+comparison                : (GREATERTHAN | LESSTHAN | GREATERTHANOREQUAL | LESSTHANOREQUAL);
 
 value                     : (constantvalue | functioninvocation);
 
@@ -69,6 +71,10 @@ NOTEQUALS                 : '!=';
 TILDE                     : '~';
 COMMA                     : ',';
 DOUBLEQUOTE               : '"';
+GREATERTHAN               : '>';
+LESSTHAN                  : '<';
+GREATERTHANOREQUAL        : '>=';
+LESSTHANOREQUAL           : '<=';
 WHITESPACE                : (' '|'\t'|'\r\n'|'\n') -> skip;
 NOT                       : N O T;
 AND                       : A N D;

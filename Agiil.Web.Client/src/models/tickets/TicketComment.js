@@ -8,7 +8,8 @@ export default class TicketComment {
     author : ?string;
     createdTimestamp : ?string;
     commentMarkup : ?string;
-    isMine : bool;
+    canEdit : bool;
+    canDelete : bool;
 
     get editUrl() { return `Comment/Edit/${this.id}`; }
 

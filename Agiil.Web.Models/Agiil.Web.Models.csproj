@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Web.Models</RootNamespace>
     <AssemblyName>Agiil.Web.Models</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>0.9.2</ReleaseVersion>
+    <ReleaseVersion>0.10.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -109,6 +109,14 @@
     <Compile Include="Tickets\IHasAvailableTicketTypes.cs" />
     <Compile Include="Tickets\IHasAvailableRelationships.cs" />
     <Compile Include="Activity\AddTicketWorkLogModel.cs" />
+    <Compile Include="Projects\ProjectDescriptionDto.cs" />
+    <Compile Include="Projects\ProjectsListModel.cs" />
+    <Compile Include="Projects\CreateProjectModel.cs" />
+    <Compile Include="Projects\EditProjectModel.cs" />
+    <Compile Include="Projects\ViewProjectModel.cs" />
+    <Compile Include="Projects\AvailableProjectsModel.cs" />
+    <Compile Include="Projects\AvailableProjectModel.cs" />
+    <Compile Include="Projects\IHasAvailableProjects.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
@@ -117,6 +125,7 @@
     <Folder Include="Tickets\" />
     <Folder Include="Labels\" />
     <Folder Include="Activity\" />
+    <Folder Include="Projects\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">

@@ -2,6 +2,7 @@
 using Agiil.Domain;
 using Agiil.Tests.Attributes;
 using Autofac;
+using Autofac.Core.Lifetime;
 using NUnit.Framework.Internal;
 using NUnit.Framework.Internal.Commands;
 
@@ -17,7 +18,7 @@ namespace Agiil.Tests.Attributes
 
             try
             {
-                scope = diContainer.BeginLifetimeScope(ComponentScope.ApplicationConnection);
+                scope = diContainer.BeginLifetimeScope(MatchingScopeLifetimeTags.RequestLifetimeScopeTag);
                 context.CurrentTest.Properties.Add(WithDiAttribute.LifetimeScopeKey, scope);
                 context.CurrentResult = innerCommand.Execute(context);
             }

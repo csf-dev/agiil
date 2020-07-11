@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Domain</RootNamespace>
     <AssemblyName>Agiil.Domain.Impl</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>0.9.2</ReleaseVersion>
+    <ReleaseVersion>0.10.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -19,6 +19,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -26,6 +27,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,12 +39,14 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <Optimize>false</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -53,7 +57,7 @@
       <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="Autofac">
-      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <HintPath>..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
@@ -90,6 +94,10 @@
     <Reference Include="CSF.Reflector">
       <HintPath>..\packages\CSF.Reflector.3.0.0\lib\net45\CSF.Reflector.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Reflection">
+      <HintPath>..\packages\CSF.Reflection.3.0.0\lib\net45\CSF.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,7 +111,7 @@
     <Compile Include="Tickets\TicketLister.cs" />
     <Compile Include="Tickets\TicketDetailService.cs" />
     <Compile Include="Tickets\EditTicketValidatorFactory.cs" />
-    <Compile Include="IDomainImplementationAssemblyMarker.cs" />
+    <Compile Include="DomainImplAssemblyMarker.cs" />
     <Compile Include="Tickets\EditTicketRequestHandler.cs" />
     <Compile Include="ValidationResultInterpreter.cs" />
     <Compile Include="Validation\EntityMustExistRule.cs" />
@@ -112,11 +120,10 @@
     <Compile Include="Tickets\CommentFactory.cs" />
     <Compile Include="Tickets\CreateCommentValidatorFactory.cs" />
     <Compile Include="Tickets\EditCommentValidatorFactory.cs" />
-    <Compile Include="Validation\MustBeLoggedInAsCommentAuthorRule.cs" />
     <Compile Include="Tickets\CommentEditor.cs" />
     <Compile Include="Tickets\CommentReader.cs" />
     <Compile Include="Tickets\TicketOpenerCloser.cs" />
-    <Compile Include="Projects\FirstProjectInDatabaseProvider.cs" />
+    <Compile Include="Projects\BestProjectForCurrentUserProvider.cs" />
     <Compile Include="Sprints\SprintCreator.cs" />
     <Compile Include="Validation\EndDateMustNotBeBeforeStartDateRule.cs" />
     <Compile Include="Sprints\CreateSprintValidatorFactory.cs" />
@@ -184,16 +191,12 @@
     <Compile Include="Tickets\Creation\TicketTypePopulatingTicketFactoryDecorator.cs" />
     <Compile Include="Tickets\Creation\PersistingTicketFactoryDecorator.cs" />
     <Compile Include="Tickets\Creation\TicketFactory.cs" />
-    <Compile Include="Tickets\Creation\TicketFactoryProvider.cs" />
-    <Compile Include="Tickets\Creation\IGetsTicketCreator.cs" />
     <Compile Include="Tickets\Creation\RelationshipPopulatingTicketFactoryDecorator.cs" />
     <Compile Include="Tickets\TicketRelationshipFactory.cs" />
     <Compile Include="Tickets\ICreatesEditTicketResponse.cs" />
     <Compile Include="Tickets\EditTicketResponseFactory.cs" />
     <Compile Include="Tickets\Editing\AutomapperBasedTicketEditor.cs" />
     <Compile Include="Tickets\Editing\LabelResolvingTicketEditorDecorator.cs" />
-    <Compile Include="Tickets\Editing\IGetsTicketEditor.cs" />
-    <Compile Include="Tickets\Editing\TicketEditorFactory.cs" />
     <Compile Include="Tickets\Editing\RelationshipAddingTicketEditorDecorator.cs" />
     <Compile Include="Tickets\IConvertsAddRelationshipRequestsToTicketRelationships.cs" />
     <Compile Include="Tickets\AddRelationshipRequestToTicketRelationshipConverter.cs" />
@@ -231,6 +234,60 @@
     <Compile Include="Tickets\RelationshipValidation\MultipleSecondaryRelationshipPreventingValidationDecorator.cs" />
     <Compile Include="Validation\ValidationResultRenderer.cs" />
     <Compile Include="Tickets\TicketReferenceProvider.cs" />
+    <Compile Include="Tickets\Specs\StoryPointsComparedToConstantValueSpecFactory.cs" />
+    <Compile Include="Tickets\Specs\HasNoStoryPoints.cs" />
+    <Compile Include="Tickets\Specs\StoryPointsIsOneOf.cs" />
+    <Compile Include="TicketCriterionConvertionStrategies\StoryPointsConversionStrategy.cs" />
+    <Compile Include="Projects\CurrentlyChosenProjectDecorator.cs" />
+    <Compile Include="Projects\ProjectLister.cs" />
+    <Compile Include="Auth\UserIsASiteAdministrator.cs" />
+    <Compile Include="Projects\UserCanSeeProjectInList.cs" />
+    <Compile Include="Capabilities\CapabilityForParameterChecker.cs" />
+    <Compile Include="Capabilities\CapabilityEnforcementSpec.cs" />
+    <Compile Include="Capabilities\CapabilityAssertionSpecProvider.cs" />
+    <Compile Include="Capabilities\CapabilityTypeToEntityTypeMapper.cs" />
+    <Compile Include="Capabilities\CurrentLoggedInUserCapabilityUserAdapter.cs" />
+    <Compile Include="Capabilities\RequiredCapabilityTester.cs" />
+    <Compile Include="Projects\ProjectCapabilitiesProvider.cs" />
+    <Compile Include="App\AppCapabilitiesProvider.cs" />
+    <Compile Include="Projects\ProjectCreator.cs" />
+    <Compile Include="Projects\AppIdentityProvider.cs" />
+    <Compile Include="Projects\ValidatingProjectCreatorDecorator.cs" />
+    <Compile Include="Projects\TransactionProjectCreatorDecorator.cs" />
+    <Compile Include="Projects\CreateProjectValidatorFactory.cs" />
+    <Compile Include="Projects\ProjectCodeMustBeUniqueValueRule.cs" />
+    <Compile Include="Projects\ProjectProvider.cs" />
+    <Compile Include="Projects\ProjectEditor.cs" />
+    <Compile Include="Projects\ValidatingProjectEditorDecorator.cs" />
+    <Compile Include="Projects\EditProjectValidatorFactory.cs" />
+    <Compile Include="Projects\ProjectCodeMustBeUniqueExceptForSelfRule.cs" />
+    <Compile Include="Projects\TransactionProjectEditorDecorator.cs" />
+    <Compile Include="Projects\ProjectIdentityFromEditProjectRequestProvider.cs" />
+    <Compile Include="Tickets\TicketCapabilitiesProvider.cs" />
+    <Compile Include="Tickets\CommentCapabilitiesProvider.cs" />
+    <Compile Include="Sprints\SprintCapabilitiesProvider.cs" />
+    <Compile Include="Sprints\SprintIsOpenSpecification.cs" />
+    <Compile Include="Sprints\SprintIsClosedSpecification.cs" />
+    <Compile Include="Sprints\SprintIsForProjectSpecification.cs" />
+    <Compile Include="Sprints\ListSprintsRequestProjectIdentityProvider.cs" />
+    <Compile Include="Tickets\TicketIdentityFromTicketReferenceProvider.cs" />
+    <Compile Include="Tickets\TicketIdentityFromCreateCommentRequestProvider.cs" />
+    <Compile Include="Tickets\CommentIdentityFromRequestProvider.cs" />
+    <Compile Include="Capabilities\EntityIdentityProvider.cs" />
+    <Compile Include="Capabilities\EntityIdentityProviderAdapter.cs" />
+    <Compile Include="Tickets\TicketIdentityFromAddWorkLogRequestProvider.cs" />
+    <Compile Include="Projects\ProjectIdentityFromCreateSprintRequestProvider.cs" />
+    <Compile Include="Sprints\SprintIdentityFromEditSprintRequestProvider.cs" />
+    <Compile Include="Projects\ProjectIdentityFromProjectCodeProvider.cs" />
+    <Compile Include="Projects\ProjectIdentityFromCreateTicketRequestProvider.cs" />
+    <Compile Include="Tickets\TicketIdentityFromEditTicketRequestProvider.cs" />
+    <Compile Include="AllEnumFlagValuesProvider.cs" />
+    <Compile Include="TicketSearch\DoesSearchContainProjectCriteriaVisitor.cs" />
+    <Compile Include="TicketSearch\CurrentProjectCriterionAddingSpecProviderDecorator.cs" />
+    <Compile Include="Tickets\Specs\IsInProject.cs" />
+    <Compile Include="Projects\ProjectIsAvailableForUserSpec.cs" />
+    <Compile Include="Projects\CurrentProjectSetter.cs" />
+    <Compile Include="Capabilities\CapabilitiesForCurrentUserProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
@@ -240,6 +297,10 @@
     <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
       <Project>{922B2D9C-444E-451A-B626-DAE59E79C0E5}</Project>
       <Name>Agiil.Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agiil.Utils\Agiil.Utils.csproj">
+      <Project>{DBDD73A5-A79D-4CD8-8EAE-1C6B7D3759D9}</Project>
+      <Name>Agiil.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +320,8 @@
     <Folder Include="Tickets\Editing\" />
     <Folder Include="Activity\" />
     <Folder Include="Tickets\RelationshipValidation\" />
+    <Folder Include="Capabilities\" />
+    <Folder Include="App\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

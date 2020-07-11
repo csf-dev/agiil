@@ -15,9 +15,6 @@ namespace Agiil.Domain.Tickets
       builder.AddMemberRule<EntityMustExistRule<Comment>>(x => x.CommentIdentity, c => {
         c.Name(RuleNames.EntityMustExist);
       });
-      builder.AddMemberRule<MustBeLoggedInAsCommentAuthorRule>(x => x.CommentIdentity, c => {
-        c.Name(RuleNames.Comments.EditingPermissionDenied);
-      });
       builder.AddMemberRule<NotNullValueRule>(x => x.Body);
       builder.AddMemberRule<RegexMatchValueRule>(x => x.Body, c => {
         c.Configure(r => r.Pattern = @"^\S+");

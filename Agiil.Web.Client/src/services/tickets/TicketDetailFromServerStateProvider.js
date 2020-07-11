@@ -20,17 +20,14 @@ export class TicketDetailFromServerStateProvider implements GetsTicketDetail {
         output.descriptionMarkup = state.HtmlDescription || '';
         output.author = state.Creator || '';
         output.created = state.Created || '';
-            //$FlowFixMe
         output.labels = state.Labels?.map(x => x.Name) || [];
-            //$FlowFixMe
         output.sprint = { id: state.Sprint?.Id, name: state.Sprint?.Name } || null;
-            //$FlowFixMe
         output.relationships = state.Relationships?.map(relationshipMapper).filter(x => x) || [];
-            //$FlowFixMe
         output.comments = state.Comments?.map(commentMapper).filter(x => x) || [];
         output.isOpen = state.Closed !== true;
         output.storyPoints = state.StoryPoints || null;
         output.workLoggedMinutes = parseTimespan(state.TotalWorkLogged)?.totalMinutes || 0;
+        output.canEdit = state.CanEdit;
 
         return output;
     }
@@ -56,7 +53,8 @@ function commentMapper(comment : any) : ?TicketComment {
     output.author = comment.Author || '';
     output.createdTimestamp = comment.Timestamp || '';
     output.commentMarkup = comment.HtmlBody || '';
-    output.isMine = comment.Author === getCurrentUser();
+    output.canEdit = comment.CanEdit;
+    output.canDelete = comment.CanDelete;
 
     return output;
 }

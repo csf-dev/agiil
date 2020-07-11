@@ -99,6 +99,12 @@ public interface IAgiilQueryVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitPredicatename([NotNull] AgiilQueryParser.PredicatenameContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="AgiilQueryParser.comparison"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitComparison([NotNull] AgiilQueryParser.ComparisonContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="AgiilQueryParser.value"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

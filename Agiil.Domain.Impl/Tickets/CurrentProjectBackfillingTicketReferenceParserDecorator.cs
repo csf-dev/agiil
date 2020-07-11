@@ -6,7 +6,7 @@ namespace Agiil.Domain.Tickets
   public class CurrentProjectBackfillingTicketReferenceParserDecorator : IParsesTicketReference
   {
     readonly IParsesTicketReference wrapped;
-    readonly ICurrentProjectGetter currentProjectProvider;
+    readonly IGetsCurrentProject currentProjectProvider;
 
     public TicketReference GetReference(string projectCode, long ticketNumber)
     {
@@ -28,7 +28,7 @@ namespace Agiil.Domain.Tickets
     string GetProjectCode() => currentProjectProvider.GetCurrentProject()?.Code;
 
     public CurrentProjectBackfillingTicketReferenceParserDecorator(IParsesTicketReference wrapped,
-                                                                   ICurrentProjectGetter currentProjectProvider)
+                                                                   IGetsCurrentProject currentProjectProvider)
     {
       if(currentProjectProvider == null)
         throw new ArgumentNullException(nameof(currentProjectProvider));

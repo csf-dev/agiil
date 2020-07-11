@@ -1,45 +1,32 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using log4net;
 
 namespace Agiil.Data.Sqlite
 {
-  public class ConnectionStringAdapter
-  {
-    const string DataFilePattern = @"Data Source=([^;]+)";
-    static readonly Regex DataFileMatcher = new Regex(DataFilePattern,
-                                                      RegexOptions.CultureInvariant
-                                                      | RegexOptions.IgnoreCase
-                                                      | RegexOptions.Compiled);
-
-    readonly string connectionString;
-
-    public string ConnectionString => connectionString;
-
-    public string GetDataFile()
+    public class ConnectionStringAdapter : IGetsDatabaseFilePath
     {
-      var match = DataFileMatcher.Match(ConnectionString);
+        const string DataFilePattern = @"Data Source=([^;]+)";
+        static readonly Regex DataFileMatcher = new Regex(DataFilePattern,
+                                                          RegexOptions.CultureInvariant
+                                                          | RegexOptions.IgnoreCase
+                                                          | RegexOptions.Compiled);
+        readonly ILog logger;
 
-      if(!match.Success)
-        return null;
+        public string ConnectionString { get; }
 
-      return match.Groups[1].Value;
+        public string GetDataFile()
+        {
+            var match = DataFileMatcher.Match(ConnectionString);
+            logger.Debug(ConnectionString);
+
+            return match.Success ? match.Groups[1].Value : null;
+        }
+
+        public ConnectionStringAdapter(string connectionString, ILog logger)
+        {
+            ConnectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        }
     }
-
-    public ConnectionStringAdapter(string connectionString)
-    {
-      if(connectionString == null)
-        throw new ArgumentNullException(nameof(connectionString));
-
-      this.connectionString = connectionString;
-    }
-
-    public static ConnectionStringAdapter Create(IConnectionStringProvider connectionStringProvider)
-    {
-      if(connectionStringProvider == null)
-        throw new ArgumentNullException(nameof(connectionStringProvider));
-
-      var connString = connectionStringProvider.GetConnectionString();
-      return new ConnectionStringAdapter(connString);
-    }
-  }
 }

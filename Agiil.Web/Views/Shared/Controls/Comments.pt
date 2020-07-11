@@ -22,25 +22,24 @@
         class="comment_list">
       <li tal:repeat="comment comments">
         <header tal:define="author comment/Author;
-                            me here/LoginState/Username;
-                            commentIsMine csharp:Equals(author, me)">
+                            me here/LoginState/Username;">
           <p>
             Written by <strong tal:content="comment/Author" class="author_name">Username</strong> on
             <strong tal:content="comment/AuthoredTimestamp" class="author_timestamp">2001-01-01 19:21:22</strong>.
           </p>
-          <tal:block condition="commentIsMine">
-          <p>
+          <p tal:condition="comment/CanEdit">
             <a href="Comment/Edit/0"
                tal:attributes="href string:Comment/Edit/${comment/Id}"
                class="edit_comment">Edit this comment</a>
           </p>
-          <form method="post" action="Comment/ConfirmDelete" >
+          <form method="post"
+                action="Comment/ConfirmDelete"
+                tal:condition="comment/CanDelete">
             <fieldset>
               <input type="hidden" name="id" value="0" tal:attributes="value comment/Id" />
               <button class="delete_comment">Delete this comment</button>
             </fieldset>
           </form>
-          </tal:block>
         </header>
         <div tal:content="structure comment/HtmlBody" class="comment_content markdown_rendered_text">Comment text here</div>
       </li>

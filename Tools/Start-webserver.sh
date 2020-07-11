@@ -2,7 +2,7 @@
 
 SERVER_PORT="8080"
 SERVER_ADDR="127.0.0.1"
-WEB_APP_HOME="Output/Web apps/Agiil.Web"
+WEB_APP_HOME="${1:-Agiil.Web}"
 SERVER_WEB_APP="/:."
 SERVER_PID=".xsp4.pid"
 APP_HOMEPAGE="http://localhost:8080/Home"

@@ -13,9 +13,7 @@ namespace Agiil.ObjectMaps.Resolvers
 
     public MarkdownToHtmlResolver(IRendersMarkdownToHtml renderer)
     {
-      if(renderer == null)
-        throw new ArgumentNullException(nameof(renderer));
-      this.renderer = renderer;
+      this.renderer = renderer ?? throw new ArgumentNullException(nameof(renderer));
     }
   }
 }

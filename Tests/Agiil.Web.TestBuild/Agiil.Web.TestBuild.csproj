@@ -8,7 +8,7 @@
     <RootNamespace>Agiil.Web</RootNamespace>
     <AssemblyName>Agiil.Web.TestBuild</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>0.9.2</ReleaseVersion>
+    <ReleaseVersion>0.10.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -68,7 +68,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Autofac">
-      <HintPath>..\..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <HintPath>..\..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.Formatting">
       <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -99,6 +99,12 @@
     <Reference Include="CSF.Specifications">
       <HintPath>..\..\packages\CSF.Specifications.2.0.0\lib\net45\CSF.Specifications.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.DecoratorBuilder">
+      <HintPath>..\..\packages\CSF.DecoratorBuilder.Interfaces.2.0.0\lib\net461\CSF.DecoratorBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.DecoratorBuilder.Impl">
+      <HintPath>..\..\packages\CSF.DecoratorBuilder.2.0.0\lib\net461\CSF.DecoratorBuilder.Impl.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -125,6 +131,12 @@
     <Compile Include="Controllers\OverrideVersionNumberController.cs" />
     <Compile Include="Bootstrap\LoginReaderModule.cs" />
     <Compile Include="Bootstrap\VersionInfoModule.cs" />
+    <Compile Include="..\Agiil.Tests.Common\Data\TestingDatabaseConfiguration.cs">
+      <Link>Data\TestingDatabaseConfiguration.cs</Link>
+    </Compile>
+    <Compile Include="..\Agiil.Tests.Common\Bootstrap\DataModule.cs">
+      <Link>Bootstrap\DataModule.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -137,10 +149,6 @@
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
       <Project>{79827CF5-CC58-4F87-BBCA-162B5983C563}</Project>
       <Name>Agiil.Bootstrap</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj">
-      <Project>{E15F2064-D2EA-43EF-924C-733107675FF0}</Project>
-      <Name>Agiil.Tests.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Agiil.Domain\Agiil.Domain.csproj">
       <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>

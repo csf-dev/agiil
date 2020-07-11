@@ -15,9 +15,6 @@ namespace Agiil.Domain.Tickets
       builder.AddMemberRule<EntityMustExistRule<Comment>>(x => x.CommentId, c => {
         c.Name(RuleNames.EntityMustExist);
       });
-      builder.AddMemberRule<MustBeLoggedInAsCommentAuthorRule>(x => x.CommentId, c => {
-        c.Name(RuleNames.Comments.DeletePermissionDenied);
-      });
     }
 
     public DeleteCommentValidatorFactory(IValidatorFactory factory) : base(factory) {}

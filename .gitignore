@@ -25,3 +25,4 @@ Agiil.Tests.BDD.report.json
 Agiil.Tests.BDD.report.html
 .OpenCover/
 *.DotSettings.user
+mono_crash.*

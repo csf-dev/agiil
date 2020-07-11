@@ -15,13 +15,18 @@ export function TicketStatus(props : ViewTicketProps) {
                         <p>
                             <span className="screen_reader_only">This ticket is</span>
                             <span className="ticket_state">{props.ticket.isClosed? 'Closed' : 'Open'}</span><span className="screen_reader_only">.</span>
-                            <button id="OpenCloseButton">{props.ticket.isClosed? 'Re-open' : 'Close'}</button>
+                            {getOpenCloseButton(props)}
                         </p>
                     </div>
                 </fieldset>
             </form>
         </AsideItem>
     );
+}
+
+function getOpenCloseButton(props : ViewTicketProps) {
+    if(!props.ticket.canEdit) return null;
+    return (<button id="OpenCloseButton">{props.ticket.isClosed? 'Re-open' : 'Close'}</button>);
 }
 
 function getOpenCloseActionUrl(props : ViewTicketProps) {

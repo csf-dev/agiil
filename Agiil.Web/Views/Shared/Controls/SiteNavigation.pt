@@ -19,12 +19,13 @@
        tal:condition="isLoggedIn">
     <h5>Application navigation</h5>
     <ul>
-      <li><a href="">Home</a></li>
+      <li tal:condition="here/LoginState/IsSiteAdmin | nothing"><a href="Projects">Project list</a></li>
       <li><a href="Tickets">Ticket list</a></li>
       <li><a href="NewTicket">Create ticket</a></li>
-      <li><a href="NewSprint">Create sprint</a></li>
+      <li tal:condition="here/AvailableProjects/CanCreateSprints | nothing"><a href="NewSprint">Create sprint</a></li>
       <li><a href="Sprints">Sprint list</a></li>
       <li><a href="Labels">Labels</a></li>
+      <li metal:use-macro="Views/Shared/Controls/ProjectChooser/macros/chooser">Project chooser</li>
     </ul>
   </nav>
   </div>

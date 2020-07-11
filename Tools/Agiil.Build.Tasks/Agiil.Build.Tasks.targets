@@ -18,13 +18,14 @@
     <AgiilWebProjectDir>$(MSBuildThisFileDirectory)\..\..\Agiil.Web</AgiilWebProjectDir>
     <AgiilWebOutputDir>$(AgiilWebProjectDir)\bin</AgiilWebOutputDir>
     
-    <DeploymentRoot Condition="'$(DeploymentRoot)' == ''">$(MSBuildThisFileDirectory)\..\..\Output</DeploymentRoot>
-    <WebAppStagingDir>$(DeploymentRoot)\Web apps\Agiil.Web</WebAppStagingDir>
+    <DeploymentRoot Condition="'$(DeploymentRoot)' == '' and $(Configuration) == 'Release'">$(MSBuildThisFileDirectory)\..\..\Output\Web apps</DeploymentRoot>
+    <DeploymentRoot Condition="'$(DeploymentRoot)' == '' and $(Configuration) != 'Release'">$(MSBuildThisFileDirectory)\..\..\</DeploymentRoot>
+    <WebAppStagingDir>$(DeploymentRoot)\Agiil.Web</WebAppStagingDir>
   </PropertyGroup>
 	
   <Target Name="CopyWebApplicationTestingLogic">
     <ItemGroup>
-      <WebAppTestingLogic Include="$(OutputPath)\*" />
+      <WebAppTestingLogic Include="$(OutputPath)\*" Exclude="$(OutputPath)\**\CSF.Reflection*" />
     </ItemGroup>
     <Copy SourceFiles="@(WebAppTestingLogic)" DestinationFolder="$(WebAppStagingDir)\bin" />
   </Target>
@@ -50,6 +51,12 @@
 
     <!-- Referenced assemblies -->
     <Copy SourceFiles="@(ReferenceCopyLocalPaths)" DestinationFolder="$(WebAppStagingDir)\bin" SkipUnchangedFiles="true" />
+
+    <!-- The CSF.Reflection3 assembly
+         This is just here as a workaround to the fact that ZPT-Sharp doesn't support CSF.Reflection version 3
+         and so requires an older version of the assembly.  This workaround leverages the fact that they are strong-named
+         to copy both versions into the output directory under different filenames, so that they can coexist -->
+    <Copy SourceFiles="$(OutputPath)\CSF.Reflection3.dll" DestinationFolder="$(WebAppStagingDir)\bin" SkipUnchangedFiles="true" />
 
     <!-- Any other files marked as "Content" -->
     <Copy SourceFiles="@(Content)" DestinationFolder="$(WebAppStagingDir)\%(Content.RelativeDir)" />

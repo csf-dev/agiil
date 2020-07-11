@@ -1,8 +1,11 @@
 ﻿using System;
+using Agiil.Domain.Capabilities;
+
 namespace Agiil.Domain.Tickets
 {
-  public interface ICommentCreator
-  {
-    CreateCommentResponse Create(CreateCommentRequest request);
-  }
+    [EnforceCapabilities]
+    public interface ICommentCreator
+    {
+        CreateCommentResponse Create([RequireCapability(TicketCapability.AddComment)] CreateCommentRequest request);
+    }
 }
