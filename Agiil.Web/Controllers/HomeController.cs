@@ -10,8 +10,7 @@ namespace Agiil.Web.Controllers
   {
     public ActionResult Index ()
     {
-      var model = new PageModel();
-      return View (model);
+      return View ();
     }
   }
 }

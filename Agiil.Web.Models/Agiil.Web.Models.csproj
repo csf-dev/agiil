@@ -81,7 +81,6 @@
     <Compile Include="Sprints\NewSprintResult.cs" />
     <Compile Include="Sprints\ListSprintModel.cs" />
     <Compile Include="Sprints\SprintSummaryDto.cs" />
-    <Compile Include="PageModel.cs" />
     <Compile Include="Sprints\SprintDetailDto.cs" />
     <Compile Include="Sprints\SprintDtoBase.cs" />
     <Compile Include="Sprints\ViewSprintModel.cs" />

@@ -4,7 +4,7 @@ using Agiil.Web.Models.Sprints;
 
 namespace Agiil.Web.Models.Tickets
 {
-  public class NewTicketModel : PageModel, IHasAvailableSprints, IHasAvailableTicketTypes, IHasAvailableRelationships
+  public class NewTicketModel : IHasAvailableSprints, IHasAvailableTicketTypes, IHasAvailableRelationships
   {
     public NewTicketSpecification Specification { get; set; }
 

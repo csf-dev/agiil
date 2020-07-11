@@ -7,7 +7,7 @@ using CSF.Entities;
 
 namespace Agiil.Web.Models.Tickets
 {
-  public class EditTicketModel : PageModel, IHasAvailableSprints, IHasAvailableTicketTypes, IHasAvailableRelationships
+  public class EditTicketModel : IHasAvailableSprints, IHasAvailableTicketTypes, IHasAvailableRelationships
   {
     public TicketDetailDto  Ticket { get; set; }
 
