@@ -1,293 +1,84 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{79827CF5-CC58-4F87-BBCA-162B5983C563}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Agiil.Bootstrap</RootNamespace>
-    <AssemblyName>Agiil.Bootstrap</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFramework>net471</TargetFramework>
+    <PackageId>Agiil.Bootstrap</PackageId>
+    <Authors>craigfowler</Authors>
+    <Description>Dependency injection configuration for the Agiil, using the Autofac IoC container</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
+    <Version>$(ReleaseVersion)</Version>
+    <PackageVersion>$(ReleaseVersion)</PackageVersion>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Copyright>Copyright 2020 - CSF Software Limited</Copyright>
+    <PackageProjectUrl>https://github.com/csf-dev/agiil</PackageProjectUrl>
+    <RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
+    <RootNamespace>Agiil.Bootstrap</RootNamespace>
   </PropertyGroup>
+  
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <LangVersion>7.3</LangVersion>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <LangVersion>7.3</LangVersion>
+    <DebugType></DebugType>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <PlatformTarget>x86</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-  </PropertyGroup>
+    
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="Autofac">
-      <HintPath>..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Owin">
-      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin">
-      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security">
-      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security.Cookies">
-      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Host.SystemWeb">
-      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Iesi.Collections" Version="4.0.0.4000" />
+    <PackageReference Include="NHibernate" Version="4.0.0.4000" />
+    <PackageReference Include="Autofac" Version="4.9.4" />
+    <PackageReference Include="Owin" Version="1.0" />
+    <PackageReference Include="Microsoft.Owin" Version="3.0.1" />
+    <PackageReference Include="Microsoft.Owin.Security" Version="3.0.1" />
+    <PackageReference Include="Microsoft.Owin.Security.Cookies" Version="3.0.1" />
+    <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="3.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="AutoMapper" Version="6.0.2" />
+    <PackageReference Include="CSF.Configuration" Version="1.1.2" />
+    <PackageReference Include="CSF.Entities" Version="2.0.3" />
+    <PackageReference Include="CSF.Utils" Version="6.1.1" />
+    <PackageReference Include="CSF.Validation" Version="2.0.0" />
+    <PackageReference Include="CSF.Specifications" Version="2.0.0" />
+    <PackageReference Include="CSF.Enums" Version="7.0.0" />
+    <PackageReference Include="CSF.ORM" Version="2.0.3" />
+    <PackageReference Include="CSF.Reflector" Version="3.0.0" />
+    <PackageReference Include="CSF.ORM.Entities" Version="2.0.3" />
+    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="CSF.Security" Version="2.0.2" />
+    <PackageReference Include="CSF.ORM.NHibernate4" Version="2.0.3" />
+    <PackageReference Include="CSF.ReflectionSpecifications" Version="3.0.0" />
+    <PackageReference Include="CSF.DecoratorBuilder" Version="2.0.0" />
+    <PackageReference Include="AngleSharp" Version="0.9.9" />
+    <PackageReference Include="HtmlSanitizer" Version="3.4.156" />
+    <PackageReference Include="BrakePedal" Version="1.0.3" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.105.0" />
+    <PackageReference Include="Castle.Core" Version="4.4.1" />
+    <PackageReference Include="Autofac.Extras.DynamicProxy" Version="4.5.0" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj" />
+    <ProjectReference Include="..\Agiil.Auth.Impl\Agiil.Auth.Impl.csproj" />
+    <ProjectReference Include="..\Agiil.Data\Agiil.Data.csproj" />
+    <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj" />
+    <ProjectReference Include="..\Agiil.Domain.Impl\Agiil.Domain.Impl.csproj" />
+    <ProjectReference Include="..\Agiil.ObjectMaps\Agiil.ObjectMaps.csproj" />
+    <ProjectReference Include="..\Agiil.Web.Models\Agiil.Web.Models.csproj" />
+    <ProjectReference Include="..\Agiil.Web.Rendering\Agiil.Web.Rendering.csproj" />
+    <ProjectReference Include="..\Agiil.Web.Rendering.Impl\Agiil.Web.Rendering.Impl.csproj" />
+    <ProjectReference Include="..\Agiil.QueryLanguage.Antlr\Agiil.QueryLanguage.Antlr.csproj" />
+    <ProjectReference Include="..\Agiil.QueryLanguage.Impl\Agiil.QueryLanguage.Impl.csproj" />
+    <ProjectReference Include="..\Agiil.Utils\Agiil.Utils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="System.Web" />
-    <Reference Include="Iesi.Collections">
-      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="AutoMapper">
-      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
-    </Reference>
     <Reference Include="System.Configuration" />
-    <Reference Include="AngleSharp">
-      <HintPath>..\packages\AngleSharp.0.9.9\lib\net45\AngleSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="HtmlSanitizer">
-      <HintPath>..\packages\HtmlSanitizer.3.4.156\lib\net45\HtmlSanitizer.dll</HintPath>
-    </Reference>
-    <Reference Include="BrakePedal">
-      <HintPath>..\packages\BrakePedal.1.0.3\lib\net45\BrakePedal.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Configuration">
-      <HintPath>..\packages\CSF.Configuration.1.1.2\lib\net45\CSF.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Utils">
-      <HintPath>..\packages\CSF.Utils.6.1.1\lib\net45\CSF.Utils.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Entities">
-      <HintPath>..\packages\CSF.Entities.2.0.3\lib\net45\CSF.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Security">
-      <HintPath>..\packages\CSF.Security.2.0.2\lib\net45\CSF.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Validation">
-      <HintPath>..\packages\CSF.Validation.2.0.0\lib\net45\CSF.Validation.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite">
-      <HintPath>..\packages\System.Data.SQLite.Core.1.0.105.0\lib\net46\System.Data.SQLite.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="CSF.Enums">
-      <HintPath>..\packages\CSF.Enums.7.0.0\lib\net45\CSF.Enums.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Reflector">
-      <HintPath>..\packages\CSF.Reflector.3.0.0\lib\net45\CSF.Reflector.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.ORM">
-      <HintPath>..\packages\CSF.ORM.2.0.3\lib\net45\CSF.ORM.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.ORM.NHibernate.Common">
-      <HintPath>..\packages\CSF.ORM.NHibernate4.2.0.3\lib\net45\CSF.ORM.NHibernate.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.ORM.NHibernate4">
-      <HintPath>..\packages\CSF.ORM.NHibernate4.2.0.3\lib\net45\CSF.ORM.NHibernate4.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Specifications">
-      <HintPath>..\packages\CSF.Specifications.2.0.0\lib\net45\CSF.Specifications.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.ReflectionSpecifications">
-      <HintPath>..\packages\CSF.ReflectionSpecifications.3.0.0\lib\net45\CSF.ReflectionSpecifications.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.ORM.Entities">
-      <HintPath>..\packages\CSF.ORM.Entities.2.0.3\lib\net45\CSF.ORM.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.DecoratorBuilder">
-      <HintPath>..\packages\CSF.DecoratorBuilder.Interfaces.2.0.0\lib\net461\CSF.DecoratorBuilder.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.DecoratorBuilder.Impl">
-      <HintPath>..\packages\CSF.DecoratorBuilder.2.0.0\lib\net461\CSF.DecoratorBuilder.Impl.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.4.4.1\lib\net45\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Autofac.Extras.DynamicProxy">
-      <HintPath>..\packages\Autofac.Extras.DynamicProxy.4.5.0\lib\net45\Autofac.Extras.DynamicProxy.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Agiil.Web">
-      <HintPath>..\Agiil.Web\bin\Agiil.Web.dll</HintPath>
-    </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Auth\AuthModule.cs" />
-    <Compile Include="IBootstrapAssemblyMarker.cs" />
-    <Compile Include="Data\ExternalDataDependenciesModule.cs" />
-    <Compile Include="Data\NHibernateModule.cs" />
-    <Compile Include="IGetsAutofacContainer.cs" />
-    <Compile Include="DomainContainerFactory.cs" />
-    <Compile Include="Validation\ValidationModule.cs" />
-    <Compile Include="Validation\AutofacValidationRuleResolver.cs" />
-    <Compile Include="Auth\CSFSecurityModule.cs" />
-    <Compile Include="ObjectMaps\AutomapperModule.cs" />
-    <Compile Include="ObjectMaps\AutomapperProfilesModule.cs" />
-    <Compile Include="Data\DataModule.cs" />
-    <Compile Include="DiConfiguration\ContainerFactoryProvider.cs" />
-    <Compile Include="DiConfiguration\DiConfigurationSection.cs" />
-    <Compile Include="Rendering\MarkdownRenderingModule.cs" />
-    <Compile Include="Auth\BrakePedalPolicyModule.cs" />
-    <Compile Include="ContainerBuilderExtensions.cs" />
-    <Compile Include="Labels\LabelsModule.cs" />
-    <Compile Include="Tickets\TicketQueryProviderModule.cs" />
-    <Compile Include="Tickets\TicketCreatorModule.cs" />
-    <Compile Include="Tickets\TicketEditorModule.cs" />
-    <Compile Include="Validation\AutofacGenericValidator.cs" />
-    <Compile Include="Specifications\IsConcreteSpecification.cs" />
-    <Compile Include="Specifications\ImplementsSpecification.cs" />
-    <Compile Include="Specifications\HasAttributeSpecification.cs" />
-    <Compile Include="RegistrationOrderAttribute.cs" />
-    <Compile Include="Specifications\HasParameterlessConstructorSpecification.cs" />
-    <Compile Include="RegistrationPassOne\AuthenticationModule.cs" />
-    <Compile Include="IGetsTypes.cs" />
-    <Compile Include="ConcreteTypesInAssemblyOfMarkerProvider.cs" />
-    <Compile Include="BulkRegistrationHelper.cs" />
-    <Compile Include="RegistrationPassOne\AuthenticationImplModule.cs" />
-    <Compile Include="RegistrationPassOne\CsfSecurityModule.cs" />
-    <Compile Include="RegistrationPassOne\DomainModule.cs" />
-    <Compile Include="RegistrationPassOne\CsfConfigurationModule.cs" />
-    <Compile Include="RegistrationPassOne\DataModule.cs" />
-    <Compile Include="RegistrationPassOne\DomainImplModule.cs" />
-    <Compile Include="RegistrationPassOne\ObjectMapsModule.cs" />
-    <Compile Include="OpenGenericTypesInAssemblyOfMarkerProvider.cs" />
-    <Compile Include="Specifications\IsOpenGenericSpecification.cs" />
-    <Compile Include="RegistrationPassOne\QueryLanguageAntlrModule.cs" />
-    <Compile Include="RegistrationPassOne\QueryLanguageImplModule.cs" />
-    <Compile Include="RegistrationPassOne\RenderingModule.cs" />
-    <Compile Include="RegistrationPassOne\RenderingImplModule.cs" />
-    <Compile Include="RegistrationPassOne\CsfValidationModule.cs" />
-    <Compile Include="IRegistersModulesInBulk.cs" />
-    <Compile Include="OrderedModuleBulkRegistrationService.cs" />
-    <Compile Include="UnorderedModuleBulkRegistrationService.cs" />
-    <Compile Include="DoNotAutoRegisterAttribute.cs" />
-    <Compile Include="Log4NetModule.cs" />
-    <Compile Include="Tickets\TickatReferenceParserModule.cs" />
-    <Compile Include="Tickets\TicketReferenceValidationModule.cs" />
-    <Compile Include="ExternalModulesModule.cs" />
-    <Compile Include="Projects\CurrentProjectModule.cs" />
-    <Compile Include="Capabilities\TypedCapabilityTesterFactoryModule.cs" />
-    <Compile Include="Capabilities\TargetEntityIdentityProvidersModule.cs" />
-    <Compile Include="Capabilities\CapabilitiesEnforcingInterceptor.cs" />
-    <Compile Include="Capabilities\RequiredCapabilityTesterModule.cs" />
-    <Compile Include="Capabilities\CapabilitiesEnforcingInterceptorModule.cs" />
-    <Compile Include="Projects\ProjectCreatorModule.cs" />
-    <Compile Include="Projects\ProjectEditorModule.cs" />
-    <Compile Include="Tickets\TicketSpecificationProviderModule.cs" />
-    <Compile Include="Capabilities\CapabilitiesProviderModule.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
-      <Project>{922B2D9C-444E-451A-B626-DAE59E79C0E5}</Project>
-      <Name>Agiil.Auth</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Agiil.Auth.Impl\Agiil.Auth.Impl.csproj">
-      <Project>{71F8B1B3-C0F1-4D0A-BF44-1DC091EE62E3}</Project>
-      <Name>Agiil.Auth.Impl</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Agiil.Data\Agiil.Data.csproj">
-      <Project>{AB167238-0D06-4D8A-A646-198D63575AF5}</Project>
-      <Name>Agiil.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
-      <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
-      <Name>Agiil.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Agiil.Domain.Impl\Agiil.Domain.Impl.csproj">
-      <Project>{FF544749-0A04-417F-AD83-E284BBF498E7}</Project>
-      <Name>Agiil.Domain.Impl</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Agiil.ObjectMaps\Agiil.ObjectMaps.csproj">
-      <Project>{36A605F5-89BD-4FBA-BDB1-088C38E54886}</Project>
-      <Name>Agiil.ObjectMaps</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Agiil.Web.Models\Agiil.Web.Models.csproj">
-      <Project>{53F1B62F-1BEE-4732-A1F3-433822529906}</Project>
-      <Name>Agiil.Web.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Agiil.Web.Rendering\Agiil.Web.Rendering.csproj">
-      <Project>{8080A385-823C-44F0-B090-71F52337F04A}</Project>
-      <Name>Agiil.Web.Rendering</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Agiil.Web.Rendering.Impl\Agiil.Web.Rendering.Impl.csproj">
-      <Project>{02F8FE6A-DB8D-44D0-903A-304E85333F32}</Project>
-      <Name>Agiil.Web.Rendering.Impl</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Agiil.QueryLanguage.Antlr\Agiil.QueryLanguage.Antlr.csproj">
-      <Project>{959D29AD-F632-4FC7-8B45-86CFC9BDA34C}</Project>
-      <Name>Agiil.QueryLanguage.Antlr</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Agiil.QueryLanguage.Impl\Agiil.QueryLanguage.Impl.csproj">
-      <Project>{5688F6B6-3F7F-4491-86A3-1065169678D5}</Project>
-      <Name>Agiil.QueryLanguage.Impl</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Agiil.Utils\Agiil.Utils.csproj">
-      <Project>{DBDD73A5-A79D-4CD8-8EAE-1C6B7D3759D9}</Project>
-      <Name>Agiil.Utils</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Auth\" />
-    <Folder Include="Data\" />
-    <Folder Include="Tickets\" />
-    <Folder Include="Validation\" />
-    <Folder Include="ObjectMaps\" />
-    <Folder Include="DiConfiguration\" />
-    <Folder Include="Rendering\" />
-    <Folder Include="Labels\" />
-    <Folder Include="Specifications\" />
-    <Folder Include="RegistrationPassOne\" />
-    <Folder Include="Projects\" />
-    <Folder Include="Capabilities\" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+    
+  <Import Project="..\Tools\EnableMultiTargetingWithMono.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.0\build\net46\System.Data.SQLite.Core.targets')" />
 </Project>
