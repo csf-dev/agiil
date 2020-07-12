@@ -1,27 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
+    
+  <Import Project="..\Tools\CommonProjectItems.targets" />
+  
   <PropertyGroup>
-    <TargetFramework>net471</TargetFramework>
     <PackageId>Agiil.Utils</PackageId>
-    <Authors>craigfowler</Authors>
     <Description>Utility/miscellaneous types for the Agiil issue tracker</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
-    <Version>$(ReleaseVersion)</Version>
-    <PackageVersion>$(ReleaseVersion)</PackageVersion>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Copyright>Copyright 2020 - CSF Software Limited</Copyright>
-    <PackageProjectUrl>https://github.com/csf-dev/agiil</PackageProjectUrl>
-    <RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
-    <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Agiil</RootNamespace>
-  </PropertyGroup>
-  
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType></DebugType>
   </PropertyGroup>
     
   <Import Project="..\Tools\EnableMultiTargetingWithMono.targets" />

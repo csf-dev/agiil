@@ -1,19 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets" Condition="Exists('..\..\packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets')" />
-  
-  <!-- PropertyGroup sets up a reference to the current project, so that the build is ordered correctly -->
-  <ItemGroup>
-    <ProjectReference Include="$(MSBuildThisFileDirectory)\Agiil.Build.Tasks.csproj">
-      <Project>{3E1DAACE-519B-4C6C-80E3-3F06A1A33C66}</Project>
-      <Name>Agiil.Build.Tasks</Name>
-    </ProjectReference>
-  </ItemGroup>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	
   <PropertyGroup>
     <TasksConfig Condition="'$(Configuration)' != 'Release'">Debug</TasksConfig>
     <TasksConfig Condition="'$(Configuration)' == 'Release'">Release</TasksConfig>
-    <TasksAssemblyPath>bin\$(TasksConfig)\Agiil.Build.Tasks.dll</TasksAssemblyPath>
 
     <AgiilWebProjectDir>$(MSBuildThisFileDirectory)\..\..\Agiil.Web</AgiilWebProjectDir>
     <AgiilWebOutputDir>$(AgiilWebProjectDir)\bin</AgiilWebOutputDir>

@@ -1,29 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
+    
+  <Import Project="..\Tools\CommonProjectItems.targets" />
+  
   <PropertyGroup>
-    <TargetFramework>net471</TargetFramework>
     <PackageId>Agiil.Web.Rendering.Impl</PackageId>
-    <Authors>craigfowler</Authors>
     <Description>Implementation logic for rendering markdown text to HTML using the Markdig package</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
-    <Version>$(ReleaseVersion)</Version>
-    <PackageVersion>$(ReleaseVersion)</PackageVersion>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Copyright>Copyright 2020 - CSF Software Limited</Copyright>
-    <PackageProjectUrl>https://github.com/csf-dev/agiil</PackageProjectUrl>
-    <RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
-    <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Agiil.Web.Rendering</RootNamespace>
-  </PropertyGroup>
-  
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-    <LangVersion>7.3</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType></DebugType>
-    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
     
   <ItemGroup>
@@ -45,8 +29,5 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="packages.config" />
-  </ItemGroup>
   <Import Project="..\Tools\EnableMultiTargetingWithMono.targets" />
 </Project>
