@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{93B2453A-C041-4846-94F0-D0E728E23FD0}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Agiil.Web.Client</RootNamespace>
-    <AssemblyName>Agiil.Web.Client</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>0.10.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin</OutputPath>
@@ -16,6 +11,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin</OutputPath>
   </PropertyGroup>
+    
   <ItemGroup>
     <None Include="src/**/*" />
     <None Include="buildConfigs/**/*" />
@@ -23,10 +19,6 @@
     <None Include="tools/**/*" />
     <None Include="package.json" />
     <None Include="package-lock.json" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Compile Include="EmptyClass.cs" />
   </ItemGroup>
   
   <Target Name="Clean_Dist">
@@ -40,14 +32,19 @@
   <Target Name="Build_Prod">
     <Exec Command="npm run build" />
   </Target>
-
-  <Target Name="Build_NPM" AfterTargets="Build">
+  
+  <Target Name="Clean">
     <CallTarget Targets="Clean_Dist" />
+  </Target>
+
+  <Target Name="Build" DependsOnTargets="Clean">
     <CallTarget Targets="Build_Dev" Condition="'$(Configuration)' == 'Debug'" />
     <CallTarget Targets="Build_Prod" Condition="'$(Configuration)' == 'Release'" />
   </Target>
+    
+  <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
   
-  <Target Name="CopyToWebApp" AfterTargets="Build_NPM">
+  <Target Name="CopyToWebApp" AfterTargets="Build">
     <ItemGroup>
       <BundlesSrc Include="dist\Content\bundles\**\*" />
       <HtmlSrc Include="dist\*.html" />
@@ -70,7 +67,15 @@
     </PropertyGroup>
     <Copy SourceFiles="@(HtmlSrc)" DestinationFiles="$(HtmlDest)\$(NewFilename)" />
   </Target>
-  
+    
+  <Target Name="CoreCompile"><!-- Intentional no-op --></Target>
+    
+  <ItemGroup>
+    <PackageReference Include="MSBuildTasks" Version="1.5.0.235" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\..\packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets" Condition="Exists('..\..\packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets')" />
 </Project>
