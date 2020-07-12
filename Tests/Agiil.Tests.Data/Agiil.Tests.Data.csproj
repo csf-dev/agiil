@@ -61,7 +61,7 @@
     <ProjectReference Include="..\..\Agiil.Data\Agiil.Data.csproj" />
     <ProjectReference Include="..\..\Agiil.Domain\Agiil.Domain.csproj" />
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj" />
-    <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj"/>
+    <ProjectReference Include="..\Agiil.Tests.Common\Agiil.Tests.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -65,7 +65,7 @@
     <Reference Include="System.ComponentModel.Composition" />
   </ItemGroup>
     
-  <Import Project="$(MSBuildThisFileDirectory)..\..\Tools\Agiil.Build.Tasks\Agiil.Build.Tasks.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)..\..\Tools\Agiil.Build.Tasks.targets" />
   <Target Name="AfterBuild">
     <CallTarget Targets="CopyWebApplicationTestingLogic" Condition="'$(Configuration)' == 'Testing'" />
   </Target>
