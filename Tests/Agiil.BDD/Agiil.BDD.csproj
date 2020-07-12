@@ -322,7 +322,7 @@
       <Name>Agiil.Domain.Impl</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Agiil.Web.Models\Agiil.Web.Models.csproj">
-      <Project>{53F1B62F-1BEE-4732-A1F3-433822529906}</Project>
+      <Project>{A5BBF1F2-D137-421A-A05E-D605C30CC862}</Project>
       <Name>Agiil.Web.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Agiil.Web\Agiil.Web.csproj">

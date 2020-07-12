@@ -333,15 +333,15 @@
       <Name>Agiil.Domain.Impl</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Agiil.Web.Models\Agiil.Web.Models.csproj">
-      <Project>{53F1B62F-1BEE-4732-A1F3-433822529906}</Project>
+      <Project>{A5BBF1F2-D137-421A-A05E-D605C30CC862}</Project>
       <Name>Agiil.Web.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Agiil.ObjectMaps\Agiil.ObjectMaps.csproj">
-      <Project>{36A605F5-89BD-4FBA-BDB1-088C38E54886}</Project>
+      <Project>{FDD52765-D498-46A1-A659-33925E543B5F}</Project>
       <Name>Agiil.ObjectMaps</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Agiil.Data\Agiil.Data.csproj">
-      <Project>{AB167238-0D06-4D8A-A646-198D63575AF5}</Project>
+      <Project>{366FC6AE-D4DA-41EA-AC31-AD2039C44410}</Project>
       <Name>Agiil.Data</Name>
     </ProjectReference>
   </ItemGroup>

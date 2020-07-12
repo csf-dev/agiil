@@ -246,15 +246,15 @@
       <Name>Agiil.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Agiil.Web.Models\Agiil.Web.Models.csproj">
-      <Project>{53F1B62F-1BEE-4732-A1F3-433822529906}</Project>
+      <Project>{A5BBF1F2-D137-421A-A05E-D605C30CC862}</Project>
       <Name>Agiil.Web.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Agiil.Web.Rendering.Impl\Agiil.Web.Rendering.Impl.csproj">
-      <Project>{02F8FE6A-DB8D-44D0-903A-304E85333F32}</Project>
+      <Project>{8DFED0F7-7D8E-4E5D-A171-97CA1A75E3D9}</Project>
       <Name>Agiil.Web.Rendering.Impl</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Agiil.Web.Rendering\Agiil.Web.Rendering.csproj">
-      <Project>{8080A385-823C-44F0-B090-71F52337F04A}</Project>
+      <Project>{2ED1E1CB-2FC5-4A44-B4B9-F2DDDD1D7001}</Project>
       <Name>Agiil.Web.Rendering</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">

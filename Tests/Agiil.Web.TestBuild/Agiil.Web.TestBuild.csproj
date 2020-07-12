@@ -163,7 +163,7 @@
       <Name>Agiil.Auth.Impl</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Agiil.Data\Agiil.Data.csproj">
-      <Project>{AB167238-0D06-4D8A-A646-198D63575AF5}</Project>
+      <Project>{366FC6AE-D4DA-41EA-AC31-AD2039C44410}</Project>
       <Name>Agiil.Data</Name>
     </ProjectReference>
   </ItemGroup>
