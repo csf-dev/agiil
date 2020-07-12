@@ -6,7 +6,6 @@
     <PackageId>Agiil.Tests.Auth</PackageId>
     <Description>Unit tests for Agiil.Auth.Impl</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
-    <AssemblyOriginatorKeyFile>..\..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Agiil.Tests.Auth</RootNamespace>
   </PropertyGroup>
     

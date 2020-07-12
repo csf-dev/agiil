@@ -6,6 +6,7 @@
     <PackageId>Agiil.Domain</PackageId>
     <Description>The API definitions &amp; entity/model types for the Agiil issue tracker</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
+    <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Agiil.Domain</RootNamespace>
   </PropertyGroup>

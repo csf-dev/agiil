@@ -6,7 +6,6 @@
     <PackageId>Agiil.Tests.BDD</PackageId>
     <Description>Behaviour Driven Design (BDD) tests for the Agiil application, written using SpecFlow</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
-    <AssemblyOriginatorKeyFile>..\..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Agiil.Tests</RootNamespace>
   </PropertyGroup>
     

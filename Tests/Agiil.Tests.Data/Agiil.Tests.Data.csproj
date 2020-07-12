@@ -6,7 +6,6 @@
     <PackageId>Agiil.Tests.Data</PackageId>
     <Description>Unit &amp; integration tests related to the usage of NHibernate and database-specific technologies</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
-    <AssemblyOriginatorKeyFile>..\..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Agiil.Tests.Data</RootNamespace>
   </PropertyGroup>
     

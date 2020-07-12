@@ -10,7 +10,6 @@
     <Copyright>Copyright 2020 - CSF Software Limited</Copyright>
     <PackageProjectUrl>https://github.com/csf-dev/agiil</PackageProjectUrl>
     <RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
-    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

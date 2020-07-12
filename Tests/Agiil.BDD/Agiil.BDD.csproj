@@ -6,7 +6,6 @@
     <PackageId>Agiil.BDD</PackageId>
     <Description>Bindings and reusable logic for the driving of BDD tests via the Selenium WebDriver, with SpecFlow &amp; Screenplay</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
-    <AssemblyOriginatorKeyFile>..\..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Agiil.BDD</RootNamespace>
   </PropertyGroup>
     

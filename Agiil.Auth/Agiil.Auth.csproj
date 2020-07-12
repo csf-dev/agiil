@@ -6,6 +6,7 @@
     <PackageId>Agiil.Auth</PackageId>
     <Description>The API definitions &amp; model types for performing authentication in the Agiil app</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
+    <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Agiil.Auth</RootNamespace>
   </PropertyGroup>

@@ -6,7 +6,6 @@
     <PackageId>Agiil.Web.TestBuild</PackageId>
     <Description>Supplemental logic, to be added to Agiil.Web, to facilitate extra functionality used whilst performing end-to-end tests</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
-    <AssemblyOriginatorKeyFile>..\..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Agiil.Web</RootNamespace>
   </PropertyGroup>
     

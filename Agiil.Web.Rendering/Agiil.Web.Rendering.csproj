@@ -6,6 +6,7 @@
     <PackageId>Agiil.Web.Rendering</PackageId>
     <Description>Interfaces &amp; API definitions related to the rendering of markdown text to HTML</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
+    <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Agiil.Web.Rendering</RootNamespace>
   </PropertyGroup>

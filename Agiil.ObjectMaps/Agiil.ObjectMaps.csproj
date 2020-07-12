@@ -6,6 +6,7 @@
     <PackageId>Agiil.ObjectMaps</PackageId>
     <Description>Implementation logic specialised to the usage of AutoMapper to map between entity/DTO/value types</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
+    <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Agiil.ObjectMaps</RootNamespace>
   </PropertyGroup>

@@ -6,7 +6,6 @@
     <PackageId>Agiil.Tests</PackageId>
     <Description>Unit &amp; integration tests related to the core Agiil logic</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
-    <AssemblyOriginatorKeyFile>..\..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Agiil.Tests</RootNamespace>
   </PropertyGroup>
     

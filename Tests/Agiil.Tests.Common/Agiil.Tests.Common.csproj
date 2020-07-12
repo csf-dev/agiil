@@ -6,7 +6,6 @@
     <PackageId>Agiil.Tests.Common</PackageId>
     <Description>Shared logic, used across the testing projects</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
-    <AssemblyOriginatorKeyFile>..\..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Agiil.Tests</RootNamespace>
   </PropertyGroup>
     

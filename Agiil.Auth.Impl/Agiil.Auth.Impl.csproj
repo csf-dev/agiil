@@ -6,6 +6,7 @@
     <PackageId>Agiil.Auth.Impl</PackageId>
     <Description>Implementaton logic related to authentication for the Agiil application</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
+    <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Agiil.Auth</RootNamespace>
   </PropertyGroup>
