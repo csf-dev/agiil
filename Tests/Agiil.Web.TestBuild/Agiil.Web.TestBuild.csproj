@@ -1,185 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{84E2316C-4CAA-4D80-8FFF-5F876258F3BF}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Agiil.Web</RootNamespace>
-    <AssemblyName>Agiil.Web.TestBuild</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFramework>net471</TargetFramework>
+    <PackageId>Agiil.Web.TestBuild</PackageId>
+    <Authors>craigfowler</Authors>
+    <Description>Supplemental logic, to be added to Agiil.Web, to facilitate extra functionality used whilst performing end-to-end tests</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
+    <Version>$(ReleaseVersion)</Version>
+    <PackageVersion>$(ReleaseVersion)</PackageVersion>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Copyright>Copyright 2020 - CSF Software Limited</Copyright>
+    <PackageProjectUrl>https://github.com/csf-dev/agiil</PackageProjectUrl>
+    <RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
+    <RootNamespace>Agiil.Web</RootNamespace>
   </PropertyGroup>
+  
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <DebugType></DebugType>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Testing|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Testing|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
+    
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="Autofac">
-      <HintPath>..\..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.Formatting">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Web.Http">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="Autofac.Integration.WebApi">
-      <HintPath>..\..\packages\Autofac.WebApi2.4.0.1\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="BrakePedal">
-      <HintPath>..\..\packages\BrakePedal.1.0.3\lib\net45\BrakePedal.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Entities">
-      <HintPath>..\..\packages\CSF.Entities.2.0.3\lib\net45\CSF.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.ORM">
-      <HintPath>..\..\packages\CSF.ORM.2.0.3\lib\net45\CSF.ORM.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.ORM.Entities">
-      <HintPath>..\..\packages\CSF.ORM.Entities.2.0.3\lib\net45\CSF.ORM.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Specifications">
-      <HintPath>..\..\packages\CSF.Specifications.2.0.0\lib\net45\CSF.Specifications.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.DecoratorBuilder">
-      <HintPath>..\..\packages\CSF.DecoratorBuilder.Interfaces.2.0.0\lib\net461\CSF.DecoratorBuilder.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.DecoratorBuilder.Impl">
-      <HintPath>..\..\packages\CSF.DecoratorBuilder.2.0.0\lib\net461\CSF.DecoratorBuilder.Impl.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\InstallAgiilController.cs" />
-    <Compile Include="App_Start\WebAppTestingContainerFactory.cs" />
-    <Compile Include="Bootstrap\ServicesModule.cs" />
-    <Compile Include="Bootstrap\AspNetWebApiTestBuildModule.cs" />
-    <Compile Include="Controllers\AddUserController.cs" />
-    <Compile Include="Controllers\SetupDataPackageController.cs" />
-    <Compile Include="Services\DataPackageLoader.cs" />
-    <Compile Include="Models\SetupDataPackageRequest.cs" />
-    <Compile Include="Services\DataPackages\SimpleSampleProject.cs" />
-    <Compile Include="Services\IDataPackage.cs" />
-    <Compile Include="Services\DataPackageMetadata.cs" />
-    <Compile Include="Services\DataPackages\IDataPackagesNamespaceMarker.cs" />
-    <Compile Include="Bootstrap\DataPackagesModule.cs" />
-    <Compile Include="Services\IOverridesCurrentLogin.cs" />
-    <Compile Include="Services\OverridableLoginReader.cs" />
-    <Compile Include="Models\CreateUserModel.cs" />
-    <Compile Include="Services\IServicesNamespaceMarker.cs" />
-    <Compile Include="Services\Auth\PermissiveBrakePedalThrottlePolicyProvider.cs" />
-    <Compile Include="Bootstrap\BrakePedalPolicyModule.cs" />
-    <Compile Include="Services\OverridableVersionInfoProvider.cs" />
-    <Compile Include="Controllers\OverrideVersionNumberController.cs" />
-    <Compile Include="Bootstrap\LoginReaderModule.cs" />
-    <Compile Include="Bootstrap\VersionInfoModule.cs" />
-    <Compile Include="..\Agiil.Tests.Common\Data\TestingDatabaseConfiguration.cs">
+    <Compile Update="..\Agiil.Tests.Common\Data\TestingDatabaseConfiguration.cs">
       <Link>Data\TestingDatabaseConfiguration.cs</Link>
     </Compile>
-    <Compile Include="..\Agiil.Tests.Common\Bootstrap\DataModule.cs">
+    <Compile Update="..\Agiil.Tests.Common\Bootstrap\DataModule.cs">
       <Link>Bootstrap\DataModule.cs</Link>
     </Compile>
   </ItemGroup>
+    
   <ItemGroup>
-    <None Include="packages.config" />
+      <PackageReference Include="Autofac" Version="4.9.4" />
+      <PackageReference Include="Autofac.WebApi2" Version="4.0.1" />
+      <PackageReference Include="BrakePedal" Version="1.0.3" />
+      <PackageReference Include="CSF.DecoratorBuilder" Version="2.0.0" />
+      <PackageReference Include="CSF.DecoratorBuilder.Interfaces" Version="2.0.0" />
+      <PackageReference Include="CSF.Entities" Version="2.0.3" />
+      <PackageReference Include="CSF.ORM" Version="2.0.3" />
+      <PackageReference Include="CSF.ORM.Entities" Version="2.0.3" />
+      <PackageReference Include="CSF.Specifications" Version="2.0.0" />
+      <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.3" />
+      <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.3" />
+      <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
+    
   <ItemGroup>
-    <ProjectReference Include="..\..\Agiil.Web\Agiil.Web.csproj">
-      <Project>{EA6B20FB-9F7F-49C5-BE4E-BCD59ECA1D85}</Project>
-      <Name>Agiil.Web</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
-      <Project>{79827CF5-CC58-4F87-BBCA-162B5983C563}</Project>
-      <Name>Agiil.Bootstrap</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Agiil.Domain\Agiil.Domain.csproj">
-      <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
-      <Name>Agiil.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj">
-      <Project>{922B2D9C-444E-451A-B626-DAE59E79C0E5}</Project>
-      <Name>Agiil.Auth</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Agiil.Auth.Impl\Agiil.Auth.Impl.csproj">
-      <Project>{71F8B1B3-C0F1-4D0A-BF44-1DC091EE62E3}</Project>
-      <Name>Agiil.Auth.Impl</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Agiil.Data\Agiil.Data.csproj">
-      <Project>{366FC6AE-D4DA-41EA-AC31-AD2039C44410}</Project>
-      <Name>Agiil.Data</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\..\Agiil.Web\Agiil.Web.csproj" />
+    <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj" />
+    <ProjectReference Include="..\..\Agiil.Domain\Agiil.Domain.csproj" />
+    <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj" />
+    <ProjectReference Include="..\..\Agiil.Auth.Impl\Agiil.Auth.Impl.csproj" />
+    <ProjectReference Include="..\..\Agiil.Data\Agiil.Data.csproj" />
   </ItemGroup>
+
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Services\" />
-    <Folder Include="Bootstrap\" />
-    <Folder Include="App_Start\" />
-    <Folder Include="Data\" />
-    <Folder Include="Models\" />
-    <Folder Include="Services\DataPackages\" />
-    <Folder Include="Services\Auth\" />
+    <Reference Include="System" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.ComponentModel.Composition" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+    
   <Import Project="$(MSBuildThisFileDirectory)..\..\Tools\Agiil.Build.Tasks\Agiil.Build.Tasks.targets" />
   <Target Name="AfterBuild">
     <CallTarget Targets="CopyWebApplicationTestingLogic" Condition="'$(Configuration)' == 'Testing'" />
   </Target>
+
+  <Import Project="..\..\Tools\EnableMultiTargetingWithMono.targets" />
 </Project>
