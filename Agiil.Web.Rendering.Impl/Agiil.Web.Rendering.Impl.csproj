@@ -6,8 +6,6 @@
     <PackageId>Agiil.Web.Rendering.Impl</PackageId>
     <Description>Implementation logic for rendering markdown text to HTML using the Markdig package</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Agiil.Web.Rendering</RootNamespace>
   </PropertyGroup>
     

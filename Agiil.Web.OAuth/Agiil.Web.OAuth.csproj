@@ -6,8 +6,6 @@
     <PackageId>Agiil.Web.OAuth</PackageId>
     <Description>Implementation logic for performing web-app authentication using OAuth</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Agiil.Web.OAuth</RootNamespace>
   </PropertyGroup>
     

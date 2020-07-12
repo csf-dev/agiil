@@ -37,7 +37,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{C9C2673C
 		Tools\Travis-build.sh = Tools\Travis-build.sh
 		Tools\Travis-install.sh = Tools\Travis-install.sh
 		Tools\EnableMultiTargetingWithMono.targets = Tools\EnableMultiTargetingWithMono.targets
-		Tools\CSF-Software-OSS.snk = Tools\CSF-Software-OSS.snk
 		Tools\Agiil.Build.Tasks.targets = Tools\Agiil.Build.Tasks.targets
 		Tools\CommonProjectItems.targets = Tools\CommonProjectItems.targets
 	EndProjectSection

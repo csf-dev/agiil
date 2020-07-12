@@ -6,8 +6,6 @@
     <PackageId>Agiil.Web.Models</PackageId>
     <Description>Model &amp; DTO types specific for usage in the MVC/WebAPI web application project</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Agiil.Web.Models</RootNamespace>
   </PropertyGroup>
     

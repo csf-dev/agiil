@@ -6,8 +6,6 @@
     <PackageId>Agiil.QueryLanguage.Antlr</PackageId>
     <Description>Contains generated code, specifically created by the ANTLR generation tool, related to the Agiil Query parser</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Agiil.QueryLanguage.Antlr</RootNamespace>
   </PropertyGroup>
     

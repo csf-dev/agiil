@@ -6,8 +6,6 @@
     <PackageId>Agiil.QueryLanguage.Impl</PackageId>
     <Description>Implementation logic which makes use of the generated code in Agiil.QueryLanguage.Antlr</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\Tools\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Agiil.QueryLanguage</RootNamespace>
   </PropertyGroup>
     
