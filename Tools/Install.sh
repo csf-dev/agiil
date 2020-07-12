@@ -22,7 +22,7 @@ install_npm_packages()
 {
   echo "Installing npm packages for the solution ..."
   OLD_DIR="$(pwd)"
-  
+  /
   cd Agiil.Web/
   npm ci
   npm_exit=$?
@@ -36,7 +36,13 @@ install_npm_packages()
   stop_if_failure $npm_exit "Install npm packages to 'Agiil.Web.Client'"
 }
 
+install_test_runner()
+{
+    nuget install NUnit.ConsoleRunner -Version 3.7.0 -OutputDirectory packages/
+}
+
 restore_solution_nuget_packages
 install_npm_packages
+install_test_runner
 
 exit 0

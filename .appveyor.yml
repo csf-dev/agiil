@@ -17,6 +17,7 @@ install:
   - git submodule update --init --recursive
   - choco install "sonarscanner-msbuild-net46" -y
   - nuget install -OutputDirectory %APPVEYOR_BUILD_FOLDER%\.OpenCover -Version 4.7.922 OpenCover
+  - nuget install NUnit.ConsoleRunner -Version 3.7.0 -OutputDirectory packages\
 
 configuration: AppVeyorCI
 

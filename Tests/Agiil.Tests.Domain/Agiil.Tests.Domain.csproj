@@ -119,8 +119,8 @@
   </ItemGroup>
     
   <Target Name="MoveAppConfigToCorrectLocation" AfterTargets="ScApplyTransforms">
-    <Copy SourceFiles="App.template.config" DestinationFiles="$(OutDir)\Agiil.Tests.Services.dll.config" Condition="!Exists('$(OutDir)\App.config')" />
-    <Move SourceFiles="$(OutDir)\App.config" DestinationFiles="$(OutDir)\Agiil.Tests.Services.dll.config" Condition="Exists('$(OutDir)\App.config')" />
+    <Copy SourceFiles="App.template.config" DestinationFiles="$(OutDir)\$(AssemblyName).dll.config" Condition="!Exists('$(OutDir)\App.config')" />
+    <Move SourceFiles="$(OutDir)\App.config" DestinationFiles="$(OutDir)\$(AssemblyName).dll.config" Condition="Exists('$(OutDir)\App.config')" />
   </Target>
     
   <Import Project="..\..\Tools\EnableMultiTargetingWithMono.targets" />
