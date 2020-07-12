@@ -3,7 +3,7 @@
 NUNIT_CONSOLE_VERSION="3.7.0"
 NUNIT_PATH="./packages/NUnit.ConsoleRunner.${NUNIT_CONSOLE_VERSION}/tools/nunit3-console.exe"
 TEST_HOME="./Tests"
-WEB_TESTS_PATH="${TEST_HOME}/Agiil.Tests.BDD/bin/Debug/Agiil.Tests.BDD.dll"
+WEB_TESTS_PATH="${TEST_HOME}/Agiil.Tests.BDD/bin/Debug/net471/Agiil.Tests.BDD.dll"
 SCRIPT_DIR="$(dirname "$0")"
 
 test_outcome=1

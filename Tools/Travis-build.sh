@@ -8,11 +8,11 @@ TEST_SUPPORT="Agiil.Tests.Common.dll"
 SCRIPT_DIR="$(dirname "$0")"
 WEBSERVER_PID=".xsp4.pid"
 TEST_HOME="./Tests"
-WEB_TESTS_PATH="${TEST_HOME}/Agiil.Tests.BDD/bin/Debug/Agiil.Tests.BDD.dll"
+WEB_TESTS_PATH="${TEST_HOME}/Agiil.Tests.BDD/bin/Debug/net471/Agiil.Tests.BDD.dll"
 TEST_TEMP_DIR="${TEST_HOME}/Temp"
 WEB_APP_HOME="Agiil.Web"
 WEB_APP_BIN="${WEB_APP_HOME}/bin"
-TESTING_BIN="Tests/Agiil.Web.TestBuild/bin/Debug"
+TESTING_BIN="Tests/Agiil.Web.TestBuild/bin/Debug/net471"
 
 test_outcome=1
 
