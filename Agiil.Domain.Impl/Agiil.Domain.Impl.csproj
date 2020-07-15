@@ -37,7 +37,7 @@
     <EmbeddedResource Condition=" '$(EnableDefaultEmbeddedResourceItems)' == 'true' " Update="Resources\ExceptionMessages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ExceptionMessages.Designer.cs</LastGenOutput>
-      <LogicalName>Agiil.Domain.ExceptionMessages</LogicalName>
+      <LogicalName>Agiil.Domain.ExceptionMessage.resources</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
