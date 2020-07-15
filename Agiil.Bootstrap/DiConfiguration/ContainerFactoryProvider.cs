@@ -5,7 +5,8 @@ namespace Agiil.Bootstrap.DiConfiguration
 {
     public class ContainerFactoryProvider
     {
-        readonly IConfigurationReader configReader;
+        // Because this type is used to create a DI container, we can't use DI for its dependencies!
+        readonly IConfigurationReader configReader = new ConfigurationReader();
 
         public IGetsAutofacContainer GetContainerBuilderFactory()
         {
@@ -26,11 +27,6 @@ namespace Agiil.Bootstrap.DiConfiguration
                 throw new CannotGetDiContainerFactoryException($"Configuration specifies container factory type `{config.FactoryTypeName}' but this type cannot be found.");
 
             return type;
-        }
-
-        public ContainerFactoryProvider(IConfigurationReader configReader)
-        {
-            this.configReader = configReader ?? throw new ArgumentNullException(nameof(configReader));
         }
 
         /// <summary>
