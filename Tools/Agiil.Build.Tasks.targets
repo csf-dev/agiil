@@ -5,11 +5,11 @@
     <TasksConfig Condition="'$(Configuration)' != 'Release'">Debug</TasksConfig>
     <TasksConfig Condition="'$(Configuration)' == 'Release'">Release</TasksConfig>
 
-    <AgiilWebProjectDir>$(MSBuildThisFileDirectory)\..\..\Agiil.Web</AgiilWebProjectDir>
+    <AgiilWebProjectDir>$(MSBuildThisFileDirectory)\..\Agiil.Web</AgiilWebProjectDir>
     <AgiilWebOutputDir>$(AgiilWebProjectDir)\bin</AgiilWebOutputDir>
     
-    <DeploymentRoot Condition="'$(DeploymentRoot)' == '' and $(Configuration) == 'Release'">$(MSBuildThisFileDirectory)\..\..\Output\Web apps</DeploymentRoot>
-    <DeploymentRoot Condition="'$(DeploymentRoot)' == '' and $(Configuration) != 'Release'">$(MSBuildThisFileDirectory)\..\..\</DeploymentRoot>
+    <DeploymentRoot Condition="'$(DeploymentRoot)' == '' and $(Configuration) == 'Release'">$(MSBuildThisFileDirectory)\..\Output\Web apps</DeploymentRoot>
+    <DeploymentRoot Condition="'$(DeploymentRoot)' == '' and $(Configuration) != 'Release'">$(MSBuildThisFileDirectory)\..\</DeploymentRoot>
     <WebAppStagingDir>$(DeploymentRoot)\Agiil.Web</WebAppStagingDir>
   </PropertyGroup>
 	
