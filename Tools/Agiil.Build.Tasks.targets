@@ -2,14 +2,15 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	
   <PropertyGroup>
+    <SolutionRootDir>$(MSBuildThisFileDirectory)\..</SolutionRootDir>
     <TasksConfig Condition="'$(Configuration)' != 'Release'">Debug</TasksConfig>
     <TasksConfig Condition="'$(Configuration)' == 'Release'">Release</TasksConfig>
 
-    <AgiilWebProjectDir>$(MSBuildThisFileDirectory)\..\Agiil.Web</AgiilWebProjectDir>
+    <AgiilWebProjectDir>$(SolutionRootDir)\Agiil.Web</AgiilWebProjectDir>
     <AgiilWebOutputDir>$(AgiilWebProjectDir)\bin</AgiilWebOutputDir>
     
-    <DeploymentRoot Condition="'$(DeploymentRoot)' == '' and $(Configuration) == 'Release'">$(MSBuildThisFileDirectory)\..\Output\Web apps</DeploymentRoot>
-    <DeploymentRoot Condition="'$(DeploymentRoot)' == '' and $(Configuration) != 'Release'">$(MSBuildThisFileDirectory)\..\</DeploymentRoot>
+    <DeploymentRoot Condition="'$(DeploymentRoot)' == '' and $(Configuration) == 'Release'">$(SolutionRootDir)\Output\Web apps</DeploymentRoot>
+    <DeploymentRoot Condition="'$(DeploymentRoot)' == '' and $(Configuration) != 'Release'">$(SolutionRootDir)</DeploymentRoot>
     <WebAppStagingDir>$(DeploymentRoot)\Agiil.Web</WebAppStagingDir>
   </PropertyGroup>
 	
