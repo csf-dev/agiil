@@ -1,18 +1,7 @@
 #!/bin/bash
  
-NUNIT_CONSOLE_VERSION="3.7.0"
-NUNIT_PATH="./packages/NUnit.ConsoleRunner.${NUNIT_CONSOLE_VERSION}/tools/nunit3-console.exe"
-TEST_PATTERN="Agiil.Tests.*.dll"
-WEB_TESTS="Agiil.Tests.BDD.dll"
-TEST_SUPPORT="Agiil.Tests.Common.dll"
 SCRIPT_DIR="$(dirname "$0")"
-WEBSERVER_PID=".xsp4.pid"
-TEST_HOME="./Tests"
-WEB_TESTS_PATH="${TEST_HOME}/Agiil.Tests.BDD/bin/Debug/net471/Agiil.Tests.BDD.dll"
-TEST_TEMP_DIR="${TEST_HOME}/Temp"
-WEB_APP_HOME="Agiil.Web"
-WEB_APP_BIN="${WEB_APP_HOME}/bin"
-TESTING_BIN="Tests/Agiil.Web.TestBuild/bin/Debug/net471"
+WEB_TESTS_PATH="${SCRIPT_DIR}/../Tests/Agiil.Tests.BDD/bin/TravisCI/net471/Agiil.Tests.BDD.dll"
 
 test_outcome=1
 
@@ -38,7 +27,7 @@ build_solution()
 run_unit_tests()
 {
   echo "Running unit tests ..."
-  Tools/Run-unit-tests.sh
+  ${SCRIPT_DIR}/Run-unit-tests.sh
   stop_if_failure $? "Run unit tests"
 }
 
@@ -52,7 +41,8 @@ prepare_screenplay_env_variables()
 
 run_integration_tests()
 {
-  Tools/Run-integration-tests.sh
+  export WEB_TESTS_PATH
+  ${SCRIPT_DIR}/Run-integration-tests.sh
   test_outcome=$?
 }
 
