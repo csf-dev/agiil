@@ -1,100 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+    
+  <Import Project="..\Tools\CommonProjectItems.targets" />
+  
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{02F8FE6A-DB8D-44D0-903A-304E85333F32}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Agiil.Web.Rendering</RootNamespace>
-    <AssemblyName>Agiil.Web.Rendering.Impl</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <PackageId>Agiil.Web.Rendering.Impl</PackageId>
+    <Description>Implementation logic for rendering markdown text to HTML using the Markdig package</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
+    <RootNamespace>Agiil.Web.Rendering</RootNamespace>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
+    
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="AngleSharp">
-      <HintPath>..\packages\AngleSharp.0.9.9\lib\net45\AngleSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="HtmlSanitizer">
-      <HintPath>..\packages\HtmlSanitizer.3.4.156\lib\net45\HtmlSanitizer.dll</HintPath>
-    </Reference>
-    <Reference Include="Markdig">
-      <HintPath>..\packages\Markdig.0.15.0\lib\net40\Markdig.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CSharp" />
+    <PackageReference Include="CSF.Entities" Version="2.0.3" />
+    <PackageReference Include="AngleSharp" Version="0.9.9" />
+    <PackageReference Include="HtmlSanitizer" Version="3.4.156" />
+    <PackageReference Include="Markdig" Version="0.15.0" />
+    <PackageReference Include="log4net" Version="2.0.8" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj" />
+    <ProjectReference Include="..\Agiil.Web.Rendering\Agiil.Web.Rendering.csproj" />
+  </ItemGroup>
+    
+  <ItemGroup>
     <Reference Include="mscorlib" />
     <Reference Include="System.Core" />
-    <Reference Include="CSF.Entities">
-      <HintPath>..\packages\CSF.Entities.2.0.3\lib\net45\CSF.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
-    </Reference>
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MarkdownRenderer.cs" />
-    <Compile Include="HtmlMarkupSanitizer.cs" />
-    <Compile Include="SanitizingMarkdownRendererProxy.cs" />
-    <Compile Include="HtmlSanitizerFactory.cs" />
-    <Compile Include="MarkdownRendererFactory.cs" />
-    <Compile Include="MarkdigPipelineFactory.cs" />
-    <Compile Include="MarkdownExtensionsProvider.cs" />
-    <Compile Include="MarkdownExtensions\AutoTicketLinkExtension.cs" />
-    <Compile Include="MarkdownExtensions\AutoTicketLinkParser.cs" />
-    <Compile Include="MarkdownExtensions\TicketReferenceParser.cs" />
-    <Compile Include="MarkdownExtensions\TicketLinkInline.cs" />
-    <Compile Include="MarkdownExtensions\NormalizeAutoTicketLinkRenderer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Agiil.Web.Rendering\Agiil.Web.Rendering.csproj">
-      <Project>{8080A385-823C-44F0-B090-71F52337F04A}</Project>
-      <Name>Agiil.Web.Rendering</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
-      <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
-      <Name>Agiil.Domain</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MarkdownExtensions\" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+
+  <Import Project="..\Tools\EnableMultiTargetingWithMono.targets" />
 </Project>

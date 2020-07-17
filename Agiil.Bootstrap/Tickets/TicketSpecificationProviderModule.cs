@@ -13,6 +13,10 @@ namespace Agiil.Bootstrap.Tickets
             builder.RegisterDecoratedService<IGetsTicketSpecification>((d, p) => d
                 .UsingInitialImpl<VisitorBasedSpecificationProvider>(p)
                 .ThenWrapWith<CurrentProjectCriterionAddingSpecProviderDecorator>(p));
+
+            builder.RegisterType<StrategyBasedCriterionToSpecificationConverter>()
+                .AsSelf()
+                .As<IConvertsCriterionToSpecification>();
         }
 
 

@@ -66,11 +66,17 @@ Password = ${MEGA_PASSWORD}
 " > ~/.megarc
 }
 
+install_test_runner()
+{
+    nuget install NUnit.ConsoleRunner -Version 3.7.0 -OutputDirectory packages/
+}
+
 install_latest_nuget
 echo_nuget_version_to_console
 restore_solution_nuget_packages
 install_latest_npm
 install_npm_packages
 setup_megarc_file
+install_test_runner
 
 exit 0

@@ -3,7 +3,7 @@
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{EA6B20FB-9F7F-49C5-BE4E-BCD59ECA1D85}</ProjectGuid>
     <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
@@ -38,28 +38,6 @@
     <OutputPath>bin</OutputPath>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <DefineConstants>DEBUG;TRACE;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <OutputPath>bin</OutputPath>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Testing|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <DefineConstants>DEBUG;TRACE;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <OutputPath>bin</OutputPath>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppVeyorCI|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -70,17 +48,6 @@
     <ConsolePause>false</ConsolePause>
     <OutputPath>bin</OutputPath>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppVeyorCI|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <DefineConstants>DEBUG;TRACE;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <OutputPath>bin</OutputPath>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'TravisCI|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -90,17 +57,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <OutputPath>bin</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'TravisCI|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <DefineConstants>DEBUG;TRACE;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <OutputPath>bin</OutputPath>
-    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -404,7 +360,7 @@
     <Compile Include="ActionFilters\BaseUriModelPopulator.cs" />
     <Compile Include="ActionFilters\LoginStateModelPopulator.cs" />
     <Compile Include="ActionFilters\VersionInfoModelPopulator.cs" />
-    <Compile Include="ApiActionFilters\LogUnexpectedErrorsAttribute.cs" />
+    <Compile Include="ApiActionFilters\Log4netUnexpectedErrorLogger.cs" />
     <Compile Include="Services\Auth\LoginStateReader.cs" />
     <Compile Include="ActionFilters\TestApplicationDependencies.cs" />
     <Compile Include="Controllers\MissingDependenciesController.cs" />
@@ -509,15 +465,15 @@
       <Name>Agiil.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Agiil.Web.OAuth\Agiil.Web.OAuth.csproj">
-      <Project>{9CECEC15-9B54-4DDD-B0FB-8E9E14FBBA15}</Project>
+      <Project>{8D200B72-A2D3-4024-A6B3-67E8BC3AA1CB}</Project>
       <Name>Agiil.Web.OAuth</Name>
     </ProjectReference>
     <ProjectReference Include="..\Agiil.Web.Models\Agiil.Web.Models.csproj">
-      <Project>{53F1B62F-1BEE-4732-A1F3-433822529906}</Project>
+      <Project>{A5BBF1F2-D137-421A-A05E-D605C30CC862}</Project>
       <Name>Agiil.Web.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\Agiil.Web.Rendering\Agiil.Web.Rendering.csproj">
-      <Project>{8080A385-823C-44F0-B090-71F52337F04A}</Project>
+      <Project>{2ED1E1CB-2FC5-4A44-B4B9-F2DDDD1D7001}</Project>
       <Name>Agiil.Web.Rendering</Name>
     </ProjectReference>
     <ProjectReference Include="..\Agiil.Web.Client\Agiil.Web.Client.csproj">
@@ -525,20 +481,8 @@
       <Name>Agiil.Web.Client</Name>
     </ProjectReference>
   </ItemGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <Optimize>false</Optimize>
-    <OutputPath>bin</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Testing|x86' ">
-    <Optimize>false</Optimize>
-    <OutputPath>bin</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildThisFileDirectory)..\Tools\Agiil.Build.Tasks\Agiil.Build.Tasks.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)..\Tools\Agiil.Build.Tasks.targets" />
   <Target Name="CompileScssFiles" BeforeTargets="AfterBuild">
     <PropertyGroup>
       <SassInputDir>$(MSBuildThisFileDirectory)Content\Scss</SassInputDir>

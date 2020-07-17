@@ -29,6 +29,10 @@ namespace Agiil.Bootstrap.Data
               .AsSelf()
               .As<IGetsDataDirectory>();
 
+            builder.RegisterDecoratedService<IResetsDatabase>(d => d
+                .UsingInitialImpl<DevelopmentDatabaseResetter>()
+                .ThenWrapWith<SnapshottingDatabaseResetter>());
+
             builder.Register(GetConnectionStringAdapter);
         }
 
