@@ -38,28 +38,6 @@
     <OutputPath>bin</OutputPath>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <DefineConstants>DEBUG;TRACE;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <OutputPath>bin</OutputPath>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Testing|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <DefineConstants>DEBUG;TRACE;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <OutputPath>bin</OutputPath>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppVeyorCI|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -382,7 +360,7 @@
     <Compile Include="ActionFilters\BaseUriModelPopulator.cs" />
     <Compile Include="ActionFilters\LoginStateModelPopulator.cs" />
     <Compile Include="ActionFilters\VersionInfoModelPopulator.cs" />
-    <Compile Include="ApiActionFilters\LogUnexpectedErrorsAttribute.cs" />
+    <Compile Include="ApiActionFilters\Log4netUnexpectedErrorLogger.cs" />
     <Compile Include="Services\Auth\LoginStateReader.cs" />
     <Compile Include="ActionFilters\TestApplicationDependencies.cs" />
     <Compile Include="Controllers\MissingDependenciesController.cs" />
