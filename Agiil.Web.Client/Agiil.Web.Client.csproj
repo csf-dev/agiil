@@ -22,7 +22,7 @@
     <None Include="package-lock.json" />
   </ItemGroup>
   
-  <Target Name="Clean_Dist">
+  <Target Name="Clean_Dist" AfterTargets="Clean">
     <Exec Command="npm run clean" />
   </Target>
 
@@ -34,18 +34,16 @@
     <Exec Command="npm run build" />
   </Target>
   
-  <Target Name="Clean">
+  <Target Name="CleanNpm" AfterTargets="Clean">
     <CallTarget Targets="Clean_Dist" />
   </Target>
 
-  <Target Name="Build" DependsOnTargets="Clean">
+  <Target Name="BuildNpm" AfterTargets="Build">
     <CallTarget Targets="Build_Dev" Condition="'$(Configuration)' == 'Debug'" />
     <CallTarget Targets="Build_Prod" Condition="'$(Configuration)' == 'Release'" />
   </Target>
-    
-  <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
   
-  <Target Name="CopyToWebApp" AfterTargets="Build">
+  <Target Name="CopyToWebApp" AfterTargets="BuildNpm">
     <ItemGroup>
       <BundlesSrc Include="dist\Content\bundles\**\*" />
       <HtmlSrc Include="dist\*.html" />
@@ -68,8 +66,6 @@
     </PropertyGroup>
     <Copy SourceFiles="@(HtmlSrc)" DestinationFiles="$(HtmlDest)\$(NewFilename)" />
   </Target>
-    
-  <Target Name="CoreCompile"><!-- Intentional no-op --></Target>
     
   <ItemGroup>
     <PackageReference Include="MSBuildTasks" Version="1.5.0.235" />
