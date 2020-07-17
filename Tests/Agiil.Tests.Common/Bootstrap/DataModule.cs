@@ -14,10 +14,6 @@ namespace Agiil.Tests.Bootstrap
             builder
               .RegisterType<TestingDatabaseConfiguration>()
               .As<IDatabaseConfiguration>();
-
-            builder.RegisterDecoratedService<IResetsDatabase>(d => d
-                .UsingInitialImpl<DevelopmentDatabaseResetter>()
-                .ThenWrapWith<SnapshottingDatabaseResetter>());
         }
     }
 }
