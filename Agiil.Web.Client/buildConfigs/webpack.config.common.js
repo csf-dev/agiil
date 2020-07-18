@@ -17,12 +17,31 @@ const cssPlainLoader = {
   }
 };
 
+const modernizrAliasFile = path.resolve(__dirname, './modernizr-alias.js');
+
+const modernizrLoader = {
+    loader: 'webpack-modernizr-loader',
+    options: {
+        "minify": true,
+        "options": [ "setClasses" ],
+        "feature-detects": [
+            "test/touchevents",
+            "test/css/flexbox",
+            "test/mediaquery/pointermq"
+        ]
+    },
+    test: modernizrAliasFile
+}
+
 const webpackConfig = {
     resolve: {
         modules: [
             'node_modules',
             path.resolve(__dirname, '../src'),
-        ]
+        ],
+        alias: {
+            modernizr$: modernizrAliasFile
+        }
     },
     module: {
         rules: [
