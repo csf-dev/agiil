@@ -24,9 +24,6 @@ configuration: AppVeyorCI
 before_build:
   - nuget restore Agiil.sln
   - npm install -g npm@latest
-  - cd Agiil.Web
-  - npm ci
-  - cd ..
   - cd Agiil.Web.Client
   - npm ci
   - cd ..
