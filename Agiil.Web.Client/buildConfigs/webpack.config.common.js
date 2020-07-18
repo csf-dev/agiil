@@ -17,19 +17,12 @@ const cssPlainLoader = {
   }
 };
 
+// The alias file is just a placeholder to represent the built Modernizr library
 const modernizrAliasFile = path.resolve(__dirname, './modernizr-alias.js');
 
 const modernizrLoader = {
     loader: 'webpack-modernizr-loader',
-    options: {
-        "minify": true,
-        "options": [ "setClasses" ],
-        "feature-detects": [
-            "test/touchevents",
-            "test/css/flexbox",
-            "test/mediaquery/pointermq"
-        ]
-    }
+    options: require('./modernizr.config')
 };
 
 const webpackConfig = {
