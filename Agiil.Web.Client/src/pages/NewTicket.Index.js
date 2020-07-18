@@ -1,22 +1,27 @@
 //@flow
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { getElementByIdMandatory } from 'util/dom';
+import { getElementById, getElementByIdMandatory } from 'util/dom';
 import { LabelChooser } from 'components/labels/LabelChooser';
 import getStore from 'app/getStore';
 import type { AnyStore } from 'util/redux/AnyStore';
 import { Provider } from 'react-redux';
 import pageStarter from 'util/pageStarter';
 import getLabelListFactory from 'services/labels/LabelListFromTextInputCreator';
+//$FlowFixMe
 import 'scss/CreateTicket.scss';
 
 pageStarter(() => {
     const store = getInitialStore();
-    renderComponents(store);
+
+    if(store)
+        renderComponents(store);
 });
 
-function getInitialStore() : AnyStore {
-    const labelsInput : HTMLInputElement = (getElementByIdMandatory('Labels') : any);
+function getInitialStore() : AnyStore | null{
+    const labelsInput = getElementById<HTMLInputElement>('Labels');
+    if(!labelsInput) return null;
+
     const labels = getLabelListFactory(labelsInput).getLabelList();
     return getStore({labelChooser: {selectedLabels: {labels}}});
 }
