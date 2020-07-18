@@ -19,7 +19,7 @@
       tal:attributes="href uri" />
 <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
 <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i%7CSource+Code+Pro:400,700" rel="stylesheet" />
-<script src="Content/bundles/modernizr.agiil.js"></script>
+<metal:block use-macro="Views/Shared/modernizr.assets.html/macros/modernizrScript"></metal:block>
 <style metal:define-slot="asset_styles" tal:omit-tag=""></style>
 </head>
 <body metal:fill-slot="body_element">

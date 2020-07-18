@@ -42,11 +42,13 @@
   <Target Name="CopyToWebApp" AfterTargets="BuildNpm">
     <ItemGroup>
       <BundlesSrc Include="dist\Content\bundles\**\*" />
-      <HtmlSrc Include="dist\*.html" />
+      <HtmlSrc Include="dist\*.html" Exclude="dist\modernizr.html" />
+      <ModernizrSrc Include="dist\modernizr.html" />
     </ItemGroup>
     <PropertyGroup>
       <BundlesDest>..\Agiil.Web\Content\bundles</BundlesDest>
       <HtmlDest>..\Agiil.Web\Views</HtmlDest>
+      <ModernizrDest>..\Agiil.Web\Views\Shared</ModernizrDest>
     </PropertyGroup>
     <ItemGroup>
       <HtmlToDelete Include="$(HtmlDest)\**\*.assets.html" />
@@ -61,6 +63,7 @@
       <NewFilename>@(HtmlSrc-&gt;'%(Filename)'-&gt;Replace('.','\')).assets.html</NewFilename>
     </PropertyGroup>
     <Copy SourceFiles="@(HtmlSrc)" DestinationFiles="$(HtmlDest)\$(NewFilename)" />
+    <Copy SourceFiles="@(ModernizrSrc)" DestinationFiles="$(ModernizrDest)\modernizr.assets.html" />
   </Target>
     
   <ItemGroup>
