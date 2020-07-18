@@ -22,7 +22,7 @@
     <None Include="package-lock.json" />
   </ItemGroup>
   
-  <Target Name="Clean_Dist" AfterTargets="Clean">
+  <Target Name="Clean_Dist" BeforeTargets="Clean">
     <Exec Command="npm run clean" />
   </Target>
 
@@ -34,7 +34,7 @@
     <Exec Command="npm run build" />
   </Target>
   
-  <Target Name="CleanNpm" AfterTargets="Clean">
+  <Target Name="CleanNpm" BeforeTargets="Clean">
     <CallTarget Targets="Clean_Dist" />
   </Target>
 

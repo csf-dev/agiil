@@ -488,6 +488,9 @@
   <Target Name="MoveWebConfigToCorrectLocation" AfterTargets="ScApplyTransforms">
     <Copy SourceFiles="$(OutDir)\Web.config" DestinationFiles="Web.config" />
   </Target>
+  <Target Name="CleanBundles" BeforeTargets="Clean">
+    <RemoveDir Directories="Content\bundles" />
+  </Target>
   <Target Name="MarkGeneratedBundlesAsContent" BeforeTargets="DeployWebApp">
     <ItemGroup>
       <Content Include="Views\**\*.assets.html" />
