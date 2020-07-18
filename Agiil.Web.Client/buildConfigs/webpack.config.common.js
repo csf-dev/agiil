@@ -17,12 +17,23 @@ const cssPlainLoader = {
   }
 };
 
+// The alias file is just a placeholder to represent the built Modernizr library
+const modernizrAliasFile = path.resolve(__dirname, './modernizr-alias.js');
+
+const modernizrLoader = {
+    loader: 'webpack-modernizr-loader',
+    options: require('./modernizr.config')
+};
+
 const webpackConfig = {
     resolve: {
         modules: [
             'node_modules',
             path.resolve(__dirname, '../src'),
-        ]
+        ],
+        alias: {
+            modernizr$: modernizrAliasFile
+        }
     },
     module: {
         rules: [
@@ -30,6 +41,7 @@ const webpackConfig = {
                 test: /\.js$/,
                 exclude: [
                     path.resolve(__dirname, '../node_modules'),
+                    modernizrAliasFile
                 ],
                 use: [
                     {
@@ -40,6 +52,10 @@ const webpackConfig = {
                         }
                     }
                 ]
+            },
+            {
+                test: modernizrAliasFile,
+                use: [ modernizrLoader ]
             },
             {
                 // Some node modules must be transpiled to work with my target browsers
@@ -91,6 +107,9 @@ const webpackConfig = {
         path: path.resolve(__dirname, '../dist/Content/bundles')
     },
     devtool: 'source-map',
+    entry: {
+        "modernizr": modernizrAliasFile
+    },
     optimization: {
         splitChunks: {
             chunks: 'all',

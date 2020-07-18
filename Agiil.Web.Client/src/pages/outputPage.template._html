@@ -7,7 +7,11 @@
 </head>
 <body>
 <metal:block metal:define-macro="scripts">
-<% for (var chunk in htmlWebpackPlugin.files.chunks) { %><script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+<% for (var chunk in htmlWebpackPlugin.files.chunks) {
+    if(chunk == 'modernizr')
+        continue;
+    
+    %><script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
 <% } %></metal:block>
 </body>
 </html>
