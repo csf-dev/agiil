@@ -4,7 +4,8 @@ const os = require('os');
 
 var options = getOptions();
 
-runWebpack(options)
+buildModernizr(options)
+    .then(() => runWebpack(options))
     .then(() => {}, (err) => { console.error('Unexpected error', err); process.exit(1); });
 
 function getOptions() {
@@ -49,6 +50,25 @@ function runWebpack(options) {
             console.log('Completed webpack, exit code ' + code);
             if(code == 0 || options.watched) res();
             else rej('Webpack failed');
+        });
+    });
+}
+
+function buildModernizr(options) {
+    const modernizrArgs = ['modernizr', '-c', 'buildConfigs/modernizr.config.json', '-d', 'dist/Content/bundles/modernizr.agiil.js'];
+    const spawnOptions = {
+        stdio: 'inherit',
+        shell: os.platform() === 'win32'
+    };
+
+    return new Promise((res, rej) => {
+        const modernizrProcess = spawn('npx', modernizrArgs, spawnOptions);
+        console.log(`Executing Modernizr: npx ${modernizrArgs.join(' ')}`);
+        
+        modernizrProcess.on('exit', (code) => {
+            console.log('Completed custom modernizr build, exit code ' + code);
+            if(code == 0) res();
+            else rej('Modernizr failed');
         });
     });
 }
