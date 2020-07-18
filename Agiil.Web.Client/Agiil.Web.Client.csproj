@@ -22,7 +22,7 @@
     <None Include="package-lock.json" />
   </ItemGroup>
   
-  <Target Name="Clean_Dist" AfterTargets="Clean">
+  <Target Name="Clean_Dist" BeforeTargets="Clean">
     <Exec Command="npm run clean" />
   </Target>
 
@@ -33,12 +33,8 @@
   <Target Name="Build_Prod">
     <Exec Command="npm run build" />
   </Target>
-  
-  <Target Name="CleanNpm" AfterTargets="Clean">
-    <CallTarget Targets="Clean_Dist" />
-  </Target>
 
-  <Target Name="BuildNpm" AfterTargets="Build">
+  <Target Name="BuildNpm" AfterTargets="Build" DependsOnTargets="Clean_Dist">
     <CallTarget Targets="Build_Dev" Condition="'$(Configuration)' == 'Debug'" />
     <CallTarget Targets="Build_Prod" Condition="'$(Configuration)' == 'Release'" />
   </Target>

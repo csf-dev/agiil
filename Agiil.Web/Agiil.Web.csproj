@@ -79,6 +79,7 @@
       <HintPath>..\packages\Microsoft.Owin.Cors.3.0.1\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
@@ -276,7 +277,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\Css\" />
     <Folder Include="Scripts\" />
     <Folder Include="Temp\" />
     <Folder Include="Views\ChangePassword\" />
@@ -416,10 +416,7 @@
     </Content>
     <Content Include="Global.asax" />
     <Content Include="Temp/.placeholder" />
-    <None Include="Content\Css\*.css" />
     <None Include="packages.config" />
-    <None Include="Content\Scss\**\*.scss" />
-    <None Include="Content\Scss\EditProject.scss" />
     <Content Include="Views\Shared\Controls\ProjectChooser.pt" />
   </ItemGroup>
   <ItemGroup>
@@ -483,15 +480,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildThisFileDirectory)..\Tools\Agiil.Build.Tasks.targets" />
-  <Target Name="CompileScssFiles" BeforeTargets="AfterBuild">
-    <PropertyGroup>
-      <SassInputDir>$(MSBuildThisFileDirectory)Content\Scss</SassInputDir>
-      <SassOutputDir>$(MSBuildThisFileDirectory)Content\Css</SassOutputDir>
-      <SassNodePath>$(MSBuildThisFileDirectory)node_modules\node-sass\bin\node-sass</SassNodePath>
-    </PropertyGroup>
-    <Exec Command="node $(SassNodePath) $(SassInputDir) --output $(SassOutputDir) --source-map true" WorkingDirectory="$(MSBuildThisFileDirectory)" />
-  </Target>
   <Target Name="CopyCsfReflection3" BeforeTargets="AfterBuild">
+    <!-- This is required because this project (via its dependencies) depends on two different/incompatible versions
+         of CSF.Reflection.  Because v3.0.0 is strong-named, both versions may exist side-by-side, as long as
+         they have different filenames. This build step accomplishes that. -->
     <ItemGroup>
       <CsfReflectionFiles Include="..\packages\CSF.Reflection.3.0.0\lib\net45\CSF.Reflection.*" />
     </ItemGroup>
@@ -500,16 +492,16 @@
   <Target Name="MoveWebConfigToCorrectLocation" AfterTargets="ScApplyTransforms">
     <Copy SourceFiles="$(OutDir)\Web.config" DestinationFiles="Web.config" />
   </Target>
+  <Target Name="CleanBundles" BeforeTargets="Clean">
+    <RemoveDir Directories="Content\bundles" />
+  </Target>
+  <Target Name="CleanReleaseOutputLocation" BeforeTargets="Clean">
+    <CallTarget Targets="CleanStagingDir" />
+  </Target>
   <Target Name="MarkGeneratedBundlesAsContent" BeforeTargets="DeployWebApp">
     <ItemGroup>
       <Content Include="Views\**\*.assets.html" />
       <Content Include="Content\bundles\**\*" />
-    </ItemGroup>
-  </Target>
-  <Target Name="MarkGeneratedCssAsContent" BeforeTargets="DeployWebApp">
-    <ItemGroup>
-      <Content Include="Content\Css\*.css" />
-      <Content Include="Content\Css\*.css.map" />
     </ItemGroup>
   </Target>
   <Target Name="DeployWebApp" AfterTargets="MoveWebConfigToCorrectLocation" Condition="'$(Configuration)' == 'Release'">
@@ -539,8 +531,14 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+    
+  <PropertyGroup>
+    <WebAppTargetsPath Condition="Exists('$(VSToolsPath)')">$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets</WebAppTargetsPath>
+    <WebAppTargetsPath Condition="!Exists('$(VSToolsPath)')">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets</WebAppTargetsPath>
+  </PropertyGroup>
+    
+  <Import Project="$(WebAppTargetsPath)" />
   <Import Project="..\packages\Microsoft.VisualStudio.SlowCheetah.3.0.61\build\Microsoft.VisualStudio.SlowCheetah.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.SlowCheetah.3.0.61\build\Microsoft.VisualStudio.SlowCheetah.targets')" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.0\build\net46\System.Data.SQLite.Core.targets')" />
+  <Import Project="..\packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets" Condition="Exists('..\packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets')" />
 </Project>

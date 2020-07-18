@@ -2,6 +2,7 @@
 <html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
 <head>
 <title metal:fill-slot="title_element">You have logged out</title>
+<style metal:fill-slot="asset_styles" metal:use-macro="Views/Login/LoggedOut.assets.html/macros/styles"></style>
 </head>
 <body>
 <div metal:fill-slot="page_content" class="content_container">
@@ -9,5 +10,6 @@
   <p>You have been logged out.</p>
   <p>You may <a href="Login">log in again</a> if you wish.</p>
 </div>
+<metal:block fill-slot="asset_scripts" use-macro="Views/Login/LoggedOut.assets.html/macros/scripts"></metal:block>
 </body>
 </html>

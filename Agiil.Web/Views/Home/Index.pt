@@ -5,15 +5,13 @@
 <title metal:fill-slot="title_element">Application home page</title>
 <base href="../../" />
 <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Source+Code+Pro:400,700" rel="stylesheet" />
-<style>
-@import url('Content/Css/Reset.css');
-@import url('Content/Css/StandardPage.css');
-</style>
+<style metal:fill-slot="asset_styles" metal:use-macro="Views/Home/Index.assets.html/macros/styles"></style>
 </head>
 <body>
 <div metal:fill-slot="page_content" class="content_container">
   <h1>Agiil</h1>
   <p>Agiil is issue-tracking software for <strong>agile development</strong>.</p>
 </div>
+<metal:block fill-slot="asset_scripts" use-macro="Views/Home/Index.assets.html/macros/scripts"></metal:block>
 </body>
 </html>

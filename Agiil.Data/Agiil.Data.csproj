@@ -37,10 +37,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj" />
   </ItemGroup>
-        
-  <ItemGroup>
-    <None Remove="UpgradeScripts\**\*.sql" />
-  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="System.Data" />
@@ -49,41 +45,9 @@
   </ItemGroup>
     
   <ItemGroup>
-    <EmbeddedResource Update="UpgradeScripts\Sqlite\2019-03-30-v0.7.0-Ticket-work-logs-sqlite.sql">
-      <LogicalName>2019-03-30-v0.7.0-Ticket-work-logs-sqlite.sql</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Update="UpgradeScripts\Sqlite\2017-10-04-v0.3.0-Ticket-type.sqlite.sql">
-      <LogicalName>2017-10-04-v0.3.0-Ticket-type.sqlite.sql</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Update="UpgradeScripts\Sqlite\2018-05-07-v0.5.0-Ticket-to-label.sqlite.sql">
-      <LogicalName>2018-05-07-v0.5.0-Ticket-to-label.sqlite.sql</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Update="UpgradeScripts\Sqlite\2020-07-03-v0.10.0-Project-contributors-and-admins.sql">
-      <LogicalName>2020-07-03-v0.10.0-Project-contributors-and-admins.sql</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Update="UpgradeScripts\Sqlite\2019-02-21-v0.7.0-Story-points.sqlite.sql">
-      <LogicalName>2019-02-21-v0.7.0-Story-points.sqlite.sql</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Update="UpgradeScripts\Sqlite\2020-05-14-v0.10.0-SiteAdminFlag-sqlite.sql">
-      <LogicalName>2020-05-14-v0.10.0-SiteAdminFlag-sqlite.sql</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Update="UpgradeScripts\Sqlite\2020-05-14-v0.10.0-Project-description.sqlite.sql">
-      <LogicalName>2020-05-14-v0.10.0-Project-description.sqlite.sql</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Update="UpgradeScripts\Sqlite\2017-06-02-v0.2.0-Sprint-functionality.sqlite.sql">
-      <LogicalName>2017-06-02-v0.2.0-Sprint-functionality.sqlite.sql</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Update="UpgradeScripts\Sqlite\2019-04-13-v0.8.0-NotNull.sqlite.sql">
-      <LogicalName>2019-04-13-v0.8.0-NotNull.sqlite.sql</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Update="UpgradeScripts\Sqlite\2019-07-03-v0.9.0-RelationshipBehaviour.sql">
-      <LogicalName>2019-07-03-v0.9.0-RelationshipBehaviour.sql</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Update="UpgradeScripts\Sqlite\2018-08-04-v0.6.0-Ticket-relationships.sqlite.sql">
-      <LogicalName>2018-08-04-v0.6.0-Ticket-relationships.sqlite.sql</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Update="UpgradeScripts\Sqlite\2017-05-23-v0.1.0-Base-database.sqlite.sql">
-      <LogicalName>2017-05-23-v0.1.0-Base-database.sqlite.sql</LogicalName>
+    <None Remove="UpgradeScripts\**\*.sql" />
+    <EmbeddedResource Include="UpgradeScripts\**\*.sql">
+      <LogicalName>%(Filename)%(Extension)</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
     

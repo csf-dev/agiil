@@ -1,6 +1,7 @@
-﻿@import '_Forms';
+@import '_StandardPage';
+@import '_Forms';
 
-#EditComment {
+form.create_sprint {
   @include full_page_form;
   
   #Name {

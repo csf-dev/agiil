@@ -2,6 +2,7 @@
 <html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
 <head>
 <title metal:fill-slot="title_element">Change password</title>
+<style metal:fill-slot="asset_styles" metal:use-macro="Views/ChangePassword/Index.assets.html/macros/styles"></style>
 </head>
 <body>
 <div metal:fill-slot="page_content" class="content_container">
@@ -39,5 +40,6 @@
     </fieldset>
   </form>
 </div>
+<metal:block fill-slot="asset_scripts" use-macro="Views/ChangePassword/Index.assets.html/macros/scripts"></metal:block>
 </body>
 </html>

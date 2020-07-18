@@ -47,11 +47,6 @@ install_npm_packages()
   echo "Installing npm packages for the solution ..."
   OLD_DIR="$(pwd)"
   
-  cd Agiil.Web/
-  npm ci
-  stop_if_failure $? "Install npm packages to 'Agiil.Web'"
-  cd "$OLD_DIR"
-  
   cd Agiil.Web.Client/
   npm ci
   stop_if_failure $? "Install npm packages to 'Agiil.Web.Client'"

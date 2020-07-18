@@ -5,6 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
 <title>Application maintenance required</title>
+<style metal:fill-slot="asset_styles" metal:use-macro="Views/MissingDependencies/RequireMaintenance.assets.html/macros/styles"></style>
 </head>
 <body metal:fill-slot="body_element">
 We are sorry but the application must undergo essential maintenance.
