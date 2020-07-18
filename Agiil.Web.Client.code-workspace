@@ -7,5 +7,10 @@
 			"path": "Agiil.Web/Views"
 		}
 	],
-    "settings": {}
+	"settings": {
+        "files.watcherExclude": {
+            "**/.git/**": true,
+            "**/node_modules/**": true
+        }
+	}
 }

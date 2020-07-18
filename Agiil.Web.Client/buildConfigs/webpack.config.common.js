@@ -4,14 +4,16 @@ const cssModuleLoader = {
   loader: 'css-loader',
   options: {
     modules: true,
-    localIdentName: '[local]__[hash:base64:5]'
+    localIdentName: '[local]__[hash:base64:5]',
+    importLoaders: 1
   }
 };
 
 const cssPlainLoader = {
   loader: 'css-loader',
   options: {
-    modules: false
+    modules: false,
+    importLoaders: 1
   }
 };
 
@@ -65,8 +67,8 @@ const webpackConfig = {
                 test: /\.module\.scss$/,
                 exclude: /(node_modules|bower_components)/,
                 use: [
-                    // TODO #AG236 - Add PostCSS here
                     cssModuleLoader,
+                    'postcss-loader',
                     'sass-loader'
                 ]
             },
@@ -74,8 +76,8 @@ const webpackConfig = {
                 test: /\.scss$/,
                 exclude: /(node_modules|bower_components|\.module\.scss)/,
                 use: [
-                    // TODO #AG236 - Add PostCSS here
                     cssPlainLoader,
+                    'postcss-loader',
                     'sass-loader'
                 ]
             },
