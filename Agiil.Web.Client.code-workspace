@@ -9,11 +9,13 @@
 	],
 	"settings": {
         "files.watcherExclude": {
-            "**/.git/**": true,
-            "**/node_modules/**": true,
-            "**/bin/**": true,
+			"**/.git/objects/**": true,
+			"**/.git/subtree-cache/**": true,
+			"**/node_modules/*/**": true,
+			"**/bin/**": true,
             "**/obj/**": true,
-            "**/flow-typed/npm/**": true,
+            "**/flow-typed/**": true,
+            "**/dist/**": true
         }
 	}
 }
