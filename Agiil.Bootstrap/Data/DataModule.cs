@@ -24,6 +24,8 @@ namespace Agiil.Bootstrap.Data
                 .UsingInitialImpl<DbUpDatabaseUpgrader>()
                 .ThenWrapWith<BackupTakingUpgrader>());
 
+            builder.RegisterType<DbUpDatabaseUpgrader>().As<ICreatesDatabaseSchema>();
+
             builder
               .RegisterConfiguration<DataDirectoryConfigurationSection>()
               .AsSelf()
