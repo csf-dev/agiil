@@ -20,6 +20,12 @@
     </ItemGroup>
     <Copy SourceFiles="@(WebAppTestingLogic)" DestinationFolder="$(WebAppStagingDir)\bin" />
   </Target>
+    
+  <Target Name="CleanStagingDir">
+    <!-- In a non-release config, the staging dir is the same place the source is stored, so we mustn't delete it.
+         In release config, on the other hand, this is a directory exclusively for staging, so it is OK to remove. -->
+    <RemoveDir Directories="$(WebAppStagingDir)" Condition="'$(Configuration)' == 'Release'" />
+  </Target>
   
   <Target Name="CopyWebAppToStagingDir">
     <!-- The "bin" directory -->

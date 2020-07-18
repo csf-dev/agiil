@@ -492,6 +492,9 @@
   <Target Name="CleanBundles" BeforeTargets="Clean">
     <RemoveDir Directories="Content\bundles" />
   </Target>
+  <Target Name="CleanReleaseOutputLocation" BeforeTargets="Clean">
+    <CallTarget Targets="CleanStagingDir" />
+  </Target>
   <Target Name="MarkGeneratedBundlesAsContent" BeforeTargets="DeployWebApp">
     <ItemGroup>
       <Content Include="Views\**\*.assets.html" />
