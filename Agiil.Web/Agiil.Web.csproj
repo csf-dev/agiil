@@ -340,7 +340,7 @@
     <Compile Include="Controllers\SprintsController.cs" />
     <Compile Include="ApiControllers\SprintsController.cs" />
     <Compile Include="Controllers\SprintController.cs" />
-    <Compile Include="App_Start\IContainerFactoryWithHttpConfiguration.cs" />
+    <Compile Include="App_Start\IGetsAutofacContainerBuilderWithOverridableHttpConfiguration.cs" />
     <Compile Include="Bootstrap\AspNetMvcModule.cs" />
     <Compile Include="Bootstrap\AspNetWebApiModule.cs" />
     <Compile Include="Bootstrap\DataModule.cs" />
@@ -408,6 +408,7 @@
     <Compile Include="ActionFilters\AvailableProjectsModelPopulator.cs" />
     <Compile Include="Controllers\SetCurrentProjectController.cs" />
     <Compile Include="Services\Tickets\UserCanEditTicketDetailDecorator.cs" />
+    <Compile Include="App_Start\IGetsAutofacContainerWithOverridableHttpConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

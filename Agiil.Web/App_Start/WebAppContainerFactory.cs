@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
 using System.Web.Http;
 using Agiil.Bootstrap;
@@ -10,65 +9,63 @@ using Autofac.Core;
 
 namespace Agiil.Web.App_Start
 {
-  public class WebAppContainerFactory : DomainContainerFactory, IContainerFactoryWithHttpConfiguration
-  {
-    #region fields
-
-    HttpConfiguration config;
-
-    #endregion
-
-    #region properties
-
-    protected virtual HttpConfiguration HttpConfig => config;
-
-    #endregion
-
-    #region public API
-
-    public override ContainerBuilder GetContainerBuilder()
+    public class WebAppContainerFactory : IGetsAutofacContainer, IGetsAutofacContainerBuilder, IGetsAutofacContainerBuilderWithOverridableHttpConfiguration
     {
-      var builder = base.GetContainerBuilder();
+        readonly IGetsAutofacContainerBuilder wrapped;
+        readonly bool registerApiControllers;
+        HttpConfiguration httpConfig;
 
-      RegisterAspNetWebApiComponents(builder);
+        public HttpConfiguration HttpConfig
+        {
+            get => httpConfig;
+            set => httpConfig = value ?? throw new ArgumentNullException(nameof(value));
+        }
 
-      RegisterAspNetMvcComponents(builder);
+        public IContainer GetContainer()
+        {
+            var containerFactory = new AutofacContainerCreator(this);
+            return containerFactory.GetContainer();
+        }
 
-      return builder;
+        public ContainerBuilder GetContainerBuilder()
+        {
+            var builder = wrapped.GetContainerBuilder();
+
+            AutoRegisterAssemblyModules(builder);
+            if(registerApiControllers)
+                builder.RegisterModule(new AspNetWebApiModule(HttpConfig));
+            builder.RegisterModule<AspNetMvcModule>();
+
+            return builder;
+        }
+
+        void AutoRegisterAssemblyModules(ContainerBuilder builder)
+        {
+            var modulesToAutoRegister = Assembly.GetExecutingAssembly()
+                .GetExportedTypes()
+                .Where(x => x.IsClass
+                            && !x.IsAbstract
+                            && typeof(Autofac.Module).IsAssignableFrom(x)
+                            && x.GetConstructor(Type.EmptyTypes) != null
+                            && x != typeof(AspNetMvcModule))
+                .Select(x => Activator.CreateInstance(x))
+                .Cast<IModule>()
+                .ToList();
+
+            foreach(var module in modulesToAutoRegister)
+                builder.RegisterModule(module);
+        }
+
+        public WebAppContainerFactory()
+        {
+            httpConfig = new HttpConfiguration();
+            wrapped = new DomainContainerFactory();
+            registerApiControllers = true;
+        }
+
+        public WebAppContainerFactory(bool registerApiControllers) : this()
+        {
+            this.registerApiControllers = registerApiControllers;
+        }
     }
-
-    protected virtual void RegisterAspNetMvcComponents(ContainerBuilder builder)
-    {
-      builder.RegisterModule(new AspNetMvcModule());
-    }
-
-    protected virtual void RegisterAspNetWebApiComponents(ContainerBuilder builder)
-    {
-      builder.RegisterModule(new AspNetWebApiModule(HttpConfig));
-    }
-
-		protected override IEnumerable<Assembly> GetModuleAssemblies()
-		{
-      return base.GetModuleAssemblies().Union(new [] { Assembly.GetExecutingAssembly() });
-		}
-
-		public virtual void OverrideHttpConfiguration(HttpConfiguration config)
-    {
-      if(config == null)
-        throw new ArgumentNullException(nameof(config));
-      
-      this.config = config;
-    }
-
-    #endregion
-
-    #region constructors
-
-    public WebAppContainerFactory()
-    {
-      config = new HttpConfiguration();
-    }
-
-    #endregion
-  }
 }

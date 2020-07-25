@@ -36,6 +36,7 @@
       <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.3" />
       <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.3" />
       <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+      <PackageReference Include="CSF.ReflectionSpecifications" Version="3.0.0" />
   </ItemGroup>
     
   <ItemGroup>
@@ -54,10 +55,7 @@
   </ItemGroup>
     
   <Import Project="..\..\Tools\Agiil.Build.Tasks.targets" />
-  <Target Name="InstallTestBuildAssemblies"
-          AfterTargets="AfterBuild"
-          DependsOnTargets="CopyWebApplicationTestingLogic"
-          Condition="'$(Configuration)' == 'Testing'" />
+  <Target Name="InstallTestBuildAssemblies" AfterTargets="AfterBuild" DependsOnTargets="CopyWebApplicationTestingLogic" Condition="'$(Configuration)' == 'Testing'" />
 
   <Import Project="..\..\Tools\EnableMultiTargetingWithMono.targets" />
 </Project>

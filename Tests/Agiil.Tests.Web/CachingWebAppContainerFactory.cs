@@ -1,46 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Agiil.Bootstrap;
+﻿using Agiil.Bootstrap;
 using Agiil.Web.App_Start;
 using Autofac;
 
 namespace Agiil.Tests
 {
-    public class CachingWebAppContainerFactory : WebAppContainerFactory
+    public class CachingWebAppContainerFactory : IGetsAutofacContainer, IGetsAutofacContainerBuilder
     {
-        static readonly IGetsAutofacContainer defaultInstance;
-
         readonly object syncRoot;
+        readonly IGetsAutofacContainerBuilder builderProvider;
         IContainer container;
 
-        protected override IEnumerable<Assembly> GetModuleAssemblies()
-        {
-            return base.GetModuleAssemblies().Union(new[] { Assembly.GetExecutingAssembly() });
-        }
-
-        public override IContainer GetContainer()
+        public IContainer GetContainer()
         {
             lock(syncRoot)
             {
                 if(container == null)
-                    container = base.GetContainer();
+                {
+                    var containerFactory = new AutofacContainerCreator(this);
+                    container = containerFactory.GetContainer();
+                }
             }
 
             return container;
         }
 
+        public ContainerBuilder GetContainerBuilder()
+        {
+            var builder = builderProvider.GetContainerBuilder();
+            builder.RegisterAssemblyModules(GetType().Assembly);
+            return builder;
+        }
+
         public CachingWebAppContainerFactory()
         {
             syncRoot = new object();
+            builderProvider = new WebAppContainerFactory();
         }
 
         static CachingWebAppContainerFactory()
         {
-            defaultInstance = new CachingWebAppContainerFactory();
+            Default = new CachingWebAppContainerFactory();
         }
 
-        public static IGetsAutofacContainer Default => defaultInstance;
+        public static IGetsAutofacContainer Default { get; private set; }
     }
 }

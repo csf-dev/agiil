@@ -14,6 +14,8 @@
     <PackageReference Include="CSF.Entities" Version="2.0.3" />
     <PackageReference Include="CSF.ORM" Version="2.0.3" />
     <PackageReference Include="CSF.ORM.Entities" Version="2.0.3" />
+    <PackageReference Include="CSF.Reflection" Version="3.0.0" />
+    <PackageReference Include="CSF.ReflectionSpecifications" Version="3.0.0" />
   </ItemGroup>
     
   <ItemGroup>
@@ -24,5 +26,10 @@
     <ProjectReference Include="..\Agiil.Domain.Impl\Agiil.Domain.Impl.csproj" />
   </ItemGroup>
     
+  <ItemGroup>
+    <Reference Include="Agiil.Bootstrap">
+      <HintPath>..\Agiil.Bootstrap\bin\Debug\net471\Agiil.Bootstrap.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <Import Project="..\Tools\EnableMultiTargetingWithMono.targets" />
 </Project>
