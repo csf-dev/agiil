@@ -26,10 +26,5 @@
     <ProjectReference Include="..\Agiil.Domain.Impl\Agiil.Domain.Impl.csproj" />
   </ItemGroup>
     
-  <ItemGroup>
-    <Reference Include="Agiil.Bootstrap">
-      <HintPath>..\Agiil.Bootstrap\bin\Debug\net471\Agiil.Bootstrap.dll</HintPath>
-    </Reference>
-  </ItemGroup>
   <Import Project="..\Tools\EnableMultiTargetingWithMono.targets" />
 </Project>

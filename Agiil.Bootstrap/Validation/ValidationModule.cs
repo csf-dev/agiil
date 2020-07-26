@@ -7,30 +7,30 @@ using Agiil.Domain;
 
 namespace Agiil.Bootstrap.Validation
 {
-  public class ValidationModule : Module
-  {
-    protected override void Load(ContainerBuilder builder)
+    public class ValidationModule : Module
     {
-      builder
-        .RegisterType<AutofacValidationRuleResolver>()
-        .As<IRuleResolver>();
+        protected override void Load(ContainerBuilder builder)
+        {
+            builder
+              .RegisterType<AutofacValidationRuleResolver>()
+              .As<IRuleResolver>();
 
-      builder
-        .Register(CreateValidatorFactory)
-        .As<IValidatorFactory>();
+            builder
+              .Register(CreateValidatorFactory)
+              .As<IValidatorFactory>();
 
-      builder
-        .RegisterGeneric(typeof(ResponseFactory<>))
-        .As(typeof(IResponseFactory<>));
+            builder
+              .RegisterGeneric(typeof(ResponseFactory<>))
+              .As(typeof(IResponseFactory<>));
 
-      builder
-        .RegisterType<AutofacGenericValidator>()
-        .AsImplementedInterfaces();
+            builder
+              .RegisterType<AutofacGenericValidator>()
+              .AsImplementedInterfaces();
+        }
+
+        ValidatorFactory CreateValidatorFactory(IComponentContext ctx, IEnumerable<Parameter> afParams)
+        {
+            return new ValidatorFactory(ctx.Resolve<IRuleResolver>(), null, null);
+        }
     }
-
-    ValidatorFactory CreateValidatorFactory(IComponentContext ctx, IEnumerable<Parameter> afParams)
-    {
-      return new ValidatorFactory(ctx.Resolve<IRuleResolver>(), null, null);
-    }
-  }
 }

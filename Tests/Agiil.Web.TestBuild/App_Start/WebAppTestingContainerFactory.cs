@@ -10,11 +10,9 @@ using Autofac.Core;
 namespace Agiil.Web.App_Start
 {
     public class WebAppTestingContainerFactory
-        :   IGetsAutofacContainer,
-            IGetsAutofacContainerBuilderWithOverridableHttpConfiguration,
-            IGetsAutofacContainerWithOverridableHttpConfiguration
+        : IGetsAutofacContainer, IGetsAutofacContainerBuilder, IGetsAutofacContainerWithOverridableHttpConfiguration
     {
-        readonly IGetsAutofacContainerBuilderWithOverridableHttpConfiguration wrapped;
+        readonly WebAppContainerFactory wrapped;
 
         public IContainer GetContainer()
         {

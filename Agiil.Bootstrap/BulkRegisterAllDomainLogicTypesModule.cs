@@ -7,11 +7,15 @@ namespace Agiil.Bootstrap
     {
         protected override void Load(ContainerBuilder builder)
         {
+            var assemblies = GetAllDomainLogicAssemblies();
+
             builder
-                .RegisterAssemblyTypes(GetAllDomainLogicAssemblies())
+                .RegisterAssemblyTypes(assemblies)
                 .AsSelf()
                 .AsImplementedInterfaces()
                 .PreserveExistingDefaults();
+
+            builder.BulkRegisterAllOpenGenericTypesInAssemblies(assemblies);
         }
 
         Assembly[] GetAllDomainLogicAssemblies()

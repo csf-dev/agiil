@@ -9,7 +9,7 @@ using Autofac.Core;
 
 namespace Agiil.Web.App_Start
 {
-    public class WebAppContainerFactory : IGetsAutofacContainer, IGetsAutofacContainerBuilder, IGetsAutofacContainerBuilderWithOverridableHttpConfiguration
+    public class WebAppContainerFactory : IGetsAutofacContainer, IGetsAutofacContainerBuilder, IGetsAutofacContainerWithOverridableHttpConfiguration
     {
         readonly IGetsAutofacContainerBuilder wrapped;
         readonly bool registerApiControllers;

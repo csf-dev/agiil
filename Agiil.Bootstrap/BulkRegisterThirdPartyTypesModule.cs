@@ -8,13 +8,17 @@ namespace Agiil.Bootstrap.Validation
     {
         protected override void Load(ContainerBuilder builder)
         {
+            var assemblies = GetAllThirdPartyLogicAssemblies();
+
             builder
-                .RegisterAssemblyTypes(GetAllThirdPartyLogicAssemblies())
+                .RegisterAssemblyTypes(assemblies)
                 .AsSelf()
                 .AsImplementedInterfaces()
                 .PreserveExistingDefaults();
 
             builder.RegisterModule<CSF.DecoratorBuilder.DecoratorBuilderModule>();
+
+            builder.BulkRegisterAllOpenGenericTypesInAssemblies(assemblies);
         }
 
         Assembly[] GetAllThirdPartyLogicAssemblies()
@@ -24,6 +28,7 @@ namespace Agiil.Bootstrap.Validation
                 typeof(CSF.Security.Authentication.IPassword).Assembly,
                 typeof(CSF.Validation.StockRules.NotNullRule).Assembly,
                 typeof(CSF.Configuration.IConfigurationReader).Assembly,
+                typeof(CSF.Validation.Validator).Assembly,
             };
         }
     }
