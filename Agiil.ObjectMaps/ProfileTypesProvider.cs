@@ -1,36 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Linq;
 using AutoMapper;
+using CSF.Reflection;
+using CSF.Specifications;
 
 namespace Agiil.ObjectMaps
 {
-  public class ProfileTypesProvider : IProfileTypesProvider
-  {
-    protected static readonly Type ProfileBaseType = typeof(Profile);
-
-    public virtual IEnumerable<Type> GetAllProfileTypes()
+    public class ProfileTypesProvider : IGetsTypes
     {
-      var assembliesToScan = GetProfileAssemblies();
+        readonly IGetsTypes exportedTypesProvider;
 
-      var output = (from assembly in assembliesToScan
-                    from type in assembly.GetExportedTypes()
-                    where
-                      type.IsClass
-                      && !type.IsAbstract
-                      && ProfileBaseType.IsAssignableFrom(type)
-                    select type)
-        .ToArray();
+        public IReadOnlyCollection<Type> GetTypes()
+        {
+            return exportedTypesProvider.GetTypes()
+                .Where(GetProfilesSpec())
+                .ToList();
+        }
 
-      return output;
+        ISpecificationExpression<Type> GetProfilesSpec()
+        {
+            return new IsConcreteClassSpecification()
+                .And(new DerivesFromSpecification(typeof(Profile)));
+        }
+
+        public ProfileTypesProvider()
+        {
+            exportedTypesProvider = new ExportedMappingTypesProvider();
+        }
     }
-
-    protected virtual IEnumerable<Assembly> GetProfileAssemblies()
-    {
-      return new [] {
-        Assembly.GetAssembly(typeof(IMapperConfigurationFactory)),
-      };
-    }
-  }
 }

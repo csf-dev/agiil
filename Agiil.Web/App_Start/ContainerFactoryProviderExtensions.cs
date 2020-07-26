@@ -5,22 +5,19 @@ using Autofac;
 
 namespace Agiil.Web.App_Start
 {
-  public static class ContainerFactoryProviderExtensions
-  {
-    public static IContainer GetContainer(this ContainerFactoryProvider provider, HttpConfiguration config)
+    public static class ContainerFactoryProviderExtensions
     {
-      if(provider == null)
-        throw new ArgumentNullException(nameof(provider));
-      if(config == null)
-        throw new ArgumentNullException(nameof(config));
+        public static IContainer GetContainer(this ContainerFactoryProvider provider, HttpConfiguration config)
+        {
+            if(provider == null)
+                throw new ArgumentNullException(nameof(provider));
 
-      var diFactory = provider.GetContainerBuilderFactory() as IContainerFactoryWithHttpConfiguration;
+            var diFactory = provider.GetContainerBuilderFactory() as IGetsAutofacContainerWithOverridableHttpConfiguration;
+            if(diFactory == null)
+                throw new InvalidOperationException($"The configured container builder factory must implement {nameof(IGetsAutofacContainerWithOverridableHttpConfiguration)}.");
 
-      if(diFactory == null)
-        throw new InvalidOperationException($"The configured container builder factory must implement {nameof(IContainerFactoryWithHttpConfiguration)}.");
-
-      diFactory.OverrideHttpConfiguration(config);
-      return diFactory.GetContainer();
+            diFactory.HttpConfig = config ?? throw new ArgumentNullException(nameof(config));
+            return diFactory.GetContainer();
+        }
     }
-  }
 }

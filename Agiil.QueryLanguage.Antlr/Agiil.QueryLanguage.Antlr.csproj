@@ -19,6 +19,8 @@
     <None Remove="README.md" />
     <Content Include="README.md" />
     <None Remove="lib/**/*" />
+    <None Remove="Generated_Java\AgiilQueryLexer.java" />
+    <None Remove="Generated_Java\AgiilQueryLexer.tokens" />
   </ItemGroup>
     
   <ItemGroup>

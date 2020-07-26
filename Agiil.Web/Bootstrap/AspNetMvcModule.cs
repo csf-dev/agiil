@@ -6,23 +6,22 @@ using Autofac.Integration.Mvc;
 
 namespace Agiil.Web.Bootstrap
 {
-  [Agiil.Bootstrap.DoNotAutoRegister]
-  public class AspNetMvcModule : Module
-  {
-    protected override void Load(ContainerBuilder builder)
+    public class AspNetMvcModule : Module
     {
-      var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+        protected override void Load(ContainerBuilder builder)
+        {
+            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
-      builder.RegisterControllers(assembly);
-      builder.RegisterModelBinders(assembly);
-      builder.RegisterFilterProvider();
+            builder.RegisterControllers(assembly);
+            builder.RegisterModelBinders(assembly);
+            builder.RegisterFilterProvider();
 
-      builder
-        .RegisterType<AutofacMvcModelBinderProviderWithOpenGenericSupport>()
-        .As<IModelBinderProvider>()
-        .SingleInstance();
+            builder
+              .RegisterType<AutofacMvcModelBinderProviderWithOpenGenericSupport>()
+              .As<IModelBinderProvider>()
+              .SingleInstance();
 
-      builder.RegisterModule<AutofacWebTypesModule>();
+            builder.RegisterModule<AutofacWebTypesModule>();
+        }
     }
-  }
 }
