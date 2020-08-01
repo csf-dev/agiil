@@ -10,7 +10,7 @@ namespace Agiil.Domain
     bool IsSuccess(IRunnableRuleResult result);
 
     bool IncludesFailureFor<TValidated>(IValidationResult result,
-                                        Expression<Func<TValidated,object>> prop = null,
+                                        Expression<Func<TValidated,object>> propertyExpression = null,
                                         Type ruleType = null,
                                         string name = null);
   }

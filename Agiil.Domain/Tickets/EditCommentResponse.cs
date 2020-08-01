@@ -21,7 +21,7 @@ namespace Agiil.Domain.Tickets
 
     public bool CommentDoesNotExist
       => resultInterpreter.IncludesFailureFor<EditCommentRequest>(validationResult,
-                                                                  prop: x => x.CommentIdentity,
+                                                                  x => x.CommentIdentity,
                                                                   name: RuleNames.EntityMustExist);
 
     public EditCommentResponse(IValidationResult result,
