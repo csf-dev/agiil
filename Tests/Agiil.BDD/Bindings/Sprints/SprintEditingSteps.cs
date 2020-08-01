@@ -15,7 +15,6 @@ namespace Agiil.BDD.Bindings.Sprints
   [Binding]
   public class SprintEditingSteps
   {
-    readonly ICast cast;
     readonly IStage stage;
 
     [Given(@"(?:he|she|they) begins? editing the sprint titled '([^']+)'")]
@@ -43,15 +42,9 @@ namespace Agiil.BDD.Bindings.Sprints
                     .BeTrue("the message should be visible");
     }
 
-    public SprintEditingSteps(ICast cast, IStage stage)
+    public SprintEditingSteps(IStage stage)
     {
-      if(cast == null)
-        throw new ArgumentNullException(nameof(cast));
-      if(stage == null)
-        throw new ArgumentNullException(nameof(stage));
-
-      this.cast = cast;
-      this.stage = stage;
+      this.stage = stage ?? throw new ArgumentNullException(nameof(stage));
     }
   }
 }

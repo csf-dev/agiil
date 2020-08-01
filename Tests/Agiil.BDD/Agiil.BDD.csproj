@@ -57,5 +57,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
     
+  <ItemGroup>
+    <Folder Include="Bindings\Browsing\" />
+  </ItemGroup>
   <Import Project="..\..\Tools\EnableMultiTargetingWithMono.targets" />
 </Project>

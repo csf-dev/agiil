@@ -22,7 +22,6 @@ namespace Agiil.BDD.Bindings.Browsing
   public class WebBrowsingSteps
   {
     readonly ICast cast;
-    readonly Lazy<ITestRunner> testRunner;
     readonly IResolvesServices resolver;
 
     [Given(@"Joe is on on the application home page")]
@@ -69,19 +68,10 @@ namespace Agiil.BDD.Bindings.Browsing
     }
 
     public WebBrowsingSteps(ICast cast,
-                            Lazy<ITestRunner> testRunner,
                             IResolvesServices resolver)
     {
-      if(resolver == null)
-        throw new ArgumentNullException(nameof(resolver));
-      if(cast == null)
-        throw new ArgumentNullException(nameof(cast));
-      if(testRunner == null)
-        throw new ArgumentNullException(nameof(testRunner));
-
-      this.resolver = resolver;
-      this.cast = cast;
-      this.testRunner = testRunner;
+      this.resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
+      this.cast = cast ?? throw new ArgumentNullException(nameof(cast));
     }
   }
 }

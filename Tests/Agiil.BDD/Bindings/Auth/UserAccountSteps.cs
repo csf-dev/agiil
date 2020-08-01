@@ -15,7 +15,6 @@ namespace Agiil.BDD.Bindings.Auth
   public class UserAccountSteps
   {
     readonly ICast cast;
-    readonly Lazy<ITestRunner> testRunner;
     readonly IResolvesServices resolver;
 
     [Given(@"April adds a user account with the username '([A-Za-z0-9_-]+)' and password '([^']+)'")]
@@ -51,18 +50,10 @@ namespace Agiil.BDD.Bindings.Auth
       resolver.Resolve<YoussefSteps>().GivenYoussefCanLogInWithAUsernameAndPassword();
     }
 
-    public UserAccountSteps(ICast cast, Lazy<ITestRunner> testRunner, IResolvesServices resolver)
+    public UserAccountSteps(ICast cast, IResolvesServices resolver)
     {
-      if(resolver == null)
-        throw new ArgumentNullException(nameof(resolver));
-      if(testRunner == null)
-        throw new ArgumentNullException(nameof(testRunner));
-      if(cast == null)
-        throw new ArgumentNullException(nameof(cast));
-
-      this.cast = cast;
-      this.testRunner = testRunner;
-      this.resolver = resolver;
+      this.cast = cast ?? throw new ArgumentNullException(nameof(cast));
+      this.resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
     }
   }
 }

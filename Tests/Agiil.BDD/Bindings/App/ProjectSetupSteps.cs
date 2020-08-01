@@ -13,7 +13,6 @@ namespace Agiil.BDD.Bindings.App
   public class ProjectSetupSteps
   {
     readonly ICast cast;
-    readonly Lazy<ITestRunner> testRunner;
     readonly Lazy<AprilSteps> aprilSteps;
 
     [Given("April has set up the simple sample project")]
@@ -28,18 +27,10 @@ namespace Agiil.BDD.Bindings.App
       Given(april).WasAbleTo<SetupTheSimpleSampleProject>();
     }
 
-    public ProjectSetupSteps(ICast cast, Lazy<ITestRunner> testRunner, Lazy<AprilSteps> aprilSteps)
+    public ProjectSetupSteps(ICast cast, Lazy<AprilSteps> aprilSteps)
     {
-      if(aprilSteps == null)
-        throw new ArgumentNullException(nameof(aprilSteps));
-      if(testRunner == null)
-        throw new ArgumentNullException(nameof(testRunner));
-      if(cast == null)
-        throw new ArgumentNullException(nameof(cast));
-
-      this.aprilSteps = aprilSteps;
-      this.cast = cast;
-      this.testRunner = testRunner;
+      this.aprilSteps = aprilSteps ?? throw new ArgumentNullException(nameof(aprilSteps));
+      this.cast = cast ?? throw new ArgumentNullException(nameof(cast));
     }
   }
 }
