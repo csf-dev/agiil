@@ -4,11 +4,14 @@ using AutoMapper;
 
 namespace Agiil.ObjectMaps.Sprints
 {
-  public class EditSprintRequestToSprintProfile : Profile
-  {
-    public EditSprintRequestToSprintProfile()
+    public class EditSprintRequestToSprintProfile : Profile
     {
-      CreateMap<EditSprintRequest,Sprint>();
+        public EditSprintRequestToSprintProfile()
+        {
+            CreateMap<EditSprintRequest, Sprint>()
+                .ForMember(x => x.Project, o => o.Ignore())
+                .ForMember(x => x.CreationDate, o => o.Ignore())
+                ;
+        }
     }
-  }
 }

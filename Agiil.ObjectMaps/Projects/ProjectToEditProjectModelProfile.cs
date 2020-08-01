@@ -11,7 +11,10 @@ namespace Agiil.ObjectMaps.Projects
         public ProjectToEditProjectModelProfile()
         {
             CreateMap<Project, EditProjectModel>()
-                .ForMember(x => x.Identity, o => o.ResolveUsing(p => p.GetIdentity()));
+                .ForMember(x => x.Identity, o => o.ResolveUsing(p => p.GetIdentity()))
+                .ForMember(x => x.Request, o => o.Ignore())
+                .ForMember(x => x.Response, o => o.Ignore())
+                ;
         }
     }
 }
