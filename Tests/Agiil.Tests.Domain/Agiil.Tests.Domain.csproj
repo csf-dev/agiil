@@ -117,6 +117,9 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
     
+  <ItemGroup>
+    <Folder Include="ObjectMaps\" />
+  </ItemGroup>
   <Target Name="MoveAppConfigToCorrectLocation" AfterTargets="ScApplyTransforms">
     <Copy SourceFiles="App.template.config" DestinationFiles="$(OutDir)\$(AssemblyName).dll.config" Condition="!Exists('$(OutDir)\App.config')" />
     <Move SourceFiles="$(OutDir)\App.config" DestinationFiles="$(OutDir)\$(AssemblyName).dll.config" Condition="Exists('$(OutDir)\App.config')" />

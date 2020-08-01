@@ -25,10 +25,10 @@ namespace Agiil.Web.Controllers
         [HttpPost]
         public ActionResult Add(AddCommentSpecification spec)
         {
-            var request = GetCreationRequest(spec);
+            var request = mapper.Map<CreateCommentRequest>(spec);
             var sourceResponse = commentCreator.Value.Create(request);
 
-            var response = MapResponse(sourceResponse);
+            var response = mapper.Map<AddCommentResponse>(sourceResponse);
 
             TempData[CommentSpecKey] = (response != null && !response.Success) ? spec : null;
             TempData[CommentResponseKey] = response;
@@ -81,7 +81,11 @@ namespace Agiil.Web.Controllers
             if(ReferenceEquals(comment, null))
                 return HttpNotFound();
 
-            var model = GetEditCommentModel(comment);
+            var model = new EditCommentModel {
+                Comment = mapper.Map<CommentDto>(comment),
+                Response = TempData.TryGet<Models.Tickets.EditCommentResponse>(EditCommentResponseKey),
+                Specification = TempData.TryGet<EditCommentSpecification>(EditCommentSpecKey),
+            };
 
             return View(model);
         }
@@ -89,7 +93,7 @@ namespace Agiil.Web.Controllers
         [HttpPost]
         public ActionResult Edit(EditCommentSpecification spec)
         {
-            var request = MapRequest(spec);
+            var request = mapper.Map<EditCommentRequest>(spec);
             var response = commentEditor.Value.Edit(request);
 
             if(response.CommentDoesNotExist)
@@ -105,68 +109,11 @@ namespace Agiil.Web.Controllers
                                         new { id = comment.Ticket.GetTicketReference() });
             }
 
-            var responseModel = MapEditResponse(response);
+            var responseModel = mapper.Map<Models.Tickets.EditCommentResponse>(response);
             TempData.Add(EditCommentResponseKey, responseModel);
             TempData.Add(EditCommentSpecKey, spec);
 
             return RedirectToAction(nameof(Edit), new { id = spec.CommentId?.Value });
-        }
-
-        // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
-        CreateCommentRequest GetCreationRequest(AddCommentSpecification spec)
-        {
-            if(spec == null)
-                return null;
-
-            return new CreateCommentRequest {
-                TicketId = spec.TicketId,
-                Body = spec.Body,
-            };
-        }
-
-        // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
-        AddCommentResponse MapResponse(CreateCommentResponse source)
-        {
-            if(source == null)
-                return null;
-
-            return new AddCommentResponse {
-                Success = source.IsSuccess,
-                BodyIsInvalid = source.BodyIsInvalid
-            };
-        }
-
-        // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
-        EditCommentRequest MapRequest(EditCommentSpecification spec)
-        {
-            if(ReferenceEquals(spec, null))
-                return null;
-
-            return new EditCommentRequest {
-                CommentIdentity = spec.CommentId,
-                Body = spec.Body,
-            };
-        }
-
-        // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
-        Models.Tickets.EditCommentResponse MapEditResponse(Domain.Tickets.EditCommentResponse response)
-        {
-            if(ReferenceEquals(response, null))
-                return null;
-
-            return new Models.Tickets.EditCommentResponse {
-                BodyIsInvalid = response.BodyIsInvalid,
-                UserDoesNotHavePermission = response.UserDoesNotHavePermission,
-            };
-        }
-
-        EditCommentModel GetEditCommentModel(Comment comment)
-        {
-            var model = new EditCommentModel();
-            model.Comment = mapper.Map<CommentDto>(comment);
-            model.Response = TempData.TryGet<Models.Tickets.EditCommentResponse>(EditCommentResponseKey);
-            model.Specification = TempData.TryGet<EditCommentSpecification>(EditCommentSpecKey);
-            return model;
         }
 
         public CommentController(Lazy<ICommentCreator> commentCreator,

@@ -24,15 +24,10 @@ namespace Agiil.Web.Controllers
 
     ListSprintModel GetModel(AdHocSprintListingRequest spec, IList<Sprint> sprints)
     {
-      var model = new ListSprintModel();
-      if(spec != null)
-      {
-        model.ShowingClosedSprints = spec.ShowClosedSprints;
-      }
-
-      model.Sprints = sprints.Select(x => mapper.Map<SprintSummaryDto>(x)).ToList();
-
-      return model;
+      return new ListSprintModel {
+          ShowingClosedSprints = (spec?.ShowClosedSprints).GetValueOrDefault(),
+          Sprints = sprints.Select(x => mapper.Map<SprintSummaryDto>(x)).ToList(),
+      };
     }
 
     public SprintsController(ISprintLister lister,

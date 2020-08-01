@@ -26,5 +26,8 @@
     <ProjectReference Include="..\Agiil.Domain.Impl\Agiil.Domain.Impl.csproj" />
   </ItemGroup>
     
+  <ItemGroup>
+    <Folder Include="Auth\" />
+  </ItemGroup>
   <Import Project="..\Tools\EnableMultiTargetingWithMono.targets" />
 </Project>

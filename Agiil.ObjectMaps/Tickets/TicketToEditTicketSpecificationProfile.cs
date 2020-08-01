@@ -17,7 +17,10 @@ namespace Agiil.ObjectMaps.Tickets
         .ForMember(x => x.Identity, opts => opts.ResolveUsing(x => x.GetIdentity()))
         .ForMember(x => x.SprintIdentity, opts => opts.ResolveUsing(x => x.Sprint?.GetIdentity()))
         .ForMember(x => x.CommaSeparatedLabelNames, o => o.ResolveUsing<CommaSeparatedLabelNameResolver, ISet<Label>>(t => t.Labels))
+        .ForMember(x => x.TicketTypeIdentity,  o => o.ResolveUsing(x => x.Type?.GetIdentity()))
+        .ForMember(x => x.RelationshipsToAdd, o => o.Ignore())
+        .ForMember(x => x.RelationshipsToRemove, o => o.Ignore())
         ;
-    }
+        }
   }
 }

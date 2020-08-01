@@ -2,51 +2,30 @@
 using System.Web.Http;
 using Agiil.Auth;
 using Agiil.Web.Models.Auth;
+using AutoMapper;
 
 namespace Agiil.Web.ApiControllers
 {
-  public class ChangePasswordController : ApiController
-  {
-    readonly Lazy<IPasswordChanger> passwordChanger;
-
-    public ChangePasswordResult Post(ChangePasswordSpecification spec)
+    public class ChangePasswordController : ApiController
     {
-      if(spec == null)
-        throw new ArgumentNullException(nameof(spec));
+        readonly Lazy<IPasswordChanger> passwordChanger;
+        readonly IMapper mapper;
 
-      var request = MapRequest(spec);
-      var result = passwordChanger.Value.ChangeOwnPassword(request);
-      return GetResult(result);
-    }
+        public ChangePasswordResult Post(ChangePasswordSpecification spec)
+        {
+            if(spec == null)
+                throw new ArgumentNullException(nameof(spec));
 
-    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
-    PasswordChangeRequest MapRequest(ChangePasswordSpecification spec)
-    {
-      return new PasswordChangeRequest
-      {
-        ConfirmNewPassword = spec.NewPasswordConfirmation,
-        ExistingPassword = spec.ExistingPassword,
-        NewPassword = spec.NewPassword,
-      };
-    }
+            var request = mapper.Map<PasswordChangeRequest>(spec);
+            var result = passwordChanger.Value.ChangeOwnPassword(request);
+            return mapper.Map<ChangePasswordResult>(result);
+        }
 
-    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
-    ChangePasswordResult GetResult(PasswordChangeResponse result)
-    {
-      return new ChangePasswordResult
-      {
-        Success = result.Success,
-        ExistingPasswordIncorrect = result.ExistingPasswordIncorrect,
-        NewPasswordDoesNotMatchConfirmation = result.NewPasswordDoesNotMatchConfirmation,
-        NewPasswordDoesNotSatisfyPolicy = result.NewPasswordDoesNotSatisfyPolicy,
-      };
+        public ChangePasswordController(Lazy<IPasswordChanger> passwordChanger,
+                                        IMapper mapper)
+        {
+            this.passwordChanger = passwordChanger ?? throw new ArgumentNullException(nameof(passwordChanger));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        }
     }
-
-    public ChangePasswordController(Lazy<IPasswordChanger> passwordChanger)
-    {
-      if(passwordChanger == null)
-        throw new ArgumentNullException(nameof(passwordChanger));
-      this.passwordChanger = passwordChanger;
-    }
-  }
 }

@@ -18,6 +18,8 @@ namespace Agiil.ObjectMaps.Tickets
         .ForMember(x => x.Author, o => o.ResolveUsing(c => c.User.Username))
         .ForMember(x => x.HtmlBody, o => o.ResolveUsing<MarkdownToHtmlResolver, string>(m => m.Body))
         .ForMember(x => x.TicketId, o => o.ResolveUsing<IdentityValueResolver, Ticket>(x => x.Ticket))
+        .ForMember(x => x.CanEdit, o => o.Ignore())
+        .ForMember(x => x.CanDelete, o => o.Ignore())
         .AfterMap((comment, commentDto, ctx) => {
             var capabilitiesService = (IDeterminesIfCurrentUserHasCapability) ctx.Mapper.ServiceCtor(typeof(IDeterminesIfCurrentUserHasCapability));
             commentDto.CanEdit = capabilitiesService.DoesUserHaveCapability(CommentCapability.Edit, comment.GetIdentity());
