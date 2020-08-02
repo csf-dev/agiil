@@ -3,6 +3,7 @@
   <Import Project="..\..\Tools\CommonProjectItems.targets" />
   
   <PropertyGroup>
+    <TargetFramework>net471</TargetFramework>
     <PackageId>Agiil.Tests.BDD</PackageId>
     <Description>Behaviour Driven Design (BDD) tests for the Agiil application, written using SpecFlow</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
@@ -73,6 +74,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="netstandard" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />

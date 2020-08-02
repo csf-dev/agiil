@@ -3,6 +3,7 @@
   <Import Project="..\Tools\CommonProjectItems.targets" />
   
   <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Agiil.Web.Rendering</PackageId>
     <Description>Interfaces &amp; API definitions related to the rendering of markdown text to HTML</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>

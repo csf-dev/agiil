@@ -3,6 +3,7 @@
   <Import Project="..\Tools\CommonProjectItems.targets" />
   
   <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Agiil.Web.Models</PackageId>
     <Description>Model &amp; DTO types specific for usage in the MVC/WebAPI web application project</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>

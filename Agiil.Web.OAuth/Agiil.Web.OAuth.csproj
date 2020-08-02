@@ -3,6 +3,7 @@
   <Import Project="..\Tools\CommonProjectItems.targets" />
   
   <PropertyGroup>
+    <TargetFramework>net471</TargetFramework>
     <PackageId>Agiil.Web.OAuth</PackageId>
     <Description>Implementation logic for performing web-app authentication using OAuth</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
@@ -26,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="netstandard" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.IdentityModel" />
   </ItemGroup>
