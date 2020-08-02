@@ -1,8 +1,8 @@
 ﻿using System;
 namespace Agiil.Domain.Tickets
 {
-  public class CloseTicketResponse : IIndictesSuccess
-  {
+  public class CloseTicketResponse : IOpenCloseTicketResponse
+    {
     public bool IsSuccess => !(TicketNotFound || TicketAlreadyClosed);
 
     public bool TicketNotFound { get; set; }
