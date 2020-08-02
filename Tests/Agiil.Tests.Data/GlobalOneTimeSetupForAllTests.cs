@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace Agiil.Tests
 {
   [SetUpFixture]
-  public class TestSetup
+  public class GlobalOneTimeSetupForAllTests
   {
     [OneTimeSetUp]
     public void GlobalSetup()
