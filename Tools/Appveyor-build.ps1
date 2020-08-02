@@ -7,14 +7,18 @@ $NUnitInstallDir = ($BuildPath + '\.NUnit')
 $NUnitRunnerPath = ($NUnitInstallDir + '\NUnit.ConsoleRunner.' + $Env:nunit_console_version + '\tools\nunit3-console.exe')
 $OpenCoverOutputFile = ($BuildPath + '\OpenCover.xml')
 
+$SonarScannerConfigFile = ($BuildPath + '\.sonarqube-analysisproperties.xml')
+$SonarCloudBuildName = ('AppVeyor_build_' + $BuildNumber)
+$TestResultPath = ($BuildPath + '\TestResults.xml')
+
 SonarScanner.MSBuild.exe begin `
     /k:"Agiil" `
-    /v:AppVeyor_build_$BuildNumber `
-    /s:$BuildNumber\.sonarqube-analysisproperties.xml `
+    /v:$SonarCloudBuildName `
+    /s:$SonarScannerConfigFile `
     /o:craigfowler-github `
     /d:sonar.host.url="https://sonarcloud.io" `
     /d:sonar.login=$SonarCloudKey `
-    /d:sonar.cs.nunit.reportsPaths=$BuildPath\Tests\Temp\TestResult.unit-tests.xml `
+    /d:sonar.cs.nunit.reportsPaths=$TestResultPath `
     /d:sonar.cs.opencover.reportsPaths=$BuildPath\OpenCover.xml
   
 msbuild `
@@ -22,7 +26,6 @@ msbuild `
     /p:Configuration=AppVeyorCI `
     "Agiil.sln" 
 
-$TestResultPath = ($BuildPath + '\Tests\Temp\TestResult.unit-tests.xml')
 $AuthTests = 'Tests\Agiil.Tests.Auth\bin\Debug\net471\Agiil.Tests.Auth.dll'
 $DataTests = 'Tests\Agiil.Tests.Data\bin\Debug\net471\Agiil.Tests.Data.dll'
 $DomainTests = 'Tests\Agiil.Tests.Domain\bin\Debug\net471\Agiil.Tests.Domain.dll'
@@ -42,7 +45,7 @@ SonarScanner.MSBuild.exe end `
     /d:sonar.login=$SonarCloudKey
 
 Push-AppveyorArtifact OpenCover.xml
-Get-ChildItem Tests\**\TestResult.unit-tests.xml | ForEach-Object { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+Push-AppveyorArtifact $TestResultPath
 Get-ChildItem Tests\**\*.db | ForEach-Object { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 Get-ChildItem Tests\**\.log | ForEach-Object { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
