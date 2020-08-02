@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "Agiil.Web/Views"
+		},
+		{
+			"path": "Tools"
 		}
 	],
 	"settings": {

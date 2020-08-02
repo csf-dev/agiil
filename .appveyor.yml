@@ -3,44 +3,17 @@
 environment:
   nodejs_version: "10.0"
   JAVA_HOME: "C:\\Program Files\\Java\\jdk13"
+  nunit_console_version: "3.7.0"
+  opencover_version: "4.7.922"
 
 version: '{branch}-{build}'
 
 init:
   - cmd: git config --global core.autocrlf true
 
-# Beware that using a batch file to contain many of the scripts (below)
-# does not work.  The `npm install` commands cause the script to
-# terminate early and abort any further execution.
+install: powershell.exe -file Tools\AppVeyor-install.ps1
 
-install:
-  - ps: Install-Product node $env:nodejs_version
-  - git submodule update --init --recursive
-  - choco install "sonarscanner-msbuild-net46" -y
-  - nuget install -OutputDirectory %APPVEYOR_BUILD_FOLDER%\.OpenCover -Version 4.7.922 OpenCover
-  - nuget install NUnit.ConsoleRunner -Version 3.7.0 -OutputDirectory packages\
-
-configuration: AppVeyorCI
-
-before_build:
-  - nuget restore Agiil.sln
-  - npm install -g npm@latest
-  - cd Agiil.Web.Client
-  - npm ci
-  - cd ..
-  - SonarScanner.MSBuild.exe begin /k:"Agiil" /v:AppVeyor_build_%APPVEYOR_BUILD_NUMBER% /s:%APPVEYOR_BUILD_FOLDER%\.sonarqube-analysisproperties.xml /o:craigfowler-github /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login=%SONARCLOUD_SECRET_KEY% /d:sonar.cs.nunit.reportsPaths=%APPVEYOR_BUILD_FOLDER%\Tests\Temp\TestResult.unit-tests.xml /d:sonar.cs.opencover.reportsPaths=%APPVEYOR_BUILD_FOLDER%\OpenCover.xml
-
-build_script:
-  - msbuild /verbosity:normal "Agiil.sln" /p:Configuration=AppVeyorCI
+build_script: powershell.exe -file Tools\AppVeyor-build.ps1
 
 test_script:
-  - .OpenCover\OpenCover.4.7.922\tools\OpenCover.Console.exe -register:Path64 -target:.\packages\NUnit.ConsoleRunner.3.7.0\tools\nunit3-console.exe -targetargs:"--result=%APPVEYOR_BUILD_FOLDER%\Tests\Temp\TestResult.unit-tests.xml Tests\Agiil.Tests.Auth\bin\Debug\net471\Agiil.Tests.Auth.dll Tests\Agiil.Tests.Data\bin\Debug\net471\Agiil.Tests.Data.dll Tests\Agiil.Tests.Domain\bin\Debug\net471\Agiil.Tests.Domain.dll Tests\Agiil.Tests.Web\bin\Debug\net471\Agiil.Tests.Web.dll" -output:%APPVEYOR_BUILD_FOLDER%\OpenCover.xml -filter:"+[Agiil.*]* -[Agiil.Tests.*]* -[Agiil.BDD]* -[Agiil.Web.TestBuild]* -[Agiil.Web.Client]* -[Agiil.QueryLanguage.Antlr]* -[Agiil.Bootstrap]* -[Agiil.Web.Models]*" -returntargetcode
-
-after_test:
-  - SonarScanner.MSBuild.exe end /d:"sonar.login=%SONARCLOUD_SECRET_KEY%"
-
-artifacts:
-  - path: OpenCover.xml
-  - path: Tests\**\TestResult.unit-tests.xml
-  - path: Tests\**\*.db
-  - path: Tests\**\*.log
+  - echo "Tests already run as part of build"
