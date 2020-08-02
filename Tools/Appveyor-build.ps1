@@ -22,7 +22,7 @@ msbuild `
     /p:Configuration=AppVeyorCI `
     "Agiil.sln" 
 
-$TestResultPath = ($BuildPath + 'Tests\Temp\TestResult.unit-tests.xml')
+$TestResultPath = ($BuildPath + '\Tests\Temp\TestResult.unit-tests.xml')
 $AuthTests = 'Tests\Agiil.Tests.Auth\bin\Debug\net471\Agiil.Tests.Auth.dll'
 $DataTests = 'Tests\Agiil.Tests.Data\bin\Debug\net471\Agiil.Tests.Data.dll'
 $DomainTests = 'Tests\Agiil.Tests.Domain\bin\Debug\net471\Agiil.Tests.Domain.dll'
