@@ -3,7 +3,7 @@
   <Import Project="..\..\Tools\CommonProjectItems.targets" />
   
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net471</TargetFramework>
     <PackageId>Agiil.Tests.Common</PackageId>
     <Description>Shared logic, used across the testing projects</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
@@ -53,6 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="netstandard" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
