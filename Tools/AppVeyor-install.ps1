@@ -1,6 +1,4 @@
-﻿Set-PSDebug -Trace 1
-
-git submodule update --init --recursive
+﻿git submodule update --init --recursive
 
 Install-Product node $Env:nodejs_version
 choco install "sonarscanner-msbuild-net46" -y
