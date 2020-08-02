@@ -1,4 +1,6 @@
-﻿$BuildNumber = $Env:APPVEYOR_BUILD_NUMBER
+﻿Set-PSDebug -Trace 1
+
+$BuildNumber = $Env:APPVEYOR_BUILD_NUMBER
 $SonarCloudKey = $Env:SONARCLOUD_SECRET_KEY
 $BuildPath = $Env:APPVEYOR_BUILD_FOLDER
 $OpenCoverInstallDir = ($BuildPath + '\.OpenCover')

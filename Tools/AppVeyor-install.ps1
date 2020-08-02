@@ -1,4 +1,6 @@
-﻿git submodule update --init --recursive
+﻿Set-PSDebug -Trace 1
+
+git submodule update --init --recursive
 
 Install-Product node $Env:nodejs_version
 choco install "sonarscanner-msbuild-net46" -y
@@ -10,6 +12,7 @@ $NUnitInstallDir = ($Env:APPVEYOR_BUILD_FOLDER + '\.NUnit')
 nuget install -OutputDirectory $NUnitInstallDir -Version $Env:nunit_console_version NUnit.ConsoleRunner
 
 nuget restore Agiil.sln
+
 npm install -g npm@latest
 
 Set-Location Agiil.Web.Client
