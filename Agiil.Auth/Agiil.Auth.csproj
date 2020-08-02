@@ -3,6 +3,7 @@
   <Import Project="..\Tools\CommonProjectItems.targets" />
     
   <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Agiil.Auth</PackageId>
     <Description>The API definitions &amp; model types for performing authentication in the Agiil app</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>

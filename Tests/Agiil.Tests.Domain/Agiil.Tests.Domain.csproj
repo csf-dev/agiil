@@ -3,6 +3,7 @@
   <Import Project="..\..\Tools\CommonProjectItems.targets" />
   
   <PropertyGroup>
+    <TargetFramework>net471</TargetFramework>
     <PackageId>Agiil.Tests</PackageId>
     <Description>Unit &amp; integration tests related to the core Agiil logic</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
@@ -105,6 +106,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="netstandard" />
     <Reference Include="System.Data" />
     <Reference Include="Mono.Data.Sqlite" />
     <Reference Include="System.ComponentModel.DataAnnotations" />

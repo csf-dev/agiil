@@ -3,6 +3,7 @@
   <Import Project="..\..\Tools\CommonProjectItems.targets" />
   
   <PropertyGroup>
+    <TargetFramework>net471</TargetFramework>
     <PackageId>Agiil.Tests.Web</PackageId>
     <Description>Tests for logic which is part of the Agiil.Web project, relying on ASP.NET technologies</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
@@ -109,6 +110,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="netstandard" />
     <Reference Include="System.Web" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />

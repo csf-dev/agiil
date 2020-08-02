@@ -3,6 +3,7 @@
   <Import Project="..\..\Tools\CommonProjectItems.targets" />
   
   <PropertyGroup>
+    <TargetFramework>net471</TargetFramework>
     <PackageId>Agiil.Tests.Auth</PackageId>
     <Description>Unit tests for Agiil.Auth.Impl</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
@@ -87,6 +88,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="netstandard" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Net.Http" />

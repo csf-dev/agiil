@@ -3,6 +3,7 @@
   <Import Project="..\Tools\CommonProjectItems.targets" />
   
   <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Agiil.Domain.Impl</PackageId>
     <Description>The implementation logic for types/interfaces defined in Agiil.Domain</Description>
     <ReleaseVersion>0.10.0</ReleaseVersion>
@@ -25,6 +26,8 @@
     <PackageReference Include="CSF.Specifications" Version="2.0.0" />
     <PackageReference Include="CSF.Enums" Version="7.0.0" />
     <PackageReference Include="CSF.Reflector" Version="3.0.0" />
+    <PackageReference Include="System.ComponentModel.Composition" Version="4.7.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
   </ItemGroup>
     
   <ItemGroup>
