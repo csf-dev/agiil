@@ -11,9 +11,9 @@ version: '{branch}-{build}'
 init:
   - cmd: git config --global core.autocrlf true
 
-install: Tools\AppVeyor-install.ps1
+install: powershell.exe -file Tools\AppVeyor-install.ps1
 
-build_script: Tools\AppVeyor-build.ps1
+build_script: powershell.exe -file Tools\AppVeyor-build.ps1
 
 test_script:
   - echo "Tests already run as part of build"
