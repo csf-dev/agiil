@@ -22,9 +22,9 @@
     <header metal:fill-slot="content_area_header"
             tal:define="ticket here/Ticket">
       <div class="ticket_identity">
+        <i metal:use-macro="Views/Shared/Controls/TicketType/macros/TicketTypeIcon">Bug</i>
         <span class="screen_reader_only">Ticket reference</span>
-        <strong tal:content="string:#${ticket/Reference}" class="ticket_reference">AB123</strong>:
-        <span class="ticket_type" tal:content="ticket/TypeName">Thing</span>
+        <strong tal:content="string:#${ticket/Reference}" class="ticket_reference">AB123</strong>
       </div>
       <h1 tal:content="ticket/Title" class="title_content">Ticket title</h1>
     </header>

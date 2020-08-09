@@ -1,8 +1,10 @@
+@import '_TicketIcons';
+
 table.ticket_list {
   @extend %subtle_table;
   width: 100%;
   
-  th.TicketReference {
+  th.TicketReference, th.TicketType {
     text-align: center;
   }
   a {
@@ -17,9 +19,9 @@ table.ticket_list {
     }
   }
   @media #{$tablet-or-smaller-media} {
-    col.TicketCreator, col.TicketTimestamp, col.TicketType,
-    td.TicketCreator, td.TicketTimestamp, td.TicketType,
-    th.TicketCreator, th.TicketTimestamp, th.TicketType {
+    col.TicketCreator, col.TicketTimestamp,
+    td.TicketCreator, td.TicketTimestamp,
+    th.TicketCreator, th.TicketTimestamp {
       display: none;
     }
     td.TicketReference {

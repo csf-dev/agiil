@@ -23,8 +23,8 @@
     </colgroup>
     <thead>
       <tr>
-        <th class="TicketType">Type</th>
-        <th class="TicketReference">#</th>
+        <th class="TicketType" title="Ticket type">T</th>
+        <th class="TicketReference" title="Ticket reference">#</th>
         <th class="TicketTitle">Title</th>
         <th class="TicketCreator">Created by</th>
         <th class="TicketTimestamp">Date</th>
@@ -32,8 +32,9 @@
     </thead>
     <tbody>
       <tr tal:repeat="ticket tickets" tal:attributes="class ticket/GetHtmlClasses">
-        <td tal:content="ticket/TypeName"
-            class="TicketType">Bug</td>
+        <td class="TicketType">
+          <i metal:use-macro="Views/Shared/Controls/TicketType/macros/TicketTypeIcon">Bug</i>
+        </td>
         <td tal:content="ticket/Reference"
             class="TicketReference">AB123</td>
         <td tal:define="url ticket/ViewUrl"
