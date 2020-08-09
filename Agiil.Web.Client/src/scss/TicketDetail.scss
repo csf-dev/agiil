@@ -12,6 +12,9 @@
   margin: 0 0 0.4em;
   color: $subtle-text-color;
 }
+.content_area>header .ticket_identity .TicketTypeIcon {
+  margin-right: 0.4em;
+}
 .ticket_comments {
   @include sunken;
   
