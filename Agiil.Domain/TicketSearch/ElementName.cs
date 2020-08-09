@@ -12,5 +12,7 @@ namespace Agiil.Domain.TicketSearch
         public static readonly string Ticket = "ticket";
 
         public static readonly string StoryPoints = "storyPoints";
+
+        public static readonly string TicketType = "type";
     }
 }
