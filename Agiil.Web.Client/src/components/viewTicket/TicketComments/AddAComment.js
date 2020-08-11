@@ -24,7 +24,7 @@ export function AddAComment(props : AddACommentProps) {
             <fieldset>
                 <input type="hidden" name="TicketId" value={props.ticket.id} />
                 <div className="form_element field long_text">
-                    <label htmlFor="AddCommentBody">Body</label>
+                    <label htmlFor="AddCommentBody">Add a comment</label>
                     <textarea id="AddCommentBody"
                               name="Body"
                               onChange={onChange}
