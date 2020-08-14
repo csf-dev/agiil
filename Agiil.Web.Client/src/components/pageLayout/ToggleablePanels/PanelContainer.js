@@ -7,6 +7,7 @@ import type { HasChildren } from 'components';
 import type { Observable, Subscription } from 'rxjs';
 import type { SwipeEvent } from 'util/getSwipes';
 import getSwipes from 'util/getSwipes';
+import { getScrolls } from 'util/getScrolls';
 
 export type PanelContainerProps = {
     currentPanel : ?PanelName,
@@ -44,7 +45,10 @@ export class PanelContainer extends React.Component<PanelContainerProps> {
             return;
         }
 
-        const swipes = getSwipes(this.#ref.current, false);
+        const
+            element = this.#ref.current,
+            swipes = getSwipes(element, false);
+
         this.#swipeSubscription = swipes.subscribe((swipe : SwipeEvent) => {
             if(isSwipeLeft(swipe)) this.props.onSwipeLeft();
             if(isSwipeRight(swipe)) this.props.onSwipeRight();
@@ -63,15 +67,25 @@ function isSwipeRight(swipe : SwipeEvent) : bool {
 }
 
 function isHorizontalSwipe(swipe : SwipeEvent) : bool {
-    const absoluteHorizDistance = Math.abs(swipe.vector.x);
+    const
+        modifiedXVector = getSwipeXVectorModifiedByInnerScrolls(swipe),
+        absoluteHorizDistance = Math.abs(modifiedXVector);
     if(isNaN(absoluteHorizDistance) || absoluteHorizDistance < 80) return false;
 
     if(isNaN(swipe.velocity) || swipe.velocity < 0.1) return false;
 
-    const horizToVertRatio = Math.abs(swipe.vector.x) / Math.abs(swipe.vector.y);
+    const horizToVertRatio = Math.abs(modifiedXVector) / Math.abs(swipe.vector.y);
     if(isNaN(horizToVertRatio) || horizToVertRatio < 2) return false;
 
     return true;
+}
+
+function getSwipeXVectorModifiedByInnerScrolls(swipe : SwipeEvent) : number {
+    let vector = swipe.vector.x;
+
+    swipe.innerScrolls.scrolledElements.forEach(element => vector += element.xOffset);
+
+    return vector;
 }
 
 const

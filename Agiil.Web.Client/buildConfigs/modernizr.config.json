@@ -6,6 +6,7 @@
     "feature-detects": [
         "test/touchevents",
         "test/css/flexbox",
-        "test/mediaquery/pointermq"
+        "test/mediaquery/pointermq",
+        "test/dom/passiveeventlisteners"
     ]
 }
