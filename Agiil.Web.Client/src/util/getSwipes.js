@@ -13,6 +13,9 @@ export type SwipeEvent = {
     durationMs : number,
     vector : Coordinate,
     velocity : number,
+};
+
+export type SwipeEventWithInnerScrolls = SwipeEvent & {
     innerScrolls : InnerScrollEvents,
 };
 
@@ -28,13 +31,65 @@ export type InnerScrollEvents = {
     scrolledElements : Map<HTMLElement, CumulativeScrollInfo>
 };
 
-export default function getSwipes(element : HTMLElement, allowMouseSwipes : bool = false) : Observable<SwipeEvent> {
-    const events = getTouchEvents(element, allowMouseSwipes);
-    return events.start.pipe(concatMap(getTimedSwipeEndingFactory(events, element)));
+export type SwipeOptions = {
+    allowMouseSwipes? : boolean,
+    includeInnerElementScrolling? : boolean,
+};
+
+const defaultSwipeOptions : SwipeOptions = {
+    allowMouseSwipes: false,
+    includeInnerElementScrolling: false,
+};
+
+function getSwipeOptions(options : ?SwipeOptions) {
+    return { ...defaultSwipeOptions, ...(options || {}) };
+}
+
+export default function getSwipes(element : HTMLElement, options : ?SwipeOptions = null) : Observable<SwipeEvent> {
+    const
+        resolvedOptions = getSwipeOptions(options),
+        events = getTouchEvents(element, resolvedOptions.allowMouseSwipes);
+
+    return events.start.pipe(concatMap(getTimedSwipeEndingFactory(events, element)), map(getSwipeEventMapper(resolvedOptions)));
+}
+
+function getSwipeEventMapper(options : SwipeOptions) : (ev : SwipeEventWithInnerScrolls) => SwipeEvent {
+    return ev => {
+        const swipeEvent = {
+            startPosition: ev.startPosition,
+            endPosition: ev.endPosition,
+            durationMs: ev.durationMs,
+            vector: ev.vector,
+            velocity: ev.velocity
+        };
+
+        if(options.includeInnerElementScrolling) return swipeEvent;
+
+        // Subtract any scrolling from the swipe vector.
+        // This means that the distance scrolled won't count towards the vector or
+        // the velocity of the swipe.
+        // 
+        // This is actually handled as addition, because the scroll offset will be
+        // in the opposite direction to the swipe, so adding them will always tend
+        // towards zero.
+        ev.innerScrolls.scrolledElements.forEach(scrollInfo => {
+            swipeEvent.vector.x += scrollInfo.xOffset;
+            swipeEvent.vector.y += scrollInfo.yOffset;
+        });
+
+        // We must recalculate the velocity at this point
+        const
+            xVelocity = swipeEvent.vector.x / swipeEvent.durationMs,
+            yVelocity = swipeEvent.vector.y / swipeEvent.durationMs,
+            velocity = Math.sqrt(Math.pow(xVelocity, 2) + Math.pow(yVelocity, 2));
+        swipeEvent.velocity = velocity;
+        
+        return swipeEvent;
+    };
 }
 
 function getTimedSwipeEndingFactory(events : TouchEventsForElement, element : HTMLElement) {
-    return function getTimedSwipeEnding(startCoords : Coordinate) : Observable<SwipeEvent> {
+    return function getTimedSwipeEnding(startCoords : Coordinate) : Observable<SwipeEventWithInnerScrolls> {
         const
             timerGranularityMs = 20,
             timer = interval(timerGranularityMs);
@@ -83,7 +138,7 @@ function getCumulativeScrollInfo(map : Map<HTMLElement, CumulativeScrollInfo>, e
 
 type SwipeData = [{| start: Coordinate, time: number |}, Coordinate, InnerScrollEvents];
 
-function mapToSwipe(swipeData : SwipeData) : SwipeEvent {
+function mapToSwipe(swipeData : SwipeData) : SwipeEventWithInnerScrolls {
     const
         startPosition = swipeData[0].start,
         endPosition = swipeData[1],

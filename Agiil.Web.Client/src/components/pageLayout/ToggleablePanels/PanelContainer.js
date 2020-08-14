@@ -47,7 +47,7 @@ export class PanelContainer extends React.Component<PanelContainerProps> {
 
         const
             element = this.#ref.current,
-            swipes = getSwipes(element, false);
+            swipes = getSwipes(element);
 
         this.#swipeSubscription = swipes.subscribe((swipe : SwipeEvent) => {
             if(isSwipeLeft(swipe)) this.props.onSwipeLeft();
@@ -67,25 +67,17 @@ function isSwipeRight(swipe : SwipeEvent) : bool {
 }
 
 function isHorizontalSwipe(swipe : SwipeEvent) : bool {
-    const
-        modifiedXVector = getSwipeXVectorModifiedByInnerScrolls(swipe),
-        absoluteHorizDistance = Math.abs(modifiedXVector);
-    if(isNaN(absoluteHorizDistance) || absoluteHorizDistance < 80) return false;
+    console.log(swipe);
 
-    if(isNaN(swipe.velocity) || swipe.velocity < 0.1) return false;
+    const absoluteHorizDistance = Math.abs(swipe.vector.x);
+    if(isNaN(absoluteHorizDistance) || absoluteHorizDistance < 150) return false;
 
-    const horizToVertRatio = Math.abs(modifiedXVector) / Math.abs(swipe.vector.y);
+    if(isNaN(swipe.velocity) || swipe.velocity < 0.2) return false;
+
+    const horizToVertRatio = Math.abs(swipe.vector.x) / Math.abs(swipe.vector.y);
     if(isNaN(horizToVertRatio) || horizToVertRatio < 2) return false;
 
     return true;
-}
-
-function getSwipeXVectorModifiedByInnerScrolls(swipe : SwipeEvent) : number {
-    let vector = swipe.vector.x;
-
-    swipe.innerScrolls.scrolledElements.forEach(element => vector += element.xOffset);
-
-    return vector;
 }
 
 const
