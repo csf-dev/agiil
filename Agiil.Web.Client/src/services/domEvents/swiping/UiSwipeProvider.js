@@ -1,7 +1,7 @@
 //@flow
 import type { GetsUiSwipes } from './GetsUiSwipes';
 import type { Observable } from 'rxjs';
-import { map, filter, tap } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
 import type { UiSwipe, SwipeDirection } from './UiSwipe';
 import { swipeDirections } from './UiSwipe';
 import type { Swipe } from './Swipe';
@@ -15,7 +15,6 @@ export class UiSwipeProvider implements GetsUiSwipes {
         return this.#swipeProvider.getSwipes()
             .pipe(
                 map(mapToMaybeUiSwipe),
-                tap(x => console.log(x)),
                 filter(x => !!x.direction)
             );
     }
