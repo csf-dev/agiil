@@ -387,6 +387,6 @@ Global
 		$0.TextStylePolicy = $10
 		$10.inheritsSet = null
 		$10.scope = text/x-csharp
-		version = 0.10.0
+		version = 0.11.0
 	EndGlobalSection
 EndGlobal

@@ -6,7 +6,7 @@
     <TargetFramework>net471</TargetFramework>
     <PackageId>Agiil.Tests</PackageId>
     <Description>Unit &amp; integration tests related to the core Agiil logic</Description>
-    <ReleaseVersion>0.10.0</ReleaseVersion>
+    <ReleaseVersion>0.11.0</ReleaseVersion>
     <RootNamespace>Agiil.Tests</RootNamespace>
   </PropertyGroup>
     
