@@ -5,9 +5,8 @@ import { NavigationPanel, MainPanel, AsidesPanel } from "./PanelName";
 import { getElementsHtml } from 'util/dom';
 import type { HasChildren } from 'components';
 import type { Observable, Subscription } from 'rxjs';
-import type { SwipeEvent } from 'util/getSwipes';
-import getSwipes from 'util/getSwipes';
-import { getScrolls } from 'util/getScrolls';
+import { getSwipes } from 'services/domEvents';
+import type { Swipe } from 'services/domEvents';
 
 export type PanelContainerProps = {
     currentPanel : ?PanelName,
@@ -49,26 +48,24 @@ export class PanelContainer extends React.Component<PanelContainerProps> {
             element = this.#ref.current,
             swipes = getSwipes(element);
 
-        this.#swipeSubscription = swipes.subscribe((swipe : SwipeEvent) => {
+        this.#swipeSubscription = swipes.subscribe((swipe : Swipe) => {
             if(isSwipeLeft(swipe)) this.props.onSwipeLeft();
             if(isSwipeRight(swipe)) this.props.onSwipeRight();
         });
     }
 }
 
-function isSwipeLeft(swipe : SwipeEvent) : bool {
+function isSwipeLeft(swipe : Swipe) : bool {
     if(!isHorizontalSwipe(swipe)) return false;
     return swipe.vector.x < 0;
 }
 
-function isSwipeRight(swipe : SwipeEvent) : bool {
+function isSwipeRight(swipe : Swipe) : bool {
     if(!isHorizontalSwipe(swipe)) return false;
     return swipe.vector.x > 0;
 }
 
-function isHorizontalSwipe(swipe : SwipeEvent) : bool {
-    console.log(swipe);
-
+function isHorizontalSwipe(swipe : Swipe) : bool {
     const absoluteHorizDistance = Math.abs(swipe.vector.x);
     if(isNaN(absoluteHorizDistance) || absoluteHorizDistance < 150) return false;
 
