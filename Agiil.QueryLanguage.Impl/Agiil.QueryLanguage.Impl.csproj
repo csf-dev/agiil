@@ -7,6 +7,7 @@
     <PackageId>Agiil.QueryLanguage.Impl</PackageId>
     <Description>Implementation logic which makes use of the generated code in Agiil.QueryLanguage.Antlr</Description>
     <ReleaseVersion>0.11.0</ReleaseVersion>
+    <Version>$(ReleaseVersion)</Version>
     <RootNamespace>Agiil.QueryLanguage</RootNamespace>
   </PropertyGroup>
     

@@ -7,6 +7,7 @@
     <PackageId>Agiil.Web.OAuth</PackageId>
     <Description>Implementation logic for performing web-app authentication using OAuth</Description>
     <ReleaseVersion>0.11.0</ReleaseVersion>
+    <Version>$(ReleaseVersion)</Version>
     <RootNamespace>Agiil.Web.OAuth</RootNamespace>
   </PropertyGroup>
     

@@ -7,6 +7,7 @@
     <PackageId>Agiil.Domain</PackageId>
     <Description>The API definitions &amp; entity/model types for the Agiil issue tracker</Description>
     <ReleaseVersion>0.11.0</ReleaseVersion>
+    <Version>$(ReleaseVersion)</Version>
     <RootNamespace>Agiil.Domain</RootNamespace>
   </PropertyGroup>
     

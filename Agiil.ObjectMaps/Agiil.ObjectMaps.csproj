@@ -7,6 +7,7 @@
     <PackageId>Agiil.ObjectMaps</PackageId>
     <Description>Implementation logic specialised to the usage of AutoMapper to map between entity/DTO/value types</Description>
     <ReleaseVersion>0.11.0</ReleaseVersion>
+    <Version>$(ReleaseVersion)</Version>
     <RootNamespace>Agiil.ObjectMaps</RootNamespace>
   </PropertyGroup>
     

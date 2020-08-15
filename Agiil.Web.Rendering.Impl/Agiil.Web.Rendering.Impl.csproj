@@ -7,6 +7,7 @@
     <PackageId>Agiil.Web.Rendering.Impl</PackageId>
     <Description>Implementation logic for rendering markdown text to HTML using the Markdig package</Description>
     <ReleaseVersion>0.11.0</ReleaseVersion>
+    <Version>$(ReleaseVersion)</Version>
     <RootNamespace>Agiil.Web.Rendering</RootNamespace>
   </PropertyGroup>
     

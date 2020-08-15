@@ -7,6 +7,7 @@
     <PackageId>Agiil.Auth</PackageId>
     <Description>The API definitions &amp; model types for performing authentication in the Agiil app</Description>
     <ReleaseVersion>0.11.0</ReleaseVersion>
+    <Version>$(ReleaseVersion)</Version>
     <RootNamespace>Agiil.Auth</RootNamespace>
   </PropertyGroup>
     

@@ -7,6 +7,7 @@
     <PackageId>Agiil.Web.Rendering</PackageId>
     <Description>Interfaces &amp; API definitions related to the rendering of markdown text to HTML</Description>
     <ReleaseVersion>0.11.0</ReleaseVersion>
+    <Version>$(ReleaseVersion)</Version>
     <RootNamespace>Agiil.Web.Rendering</RootNamespace>
   </PropertyGroup>
     

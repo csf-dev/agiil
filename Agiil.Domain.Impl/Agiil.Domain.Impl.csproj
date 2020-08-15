@@ -7,6 +7,7 @@
     <PackageId>Agiil.Domain.Impl</PackageId>
     <Description>The implementation logic for types/interfaces defined in Agiil.Domain</Description>
     <ReleaseVersion>0.11.0</ReleaseVersion>
+    <Version>$(ReleaseVersion)</Version>
     <RootNamespace>Agiil.Domain</RootNamespace>
   </PropertyGroup>
     

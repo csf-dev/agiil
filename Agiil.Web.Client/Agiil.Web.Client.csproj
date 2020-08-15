@@ -5,6 +5,7 @@
     <ProjectGuid>{93B2453A-C041-4846-94F0-D0E728E23FD0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <ReleaseVersion>0.11.0</ReleaseVersion>
+    <Version>$(ReleaseVersion)</Version>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin</OutputPath>

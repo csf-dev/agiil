@@ -7,6 +7,7 @@
     <PackageId>Agiil.QueryLanguage.Antlr</PackageId>
     <Description>Contains generated code, specifically created by the ANTLR generation tool, related to the Agiil Query parser</Description>
     <ReleaseVersion>0.11.0</ReleaseVersion>
+    <Version>$(ReleaseVersion)</Version>
     <RootNamespace>Agiil.QueryLanguage.Antlr</RootNamespace>
   </PropertyGroup>
     
