@@ -9,5 +9,5 @@ export { getScrollFrames } from './scrolling';
 export type { GetsThrottlingInfo } from './throttling';
 export { throttlingInfo } from './throttling';
 export { getVelocity } from './getVelocity';
-export { getSwipes, getSwipeEvents } from './swiping';
-export type { SwipeOptions, Swipe, SwipeEvent } from './swiping';
+export { getSwipes, getSwipeEvents, getUiSwipes, swipeDirections } from './swiping';
+export type { SwipeOptions, Swipe, SwipeEvent, UiSwipe, SwipeDirection } from './swiping';
