@@ -6,7 +6,8 @@
     <TargetFramework>net471</TargetFramework>
     <PackageId>Agiil.Data</PackageId>
     <Description>Implementation logic specific to the usage of Agiil.Domain with the NHibernate ORM, plus SQLite and DbUp</Description>
-    <ReleaseVersion>0.10.0</ReleaseVersion>
+    <ReleaseVersion>0.11.0</ReleaseVersion>
+    <Version>$(ReleaseVersion)</Version>
     <RootNamespace>Agiil.Data</RootNamespace>
   </PropertyGroup>
     

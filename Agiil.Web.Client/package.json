@@ -1,6 +1,6 @@
 {
   "name": "agiil.web.client",
-  "version": "0.8.1",
+  "version": "0.11.0",
   "description": "Web client/user interface for the Agiil web app",
   "main": "index.js",
   "scripts": {

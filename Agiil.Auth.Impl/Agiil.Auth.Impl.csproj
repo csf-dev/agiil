@@ -6,7 +6,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Agiil.Auth.Impl</PackageId>
     <Description>Implementaton logic related to authentication for the Agiil application</Description>
-    <ReleaseVersion>0.10.0</ReleaseVersion>
+    <ReleaseVersion>0.11.0</ReleaseVersion>
+    <Version>$(ReleaseVersion)</Version>
     <RootNamespace>Agiil.Auth</RootNamespace>
   </PropertyGroup>
     

@@ -6,7 +6,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Agiil.Web.Models</PackageId>
     <Description>Model &amp; DTO types specific for usage in the MVC/WebAPI web application project</Description>
-    <ReleaseVersion>0.10.0</ReleaseVersion>
+    <ReleaseVersion>0.11.0</ReleaseVersion>
+    <Version>$(ReleaseVersion)</Version>
     <RootNamespace>Agiil.Web.Models</RootNamespace>
   </PropertyGroup>
     
