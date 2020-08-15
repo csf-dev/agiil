@@ -9,7 +9,6 @@ namespace Agiil.Web.App_Start
     public void RegisterFilters(HttpConfiguration config)
     {
       config.Filters.Add(new AuthorizeAttribute());
-      config.Filters.Add(new LogUnexpectedErrorsAttribute());
     }
   }
 }

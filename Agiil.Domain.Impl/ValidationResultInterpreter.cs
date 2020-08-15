@@ -26,9 +26,9 @@ namespace Agiil.Domain
     }
 
     public bool IncludesFailureFor<TValidated>(IValidationResult result,
-                                               Expression<Func<TValidated,object>> propertyExpression,
-                                               Type ruleType,
-                                               string name)
+                                               Expression<Func<TValidated,object>> propertyExpression = null,
+                                               Type ruleType = null,
+                                               string name = null)
     {
       if(ReferenceEquals(result, null))
         throw new ArgumentNullException(nameof(result));

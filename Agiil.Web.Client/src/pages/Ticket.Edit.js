@@ -8,6 +8,8 @@ import type { AnyStore } from 'util/redux/AnyStore';
 import { Provider } from 'react-redux';
 import pageStarter from 'util/pageStarter';
 import getLabelListFactory from 'services/labels/LabelListFromTextInputCreator';
+//$FlowFixMe
+import 'scss/EditTicket.scss';
 
 pageStarter(() => {
     const store = getInitialStore();

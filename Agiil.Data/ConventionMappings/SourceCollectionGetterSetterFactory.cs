@@ -9,7 +9,6 @@ namespace Agiil.Data.ConventionMappings
     public class SourceCollectionGetterSetterFactory<TCollectionItem> : SourceCollectionGetterSetterFactory
       where TCollectionItem : class
     {
-        readonly FieldInfo field;
         readonly SourceCollectionGetterSetter<TCollectionItem> getterSetter;
 
         public override IGetter GetGetter() => getterSetter;
@@ -18,8 +17,7 @@ namespace Agiil.Data.ConventionMappings
 
         public SourceCollectionGetterSetterFactory(FieldInfo field)
         {
-            this.field = field ?? throw new ArgumentNullException(nameof(field));
-            getterSetter = new SourceCollectionGetterSetter<TCollectionItem>(field);
+            getterSetter = new SourceCollectionGetterSetter<TCollectionItem>(field ?? throw new ArgumentNullException(nameof(field)));
         }
     }
 

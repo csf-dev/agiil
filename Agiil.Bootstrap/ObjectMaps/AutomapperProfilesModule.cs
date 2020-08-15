@@ -1,39 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Linq;
+﻿using System.Linq;
 using Agiil.ObjectMaps;
 using Autofac;
 using AutoMapper;
 
 namespace Agiil.Bootstrap.ObjectMaps
 {
-  public class AutomapperProfilesModule : Autofac.Module
-  {
-    readonly IProfileTypesProvider profileTypeProvider;
-
-    protected override void Load(ContainerBuilder builder)
+    public class AutomapperProfilesModule : Autofac.Module
     {
-      if(profileTypeProvider == null)
-        return;
-      
-      var allProfileTypes = profileTypeProvider.GetAllProfileTypes();
-      foreach(var type in allProfileTypes)
-      {
-        builder
-          .RegisterType(type)
-          .As<Profile>();
-      }
-    }
+        protected override void Load(ContainerBuilder builder)
+        {
+            var allProfileTypes = new ProfileTypesProvider()
+                .GetTypes()
+                .ToArray();
 
-    public AutomapperProfilesModule() {}
-
-    public AutomapperProfilesModule(IProfileTypesProvider profileTypeProvider)
-    {
-      if(profileTypeProvider == null)
-        throw new ArgumentNullException(nameof(profileTypeProvider));
-      
-      this.profileTypeProvider = profileTypeProvider;
+            builder.RegisterTypes(allProfileTypes)
+                .AsSelf()
+                .As<Profile>();
+        }
     }
-  }
 }

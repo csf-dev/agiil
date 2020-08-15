@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	
+  <PropertyGroup>
+    <SolutionRootDir>$(MSBuildThisFileDirectory)\..</SolutionRootDir>
+    <TasksConfig Condition="'$(Configuration)' != 'Release'">Debug</TasksConfig>
+    <TasksConfig Condition="'$(Configuration)' == 'Release'">Release</TasksConfig>
+
+    <AgiilWebProjectDir>$(SolutionRootDir)\Agiil.Web</AgiilWebProjectDir>
+    <AgiilWebOutputDir>$(AgiilWebProjectDir)\bin</AgiilWebOutputDir>
+    
+    <DeploymentRoot Condition="'$(DeploymentRoot)' == '' and $(Configuration) == 'Release'">$(SolutionRootDir)\Output\Web apps</DeploymentRoot>
+    <DeploymentRoot Condition="'$(DeploymentRoot)' == '' and $(Configuration) != 'Release'">$(SolutionRootDir)</DeploymentRoot>
+    <WebAppStagingDir>$(DeploymentRoot)\Agiil.Web</WebAppStagingDir>
+  </PropertyGroup>
+	
+  <Target Name="CopyWebApplicationTestingLogic">
+    <ItemGroup>
+      <WebAppTestingLogic Include="$(OutputPath)\*" Exclude="$(OutputPath)\**\CSF.Reflection*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(WebAppTestingLogic)" DestinationFolder="$(WebAppStagingDir)\bin" />
+  </Target>
+    
+  <Target Name="CleanStagingDir">
+    <!-- In a non-release config, the staging dir is the same place the source is stored, so we mustn't delete it.
+         In release config, on the other hand, this is a directory exclusively for staging, so it is OK to remove. -->
+    <RemoveDir Directories="$(WebAppStagingDir)" Condition="'$(Configuration)' == 'Release'" />
+  </Target>
+  
+  <Target Name="CopyWebAppToStagingDir">
+    <!-- The "bin" directory -->
+    <MakeDir Directories="$(WebAppStagingDir)\bin"/>
+    <Copy SourceFiles="@(IntermediateAssembly)"
+          DestinationFolder="$(WebAppStagingDir)\bin"
+          SkipUnchangedFiles="true"/>
+    
+    <!-- Satellite resource assemblies: "*.resources" -->
+    <Copy SourceFiles = "@(IntermediateSatelliteAssemblies)"
+          DestinationFiles = "@(IntermediateSatelliteAssemblies->'$(WebAppStagingDir)\bin\%(Culture)\$(AssemblyName).resources.dll')"
+          Condition = "'@(IntermediateSatelliteAssemblies)' != ''"
+          SkipUnchangedFiles="true" />
+
+    <!-- SQLite interop assemblies -->
+    <Copy SourceFiles = "@(SQLiteInteropFiles)"
+          DestinationFiles = "@(SQLiteInteropFiles->'$(WebAppStagingDir)\bin\%(RecursiveDir)%(Filename)%(Extension)')"
+          Condition = "'@(SQLiteInteropFiles)' != ''"
+          SkipUnchangedFiles="true" />
+
+    <!-- Referenced assemblies -->
+    <Copy SourceFiles="@(ReferenceCopyLocalPaths)" DestinationFolder="$(WebAppStagingDir)\bin" SkipUnchangedFiles="true" />
+
+    <!-- The CSF.Reflection3 assembly
+         This is just here as a workaround to the fact that ZPT-Sharp doesn't support CSF.Reflection version 3
+         and so requires an older version of the assembly.  This workaround leverages the fact that they are strong-named
+         to copy both versions into the output directory under different filenames, so that they can coexist -->
+    <Copy SourceFiles="$(OutputPath)\CSF.Reflection3.dll" DestinationFolder="$(WebAppStagingDir)\bin" SkipUnchangedFiles="true" />
+
+    <!-- Any other files marked as "Content" -->
+    <Copy SourceFiles="@(Content)" DestinationFolder="$(WebAppStagingDir)\%(Content.RelativeDir)" />
+  </Target>
+
+  <Target Name="PackageWebAppAsZipfile">
+    <ItemGroup>
+      <ZipContents Include="$(WebAppStagingDir)\**\*.*" />
+    </ItemGroup>
+    <Zip Files="@(ZipContents)"
+         WorkingDirectory="$(WebAppStagingDir)"
+         ZipFileName="$(DeploymentRoot)\$(MSBuildProjectName).zip"
+         ZipLevel="9" />
+  </Target>
+	
+</Project>

@@ -8,7 +8,6 @@ namespace Agiil.Web.Services
   public class DataPackageLoader
   {
     readonly IEnumerable<Lazy<IDataPackage,DataPackageMetadata>> allPackages;
-    readonly IGetsTransaction transactionCreator;
 
     public void LoadDataPackage(string typeName)
     {
@@ -27,16 +26,9 @@ namespace Agiil.Web.Services
       return package.Value;
     }
 
-    public DataPackageLoader(IEnumerable<Lazy<IDataPackage,DataPackageMetadata>> allPackages,
-                             IGetsTransaction transactionCreator)
+    public DataPackageLoader(IEnumerable<Lazy<IDataPackage,DataPackageMetadata>> allPackages)
     {
-      if(transactionCreator == null)
-        throw new ArgumentNullException(nameof(transactionCreator));
-      if(allPackages == null)
-        throw new ArgumentNullException(nameof(allPackages));
-      
-      this.allPackages = allPackages;
-      this.transactionCreator = transactionCreator;
+      this.allPackages = allPackages ?? throw new ArgumentNullException(nameof(allPackages));
     }
   }
 }

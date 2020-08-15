@@ -1,0 +1,10 @@
+﻿@import '_StandardPage';
+@import '_Forms';
+
+#EditComment {
+  @include full_page_form;
+  
+  #Name {
+    @extend %full-width-text;
+  }
+}

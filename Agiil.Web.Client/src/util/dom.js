@@ -1,9 +1,14 @@
 //@flow
 
-export function getElementByIdMandatory(id : string) {
-    const element = document.getElementById(id);
+export function getElementByIdMandatory<TElement : HTMLElement>(id : string) : TElement {
+    const element = getElementById<TElement>(id);
     if(!element) throw new Error(`Element '#${id}' expected but was not found`);
     return element;
+}
+
+export function getElementById<TElement : HTMLElement>(id : string) : TElement | null {
+    const element = document.getElementById(id);
+    return element? ((element : any) : TElement) : null;
 }
 
 export interface CanGetElementByQuery {

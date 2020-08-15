@@ -1,0 +1,35 @@
+@import '_TicketIcons';
+
+table.ticket_list {
+  @extend %subtle_table;
+  width: 100%;
+  
+  th.TicketReference, th.TicketType {
+    text-align: center;
+  }
+  a {
+    @include hyperlink;
+  }
+  @media #{$desktop-media} {
+    col.TicketReference {
+      width: 5em;
+    }
+    col.TicketCreator, col.TicketTimestamp {
+      width: 8em;
+    }
+  }
+  @media #{$tablet-or-smaller-media} {
+    col.TicketCreator, col.TicketTimestamp,
+    td.TicketCreator, td.TicketTimestamp,
+    th.TicketCreator, th.TicketTimestamp {
+      display: none;
+    }
+    td.TicketReference {
+      font-size: $smaller-text-size;
+    }
+    col.TicketReference {
+      width: 4em;
+    }
+  }
+}
+ 

@@ -4,11 +4,21 @@
 			"path": "Agiil.Web.Client"
 		},
 		{
-			"path": "Agiil.Web/Content/Scss"
+			"path": "Agiil.Web/Views"
 		},
 		{
-			"path": "Agiil.Web/Views"
+			"path": "Tools"
 		}
 	],
-    "settings": {}
+	"settings": {
+        "files.watcherExclude": {
+			"**/.git/objects/**": true,
+			"**/.git/subtree-cache/**": true,
+			"**/node_modules/*/**": true,
+			"**/bin/**": true,
+            "**/obj/**": true,
+            "**/flow-typed/**": true,
+            "**/dist/**": true
+        }
+	}
 }

@@ -1,0 +1,119 @@
+@import '_StandardPage';
+@import '_ThreeColumnPage';
+@import '_Forms';
+@import '_RichDescriptions';
+@import '_RelationshipTables';
+@import '_AppWideVariables';
+@import '_ResponsiveBreakpoints';
+@import '_ThreeColumnLayout_Base';
+
+.content_area>header .ticket_identity {
+  font-size: $small-text-size;
+  margin: 0 0 0.4em;
+  color: $subtle-text-color;
+}
+.content_area>header .ticket_identity .TicketTypeIcon {
+  margin-right: 0.4em;
+}
+.ticket_comments {
+  border-radius: 0.5em;
+  margin-top: 1em;
+  box-shadow: 1px 1px 5px 0 hsla(0, 0, 25%, 1);
+  border: 1px solid $subtle-keyline-color;
+
+  .comment_list>li {
+    background: white;
+    margin: 0;
+    padding: 0 0.5em 0.6em;
+    border-bottom: 1px solid $subtle-keyline-color;
+
+    header {
+      padding: 0.2em 0.5em 0;
+      margin: 0 -0.5em 1em;
+      font-size: $small-text-size;
+      background: $faint-keyline-color;
+      border-bottom: 1px solid $subtle-keyline-color;
+      overflow: auto;
+
+      .author_info {
+        float: left;
+      }
+      .presentationless_context {
+        @extend .screen_reader_only;
+      }
+      .author_name {
+        font-weight: bold;
+      }
+      .author_name::after {
+        content: ', ';
+        font-weight: normal;
+      }
+      strong {
+        font-weight: normal;
+      }
+      .comment_admin {
+        float: right;
+        line-height: 100%;
+      }
+      .comment_admin>li {
+        float: right;
+        margin-left: 1em;
+
+        .edit_comment, .delete_comment {
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          border: 1px solid $subtle-keyline-color;
+          border-radius: 4px;
+          margin: 0;
+          padding: 0;
+          line-height: 100%;
+          outline: 0;
+          box-sizing: content-box;
+          font: inherit;
+          font-size: 100%;
+          cursor: pointer;
+
+          span {
+            @extend .screen_reader_only;
+          }
+        }
+        .edit_comment {
+          background: url('../../node_modules/bootstrap-icons/icons/pencil.svg') center/80% no-repeat white;
+        }
+        .delete_comment {
+          background: url('../../node_modules/bootstrap-icons/icons/trash.svg') center/80% no-repeat white;
+        }
+      }
+    }
+  }
+  .add_a_comment {
+    @include full_page_form;
+    background: $faint-keyline-color;
+    padding: 1em 0.5em 0.6em;
+  }
+  .add_a_comment textarea {
+    resize: vertical;
+  }
+}
+.ticket_comments>header {
+  background: $faint-keyline-color;
+  padding: 0.2em 0.5em;
+  border: 0px solid $subtle-keyline-color;
+  border-bottom-width: 1px;
+
+  h2 {
+    font-size: $small-text-size;
+    line-height: 120%;
+  }
+}
+.description_content,
+.comment_content {
+  @include rich_description;
+}
+
+@media #{$mobile_media}, #{$tablet_media} {
+    .content_area > header h1 {
+        font-size: $main_header_font_size * 0.8;
+    }
+}  

@@ -5,8 +5,8 @@ import { NavigationPanel, MainPanel, AsidesPanel } from "./PanelName";
 import { getElementsHtml } from 'util/dom';
 import type { HasChildren } from 'components';
 import type { Observable, Subscription } from 'rxjs';
-import type { SwipeEvent } from 'util/getSwipes';
-import getSwipes from 'util/getSwipes';
+import { getUiSwipes, swipeDirections } from 'services/domEvents';
+import type { UiSwipe } from 'services/domEvents';
 
 export type PanelContainerProps = {
     currentPanel : ?PanelName,
@@ -44,34 +44,18 @@ export class PanelContainer extends React.Component<PanelContainerProps> {
             return;
         }
 
-        const swipes = getSwipes(this.#ref.current, false);
-        this.#swipeSubscription = swipes.subscribe((swipe : SwipeEvent) => {
-            if(isSwipeLeft(swipe)) this.props.onSwipeLeft();
-            if(isSwipeRight(swipe)) this.props.onSwipeRight();
+        const
+            element = this.#ref.current,
+            swipes = getUiSwipes(element);
+
+        this.#swipeSubscription = swipes.subscribe((swipe : UiSwipe) => {
+            if(swipe.direction == swipeDirections.left)
+                this.props.onSwipeLeft();
+            
+            if(swipe.direction == swipeDirections.right)
+                this.props.onSwipeRight();
         });
     }
-}
-
-function isSwipeLeft(swipe : SwipeEvent) : bool {
-    if(!isHorizontalSwipe(swipe)) return false;
-    return swipe.vector.x < 0;
-}
-
-function isSwipeRight(swipe : SwipeEvent) : bool {
-    if(!isHorizontalSwipe(swipe)) return false;
-    return swipe.vector.x > 0;
-}
-
-function isHorizontalSwipe(swipe : SwipeEvent) : bool {
-    const absoluteHorizDistance = Math.abs(swipe.vector.x);
-    if(isNaN(absoluteHorizDistance) || absoluteHorizDistance < 80) return false;
-
-    if(isNaN(swipe.velocity) || swipe.velocity < 0.1) return false;
-
-    const horizToVertRatio = Math.abs(swipe.vector.x) / Math.abs(swipe.vector.y);
-    if(isNaN(horizToVertRatio) || horizToVertRatio < 2) return false;
-
-    return true;
 }
 
 const

@@ -63,10 +63,10 @@ namespace Agiil.Domain.TicketCriterionConvertionStrategies
 
     class HasLabelConversionMetadata : CriterionToSpecificationConversionStrategyMetadata
     {
-      public override bool CanConvertAsPredicateWithValue(string elementName, string predicateName)
+      public override bool CanConvertAsPredicateWithValue(string elementName, string predicateText)
 			{
         return (elementName == ElementName.Label
-                && (predicateName == PredicateName.Equals || predicateName == PredicateName.NotEquals));
+                && (predicateText == PredicateName.Equals || predicateText == PredicateName.NotEquals));
 			}
 
       public override bool CanConvertAsPredicateFunction(string elementName,

@@ -2,7 +2,7 @@
 
 namespace Agiil.Web.Models.Tickets
 {
-  public class TicketDetailModel : PageModel
+  public class TicketDetailModel
   {
     public bool IsSuccessfulEdit { get; set; }
 

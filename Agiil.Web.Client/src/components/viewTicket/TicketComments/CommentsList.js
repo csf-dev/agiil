@@ -19,9 +19,11 @@ export function CommentsListItem(comment : TicketComment, idx : number) {
     return (
         <li key={idx}>
             <header>
-                <p>
-                    Written by <strong className="author_name">{comment.author}</strong> on
-                    <strong className="author_timestamp">{comment.createdTimestamp}</strong>.
+                <p className="author_info">
+                    <span className="presentationless_context">Written by</span>
+                    <strong className="author_name">{comment.author}</strong>
+                    <span className="presentationless_context">on</span>
+                    <strong className="author_timestamp">{comment.createdTimestamp}</strong><span className="presentationless_context">.</span>
                 </p>
                 <CommentAdminTools comment={comment} />
             </header>
@@ -33,10 +35,10 @@ export function CommentsListItem(comment : TicketComment, idx : number) {
 
 export function CommentAdminTools(props : { comment : TicketComment }) {
     return (
-        <>
+        <ul className="comment_admin">
             <EditComment comment={props.comment} />
             <DeleteComment comment={props.comment} />
-        </>
+        </ul>
     );
 }
 
@@ -44,9 +46,11 @@ function EditComment(props : { comment : TicketComment }) {
     if(!props.comment.canEdit) return null;
 
     return (
-        <p>
-            <a href={props.comment.editUrl} className="edit_comment">Edit this comment</a>
-        </p>
+        <li>
+            <a  href={props.comment.editUrl}
+                className="edit_comment"
+                title="Edit this comment"><span>Edit this comment</span></a>
+        </li>
     );
 }
 
@@ -54,11 +58,14 @@ function DeleteComment(props : { comment : TicketComment }) {
     if(!props.comment.canDelete) return null;
     
     return (
-        <form method="post" action="Comment/ConfirmDelete" >
-            <fieldset>
-                <input type="hidden" name="id" value={props.comment.id} />
-                <button className="delete_comment">Delete this comment</button>
-            </fieldset>
-        </form>
+        <li>
+            <form method="post" action="Comment/ConfirmDelete" >
+                <fieldset>
+                    <input type="hidden" name="id" value={props.comment.id} />
+                    <button className="delete_comment"
+                            title="Delete this comment"><span>Delete this comment</span></button>
+                </fieldset>
+            </form>
+        </li>
     );
 }

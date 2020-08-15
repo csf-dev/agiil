@@ -9,6 +9,8 @@ import getStore from 'app/getStore';
 import { MainPanel, PanelContainer, ApplicationMenu, PageFooter, PanelChangeIndicator } from 'components/pageLayout'
 import { ViewTicketContentArea } from 'components/viewTicket';
 import { getTicketDetailProvider } from 'services/tickets';
+//$FlowFixMe
+import 'scss/TicketDetail.scss';
 
 pageStarter(() => {
     const store = getInitialStore();

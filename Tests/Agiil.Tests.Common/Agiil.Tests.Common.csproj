@@ -1,355 +1,68 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+    
+  <Import Project="..\..\Tools\CommonProjectItems.targets" />
+  
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E15F2064-D2EA-43EF-924C-733107675FF0}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <TargetFramework>net471</TargetFramework>
+    <PackageId>Agiil.Tests.Common</PackageId>
+    <Description>Shared logic, used across the testing projects</Description>
+    <ReleaseVersion>0.11.0</ReleaseVersion>
     <RootNamespace>Agiil.Tests</RootNamespace>
-    <AssemblyName>Agiil.Tests.Common</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>0.10.0</ReleaseVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
+    
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="Castle.Core">
-      <HintPath>..\..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Moq">
-      <HintPath>..\..\packages\Moq.4.14.5\lib\net45\Moq.dll</HintPath>
-    </Reference>
-    <Reference Include="Autofac">
-      <HintPath>..\..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Web.Infrastructure">
-      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http.WebHost">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
-    </Reference>
-    <Reference Include="Owin">
-      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Iesi.Collections">
-      <HintPath>..\..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin">
-      <HintPath>..\..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security">
-      <HintPath>..\..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.Formatting">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Razor">
-      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Helpers">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Deployment">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Razor">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Mvc">
-      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
+      <PackageReference Include="Autofac" Version="4.9.4" />
+      <PackageReference Include="AutoFixture" Version="4.11.0" />
+      <PackageReference Include="AutoFixture.AutoMoq" Version="4.11.0" />
+      <PackageReference Include="AutoFixture.NUnit3" Version="4.11.0" />
+      <PackageReference Include="AutoMapper" Version="6.0.2" />
+      <PackageReference Include="Castle.Core" Version="4.4.1" />
+      <PackageReference Include="CSF.DecoratorBuilder" Version="2.0.0" />
+      <PackageReference Include="CSF.DecoratorBuilder.Interfaces" Version="2.0.0" />
+      <PackageReference Include="CSF.Entities" Version="2.0.3" />
+      <PackageReference Include="CSF.Enums" Version="7.0.0" />
+      <PackageReference Include="CSF.ORM" Version="2.0.3" />
+      <PackageReference Include="CSF.ORM.Entities" Version="2.0.3" />
+      <PackageReference Include="CSF.ORM.NHibernate4" Version="2.0.3" />
+      <PackageReference Include="CSF.ReflectionSpecifications" Version="3.0.0" />
+      <PackageReference Include="CSF.Reflector" Version="3.0.0" />
+      <PackageReference Include="CSF.Security" Version="2.0.2" />
+      <PackageReference Include="CSF.Specifications" Version="2.0.0" />
+      <PackageReference Include="CSF.Utils" Version="6.1.1" />
+      <PackageReference Include="CSF.Validation" Version="2.0.0" />
+      <PackageReference Include="Fare" Version="2.1.1" />
+      <PackageReference Include="Iesi.Collections" Version="4.0.0.4000" />
+      <PackageReference Include="log4net" Version="2.0.8" />
+      <PackageReference Include="Moq" Version="4.14.5" />
+      <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+      <PackageReference Include="NHibernate" Version="4.0.0.4000" />
+      <PackageReference Include="NUnit" Version="3.7.1" />
+      <PackageReference Include="NUnit.ConsoleRunner" Version="3.7.0" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj" />
+    <ProjectReference Include="..\..\Agiil.Web\Agiil.Web.csproj" />
+    <ProjectReference Include="..\..\Agiil.Auth.Impl\Agiil.Auth.Impl.csproj" />
+    <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj" />
+    <ProjectReference Include="..\..\Agiil.Domain\Agiil.Domain.csproj" />
+    <ProjectReference Include="..\..\Agiil.Domain.Impl\Agiil.Domain.Impl.csproj" />
+    <ProjectReference Include="..\..\Agiil.Web.Models\Agiil.Web.Models.csproj" />
+    <ProjectReference Include="..\..\Agiil.ObjectMaps\Agiil.ObjectMaps.csproj" />
+    <ProjectReference Include="..\..\Agiil.Data\Agiil.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="netstandard" />
     <Reference Include="System.Configuration" />
-    <Reference Include="AutoMapper">
-      <HintPath>..\..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Utils">
-      <HintPath>..\..\packages\CSF.Utils.6.1.1\lib\net45\CSF.Utils.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Entities">
-      <HintPath>..\..\packages\CSF.Entities.2.0.3\lib\net45\CSF.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Security">
-      <HintPath>..\..\packages\CSF.Security.2.0.2\lib\net45\CSF.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Validation">
-      <HintPath>..\..\packages\CSF.Validation.2.0.0\lib\net45\CSF.Validation.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.ORM">
-      <HintPath>..\..\packages\CSF.ORM.2.0.3\lib\net45\CSF.ORM.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.ORM.NHibernate.Common">
-      <HintPath>..\..\packages\CSF.ORM.NHibernate4.2.0.3\lib\net45\CSF.ORM.NHibernate.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.ORM.NHibernate4">
-      <HintPath>..\..\packages\CSF.ORM.NHibernate4.2.0.3\lib\net45\CSF.ORM.NHibernate4.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.ORM.Entities">
-      <HintPath>..\..\packages\CSF.ORM.Entities.2.0.3\lib\net45\CSF.ORM.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Enums">
-      <HintPath>..\..\packages\CSF.Enums.7.0.0\lib\net45\CSF.Enums.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Reflector">
-      <HintPath>..\..\packages\CSF.Reflector.3.0.0\lib\net45\CSF.Reflector.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Specifications">
-      <HintPath>..\..\packages\CSF.Specifications.2.0.0\lib\net45\CSF.Specifications.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.ReflectionSpecifications">
-      <HintPath>..\..\packages\CSF.ReflectionSpecifications.3.0.0\lib\net45\CSF.ReflectionSpecifications.dll</HintPath>
-    </Reference>
-    <Reference Include="Fare">
-      <HintPath>..\..\packages\Fare.2.1.1\lib\net35\Fare.dll</HintPath>
-    </Reference>
-    <Reference Include="AutoFixture">
-      <HintPath>..\..\packages\AutoFixture.4.11.0\lib\net452\AutoFixture.dll</HintPath>
-    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="Microsoft.Win32.Primitives">
-      <HintPath>..\..\packages\Microsoft.Win32.Primitives.4.0.1\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="mscorlib" />
-    <Reference Include="System.AppContext">
-      <HintPath>..\..\packages\System.AppContext.4.1.0\lib\net463\System.AppContext.dll</HintPath>
-    </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Console">
-      <HintPath>..\..\packages\System.Console.4.0.0\lib\net46\System.Console.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Diagnostics.DiagnosticSource">
-      <HintPath>..\..\packages\System.Diagnostics.DiagnosticSource.4.0.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Diagnostics.Tracing">
-      <HintPath>..\..\packages\System.Diagnostics.Tracing.4.1.0\lib\net462\System.Diagnostics.Tracing.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Globalization.Calendars">
-      <HintPath>..\..\packages\System.Globalization.Calendars.4.0.1\lib\net46\System.Globalization.Calendars.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO">
-      <HintPath>..\..\packages\System.IO.4.1.0\lib\net462\System.IO.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.Compression">
-      <HintPath>..\..\packages\System.IO.Compression.4.1.0\lib\net46\System.IO.Compression.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.Compression.ZipFile">
-      <HintPath>..\..\packages\System.IO.Compression.ZipFile.4.0.1\lib\net46\System.IO.Compression.ZipFile.dll</HintPath>
-    </Reference>
     <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.IO.FileSystem.Primitives">
-      <HintPath>..\..\packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.FileSystem">
-      <HintPath>..\..\packages\System.IO.FileSystem.4.0.1\lib\net46\System.IO.FileSystem.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Linq">
-      <HintPath>..\..\packages\System.Linq.4.1.0\lib\net463\System.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Linq.Expressions">
-      <HintPath>..\..\packages\System.Linq.Expressions.4.1.0\lib\net463\System.Linq.Expressions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Sockets">
-      <HintPath>..\..\packages\System.Net.Sockets.4.1.0\lib\net46\System.Net.Sockets.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reflection">
-      <HintPath>..\..\packages\System.Reflection.4.1.0\lib\net462\System.Reflection.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime">
-      <HintPath>..\..\packages\System.Runtime.4.1.0\lib\net462\System.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="System.Runtime.Extensions">
-      <HintPath>..\..\packages\System.Runtime.Extensions.4.1.0\lib\net462\System.Runtime.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.InteropServices">
-      <HintPath>..\..\packages\System.Runtime.InteropServices.4.1.0\lib\net462\System.Runtime.InteropServices.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.InteropServices.RuntimeInformation">
-      <HintPath>..\..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
-    </Reference>
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Security.Cryptography.Encoding">
-      <HintPath>..\..\packages\System.Security.Cryptography.Encoding.4.0.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.Primitives">
-      <HintPath>..\..\packages\System.Security.Cryptography.Primitives.4.0.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.Algorithms">
-      <HintPath>..\..\packages\System.Security.Cryptography.Algorithms.4.2.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.X509Certificates">
-      <HintPath>..\..\packages\System.Security.Cryptography.X509Certificates.4.1.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http">
-      <HintPath>..\..\packages\System.Net.Http.4.1.0\lib\net46\System.Net.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.RegularExpressions">
-      <HintPath>..\..\packages\System.Text.RegularExpressions.4.1.0\lib\net463\System.Text.RegularExpressions.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="AutoFixture.NUnit3">
-      <HintPath>..\..\packages\AutoFixture.NUnit3.4.11.0\lib\net452\AutoFixture.NUnit3.dll</HintPath>
-    </Reference>
-    <Reference Include="AutoFixture.AutoMoq">
-      <HintPath>..\..\packages\AutoFixture.AutoMoq.4.11.0\lib\net452\AutoFixture.AutoMoq.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks.Extensions">
-      <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.5.1\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.DecoratorBuilder">
-      <HintPath>..\..\packages\CSF.DecoratorBuilder.Interfaces.2.0.0\lib\net461\CSF.DecoratorBuilder.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.DecoratorBuilder.Impl">
-      <HintPath>..\..\packages\CSF.DecoratorBuilder.2.0.0\lib\net461\CSF.DecoratorBuilder.Impl.dll</HintPath>
-    </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EntityExtensions.cs" />
-    <Compile Include="Autofixture\HasIdentityCustomization.cs" />
-    <Compile Include="Autofixture\TypeRelayCustomization.cs" />
-    <Compile Include="CurrentUserReaderExtensions.cs" />
-    <Compile Include="Autofixture\LoggedInCustomization.cs" />
-    <Compile Include="TestFilesystem.cs" />
-    <Compile Include="Autofixture\ProjectCustomization.cs" />
-    <Compile Include="TestComparerBase.cs" />
-    <Compile Include="Attributes\AutoMoqDataAttribute.cs" />
-    <Compile Include="Attributes\HasIdentityAttribute.cs" />
-    <Compile Include="Attributes\LoggedInAttribute.cs" />
-    <Compile Include="Attributes\ProvidesServiceAttribute.cs" />
-    <Compile Include="CachingDomainContainerFactory.cs" />
-    <Compile Include="Attributes\AlwaysPassesAttribute.cs" />
-    <Compile Include="Autofixture\AlwaysPassesValidationCustomization.cs" />
-    <Compile Include="Attributes\InMemoryAttribute.cs" />
-    <Compile Include="Autofixture\InMemoryEntityDataCustomization.cs" />
-    <Compile Include="Attributes\MockedMetadataAttribute.cs" />
-    <Compile Include="Attributes\CreatesATicketAttribute.cs" />
-    <Compile Include="Autofixture\CreatesATicketCustomization.cs" />
-    <Compile Include="Attributes\CreatesTransactionAttribute.cs" />
-    <Compile Include="Autofixture\CreatesTransactionCustomization.cs" />
-    <Compile Include="Data\InMemoryEntityDataFactory.cs" />
-    <Compile Include="Attributes\WithRelationshipAttribute.cs" />
-    <Compile Include="Bootstrap\DataModule.cs" />
-    <Compile Include="Data\TestingDatabaseConfiguration.cs" />
-    <Compile Include="Attributes\FromDiAttribute.cs" />
-    <Compile Include="Autofixture\FromDiCustomization.cs" />
-    <Compile Include="Autofixture\FromDiSpecimenBuilder.cs" />
-    <Compile Include="Attributes\WithDiAttribute.cs" />
-    <Compile Include="Attributes\WithDiCommand.cs" />
-    <Compile Include="Attributes\TrueSpecExprAttribute.cs" />
-    <Compile Include="Autofixture\NoRecursionCustomization.cs" />
-    <Compile Include="Autofixture\OpenGenericTypeRelayCustomization.cs" />
-    <Compile Include="Bootstrap\TicketUriProviderModule.cs" />
-    <Compile Include="Attributes\LoggerForAttribute.cs" />
-    <Compile Include="Bootstrap\NHibernateModule.cs" />
-    <Compile Include="Bootstrap\SessionModule.cs" />
-    <Compile Include="Attributes\CapabilitySpecAttribute.cs" />
-    <Compile Include="Autofixture\CapabilitySpecCustomization.cs" />
-    <Compile Include="Autofixture\CapabilitySpecSpecimenBuilder.cs" />
-    <Compile Include="Autofixture\HardCodedSpecAttribute.cs" />
-    <Compile Include="Bootstrap\NoCapabilitiesAssertionsModule.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Agiil.Bootstrap\Agiil.Bootstrap.csproj">
-      <Project>{79827CF5-CC58-4F87-BBCA-162B5983C563}</Project>
-      <Name>Agiil.Bootstrap</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Agiil.Web\Agiil.Web.csproj">
-      <Project>{EA6B20FB-9F7F-49C5-BE4E-BCD59ECA1D85}</Project>
-      <Name>Agiil.Web</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Agiil.Auth.Impl\Agiil.Auth.Impl.csproj">
-      <Project>{71F8B1B3-C0F1-4D0A-BF44-1DC091EE62E3}</Project>
-      <Name>Agiil.Auth.Impl</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Agiil.Auth\Agiil.Auth.csproj">
-      <Project>{922B2D9C-444E-451A-B626-DAE59E79C0E5}</Project>
-      <Name>Agiil.Auth</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Agiil.Domain\Agiil.Domain.csproj">
-      <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
-      <Name>Agiil.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Agiil.Domain.Impl\Agiil.Domain.Impl.csproj">
-      <Project>{FF544749-0A04-417F-AD83-E284BBF498E7}</Project>
-      <Name>Agiil.Domain.Impl</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Agiil.Web.Models\Agiil.Web.Models.csproj">
-      <Project>{53F1B62F-1BEE-4732-A1F3-433822529906}</Project>
-      <Name>Agiil.Web.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Agiil.ObjectMaps\Agiil.ObjectMaps.csproj">
-      <Project>{36A605F5-89BD-4FBA-BDB1-088C38E54886}</Project>
-      <Name>Agiil.ObjectMaps</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Agiil.Data\Agiil.Data.csproj">
-      <Project>{AB167238-0D06-4D8A-A646-198D63575AF5}</Project>
-      <Name>Agiil.Data</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Autofixture\" />
-    <Folder Include="Attributes\" />
-    <Folder Include="Data\" />
-    <Folder Include="Bootstrap\" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+    
+  <Import Project="..\..\Tools\EnableMultiTargetingWithMono.targets" />
 </Project>

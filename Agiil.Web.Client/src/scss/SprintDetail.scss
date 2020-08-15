@@ -1,0 +1,7 @@
+@import '_StandardPage';
+@import '_RichDescriptions';
+@import 'TicketList';
+
+.description_content {
+  @include rich_description;
+}

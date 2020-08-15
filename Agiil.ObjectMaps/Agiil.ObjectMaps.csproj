@@ -1,148 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+    
+  <Import Project="..\Tools\CommonProjectItems.targets" />
+  
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{36A605F5-89BD-4FBA-BDB1-088C38E54886}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Agiil.ObjectMaps</PackageId>
+    <Description>Implementation logic specialised to the usage of AutoMapper to map between entity/DTO/value types</Description>
+    <ReleaseVersion>0.11.0</ReleaseVersion>
+    <Version>$(ReleaseVersion)</Version>
     <RootNamespace>Agiil.ObjectMaps</RootNamespace>
-    <AssemblyName>Agiil.ObjectMaps</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <ReleaseVersion>0.10.0</ReleaseVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
+    
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="AutoMapper">
-      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Entities">
-      <HintPath>..\packages\CSF.Entities.2.0.3\lib\net45\CSF.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.ORM">
-      <HintPath>..\packages\CSF.ORM.2.0.3\lib\net45\CSF.ORM.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.ORM.Entities">
-      <HintPath>..\packages\CSF.ORM.Entities.2.0.3\lib\net45\CSF.ORM.Entities.dll</HintPath>
-    </Reference>
+    <PackageReference Include="AutoMapper" Version="6.0.2" />
+    <PackageReference Include="CSF.Entities" Version="2.0.3" />
+    <PackageReference Include="CSF.ORM" Version="2.0.3" />
+    <PackageReference Include="CSF.ORM.Entities" Version="2.0.3" />
+    <PackageReference Include="CSF.Reflection" Version="3.0.0" />
+    <PackageReference Include="CSF.ReflectionSpecifications" Version="3.0.0" />
   </ItemGroup>
+    
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tickets\CommentToCommentDtoProfile.cs" />
-    <Compile Include="MapperConfigurationFactory.cs" />
-    <Compile Include="Tickets\TicketToTicketSummaryDtoProfile.cs" />
-    <Compile Include="Tickets\TicketToTicketDetailDtoProfile.cs" />
-    <Compile Include="Sprints\NewSprintSpecificationToCreateSprintRequestProfile.cs" />
-    <Compile Include="Sprints\CreateSprintResponseToNewSprintResultProfile.cs" />
-    <Compile Include="IMapperConfigurationFactory.cs" />
-    <Compile Include="IProfileTypesProvider.cs" />
-    <Compile Include="ProfileTypesProvider.cs" />
-    <Compile Include="Sprints\SprintToSprintSummaryDtoProfile.cs" />
-    <Compile Include="Tickets\TicketToEditTicketSpecificationProfile.cs" />
-    <Compile Include="Tickets\EditTicketRequestToTicketProfile.cs" />
-    <Compile Include="Tickets\EditTicketSpecificationToEditTicketRequestProfile.cs" />
-    <Compile Include="Tickets\EditTicketResponseToWebEditTicketResponseProfile.cs" />
-    <Compile Include="Sprints\SprintToSprintDetailDtoProfile.cs" />
-    <Compile Include="Sprints\AdHocSprintListingRequestToListSprintsRequestProfile.cs" />
-    <Compile Include="Tickets\NewTicketSpecificationToCreateTicketRequestProfile.cs" />
-    <Compile Include="Tickets\CreateTicketResponseToNewTicketResponseProfile.cs" />
-    <Compile Include="Sprints\EditSprintSpecificationToEditSprintRequestProfile.cs" />
-    <Compile Include="Sprints\EditSprintResponseToWebEditSprintResponseProfile.cs" />
-    <Compile Include="Sprints\EditSprintRequestToSprintProfile.cs" />
-    <Compile Include="Resolvers\CreateIdentityResolver.cs" />
-    <Compile Include="Resolvers\GetEntityByIdentityResolver.cs" />
-    <Compile Include="Resolvers\GetEntityByIdentityValueResolver.cs" />
-    <Compile Include="Resolvers\IdentityValueResolver.cs" />
-    <Compile Include="Resolvers\IResolversNamespaceMarker.cs" />
-    <Compile Include="Resolvers\MarkdownToHtmlResolver.cs" />
-    <Compile Include="Tickets\TicketTypeToTicketTypeDtoProfile.cs" />
-    <Compile Include="Tickets\LabelToLabelDtoProfile.cs" />
-    <Compile Include="Labels\ListedLabelToListedLabelDtoProfile.cs" />
-    <Compile Include="Labels\LabelToLabelDetailDtoProfile.cs" />
-    <Compile Include="Tickets\AddRelationshipModelToAddRelationshipRequestProfile.cs" />
-    <Compile Include="Tickets\AvailableRelationshipToAvailableRelationshipDtoProfile.cs" />
-    <Compile Include="Tickets\TicketRelationshipIdentityToDeleteRelationshipRequestProfile.cs" />
-    <Compile Include="Tickets\DeleteRelationshipRequestToTicketRelationshipIdentityProfile.cs" />
-    <Compile Include="Activity\AddTicketWorkLogModelToAddWorkLogRequestProfile.cs" />
-    <Compile Include="Tickets\TheoreticalRelationshipToTraversibleRelationshipProfile.cs" />
-    <Compile Include="Tickets\HierarchicalTicketRelationshipToTraversibleRelationshipProfile.cs" />
-    <Compile Include="Resolvers\TicketsForLabelResolver.cs" />
-    <Compile Include="Resolvers\TicketsForSprintResolver.cs" />
-    <Compile Include="Resolvers\CommaSeparatedLabelNameResolver.cs" />
-    <Compile Include="Resolvers\TotalWorkLoggedForTicketResolver.cs" />
-    <Compile Include="Projects\CreateProjectRequestToProjectProfile.cs" />
-    <Compile Include="Projects\CreateProjectModelToCreateProjectRequestProfile.cs" />
-    <Compile Include="Projects\ProjectToProjectDescriptionDtoProfile.cs" />
-    <Compile Include="Projects\ProjectToEditProjectModelProfile.cs" />
-    <Compile Include="Projects\EditProjectRequestToProjectProfile.cs" />
-    <Compile Include="Projects\EditProjectModelToEditProjectRequestProfile.cs" />
-    <Compile Include="Projects\ProjectToAvailableProjectModelProfile.cs" />
+    <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj" />
+    <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj" />
+    <ProjectReference Include="..\Agiil.Web.Models\Agiil.Web.Models.csproj" />
+    <ProjectReference Include="..\Agiil.Web.Rendering\Agiil.Web.Rendering.csproj" />
+    <ProjectReference Include="..\Agiil.Domain.Impl\Agiil.Domain.Impl.csproj" />
   </ItemGroup>
+    
   <ItemGroup>
-    <None Include="packages.config" />
+    <Folder Include="Auth\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Tickets\" />
-    <Folder Include="Sprints\" />
-    <Folder Include="Resolvers\" />
-    <Folder Include="Labels\" />
-    <Folder Include="Activity\" />
-    <Folder Include="Projects\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Agiil.Domain\Agiil.Domain.csproj">
-      <Project>{7196FD92-824E-4C7B-82F6-3E2845217889}</Project>
-      <Name>Agiil.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Agiil.Auth\Agiil.Auth.csproj">
-      <Project>{922B2D9C-444E-451A-B626-DAE59E79C0E5}</Project>
-      <Name>Agiil.Auth</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Agiil.Web.Models\Agiil.Web.Models.csproj">
-      <Project>{53F1B62F-1BEE-4732-A1F3-433822529906}</Project>
-      <Name>Agiil.Web.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Agiil.Web.Rendering\Agiil.Web.Rendering.csproj">
-      <Project>{8080A385-823C-44F0-B090-71F52337F04A}</Project>
-      <Name>Agiil.Web.Rendering</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Agiil.Domain.Impl\Agiil.Domain.Impl.csproj">
-      <Project>{FF544749-0A04-417F-AD83-E284BBF498E7}</Project>
-      <Name>Agiil.Domain.Impl</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\Tools\EnableMultiTargetingWithMono.targets" />
 </Project>

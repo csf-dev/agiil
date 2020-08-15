@@ -1,48 +1,50 @@
 ﻿using System;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
+using Agiil.Web.ApiActionFilters;
 using Agiil.Web.ModelBinders;
 using Autofac;
 using Autofac.Integration.WebApi;
 
 namespace Agiil.Web.Bootstrap
 {
-  [Agiil.Bootstrap.DoNotAutoRegister]
-  public class AspNetWebApiModule : Module
-  {
-    readonly HttpConfiguration config;
-
-    protected override void Load(ContainerBuilder builder)
+    public class AspNetWebApiModule : Module
     {
-      RegisterControllers(builder);
-      RegisterFilterProfiler(builder);
-      RegisterModelBinder(builder);
-    }
+        readonly HttpConfiguration config;
 
-    protected virtual void RegisterControllers(ContainerBuilder builder)
-    {
-      var assembly = System.Reflection.Assembly.GetExecutingAssembly();
-      builder.RegisterApiControllers(assembly);
-    }
+        protected override void Load(ContainerBuilder builder)
+        {
+            RegisterControllers(builder);
+            RegisterFilterProvider(builder);
+            RegisterModelBinder(builder);
 
-    protected virtual void RegisterFilterProfiler(ContainerBuilder builder)
-    {
-      builder.RegisterWebApiFilterProvider(config);
-    }
+            builder.RegisterType<Log4netUnexpectedErrorLogger>().AsSelf().AsImplementedInterfaces();
+        }
 
-    protected virtual void RegisterModelBinder(ContainerBuilder builder)
-    {
-      builder
-        .RegisterType<AutofacWebApiModelBinderProviderWithOpenGenericSupport>()
-        .As<ModelBinderProvider>();
-    }
+        protected virtual void RegisterControllers(ContainerBuilder builder)
+        {
+            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            builder.RegisterApiControllers(assembly);
+        }
 
-    public AspNetWebApiModule(HttpConfiguration config)
-    {
-      if(config == null)
-        throw new ArgumentNullException(nameof(config));
+        protected virtual void RegisterFilterProvider(ContainerBuilder builder)
+        {
+            builder.RegisterWebApiFilterProvider(config);
+        }
 
-      this.config = config;
+        protected virtual void RegisterModelBinder(ContainerBuilder builder)
+        {
+            builder
+              .RegisterType<AutofacWebApiModelBinderProviderWithOpenGenericSupport>()
+              .As<ModelBinderProvider>();
+        }
+
+        public AspNetWebApiModule(HttpConfiguration config)
+        {
+            if(config == null)
+                throw new ArgumentNullException(nameof(config));
+
+            this.config = config;
+        }
     }
-  }
 }

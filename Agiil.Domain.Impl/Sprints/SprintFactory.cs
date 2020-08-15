@@ -9,8 +9,8 @@ namespace Agiil.Domain.Sprints
 
     public Sprint CreateSprint(string name,
                                Project project,
-                               DateTime? startDate,
-                               DateTime? endDate)
+                               DateTime? startDate = null,
+                               DateTime? endDate = null)
     {
       if(project == null)
         throw new ArgumentNullException(nameof(project));

@@ -1,8 +1,7 @@
 ﻿using System;
 using Agiil.Domain.Tickets;
 using Agiil.Tests.Attributes;
-using Agiil.Web.Rendering.MarkdownExtensions;
-using log4net;
+using Ext = Agiil.Web.Rendering.MarkdownExtensions;
 using Markdig.Helpers;
 using Moq;
 using NUnit.Framework;
@@ -14,7 +13,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
   {
     [Test,AutoMoqData]
     public void GetTicketReference_parses_reference_with_project_code_and_ticket_number([Frozen] IParsesTicketReference innerParser,
-                                                                                           TicketReferenceParser sut)
+                                                                                           Ext.TicketReferenceParser sut)
     {
       // Arrange
       var iterator = new StringSlice("#AB12");
@@ -30,7 +29,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
 
     [Test,AutoMoqData]
     public void GetTicketReference_parses_reference_with_long_project_code_and_ticket_number([Frozen] IParsesTicketReference innerParser,
-                                                                                                TicketReferenceParser sut)
+                                                                                                Ext.TicketReferenceParser sut)
     {
       // Arrange
       var iterator = new StringSlice("#ABCD1234");
@@ -46,7 +45,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
 
     [Test,AutoMoqData]
     public void GetTicketReference_parses_naked_ticket_number_without_project_code([Frozen] IParsesTicketReference innerParser,
-                                                                                      TicketReferenceParser sut)
+                                                                                      Ext.TicketReferenceParser sut)
     {
       // Arrange
       var iterator = new StringSlice("#1234");
@@ -62,7 +61,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
 
     [Test,AutoMoqData]
     public void GetTicketReference_parses_reference_followed_by_whitespace([Frozen] IParsesTicketReference innerParser,
-                                                                              TicketReferenceParser sut)
+                                                                              Ext.TicketReferenceParser sut)
     {
       // Arrange
       var iterator = new StringSlice("#1234 ");
@@ -78,7 +77,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
 
     [Test,AutoMoqData]
     public void GetTicketReference_parses_reference_followed_by_a_period([Frozen] IParsesTicketReference innerParser,
-                                                                            TicketReferenceParser sut)
+                                                                            Ext.TicketReferenceParser sut)
     {
       // Arrange
       var iterator = new StringSlice("#1234.");
@@ -109,7 +108,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
       Mock.Get(parser)
           .Setup(x => x.ParseReferece(ticketRefWithoutOtherChars))
           .Returns(reference);
-      var sut = new TicketReferenceParser(parser);
+      var sut = new Ext.TicketReferenceParser(parser);
       var iterator = new StringSlice(ticketRef);
       int charCount;
 
@@ -122,7 +121,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
 
     [Test,AutoMoqData]
     public void GetTicketReference_does_not_parse_if_first_char_is_not_hash_symbol([Frozen] IParsesTicketReference innerParser,
-                                                                                 TicketReferenceParser sut)
+                                                                                 Ext.TicketReferenceParser sut)
     {
       // Arrange
       var iterator = new StringSlice("*1234");
@@ -138,7 +137,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
 
     [Test,AutoMoqData]
     public void GetTicketReference_does_not_parse_if_no_numbers_after_alphabetic_letters([Frozen] IParsesTicketReference innerParser,
-                                                                                       TicketReferenceParser sut)
+                                                                                       Ext.TicketReferenceParser sut)
     {
       // Arrange
       var iterator = new StringSlice("#ABC");
@@ -154,7 +153,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
 
     [Test,AutoMoqData]
     public void GetTicketReference_does_not_parse_if_there_is_whitespace_between_project_code_and_ticket_number([Frozen] IParsesTicketReference innerParser,
-                                                                                                              TicketReferenceParser sut)
+                                                                                                              Ext.TicketReferenceParser sut)
     {
       // Arrange
       var iterator = new StringSlice("#ABC 123");
@@ -170,7 +169,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
 
     [Test,AutoMoqData]
     public void GetTicketReference_does_not_parse_if_there_is_a_dash_between_project_code_and_ticket_number([Frozen] IParsesTicketReference innerParser,
-                                                                                                          TicketReferenceParser sut)
+                                                                                                          Ext.TicketReferenceParser sut)
     {
       // Arrange
       var iterator = new StringSlice("#ABC-123");
@@ -186,7 +185,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
 
     [Test,AutoMoqData]
     public void GetTicketReference_does_not_parse_if_there_are_further_alpha_characters_after_the_ticket_number([Frozen] IParsesTicketReference innerParser,
-                                                                                                              TicketReferenceParser sut)
+                                                                                                              Ext.TicketReferenceParser sut)
     {
       // Arrange
       var iterator = new StringSlice("#ABC123DEF");
@@ -212,7 +211,7 @@ namespace Agiil.Tests.Web.Rendering.MarkdownExtensions
       Mock.Get(parser)
           .Setup(x => x.ParseReferece(ticketRef))
           .Returns(() => null);
-      var sut = new TicketReferenceParser(parser);
+      var sut = new Ext.TicketReferenceParser(parser);
       var iterator = new StringSlice(ticketRef);
       int charCount;
 

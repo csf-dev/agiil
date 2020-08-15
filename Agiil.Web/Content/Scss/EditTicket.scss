@@ -1,8 +1,0 @@
-@import '_Forms';
-@import '_RelationshipTables';
-@import '_TicketEditing';
-
-#EditTicketForm {
-  @include full_page_form;
-  @include ticket_editing;
-}

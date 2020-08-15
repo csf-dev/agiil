@@ -2,6 +2,7 @@
 <html lang="en" metal:use-macro="Views/Shared/StandardPage/macros/page">
 <head>
 <title metal:fill-slot="title_element">Log in</title>
+<style metal:fill-slot="asset_styles" metal:use-macro="Views/Login/Index.assets.html/macros/styles"></style>
 </head>
 <body>
 <div metal:fill-slot="page_content"
@@ -9,7 +10,7 @@
                  loginThrottled here/LoginThrottled;
                  loginSucceded here/LoginSucceded;
                  loginAttempted here/LoginAttempted;
-                 username here/LoginState/Username | nothing"
+                 username csharp:ViewBag.LoginState.Username ?? null"
      class="content_container">
   <h1>Log in</h1>
   <form method="post" id="LoginForm" action="Login/Login" tal:condition="not:username">
@@ -50,5 +51,6 @@
     </fieldset>
   </form>
 </div>
+<metal:block fill-slot="asset_scripts" use-macro="Views/Login/Index.assets.html/macros/scripts"></metal:block>
 </body>
 </html>

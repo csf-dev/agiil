@@ -4,7 +4,7 @@ uses [a Java tool] to read **grammar files**: `*.g4` and from those it generates
 code in other languages, such as C# or ECMAScript.
 
 *All code in the **Generated_XXX** directories is automatically generated* by the
-ANTLR tool.  None of thair contents are intended to be edited by developers and
+ANTLR tool.  None of their contents are intended to be edited by developers and
 *any changes will be lost* when the tool is run (during the build process).
 
 [Antlr]: http://www.antlr.org/

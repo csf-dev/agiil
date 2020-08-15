@@ -1,0 +1,9 @@
+@import '_StandardPage';
+@import '_Forms';
+@import '_RelationshipTables';
+@import '_TicketEditing';
+
+form.create_ticket {
+  @include full_page_form;
+  @include ticket_editing;
+}

@@ -5,7 +5,7 @@ using Agiil.Web.Models.Shared;
 
 namespace Agiil.Web.Models.Auth
 {
-  public class LoginModel : PageModel
+  public class LoginModel
   {
     public LoginResult Result { get; set; }
 

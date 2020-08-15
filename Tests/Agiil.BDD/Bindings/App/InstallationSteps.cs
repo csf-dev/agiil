@@ -13,7 +13,6 @@ namespace Agiil.BDD.Bindings.App
   public class InstallationSteps
   {
     readonly ICast cast;
-    readonly Lazy<ITestRunner> testRunner;
     readonly Lazy<AprilSteps> aprilSteps;
 
     [Given("Agiil has just been installed")]
@@ -28,18 +27,10 @@ namespace Agiil.BDD.Bindings.App
       Given(april).WasAbleTo<InstallTheApplication>();
     }
 
-    public InstallationSteps(ICast cast, Lazy<ITestRunner> testRunner, Lazy<AprilSteps> aprilSteps)
+    public InstallationSteps(ICast cast, Lazy<AprilSteps> aprilSteps)
     {
-      if(aprilSteps == null)
-        throw new ArgumentNullException(nameof(aprilSteps));
-      if(testRunner == null)
-        throw new ArgumentNullException(nameof(testRunner));
-      if(cast == null)
-        throw new ArgumentNullException(nameof(cast));
-      
-      this.aprilSteps = aprilSteps;
-      this.cast = cast;
-      this.testRunner = testRunner;
+      this.aprilSteps = aprilSteps ?? throw new ArgumentNullException(nameof(aprilSteps));
+      this.cast = cast ?? throw new ArgumentNullException(nameof(cast));
     }
   }
 }

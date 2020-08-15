@@ -6,75 +6,47 @@ using AutoMapper;
 
 namespace Agiil.Web.Controllers
 {
-  public class ChangePasswordController : Controller
-  {
-    const string ResultKey = "Change password result";
-
-    readonly Lazy<IPasswordChanger> passwordChanger;
-
-    [HttpGet]
-    public ActionResult Index()
+    public class ChangePasswordController : Controller
     {
-      var model = GetModel();
+        const string ResultKey = "Change password result";
 
-      if(model.Result != null
-         && model.Result.Success)
-      {
-        return View("Success", model);
-      }
+        readonly Lazy<IPasswordChanger> passwordChanger;
+        readonly IMapper mapper;
 
-      return View(model);
+        [HttpGet]
+        public ActionResult Index()
+        {
+            var model = new ChangePasswordModel {
+                Result = TempData.TryGet<ChangePasswordResult>(ResultKey),
+            };
+
+            if(model.Result?.Success == true)
+                return View("Success", model);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Change(ChangePasswordSpecification spec)
+        {
+            if(spec == null)
+                throw new ArgumentNullException(nameof(spec));
+
+            var request = mapper.Map<PasswordChangeRequest>(spec);
+            var result = passwordChanger.Value.ChangeOwnPassword(request);
+            var webResult = mapper.Map<ChangePasswordResult>(result);
+
+            TempData.Clear();
+
+            TempData.Add(ResultKey, webResult);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public ChangePasswordController(Lazy<IPasswordChanger> passwordChanger,
+                                        IMapper mapper)
+        {
+            this.passwordChanger = passwordChanger ?? throw new ArgumentNullException(nameof(passwordChanger));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        }
     }
-
-    [HttpPost]
-    public ActionResult Change(ChangePasswordSpecification spec)
-    {
-      if(spec == null)
-        throw new ArgumentNullException(nameof(spec));
-
-      var request = MapRequest(spec);
-      var result = passwordChanger.Value.ChangeOwnPassword(request);
-      var webResult = GetResult(result);
-
-      TempData.Clear();
-
-      TempData.Add(ResultKey, webResult);
-      return RedirectToAction(nameof(Index));
-    }
-
-    ChangePasswordModel GetModel()
-    {
-      var model = new ChangePasswordModel();
-      model.Result = TempData.TryGet<ChangePasswordResult>(ResultKey);
-      return model;
-    }
-
-    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
-    PasswordChangeRequest MapRequest(ChangePasswordSpecification spec)
-    {
-      return new PasswordChangeRequest {
-        ConfirmNewPassword = spec.NewPasswordConfirmation,
-        ExistingPassword = spec.ExistingPassword,
-        NewPassword = spec.NewPassword,
-      };
-    }
-
-    // TODO: #AG30 - Switch this over to use an IMapper (auto-mapper)
-    ChangePasswordResult GetResult(PasswordChangeResponse result)
-    {
-      return new ChangePasswordResult {
-        Success = result.Success,
-        ExistingPasswordIncorrect = result.ExistingPasswordIncorrect,
-        NewPasswordDoesNotMatchConfirmation = result.NewPasswordDoesNotMatchConfirmation,
-        NewPasswordDoesNotSatisfyPolicy = result.NewPasswordDoesNotSatisfyPolicy,
-      };
-    }
-
-    public ChangePasswordController(Lazy<IPasswordChanger> passwordChanger)
-    {
-      if(passwordChanger == null)
-        throw new ArgumentNullException(nameof(passwordChanger)); ;
-      this.passwordChanger = passwordChanger;
-    }
-  }
 }
