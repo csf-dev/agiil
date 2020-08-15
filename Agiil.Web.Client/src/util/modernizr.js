@@ -40,12 +40,14 @@ export const modernizr : ModernizrApi = Modernizr;
 const
     possibletouchscreen = 'possibletouchscreen',
     pointermediaquery = 'pointermq',
-    touchevents = 'touchevents';
+    touchevents = 'touchevents',
+    passiveeventlisteners = 'passiveeventlisteners';
 
 const tests = {
     possibletouchscreen,
     pointermediaquery,
-    touchevents
+    touchevents,
+    passiveeventlisteners
 };
 Object.freeze(tests);
 
