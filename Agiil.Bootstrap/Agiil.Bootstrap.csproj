@@ -37,7 +37,7 @@
     <PackageReference Include="CSF.ReflectionSpecifications" Version="3.0.0" />
     <PackageReference Include="CSF.DecoratorBuilder" Version="2.0.0" />
     <PackageReference Include="AngleSharp" Version="0.9.9" />
-    <PackageReference Include="HtmlSanitizer" Version="3.4.156" />
+    <PackageReference Include="HtmlSanitizer" Version="5.0.372" />
     <PackageReference Include="BrakePedal" Version="1.0.3" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.105.0" />
     <PackageReference Include="Castle.Core" Version="4.4.1" />
