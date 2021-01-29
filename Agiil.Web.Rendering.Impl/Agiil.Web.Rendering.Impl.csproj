@@ -16,7 +16,7 @@
     <PackageReference Include="AngleSharp" Version="0.9.9" />
     <PackageReference Include="HtmlSanitizer" Version="3.4.156" />
     <PackageReference Include="Markdig" Version="0.15.0" />
-    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="log4net" Version="2.0.10" />
   </ItemGroup>
     
   <ItemGroup>
