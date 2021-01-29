@@ -31,7 +31,7 @@
     <PackageReference Include="CSF.ORM" Version="2.0.3" />
     <PackageReference Include="CSF.Reflector" Version="3.0.0" />
     <PackageReference Include="CSF.ORM.Entities" Version="2.0.3" />
-    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="log4net" Version="2.0.10" />
     <PackageReference Include="CSF.Security" Version="2.0.2" />
     <PackageReference Include="CSF.ORM.NHibernate4" Version="2.0.3" />
     <PackageReference Include="CSF.ReflectionSpecifications" Version="3.0.0" />
