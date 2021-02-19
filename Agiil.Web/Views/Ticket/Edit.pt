@@ -138,7 +138,7 @@
                                       participation availableRelationship/Participant;
                                       summary availableRelationship/Summary;
                                       optionValue string:${relationshipId}-${participation};
-                                      isSelected csharp:Equals(slotRelationshipId, optionValue);
+                                      isSelected csharp:Object.Equals(slotRelationshipId, optionValue);
                                       selectedVal string:selected;"
                           tal:attributes="value optionValue; selected csharp:(isSelected == true)? selectedVal : null"
                           tal:content="summary"

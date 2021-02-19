@@ -1,14 +1,22 @@
 ﻿using System.Web.Mvc;
-using CSF.Zpt.MVC;
+using ZptSharp;
+using ZptSharp.Mvc5;
 
 namespace Agiil.Web.App_Start
 {
-  public class MvcViewConfiguration
-  {
-    public void RegisterViewEngines(ViewEngineCollection engines)
+    public class MvcViewConfiguration
     {
-      engines.Clear();
-      engines.Add(new ZptViewEngine());
+        public void RegisterViewEngines(ViewEngineCollection engines)
+        {
+            var viewEngine = new ZptSharpViewEngine(builder => {
+                builder
+                    .AddHapZptDocuments()
+                    .AddStandardZptExpressions()
+                    .AddZptCSharpExpressions()
+                    .AddZptPipeExpressions();
+            });
+            engines.Clear();
+            engines.Add(viewEngine);
+        }
     }
-  }
 }

@@ -18,7 +18,7 @@
         action="Login/Login"
         tal:define="loggedIn csharp:ViewBag.LoginState.IsLoggedIn ?? false;
                     username csharp:ViewBag.LoginState.Username ?? null;
-                    action csharp:Equals(loggedIn, true)? &quot;Login/Logout&quot; : &quot;Login/Login&quot;"
+                    action csharp:Object.Equals(loggedIn, true)? &quot;Login/Logout&quot; : &quot;Login/Login&quot;"
         tal:attributes="action action">
     <fieldset tal:condition="loggedIn" class="logout">
       <h5 aria-hidden="true">Login status</h5>
