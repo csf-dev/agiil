@@ -29,7 +29,7 @@
     <PackageReference Include="AutoMapper" Version="6.0.2" />
     <PackageReference Include="Mono.Data.Sqlite" Version="1.0.61" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.105.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <!-- The following two packages are conditional on whether we are building on Windows or Linux/Mono.
          Actually, I don't think it should be the build which determines this; it should be decided at runtime. -->
     <PackageReference Include="dbup-sqlite" Condition="'$(OS)' == 'Windows_NT'" Version="3.3.5" />
