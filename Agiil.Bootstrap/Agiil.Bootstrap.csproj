@@ -16,7 +16,7 @@
     <PackageReference Include="NHibernate" Version="4.0.0.4000" />
     <PackageReference Include="Autofac" Version="4.9.4" />
     <PackageReference Include="Owin" Version="1.0" />
-    <PackageReference Include="Microsoft.Owin" Version="3.0.1" />
+    <PackageReference Include="Microsoft.Owin" Version="4.1.1" />
     <PackageReference Include="Microsoft.Owin.Security" Version="3.0.1" />
     <PackageReference Include="Microsoft.Owin.Security.Cookies" Version="3.0.1" />
     <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="3.0.1" />
